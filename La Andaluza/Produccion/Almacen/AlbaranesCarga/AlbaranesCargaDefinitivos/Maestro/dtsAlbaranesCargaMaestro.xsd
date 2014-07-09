@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dtsAlbaranesCargaMaestro" targetNamespace="http://tempuri.org/dtsAlbaranesCargaMaestro.xsd" xmlns:mstns="http://tempuri.org/dtsAlbaranesCargaMaestro.xsd" xmlns="http://tempuri.org/dtsAlbaranesCargaMaestro.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="LAConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="LAConnectionString1 (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.La_Andaluza.My.MySettings.GlobalReference.Default.LAConnectionString1" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dtsAlbaranesCargaMaestro" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dtsAlbaranesCargaMaestro" msprop:Generator_UserDSName="dtsAlbaranesCargaMaestro">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="AlbaranesCargaMaestro" msprop:Generator_TableClassName="AlbaranesCargaMaestroDataTable" msprop:Generator_RowEvArgName="AlbaranesCargaMaestroRowChangeEvent" msprop:Generator_TableVarName="tableAlbaranesCargaMaestro" msprop:Generator_TablePropName="AlbaranesCargaMaestro" msprop:Generator_RowDeletingName="AlbaranesCargaMaestroRowDeleting" msprop:Generator_RowChangingName="AlbaranesCargaMaestroRowChanging" msprop:Generator_RowDeletedName="AlbaranesCargaMaestroRowDeleted" msprop:Generator_RowEvHandlerName="AlbaranesCargaMaestroRowChangeEventHandler" msprop:Generator_RowChangedName="AlbaranesCargaMaestroRowChanged" msprop:Generator_UserTableName="AlbaranesCargaMaestro" msprop:Generator_RowClassName="AlbaranesCargaMaestroRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="AlbaranCargaMaestroID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnAlbaranCargaMaestroID" msprop:Generator_ColumnPropNameInRow="AlbaranCargaMaestroID" msprop:Generator_ColumnPropNameInTable="AlbaranCargaMaestroIDColumn" msprop:Generator_UserColumnName="AlbaranCargaMaestroID" type="xs:int" />
+              <xs:element name="AlbaranCargaProMaestroID" msprop:Generator_ColumnVarNameInTable="columnAlbaranCargaProMaestroID" msprop:Generator_ColumnPropNameInRow="AlbaranCargaProMaestroID" msprop:Generator_ColumnPropNameInTable="AlbaranCargaProMaestroIDColumn" msprop:Generator_UserColumnName="AlbaranCargaProMaestroID" type="xs:int" minOccurs="0" />
+              <xs:element name="Fecha" msprop:Generator_ColumnVarNameInTable="columnFecha" msprop:Generator_ColumnPropNameInRow="Fecha" msprop:Generator_ColumnPropNameInTable="FechaColumn" msprop:Generator_UserColumnName="Fecha" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ClienteID" msprop:Generator_ColumnVarNameInTable="columnClienteID" msprop:Generator_ColumnPropNameInRow="ClienteID" msprop:Generator_ColumnPropNameInTable="ClienteIDColumn" msprop:Generator_UserColumnName="ClienteID" type="xs:boolean" minOccurs="0" />
+              <xs:element name="SerieQSID" msprop:Generator_ColumnVarNameInTable="columnSerieQSID" msprop:Generator_ColumnPropNameInRow="SerieQSID" msprop:Generator_ColumnPropNameInTable="SerieQSIDColumn" msprop:Generator_UserColumnName="SerieQSID" type="xs:int" minOccurs="0" />
+              <xs:element name="NumeroQS" msprop:Generator_ColumnVarNameInTable="columnNumeroQS" msprop:Generator_ColumnPropNameInRow="NumeroQS" msprop:Generator_ColumnPropNameInTable="NumeroQSColumn" msprop:Generator_UserColumnName="NumeroQS" type="xs:int" minOccurs="0" />
+              <xs:element name="AlmacenSalidaQSID" msprop:Generator_ColumnVarNameInTable="columnAlmacenSalidaQSID" msprop:Generator_ColumnPropNameInRow="AlmacenSalidaQSID" msprop:Generator_ColumnPropNameInTable="AlmacenSalidaQSIDColumn" msprop:Generator_UserColumnName="AlmacenSalidaQSID" type="xs:int" minOccurs="0" />
+              <xs:element name="AgenciaID" msprop:Generator_ColumnVarNameInTable="columnAgenciaID" msprop:Generator_ColumnPropNameInRow="AgenciaID" msprop:Generator_ColumnPropNameInTable="AgenciaIDColumn" msprop:Generator_UserColumnName="AgenciaID" type="xs:int" minOccurs="0" />
+              <xs:element name="PorteFormaPagoID" msprop:Generator_ColumnVarNameInTable="columnPorteFormaPagoID" msprop:Generator_ColumnPropNameInRow="PorteFormaPagoID" msprop:Generator_ColumnPropNameInTable="PorteFormaPagoIDColumn" msprop:Generator_UserColumnName="PorteFormaPagoID" type="xs:int" minOccurs="0" />
+              <xs:element name="PorteImporte" msprop:Generator_ColumnVarNameInTable="columnPorteImporte" msprop:Generator_ColumnPropNameInRow="PorteImporte" msprop:Generator_ColumnPropNameInTable="PorteImporteColumn" msprop:Generator_UserColumnName="PorteImporte" type="xs:int" minOccurs="0" />
+              <xs:element name="Matricula" msprop:Generator_ColumnVarNameInTable="columnMatricula" msprop:Generator_ColumnPropNameInRow="Matricula" msprop:Generator_ColumnPropNameInTable="MatriculaColumn" msprop:Generator_UserColumnName="Matricula" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Conductor" msprop:Generator_ColumnVarNameInTable="columnConductor" msprop:Generator_ColumnPropNameInRow="Conductor" msprop:Generator_ColumnPropNameInTable="ConductorColumn" msprop:Generator_UserColumnName="Conductor" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ConductorDNI" msprop:Generator_ColumnVarNameInTable="columnConductorDNI" msprop:Generator_ColumnPropNameInRow="ConductorDNI" msprop:Generator_ColumnPropNameInTable="ConductorDNIColumn" msprop:Generator_UserColumnName="ConductorDNI" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ResponsableCargaID" msprop:Generator_ColumnVarNameInTable="columnResponsableCargaID" msprop:Generator_ColumnPropNameInRow="ResponsableCargaID" msprop:Generator_ColumnPropNameInTable="ResponsableCargaIDColumn" msprop:Generator_UserColumnName="ResponsableCargaID" type="xs:int" minOccurs="0" />
+              <xs:element name="ResponsableAdministracionID" msprop:Generator_ColumnVarNameInTable="columnResponsableAdministracionID" msprop:Generator_ColumnPropNameInRow="ResponsableAdministracionID" msprop:Generator_ColumnPropNameInTable="ResponsableAdministracionIDColumn" msprop:Generator_UserColumnName="ResponsableAdministracionID" type="xs:int" minOccurs="0" />
+              <xs:element name="HoraLlegada" msprop:Generator_ColumnVarNameInTable="columnHoraLlegada" msprop:Generator_ColumnPropNameInRow="HoraLlegada" msprop:Generator_ColumnPropNameInTable="HoraLlegadaColumn" msprop:Generator_UserColumnName="HoraLlegada" type="xs:duration" minOccurs="0" />
+              <xs:element name="HoraSalida" msprop:Generator_ColumnVarNameInTable="columnHoraSalida" msprop:Generator_ColumnPropNameInRow="HoraSalida" msprop:Generator_ColumnPropNameInTable="HoraSalidaColumn" msprop:Generator_UserColumnName="HoraSalida" type="xs:duration" minOccurs="0" />
+              <xs:element name="Observaciones" msprop:Generator_ColumnVarNameInTable="columnObservaciones" msprop:Generator_ColumnPropNameInRow="Observaciones" msprop:Generator_ColumnPropNameInTable="ObservacionesColumn" msprop:Generator_UserColumnName="Observaciones" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Reserva1" msprop:Generator_ColumnVarNameInTable="columnReserva1" msprop:Generator_ColumnPropNameInRow="Reserva1" msprop:Generator_ColumnPropNameInTable="Reserva1Column" msprop:Generator_UserColumnName="Reserva1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Reserva2" msprop:Generator_ColumnVarNameInTable="columnReserva2" msprop:Generator_ColumnPropNameInRow="Reserva2" msprop:Generator_ColumnPropNameInTable="Reserva2Column" msprop:Generator_UserColumnName="Reserva2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Reserva3" msprop:Generator_ColumnVarNameInTable="columnReserva3" msprop:Generator_ColumnPropNameInRow="Reserva3" msprop:Generator_ColumnPropNameInTable="Reserva3Column" msprop:Generator_UserColumnName="Reserva3" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:AlbaranesCargaMaestro" />
+      <xs:field xpath="mstns:AlbaranCargaMaestroID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

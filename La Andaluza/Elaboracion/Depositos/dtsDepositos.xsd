@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dtsDepositos" targetNamespace="http://tempuri.org/dtsDepositos.xsd" xmlns:mstns="http://tempuri.org/dtsDepositos.xsd" xmlns="http://tempuri.org/dtsDepositos.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="LAConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="LAConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.La_Andaluza.My.MySettings.GlobalReference.Default.LAConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dtsDepositos" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="dtsDepositos" msprop:Generator_UserDSName="dtsDepositos">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Depositos" msprop:Generator_UserTableName="Depositos" msprop:Generator_RowEvArgName="DepositosRowChangeEvent" msprop:Generator_TableVarName="tableDepositos" msprop:Generator_TablePropName="Depositos" msprop:Generator_RowDeletingName="DepositosRowDeleting" msprop:Generator_RowChangingName="DepositosRowChanging" msprop:Generator_RowDeletedName="DepositosRowDeleted" msprop:Generator_TableClassName="DepositosDataTable" msprop:Generator_RowChangedName="DepositosRowChanged" msprop:Generator_RowEvHandlerName="DepositosRowChangeEventHandler" msprop:Generator_RowClassName="DepositosRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DepositoID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnDepositoID" msprop:Generator_ColumnPropNameInRow="DepositoID" msprop:Generator_ColumnPropNameInTable="DepositoIDColumn" msprop:Generator_UserColumnName="DepositoID" type="xs:int" />
+              <xs:element name="Codigo" msdata:Caption="Column1" msprop:Generator_ColumnVarNameInTable="columnCodigo" msprop:Generator_ColumnPropNameInRow="Codigo" msprop:Generator_ColumnPropNameInTable="CodigoColumn" msprop:Generator_UserColumnName="Codigo" type="xs:int" minOccurs="0" />
+              <xs:element name="FechaCreacion" msprop:Generator_ColumnVarNameInTable="columnFechaCreacion" msprop:Generator_ColumnPropNameInRow="FechaCreacion" msprop:Generator_ColumnPropNameInTable="FechaCreacionColumn" msprop:Generator_UserColumnName="FechaCreacion" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Capacidad" msprop:Generator_ColumnVarNameInTable="columnCapacidad" msprop:Generator_ColumnPropNameInRow="Capacidad" msprop:Generator_ColumnPropNameInTable="CapacidadColumn" msprop:Generator_UserColumnName="Capacidad" type="xs:int" minOccurs="0" />
+              <xs:element name="DoctoUbicacionFisica" msprop:Generator_ColumnVarNameInTable="columnDoctoUbicacionFisica" msprop:Generator_ColumnPropNameInRow="DoctoUbicacionFisica" msprop:Generator_ColumnPropNameInTable="DoctoUbicacionFisicaColumn" msprop:Generator_UserColumnName="DoctoUbicacionFisica" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TonelID" msprop:Generator_ColumnVarNameInTable="columnTonelID" msprop:Generator_ColumnPropNameInRow="TonelID" msprop:Generator_ColumnPropNameInTable="TonelIDColumn" msprop:Generator_UserColumnName="TonelID" type="xs:string" minOccurs="0" />
+              <xs:element name="TransicubaID" msprop:Generator_ColumnVarNameInTable="columnTransicubaID" msprop:Generator_ColumnPropNameInRow="TransicubaID" msprop:Generator_ColumnPropNameInTable="TransicubaIDColumn" msprop:Generator_UserColumnName="TransicubaID" type="xs:string" minOccurs="0" />
+              <xs:element name="BotaID" msprop:Generator_ColumnVarNameInTable="columnBotaID" msprop:Generator_ColumnPropNameInRow="BotaID" msprop:Generator_ColumnPropNameInTable="BotaIDColumn" msprop:Generator_UserColumnName="BotaID" type="xs:string" minOccurs="0" />
+              <xs:element name="BotaPiernaID" msprop:Generator_ColumnVarNameInTable="columnBotaPiernaID" msprop:Generator_ColumnPropNameInRow="BotaPiernaID" msprop:Generator_ColumnPropNameInTable="BotaPiernaIDColumn" msprop:Generator_UserColumnName="BotaPiernaID" type="xs:string" minOccurs="0" />
+              <xs:element name="Tipo" msprop:Generator_ColumnVarNameInTable="columnTipo" msprop:Generator_ColumnPropNameInRow="Tipo" msprop:Generator_ColumnPropNameInTable="TipoColumn" msprop:Generator_UserColumnName="Tipo" type="xs:string" minOccurs="0" />
+              <xs:element name="MaterialConstruccionID" msdata:Caption="Material de Construccion" msprop:Generator_ColumnVarNameInTable="columnMaterialConstruccionID" msprop:Generator_ColumnPropNameInRow="MaterialConstruccionID" msprop:Generator_ColumnPropNameInTable="MaterialConstruccionIDColumn" msprop:Generator_UserColumnName="MaterialConstruccionID" type="xs:string" minOccurs="0" />
+              <xs:element name="Listado" msprop:Generator_ColumnVarNameInTable="columnListado" msprop:Generator_ColumnPropNameInRow="Listado" msprop:Generator_ColumnPropNameInTable="ListadoColumn" msprop:Generator_UserColumnName="Listado" type="xs:boolean" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Depositos" />
+      <xs:field xpath="mstns:DepositoID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,56 @@
+﻿Imports BasesParaCompatibilidad.ComboBoxExtension
+
+
+Public Class frmMigracionCambioTipo
+    Private m_dbo_mantener As DBO_Articulos1
+    Private m_dbo_borrar As DBO_Articulos1
+
+    Public Sub New(ByVal id As Integer)
+        InitializeComponent()
+
+        Me.m_dbo_mantener = New DBO_Articulos1
+        Me.m_dbo_mantener.ID = id
+    End Sub
+
+    Private Sub btnCancelar_Click(sender As System.Object, e As System.EventArgs) Handles btnCancelar.Click
+        Me.Close()
+    End Sub
+
+    Private Sub btnAceptar_Click(sender As System.Object, e As System.EventArgs) Handles btnAceptar.Click
+        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+        dtb.EmpezarTransaccion()
+
+        Dim migrateCommand as System.Data.SqlClient.SqlCommand = dtb.Comando("[dbo].[ArticulosMigrarTipo]")
+
+        Try
+            migrateCommand.Transaction = dtb.Transaccion
+            migrateCommand.CommandType = CommandType.StoredProcedure
+            migrateCommand.Parameters.AddWithValue("@artMantener", m_dbo_mantener.ID)
+            migrateCommand.Parameters.AddWithValue("@tipo", Me.cboArticulo.SelectedValue)
+
+            migrateCommand.ExecuteNonQuery()
+
+
+
+            dtb.TerminarTransaccion()
+            messagebox.show("Migracion completada", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Me.Close()
+        Catch ex As Exception
+            dtb.CancelarTransaccion()
+            messagebox.show("Se encontró un problema a realizar la migración. Se BasesParaCompatibilidad.BD.Cerrará la ventana, vuelva a intentarlo en unos segundos." & Environment.NewLine _
+                   & " Detalles: " & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Me.Close()
+        End Try
+
+    End Sub
+
+    Private Sub frmMigracionEntreArticulos_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
+        BasesParaCompatibilidad.DetailedSimpleForm.centerHorizontalyIn(Me.lIntruccion, Me.Panel3)
+        BasesParaCompatibilidad.DetailedSimpleForm.centerHorizontalyIn(Me.Panel4, Me.Panel2)
+    End Sub
+
+    Private Sub frmMigracionEntreArticulos_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+        cboArticulo.mam_DataSource("Articulos1_ArticulosTiposCboRestringido", False, dtb)
+    End Sub
+End Class

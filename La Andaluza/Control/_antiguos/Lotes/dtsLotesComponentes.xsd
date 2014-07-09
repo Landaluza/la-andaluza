@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dtsLotesComponentes" targetNamespace="http://tempuri.org/dtsLotesComponentes.xsd" xmlns:mstns="http://tempuri.org/dtsLotesComponentes.xsd" xmlns="http://tempuri.org/dtsLotesComponentes.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dtsLotesComponentes" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="dtsLotesComponentes" msprop:Generator_DataSetName="dtsLotesComponentes">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="LotesComponentes" msprop:Generator_UserTableName="LotesComponentes" msprop:Generator_RowDeletedName="LotesComponentesRowDeleted" msprop:Generator_TableClassName="LotesComponentesDataTable" msprop:Generator_RowChangedName="LotesComponentesRowChanged" msprop:Generator_RowClassName="LotesComponentesRow" msprop:Generator_RowChangingName="LotesComponentesRowChanging" msprop:Generator_RowEvArgName="LotesComponentesRowChangeEvent" msprop:Generator_RowEvHandlerName="LotesComponentesRowChangeEventHandler" msprop:Generator_TablePropName="LotesComponentes" msprop:Generator_TableVarName="tableLotesComponentes" msprop:Generator_RowDeletingName="LotesComponentesRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="LoteId" msprop:Generator_UserColumnName="LoteId" msprop:Generator_ColumnPropNameInRow="LoteId" msprop:Generator_ColumnVarNameInTable="columnLoteId" msprop:Generator_ColumnPropNameInTable="LoteIdColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="CodigoLote" msprop:Generator_UserColumnName="CodigoLote" msprop:Generator_ColumnPropNameInRow="CodigoLote" msprop:Generator_ColumnVarNameInTable="columnCodigoLote" msprop:Generator_ColumnPropNameInTable="CodigoLoteColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Cantidad" msprop:Generator_UserColumnName="Cantidad" msprop:Generator_ColumnPropNameInRow="Cantidad" msprop:Generator_ColumnVarNameInTable="columnCantidad" msprop:Generator_ColumnPropNameInTable="CantidadColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Observaciones" msprop:Generator_UserColumnName="Observaciones" msprop:Generator_ColumnPropNameInRow="Observaciones" msprop:Generator_ColumnVarNameInTable="columnObservaciones" msprop:Generator_ColumnPropNameInTable="ObservacionesColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
