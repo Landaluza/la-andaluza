@@ -196,9 +196,96 @@ Public Class ExcelImporter
 
                 s = grp.SeriesCollection(1)
                 s.BarShape = Microsoft.Office.Interop.Excel.XlBarShape.xlCylinder
-                's.HasDataLabels = False
                 s.Trendlines.Add(Type:=-4132, Forward:=0, Backward:=0, DisplayEquation:=False, DisplayRSquared:=False)
 
+                s.HasDataLabels = True
+                s.ApplyDataLabels(Microsoft.Office.Interop.Excel.XlDataLabelsType.xlDataLabelsShowLabel)
+
+
+
+                Dim ax As Microsoft.Office.Interop.Excel.Axis = chartPage.Axes(Microsoft.Office.Interop.Excel.XlAxisType.xlValue)
+                Dim longitud As Integer = 12 * (year - 5)
+                Dim DataArrayLabel(0 To longitud) As Object
+
+
+                Dim contMeses As Integer = 1
+                Dim contAgno As Integer = 2006
+                Dim contpuntos As Integer = 0
+                Dim valormaximo As Object
+                'Dim swMax As Boolean
+                ' Dim rangoMaximos As Microsoft.Office.Interop.Excel.Range = oWS1.Range("D22", Chr(68 + year - 6) & "22")
+                valormaximo = oWS1.Range("D22").Value
+
+                For Each o As Object In s.Points()
+                    'no usar el valor, iterar por los meses y años para añadirlo al label
+                    Dim p As Microsoft.Office.Interop.Excel.Point = o
+                    o.datalabel.text = oWS1.Cells(50 + contpuntos, 1).Value
+
+
+                    If contMeses = 12 Then
+                        DataArrayLabel(contpuntos) = "Diciembre " & contAgno                        
+
+                        contMeses = 0
+                        contAgno += 1
+                    Else
+                        If contMeses = 1 Then
+                            valormaximo = oWS1.Range(Chr(68 + (contAgno - 2000) - 6) & "22").Value
+                        End If
+                        DataArrayLabel(contpuntos) = ""
+                    End If
+
+                    
+                    If valormaximo = oWS1.Cells(50 + contpuntos, 1).Value Then
+                        o.datalabel.text = oWS1.Cells(50 + contpuntos, 1).Value                        
+                    Else
+                        o.datalabel.text = ""
+                    End If
+
+                 
+                    'Select Case contMeses
+                    '    Case 1
+                    '        o.datalabel.text = "Enero " & contAgno
+                    '    Case 2
+                    '        o.datalabel.text = "Febrero " & contAgno
+                    '    Case 3
+                    '        o.datalabel.text = "Marzo " & contAgno
+                    '    Case 4
+                    '        o.datalabel.text = "Abril " & contAgno
+                    '    Case 5
+                    '        o.datalabel.text = "Mayo " & contAgno
+                    '    Case 6
+                    '        o.datalabel.text = "Junio " & contAgno
+                    '    Case 7
+                    '        o.datalabel.text = "Julio " & contAgno
+                    '    Case 8
+                    '        o.datalabel.text = "Agosto " & contAgno
+                    '    Case 9
+                    '        o.datalabel.text = "Septiembre " & contAgno
+                    '    Case 10
+                    '        o.datalabel.text = "Octubre " & contAgno
+                    '    Case 11
+                    '        o.datalabel.text = "Noviembre " & contAgno
+                    '    Case 12
+                    '        o.datalabel.text = "Diciembre " & contAgno
+                    '        contMeses = 0
+                    '        contAgno += 1
+                    'End Select
+
+                    contpuntos += 1
+                    contMeses += 1
+                Next
+
+                ax.CategoryNames = DataArrayLabel
+
+
+
+
+                'muestra etiquetas DENTRO del grafico
+                's.ApplyDataLabels(Microsoft.Office.Interop.Excel.XlDataLabelsType.xlDataLabelsShowLabel, True, nombreDeSerieAMostrar)
+                'PRUEBAS
+                's.ApplyDataLabels()
+                's.AxisGroup 
+                '=SERIES(Hoja1!$B$1;{"ene"\"feb"\"mar"\"abr"\"may"\"jun"};Hoja1!$B$2:$B$7;1)
                 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
                 oWS1.Columns.AutoFit()
 
@@ -207,7 +294,7 @@ Public Class ExcelImporter
                 oApp.Quit()
                 oApp = New Microsoft.Office.Interop.Excel.Application
                 oApp.Visible = True
-                oWBa = oApp.Workbooks.Open(if(fc.FileName.ToString.EndsWith(".xlsx"), fc.FileName.ToString, fc.FileName & ".xlsx"))
+                oWBa = oApp.Workbooks.Open(If(fc.FileName.ToString.EndsWith(".xlsx"), fc.FileName.ToString, fc.FileName & ".xlsx"))
                 Return True
             End If
 
