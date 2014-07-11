@@ -234,41 +234,41 @@ Public Class ExcelImporter
                     End If
 
                     
-                    If valormaximo = oWS1.Cells(50 + contpuntos, 1).Value Then
-                        o.datalabel.text = oWS1.Cells(50 + contpuntos, 1).Value                        
+                    If valormaximo = oWS1.Cells(50 + contpuntos, 1).Value Then                        
+                        Select Case contMeses
+                            Case 1
+                                o.datalabel.text = oWS1.Cells(50 + contpuntos, 1).Value & "Enero"
+                            Case 2
+                                o.datalabel.text = oWS1.Cells(50 + contpuntos, 1).Value & "Febrero"
+                            Case 3
+                                o.datalabel.text = oWS1.Cells(50 + contpuntos, 1).Value & "Marzo"
+                            Case 4
+                                o.datalabel.text = oWS1.Cells(50 + contpuntos, 1).Value & "Abril"
+                            Case 5
+                                o.datalabel.text = oWS1.Cells(50 + contpuntos, 1).Value & "Mayo"
+                            Case 6
+                                o.datalabel.text = oWS1.Cells(50 + contpuntos, 1).Value & "Junio"
+                            Case 7
+                                o.datalabel.text = oWS1.Cells(50 + contpuntos, 1).Value & "Julio"
+                            Case 8
+                                o.datalabel.text = oWS1.Cells(50 + contpuntos, 1).Value & "Agosto"
+                            Case 9
+                                o.datalabel.text = oWS1.Cells(50 + contpuntos, 1).Value & "Septiembre"
+                            Case 10
+                                o.datalabel.text = oWS1.Cells(50 + contpuntos, 1).Value & "Octubre"
+                            Case 11
+                                o.datalabel.text = oWS1.Cells(50 + contpuntos, 1).Value & "Noviembre"
+                            Case 12
+                                o.datalabel.text = oWS1.Cells(50 + contpuntos, 1).Value & "Diciembre"
+                                contMeses = 0
+                                contAgno += 1
+                        End Select
                     Else
                         o.datalabel.text = ""
                     End If
 
                  
-                    'Select Case contMeses
-                    '    Case 1
-                    '        o.datalabel.text = "Enero " & contAgno
-                    '    Case 2
-                    '        o.datalabel.text = "Febrero " & contAgno
-                    '    Case 3
-                    '        o.datalabel.text = "Marzo " & contAgno
-                    '    Case 4
-                    '        o.datalabel.text = "Abril " & contAgno
-                    '    Case 5
-                    '        o.datalabel.text = "Mayo " & contAgno
-                    '    Case 6
-                    '        o.datalabel.text = "Junio " & contAgno
-                    '    Case 7
-                    '        o.datalabel.text = "Julio " & contAgno
-                    '    Case 8
-                    '        o.datalabel.text = "Agosto " & contAgno
-                    '    Case 9
-                    '        o.datalabel.text = "Septiembre " & contAgno
-                    '    Case 10
-                    '        o.datalabel.text = "Octubre " & contAgno
-                    '    Case 11
-                    '        o.datalabel.text = "Noviembre " & contAgno
-                    '    Case 12
-                    '        o.datalabel.text = "Diciembre " & contAgno
-                    '        contMeses = 0
-                    '        contAgno += 1
-                    'End Select
+                   
 
                     contpuntos += 1
                     contMeses += 1
