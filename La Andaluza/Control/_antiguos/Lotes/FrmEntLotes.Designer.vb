@@ -274,6 +274,7 @@ Partial Class FrmEntLotes
         Me.txtObservacion = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.btnImprimirBoletin = New System.Windows.Forms.Button()
         Me.PanelGeneral = New System.Windows.Forms.Panel()
+        Me.vtnCodigoLoteClipboard = New System.Windows.Forms.Button()
         Me.btnVerAnalitica = New System.Windows.Forms.Button()
         Me.btnVerTrazabilidad = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
@@ -400,7 +401,7 @@ Partial Class FrmEntLotes
         '
         'txtTodoCorrecto
         '
-        Me.txtTodoCorrecto.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtTodoCorrecto.Margin = New System.Windows.Forms.Padding(4)
         Me.txtTodoCorrecto.TabIndex = 0
         '
         'Label65
@@ -437,7 +438,7 @@ Partial Class FrmEntLotes
         '
         lblFecha.AutoSize = True
         lblFecha.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        lblFecha.Location = New System.Drawing.Point(413, 18)
+        lblFecha.Location = New System.Drawing.Point(434, 18)
         lblFecha.Name = "lblFecha"
         lblFecha.Size = New System.Drawing.Size(40, 13)
         lblFecha.TabIndex = 11
@@ -1388,7 +1389,7 @@ Partial Class FrmEntLotes
         Me.dtpFecha.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.GeneralBindingSource, "Fecha", True))
         Me.dtpFecha.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpFecha.Location = New System.Drawing.Point(460, 15)
+        Me.dtpFecha.Location = New System.Drawing.Point(481, 15)
         Me.dtpFecha.Name = "dtpFecha"
         Me.dtpFecha.Size = New System.Drawing.Size(89, 20)
         Me.dtpFecha.TabIndex = 12
@@ -3636,7 +3637,7 @@ Partial Class FrmEntLotes
         Me.TabPageCamposObligatorios.Controls.Add(Me.butCorredor)
         Me.TabPageCamposObligatorios.Location = New System.Drawing.Point(4, 22)
         Me.TabPageCamposObligatorios.Name = "TabPageCamposObligatorios"
-        Me.TabPageCamposObligatorios.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+        Me.TabPageCamposObligatorios.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPageCamposObligatorios.Size = New System.Drawing.Size(1014, 230)
         Me.TabPageCamposObligatorios.TabIndex = 0
         Me.TabPageCamposObligatorios.Text = "Datos compra"
@@ -3758,7 +3759,7 @@ Partial Class FrmEntLotes
         '
         Me.TabPageDoctos.Location = New System.Drawing.Point(4, 22)
         Me.TabPageDoctos.Name = "TabPageDoctos"
-        Me.TabPageDoctos.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+        Me.TabPageDoctos.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPageDoctos.Size = New System.Drawing.Size(1014, 230)
         Me.TabPageDoctos.TabIndex = 1
         Me.TabPageDoctos.Text = "Documentos"
@@ -3768,7 +3769,7 @@ Partial Class FrmEntLotes
         '
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage1.Size = New System.Drawing.Size(1014, 230)
         Me.TabPage1.TabIndex = 2
         Me.TabPage1.Text = "Trazabilidad"
@@ -3994,7 +3995,7 @@ Partial Class FrmEntLotes
         Me.btnmuestra.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnmuestra.Image = Global.La_Andaluza.My.Resources.Resources.distribute_vertical_equal
         Me.btnmuestra.Location = New System.Drawing.Point(967, 19)
-        Me.btnmuestra.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnmuestra.Margin = New System.Windows.Forms.Padding(2)
         Me.btnmuestra.Name = "btnmuestra"
         Me.btnmuestra.Size = New System.Drawing.Size(18, 20)
         Me.btnmuestra.TabIndex = 12
@@ -4096,6 +4097,7 @@ Partial Class FrmEntLotes
         '
         'PanelGeneral
         '
+        Me.PanelGeneral.Controls.Add(Me.vtnCodigoLoteClipboard)
         Me.PanelGeneral.Controls.Add(Me.btnVerAnalitica)
         Me.PanelGeneral.Controls.Add(Me.btnVerTrazabilidad)
         Me.PanelGeneral.Controls.Add(Me.txtObservacion)
@@ -4126,10 +4128,21 @@ Partial Class FrmEntLotes
         Me.PanelGeneral.Controls.Add(CantidadRestanteLabel)
         Me.PanelGeneral.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelGeneral.Location = New System.Drawing.Point(0, 0)
-        Me.PanelGeneral.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.PanelGeneral.Margin = New System.Windows.Forms.Padding(2)
         Me.PanelGeneral.Name = "PanelGeneral"
         Me.PanelGeneral.Size = New System.Drawing.Size(1022, 140)
         Me.PanelGeneral.TabIndex = 10
+        '
+        'vtnCodigoLoteClipboard
+        '
+        Me.vtnCodigoLoteClipboard.FlatAppearance.BorderSize = 0
+        Me.vtnCodigoLoteClipboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.vtnCodigoLoteClipboard.Image = Global.La_Andaluza.My.Resources.Resources.file_clipboard
+        Me.vtnCodigoLoteClipboard.Location = New System.Drawing.Point(401, 11)
+        Me.vtnCodigoLoteClipboard.Name = "vtnCodigoLoteClipboard"
+        Me.vtnCodigoLoteClipboard.Size = New System.Drawing.Size(27, 26)
+        Me.vtnCodigoLoteClipboard.TabIndex = 28
+        Me.vtnCodigoLoteClipboard.UseVisualStyleBackColor = True
         '
         'btnVerAnalitica
         '
@@ -4139,7 +4152,7 @@ Partial Class FrmEntLotes
         Me.btnVerAnalitica.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnVerAnalitica.Image = Global.La_Andaluza.My.Resources.Resources.view_16
         Me.btnVerAnalitica.Location = New System.Drawing.Point(40, 119)
-        Me.btnVerAnalitica.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnVerAnalitica.Margin = New System.Windows.Forms.Padding(2)
         Me.btnVerAnalitica.Name = "btnVerAnalitica"
         Me.btnVerAnalitica.Size = New System.Drawing.Size(35, 19)
         Me.btnVerAnalitica.TabIndex = 27
@@ -4154,7 +4167,7 @@ Partial Class FrmEntLotes
         Me.btnVerTrazabilidad.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnVerTrazabilidad.Image = Global.La_Andaluza.My.Resources.Resources.view_16
         Me.btnVerTrazabilidad.Location = New System.Drawing.Point(2, 119)
-        Me.btnVerTrazabilidad.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnVerTrazabilidad.Margin = New System.Windows.Forms.Padding(2)
         Me.btnVerTrazabilidad.Name = "btnVerTrazabilidad"
         Me.btnVerTrazabilidad.Size = New System.Drawing.Size(35, 19)
         Me.btnVerTrazabilidad.TabIndex = 26
@@ -4172,7 +4185,7 @@ Partial Class FrmEntLotes
         Me.Panel2.Controls.Add(Me.txtBotellas)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
-        Me.Panel2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(1022, 382)
         Me.Panel2.TabIndex = 39
@@ -4182,7 +4195,7 @@ Partial Class FrmEntLotes
         Me.SplitContainer2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitContainer2.IsSplitterFixed = True
         Me.SplitContainer2.Location = New System.Drawing.Point(0, 25)
-        Me.SplitContainer2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.SplitContainer2.Margin = New System.Windows.Forms.Padding(2)
         Me.SplitContainer2.Name = "SplitContainer2"
         Me.SplitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal
         '
@@ -4212,7 +4225,7 @@ Partial Class FrmEntLotes
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.MaximizeBox = True
         Me.MinimumSize = New System.Drawing.Size(1032, 823)
         Me.Name = "FrmEntLotes"
@@ -4413,5 +4426,6 @@ Partial Class FrmEntLotes
     Private WithEvents btnVerTrazabilidad As System.Windows.Forms.Button
     Private WithEvents ToolTip1 As System.Windows.Forms.ToolTip
     Private WithEvents Panel2 As System.Windows.Forms.Panel
+    Private WithEvents vtnCodigoLoteClipboard As System.Windows.Forms.Button
 
 End Class

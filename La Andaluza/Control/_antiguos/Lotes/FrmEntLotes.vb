@@ -1174,4 +1174,7 @@ Public Class FrmEntLotes
    
 
   
+    Private Sub vtnCodigoLoteClipboard_Click(sender As Object, e As EventArgs) Handles vtnCodigoLoteClipboard.Click
+        My.Computer.Clipboard.SetText(Me.txtCodigoLote.Text)
+    End Sub
 End Class
