@@ -221,7 +221,6 @@ Public Class ExcelImporter
                     Dim p As Microsoft.Office.Interop.Excel.Point = o
                     o.datalabel.text = oWS1.Cells(50 + contpuntos, 1).Value
 
-
                     If contMeses = 12 Then
                         DataArrayLabel(contpuntos) = "Diciembre " & contAgno                        
 
