@@ -725,7 +725,7 @@ Namespace My.Resources
         '''</summary>
         Friend ReadOnly Property file_clipboard() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("file-clipboard", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("file_clipboard", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

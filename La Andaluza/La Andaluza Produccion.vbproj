@@ -115,6 +115,34 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Bases\ZLibrerias\EvaluacionIncidencia.dll</HintPath>
     </Reference>
+    <Reference Include="FastReport, Version=2014.2.4.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bases\ZLibrerias\referencias\FastReport.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Bars, Version=2014.2.4.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bases\ZLibrerias\referencias\FastReport.Bars.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Editor, Version=2014.2.4.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bases\ZLibrerias\referencias\FastReport.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Install, Version=1.0.0.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bases\ZLibrerias\referencias\FastReport.Install.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Service, Version=2014.2.4.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bases\ZLibrerias\referencias\FastReport.Service.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.VSDesign, Version=1.0.0.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bases\ZLibrerias\referencias\FastReport.VSDesign.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Web, Version=2014.2.4.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bases\ZLibrerias\referencias\FastReport.Web.dll</HintPath>
+    </Reference>
     <Reference Include="InformeContratosEmpleados, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Bases\ZLibrerias\InformeContratosEmpleados.dll</HintPath>
@@ -6539,6 +6567,13 @@
     <None Include="Bases\ZLibrerias\InformesEmpleados.dll" />
     <None Include="Bases\ZLibrerias\BasesParaCompatibilidad.dll" />
     <None Include="Resources\file-clipboard.png" />
+    <None Include="Bases\ZLibrerias\referencias\FastReport.Bars.dll" />
+    <None Include="Bases\ZLibrerias\referencias\FastReport.dll" />
+    <None Include="Bases\ZLibrerias\referencias\FastReport.Editor.dll" />
+    <None Include="Bases\ZLibrerias\referencias\FastReport.Install.dll" />
+    <None Include="Bases\ZLibrerias\referencias\FastReport.Service.dll" />
+    <None Include="Bases\ZLibrerias\referencias\FastReport.VSDesign.dll" />
+    <None Include="Bases\ZLibrerias\referencias\FastReport.Web.dll" />
     <Content Include="Resources\window_new.ico" />
     <Content Include="Resources\window_new_3.ico" />
     <None Include="Resources\text-x-makefile.png" />

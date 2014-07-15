@@ -22,59 +22,126 @@ Partial Class frmElegirOrdenListadoPedidos
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.butByProveedor = New System.Windows.Forms.Button()
+        Me.butByNumero = New System.Windows.Forms.Button()
+        Me.butByFecha = New System.Windows.Forms.Button()
+        Me.dtpFecha = New System.Windows.Forms.DateTimePicker()
+        Me.butDia = New System.Windows.Forms.Button()
+        Me.cboProveedores = New System.Windows.Forms.ComboBox()
+        Me.butProveedor = New System.Windows.Forms.Button()
+        Me.butEntregaIncumplida = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
-        'ComboBox1
+        'butByProveedor
         '
-        Me.ComboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Items.AddRange(New Object() {"Fecha", "Pedido", "Proveedor"})
-        Me.ComboBox1.Location = New System.Drawing.Point(43, 63)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(198, 21)
-        Me.ComboBox1.TabIndex = 0
+        Me.butByProveedor.FlatAppearance.BorderSize = 0
+        Me.butByProveedor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.butByProveedor.Location = New System.Drawing.Point(156, 12)
+        Me.butByProveedor.Name = "butByProveedor"
+        Me.butByProveedor.Size = New System.Drawing.Size(89, 23)
+        Me.butByProveedor.TabIndex = 3
+        Me.butByProveedor.Text = "Por proveedor"
+        Me.butByProveedor.UseVisualStyleBackColor = True
         '
-        'Label1
+        'butByNumero
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(40, 47)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(66, 13)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "Ordenar por:"
+        Me.butByNumero.FlatAppearance.BorderSize = 0
+        Me.butByNumero.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.butByNumero.Location = New System.Drawing.Point(28, 12)
+        Me.butByNumero.Name = "butByNumero"
+        Me.butByNumero.Size = New System.Drawing.Size(89, 23)
+        Me.butByNumero.TabIndex = 4
+        Me.butByNumero.Text = "Por numero"
+        Me.butByNumero.UseVisualStyleBackColor = True
         '
-        'Button1
+        'butByFecha
         '
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Image = Global.La_Andaluza.My.Resources.Resources.dialog_apply
-        Me.Button1.Location = New System.Drawing.Point(247, 61)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(25, 23)
-        Me.Button1.TabIndex = 2
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.butByFecha.FlatAppearance.BorderSize = 0
+        Me.butByFecha.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.butByFecha.Location = New System.Drawing.Point(284, 12)
+        Me.butByFecha.Name = "butByFecha"
+        Me.butByFecha.Size = New System.Drawing.Size(89, 23)
+        Me.butByFecha.TabIndex = 5
+        Me.butByFecha.Text = "Por fecha"
+        Me.butByFecha.UseVisualStyleBackColor = True
+        '
+        'dtpFecha
+        '
+        Me.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpFecha.Location = New System.Drawing.Point(28, 82)
+        Me.dtpFecha.Name = "dtpFecha"
+        Me.dtpFecha.Size = New System.Drawing.Size(112, 20)
+        Me.dtpFecha.TabIndex = 6
+        '
+        'butDia
+        '
+        Me.butDia.FlatAppearance.BorderSize = 0
+        Me.butDia.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.butDia.Location = New System.Drawing.Point(28, 53)
+        Me.butDia.Name = "butDia"
+        Me.butDia.Size = New System.Drawing.Size(63, 23)
+        Me.butDia.TabIndex = 7
+        Me.butDia.Text = "Un dia"
+        Me.butDia.UseVisualStyleBackColor = True
+        '
+        'cboProveedores
+        '
+        Me.cboProveedores.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cboProveedores.FormattingEnabled = True
+        Me.cboProveedores.Location = New System.Drawing.Point(28, 157)
+        Me.cboProveedores.Name = "cboProveedores"
+        Me.cboProveedores.Size = New System.Drawing.Size(345, 21)
+        Me.cboProveedores.TabIndex = 8
+        '
+        'butProveedor
+        '
+        Me.butProveedor.FlatAppearance.BorderSize = 0
+        Me.butProveedor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.butProveedor.Location = New System.Drawing.Point(28, 128)
+        Me.butProveedor.Name = "butProveedor"
+        Me.butProveedor.Size = New System.Drawing.Size(90, 23)
+        Me.butProveedor.TabIndex = 9
+        Me.butProveedor.Text = "Un proveedor"
+        Me.butProveedor.UseVisualStyleBackColor = True
+        '
+        'butEntregaIncumplida
+        '
+        Me.butEntregaIncumplida.FlatAppearance.BorderSize = 0
+        Me.butEntregaIncumplida.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.butEntregaIncumplida.Location = New System.Drawing.Point(178, 83)
+        Me.butEntregaIncumplida.Name = "butEntregaIncumplida"
+        Me.butEntregaIncumplida.Size = New System.Drawing.Size(157, 23)
+        Me.butEntregaIncumplida.TabIndex = 10
+        Me.butEntregaIncumplida.Text = "Fecha de entrega incumplida"
+        Me.butEntregaIncumplida.UseVisualStyleBackColor = True
         '
         'frmElegirOrdenListadoPedidos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(314, 147)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.ComboBox1)
+        Me.ClientSize = New System.Drawing.Size(395, 236)
+        Me.Controls.Add(Me.butEntregaIncumplida)
+        Me.Controls.Add(Me.butProveedor)
+        Me.Controls.Add(Me.cboProveedores)
+        Me.Controls.Add(Me.butDia)
+        Me.Controls.Add(Me.dtpFecha)
+        Me.Controls.Add(Me.butByFecha)
+        Me.Controls.Add(Me.butByNumero)
+        Me.Controls.Add(Me.butByProveedor)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "frmElegirOrdenListadoPedidos"
         Me.ShowIcon = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "frmElegirOrdenListadoPedidos"
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
-    Private WithEvents ComboBox1 As System.Windows.Forms.ComboBox
-    Private WithEvents Label1 As System.Windows.Forms.Label
-    Private WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents butByProveedor As System.Windows.Forms.Button
+    Friend WithEvents butByNumero As System.Windows.Forms.Button
+    Friend WithEvents butByFecha As System.Windows.Forms.Button
+    Friend WithEvents dtpFecha As System.Windows.Forms.DateTimePicker
+    Friend WithEvents butDia As System.Windows.Forms.Button
+    Friend WithEvents cboProveedores As System.Windows.Forms.ComboBox
+    Friend WithEvents butProveedor As System.Windows.Forms.Button
+    Friend WithEvents butEntregaIncumplida As System.Windows.Forms.Button
 End Class

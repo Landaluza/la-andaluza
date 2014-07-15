@@ -1,4 +1,8 @@
-﻿Public Class frmDepositosMain
+﻿Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Utils
+
+Public Class frmDepositosMain
     Private frmEspera As BasesParaCompatibilidad.frmEspera
     Private frmDepositos As frmDepositos
     Private frmMaterialConstruccion As frmMaterialConstruccion
@@ -38,5 +42,14 @@
         Finally
             frmEspera.Close()
         End Try
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim report As New Report
+        With report
+            .Load("..\..\\Elaboracion\Depositos\Listados\Depositos.frx")
+            Dim table As TableDataSource = TryCast(report.GetDataSource("tblReport1"), TableDataSource)
+            .Show()
+        End With
     End Sub
 End Class
