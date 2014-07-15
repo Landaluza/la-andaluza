@@ -6372,6 +6372,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosEnvasesPrimarios\ArticulosEnvasesPrimarios.docx" />
+    <None Include="Administracion\Proveedores1\PedidosProveedores\Listados\report1.frx" />
     <None Include="Administracion\Proveedores_y_articulos\TiposProveedores\dtsTiposProveedores.xsc">
       <DependentUpon>dtsTiposProveedores.xsd</DependentUpon>
     </None>
