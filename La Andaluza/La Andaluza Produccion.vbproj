@@ -49,7 +49,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>214</ApplicationRevision>
+    <ApplicationRevision>217</ApplicationRevision>
     <ApplicationVersion>2014.2.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -6537,6 +6537,7 @@
     <None Include="Bases\ZLibrerias\EvaluacionIncidencia.dll" />
     <None Include="Bases\ZLibrerias\InformesEmpleados.dll" />
     <None Include="Bases\ZLibrerias\BasesParaCompatibilidad.dll" />
+    <None Include="Resources\file-clipboard.png" />
     <Content Include="Resources\window_new.ico" />
     <Content Include="Resources\window_new_3.ico" />
     <None Include="Resources\text-x-makefile.png" />

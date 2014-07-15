@@ -642,8 +642,8 @@ C:\Users\Administrador\Desktop\la\New folder (3)\La Andaluza\obj\Release\La Anda
 C:\Users\Administrador\Desktop\la\New folder (3)\La Andaluza\obj\Release\La Andaluza.application
 C:\Users\Administrador\Desktop\la\New folder (3)\La Andaluza\obj\Release\La Andaluza.exe
 C:\Users\Administrador\Desktop\la\New folder (3)\La Andaluza\obj\Release\La Andaluza.pdb
-C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\La Andaluza.exe.config
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Bases\ZLibrerias\wiaaut.dll
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\La Andaluza.exe.config
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\La Andaluza.exe.manifest
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\La Andaluza.application
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\La Andaluza.exe
@@ -673,8 +673,6 @@ C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\System.Dr
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\System.Runtime.Serialization.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\System.Windows.Forms.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\System.Xml.dll
-C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\office.dll
-C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Microsoft.Vbe.Interop.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\C1.C1Report.2.xml
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\C1.Win.C1Report.2.xml
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Microsoft.Office.Interop.Word.xml
