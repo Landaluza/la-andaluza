@@ -19,19 +19,49 @@ Public Class ExcelImporter
     '        Return True
     '    End If
     'End Function
-    Public Function import(ByVal month As Integer, ByVal path As String, ByVal resultados As Integer) As Boolean
-        clsExcelToSQLData.beginTransaction()
-        'arreglar el rango de los meses
-        '* toma como rango del mes la columna i hay que mandar la correspondiente al mes i=julio, j=agosto, etc
+    Public Function import(ByVal month As Integer, ByVal path As String) As Boolean
+        Dim oApp As New Microsoft.Office.Interop.Excel.Application
+        Dim oWBa As Microsoft.Office.Interop.Excel.Workbook
+        Dim oWS As Microsoft.Office.Interop.Excel.Worksheet
         Dim columna As Char = Chr(66 + month)
+        Dim contPaginas As Integer = 1
+        Dim resultados As Integer
+        Dim mensaje As String = ""
 
-        If Not ConvertExcelToSQL(path, 1, "B8:B" & resultados, "C4", columna & "8:" & columna & resultados, month, "A8:A" & resultados) Then
-            clsExcelToSQLData.cancelTransaction()
+        oWBa = oApp.Workbooks.Open(path)
+        oApp.Visible = False
+
+        For Each oWS In oWBa.Worksheets()
+            Try
+                resultados = oWS.Cells.SpecialCells(Microsoft.Office.Interop.Excel.XlCellType.xlCellTypeLastCell).Row
+            Catch ex As System.Runtime.InteropServices.COMException
+                resultados = 0
+            End Try
+
+            If resultados > 0 Then
+                If Not ConvertExcelToSQL(oWS, "B8:B" & resultados, "C4", columna & "8:" & columna & resultados, month, "A8:A" & resultados) Then
+
+                    mensaje &= Environment.NewLine & "No se pudo importar la hoja " & contPaginas
+                End If
+            End If
+
+            contPaginas += 1
+        Next
+
+
+        If mensaje <> "" Then
+            MessageBox.Show("No se pudo importar completo el archivo: " & path & ". Detalle: " & Environment.NewLine & mensaje, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+
+            oApp.Quit()
+            oWBa = Nothing
+            oApp = Nothing
             Return False
-        Else
-            clsExcelToSQLData.endTransaction()
-            Return True
         End If
+        '''''
+        Return True
+        oApp.Quit()
+        oWBa = Nothing
+        oApp = Nothing
     End Function
 
     Public Function ExportToExcel(ByVal Head As String, ByVal Grid As DataGridView, ByVal cabecera As String) As Boolean
@@ -317,137 +347,141 @@ Public Class ExcelImporter
         End Try
     End Function
 
-    Private Function ConvertExcelToSQL(ByVal ExcelFilePath As String, ByVal CodigoQSRange As String, ByVal AñoRange As String, ByVal MesRange As String, Optional ByVal mes As Integer = Nothing, Optional ByVal CantidadCajasRange As String = "") As Boolean
-        Dim oApp As New Microsoft.Office.Interop.Excel.Application
-        Dim oWBa As Microsoft.Office.Interop.Excel.Workbook
-        Dim oWS As Microsoft.Office.Interop.Excel.Worksheet
+    'Private Function ConvertExcelToSQL(ByVal ExcelFilePath As String, ByVal CodigoQSRange As String, ByVal AñoRange As String, ByVal MesRange As String, Optional ByVal mes As Integer = Nothing, Optional ByVal CantidadCajasRange As String = "") As Boolean
+    '    Dim oApp As New Microsoft.Office.Interop.Excel.Application
+    '    Dim oWBa As Microsoft.Office.Interop.Excel.Workbook
+    '    Dim oWS As Microsoft.Office.Interop.Excel.Worksheet
+
+    '    Try
+    '        '''''
+    '        oWBa = oApp.Workbooks.Open(ExcelFilePath)
+
+    '        '''''
+    '        oApp.Visible = False
+    '        ''''
+    '        'oWS = DirectCast(oWBa.Worksheets(WorkSheetIndex), Microsoft.Office.Interop.Excel.Worksheet)
+    '        For Each oWS In oWBa.Worksheets
+
+
+    '            Dim oRngCodigoQS As Microsoft.Office.Interop.Excel.Range
+    '            Dim oRngCantidadCajas As Microsoft.Office.Interop.Excel.Range
+
+    '            Dim myArrayCajas As Object(,) = Nothing
+    '            Dim myArrayCodigoQS As Object(,)
+
+
+    '            oRngCodigoQS = oWS.Range(CodigoQSRange)
+    '            myArrayCodigoQS = oRngCodigoQS.Value
+
+
+    '            If CantidadCajasRange <> "" Then
+    '                oRngCantidadCajas = oWS.Range(CantidadCajasRange)
+    '                myArrayCajas = oRngCantidadCajas.Value
+    '            End If
+    '            '''''
+    '            '''''Año - 2006
+    '            '''''
+    '            Dim oRngAño1 As Microsoft.Office.Interop.Excel.Range
+    '            oRngAño1 = oWS.Range(AñoRange)
+    '            '''''
+    '            Dim oRngMes1 As Microsoft.Office.Interop.Excel.Range
+    '            oRngMes1 = oWS.Range(MesRange)
+    '            Dim myArrayMes1 As Object(,)
+    '            myArrayMes1 = oRngMes1.Value
+    '            '''''
+    '            Dim mCodigoQS As Object = ""
+    '            Dim mDescripcion As Object = ""
+    '            Dim mCantidadCajas As Object = Nothing
+    '            Dim mAño As Object
+    '            Dim mMes As Object
+    '            Dim mCajas As Object
+    '            Dim separador, separador2 As Integer
+    '            '''''
+    '            For r2 As Integer = 1 To myArrayMes1.GetUpperBound(0)
+    '                For c2 As Integer = 1 To myArrayMes1.GetUpperBound(1)
+    '                    '''''
+    '                    For c1 As Integer = 1 To myArrayCodigoQS.GetUpperBound(1)
+    '                        If Not myArrayCodigoQS(r2, c1) Is Nothing Then
+    '                            If Not myArrayCodigoQS(r2, c1).ToString.Contains("Total") Then
+    '                                mCodigoQS = Mid(myArrayCodigoQS(r2, c1), 1, 9)
+
+    '                                mDescripcion = Mid(myArrayCodigoQS(r2, c1), 10)
+    '                                mMes = If(mes = Nothing, c2, mes) 'si no se le pasa el mes usa el contador como mes (solo valido para importar desde enero)
+    '                                mAño = oRngAño1.Value
+    '                                mCajas = If(myArrayMes1(r2, c2) = Nothing, 0, myArrayMes1(r2, c2))
+    '                                '''''
+    '                                If mCodigoQS.ToString.Trim.Length > 0 Then
+    '                                    If mCodigoQS.ToString.Trim <> "Total" Then
+    '                                        If CantidadCajasRange = "" Then
+    '                                            InsertRecord(mCodigoQS, mAño, mMes, mCajas, "", mDescripcion)
+    '                                        Else
+    '                                            If myArrayCajas(r2, c1) Is Nothing Then
+    '                                                If mCantidadCajas Is Nothing Then mCantidadCajas = 1
+    '                                            Else
+    '                                                separador = myArrayCajas(r2, c1).ToString.IndexOf("-")
+    '                                                separador2 = myArrayCajas(r2, c1).ToString.IndexOf("/")
+    '                                                If separador = -1 And separador2 = -1 Then
+    '                                                    mCantidadCajas = 1
+    '                                                Else
+    '                                                    If separador < separador2 And separador > 0 Then
+    '                                                        mCantidadCajas = Mid(myArrayCajas(r2, c1), 1, separador)
+    '                                                    Else
+    '                                                        mCantidadCajas = Mid(myArrayCajas(r2, c1), 1, separador2)
+    '                                                    End If
+    '                                                End If
+    '                                            End If
+
+    '                                            If Not InsertRecord(mCodigoQS, mAño, mMes, mCajas / mCantidadCajas, "", mDescripcion) Then
+    '                                                Return False
+    '                                                Exit Function
+    '                                            End If
+    '                                        End If
+
+    '                                    End If
+    '                                End If
+    '                                '''''                        
+    '                            End If
+    '                        End If
+    '                    Next c1
+    '                    '''''
+    '                Next c2
+    '            Next r2
+
+    '        Next
+
+    '        Return True
+    '    Catch ex As System.Exception
+    '        MessageBox.Show(ex.Message)
+    '        Return False
+    '    Finally
+    '        oApp.Quit()
+    '        oWBa = Nothing
+    '        oApp = Nothing
+    '    End Try
+    'End Function
+
+
+    Private Function ConvertExcelToSQL(ByVal oWS As Microsoft.Office.Interop.Excel.Worksheet, ByVal CodigoQSRange As String, ByVal AñoRange As String, ByVal MesRange As String, Optional ByVal mes As Integer = Nothing, Optional ByVal CantidadCajasRange As String = "") As Boolean
+        Dim oRngCodigoQS As Microsoft.Office.Interop.Excel.Range
+        Dim oRngCantidadCajas As Microsoft.Office.Interop.Excel.Range
+        Dim myArrayCajas As Object(,) = Nothing
+        Dim myArrayCodigoQS As Object(,)
+        Dim oRngAño1 As Microsoft.Office.Interop.Excel.Range
+        Dim oRngMes1 As Microsoft.Office.Interop.Excel.Range
+        Dim myArrayMes1 As Object(,)
+        Dim mCodigoQS As Object = ""
+        Dim mDescripcion As Object = ""
+        Dim mCantidadCajas As Object = Nothing
+        Dim mAño As Object
+        Dim mMes As Object
+        Dim mCajas As Object
+        Dim separador, separador2 As Integer
+        Dim contResultados As Integer = 0
+
+        clsExcelToSQLData.beginTransaction()
+
 
         Try
-            '''''
-            oWBa = oApp.Workbooks.Open(ExcelFilePath)
-
-            '''''
-            oApp.Visible = False
-            ''''
-            'oWS = DirectCast(oWBa.Worksheets(WorkSheetIndex), Microsoft.Office.Interop.Excel.Worksheet)
-            For Each oWS In oWBa.Worksheets
-
-
-                Dim oRngCodigoQS As Microsoft.Office.Interop.Excel.Range
-                Dim oRngCantidadCajas As Microsoft.Office.Interop.Excel.Range
-
-                Dim myArrayCajas As Object(,) = Nothing
-                Dim myArrayCodigoQS As Object(,)
-
-
-                oRngCodigoQS = oWS.Range(CodigoQSRange)
-                myArrayCodigoQS = oRngCodigoQS.Value
-
-
-                If CantidadCajasRange <> "" Then
-                    oRngCantidadCajas = oWS.Range(CantidadCajasRange)
-                    myArrayCajas = oRngCantidadCajas.Value
-                End If
-                '''''
-                '''''Año - 2006
-                '''''
-                Dim oRngAño1 As Microsoft.Office.Interop.Excel.Range
-                oRngAño1 = oWS.Range(AñoRange)
-                '''''
-                Dim oRngMes1 As Microsoft.Office.Interop.Excel.Range
-                oRngMes1 = oWS.Range(MesRange)
-                Dim myArrayMes1 As Object(,)
-                myArrayMes1 = oRngMes1.Value
-                '''''
-                Dim mCodigoQS As Object = ""
-                Dim mDescripcion As Object = ""
-                Dim mCantidadCajas As Object = Nothing
-                Dim mAño As Object
-                Dim mMes As Object
-                Dim mCajas As Object
-                Dim separador, separador2 As Integer
-                '''''
-                For r2 As Integer = 1 To myArrayMes1.GetUpperBound(0)
-                    For c2 As Integer = 1 To myArrayMes1.GetUpperBound(1)
-                        '''''
-                        For c1 As Integer = 1 To myArrayCodigoQS.GetUpperBound(1)
-                            If Not myArrayCodigoQS(r2, c1) Is Nothing Then
-                                If Not myArrayCodigoQS(r2, c1).ToString.Contains("Total") Then
-                                    mCodigoQS = Mid(myArrayCodigoQS(r2, c1), 1, 9)
-
-                                    mDescripcion = Mid(myArrayCodigoQS(r2, c1), 10)
-                                    mMes = If(mes = Nothing, c2, mes) 'si no se le pasa el mes usa el contador como mes (solo valido para importar desde enero)
-                                    mAño = oRngAño1.Value
-                                    mCajas = If(myArrayMes1(r2, c2) = Nothing, 0, myArrayMes1(r2, c2))
-                                    '''''
-                                    If mCodigoQS.ToString.Trim.Length > 0 Then
-                                        If mCodigoQS.ToString.Trim <> "Total" Then
-                                            If CantidadCajasRange = "" Then
-                                                InsertRecord(mCodigoQS, mAño, mMes, mCajas, "", mDescripcion)
-                                            Else
-                                                If myArrayCajas(r2, c1) Is Nothing Then
-                                                    If mCantidadCajas Is Nothing Then mCantidadCajas = 1
-                                                Else
-                                                    separador = myArrayCajas(r2, c1).ToString.IndexOf("-")
-                                                    separador2 = myArrayCajas(r2, c1).ToString.IndexOf("/")
-                                                    If separador = -1 And separador2 = -1 Then
-                                                        mCantidadCajas = 1
-                                                    Else
-                                                        If separador < separador2 And separador > 0 Then
-                                                            mCantidadCajas = Mid(myArrayCajas(r2, c1), 1, separador)
-                                                        Else
-                                                            mCantidadCajas = Mid(myArrayCajas(r2, c1), 1, separador2)
-                                                        End If
-                                                    End If
-                                                End If
-
-                                                If Not InsertRecord(mCodigoQS, mAño, mMes, mCajas / mCantidadCajas, "", mDescripcion) Then
-                                                    Return False
-                                                    Exit Function
-                                                End If
-                                            End If
-
-                                        End If
-                                    End If
-                                    '''''                        
-                                End If
-                            End If
-                        Next c1
-                        '''''
-                    Next c2
-                Next r2
-
-            Next
-
-            Return True
-        Catch ex As System.Exception
-            MessageBox.Show(ex.Message)
-            Return False
-        Finally
-            oApp.Quit()
-            oWBa = Nothing
-            oApp = Nothing
-        End Try
-    End Function
-    Private Function ConvertExcelToSQL(ByVal ExcelFilePath As String, ByVal WorkSheetIndex As Int32, ByVal CodigoQSRange As String, ByVal AñoRange As String, ByVal MesRange As String, Optional ByVal mes As Integer = Nothing, Optional ByVal CantidadCajasRange As String = "") As Boolean
-        Dim oApp As New Microsoft.Office.Interop.Excel.Application
-        Dim oWBa As Microsoft.Office.Interop.Excel.Workbook
-        Dim oWS As Microsoft.Office.Interop.Excel.Worksheet
-
-        Try
-            '''''
-            oWBa = oApp.Workbooks.Open(ExcelFilePath)
-            oWS = DirectCast(oWBa.Worksheets(WorkSheetIndex), Microsoft.Office.Interop.Excel.Worksheet)
-            '''''
-            oApp.Visible = False
-            '''''
-
-            Dim oRngCodigoQS As Microsoft.Office.Interop.Excel.Range
-            Dim oRngCantidadCajas As Microsoft.Office.Interop.Excel.Range
-
-            Dim myArrayCajas As Object(,) = Nothing
-            Dim myArrayCodigoQS As Object(,)
-
 
             oRngCodigoQS = oWS.Range(CodigoQSRange)
             myArrayCodigoQS = oRngCodigoQS.Value
@@ -460,21 +494,13 @@ Public Class ExcelImporter
             '''''
             '''''Año - 2006
             '''''
-            Dim oRngAño1 As Microsoft.Office.Interop.Excel.Range
+
             oRngAño1 = oWS.Range(AñoRange)
             '''''
-            Dim oRngMes1 As Microsoft.Office.Interop.Excel.Range
             oRngMes1 = oWS.Range(MesRange)
-            Dim myArrayMes1 As Object(,)
             myArrayMes1 = oRngMes1.Value
             '''''
-            Dim mCodigoQS As Object = ""
-            Dim mDescripcion As Object = ""
-            Dim mCantidadCajas As Object = Nothing
-            Dim mAño As Object
-            Dim mMes As Object
-            Dim mCajas As Object
-            Dim separador, separador2 As Integer
+           
             '''''
             For r2 As Integer = 1 To myArrayMes1.GetUpperBound(0)
                 For c2 As Integer = 1 To myArrayMes1.GetUpperBound(1)
@@ -485,20 +511,23 @@ Public Class ExcelImporter
                                 mCodigoQS = Mid(myArrayCodigoQS(r2, c1), 1, 9)
 
                                 mDescripcion = Mid(myArrayCodigoQS(r2, c1), 10)
-                                mMes = if(mes = Nothing, c2, mes) 'si no se le pasa el mes usa el contador como mes (solo valido para importar desde enero)
+                                mMes = If(mes = Nothing, c2, mes) 'si no se le pasa el mes usa el contador como mes (solo valido para importar desde enero)
                                 mAño = oRngAño1.Value
-                                mCajas = if(myArrayMes1(r2, c2) = Nothing, 0, myArrayMes1(r2, c2))
+                                mCajas = If(myArrayMes1(r2, c2) = Nothing, 0, myArrayMes1(r2, c2))
                                 '''''
                                 If mCodigoQS.ToString.Trim.Length > 0 Then
                                     If mCodigoQS.ToString.Trim <> "Total" Then
                                         If CantidadCajasRange = "" Then
-                                            InsertRecord(mCodigoQS, mAño, mMes, mCajas, "", mDescripcion)
+                                            If InsertRecord(mCodigoQS, mAño, mMes, mCajas, "", mDescripcion) Then
+                                                contResultados += 1
+                                            End If
                                         Else
                                             If myArrayCajas(r2, c1) Is Nothing Then
                                                 If mCantidadCajas Is Nothing Then mCantidadCajas = 1
                                             Else
                                                 separador = myArrayCajas(r2, c1).ToString.IndexOf("-")
                                                 separador2 = myArrayCajas(r2, c1).ToString.IndexOf("/")
+
                                                 If separador = -1 And separador2 = -1 Then
                                                     mCantidadCajas = 1
                                                 Else
@@ -510,9 +539,8 @@ Public Class ExcelImporter
                                                 End If
                                             End If
 
-                                            If Not InsertRecord(mCodigoQS, mAño, mMes, mCajas / mCantidadCajas, "", mDescripcion) Then
-                                                Return False
-                                                Exit Function
+                                            If InsertRecord(mCodigoQS, mAño, mMes, mCajas / mCantidadCajas, "", mDescripcion) Then
+                                                contResultados += 1
                                             End If
                                         End If
 
@@ -526,16 +554,128 @@ Public Class ExcelImporter
                 Next c2
             Next r2
 
-            Return True
+            If contResultados > 0 Then
+                clsExcelToSQLData.endTransaction()
+                Return True
+            Else
+                clsExcelToSQLData.cancelTransaction()
+                Return False
+            End If
         Catch ex As System.Exception
-            messagebox.show(ex.Message)
+            clsExcelToSQLData.cancelTransaction()
+            MessageBox.Show(ex.Message)
             Return False
-        Finally
-            oApp.Quit()
-            oWBa = Nothing
-            oApp = Nothing
         End Try
     End Function
+
+
+    'Private Function ConvertExcelToSQL(ByVal ExcelFilePath As String, ByVal WorkSheetIndex As Int32, ByVal CodigoQSRange As String, ByVal AñoRange As String, ByVal MesRange As String, Optional ByVal mes As Integer = Nothing, Optional ByVal CantidadCajasRange As String = "") As Boolean
+    '    Dim oApp As New Microsoft.Office.Interop.Excel.Application
+    '    Dim oWBa As Microsoft.Office.Interop.Excel.Workbook
+    '    Dim oWS As Microsoft.Office.Interop.Excel.Worksheet
+
+    '    Try
+    '        '''''
+    '        oWBa = oApp.Workbooks.Open(ExcelFilePath)
+    '        oWS = DirectCast(oWBa.Worksheets(WorkSheetIndex), Microsoft.Office.Interop.Excel.Worksheet)
+    '        '''''
+    '        oApp.Visible = False
+    '        '''''
+
+    '        Dim oRngCodigoQS As Microsoft.Office.Interop.Excel.Range
+    '        Dim oRngCantidadCajas As Microsoft.Office.Interop.Excel.Range
+
+    '        Dim myArrayCajas As Object(,) = Nothing
+    '        Dim myArrayCodigoQS As Object(,)
+
+
+    '        oRngCodigoQS = oWS.Range(CodigoQSRange)
+    '        myArrayCodigoQS = oRngCodigoQS.Value
+
+
+    '        If CantidadCajasRange <> "" Then
+    '            oRngCantidadCajas = oWS.Range(CantidadCajasRange)
+    '            myArrayCajas = oRngCantidadCajas.Value
+    '        End If
+    '        '''''
+    '        '''''Año - 2006
+    '        '''''
+    '        Dim oRngAño1 As Microsoft.Office.Interop.Excel.Range
+    '        oRngAño1 = oWS.Range(AñoRange)
+    '        '''''
+    '        Dim oRngMes1 As Microsoft.Office.Interop.Excel.Range
+    '        oRngMes1 = oWS.Range(MesRange)
+    '        Dim myArrayMes1 As Object(,)
+    '        myArrayMes1 = oRngMes1.Value
+    '        '''''
+    '        Dim mCodigoQS As Object = ""
+    '        Dim mDescripcion As Object = ""
+    '        Dim mCantidadCajas As Object = Nothing
+    '        Dim mAño As Object
+    '        Dim mMes As Object
+    '        Dim mCajas As Object
+    '        Dim separador, separador2 As Integer
+    '        '''''
+    '        For r2 As Integer = 1 To myArrayMes1.GetUpperBound(0)
+    '            For c2 As Integer = 1 To myArrayMes1.GetUpperBound(1)
+    '                '''''
+    '                For c1 As Integer = 1 To myArrayCodigoQS.GetUpperBound(1)
+    '                    If Not myArrayCodigoQS(r2, c1) Is Nothing Then
+    '                        If Not myArrayCodigoQS(r2, c1).ToString.Contains("Total") Then
+    '                            mCodigoQS = Mid(myArrayCodigoQS(r2, c1), 1, 9)
+
+    '                            mDescripcion = Mid(myArrayCodigoQS(r2, c1), 10)
+    '                            mMes = if(mes = Nothing, c2, mes) 'si no se le pasa el mes usa el contador como mes (solo valido para importar desde enero)
+    '                            mAño = oRngAño1.Value
+    '                            mCajas = if(myArrayMes1(r2, c2) = Nothing, 0, myArrayMes1(r2, c2))
+    '                            '''''
+    '                            If mCodigoQS.ToString.Trim.Length > 0 Then
+    '                                If mCodigoQS.ToString.Trim <> "Total" Then
+    '                                    If CantidadCajasRange = "" Then
+    '                                        InsertRecord(mCodigoQS, mAño, mMes, mCajas, "", mDescripcion)
+    '                                    Else
+    '                                        If myArrayCajas(r2, c1) Is Nothing Then
+    '                                            If mCantidadCajas Is Nothing Then mCantidadCajas = 1
+    '                                        Else
+    '                                            separador = myArrayCajas(r2, c1).ToString.IndexOf("-")
+    '                                            separador2 = myArrayCajas(r2, c1).ToString.IndexOf("/")
+    '                                            If separador = -1 And separador2 = -1 Then
+    '                                                mCantidadCajas = 1
+    '                                            Else
+    '                                                If separador < separador2 And separador > 0 Then
+    '                                                    mCantidadCajas = Mid(myArrayCajas(r2, c1), 1, separador)
+    '                                                Else
+    '                                                    mCantidadCajas = Mid(myArrayCajas(r2, c1), 1, separador2)
+    '                                                End If
+    '                                            End If
+    '                                        End If
+
+    '                                        If Not InsertRecord(mCodigoQS, mAño, mMes, mCajas / mCantidadCajas, "", mDescripcion) Then
+    '                                            Return False
+    '                                            Exit Function
+    '                                        End If
+    '                                    End If
+
+    '                                End If
+    '                            End If
+    '                            '''''                        
+    '                        End If
+    '                    End If
+    '                Next c1
+    '                '''''
+    '            Next c2
+    '        Next r2
+
+    '        Return True
+    '    Catch ex As System.Exception
+    '        messagebox.show(ex.Message)
+    '        Return False
+    '    Finally
+    '        oApp.Quit()
+    '        oWBa = Nothing
+    '        oApp = Nothing
+    '    End Try
+    'End Function
 
     Private Function InsertRecord(ByVal mCodigoQS As String, ByVal mAño As Int32, ByVal mMes As Int32, ByVal mCajas As Int32, ByVal mObservaciones As String, ByVal mDescripcion As String) As Boolean
         Try

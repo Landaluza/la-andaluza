@@ -20,53 +20,57 @@
     End Sub
 
     Private Sub btnImport_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImport.Click
-        If Me.txtPath.Text <> "" And IsNumeric(Me.txtResultados.Text) And Me.txtPath2.Text <> "" And IsNumeric(Me.TextBox1.Text) _
-            And Me.txtPath3.Text <> "" And IsNumeric(Me.TextBox2.Text) And Me.txtPath4.Text <> "" And IsNumeric(Me.TextBox3.Text) Then            
-
-
-
+        If Me.txtPath.Text <> "" Or Me.txtPath2.Text <> "" _
+            Or Me.txtPath3.Text <> "" Or Me.txtPath4.Text <> "" Then
 
             Dim importer As New ExcelImporter
             Me.Cursor = Cursors.WaitCursor
 
-            If importer.import(Me.cbMonth.SelectedIndex + 1, Me.txtPath.Text, Me.txtResultados.Text) Then
-                If err.Visible Then err.Visible = False
-            Else
-                If Not err.Visible Then err.Visible = True
+            If Me.txtPath.Text <> "" Then
+                If importer.import(Me.cbMonth.SelectedIndex + 1, Me.txtPath.Text) Then
+                    If err.Visible Then err.Visible = False
+                Else
+                    If Not err.Visible Then err.Visible = True
+                End If
             End If
 
-            If importer.import(Me.cbMonth.SelectedIndex + 1, Me.txtPath2.Text, Me.TextBox1.Text) Then
-                If err1.Visible Then err1.Visible = False
-            Else
-                If Not err1.Visible Then err1.Visible = True
+            If Me.chbJR2.Checked Then
+                If Me.txtPath2.Text <> "" Then
+                    If importer.import(Me.cbMonth.SelectedIndex + 1, Me.txtPath2.Text) Then
+                        If err1.Visible Then err1.Visible = False
+                    Else
+                        If Not err1.Visible Then err1.Visible = True
+                    End If
+                End If
             End If
 
-            If importer.import(Me.cbMonth.SelectedIndex + 1, Me.txtPath3.Text, Me.TextBox2.Text) Then
-                If err2.Visible Then err2.Visible = False
-            Else
-                If Not err2.Visible Then err2.Visible = True
+            If Me.txtPath3.Text <> "" Then
+                If importer.import(Me.cbMonth.SelectedIndex + 1, Me.txtPath3.Text) Then
+                    If err2.Visible Then err2.Visible = False
+                Else
+                    If Not err2.Visible Then err2.Visible = True
+                End If
             End If
 
-            If importer.import(Me.cbMonth.SelectedIndex + 1, Me.txtPath4.Text, Me.TextBox3.Text) Then
-                If err3.Visible Then err3.Visible = False
-            Else
-                If Not err3.Visible Then err3.Visible = True
+            If Me.txtPath3.Text <> "" Then
+                If importer.import(Me.cbMonth.SelectedIndex + 1, Me.txtPath4.Text) Then
+                    If err3.Visible Then err3.Visible = False
+                Else
+                    If Not err3.Visible Then err3.Visible = True
+                End If
             End If
 
             Me.Cursor = Cursors.Default
             If err.Visible Or err1.Visible Or err2.Visible Or err3.Visible Then
-                MessageBox.Show("No se pudo importar el archivo. Se revertira la operación", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                If Not importer.delete(Me.cbMonth.SelectedIndex + 1, Today.Year) Then
-                    MessageBox.Show("No se pudo revertir la operación." & Environment.NewLine & "Espere unos minutos e intente borrar el mes manualmente", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                End If
+                'MessageBox.Show("No se pudo importar el archivo. Se revertira la operación", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                'If Not importer.delete(Me.cbMonth.SelectedIndex + 1, Today.Year) Then
+                '    MessageBox.Show("No se pudo revertir la operación." & Environment.NewLine & "Espere unos minutos e intente borrar el mes manualmente", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                'End If
             Else
 
                 MessageBox.Show("Importado con exito", "Felicidades", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Me.Close()
             End If
-        
-        Else
-            MessageBox.Show("Debe indicar las rutas y numeros de resultados.", "Formulario incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
 
@@ -74,21 +78,7 @@
         Me.cbMonth.SelectedIndex = (Today.Month - 2)        
     End Sub
 
-    Private Sub txtResultados_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtResultados.Enter        
-        Pantalla.fadeInPanel(Me.PanHelp)
-    End Sub
-
-    Private Sub txtResultados_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtResultados.Leave        
-        Pantalla.fadeOutPanel(Me.PanHelp)
-    End Sub
-
-    Private Sub txtResultados_MouseEnter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtResultados.MouseEnter
-        If Not Me.PanHelp.Visible Then Pantalla.fadeInPanel(Me.PanHelp) 'Me.PanHelp.Visible = True        
-    End Sub
-
-    Private Sub txtResultados_MouseLeave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtResultados.MouseLeave
-        If Not Me.txtResultados.Focused And Me.PanHelp.Visible Then Pantalla.fadeOutPanel(Me.PanHelp) 'Me.PanHelp.Visible = False
-    End Sub
+ 
 
     Private Sub btnEliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEliminar.Click
         Dim Respuesta As DialogResult
@@ -107,56 +97,7 @@
 
     Private Sub frmImportarExcel_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ToolTip1.SetToolTip(btnEliminar, "Elimina los resultados para el mes selccionado del año " & Today.Year)
-        ToolTip2.SetToolTip(Me.txtResultados, "Introduce el el valor de fila anterior al ultimo total del excel")
         ToolTip4.SetToolTip(btnManual, "Crear entrada para un articulo manualmente")
-    End Sub
-
-    Private Sub TextBox1_MouseEnter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox1.MouseEnter
-        If Not Me.PanHelp.Visible Then Pantalla.fadeInPanel(Me.PanHelp) 'Me.PanHelp.Visible = True        
-    End Sub
-
-    Private Sub TextBox2_MouseEnter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox2.MouseEnter
-        If Not Me.PanHelp.Visible Then Pantalla.fadeInPanel(Me.PanHelp) 'Me.PanHelp.Visible = True        
-    End Sub
-
-    Private Sub TextBox3_MouseEnter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox3.MouseEnter
-        If Not Me.PanHelp.Visible Then Pantalla.fadeInPanel(Me.PanHelp) 'Me.PanHelp.Visible = True        
-    End Sub
-
-    Private Sub TextBox1_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox1.Enter
-        Pantalla.fadeInPanel(Me.PanHelp)
-    End Sub
-
-    Private Sub TextBox2_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox2.Enter
-        Pantalla.fadeInPanel(Me.PanHelp)
-    End Sub
-
-    Private Sub TextBox3_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox3.Enter
-        Pantalla.fadeInPanel(Me.PanHelp)
-    End Sub
-
-    Private Sub TextBox1_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox1.Leave
-        Pantalla.fadeOutPanel(Me.PanHelp)
-    End Sub
-
-    Private Sub TextBox2_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox2.Leave
-        Pantalla.fadeOutPanel(Me.PanHelp)
-    End Sub
-
-    Private Sub TextBox3_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox3.Leave
-        Pantalla.fadeOutPanel(Me.PanHelp)
-    End Sub
-
-    Private Sub TextBox1_MouseLeave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox1.MouseLeave
-        If Not Me.txtResultados.Focused And Me.PanHelp.Visible Then Pantalla.fadeOutPanel(Me.PanHelp) 'Me.PanHelp.Visible = False
-    End Sub
-
-    Private Sub TextBox2_MouseLeave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox2.MouseLeave
-        If Not Me.txtResultados.Focused And Me.PanHelp.Visible Then Pantalla.fadeOutPanel(Me.PanHelp) 'Me.PanHelp.Visible = False
-    End Sub
-
-    Private Sub TextBox3_MouseLeave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox3.MouseLeave
-        If Not Me.txtResultados.Focused And Me.PanHelp.Visible Then Pantalla.fadeOutPanel(Me.PanHelp) 'Me.PanHelp.Visible = False
     End Sub
 
     Private Sub btnChooseFile2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnChooseFile2.Click
@@ -201,15 +142,7 @@
         BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.Panel1, Me)
     End Sub
 
-    Private Sub txtPath3_TextChanged(sender As Object, e As EventArgs) Handles txtPath3.TextChanged
-
-    End Sub
-
-    Private Sub txtPath2_TextChanged(sender As Object, e As EventArgs) Handles txtPath2.TextChanged
-
-    End Sub
-
-    Private Sub txtPath_TextChanged(sender As Object, e As EventArgs) Handles txtPath.TextChanged
-
+    Private Sub chbJR2_CheckedChanged(sender As Object, e As EventArgs) Handles chbJR2.CheckedChanged
+        Me.panJR2.Enabled = Not Me.chbJR2.Checked
     End Sub
 End Class
