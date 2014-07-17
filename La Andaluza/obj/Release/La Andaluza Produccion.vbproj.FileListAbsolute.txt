@@ -1287,3 +1287,5 @@ C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andalu
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza.pdb
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\office.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Microsoft.Vbe.Interop.dll
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Administracion\Proveedores1\PedidosProveedores\Listados\report1.frx
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Elaboracion\Depositos\Listados\Depositos.frx

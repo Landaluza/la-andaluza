@@ -268,7 +268,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>3SSmy039WeSCXIubya66RtxfuMctywxUNq8ZfKbccZQ=</dsig:DigestValue>
+        <dsig:DigestValue>N/Dj7hsx4g0wPnI1Hb1xQFPYvm+YNYsP+ymA+kOk8bo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -380,6 +380,15 @@
       </hash>
     </dependentAssembly>
   </dependency>
+  <file name="Administracion\Proveedores1\PedidosProveedores\Listados\report1.frx" size="9711">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>f5CxNaHvc0kvLj2E+B29A2L9nYfr9gCbtnLMl8Cm5VA=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="Bases\ZLibrerias\twaincontrolxtrial.exe" size="901096">
     <hash>
       <dsig:Transforms>
@@ -387,6 +396,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>NWsORCq+lbZ0o7vNkcIuFpc4Yk3+JZ15eNrpB636YRA=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Elaboracion\Depositos\Listados\Depositos.frx" size="7173">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>ZRt66VxegO2bMXI2HHNW2x9Fdyl76wn0UMDsuMDmP00=</dsig:DigestValue>
     </hash>
   </file>
   <file name="La Andaluza.exe.config" size="26247">

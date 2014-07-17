@@ -25,7 +25,7 @@
 
 
     Public Shared Sub Cargar_Ajustes_Predeterminados()
-        BasesParaCompatibilidad.Config.Server = BasesParaCompatibilidad.DataBase.LOCAL
+        BasesParaCompatibilidad.Config.Server = BasesParaCompatibilidad.DataBase.SERVIDOR
         BasesParaCompatibilidad.DataBase.buildConnectionString(BasesParaCompatibilidad.Config.Server)
         Config.MailReportPass = "Administracion2008"
         Config.HelpUrl = "http://192.168.1.106/AyudaLA/index.php"
