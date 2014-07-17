@@ -1285,3 +1285,5 @@ C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andalu
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza.application
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza.exe
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza.pdb
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\office.dll
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Microsoft.Vbe.Interop.dll
