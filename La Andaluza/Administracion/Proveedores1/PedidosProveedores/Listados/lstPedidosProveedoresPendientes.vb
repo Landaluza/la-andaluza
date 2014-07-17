@@ -9,7 +9,7 @@ Public Class lstPedidosProveedoresPendientes
     Private proveedor As Integer
     'Private Property my_connection_string As String = Config.connectionString
     '"Data Source=MAMVAIO\SQL2012;AttachDbFilename=;Initial Catalog=LA;Integrated Security=True;Persist Security Info=False;User ID=;Password="
-    Private Property my_connection_string As String = " Data Source=SERVIDOR1;AttachDbFilename=;Initial Catalog=LA;Integrated Security=False;Persist Security Info=False;User ID=ssa;Password=Trucha0122"
+    ' Private Property my_connection_string As String = " Data Source=SERVIDOR1;AttachDbFilename=;Initial Catalog=LA;Integrated Security=False;Persist Security Info=False;User ID=ssa;Password=Trucha0122"
     Private mSQL As String = Nothing
 
     Public Sub New()
@@ -50,8 +50,9 @@ Public Class lstPedidosProveedoresPendientes
     Private Sub FastReport()
         Dim report As New Report
         With report
-            .Load("..\..\Administracion\Proveedores1\PedidosProveedores\Listados\report1.frx")
-            .SetParameterValue("MyParameter", my_connection_string)
+            '.Load("\\192.168.1.200Administracion\Proveedores1\PedidosProveedores\Listados\report1.frx")
+            .Load("\\192.168.1.200\datos\informatica\La Andaluza app\report1.frx")
+            .SetParameterValue("MyParameter", BasesParaCompatibilidad.Config.connectionString)
             Dim table As TableDataSource = TryCast(report.GetDataSource("tblReport1"), TableDataSource)
             table.SelectCommand = mSQL
             .Show()

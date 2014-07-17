@@ -47,7 +47,8 @@ Public Class frmDepositosMain
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim report As New Report
         With report
-            .Load("..\..\\Elaboracion\Depositos\Listados\Depositos.frx")
+            '.Load("Elaboracion\Depositos\Listados\Depositos.frx")
+            .Load("\\192.168.1.200\datos\informatica\La Andaluza app\Depositos.frx")
             Dim table As TableDataSource = TryCast(report.GetDataSource("tblReport1"), TableDataSource)
             .Show()
         End With
