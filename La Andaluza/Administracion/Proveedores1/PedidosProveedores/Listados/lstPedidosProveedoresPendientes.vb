@@ -49,14 +49,26 @@ Public Class lstPedidosProveedoresPendientes
 
     Private Sub FastReport()
         Dim report As New Report
-        With report
+        Dim table As TableDataSource
+
+        Try
             '.Load("\\192.168.1.200Administracion\Proveedores1\PedidosProveedores\Listados\report1.frx")
-            .Load("\\192.168.1.200\datos\informatica\La Andaluza app\report1.frx")
-            .SetParameterValue("MyParameter", BasesParaCompatibilidad.Config.connectionString)
-            Dim table As TableDataSource = TryCast(report.GetDataSource("tblReport1"), TableDataSource)
-            table.SelectCommand = mSQL
-            .Show()
-        End With
+            report.Load("\\192.168.1.200\datos\informatica\La Andaluza app\report1.frx")
+        Catch ex As Exception
+            MessageBox.Show("Problema cargando el informe, revise que el archivo se encuentre en el servidor", "Error de archivo", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End Try        
+        report.SetParameterValue("MyParameter", BasesParaCompatibilidad.Config.connectionString)
+
+        Try
+            table = TryCast(report.GetDataSource("tblReport1"), TableDataSource)
+        Catch ex As Exception
+            MessageBox.Show("Problema recuperando los datos para el informe", "Error de consulta a la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End Try
+
+        table.SelectCommand = mSQL
+        report.Show()
     End Sub
 
 End Class

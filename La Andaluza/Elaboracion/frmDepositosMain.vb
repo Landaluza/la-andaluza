@@ -46,11 +46,25 @@ Public Class frmDepositosMain
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim report As New Report
-        With report
-            '.Load("Elaboracion\Depositos\Listados\Depositos.frx")
-            .Load("\\192.168.1.200\datos\informatica\La Andaluza app\Depositos.frx")
-            Dim table As TableDataSource = TryCast(report.GetDataSource("tblReport1"), TableDataSource)
-            .Show()
-        End With
+        Dim table As TableDataSource
+
+
+        '.Load("Elaboracion\Depositos\Listados\Depositos.frx")
+        Try
+            report.Load("\\192.168.1.200\datos\informatica\La Andaluza app\Depositos.frx")
+        Catch ex As Exception
+            MessageBox.Show("Problema cargando el informe, revise que el archivo se encuentre en el servidor", "Error de archivo", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End Try
+
+        Try
+            table = TryCast(report.GetDataSource("tblReport1"), TableDataSource)
+        Catch ex As Exception
+            MessageBox.Show("Problema recuperando los datos para el informe", "Error de consulta a la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End Try
+
+        report.Show()
+
     End Sub
 End Class
