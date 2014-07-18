@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="Vb" StartReportEvent="_StartReport" FinishReportEvent="_FinishReport" ReportInfo.Created="03/17/2014 18:56:51" ReportInfo.Modified="06/14/2014 16:57:58" ReportInfo.CreatorVersion="2014.2.1.0">
+<Report ScriptLanguage="Vb" StartReportEvent="_StartReport" FinishReportEvent="_FinishReport" ReportInfo.Created="03/17/2014 18:56:51" ReportInfo.Modified="07/18/2014 07:12:08" ReportInfo.CreatorVersion="2014.2.4.0">
   <ScriptText>Imports System
 Imports System.Collections
 Imports System.Collections.Generic
@@ -41,7 +41,7 @@ Namespace FastReport
 End Namespace
 </ScriptText>
   <Dictionary>
-    <MsSqlDataConnection Name="Connection" ConnectionStringExpression="MyParameter">
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8fkDXtATjB3tKlOxixjqMXsRgD9+QYvHsNmljh2nJv0rSaf8++SifcqSQ76//QF0iXnlUBx/QkzLR61C0ynHiHgiOYmhiHIQcSg6RS82kwqLvRs1Ze12swmjPmGBiBcIiWaGJLOXFYt5VNUOMYKTQZx4s4ck18/f3KbZwj7khrkTuJMlW19MeFtyqo6aix1SBzsWnqfTEoB4vlXP1OwpquA=" ConnectionStringExpression="MyParameter">
       <TableDataSource Name="tblReport1" DataType="System.Int32" Enabled="true" SelectCommand="SELECT PedidosProveedoresMaestros.Numero AS OrderBy, PedidosProveedoresMaestros.PedidoProveedorMaestroID, PedidosProveedoresMaestros.Numero, Proveedores.Nombre, PedidosProveedoresMaestros.FechaEmision, PedidosProveedoresMaestros.FechaServicio, PedidosProveedoresMaestros.EstadoID, PedidosProveedoresMaestros.Observaciones as Observaciones1, PedidosProveedoresDetalles.PedidoProveedorDetalleID, PedidosProveedoresDetalles.Cantidad as Cantidad1, isnull(PedidosProveedoresDetalles.Observaciones, '') as Observaciones2, PedidosProveedoresDetalles.PedidoProveedorMaestroID, Articulos1.DescripcionLA, PedidosProveedoresEstados.Descripcion AS Estado, isnull(Articulos1.CodigoQS,'-') CodigoQS, convert(NVARCHAR, PedidosProveedoresEntregas.Fecha, 103) as Fecha, PedidosProveedoresEntregas.Cantidad as Cantidad2, PedidosProveedoresEntregas.Observaciones as Observaciones3 FROM PedidosProveedoresMaestros INNER JOIN Proveedores ON PedidosProveedoresMaestros.ProveedorID = Proveedores.ProveedorID INNER JOIN PedidosProveedoresDetalles ON PedidosProveedoresMaestros.PedidoProveedorMaestroID = PedidosProveedoresDetalles.PedidoProveedorMaestroID INNER JOIN Articulos1 ON PedidosProveedoresDetalles.ArticuloID = Articulos1.ArticuloID INNER JOIN PedidosProveedoresEstados ON PedidosProveedoresDetalles.EstadoID = PedidosProveedoresEstados.PedidoProveedorEstadoID LEFT JOIN PedidosProveedoresEntregas ON PedidosProveedoresDetalles.PedidoProveedorDetalleID = PedidosProveedoresEntregas.PedidoProveedorDetalleID WHERE PedidosProveedoresMaestros.EstadoID &lt; 5 AND PedidosProveedoresDetalles.EstadoID &lt;&gt; 5 ORDER BY OrderBy">
         <Column Name="PedidoProveedorMaestroID" DataType="System.Int32"/>
         <Column Name="Numero" DataType="System.Int32"/>
