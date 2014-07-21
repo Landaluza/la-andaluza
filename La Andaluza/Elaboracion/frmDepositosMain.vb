@@ -48,10 +48,10 @@ Public Class frmDepositosMain
         Dim report As New Report
         Dim table As TableDataSource
 
-
         '.Load("Elaboracion\Depositos\Listados\Depositos.frx")
         Try
-            report.Load("\\192.168.1.200\datos\informatica\La Andaluza app\Depositos.frx")
+            'report.Load("\\192.168.1.200\datos\informatica\La Andaluza app\Depositos.frx")
+            report.Load(Config.ListadoDepositos)
         Catch ex As Exception
             MessageBox.Show("Problema cargando el informe, revise que el archivo se encuentre en el servidor", "Error de archivo", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub

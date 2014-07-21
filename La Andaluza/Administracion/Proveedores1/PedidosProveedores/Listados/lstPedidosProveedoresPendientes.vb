@@ -53,7 +53,8 @@ Public Class lstPedidosProveedoresPendientes
 
         Try
             '.Load("\\192.168.1.200Administracion\Proveedores1\PedidosProveedores\Listados\report1.frx")
-            report.Load("\\192.168.1.200\datos\informatica\La Andaluza app\report1.frx")
+            'report.Load("\\192.168.1.200\datos\informatica\La Andaluza app\report1.frx")
+            report.Load(Config.PedidosPendientes)
         Catch ex As Exception
             MessageBox.Show("Problema cargando el informe, revise que el archivo se encuentre en el servidor", "Error de archivo", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub

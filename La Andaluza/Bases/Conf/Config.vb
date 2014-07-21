@@ -21,15 +21,23 @@
 
     Private Shared ventasPath As String
     Private Shared ventaslocalPath As String
+    Private Shared InformeListadoDepositos As String
+    Private Shared InformeListadoPedidosPendientes As String
+    Private Shared ruta_servidor As String
     Private Shared versionApp As String
 
 
     Public Shared Sub Cargar_Ajustes_Predeterminados()
+        ruta_servidor = "\\192.168.1.200\datos\informatica\La Andaluza app\"
+
         BasesParaCompatibilidad.Config.Server = BasesParaCompatibilidad.DataBase.SERVIDOR
         BasesParaCompatibilidad.DataBase.buildConnectionString(BasesParaCompatibilidad.Config.Server)
         Config.MailReportPass = "Administracion2008"
         Config.HelpUrl = "http://192.168.1.106/AyudaLA/index.php"
-        Config.ventasPath = "Z:\Informatica\La Andaluza app\ExcelFile\Book1.xlsx"
+        'Config.ventasPath = "Z:\Informatica\La Andaluza app\ExcelFile\Book1.xlsx"
+        Config.ventasPath = "ExcelFile\Book1.xlsx"
+        Config.InformeListadoDepositos = "Depositos.frx"
+        Config.InformeListadoPedidosPendientes = "report1.frx"
         Config.MailReportAddress = "administracion@landaluza.es"
         Config.MailClientHost = "smtp.1and1.es"
         Config.QS_Sesion = "Sesión A - [24 x 80]"
@@ -63,6 +71,18 @@
         End Get
     End Property
 
+    Public Shared ReadOnly Property ListadoDepositos As String
+        Get
+            Return InformeListadoDepositos
+        End Get
+    End Property
+
+    Public Shared ReadOnly Property PedidosPendientes As String
+        Get
+            Return InformeListadoPedidosPendientes
+        End Get
+    End Property
+
     'Public Function CargarMenuPersonal() As Collection
     '    Dim mydocpath As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "menu.obj"
     '    Dim f As New File
@@ -71,8 +91,18 @@
     'End Function
 
     Public Function checkFiles() As Boolean
+        Dim retorno As Boolean = True
+
+        If Config.InformeListadoDepositos.Contains(Config.ruta_servidor) Or Config.InformeListadoDepositos.Contains(Application.StartupPath) Then
+            Return retorno
+        End If
+
+        Dim ruta_servidor_ventas As String = Config.ruta_servidor & Config.ventasPath
+        Dim ruta_servidor_depositos As String = Config.ruta_servidor & Config.InformeListadoDepositos
+        Dim ruta_servidor_pedidos As String = Config.ruta_servidor & Config.InformeListadoPedidosPendientes
+
         Try
-            If System.IO.File.Exists(ventasPath) Then
+            If System.IO.File.Exists(ruta_servidor_ventas) Then
                 ventaslocalPath = Application.StartupPath & "\ExcelFile\Book1.xlsx"
 
                 If System.IO.File.Exists(ventaslocalPath) Then
@@ -81,19 +111,58 @@
 
                     'If destFile.LastWriteTime >= sourceFile.LastWriteTime Then
                     System.IO.File.Delete(ventaslocalPath)
-                    System.IO.File.Copy(ventasPath, ventaslocalPath)
+                    System.IO.File.Copy(ruta_servidor_ventas, ventaslocalPath)
                     'End If
 
                 Else
-                    System.IO.File.Copy(ventasPath, ventaslocalPath)
+                    System.IO.File.Copy(ruta_servidor_ventas, ventaslocalPath)
                 End If
 
             End If
-            Return True
         Catch ex As Exception
             ventaslocalPath = ventasPath
-            Return False
+            retorno = False
         End Try
+
+        Try
+            If System.IO.File.Exists(ruta_servidor_depositos) Then
+                Dim tempPath As String = Application.StartupPath & InformeListadoDepositos
+
+                If System.IO.File.Exists(tempPath) Then
+                    System.IO.File.Delete(tempPath)
+                    System.IO.File.Copy(ruta_servidor_depositos, tempPath)
+                    Config.InformeListadoDepositos = tempPath
+                Else
+                    System.IO.File.Copy(ruta_servidor_depositos, tempPath)
+                    Config.InformeListadoDepositos = tempPath
+                End If
+
+            End If
+        Catch ex As Exception
+            Config.InformeListadoDepositos = ruta_servidor_depositos
+            retorno = False
+        End Try
+
+        Try
+            If System.IO.File.Exists(ruta_servidor_pedidos) Then
+                Dim tempPath As String = Application.StartupPath & InformeListadoPedidosPendientes
+
+                If System.IO.File.Exists(tempPath) Then
+                    System.IO.File.Delete(tempPath)
+                    System.IO.File.Copy(ruta_servidor_pedidos, tempPath)
+                    Config.InformeListadoPedidosPendientes = tempPath
+                Else
+                    System.IO.File.Copy(ruta_servidor_pedidos, tempPath)
+                    Config.InformeListadoPedidosPendientes = tempPath
+                End If
+
+            End If
+        Catch ex As Exception
+            Config.InformeListadoPedidosPendientes = ruta_servidor_pedidos
+            retorno = False
+        End Try
+
+        Return retorno
     End Function
 
     Public Function NumeroVersion() As String
