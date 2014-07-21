@@ -125,8 +125,9 @@
         End Try
 
         Try
+            Dim tempPath As String = Application.StartupPath & InformeListadoDepositos
+
             If System.IO.File.Exists(ruta_servidor_depositos) Then
-                Dim tempPath As String = Application.StartupPath & InformeListadoDepositos
 
                 If System.IO.File.Exists(tempPath) Then
                     System.IO.File.Delete(tempPath)
@@ -136,7 +137,10 @@
                     System.IO.File.Copy(ruta_servidor_depositos, tempPath)
                     Config.InformeListadoDepositos = tempPath
                 End If
-
+            Else
+                If System.IO.File.Exists(tempPath) Then
+                    Config.InformeListadoDepositos = tempPath
+                End If
             End If
         Catch ex As Exception
             Config.InformeListadoDepositos = ruta_servidor_depositos
@@ -144,8 +148,9 @@
         End Try
 
         Try
+            Dim tempPath As String = Application.StartupPath & InformeListadoPedidosPendientes
+
             If System.IO.File.Exists(ruta_servidor_pedidos) Then
-                Dim tempPath As String = Application.StartupPath & InformeListadoPedidosPendientes
 
                 If System.IO.File.Exists(tempPath) Then
                     System.IO.File.Delete(tempPath)
@@ -155,7 +160,10 @@
                     System.IO.File.Copy(ruta_servidor_pedidos, tempPath)
                     Config.InformeListadoPedidosPendientes = tempPath
                 End If
-
+            Else
+                If System.IO.File.Exists(tempPath) Then
+                    Config.InformeListadoPedidosPendientes = tempPath
+                End If
             End If
         Catch ex As Exception
             Config.InformeListadoPedidosPendientes = ruta_servidor_pedidos
