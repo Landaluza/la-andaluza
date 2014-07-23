@@ -225,14 +225,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="InformesCalidad.dll" size="1710080">
-      <assemblyIdentity name="InformesCalidad" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="InformesCalidad.dll" size="1710592">
+      <assemblyIdentity name="InformesCalidad" version="14.7.22.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>U9w6le90kUOyvdMX0jgleDrE2OiY/ty1F2MfhODGGdE=</dsig:DigestValue>
+        <dsig:DigestValue>A+XCT+qHs3F3ak1dWsgW7eKGfQpf5QYctlgfBiDvV3w=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -268,7 +268,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Girr9SXIcYvbUw2MsejZWdd0WYAw5v5rvQL/KrQbm7E=</dsig:DigestValue>
+        <dsig:DigestValue>l3OmCcyXerQMVaZu6SbgLRF8MIUA8QDdrbRXvqKhA+E=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
