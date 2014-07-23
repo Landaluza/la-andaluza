@@ -3,7 +3,9 @@
     Private frmChekeModificacionPalets As frmChekeModificacionPalets
     Private frmMediaProduccion As frmMediaProduccion
     Private frmfecha As frmSeleccionFecha
+    Private frmSeleccionDosFechas As frmSeleccionDosFechas
     Private InformesCalidad As InformesCalidad.frmjuegos
+    Private frmIncidenciasEntreFehcas As Incidencias_entre_fechas.frmIncidenciasEntreFehcas
     Private frmEspera As BasesParaCompatibilidad.frmEspera
     Public Sub New()
 
@@ -31,6 +33,25 @@
                 frmEspera.Show()
                 InformesCalidad = New InformesCalidad.frmjuegos(BasesParaCompatibilidad.Config.connectionString, frmfecha.FechaHoraSeleccionada)
                 GUImain.añadirPestaña(InformesCalidad) 'frm.Show()
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error generando informe. Detalles: " & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            frmEspera.Close()
+        End Try
+    End Sub
+
+    Private Sub tsEntreFechas_Click(sender As Object, e As EventArgs) Handles tsEntreFechas.Click
+        frmSeleccionDosFechas = New frmSeleccionDosFechas
+        frmEspera = New BasesParaCompatibilidad.frmEspera("Genrando informe, espere unos segundos")
+
+        Try
+            frmSeleccionDosFechas.ShowDialog()
+            If frmSeleccionDosFechas.DialogResult = Windows.Forms.DialogResult.OK Then
+                frmEspera.Show()
+                frmIncidenciasEntreFehcas = New Incidencias_entre_fechas.frmIncidenciasEntreFehcas(BasesParaCompatibilidad.Config.connectionString, frmSeleccionDosFechas.FechaHoraInicioSeleccionada, frmSeleccionDosFechas.FechaHoraFinSeleccionada)
+                frmIncidenciasEntreFehcas.Text = "Incidencias entre fechas"
+                GUImain.añadirPestaña(frmIncidenciasEntreFehcas)
             End If
         Catch ex As Exception
             MessageBox.Show("Error generando informe. Detalles: " & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)

@@ -49,7 +49,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>236</ApplicationRevision>
+    <ApplicationRevision>237</ApplicationRevision>
     <ApplicationVersion>2014.7.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -142,6 +142,10 @@
     <Reference Include="FastReport.Web, Version=2014.2.4.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Bases\ZLibrerias\referencias\FastReport.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Incidencias entre fechas, Version=14.7.22.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bases\ZLibrerias\Incidencias entre fechas.dll</HintPath>
     </Reference>
     <Reference Include="InformeContratosEmpleados, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -884,6 +888,12 @@
       <DependentUpon>frmVisitasMain.vb</DependentUpon>
     </Compile>
     <Compile Include="Administracion\Visitas\frmVisitasMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Control\Incidencias\frmSeleccionDosFechas.Designer.vb">
+      <DependentUpon>frmSeleccionDosFechas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Incidencias\frmSeleccionDosFechas.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Control\Lotes\depositos\frmCambiarDesposito.Designer.vb">
@@ -4997,6 +5007,9 @@
     <EmbeddedResource Include="Control\Incidencias\frmIncidenciasCalidadMain.resx">
       <DependentUpon>frmIncidenciasCalidadMain.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Control\Incidencias\frmSeleccionDosFechas.resx">
+      <DependentUpon>frmSeleccionDosFechas.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Control\Incidencias\frmSeleccionFecha.resx">
       <DependentUpon>frmSeleccionFecha.vb</DependentUpon>
     </EmbeddedResource>
@@ -6579,6 +6592,7 @@
     <None Include="Bases\ZLibrerias\referencias\FastReport.Web.dll" />
     <None Include="Bases\ZLibrerias\BasesParaCompatibilidad.dll" />
     <None Include="Bases\ZLibrerias\InformesCalidad.dll" />
+    <None Include="Bases\ZLibrerias\Incidencias entre fechas.dll" />
     <Content Include="Resources\window_new.ico" />
     <Content Include="Resources\window_new_3.ico" />
     <None Include="Resources\text-x-makefile.png" />

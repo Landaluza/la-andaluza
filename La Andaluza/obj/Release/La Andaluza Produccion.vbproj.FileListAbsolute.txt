@@ -658,6 +658,7 @@ C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Carta de 
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\DgvFilterPopup.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\EvaluacionIncidencia.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\FastReport.Service.dll
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Incidencias entre fechas.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\InformeContratosEmpleados.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\InformeDepositos.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\InformePuestosEmpleados.dll
@@ -819,6 +820,7 @@ C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andalu
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEntControlIncidencias_origen.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEntControlIncidencias_Proveedores.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmIncidenciasCalidadMain.resources
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmSeleccionDosFechas.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmSeleccionFecha.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmIncidenciasEnvasadosAsignables.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEntIncidenciasCalidadGeneral.resources
