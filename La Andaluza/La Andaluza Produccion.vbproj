@@ -155,10 +155,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Bases\ZLibrerias\InformePuestosEmpleados.dll</HintPath>
     </Reference>
-    <Reference Include="InformesCalidad, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Bases\ZLibrerias\InformesCalidad.dll</HintPath>
-    </Reference>
     <Reference Include="InformesEmpleados, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Bases\ZLibrerias\InformesEmpleados.dll</HintPath>
@@ -6567,7 +6563,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Bases\ZLibrerias\Carta de portes.dll" />
-    <None Include="Bases\ZLibrerias\InformesCalidad.dll" />
     <None Include="Bases\ZLibrerias\EvaluacionIncidencia.dll" />
     <None Include="Bases\ZLibrerias\InformesEmpleados.dll" />
     <None Include="Resources\file-clipboard.png" />
