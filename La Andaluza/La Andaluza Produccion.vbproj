@@ -155,10 +155,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Bases\ZLibrerias\InformePuestosEmpleados.dll</HintPath>
     </Reference>
-    <Reference Include="InformesCalidad, Version=14.7.22.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Informes\CAlidad\temp\InformesCalidad.dll</HintPath>
-    </Reference>
     <Reference Include="InformesEmpleados, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Bases\ZLibrerias\InformesEmpleados.dll</HintPath>
@@ -6578,7 +6574,6 @@
     <None Include="Bases\ZLibrerias\referencias\FastReport.VSDesign.dll" />
     <None Include="Bases\ZLibrerias\referencias\FastReport.Web.dll" />
     <None Include="Bases\ZLibrerias\BasesParaCompatibilidad.dll" />
-    <None Include="Bases\ZLibrerias\InformesCalidad.dll" />
     <Content Include="Resources\window_new.ico" />
     <Content Include="Resources\window_new_3.ico" />
     <None Include="Resources\text-x-makefile.png" />
