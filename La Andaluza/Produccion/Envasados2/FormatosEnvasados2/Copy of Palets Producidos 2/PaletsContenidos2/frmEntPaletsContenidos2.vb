@@ -84,7 +84,7 @@ Public Class frmEntPaletsContenidos2
             End Select
 
             'realzia los movimientso de las monodosis
-            If Me.cboMonodosis.Visible Then
+            If Me.cboMonodosis.Visible And Me.m_DBO_PaletsContenidos2.CantidadCajas <> 0 Then
                 monodosis.añadirMovimientoEncajado(Me.padre, Me.cboMonodosis, Me.txtCantidadCajas.Text, _
                                                    Me.m_DBO_PaletsContenidos2, Me.spPMovimientos, Me.dbo_movimiento, _
                                                    Me.m_DBO_FormatoEnvasado)
@@ -104,7 +104,7 @@ Public Class frmEntPaletsContenidos2
                     End If
                 End If
             Else
-                If Not Me.SplitContainer1.Panel2Collapsed Then
+                If Not Me.SplitContainer1.Panel2Collapsed And Me.m_DBO_PaletsContenidos2.CantidadCajas <> 0 Then
                     For Each p As Object In Me.PanDoyPack.Controls
                         If TypeOf p Is Panel Then
                             For Each c As Object In p.Controls
@@ -353,15 +353,16 @@ Public Class frmEntPaletsContenidos2
         Else
             If Me.padre.ModoDeApertura = INSERCION And Me.ModoDeApertura <> COMPLETAR Then Me.padre.TimerSSCC.Start()
         End If
+
         SetValores()
         ModificarBindingNavigator()
+
         If Me.ModoDeApertura = VISION Then
             Me.butGuardar.Visible = False
         ElseIf ModoDeApertura = MODIFICACION Then
             Me.cbScc.Enabled = False
         End If
 
-        'If Me.m_DBO_Envasado.LineaID = 6 Then
         If spPMovimientos.comprobarFormatoEncajado(Me.m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID) Then
             If Me.ModoDeApertura = INSERCION Or ModoDeApertura = COMPLETAR Then
                 If Not Me.monodosis.EsDoyPack(Me.m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID) Then
@@ -402,9 +403,7 @@ Public Class frmEntPaletsContenidos2
                 End If
             Else
                 Dim distance As Integer = Me.Width
-                'Me.Width = Me.Width + 400
                 Me.SplitContainer1.Panel2Collapsed = True
-                'Me.SplitContainer1.SplitterDistance = distance
                 Me.cboMonodosis.Visible = False
                 Me.Label1.Visible = False
                 Me.btnMonodosis.Visible = False
@@ -412,7 +411,6 @@ Public Class frmEntPaletsContenidos2
             End If
         End If
 
-        'End If
         System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.Default
     End Sub
 
