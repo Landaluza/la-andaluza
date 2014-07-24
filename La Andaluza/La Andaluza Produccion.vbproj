@@ -143,6 +143,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Bases\ZLibrerias\referencias\FastReport.Web.dll</HintPath>
     </Reference>
+    <Reference Include="Incidencias entre fechas, Version=14.7.24.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bases\ZLibrerias\Incidencias entre fechas.dll</HintPath>
+    </Reference>
     <Reference Include="InformeContratosEmpleados, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Bases\ZLibrerias\InformeContratosEmpleados.dll</HintPath>
@@ -6588,6 +6592,7 @@
     <None Include="Bases\ZLibrerias\referencias\FastReport.Web.dll" />
     <None Include="Bases\ZLibrerias\BasesParaCompatibilidad.dll" />
     <None Include="Bases\ZLibrerias\InformesCalidad.dll" />
+    <None Include="Bases\ZLibrerias\Incidencias entre fechas.dll" />
     <Content Include="Resources\window_new.ico" />
     <Content Include="Resources\window_new_3.ico" />
     <None Include="Resources\text-x-makefile.png" />
