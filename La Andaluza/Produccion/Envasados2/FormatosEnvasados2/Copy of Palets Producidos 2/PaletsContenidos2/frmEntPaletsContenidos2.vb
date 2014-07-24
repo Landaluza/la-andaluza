@@ -228,12 +228,6 @@ Public Class frmEntPaletsContenidos2
             dtpHoraFin.Value = dtpHoraInicio.Value.AddMinutes(1)
         End If
 
-        'If dtpHoraInicio.Value.Day <> Me.m_DBO_Envasado.Fecha.Day And Me.ModoDeApertura = INSERCION Then
-        '    messagebox.show("El siguiente contenido debe envasarse en nuevo Lote.", messagebox.show.Exclamation, "No se permiten mas contenidos hoy")
-        '    Me.Close()
-        '    Me.padre.Close()
-        'End If
-
         Me.padre.chbTerminado.Checked = m_DBO_PaletsContenidos2.Terminado
         Me.padre.chbEnAlmacen.Checked = m_DBO_PaletsContenidos2.EnAlmacen
         txtObservaciones.Text = m_DBO_PaletsContenidos2.Observaciones
@@ -264,8 +258,6 @@ Public Class frmEntPaletsContenidos2
             MessageBox.Show("Error. " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-
-
 
     Private Sub dtpHoraFin_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles dtpHoraFin.Validating
         Dim ts1 As New DateTime(DateTime.Now.Date.Year, DateTime.Now.Date.Month, DateTime.Now.Date.Day, _
@@ -435,34 +427,11 @@ Public Class frmEntPaletsContenidos2
         End Try
     End Sub
 
-    'Private Sub dtpHoraInicio_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles dtpHoraInicio.ValueChanged
-    '    If dtpHoraInicio.Value.ToString("hh").Length = 2 Then
-    '        SendKeys.SendWait("{Right}")
-    '    End If
-    'End Sub
-
-    'Private Sub dtpHoraFin_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles dtpHoraFin.ValueChanged
-    '    If dtpHoraFin.Value.ToString("hh").Length = 2 Then
-    '        SendKeys.SendWait("{Right}")
-    '    End If
-    'End Sub
-
-
     Private Sub btnMonodosis_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMonodosis.Click
         Dim mono As New frmContenidosDetallesMonodosis2(Me.m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID)
         mono.ShowDialog()
         Me.cboMonodosis.SelectedValue = mono.id
     End Sub
-
-    'Private Sub frmEntPaletsContenidos2_Shown(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Shown
-    'If Me.m_DBO_Envasado.LineaID = 6 Then
-    '    If Me.ModoDeApertura = MODIFICACION Then
-    '        messagebox.show("No se puede modificar un envasado de encajado. Avisar a control para relizar la modificación", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
-    '        Me.Close()
-    '    End If
-    'End If
-    ' End Sub
-
 
     Private Sub cboMonodosis_SelectedValueChanged(sender As System.Object, e As System.EventArgs) Handles cboMonodosis.SelectedValueChanged
         If Me.cboMonodosis.SelectedItem(4) = 3 Then

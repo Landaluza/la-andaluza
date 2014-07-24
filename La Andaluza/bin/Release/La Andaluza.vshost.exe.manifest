@@ -189,14 +189,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Incidencias entre fechas.dll" size="86016">
-      <assemblyIdentity name="Incidencias entre fechas" version="14.7.22.1" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Incidencias entre fechas.dll" size="113152">
+      <assemblyIdentity name="Incidencias entre fechas" version="14.7.24.1" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>32OFw+GkpleT2pePnJWA6xtypgGEJ9Siyd5lr7CgtOw=</dsig:DigestValue>
+        <dsig:DigestValue>nnGPIX5lKpU0nmZZlCL/aUysP93JF7CYlES+JHwh45w=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -280,7 +280,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>YKCQUv2Oh3/IrY2qhZsy3hwQmqUg80h7e8tMXIULjss=</dsig:DigestValue>
+        <dsig:DigestValue>9nTHvAaSjLKYztru0HZdOpdda+x0S/gwt/QU8hq5WB8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -53,44 +53,6 @@ Public Class frmPaletsContenidos2
         End If
     End Sub
 
-    'Public Sub New()
-
-    '    InitializeComponent()
-
-    '    spPaletsContenidos2 = New spPaletsContenidos2
-    '    spPaletsProducidos2 = New spPaletsProducidos2
-    '    spEnvasados2 = New spEnvasados2
-    '    Me.Embebido = False
-
-    '    spSelectDgv = "PaletsContenidosSelectDgv"
-
-    '    label1 = Me.bdnGeneral.Items.Add("Se muestran solamente los ultimos 1.000 registros.")
-    '    label1.Text = "Se muestran solamente los ultimos 1.000 registros."
-    '    label1.DisplayStyle = ToolStripItemDisplayStyle.Text
-    '    label1.Enabled = False
-    '    Me.bdnGeneral.AddNewItem = label1
-
-    '    butTodos = Me.bdnGeneral.Items.Add("Todos")
-    '    butTodos.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
-    '    butTodos.Image = My.Resources.refresh
-    '    AddHandler butTodos.Click, AddressOf butTodos2_Click
-
-    '    butMil = Me.bdnGeneral.Items.Add("1.000")
-    '    butMil.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
-    '    butMil.Image = My.Resources.refresh
-    '    AddHandler butMil.Click, AddressOf butMil2_Click
-    '    butMil.Visible = False
-
-    '    m_PaletProducido = DBO_PaletsProducidos2.Instance()
-    '    m_Envasado = DBO_Envasados2.Instance()
-
-
-    '    butNuevo.Visible = False
-    '    Me.butSalir.Visible = True
-    '    butModificar.Visible = False
-    '    butEliminar.Visible = False
-    'End Sub
-
     Public ReadOnly Property RowCount As Integer
         Get
             Return Me.dgvGeneral.RowCount
@@ -101,7 +63,6 @@ Public Class frmPaletsContenidos2
         System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
 
         dgvFill()
-        'GeneralBindingSource. dataSource = dtb.Consultar(spSelectDgv)
 
         If Not padre Is Nothing Then
             padre.VerificarPaletsSinTerminar()
