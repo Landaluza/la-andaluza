@@ -6597,7 +6597,7 @@
     <None Include="Bases\ZLibrerias\BasesParaCompatibilidad.dll" />
     <None Include="Bases\ZLibrerias\InformesCalidad.dll" />
     <None Include="Bases\ZLibrerias\Incidencias entre fechas.dll" />
-    <Content Include="Bases\ZLibrerias\informeResumenVinagre.dll" />
+    <None Include="Bases\ZLibrerias\informeResumenVinagre.dll" />
     <Content Include="Resources\window_new.ico" />
     <Content Include="Resources\window_new_3.ico" />
     <None Include="Resources\text-x-makefile.png" />
