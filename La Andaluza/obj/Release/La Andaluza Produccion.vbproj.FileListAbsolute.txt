@@ -662,6 +662,7 @@ C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Incidenci
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\InformeContratosEmpleados.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\InformeDepositos.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\InformePuestosEmpleados.dll
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\informeResumenVinagre.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\InformesCalidad.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\InformesEmpleados.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\InformesVinagreJerez.dll

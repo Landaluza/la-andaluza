@@ -642,4 +642,8 @@ Public Class MenuDispatcher
 
 
 
+    Private Sub InformeResumenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles InformeResumenToolStripMenuItem.Click, InformeResumenToolStripMenuItem2.Click, InformeResumenToolStripMenuItem1.Click
+        Dim frm As New informe.SelectorFecha(BasesParaCompatibilidad.Config.connectionString)
+        frm.ShowDialog()
+    End Sub
 End Class
