@@ -292,7 +292,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>HKPTaQZWCKlAwZJQGGiMXXQ3BVvkTkAnNU4FBWbUGSk=</dsig:DigestValue>
+        <dsig:DigestValue>ClbeNRq6VruuN9xsKIQAtJnugwdunZZhNLOCc+52SDY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -404,15 +404,6 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="Bases\ZLibrerias\informeResumenVinagre.dll" size="497664">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>Qlds1J3mYwwFG7FAVxnN7oG/1RCeM2BHO3OAei6Zsts=</dsig:DigestValue>
-    </hash>
-  </file>
   <file name="Bases\ZLibrerias\twaincontrolxtrial.exe" size="901096">
     <hash>
       <dsig:Transforms>

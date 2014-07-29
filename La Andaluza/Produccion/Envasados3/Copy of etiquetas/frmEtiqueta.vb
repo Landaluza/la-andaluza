@@ -28,15 +28,15 @@ Public Class frmEtiqueta0
 
 
     Private Sub setValores()
+        Dim sp As New spEtiquetasPalets
         Me.EtiquetadoraPalets.setup()
 
         Try
-            If Me.dbo_etiquetasPalet.PaletID <> 0 Then
-                Dim sp As New spEtiquetasPalets
-                Me.dbo_etiquetasPalet = sp.Select_Record(Me.dbo_etiquetasPalet.PaletID)
+            If Me.dbo_etiquetasPalet.PaletID = 0 Then
+                Return
             End If
+            Me.dbo_etiquetasPalet = sp.Select_Record(Me.dbo_etiquetasPalet.PaletID)
         Catch ex As Exception
-
         End Try
 
         If Not dbo_etiquetasPalet Is Nothing Then
@@ -50,7 +50,7 @@ Public Class frmEtiqueta0
             Me.lean13.Text = Me.dbo_etiquetasPalet.EAN13
             Me.lean14.Text = Me.dbo_etiquetasPalet.EAN14
 
-            If Me.dbo_etiquetasPalet.Tipo_Loteado = Loteado.STANDAR  Then
+            If Me.dbo_etiquetasPalet.Tipo_Loteado = Loteado.STANDAR Then
                 Me.llote.Text = loteador.Loteado_standar(Me.dbo_etiquetasPalet.Lote)
             Else
                 Me.llote.Text = loteador.Loteado_cubos(Convert.ToDateTime(Me.dbo_etiquetasPalet.Lote).AddYears(dbo_etiquetasPalet.Anos_caducidad))
@@ -78,15 +78,21 @@ Public Class frmEtiqueta0
 
             Else
 
-                If Me.dbo_etiquetasPalet.EAN13 = "" Then
-                    'Me.BarCodes1D1.Visible = False
-                    Me.Barcode1.Visible = False
-                    'calcular_codigoBarras2()
-                End If
+                
 
-                If Me.dbo_etiquetasPalet.EAN14 = "" Then
-                    'Me.BarCodes1D2.Visible = False
-                    Me.Barcode2.Visible = False
+                If Me.dbo_etiquetasPalet.EAN13 = "" And Me.dbo_etiquetasPalet.EAN14 = "" Then
+                    Me.Barcode1.Visible = False
+                Else
+                    If Me.dbo_etiquetasPalet.EAN13 = "" Then
+                        'Me.BarCodes1D1.Visible = False
+                        Me.Barcode1.Visible = False
+                        'calcular_codigoBarras2()
+                    End If
+
+                    If Me.dbo_etiquetasPalet.EAN14 = "" Then
+                        'Me.BarCodes1D2.Visible = False
+                        Me.Barcode2.Visible = False
+                    End If
                 End If
             End If
 
