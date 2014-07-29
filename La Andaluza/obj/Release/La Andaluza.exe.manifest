@@ -201,18 +201,6 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="informeResumenVinagre.dll" size="497664">
-      <assemblyIdentity name="informe" version="14.7.25.1" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Qlds1J3mYwwFG7FAVxnN7oG/1RCeM2BHO3OAei6Zsts=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="InformeContratosEmpleados.dll" size="62976">
       <assemblyIdentity name="InformeContratosEmpleados" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
@@ -245,6 +233,18 @@
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
         <dsig:DigestValue>KNM5366Lxh08pI0ir5ZsWUOwqqgW2FbNyruGgjLf2YM=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="InformeResumenVinagre.dll" size="498688">
+      <assemblyIdentity name="InformeResumenVinagre" version="14.7.25.1" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>M7mPnTQWAdlKrF3wnvxfUPN00adZTTiYeeOY2z/zreA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -292,7 +292,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>3Si9cCOQPSkzNictbxpO4aRmrvio877LUeGaTAHNVQ8=</dsig:DigestValue>
+        <dsig:DigestValue>jf5wsyE20ehlmu/bPutxliwVnp40jH+joy+YqzS14i8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
