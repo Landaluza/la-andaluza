@@ -163,10 +163,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Bases\ZLibrerias\InformeResumenVinagre.dll</HintPath>
     </Reference>
-    <Reference Include="InformesCalidad, Version=14.7.22.3, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Bases\ZLibrerias\InformesCalidad.dll</HintPath>
-    </Reference>
     <Reference Include="InformesEmpleados, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Bases\ZLibrerias\InformesEmpleados.dll</HintPath>
@@ -6595,7 +6591,6 @@
     <None Include="Bases\ZLibrerias\referencias\FastReport.VSDesign.dll" />
     <None Include="Bases\ZLibrerias\referencias\FastReport.Web.dll" />
     <None Include="Bases\ZLibrerias\BasesParaCompatibilidad.dll" />
-    <None Include="Bases\ZLibrerias\InformesCalidad.dll" />
     <None Include="Bases\ZLibrerias\Incidencias entre fechas.dll" />
     <None Include="Bases\ZLibrerias\InformeResumenVinagre.dll" />
     <Content Include="Resources\window_new.ico" />
