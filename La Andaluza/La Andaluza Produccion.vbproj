@@ -175,9 +175,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Bases\ZLibrerias\InformesVinagreJerez.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-      <Private>True</Private>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>Bases\ZLibrerias\referencias\Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Word, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>False</EmbedInteropTypes>
@@ -900,6 +901,62 @@
     <Compile Include="Control\Incidencias\frmSeleccionDosFechas.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Control\Incidencias\gastos\conceptos\DBO_ConceptosGastosIncidencias.vb" />
+    <Compile Include="Control\Incidencias\gastos\conceptos\frmConceptosGastosIncidencias.Designer.vb">
+      <DependentUpon>frmConceptosGastosIncidencias.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Incidencias\gastos\conceptos\frmConceptosGastosIncidencias.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Control\Incidencias\gastos\conceptos\frmEntConceptosGastosIncidencias.Designer.vb">
+      <DependentUpon>frmEntConceptosGastosIncidencias.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Incidencias\gastos\conceptos\frmEntConceptosGastosIncidencias.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Control\Incidencias\gastos\conceptos\spConceptosGastosIncidencias.vb" />
+    <Compile Include="Control\Incidencias\gastos\costePorConcepto\DBO_CostesPorConcepto.vb" />
+    <Compile Include="Control\Incidencias\gastos\costePorConcepto\frmCostesPorConcepto.Designer.vb">
+      <DependentUpon>frmCostesPorConcepto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Incidencias\gastos\costePorConcepto\frmCostesPorConcepto.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Control\Incidencias\gastos\costePorConcepto\frmEntCostesPorConcepto.Designer.vb">
+      <DependentUpon>frmEntCostesPorConcepto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Incidencias\gastos\costePorConcepto\frmEntCostesPorConcepto.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Control\Incidencias\gastos\costePorConcepto\spCostesPorConcepto.vb" />
+    <Compile Include="Control\Incidencias\gastos\gastosIncidencias\DBO_GastosIncidencias.vb" />
+    <Compile Include="Control\Incidencias\gastos\gastosIncidencias\frmEntGastosIncidencias.Designer.vb">
+      <DependentUpon>frmEntGastosIncidencias.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Incidencias\gastos\gastosIncidencias\frmEntGastosIncidencias.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Control\Incidencias\gastos\gastosIncidencias\frmGastosIncidencias.Designer.vb">
+      <DependentUpon>frmGastosIncidencias.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Incidencias\gastos\gastosIncidencias\frmGastosIncidencias.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Control\Incidencias\gastos\gastosIncidencias\spGastosIncidencias.vb" />
+    <Compile Include="Control\Incidencias\gastos\tiposConceptos\DBO_TiposConceptos.vb" />
+    <Compile Include="Control\Incidencias\gastos\tiposConceptos\frmEntTiposConceptos.Designer.vb">
+      <DependentUpon>frmEntTiposConceptos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Incidencias\gastos\tiposConceptos\frmEntTiposConceptos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Control\Incidencias\gastos\tiposConceptos\frmTiposConceptos.Designer.vb">
+      <DependentUpon>frmTiposConceptos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Incidencias\gastos\tiposConceptos\frmTiposConceptos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Control\Incidencias\gastos\tiposConceptos\spTiposConceptos.vb" />
     <Compile Include="Control\Lotes\depositos\frmCambiarDesposito.Designer.vb">
       <DependentUpon>frmCambiarDesposito.vb</DependentUpon>
     </Compile>
@@ -5017,6 +5074,30 @@
     <EmbeddedResource Include="Control\Incidencias\frmSeleccionFecha.resx">
       <DependentUpon>frmSeleccionFecha.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Control\Incidencias\gastos\conceptos\frmConceptosGastosIncidencias.resx">
+      <DependentUpon>frmConceptosGastosIncidencias.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\Incidencias\gastos\conceptos\frmEntConceptosGastosIncidencias.resx">
+      <DependentUpon>frmEntConceptosGastosIncidencias.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\Incidencias\gastos\costePorConcepto\frmCostesPorConcepto.resx">
+      <DependentUpon>frmCostesPorConcepto.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\Incidencias\gastos\costePorConcepto\frmEntCostesPorConcepto.resx">
+      <DependentUpon>frmEntCostesPorConcepto.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\Incidencias\gastos\gastosIncidencias\frmEntGastosIncidencias.resx">
+      <DependentUpon>frmEntGastosIncidencias.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\Incidencias\gastos\gastosIncidencias\frmGastosIncidencias.resx">
+      <DependentUpon>frmGastosIncidencias.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\Incidencias\gastos\tiposConceptos\frmEntTiposConceptos.resx">
+      <DependentUpon>frmEntTiposConceptos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\Incidencias\gastos\tiposConceptos\frmTiposConceptos.resx">
+      <DependentUpon>frmTiposConceptos.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Control\Incidencias\incidenciasEnvasados\frmIncidenciasEnvasadosAsignables.resx">
       <DependentUpon>frmIncidenciasEnvasadosAsignables.vb</DependentUpon>
     </EmbeddedResource>
@@ -6598,6 +6679,35 @@
     <None Include="Bases\ZLibrerias\Incidencias entre fechas.dll" />
     <None Include="Bases\ZLibrerias\InformeResumenVinagre.dll" />
     <None Include="Bases\ZLibrerias\InformesCalidad.dll" />
+    <Content Include="Control\Incidencias\gastos\conceptos\ConceptosGastosIncidenciasBatch.sql" />
+    <Content Include="Control\Incidencias\gastos\conceptos\ConceptosGastosIncidenciasCbo.sql" />
+    <Content Include="Control\Incidencias\gastos\conceptos\ConceptosGastosIncidenciasDelete.sql" />
+    <Content Include="Control\Incidencias\gastos\conceptos\ConceptosGastosIncidenciasInsert.sql" />
+    <Content Include="Control\Incidencias\gastos\conceptos\ConceptosGastosIncidenciasSelect.sql" />
+    <Content Include="Control\Incidencias\gastos\conceptos\ConceptosGastosIncidenciasSelectDgv.sql" />
+    <Content Include="Control\Incidencias\gastos\conceptos\ConceptosGastosIncidenciasUpdate.sql" />
+    <Content Include="Control\Incidencias\gastos\costePorConcepto\CostesPorConceptoBatch.sql" />
+    <Content Include="Control\Incidencias\gastos\costePorConcepto\CostesPorConceptoDelete.sql" />
+    <Content Include="Control\Incidencias\gastos\costePorConcepto\CostesPorConceptoInsert.sql" />
+    <Content Include="Control\Incidencias\gastos\costePorConcepto\CostesPorConceptoSelect.sql" />
+    <Content Include="Control\Incidencias\gastos\costePorConcepto\CostesPorConceptoSelectDgv.sql" />
+    <Content Include="Control\Incidencias\gastos\costePorConcepto\CostesPorConceptoSelectDgvBy.sql" />
+    <Content Include="Control\Incidencias\gastos\costePorConcepto\CostesPorConceptoUpdate.sql" />
+    <Content Include="Control\Incidencias\gastos\gastosIncidencias\GastosIncidenciasBatch.sql" />
+    <Content Include="Control\Incidencias\gastos\gastosIncidencias\GastosIncidenciasDelete.sql" />
+    <Content Include="Control\Incidencias\gastos\gastosIncidencias\GastosIncidenciasInsert.sql" />
+    <Content Include="Control\Incidencias\gastos\gastosIncidencias\GastosIncidenciasSelect.sql" />
+    <Content Include="Control\Incidencias\gastos\gastosIncidencias\GastosIncidenciasSelectDgv.sql" />
+    <Content Include="Control\Incidencias\gastos\gastosIncidencias\GastosIncidenciasSelectDgvBy.sql" />
+    <Content Include="Control\Incidencias\gastos\gastosIncidencias\GastosIncidenciasUpdate.sql" />
+    <Content Include="Control\Incidencias\gastos\tablas.sql" />
+    <Content Include="Control\Incidencias\gastos\tiposConceptos\TiposConceptosBatch.sql" />
+    <Content Include="Control\Incidencias\gastos\tiposConceptos\TiposConceptosCbo.sql" />
+    <Content Include="Control\Incidencias\gastos\tiposConceptos\TiposConceptosDelete.sql" />
+    <Content Include="Control\Incidencias\gastos\tiposConceptos\TiposConceptosInsert.sql" />
+    <Content Include="Control\Incidencias\gastos\tiposConceptos\TiposConceptosSelect.sql" />
+    <Content Include="Control\Incidencias\gastos\tiposConceptos\TiposConceptosSelectDgv.sql" />
+    <Content Include="Control\Incidencias\gastos\tiposConceptos\TiposConceptosUpdate.sql" />
     <Content Include="Resources\window_new.ico" />
     <Content Include="Resources\window_new_3.ico" />
     <None Include="Resources\text-x-makefile.png" />

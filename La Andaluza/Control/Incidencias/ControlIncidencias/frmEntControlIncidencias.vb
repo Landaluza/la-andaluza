@@ -12,6 +12,7 @@ Public Class frmEntControlIncidencias
     Private frmControlIncidencias_Origen As frmControlIncidencias_Origen
     Private frmIncidenciasEnvasadosAsignables As frmIncidenciasEnvasadosAsignables
     Private frmSegumientosIncidencias As frmSegumientosIncidencias
+    Private frmGastos As frmGastosIncidencias
     Private frmANC As frmANC
 
     Public Sub New(ByVal modoDeApertura As String, Optional ByRef v_sp As spControlIncidencias = Nothing, Optional ByRef v_dbo As DBO_ControlIncidencias = Nothing)
@@ -112,6 +113,7 @@ Public Class frmEntControlIncidencias
             Me.frmAccionesInmediatas_ControlIncidencias = New frmAccionesInmediatas_ControlIncidencias(Me.m_DBO_ControlIncidencias.ID)
             Me.frmControlIncidencias_AccionesCorrectivas = New frmControlIncidencias_AccionesCorrectivas(Me.m_DBO_ControlIncidencias.ID)
             Me.frmControlIncidencias_AccionesPreventivas = New frmControlIncidencias_AccionesPreventivas(Me.m_DBO_ControlIncidencias.ID)
+            Me.frmGastos = New frmGastosIncidencias(Me.m_DBO_ControlIncidencias.ID)
             Me.frmControlIncidencias_Causas = New frmControlIncidencias_Causas(Me.m_DBO_ControlIncidencias.ID)
             frmControlIncidencias_Origen = New frmControlIncidencias_Origen(Me.m_DBO_ControlIncidencias.ID)
             frmIncidenciasEnvasadosAsignables = New frmIncidenciasEnvasadosAsignables(Me.m_DBO_ControlIncidencias.ID, Me.cboincidenciaCalidadGeneral.SelectedValue)
@@ -126,6 +128,7 @@ Public Class frmEntControlIncidencias
             Engine_LA.FormEnPestaña(frmIncidenciasEnvasadosAsignables, tpIncidenciasenvasados)
             Engine_LA.FormEnPestaña(frmSegumientosIncidencias, tpSeguimiento)
             Engine_LA.FormEnPestaña(frmANC, tpAlmacenNC)
+            Engine_LA.FormEnPestaña(Me.frmGastos, tpGastos)
         Else
             Me.Height = Me.SplitContainer1.Panel1.Height
             Me.SplitContainer1.Panel2Collapsed = True

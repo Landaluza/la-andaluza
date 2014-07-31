@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" StartReportEvent="_StartReport" FinishReportEvent="_FinishReport" ReportInfo.Created="03/17/2014 18:56:51" ReportInfo.Modified="07/18/2014 07:12:08" ReportInfo.CreatorVersion="2014.2.4.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  
+  
+  Public Class ReportScript 
+                    
+    Private Sub Text13_BeforePrint(ByVal sender As object, ByVal e As EventArgs) 
+      If (Text1.Value.ToString.Trim=&quot;&quot;) Then
+        GroupFooter2.Visible = False 
+      End If
+    End Sub 
+                    
+    Private Sub Text14_BeforePrint(ByVal sender As object, ByVal e As EventArgs) 
+      If (Text1.Value.ToString.Trim=&quot;&quot;) Then
+        Child2.Visible = False
+      End If
+    End Sub 
+
+    Private Sub GroupHeader1_AfterData(ByVal sender As object, ByVal e As EventArgs) 
+      If Convert.ToDateTime(Text7.Value) &lt; Date.Today Then  
+        GroupHeader1.FillColor = Color.Red
+      End If
+    End Sub
+    
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8fkDXtATjB3tKlOxixjqMXsRgD9+QYvHsNmljh2nJv0rSaf8++SifcqSQ76//QF0iXnlUBx/QkzLR61C0ynHiHgiOYmhiHIQcSg6RS82kwqLvRs1Ze12swmjPmGBiBcIiWaGJLOXFYt5VNUOMYKTQZx4s4ck18/f3KbZwj7khrkTuJMlW19MeFtyqo6aix1SBzsWnqfTEoB4vlXP1OwpquA=" ConnectionStringExpression="MyParameter">
+      <TableDataSource Name="tblReport1" DataType="System.Int32" Enabled="true" SelectCommand="SELECT PedidosProveedoresMaestros.Numero AS OrderBy, PedidosProveedoresMaestros.PedidoProveedorMaestroID, PedidosProveedoresMaestros.Numero, Proveedores.Nombre, PedidosProveedoresMaestros.FechaEmision, PedidosProveedoresMaestros.FechaServicio, PedidosProveedoresMaestros.EstadoID, PedidosProveedoresMaestros.Observaciones as Observaciones1, PedidosProveedoresDetalles.PedidoProveedorDetalleID, PedidosProveedoresDetalles.Cantidad as Cantidad1, isnull(PedidosProveedoresDetalles.Observaciones, '') as Observaciones2, PedidosProveedoresDetalles.PedidoProveedorMaestroID, Articulos1.DescripcionLA, PedidosProveedoresEstados.Descripcion AS Estado, isnull(Articulos1.CodigoQS,'-') CodigoQS, convert(NVARCHAR, PedidosProveedoresEntregas.Fecha, 103) as Fecha, PedidosProveedoresEntregas.Cantidad as Cantidad2, PedidosProveedoresEntregas.Observaciones as Observaciones3 FROM PedidosProveedoresMaestros INNER JOIN Proveedores ON PedidosProveedoresMaestros.ProveedorID = Proveedores.ProveedorID INNER JOIN PedidosProveedoresDetalles ON PedidosProveedoresMaestros.PedidoProveedorMaestroID = PedidosProveedoresDetalles.PedidoProveedorMaestroID INNER JOIN Articulos1 ON PedidosProveedoresDetalles.ArticuloID = Articulos1.ArticuloID INNER JOIN PedidosProveedoresEstados ON PedidosProveedoresDetalles.EstadoID = PedidosProveedoresEstados.PedidoProveedorEstadoID LEFT JOIN PedidosProveedoresEntregas ON PedidosProveedoresDetalles.PedidoProveedorDetalleID = PedidosProveedoresEntregas.PedidoProveedorDetalleID WHERE PedidosProveedoresMaestros.EstadoID &lt; 5 AND PedidosProveedoresDetalles.EstadoID &lt;&gt; 5 ORDER BY OrderBy">
+        <Column Name="PedidoProveedorMaestroID" DataType="System.Int32"/>
+        <Column Name="Numero" DataType="System.Int32"/>
+        <Column Name="Nombre" DataType="System.String"/>
+        <Column Name="FechaEmision" DataType="System.DateTime"/>
+        <Column Name="FechaServicio" DataType="System.DateTime"/>
+        <Column Name="EstadoID" DataType="System.Int32"/>
+        <Column Name="Observaciones1" DataType="System.String"/>
+        <Column Name="PedidoProveedorDetalleID" DataType="System.Int32"/>
+        <Column Name="Cantidad1" DataType="System.Decimal"/>
+        <Column Name="Observaciones2" DataType="System.String"/>
+        <Column Name="DescripcionLA" DataType="System.String"/>
+        <Column Name="Estado" DataType="System.String"/>
+        <Column Name="CodigoQS" DataType="System.Int32"/>
+        <Column Name="Fecha" DataType="System.String"/>
+        <Column Name="Cantidad2" DataType="System.Decimal"/>
+        <Column Name="Observaciones3" DataType="System.String"/>
+        <Column Name="PedidoProveedorMaestroID1" DataType="System.Int32"/>
+        <Column Name="OrderBy" DataType="System.Int32"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="Cantodad2_Total" Expression="[tblReport1.Cantidad2]" Evaluator="Data2" PrintOn="GroupFooter2"/>
+    <Total Name="Cantidad2_Total_Child" Expression="[tblReport1.Cantidad2]" Evaluator="Data2" PrintOn="Child2"/>
+  </Dictionary>
+  <ReportPage Name="Page1">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="28.35">
+      <TextObject Name="Text15" Width="718.2" Height="28.35" Dock="Fill" Text="PEDIDOS DE COMPRA PENDIENTES SERVIR" HorzAlign="Center" Font="Consolas, 18pt"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="32.35" Width="718.2" Height="28.35"/>
+    <GroupHeaderBand Name="GroupHeader1" Top="64.7" Width="718.2" Height="18.9" Fill.Color="Gainsboro" CanGrow="true" BeforePrintEvent="GroupHeader1_BeforePrint" AfterPrintEvent="GroupHeader1_AfterPrint" AfterDataEvent="GroupHeader1_AfterData" BeforeLayoutEvent="GroupHeader1_BeforeLayout" Condition="[tblReport1.OrderBy]">
+      <TextObject Name="Text3" Width="47.25" Height="18.9" Text="[[tblReport1.Numero]]" Font="Consolas, 10pt"/>
+      <TextObject Name="Text2" Left="37.8" Width="255.15" Height="18.9" CanBreak="false" Text="[tblReport1.Nombre]" Font="Consolas, 10pt"/>
+      <TextObject Name="Text6" Left="302.4" Width="75.6" Height="18.9" Text="[tblReport1.FechaEmision]" Format="Date" Format.Format="d" Font="Consolas, 8pt"/>
+      <TextObject Name="Text7" Left="378" Width="75.6" Height="18.9" Text="[tblReport1.FechaServicio]" Format="Date" Format.Format="d" Font="Consolas, 8pt"/>
+      <TextObject Name="Text11" Left="453.6" Width="264.6" Height="18.9" CanGrow="true" Text="[tblReport1.Observaciones1]" Font="Consolas, 8pt"/>
+      <GroupHeaderBand Name="GroupHeader2" Top="87.6" Width="718.2" Height="15.12" Condition="[tblReport1.CodigoQS]">
+        <TextObject Name="Text4" Width="85.05" Height="11.34" Text="[[tblReport1.CodigoQS]]" Font="Consolas, 8pt"/>
+        <TextObject Name="Text8" Left="66.15" Width="359.1" Height="11.34" Text="[tblReport1.DescripcionLA]" Font="Consolas, 8pt"/>
+        <TextObject Name="Text9" Left="444.15" Width="94.5" Height="11.34" Text="[tblReport1.Cantidad1]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Consolas, 8pt" Trimming="EllipsisCharacter"/>
+        <DataBand Name="Data2" Top="106.72" Width="718.2" Height="18.9" CanShrink="true" KeepChild="true" DataSource="tblReport1" KeepDetail="true">
+          <TextObject Name="Text1" Left="378" Width="75.6" Height="18.9" CanShrink="true" Text="[tblReport1.Fecha]" HideZeros="true" Font="Consolas, 8pt"/>
+          <TextObject Name="Text5" Left="453.6" Width="85.05" Height="18.9" CanShrink="true" Text="[tblReport1.Cantidad2]" HideZeros="true" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Consolas, 8pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text10" Left="548.1" Width="170.1" Height="18.9" CanShrink="true" Text="[tblReport1.Observaciones3]" HideZeros="true" Font="Consolas, 8pt"/>
+        </DataBand>
+        <GroupFooterBand Name="GroupFooter2" Top="129.62" Width="718.2" Height="18.9">
+          <TextObject Name="Text12" Left="453.6" Width="85.05" Height="18.9" CanShrink="true" Text="[Cantodad2_Total]" HideZeros="true" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Consolas, 8pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text13" Left="321.3" Width="132.3" Height="18.9" BeforePrintEvent="Text13_BeforePrint" Text="     Total entregas:" Font="Consolas, 8pt"/>
+          <ChildBand Name="Child2" Top="152.52" Width="718.2" Height="18.9" Guides="18.9,18.9,18.9,18.9">
+            <TextObject Name="Text16" Left="453.6" Width="85.05" Height="18.9" CanShrink="true" Text="[[tblReport1.Cantidad1] - [Cantidad2_Total_Child]]" HideZeros="true" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Consolas, 8.25pt, style=Bold" Trimming="EllipsisCharacter"/>
+            <TextObject Name="Text14" Left="321.3" Width="132.3" Height="18.9" BeforePrintEvent="Text14_BeforePrint" Text=" Resta por entregar:" Font="Consolas, 8.25pt, style=Bold"/>
+          </ChildBand>
+        </GroupFooterBand>
+      </GroupHeaderBand>
+      <GroupFooterBand Name="GroupFooter1" Top="175.42" Width="718.2" Height="9.45"/>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="188.87" Width="718.2" Height="28.35">
+      <TextObject Name="Text17" Left="519.75" Width="66.15" Height="18.9" Text="[PageN]"/>
+      <TextObject Name="Text18" Left="614.25" Width="94.5" Height="18.9" Text="[TotalPages#]" ProcessAt="DataFinished"/>
+      <TextObject Name="Text20" Left="585.9" Width="28.35" Height="18.9" Text="de"/>
+      <TextObject Name="Text19" Top="9.45" Width="189" Height="18.9" Text="[Date]"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

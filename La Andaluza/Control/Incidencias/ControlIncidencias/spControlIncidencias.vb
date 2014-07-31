@@ -36,4 +36,5 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         End If
    End Function
 
+
 End Class

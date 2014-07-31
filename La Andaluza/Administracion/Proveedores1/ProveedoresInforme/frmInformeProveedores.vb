@@ -77,7 +77,7 @@ Public Class frmInformeProveedores
             If saveFileDialog1.FileName <> "" Then
                 If Not saveFileDialog1.FileName.EndsWith(".xlsx") Then saveFileDialog1.FileName = saveFileDialog1.FileName & ".xlsx"
 
-                xlApp = New Microsoft.Office.Interop.Excel.ApplicationClass
+                xlApp = New Microsoft.Office.Interop.Excel.Application
                 xlWorkBook = xlApp.Workbooks.Add(misValue)
                 xlWorkSheet = xlWorkBook.Sheets(1)
 

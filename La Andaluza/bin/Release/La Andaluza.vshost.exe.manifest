@@ -44,36 +44,6 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="FastReport" version="2014.2.4.0" publicKeyToken="DB7E5CE63278458C" language="neutral" processorArchitecture="msil" />
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="FastReport.Bars" version="2014.2.4.0" publicKeyToken="DB7E5CE63278458C" language="neutral" processorArchitecture="msil" />
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="FastReport.Editor" version="2014.2.4.0" publicKeyToken="DB7E5CE63278458C" language="neutral" processorArchitecture="msil" />
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="FastReport.Install" version="1.0.0.0" publicKeyToken="DB7E5CE63278458C" language="neutral" processorArchitecture="msil" />
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="FastReport.VSDesign" version="1.0.0.0" publicKeyToken="DB7E5CE63278458C" language="neutral" processorArchitecture="msil" />
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="FastReport.Web" version="2014.2.4.0" publicKeyToken="DB7E5CE63278458C" language="neutral" processorArchitecture="msil" />
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
       <assemblyIdentity name="Microsoft.ReportViewer.Common" version="10.0.0.0" publicKeyToken="B03F5F7F11D50A3A" language="neutral" processorArchitecture="msil" />
     </dependentAssembly>
   </dependency>
@@ -177,6 +147,54 @@
     </dependentAssembly>
   </dependency>
   <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FastReport.dll" size="3055104">
+      <assemblyIdentity name="FastReport" version="2014.2.4.0" publicKeyToken="DB7E5CE63278458C" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>pXiNcCPVtfaIwOQgVKKGa2bwrLsQg5fPidX8y1aTsIk=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FastReport.Bars.dll" size="3264000">
+      <assemblyIdentity name="FastReport.Bars" version="2014.2.4.0" publicKeyToken="DB7E5CE63278458C" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>oVrJ0uP4sYriUThJgr/29DSt3V/0IFkUcItveHgOH58=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FastReport.Editor.dll" size="1001984">
+      <assemblyIdentity name="FastReport.Editor" version="2014.2.4.0" publicKeyToken="DB7E5CE63278458C" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>D01kBC/LwefIm6r7IAI7MZTdBUyCxlu6ID22lvGIv/8=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FastReport.Install.dll" size="8192">
+      <assemblyIdentity name="FastReport.Install" version="1.0.0.0" publicKeyToken="DB7E5CE63278458C" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>2IFfN7eUtbXk+rlxdn0YeP9twcvCQ3uRE51EL74ixDc=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FastReport.Service.dll" size="14336">
       <assemblyIdentity name="FastReport.Service" version="2014.2.4.0" publicKeyToken="DB7E5CE63278458C" language="neutral" processorArchitecture="msil" />
       <hash>
@@ -185,6 +203,30 @@
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
         <dsig:DigestValue>ymCkqwh1185cGwQjbf5LJ/Kn21MGFGOzYGoFb1gx/MA=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FastReport.VSDesign.dll" size="24576">
+      <assemblyIdentity name="FastReport.VSDesign" version="1.0.0.0" publicKeyToken="DB7E5CE63278458C" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>mCXt8UzfNxtuG460i+WWzsV1MK+yXyoK/7TEJDUkilg=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FastReport.Web.dll" size="525824">
+      <assemblyIdentity name="FastReport.Web" version="2014.2.4.0" publicKeyToken="DB7E5CE63278458C" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>OAeeKclMwIeBxjQVWWoMrgg+0vcRvT0cYT/Kqg/QwVM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -285,26 +327,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="La Andaluza.exe" size="10155008">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="La Andaluza.exe" size="10183168">
       <assemblyIdentity name="La Andaluza" version="2014.2.1.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>NAfdVQsk7/W22tUbksgG9jI3WKvUQFCWACoBfWE/Y2o=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.Office.Interop.Excel.dll" size="1550200">
-      <assemblyIdentity name="Microsoft.Office.Interop.Excel" version="14.0.0.0" publicKeyToken="71E9BCE111E9429C" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>OmebSJAJVndSOiHRUyBW9535p4yZUzMh/ZfL65aSDbs=</dsig:DigestValue>
+        <dsig:DigestValue>SO1o2lVVNbjBGbT6llhZtFFFE0TInzy1VktE7HI4sCo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -321,14 +351,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.ReportViewer.Common.dll" size="8740464">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.ReportViewer.Common.dll" size="8670296">
       <assemblyIdentity name="Microsoft.ReportViewer.Common" version="11.0.0.0" publicKeyToken="89845DCD8080CC91" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>VGvEnARn8Q6mxyJJKbcVhn5qxOAxvBN7ul0mvzFeS98=</dsig:DigestValue>
+        <dsig:DigestValue>RbVBpuPsfX6nhZ4zpqVd71ika52SqcIHfiNDW91l95o=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -357,26 +387,38 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.ReportViewer.WinForms.dll" size="564848">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.ReportViewer.WinForms.dll" size="564312">
       <assemblyIdentity name="Microsoft.ReportViewer.WinForms" version="11.0.0.0" publicKeyToken="89845DCD8080CC91" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>MeOhMz+sm7YX3UKJTcXeyXZpMcH9T67M4vnqgCw8ev4=</dsig:DigestValue>
+        <dsig:DigestValue>VP74T3b5TvFsaZ1cGnWdtUV/hODq8hEApuyjL81eYcM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.SqlServer.Types.dll" size="383576">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.SqlServer.Types.dll" size="384112">
       <assemblyIdentity name="Microsoft.SqlServer.Types" version="11.0.0.0" publicKeyToken="89845DCD8080CC91" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>NsPl79BzHM9ayaNBxIi0/RTGl0f1o/bkzZdqfBKIs7A=</dsig:DigestValue>
+        <dsig:DigestValue>CUDKdDFN88cD8itxx7gM+9N25v7jFUIrwqKI/9gRqqg=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="es\Microsoft.SqlServer.Types.resources.dll" size="48752">
+      <assemblyIdentity name="Microsoft.SqlServer.Types.resources" version="11.0.0.0" publicKeyToken="89845DCD8080CC91" language="es" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>ZyQXIAIhW62/lY5xIonvlhfc6jCoBx8LjuTEWtXsBLU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -411,6 +453,267 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>NWsORCq+lbZ0o7vNkcIuFpc4Yk3+JZ15eNrpB636YRA=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Incidencias\gastos\conceptos\ConceptosGastosIncidenciasBatch.sql" size="3898">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>yLMEvWQPuEaLdVj16VYGG+mRjx3sf3wDB47RDckOhcY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Incidencias\gastos\conceptos\ConceptosGastosIncidenciasCbo.sql" size="403">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>vpR3DpJPgOClZrpZANSwY+4Vnxr9FP7JTlxRMntN6iQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Incidencias\gastos\conceptos\ConceptosGastosIncidenciasDelete.sql" size="438">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>0ZxvfWpagM+SbFb5r7EepHeX9+gM+Ika3/e05ycajFE=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Incidencias\gastos\conceptos\ConceptosGastosIncidenciasInsert.sql" size="843">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>RdzwG7NNmyowSd6iyvCY6xgWSHcN2Xy0cO8atqWQ84Y=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Incidencias\gastos\conceptos\ConceptosGastosIncidenciasSelect.sql" size="500">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>yyjxEM4VJuCTZckyfDcjDR49yWtLhVUnhLYGfjYoelA=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Incidencias\gastos\conceptos\ConceptosGastosIncidenciasSelectDgv.sql" size="854">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>qqsAVbbykY295dIUyaxUOG/rutd1RvAasIgwcNHDDtg=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Incidencias\gastos\conceptos\ConceptosGastosIncidenciasUpdate.sql" size="823">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>8npPWKB757HANberwvevr+0FFN/kgPw+qdlxtZGJlJ0=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Incidencias\gastos\costePorConcepto\CostesPorConceptoBatch.sql" size="4339">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>/4+FpkCtN48S7Bxy/388p1YtpxiO/lmmDyaXZgKl5Lo=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Incidencias\gastos\costePorConcepto\CostesPorConceptoDelete.sql" size="402">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>LmAgOdNXvpOu8/F8U8uS+UWbe9OpG39rEotdZwNMsSA=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Incidencias\gastos\costePorConcepto\CostesPorConceptoInsert.sql" size="786">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>WDTjgMj2S08ecG28NjBYZDo63vO7dcZOWBmkZzFvhG8=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Incidencias\gastos\costePorConcepto\CostesPorConceptoSelect.sql" size="458">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>EGh+uX+BiNjzrk2wp9ar2ifaAGCcK1WnLeXAzQoh5sg=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Incidencias\gastos\costePorConcepto\CostesPorConceptoSelectDgv.sql" size="690">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>USZH61UqzDc/s9tObT4R612PWY6r3Bn0W3GswajXAPs=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Incidencias\gastos\costePorConcepto\CostesPorConceptoSelectDgvBy.sql" size="785">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>c/Ch7ydSmwTPyntbhBPkoTyoWU77CZgDDcEzsIo0nSw=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Incidencias\gastos\costePorConcepto\CostesPorConceptoUpdate.sql" size="766">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>wsbbAYdybS2emiIS6BoBNXo1POibxOPkeP3SBTil7i8=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Incidencias\gastos\gastosIncidencias\GastosIncidenciasBatch.sql" size="5500">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>TWTVzd//1UkiDUdtjYbP8hW+pZ4i4gIE5/kwGe3XfHg=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Incidencias\gastos\gastosIncidencias\GastosIncidenciasDelete.sql" size="402">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>GtFuQbUIo7wdCpZMV/vFNAkWDjjOMeELPpmM9473N+s=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Incidencias\gastos\gastosIncidencias\GastosIncidenciasInsert.sql" size="962">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>OuoF/R/K9rJ74N77oppVnY54XTnyXBytzG0HcD8zLlE=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Incidencias\gastos\gastosIncidencias\GastosIncidenciasSelect.sql" size="511">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>bj6EoisHxgOyC2WJu9YSZm2t32dvRebFrPjQtYnrMuw=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Incidencias\gastos\gastosIncidencias\GastosIncidenciasSelectDgv.sql" size="1229">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>MK348Mt76iA4LHFk6d91BerYotOGQWL08IXtkib0TMw=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Incidencias\gastos\gastosIncidencias\GastosIncidenciasSelectDgvBy.sql" size="1400">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>zWV1zoJZmZPy9DLoHCvy6eMoL0eRoZUhaEwJ6Q/xXRk=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Incidencias\gastos\gastosIncidencias\GastosIncidenciasUpdate.sql" size="933">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Hye+0PSR9NoeBgCGwaDZ9M2ditx3Wxz099kS+wBfLDg=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Incidencias\gastos\tablas.sql" size="1597">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>MTfW/XO9GTBV9Gmw9kFHJIdV/RJbCR6G9pyEzBCiD5w=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Incidencias\gastos\tiposConceptos\TiposConceptosBatch.sql" size="2861">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>BK4b0uBpVKP7O730TisnKNmeeeFeFaKC6ODmuh7f/ek=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Incidencias\gastos\tiposConceptos\TiposConceptosCbo.sql" size="355">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>mYO0GrBM4Q/1d98IBYJRP1JcIQWr/dkb1vx6yWUkYiM=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Incidencias\gastos\tiposConceptos\TiposConceptosDelete.sql" size="390">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>OaiLAYAhN/KekRxR8uz1YeH+1K4orrAETaBTaqrSgfg=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Incidencias\gastos\tiposConceptos\TiposConceptosInsert.sql" size="633">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>3/rmtiH1BICXCgh4eLH7pzOBJemnDwj0Be9Gx6ewyuc=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Incidencias\gastos\tiposConceptos\TiposConceptosSelect.sql" size="402">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>YGxS6FG6fpOeHJRx9X4h65QSCRACOZZl2Mc1Zz4wiRY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Incidencias\gastos\tiposConceptos\TiposConceptosSelectDgv.sql" size="426">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>coGpClfxHnbvPXIs4UwXtmUzboWXOrfezVoMUeJl3bM=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Incidencias\gastos\tiposConceptos\TiposConceptosUpdate.sql" size="619">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>oQmjQ08hCB+ugNl0UoGT8jJtcXmgxTe43hYH9qSjRfw=</dsig:DigestValue>
     </hash>
   </file>
   <file name="La Andaluza.exe.config" size="26247">

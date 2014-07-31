@@ -51,7 +51,6 @@ Partial Class frmEntControlIncidencias
         Me.lblId_PuntosFrecuencia = New System.Windows.Forms.Label()
         Me.lblObservaciones = New System.Windows.Forms.Label()
         Me.lblNecesitaSeguimiento = New System.Windows.Forms.Label()
-
         Me.PanGeneral = New System.Windows.Forms.Panel()
         Me.btnCleanArticulo = New System.Windows.Forms.Button()
         Me.btnVerEstados = New System.Windows.Forms.Button()
@@ -89,6 +88,7 @@ Partial Class frmEntControlIncidencias
         Me.tpAlmacenNC = New System.Windows.Forms.TabPage()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.TimerCriterios = New System.Windows.Forms.Timer(Me.components)
+        Me.tpGastos = New System.Windows.Forms.TabPage()
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanGeneral.SuspendLayout()
         Me.PanCriterios.SuspendLayout()
@@ -108,7 +108,7 @@ Partial Class frmEntControlIncidencias
         Me.dtpFecha.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpFecha.Location = New System.Drawing.Point(136, 10)
-        Me.dtpFecha.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.dtpFecha.Margin = New System.Windows.Forms.Padding(2)
         Me.dtpFecha.Name = "dtpFecha"
         Me.dtpFecha.Size = New System.Drawing.Size(86, 21)
         Me.dtpFecha.TabIndex = 1
@@ -120,7 +120,7 @@ Partial Class frmEntControlIncidencias
         Me.cboprocesoCalidad.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cboprocesoCalidad.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cboprocesoCalidad.Location = New System.Drawing.Point(136, 38)
-        Me.cboprocesoCalidad.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.cboprocesoCalidad.Margin = New System.Windows.Forms.Padding(2)
         Me.cboprocesoCalidad.Name = "cboprocesoCalidad"
         Me.cboprocesoCalidad.Size = New System.Drawing.Size(618, 23)
         Me.cboprocesoCalidad.TabIndex = 3
@@ -133,7 +133,7 @@ Partial Class frmEntControlIncidencias
         Me.butVerId_procesoCalidad.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butVerId_procesoCalidad.Image = Global.La_Andaluza.My.Resources.Resources.view_16
         Me.butVerId_procesoCalidad.Location = New System.Drawing.Point(755, 38)
-        Me.butVerId_procesoCalidad.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.butVerId_procesoCalidad.Margin = New System.Windows.Forms.Padding(2)
         Me.butVerId_procesoCalidad.Name = "butVerId_procesoCalidad"
         Me.butVerId_procesoCalidad.Size = New System.Drawing.Size(18, 21)
         Me.butVerId_procesoCalidad.TabIndex = 4
@@ -147,7 +147,7 @@ Partial Class frmEntControlIncidencias
         Me.butAddId_procesoCalidad.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butAddId_procesoCalidad.Image = Global.La_Andaluza.My.Resources.Resources.edit_add_2
         Me.butAddId_procesoCalidad.Location = New System.Drawing.Point(776, 38)
-        Me.butAddId_procesoCalidad.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.butAddId_procesoCalidad.Margin = New System.Windows.Forms.Padding(2)
         Me.butAddId_procesoCalidad.Name = "butAddId_procesoCalidad"
         Me.butAddId_procesoCalidad.Size = New System.Drawing.Size(18, 21)
         Me.butAddId_procesoCalidad.TabIndex = 5
@@ -160,7 +160,7 @@ Partial Class frmEntControlIncidencias
         Me.cboarticulo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cboarticulo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cboarticulo.Location = New System.Drawing.Point(321, 68)
-        Me.cboarticulo.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.cboarticulo.Margin = New System.Windows.Forms.Padding(2)
         Me.cboarticulo.Name = "cboarticulo"
         Me.cboarticulo.Size = New System.Drawing.Size(434, 23)
         Me.cboarticulo.TabIndex = 8
@@ -172,7 +172,7 @@ Partial Class frmEntControlIncidencias
         Me.cboincidenciaCalidadGeneral.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cboincidenciaCalidadGeneral.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cboincidenciaCalidadGeneral.Location = New System.Drawing.Point(136, 98)
-        Me.cboincidenciaCalidadGeneral.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.cboincidenciaCalidadGeneral.Margin = New System.Windows.Forms.Padding(2)
         Me.cboincidenciaCalidadGeneral.Name = "cboincidenciaCalidadGeneral"
         Me.cboincidenciaCalidadGeneral.Size = New System.Drawing.Size(618, 23)
         Me.cboincidenciaCalidadGeneral.TabIndex = 10
@@ -185,7 +185,7 @@ Partial Class frmEntControlIncidencias
         Me.butVerId_incidenciaCalidadGeneral.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butVerId_incidenciaCalidadGeneral.Image = Global.La_Andaluza.My.Resources.Resources.view_16
         Me.butVerId_incidenciaCalidadGeneral.Location = New System.Drawing.Point(755, 98)
-        Me.butVerId_incidenciaCalidadGeneral.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.butVerId_incidenciaCalidadGeneral.Margin = New System.Windows.Forms.Padding(2)
         Me.butVerId_incidenciaCalidadGeneral.Name = "butVerId_incidenciaCalidadGeneral"
         Me.butVerId_incidenciaCalidadGeneral.Size = New System.Drawing.Size(18, 21)
         Me.butVerId_incidenciaCalidadGeneral.TabIndex = 11
@@ -199,7 +199,7 @@ Partial Class frmEntControlIncidencias
         Me.butAddId_incidenciaCalidadGeneral.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butAddId_incidenciaCalidadGeneral.Image = Global.La_Andaluza.My.Resources.Resources.edit_add_2
         Me.butAddId_incidenciaCalidadGeneral.Location = New System.Drawing.Point(776, 98)
-        Me.butAddId_incidenciaCalidadGeneral.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.butAddId_incidenciaCalidadGeneral.Margin = New System.Windows.Forms.Padding(2)
         Me.butAddId_incidenciaCalidadGeneral.Name = "butAddId_incidenciaCalidadGeneral"
         Me.butAddId_incidenciaCalidadGeneral.Size = New System.Drawing.Size(18, 21)
         Me.butAddId_incidenciaCalidadGeneral.TabIndex = 12
@@ -212,7 +212,7 @@ Partial Class frmEntControlIncidencias
         Me.cboid_empleado.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cboid_empleado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cboid_empleado.Location = New System.Drawing.Point(136, 128)
-        Me.cboid_empleado.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.cboid_empleado.Margin = New System.Windows.Forms.Padding(2)
         Me.cboid_empleado.Name = "cboid_empleado"
         Me.cboid_empleado.Size = New System.Drawing.Size(618, 23)
         Me.cboid_empleado.TabIndex = 15
@@ -225,7 +225,7 @@ Partial Class frmEntControlIncidencias
         Me.butVerid_empleado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butVerid_empleado.Image = Global.La_Andaluza.My.Resources.Resources.view_16
         Me.butVerid_empleado.Location = New System.Drawing.Point(755, 128)
-        Me.butVerid_empleado.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.butVerid_empleado.Margin = New System.Windows.Forms.Padding(2)
         Me.butVerid_empleado.Name = "butVerid_empleado"
         Me.butVerid_empleado.Size = New System.Drawing.Size(18, 21)
         Me.butVerid_empleado.TabIndex = 16
@@ -239,7 +239,7 @@ Partial Class frmEntControlIncidencias
         Me.butAddid_empleado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butAddid_empleado.Image = Global.La_Andaluza.My.Resources.Resources.edit_add_2
         Me.butAddid_empleado.Location = New System.Drawing.Point(776, 128)
-        Me.butAddid_empleado.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.butAddid_empleado.Margin = New System.Windows.Forms.Padding(2)
         Me.butAddid_empleado.Name = "butAddid_empleado"
         Me.butAddid_empleado.Size = New System.Drawing.Size(18, 21)
         Me.butAddid_empleado.TabIndex = 17
@@ -252,7 +252,7 @@ Partial Class frmEntControlIncidencias
         Me.cboPuntosGravedad.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cboPuntosGravedad.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cboPuntosGravedad.Location = New System.Drawing.Point(136, 159)
-        Me.cboPuntosGravedad.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.cboPuntosGravedad.Margin = New System.Windows.Forms.Padding(2)
         Me.cboPuntosGravedad.Name = "cboPuntosGravedad"
         Me.cboPuntosGravedad.Size = New System.Drawing.Size(181, 23)
         Me.cboPuntosGravedad.TabIndex = 19
@@ -265,7 +265,7 @@ Partial Class frmEntControlIncidencias
         Me.butVerId_PuntosGravedad.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butVerId_PuntosGravedad.Image = Global.La_Andaluza.My.Resources.Resources.view_16
         Me.butVerId_PuntosGravedad.Location = New System.Drawing.Point(321, 159)
-        Me.butVerId_PuntosGravedad.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.butVerId_PuntosGravedad.Margin = New System.Windows.Forms.Padding(2)
         Me.butVerId_PuntosGravedad.Name = "butVerId_PuntosGravedad"
         Me.butVerId_PuntosGravedad.Size = New System.Drawing.Size(18, 21)
         Me.butVerId_PuntosGravedad.TabIndex = 20
@@ -279,7 +279,7 @@ Partial Class frmEntControlIncidencias
         Me.butAddId_PuntosGravedad.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butAddId_PuntosGravedad.Image = Global.La_Andaluza.My.Resources.Resources.edit_add_2
         Me.butAddId_PuntosGravedad.Location = New System.Drawing.Point(344, 159)
-        Me.butAddId_PuntosGravedad.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.butAddId_PuntosGravedad.Margin = New System.Windows.Forms.Padding(2)
         Me.butAddId_PuntosGravedad.Name = "butAddId_PuntosGravedad"
         Me.butAddId_PuntosGravedad.Size = New System.Drawing.Size(18, 21)
         Me.butAddId_PuntosGravedad.TabIndex = 21
@@ -292,7 +292,7 @@ Partial Class frmEntControlIncidencias
         Me.cboPuntosFrecuencia.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cboPuntosFrecuencia.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cboPuntosFrecuencia.Location = New System.Drawing.Point(573, 159)
-        Me.cboPuntosFrecuencia.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.cboPuntosFrecuencia.Margin = New System.Windows.Forms.Padding(2)
         Me.cboPuntosFrecuencia.Name = "cboPuntosFrecuencia"
         Me.cboPuntosFrecuencia.Size = New System.Drawing.Size(181, 23)
         Me.cboPuntosFrecuencia.TabIndex = 23
@@ -305,7 +305,7 @@ Partial Class frmEntControlIncidencias
         Me.butVerId_PuntosFrecuencia.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butVerId_PuntosFrecuencia.Image = Global.La_Andaluza.My.Resources.Resources.view_16
         Me.butVerId_PuntosFrecuencia.Location = New System.Drawing.Point(755, 158)
-        Me.butVerId_PuntosFrecuencia.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.butVerId_PuntosFrecuencia.Margin = New System.Windows.Forms.Padding(2)
         Me.butVerId_PuntosFrecuencia.Name = "butVerId_PuntosFrecuencia"
         Me.butVerId_PuntosFrecuencia.Size = New System.Drawing.Size(18, 21)
         Me.butVerId_PuntosFrecuencia.TabIndex = 24
@@ -319,7 +319,7 @@ Partial Class frmEntControlIncidencias
         Me.butAddId_PuntosFrecuencia.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butAddId_PuntosFrecuencia.Image = Global.La_Andaluza.My.Resources.Resources.edit_add_2
         Me.butAddId_PuntosFrecuencia.Location = New System.Drawing.Point(776, 158)
-        Me.butAddId_PuntosFrecuencia.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.butAddId_PuntosFrecuencia.Margin = New System.Windows.Forms.Padding(2)
         Me.butAddId_PuntosFrecuencia.Name = "butAddId_PuntosFrecuencia"
         Me.butAddId_PuntosFrecuencia.Size = New System.Drawing.Size(18, 21)
         Me.butAddId_PuntosFrecuencia.TabIndex = 25
@@ -335,7 +335,7 @@ Partial Class frmEntControlIncidencias
         Me.txtObservaciones.EsUnicoTabla = ""
         Me.txtObservaciones.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtObservaciones.Location = New System.Drawing.Point(136, 191)
-        Me.txtObservaciones.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtObservaciones.Margin = New System.Windows.Forms.Padding(2)
         Me.txtObservaciones.MaxLength = 3000
         Me.txtObservaciones.Minimo = 0
         Me.txtObservaciones.Modificado = False
@@ -356,7 +356,7 @@ Partial Class frmEntControlIncidencias
         Me.chbNecesitaSeguimiento.BackColor = System.Drawing.SystemColors.Control
         Me.chbNecesitaSeguimiento.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chbNecesitaSeguimiento.Location = New System.Drawing.Point(136, 246)
-        Me.chbNecesitaSeguimiento.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.chbNecesitaSeguimiento.Margin = New System.Windows.Forms.Padding(2)
         Me.chbNecesitaSeguimiento.Name = "chbNecesitaSeguimiento"
         Me.chbNecesitaSeguimiento.Size = New System.Drawing.Size(180, 20)
         Me.chbNecesitaSeguimiento.TabIndex = 29
@@ -452,13 +452,6 @@ Partial Class frmEntControlIncidencias
         Me.lblNecesitaSeguimiento.Text = "Necesita seguimiento"
         Me.lblNecesitaSeguimiento.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'tlpTop
-        '
-
-
-
-
-        '
         'PanGeneral
         '
         Me.PanGeneral.Controls.Add(Me.btnCleanArticulo)
@@ -500,7 +493,7 @@ Partial Class frmEntControlIncidencias
         Me.PanGeneral.Controls.Add(Me.cboarticulo)
         Me.PanGeneral.Controls.Add(Me.butVerId_PuntosFrecuencia)
         Me.PanGeneral.Location = New System.Drawing.Point(9, 4)
-        Me.PanGeneral.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.PanGeneral.Margin = New System.Windows.Forms.Padding(2)
         Me.PanGeneral.Name = "PanGeneral"
         Me.PanGeneral.Size = New System.Drawing.Size(819, 395)
         Me.PanGeneral.TabIndex = 0
@@ -513,7 +506,7 @@ Partial Class frmEntControlIncidencias
         Me.btnCleanArticulo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCleanArticulo.Image = Global.La_Andaluza.My.Resources.Resources.edit_clear_2
         Me.btnCleanArticulo.Location = New System.Drawing.Point(755, 69)
-        Me.btnCleanArticulo.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnCleanArticulo.Margin = New System.Windows.Forms.Padding(2)
         Me.btnCleanArticulo.Name = "btnCleanArticulo"
         Me.btnCleanArticulo.Size = New System.Drawing.Size(18, 21)
         Me.btnCleanArticulo.TabIndex = 36
@@ -527,7 +520,7 @@ Partial Class frmEntControlIncidencias
         Me.btnVerEstados.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnVerEstados.Image = Global.La_Andaluza.My.Resources.Resources.view_16
         Me.btnVerEstados.Location = New System.Drawing.Point(562, 11)
-        Me.btnVerEstados.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnVerEstados.Margin = New System.Windows.Forms.Padding(2)
         Me.btnVerEstados.Name = "btnVerEstados"
         Me.btnVerEstados.Size = New System.Drawing.Size(18, 21)
         Me.btnVerEstados.TabIndex = 34
@@ -541,7 +534,7 @@ Partial Class frmEntControlIncidencias
         Me.btnAddEstados.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAddEstados.Image = Global.La_Andaluza.My.Resources.Resources.edit_add_2
         Me.btnAddEstados.Location = New System.Drawing.Point(584, 11)
-        Me.btnAddEstados.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnAddEstados.Margin = New System.Windows.Forms.Padding(2)
         Me.btnAddEstados.Name = "btnAddEstados"
         Me.btnAddEstados.Size = New System.Drawing.Size(18, 21)
         Me.btnAddEstados.TabIndex = 35
@@ -564,7 +557,7 @@ Partial Class frmEntControlIncidencias
         Me.cboEstado.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cboEstado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cboEstado.Location = New System.Drawing.Point(304, 10)
-        Me.cboEstado.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.cboEstado.Margin = New System.Windows.Forms.Padding(2)
         Me.cboEstado.Name = "cboEstado"
         Me.cboEstado.Size = New System.Drawing.Size(261, 23)
         Me.cboEstado.TabIndex = 32
@@ -574,7 +567,7 @@ Partial Class frmEntControlIncidencias
         Me.txtId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtId.Enabled = False
         Me.txtId.Location = New System.Drawing.Point(667, 13)
-        Me.txtId.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtId.Margin = New System.Windows.Forms.Padding(2)
         Me.txtId.Name = "txtId"
         Me.txtId.Size = New System.Drawing.Size(126, 20)
         Me.txtId.TabIndex = 31
@@ -597,7 +590,7 @@ Partial Class frmEntControlIncidencias
         Me.butHelpCriterios.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butHelpCriterios.Image = Global.La_Andaluza.My.Resources.Resources.emblem_notice
         Me.butHelpCriterios.Location = New System.Drawing.Point(799, 99)
-        Me.butHelpCriterios.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.butHelpCriterios.Margin = New System.Windows.Forms.Padding(2)
         Me.butHelpCriterios.Name = "butHelpCriterios"
         Me.butHelpCriterios.Size = New System.Drawing.Size(18, 21)
         Me.butHelpCriterios.TabIndex = 13
@@ -608,7 +601,7 @@ Partial Class frmEntControlIncidencias
         Me.PanCriterios.BackColor = System.Drawing.SystemColors.Control
         Me.PanCriterios.Controls.Add(Me.TabControl2)
         Me.PanCriterios.Location = New System.Drawing.Point(22, 279)
-        Me.PanCriterios.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.PanCriterios.Margin = New System.Windows.Forms.Padding(2)
         Me.PanCriterios.Name = "PanCriterios"
         Me.PanCriterios.Size = New System.Drawing.Size(772, 114)
         Me.PanCriterios.TabIndex = 22
@@ -621,7 +614,7 @@ Partial Class frmEntControlIncidencias
         Me.TabControl2.Controls.Add(Me.TabPage2)
         Me.TabControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl2.Location = New System.Drawing.Point(0, 0)
-        Me.TabControl2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TabControl2.Margin = New System.Windows.Forms.Padding(2)
         Me.TabControl2.Name = "TabControl2"
         Me.TabControl2.SelectedIndex = 0
         Me.TabControl2.Size = New System.Drawing.Size(772, 114)
@@ -636,9 +629,9 @@ Partial Class frmEntControlIncidencias
         Me.TabPage1.Controls.Add(Me.lblCriterioFrecuenciaMedia)
         Me.TabPage1.Controls.Add(Me.txtCriterioFrecuenciaMedia)
         Me.TabPage1.Location = New System.Drawing.Point(4, 25)
-        Me.TabPage1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TabPage1.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(2)
         Me.TabPage1.Size = New System.Drawing.Size(764, 85)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Criterios de frecuencia"
@@ -666,7 +659,7 @@ Partial Class frmEntControlIncidencias
         Me.txtCriterioFrecuenciaAlta.EsUnicoTabla = ""
         Me.txtCriterioFrecuenciaAlta.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCriterioFrecuenciaAlta.Location = New System.Drawing.Point(111, 59)
-        Me.txtCriterioFrecuenciaAlta.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtCriterioFrecuenciaAlta.Margin = New System.Windows.Forms.Padding(2)
         Me.txtCriterioFrecuenciaAlta.MaxLength = 3000
         Me.txtCriterioFrecuenciaAlta.Minimo = 0
         Me.txtCriterioFrecuenciaAlta.Modificado = False
@@ -693,7 +686,7 @@ Partial Class frmEntControlIncidencias
         Me.txtCriterioFrecuenciaBaja.EsUnicoTabla = ""
         Me.txtCriterioFrecuenciaBaja.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCriterioFrecuenciaBaja.Location = New System.Drawing.Point(111, 2)
-        Me.txtCriterioFrecuenciaBaja.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtCriterioFrecuenciaBaja.Margin = New System.Windows.Forms.Padding(2)
         Me.txtCriterioFrecuenciaBaja.MaxLength = 3000
         Me.txtCriterioFrecuenciaBaja.Minimo = 0
         Me.txtCriterioFrecuenciaBaja.Modificado = False
@@ -742,7 +735,7 @@ Partial Class frmEntControlIncidencias
         Me.txtCriterioFrecuenciaMedia.EsUnicoTabla = ""
         Me.txtCriterioFrecuenciaMedia.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCriterioFrecuenciaMedia.Location = New System.Drawing.Point(111, 32)
-        Me.txtCriterioFrecuenciaMedia.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtCriterioFrecuenciaMedia.Margin = New System.Windows.Forms.Padding(2)
         Me.txtCriterioFrecuenciaMedia.MaxLength = 3000
         Me.txtCriterioFrecuenciaMedia.Minimo = 0
         Me.txtCriterioFrecuenciaMedia.Modificado = False
@@ -767,9 +760,9 @@ Partial Class frmEntControlIncidencias
         Me.TabPage2.Controls.Add(Me.lblCriterioGravedadGrave)
         Me.TabPage2.Controls.Add(Me.txtCriterioGravedadLeve)
         Me.TabPage2.Location = New System.Drawing.Point(4, 25)
-        Me.TabPage2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TabPage2.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(2)
         Me.TabPage2.Size = New System.Drawing.Size(764, 85)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Criterios de gravedad"
@@ -786,7 +779,7 @@ Partial Class frmEntControlIncidencias
         Me.txtCriterioGravedadModerada.EsUnicoTabla = ""
         Me.txtCriterioGravedadModerada.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCriterioGravedadModerada.Location = New System.Drawing.Point(111, 30)
-        Me.txtCriterioGravedadModerada.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtCriterioGravedadModerada.Margin = New System.Windows.Forms.Padding(2)
         Me.txtCriterioGravedadModerada.MaxLength = 3000
         Me.txtCriterioGravedadModerada.Minimo = 0
         Me.txtCriterioGravedadModerada.Modificado = False
@@ -835,7 +828,7 @@ Partial Class frmEntControlIncidencias
         Me.txtCriterioGravedadGrave.EsUnicoTabla = ""
         Me.txtCriterioGravedadGrave.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCriterioGravedadGrave.Location = New System.Drawing.Point(111, 58)
-        Me.txtCriterioGravedadGrave.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtCriterioGravedadGrave.Margin = New System.Windows.Forms.Padding(2)
         Me.txtCriterioGravedadGrave.MaxLength = 3000
         Me.txtCriterioGravedadGrave.Minimo = 0
         Me.txtCriterioGravedadGrave.Modificado = False
@@ -873,7 +866,7 @@ Partial Class frmEntControlIncidencias
         Me.txtCriterioGravedadLeve.EsUnicoTabla = ""
         Me.txtCriterioGravedadLeve.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCriterioGravedadLeve.Location = New System.Drawing.Point(111, 2)
-        Me.txtCriterioGravedadLeve.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtCriterioGravedadLeve.Margin = New System.Windows.Forms.Padding(2)
         Me.txtCriterioGravedadLeve.MaxLength = 3000
         Me.txtCriterioGravedadLeve.Minimo = 0
         Me.txtCriterioGravedadLeve.Modificado = False
@@ -894,7 +887,7 @@ Partial Class frmEntControlIncidencias
         Me.cboTipoArticulo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cboTipoArticulo.FormattingEnabled = True
         Me.cboTipoArticulo.Location = New System.Drawing.Point(136, 68)
-        Me.cboTipoArticulo.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.cboTipoArticulo.Margin = New System.Windows.Forms.Padding(2)
         Me.cboTipoArticulo.Name = "cboTipoArticulo"
         Me.cboTipoArticulo.Size = New System.Drawing.Size(181, 21)
         Me.cboTipoArticulo.TabIndex = 7
@@ -909,9 +902,10 @@ Partial Class frmEntControlIncidencias
         Me.TabControl1.Controls.Add(Me.tpIncidenciasenvasados)
         Me.TabControl1.Controls.Add(Me.tpSeguimiento)
         Me.TabControl1.Controls.Add(Me.tpAlmacenNC)
+        Me.TabControl1.Controls.Add(Me.tpGastos)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
-        Me.TabControl1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TabControl1.Margin = New System.Windows.Forms.Padding(2)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(838, 267)
@@ -920,7 +914,7 @@ Partial Class frmEntControlIncidencias
         'tpOrigen
         '
         Me.tpOrigen.Location = New System.Drawing.Point(4, 22)
-        Me.tpOrigen.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tpOrigen.Margin = New System.Windows.Forms.Padding(2)
         Me.tpOrigen.Name = "tpOrigen"
         Me.tpOrigen.Size = New System.Drawing.Size(830, 241)
         Me.tpOrigen.TabIndex = 4
@@ -930,7 +924,7 @@ Partial Class frmEntControlIncidencias
         'tpCausas
         '
         Me.tpCausas.Location = New System.Drawing.Point(4, 22)
-        Me.tpCausas.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tpCausas.Margin = New System.Windows.Forms.Padding(2)
         Me.tpCausas.Name = "tpCausas"
         Me.tpCausas.Size = New System.Drawing.Size(830, 241)
         Me.tpCausas.TabIndex = 3
@@ -940,9 +934,9 @@ Partial Class frmEntControlIncidencias
         'tpAccionesInmediatas
         '
         Me.tpAccionesInmediatas.Location = New System.Drawing.Point(4, 22)
-        Me.tpAccionesInmediatas.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tpAccionesInmediatas.Margin = New System.Windows.Forms.Padding(2)
         Me.tpAccionesInmediatas.Name = "tpAccionesInmediatas"
-        Me.tpAccionesInmediatas.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tpAccionesInmediatas.Padding = New System.Windows.Forms.Padding(2)
         Me.tpAccionesInmediatas.Size = New System.Drawing.Size(830, 241)
         Me.tpAccionesInmediatas.TabIndex = 0
         Me.tpAccionesInmediatas.Text = "Acciones inmediatas"
@@ -951,7 +945,7 @@ Partial Class frmEntControlIncidencias
         'tpAccionesCorrectivas
         '
         Me.tpAccionesCorrectivas.Location = New System.Drawing.Point(4, 22)
-        Me.tpAccionesCorrectivas.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tpAccionesCorrectivas.Margin = New System.Windows.Forms.Padding(2)
         Me.tpAccionesCorrectivas.Name = "tpAccionesCorrectivas"
         Me.tpAccionesCorrectivas.Size = New System.Drawing.Size(830, 241)
         Me.tpAccionesCorrectivas.TabIndex = 2
@@ -961,9 +955,9 @@ Partial Class frmEntControlIncidencias
         'tpAccionesPreventivas
         '
         Me.tpAccionesPreventivas.Location = New System.Drawing.Point(4, 22)
-        Me.tpAccionesPreventivas.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tpAccionesPreventivas.Margin = New System.Windows.Forms.Padding(2)
         Me.tpAccionesPreventivas.Name = "tpAccionesPreventivas"
-        Me.tpAccionesPreventivas.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tpAccionesPreventivas.Padding = New System.Windows.Forms.Padding(2)
         Me.tpAccionesPreventivas.Size = New System.Drawing.Size(830, 241)
         Me.tpAccionesPreventivas.TabIndex = 1
         Me.tpAccionesPreventivas.Text = "Acciones preventivas"
@@ -981,7 +975,7 @@ Partial Class frmEntControlIncidencias
         'tpSeguimiento
         '
         Me.tpSeguimiento.Location = New System.Drawing.Point(4, 22)
-        Me.tpSeguimiento.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tpSeguimiento.Margin = New System.Windows.Forms.Padding(2)
         Me.tpSeguimiento.Name = "tpSeguimiento"
         Me.tpSeguimiento.Size = New System.Drawing.Size(830, 241)
         Me.tpSeguimiento.TabIndex = 6
@@ -991,7 +985,7 @@ Partial Class frmEntControlIncidencias
         'tpAlmacenNC
         '
         Me.tpAlmacenNC.Location = New System.Drawing.Point(4, 22)
-        Me.tpAlmacenNC.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tpAlmacenNC.Margin = New System.Windows.Forms.Padding(2)
         Me.tpAlmacenNC.Name = "tpAlmacenNC"
         Me.tpAlmacenNC.Size = New System.Drawing.Size(830, 241)
         Me.tpAlmacenNC.TabIndex = 7
@@ -1003,7 +997,7 @@ Partial Class frmEntControlIncidencias
         Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitContainer1.IsSplitterFixed = True
         Me.SplitContainer1.Location = New System.Drawing.Point(0, 25)
-        Me.SplitContainer1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.SplitContainer1.Margin = New System.Windows.Forms.Padding(2)
         Me.SplitContainer1.Name = "SplitContainer1"
         Me.SplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal
         '
@@ -1023,6 +1017,16 @@ Partial Class frmEntControlIncidencias
         '
         Me.TimerCriterios.Interval = 20000
         '
+        'tpGastos
+        '
+        Me.tpGastos.Location = New System.Drawing.Point(4, 22)
+        Me.tpGastos.Name = "tpGastos"
+        Me.tpGastos.Padding = New System.Windows.Forms.Padding(3)
+        Me.tpGastos.Size = New System.Drawing.Size(830, 241)
+        Me.tpGastos.TabIndex = 8
+        Me.tpGastos.Text = "Gastos"
+        Me.tpGastos.UseVisualStyleBackColor = True
+        '
         'frmEntControlIncidencias
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1030,7 +1034,7 @@ Partial Class frmEntControlIncidencias
         Me.Controls.Add(Me.SplitContainer1)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.MinimumSize = New System.Drawing.Size(470, 321)
         Me.Name = "frmEntControlIncidencias"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
@@ -1122,4 +1126,5 @@ Partial Class frmEntControlIncidencias
     Private WithEvents cboTipoArticulo As System.Windows.Forms.ComboBox
     Private WithEvents butHelpCriterios As System.Windows.Forms.Button
     Private WithEvents btnCleanArticulo As System.Windows.Forms.Button
+    Private WithEvents tpGastos As System.Windows.Forms.TabPage
 End Class
