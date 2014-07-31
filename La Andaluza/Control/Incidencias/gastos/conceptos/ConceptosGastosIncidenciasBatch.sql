@@ -10,7 +10,7 @@ AS
 BEGIN
 SELECT
       
-     Descripcion, Id
+     Id,Descripcion
 FROM
      [dbo].[ConceptosGastosIncidencias]
 End
