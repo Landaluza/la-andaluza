@@ -178,9 +178,13 @@ Public Class frmEntGastosIncidencias
     
 
     Private Sub cboconcepto_SelectedValueChanged(sender As Object, e As EventArgs) Handles cboconcepto.SelectedValueChanged
-        If Not Me.cboconcepto.SelectedValue Is Nothing Then
-            Dim s2 As New spCostesPorConcepto
-            s2.cargar_CostesPorConcepto(Me.cbocosteConcepto, Convert.ToInt32(Me.cboconcepto.SelectedValue))
-        End If
+        Try
+            If Not Me.cboconcepto.SelectedValue Is Nothing Then
+                Dim s2 As New spCostesPorConcepto
+                s2.cargar_CostesPorConcepto(Me.cbocosteConcepto, Convert.ToInt32(Me.cboconcepto.SelectedValue))
+            End If
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

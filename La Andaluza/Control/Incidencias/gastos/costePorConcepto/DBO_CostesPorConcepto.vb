@@ -56,9 +56,9 @@ Inherits BasesParaCompatibilidad.DataBussines
    Public Property Fecha() As DateTime
        Get
            if m_Fecha.value is convert.dbnull then
-             Return nothing 
-           End if
-           Return m_Fecha.value
+                Return Now.Date
+            End If
+            Return m_Fecha.value
        End Get
        Set(ByVal value As DateTime)
            m_Fecha.value = value

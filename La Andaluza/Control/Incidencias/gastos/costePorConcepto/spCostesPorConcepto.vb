@@ -28,6 +28,6 @@ Inherits BasesParaCompatibilidad.StoredProcedure
    End Function
 
     Public Sub cargar_CostesPorConcepto(ByRef cbo As ComboBox, id_concepto As Integer)
-        cbo.mam_DataSource("[CostesPorConceptoCbo]", False)
+        cbo.mam_DataSource("[CostesPorConceptoCbo] " & id_concepto, False)
     End Sub
 End Class
