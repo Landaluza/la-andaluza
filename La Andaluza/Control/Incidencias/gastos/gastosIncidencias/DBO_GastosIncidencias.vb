@@ -49,17 +49,17 @@ Inherits BasesParaCompatibilidad.DataBussines
        End Set
    End Property
 
-   Public Property Cantidad() As String
-       Get
-           if m_Cantidad.value is convert.dbnull then
-             Return nothing 
-           End if
-           Return m_Cantidad.value
-       End Get
-       Set(ByVal value As String)
-           m_Cantidad.value = value
-       End Set
-   End Property
+    Public Property Cantidad() As Double
+        Get
+            If m_Cantidad.value Is Convert.DBNull Then
+                Return 0
+            End If
+            Return m_Cantidad.value
+        End Get
+        Set(ByVal value As Double)
+            m_Cantidad.value = value
+        End Set
+    End Property
 
    Public Property Id_concepto() As Integer
        Get

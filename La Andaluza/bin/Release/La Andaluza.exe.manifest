@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="La Andaluza.exe" version="2014.7.1.247" publicKeyToken="0000000000000000" language="es-ES" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="La Andaluza.exe" version="2014.7.1.248" publicKeyToken="0000000000000000" language="es-ES" processorArchitecture="msil" type="win32" />
   <description asmv2:iconFile="Resources\LogoBandejaLa2.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
@@ -297,7 +297,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>4A4dMvOIJ/+t4/rELqwhyHwITbziltBDazvdikMRHGQ=</dsig:DigestValue>
+        <dsig:DigestValue>WyJtKV5MMMiTp7uyN2FLP5feLCIlr36g3eU3vWCkUEc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -386,6 +386,18 @@
     </dependentAssembly>
   </dependency>
   <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="OEE.dll" size="134144">
+      <assemblyIdentity name="OEE" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>ntiQF46GsFLNX1gHlmxFGg5FrCDJ4g7wfip2T9DWpE8=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="office.dll" size="448360">
       <assemblyIdentity name="office" version="14.0.0.0" publicKeyToken="71E9BCE111E9429C" language="neutral" processorArchitecture="msil" />
       <hash>
@@ -404,51 +416,6 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>NWsORCq+lbZ0o7vNkcIuFpc4Yk3+JZ15eNrpB636YRA=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Control\Incidencias\gastos\conceptos\ConceptosGastosIncidenciasBatch.sql" size="3897">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>btECdtESw2SUVB12r5MLGebp0m2EdkkpFm0TrzwoU90=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Control\Incidencias\gastos\costePorConcepto\CostesPorConceptoBatch.sql" size="3958">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>3PWjK2CEE0TWgyZV88VSdxeOQmLt/Qv1yrMmflVAOFM=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Control\Incidencias\gastos\gastosIncidencias\GastosIncidenciasBatch.sql" size="7647">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>VzAOknIomxWkhkLDJv7lHiuf+Ff4yVEgkjpXxXYV12U=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Control\Incidencias\gastos\tablas.sql" size="1643">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>DP9rPjHGTreq2lmhqKmCPXw4lLFkUK8agNPG4MROkLg=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Control\Incidencias\gastos\tiposConceptos\TiposConceptosBatch.sql" size="2861">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>BK4b0uBpVKP7O730TisnKNmeeeFeFaKC6ODmuh7f/ek=</dsig:DigestValue>
     </hash>
   </file>
   <file name="La Andaluza.exe.config" size="26247">

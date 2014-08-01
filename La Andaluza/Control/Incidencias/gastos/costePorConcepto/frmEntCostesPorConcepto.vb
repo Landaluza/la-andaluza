@@ -53,7 +53,7 @@ Public Class frmEntCostesPorConcepto
            If errores = "" Then txtCoste.Focus()
            errores = errores & "El campo Coste no puede estar vacío." & Environment.NewLine()
        Else
-       m_DBO_CostesPorConcepto.Coste = System.Convert.ToString(txtCoste.Text)
+            m_DBO_CostesPorConcepto.Coste = System.Convert.ToDouble(txtCoste.Text.Replace(".", ","))
        End If
 
 

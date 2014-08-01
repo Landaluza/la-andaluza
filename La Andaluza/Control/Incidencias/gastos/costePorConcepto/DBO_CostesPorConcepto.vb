@@ -41,17 +41,17 @@ Inherits BasesParaCompatibilidad.DataBussines
        End Set
    End Property
 
-   Public Property Coste() As String
-       Get
-           if m_Coste.value is convert.dbnull then
-             Return nothing 
-           End if
-           Return m_Coste.value
-       End Get
-       Set(ByVal value As String)
-           m_Coste.value = value
-       End Set
-   End Property
+    Public Property Coste() As Double
+        Get
+            If m_Coste.value Is Convert.DBNull Then
+                Return 0
+            End If
+            Return m_Coste.value
+        End Get
+        Set(ByVal value As Double)
+            m_Coste.value = value
+        End Set
+    End Property
 
    Public Property Fecha() As DateTime
        Get

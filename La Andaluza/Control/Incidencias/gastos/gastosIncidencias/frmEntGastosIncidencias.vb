@@ -49,7 +49,6 @@ Public Class frmEntGastosIncidencias
             butAddId_concepto.enabled = False
             butVerId_concepto.enabled = False
             butAddId_costeConcepto.enabled = False
-            butVerId_costeConcepto.enabled = False
             butAddId_proveedor.enabled = False
             butVerId_proveedor.enabled = False
             butAddId_empleado.enabled = False
@@ -67,8 +66,12 @@ Public Class frmEntGastosIncidencias
         cboconcepto.SelectedValue = m_DBO_GastosIncidencias.Id_concepto
         cbocosteConcepto.SelectedValue = m_DBO_GastosIncidencias.Id_costeConcepto
         cboproveedor.SelectedValue = m_DBO_GastosIncidencias.Id_proveedor
+        If Not cboproveedor.SelectedValue Is Nothing Then rbProveedor.Checked = True
         cboempleado.SelectedValue = m_DBO_GastosIncidencias.Id_empleado
+        If Not cboempleado.SelectedValue Is Nothing Then rbEmpleado.Checked = True
         cbocliente.SelectedValue = m_DBO_GastosIncidencias.Id_cliente
+        If Not cbocliente.SelectedValue Is Nothing Then rbCliente.Checked = True
+
     End Sub
 
     Protected Overrides Function GetValores() As Boolean Implements BasesParaCompatibilidad.Savable.getValores
@@ -83,7 +86,7 @@ Public Class frmEntGastosIncidencias
                 If errores = "" Then txtCantidad.Focus()
                 errores = errores & "El campo Cantidad debe ser numérico." & Environment.NewLine()
             End If
-            m_DBO_GastosIncidencias.Cantidad = System.Convert.ToString(txtCantidad.Text)
+            m_DBO_GastosIncidencias.Cantidad = System.Convert.ToDouble(txtCantidad.Text.Replace(".", ","))
             End If
 
 
@@ -178,9 +181,9 @@ Public Class frmEntGastosIncidencias
         s.cargar_ConceptosGastosIncidencias(Me.cboconcepto)
     End Sub
 
-    Private Sub butVerId_costeConcepto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_costeConcepto.Click
+    Private Sub butVerId_costeConcepto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim frmEnt As New frmCostesPorConcepto()
-        guiMain.añadirPestaña(frmEnt)
+        GUImain.añadirPestaña(frmEnt)
     End Sub
 
     Private Sub butAddId_costeConcepto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_costeConcepto.Click

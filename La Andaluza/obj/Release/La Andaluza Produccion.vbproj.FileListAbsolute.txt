@@ -1306,10 +1306,10 @@ C:\Users\Migue\Desktop\git\La andaluza\La Andaluza\obj\Release\La Andaluza.exe.m
 C:\Users\Migue\Desktop\git\La andaluza\La Andaluza\obj\Release\La Andaluza.application
 C:\Users\Migue\Desktop\git\La andaluza\La Andaluza\obj\Release\La Andaluza.exe
 C:\Users\Migue\Desktop\git\La andaluza\La Andaluza\obj\Release\La Andaluza.pdb
-C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\La Andaluza.exe.config
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Administracion\Proveedores1\PedidosProveedores\Listados\report1.frx
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Elaboracion\Depositos\Listados\Depositos.frx
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Bases\ZLibrerias\wiaaut.dll
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\La Andaluza.exe.config
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\La Andaluza.exe.manifest
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\La Andaluza.application
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\La Andaluza.exe
@@ -1332,6 +1332,7 @@ C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\InformesE
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\InformesVinagreJerez.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Microsoft.Office.Interop.Word.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Microsoft.VisualBasic.PowerPacks.Vs.dll
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\OEE.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\System.Configuration.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\System.Data.DataSetExtensions.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\System.Data.dll
@@ -1347,7 +1348,6 @@ C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\C1.C1Repo
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\C1.Win.C1Report.2.xml
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Microsoft.Office.Interop.Word.xml
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\office.xml
-C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza Produccion.vbprojResolveAssemblyReference.cache
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmArtEtiquetasInicial.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmArticulosFichasTecnicas.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEntArticulosFichasTecnicas.resources

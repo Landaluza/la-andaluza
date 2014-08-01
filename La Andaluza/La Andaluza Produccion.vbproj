@@ -49,7 +49,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>247</ApplicationRevision>
+    <ApplicationRevision>249</ApplicationRevision>
     <ApplicationVersion>2014.7.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -186,6 +186,10 @@
     </Reference>
     <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <Private>True</Private>
+    </Reference>
+    <Reference Include="OEE, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bases\ZLibrerias\OEE.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Private>True</Private>
@@ -6679,11 +6683,7 @@
     <None Include="Bases\ZLibrerias\Incidencias entre fechas.dll" />
     <None Include="Bases\ZLibrerias\InformeResumenVinagre.dll" />
     <None Include="Bases\ZLibrerias\InformesCalidad.dll" />
-    <Content Include="Control\Incidencias\gastos\conceptos\ConceptosGastosIncidenciasBatch.sql" />
-    <Content Include="Control\Incidencias\gastos\costePorConcepto\CostesPorConceptoBatch.sql" />
-    <Content Include="Control\Incidencias\gastos\gastosIncidencias\GastosIncidenciasBatch.sql" />
-    <Content Include="Control\Incidencias\gastos\tablas.sql" />
-    <Content Include="Control\Incidencias\gastos\tiposConceptos\TiposConceptosBatch.sql" />
+    <None Include="Bases\ZLibrerias\OEE.dll" />
     <Content Include="Resources\window_new.ico" />
     <Content Include="Resources\window_new_3.ico" />
     <None Include="Resources\text-x-makefile.png" />
