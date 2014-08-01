@@ -47,6 +47,7 @@ Partial Class frmEntGastosIncidencias
         Me.rbCliente = New System.Windows.Forms.RadioButton()
         Me.rbEmpleado = New System.Windows.Forms.RadioButton()
         Me.rbProveedor = New System.Windows.Forms.RadioButton()
+        Me.btnVerCosteConvepto = New System.Windows.Forms.Button()
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tlpMiddle.SuspendLayout()
         Me.gpCAusante.SuspendLayout()
@@ -125,7 +126,7 @@ Partial Class frmEntGastosIncidencias
         Me.butAddId_costeConcepto.Image = Global.La_Andaluza.My.Resources.Resources.edit_add_2
         Me.butAddId_costeConcepto.Location = New System.Drawing.Point(530, 74)
         Me.butAddId_costeConcepto.Name = "butAddId_costeConcepto"
-        Me.butAddId_costeConcepto.Size = New System.Drawing.Size(28, 23)
+        Me.butAddId_costeConcepto.Size = New System.Drawing.Size(28, 28)
         Me.butAddId_costeConcepto.TabIndex = 9
         Me.butAddId_costeConcepto.TabStop = False
         '
@@ -274,7 +275,7 @@ Partial Class frmEntGastosIncidencias
         Me.lblId_costeConcepto.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lblId_costeConcepto.Location = New System.Drawing.Point(3, 71)
         Me.lblId_costeConcepto.Name = "lblId_costeConcepto"
-        Me.lblId_costeConcepto.Size = New System.Drawing.Size(88, 29)
+        Me.lblId_costeConcepto.Size = New System.Drawing.Size(88, 34)
         Me.lblId_costeConcepto.TabIndex = 7
         Me.lblId_costeConcepto.Text = "Coste concepto"
         Me.lblId_costeConcepto.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -298,6 +299,7 @@ Partial Class frmEntGastosIncidencias
         Me.tlpMiddle.Controls.Add(Me.cbocosteConcepto, 1, 3)
         Me.tlpMiddle.Controls.Add(Me.butAddId_costeConcepto, 3, 3)
         Me.tlpMiddle.Controls.Add(Me.gpCAusante, 0, 7)
+        Me.tlpMiddle.Controls.Add(Me.btnVerCosteConvepto, 2, 3)
         Me.tlpMiddle.Location = New System.Drawing.Point(54, 28)
         Me.tlpMiddle.Name = "tlpMiddle"
         Me.tlpMiddle.Padding = New System.Windows.Forms.Padding(0, 15, 0, 0)
@@ -311,7 +313,7 @@ Partial Class frmEntGastosIncidencias
         Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 137.0!))
         Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 124.0!))
-        Me.tlpMiddle.Size = New System.Drawing.Size(561, 361)
+        Me.tlpMiddle.Size = New System.Drawing.Size(561, 366)
         Me.tlpMiddle.TabIndex = 8
         '
         'btnActualizarCoste
@@ -320,7 +322,7 @@ Partial Class frmEntGastosIncidencias
         Me.btnActualizarCoste.FlatAppearance.BorderSize = 0
         Me.btnActualizarCoste.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnActualizarCoste.Image = Global.La_Andaluza.My.Resources.Resources.view_refresh_4
-        Me.btnActualizarCoste.Location = New System.Drawing.Point(97, 240)
+        Me.btnActualizarCoste.Location = New System.Drawing.Point(97, 245)
         Me.btnActualizarCoste.Name = "btnActualizarCoste"
         Me.btnActualizarCoste.Size = New System.Drawing.Size(252, 23)
         Me.btnActualizarCoste.TabIndex = 9
@@ -333,7 +335,7 @@ Partial Class frmEntGastosIncidencias
         Me.tlpMiddle.SetColumnSpan(Me.gpCAusante, 4)
         Me.gpCAusante.Controls.Add(Me.TableLayoutPanel1)
         Me.gpCAusante.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.gpCAusante.Location = New System.Drawing.Point(3, 103)
+        Me.gpCAusante.Location = New System.Drawing.Point(3, 108)
         Me.gpCAusante.Name = "gpCAusante"
         Me.gpCAusante.Size = New System.Drawing.Size(555, 131)
         Me.gpCAusante.TabIndex = 10
@@ -405,6 +407,20 @@ Partial Class frmEntGastosIncidencias
         Me.rbProveedor.Text = "Proveedor"
         Me.rbProveedor.UseVisualStyleBackColor = True
         '
+        'btnVerCosteConvepto
+        '
+        Me.btnVerCosteConvepto.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnVerCosteConvepto.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.btnVerCosteConvepto.FlatAppearance.BorderSize = 0
+        Me.btnVerCosteConvepto.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnVerCosteConvepto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnVerCosteConvepto.Image = Global.La_Andaluza.My.Resources.Resources.agenda
+        Me.btnVerCosteConvepto.Location = New System.Drawing.Point(498, 74)
+        Me.btnVerCosteConvepto.Name = "btnVerCosteConvepto"
+        Me.btnVerCosteConvepto.Size = New System.Drawing.Size(26, 28)
+        Me.btnVerCosteConvepto.TabIndex = 12
+        Me.btnVerCosteConvepto.TabStop = False
+        '
         'frmEntGastosIncidencias
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
@@ -453,4 +469,5 @@ End Sub
     Private WithEvents rbEmpleado As System.Windows.Forms.RadioButton
     Private WithEvents rbProveedor As System.Windows.Forms.RadioButton
     Private WithEvents rbCliente As System.Windows.Forms.RadioButton
+    Private WithEvents btnVerCosteConvepto As System.Windows.Forms.Button
 End Class

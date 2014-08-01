@@ -246,4 +246,8 @@ Public Class frmEntGastosIncidencias
     End Sub
 
 
+    Private Sub btnVerCosteConvepto_Click(sender As Object, e As EventArgs) Handles btnVerCosteConvepto.Click
+        Dim frm As New frmCostesPorConcepto
+        frm.ShowDialog()
+    End Sub
 End Class
