@@ -53,6 +53,7 @@ Partial Class frmImportarExcel
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.chbJR2 = New System.Windows.Forms.CheckBox()
         Me.panJR2 = New System.Windows.Forms.Panel()
+        Me.Label3 = New System.Windows.Forms.Label()
         CType(Me.err, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.err1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.err2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -308,6 +309,7 @@ Partial Class frmImportarExcel
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.Label3)
         Me.Panel1.Controls.Add(Me.chbJR2)
         Me.Panel1.Controls.Add(Me.panJR2)
         Me.Panel1.Controls.Add(Me.Label2)
@@ -354,6 +356,16 @@ Partial Class frmImportarExcel
         Me.panJR2.Name = "panJR2"
         Me.panJR2.Size = New System.Drawing.Size(461, 32)
         Me.panJR2.TabIndex = 32
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(79, 258)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(146, 9)
+        Me.Label3.TabIndex = 34
+        Me.Label3.Text = "Si solo hay un archivo ignorar este campo"
         '
         'frmImportarExcel
         '
@@ -407,4 +419,5 @@ Partial Class frmImportarExcel
     Private WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents panJR2 As System.Windows.Forms.Panel
     Private WithEvents chbJR2 As System.Windows.Forms.CheckBox
+    Friend WithEvents Label3 As System.Windows.Forms.Label
 End Class

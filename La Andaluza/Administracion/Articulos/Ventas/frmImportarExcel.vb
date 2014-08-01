@@ -52,7 +52,7 @@
                 End If
             End If
 
-            If Me.txtPath3.Text <> "" Then
+            If Me.txtPath4.Text <> "" Then
                 If importer.import(Me.cbMonth.SelectedIndex + 1, Me.txtPath4.Text) Then
                     If err3.Visible Then err3.Visible = False
                 Else
