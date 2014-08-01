@@ -120,7 +120,7 @@
 
             End If
         Catch ex As Exception
-            ventaslocalPath = ventasPath
+            ventaslocalPath = ruta_servidor_ventas
             retorno = False
         End Try
 
