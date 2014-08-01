@@ -170,7 +170,7 @@ Public Class frmEntGastosIncidencias
 
     Private Sub butVerId_concepto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_concepto.Click
         Dim frmEnt As New frmConceptosGastosIncidencias()
-        guiMain.añadirPestaña(frmEnt)
+        frmEnt.ShowDialog()
     End Sub
 
     Private Sub butAddId_concepto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_concepto.Click
@@ -183,7 +183,7 @@ Public Class frmEntGastosIncidencias
 
     Private Sub butVerId_costeConcepto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim frmEnt As New frmCostesPorConcepto()
-        GUImain.añadirPestaña(frmEnt)
+        frmEnt.ShowDialog()
     End Sub
 
     Private Sub butAddId_costeConcepto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_costeConcepto.Click
@@ -196,7 +196,7 @@ Public Class frmEntGastosIncidencias
 
     Private Sub butVerId_proveedor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_proveedor.Click
         Dim frmEnt As New frmProveedores()
-        guiMain.añadirPestaña(frmEnt)
+        frmEnt.ShowDialog()
     End Sub
 
     Private Sub butAddId_proveedor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_proveedor.Click
@@ -209,7 +209,7 @@ Public Class frmEntGastosIncidencias
 
     Private Sub butVerId_empleado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_empleado.Click
         Dim frmEnt As New frmEmpleados()
-        guiMain.añadirPestaña(frmEnt)
+        frmEnt.ShowDialog()
     End Sub
 
     Private Sub butAddId_empleado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_empleado.Click
