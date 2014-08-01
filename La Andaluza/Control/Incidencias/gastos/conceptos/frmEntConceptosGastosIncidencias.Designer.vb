@@ -21,6 +21,7 @@ Partial Class frmEntConceptosGastosIncidencias
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmEntConceptosGastosIncidencias))
         Me.txtDescripcion = New System.Windows.Forms.TextBox()
         Me.cbotiposConceptos = New System.Windows.Forms.ComboBox()
         Me.butVerId_tiposConceptos = New System.Windows.Forms.Button()
@@ -28,126 +29,139 @@ Partial Class frmEntConceptosGastosIncidencias
         Me.cbomedidaProducto = New System.Windows.Forms.ComboBox()
         Me.butVerId_medidaProducto = New System.Windows.Forms.Button()
         Me.butAddId_medidaProducto = New System.Windows.Forms.Button()
-        Me.lblDescripcion = New System.Windows.Forms.Label
-        Me.lblId_tiposConceptos = New System.Windows.Forms.Label
-        Me.lblId_medidaProducto = New System.Windows.Forms.Label
-        Me.tlpMiddle = New System.Windows.Forms.TableLayoutPanel
-        Me.tlpMiddle.SuspendLayout()
+        Me.lblDescripcion = New System.Windows.Forms.Label()
+        Me.lblId_tiposConceptos = New System.Windows.Forms.Label()
+        Me.lblId_medidaProducto = New System.Windows.Forms.Label()
+        Me.tlpMiddle = New System.Windows.Forms.TableLayoutPanel()
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.tlpMiddle.SuspendLayout()
         Me.SuspendLayout()
         '
         'txtDescripcion
         '
+        Me.txtDescripcion.BackColor = System.Drawing.SystemColors.Window
+        Me.txtDescripcion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtDescripcion.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txtDescripcion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtDescripcion.Name = "txtDescripcion
-        Me.txtDescripcion.TabIndex = 0
-        Me.txtDescripcion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtDescripcion.BackColor = System.Drawing.SystemColors.Window
+        Me.txtDescripcion.Location = New System.Drawing.Point(136, 18)
         Me.txtDescripcion.MaxLength = 50
-        Me.txtDescripcion.Size = New System.Drawing.Size(200,42)
+        Me.txtDescripcion.Name = "txtDescripcion"
+        Me.txtDescripcion.Size = New System.Drawing.Size(200, 21)
+        Me.txtDescripcion.TabIndex = 0
         '
         'cbotiposConceptos
         '
         Me.cbotiposConceptos.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.cbotiposConceptos.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cbotiposConceptos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown
         Me.cbotiposConceptos.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.cbotiposConceptos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbotiposConceptos.Name = "cbotiposConceptos
-        Me.cbotiposConceptos.TabIndex = 1
         Me.cbotiposConceptos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cbotiposConceptos.Size = New System.Drawing.Size(200,21)
+        Me.cbotiposConceptos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbotiposConceptos.Location = New System.Drawing.Point(136, 45)
+        Me.cbotiposConceptos.Name = "cbotiposConceptos"
+        Me.cbotiposConceptos.Size = New System.Drawing.Size(200, 23)
+        Me.cbotiposConceptos.TabIndex = 1
         '
         'butVerId_tiposConceptos
         '
+        Me.butVerId_tiposConceptos.Cursor = System.Windows.Forms.Cursors.Hand
         Me.butVerId_tiposConceptos.Dock = System.Windows.Forms.DockStyle.Fill
         Me.butVerId_tiposConceptos.FlatAppearance.BorderSize = 0
         Me.butVerId_tiposConceptos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.butVerId_tiposConceptos.Cursor = System.Windows.Forms.Cursors.Hand
         Me.butVerId_tiposConceptos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.butVerId_tiposConceptos.Name = "butVerId_tiposConceptos
         Me.butVerId_tiposConceptos.Image = Global.La_Andaluza.My.Resources.Resources.agenda
+        Me.butVerId_tiposConceptos.Location = New System.Drawing.Point(342, 45)
+        Me.butVerId_tiposConceptos.Name = "butVerId_tiposConceptos"
+        Me.butVerId_tiposConceptos.Size = New System.Drawing.Size(20, 23)
+        Me.butVerId_tiposConceptos.TabIndex = 2
         Me.butVerId_tiposConceptos.TabStop = False
-        Me.butVerId_tiposConceptos.Size = New System.Drawing.Size(20, 20)
+        '
         'butAddId_tiposConceptos
         '
+        Me.butAddId_tiposConceptos.Cursor = System.Windows.Forms.Cursors.Hand
         Me.butAddId_tiposConceptos.Dock = System.Windows.Forms.DockStyle.Fill
         Me.butAddId_tiposConceptos.FlatAppearance.BorderSize = 0
         Me.butAddId_tiposConceptos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.butAddId_tiposConceptos.Cursor = System.Windows.Forms.Cursors.Hand
         Me.butAddId_tiposConceptos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.butAddId_tiposConceptos.Image = Global.La_Andaluza.My.Resources.edit_add_2
-        Me.butAddId_tiposConceptos.Name = "butAddId_tiposConceptos
+        Me.butAddId_tiposConceptos.Image = Global.La_Andaluza.My.Resources.Resources.edit_add_2
+        Me.butAddId_tiposConceptos.Location = New System.Drawing.Point(368, 45)
+        Me.butAddId_tiposConceptos.Name = "butAddId_tiposConceptos"
+        Me.butAddId_tiposConceptos.Size = New System.Drawing.Size(20, 23)
+        Me.butAddId_tiposConceptos.TabIndex = 3
         Me.butAddId_tiposConceptos.TabStop = False
-        Me.butAddId_tiposConceptos.Size = New System.Drawing.Size(20, 20)
-        '
         '
         'cbomedidaProducto
         '
         Me.cbomedidaProducto.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.cbomedidaProducto.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cbomedidaProducto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown
         Me.cbomedidaProducto.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.cbomedidaProducto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbomedidaProducto.Name = "cbomedidaProducto
-        Me.cbomedidaProducto.TabIndex = 2
         Me.cbomedidaProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cbomedidaProducto.Size = New System.Drawing.Size(200,21)
+        Me.cbomedidaProducto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbomedidaProducto.Location = New System.Drawing.Point(136, 74)
+        Me.cbomedidaProducto.Name = "cbomedidaProducto"
+        Me.cbomedidaProducto.Size = New System.Drawing.Size(200, 23)
+        Me.cbomedidaProducto.TabIndex = 2
         '
         'butVerId_medidaProducto
         '
+        Me.butVerId_medidaProducto.Cursor = System.Windows.Forms.Cursors.Hand
         Me.butVerId_medidaProducto.Dock = System.Windows.Forms.DockStyle.Fill
         Me.butVerId_medidaProducto.FlatAppearance.BorderSize = 0
         Me.butVerId_medidaProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.butVerId_medidaProducto.Cursor = System.Windows.Forms.Cursors.Hand
         Me.butVerId_medidaProducto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.butVerId_medidaProducto.Name = "butVerId_medidaProducto
         Me.butVerId_medidaProducto.Image = Global.La_Andaluza.My.Resources.Resources.agenda
+        Me.butVerId_medidaProducto.Location = New System.Drawing.Point(342, 74)
+        Me.butVerId_medidaProducto.Name = "butVerId_medidaProducto"
+        Me.butVerId_medidaProducto.Size = New System.Drawing.Size(20, 23)
+        Me.butVerId_medidaProducto.TabIndex = 5
         Me.butVerId_medidaProducto.TabStop = False
-        Me.butVerId_medidaProducto.Size = New System.Drawing.Size(20, 20)
+        '
         'butAddId_medidaProducto
         '
+        Me.butAddId_medidaProducto.Cursor = System.Windows.Forms.Cursors.Hand
         Me.butAddId_medidaProducto.Dock = System.Windows.Forms.DockStyle.Fill
         Me.butAddId_medidaProducto.FlatAppearance.BorderSize = 0
         Me.butAddId_medidaProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.butAddId_medidaProducto.Cursor = System.Windows.Forms.Cursors.Hand
         Me.butAddId_medidaProducto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.butAddId_medidaProducto.Image = Global.La_Andaluza.My.Resources.edit_add_2
-        Me.butAddId_medidaProducto.Name = "butAddId_medidaProducto
+        Me.butAddId_medidaProducto.Image = Global.La_Andaluza.My.Resources.Resources.edit_add_2
+        Me.butAddId_medidaProducto.Location = New System.Drawing.Point(368, 74)
+        Me.butAddId_medidaProducto.Name = "butAddId_medidaProducto"
+        Me.butAddId_medidaProducto.Size = New System.Drawing.Size(20, 23)
+        Me.butAddId_medidaProducto.TabIndex = 6
         Me.butAddId_medidaProducto.TabStop = False
-        Me.butAddId_medidaProducto.Size = New System.Drawing.Size(20, 20)
-        '
         '
         'lblDescripcion
         '
         Me.lblDescripcion.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lblDescripcion.Name = "lblDescripcion
-        Me.lblDescripcion.Text = "Descripcion
+        Me.lblDescripcion.Location = New System.Drawing.Point(23, 15)
+        Me.lblDescripcion.Name = "lblDescripcion"
+        Me.lblDescripcion.Size = New System.Drawing.Size(107, 27)
+        Me.lblDescripcion.TabIndex = 0
+        Me.lblDescripcion.Text = "Descripcion"
         Me.lblDescripcion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.lblDescripcion.Size = New System.Drawing.Size(107,21)
-        Me.lblDescripcion.Location = New System.Drawing.Point(20,40)
         '
         'lblId_tiposConceptos
         '
         Me.lblId_tiposConceptos.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lblId_tiposConceptos.Name = "lblId_tiposConceptos
-        Me.lblId_tiposConceptos.Text = "Tiposconceptos
+        Me.lblId_tiposConceptos.Location = New System.Drawing.Point(23, 42)
+        Me.lblId_tiposConceptos.Name = "lblId_tiposConceptos"
+        Me.lblId_tiposConceptos.Size = New System.Drawing.Size(107, 29)
+        Me.lblId_tiposConceptos.TabIndex = 1
+        Me.lblId_tiposConceptos.Text = "Tiposconceptos"
         Me.lblId_tiposConceptos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.lblId_tiposConceptos.Size = New System.Drawing.Size(107,21)
-        Me.lblId_tiposConceptos.Location = New System.Drawing.Point(20,40)
         '
         'lblId_medidaProducto
         '
         Me.lblId_medidaProducto.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lblId_medidaProducto.Name = "lblId_medidaProducto
-        Me.lblId_medidaProducto.Text = "Medaproducto
+        Me.lblId_medidaProducto.Location = New System.Drawing.Point(23, 71)
+        Me.lblId_medidaProducto.Name = "lblId_medidaProducto"
+        Me.lblId_medidaProducto.Size = New System.Drawing.Size(107, 29)
+        Me.lblId_medidaProducto.TabIndex = 4
+        Me.lblId_medidaProducto.Text = "Medaproducto"
         Me.lblId_medidaProducto.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.lblId_medidaProducto.Size = New System.Drawing.Size(107,21)
-        Me.lblId_medidaProducto.Location = New System.Drawing.Point(20,40)
         '
         'tlpMiddle
         '
+        Me.tlpMiddle.AutoSize = True
         Me.tlpMiddle.ColumnCount = 8
         Me.tlpMiddle.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.tlpMiddle.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
@@ -156,7 +170,7 @@ Partial Class frmEntConceptosGastosIncidencias
         Me.tlpMiddle.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.tlpMiddle.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.tlpMiddle.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.tlpMiddle.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tlpMiddle.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 46.0!))
         Me.tlpMiddle.Controls.Add(Me.lblDescripcion, 1, 0)
         Me.tlpMiddle.Controls.Add(Me.txtDescripcion, 2, 0)
         Me.tlpMiddle.Controls.Add(Me.lblId_tiposConceptos, 1, 1)
@@ -169,34 +183,34 @@ Partial Class frmEntConceptosGastosIncidencias
         Me.tlpMiddle.Controls.Add(Me.butAddId_medidaProducto, 4, 2)
         Me.tlpMiddle.Location = New System.Drawing.Point(0, 25)
         Me.tlpMiddle.Name = "tlpMiddle"
-        Me.tlpMiddle.RowCount = 4
         Me.tlpMiddle.Padding = New System.Windows.Forms.Padding(0, 15, 0, 0)
-        Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle)
-        Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle)
-        Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle)
+        Me.tlpMiddle.RowCount = 4
+        Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tlpMiddle.Size = New System.Drawing.Size(437, 85)
-        '
+        Me.tlpMiddle.Size = New System.Drawing.Size(437, 120)
+        Me.tlpMiddle.TabIndex = 8
         '
         'frmEntConceptosGastosIncidencias
         '
-        Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.ClientSize = New System.Drawing.Size(421, 163)
         Me.Controls.Add(Me.tlpMiddle)
-        Me.ClientSize = New System.Drawing.Size(437, 165)
+        Me.Cursor = System.Windows.Forms.Cursors.Default
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MinimumSize = New System.Drawing.Size(437, 165)
-        Me.Name = "frmEntConceptosGastosIncidencias
+        Me.Name = "frmEntConceptosGastosIncidencias"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "ConceptosGastosIncidencias"
         Me.Controls.SetChildIndex(Me.tlpMiddle, 0)
-        Me.tlpMiddle.ResumeLayout(False)
-        Me.tlpMiddle.Dock = System.Windows.Forms.DockStyle.None
-        Me.tlpMiddle.Autosize = True
-        Me.Size = new Size(437,595)
-        Me.tlpMiddle.PerformLayout()
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.tlpMiddle.ResumeLayout(False)
+        Me.tlpMiddle.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
-       End Sub
+    End Sub
 
     Private WithEvents txtDescripcion As System.Windows.Forms.TextBox
     Private WithEvents cbotiposConceptos As System.Windows.Forms.ComboBox

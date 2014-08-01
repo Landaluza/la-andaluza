@@ -290,14 +290,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="La Andaluza.exe" size="10232320">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="La Andaluza.exe" size="10254848">
       <assemblyIdentity name="La Andaluza" version="2014.2.1.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>68L5mzfQnMczVn8szP1hVDcy9v5QfUpSxn8VdYe8Y2k=</dsig:DigestValue>
+        <dsig:DigestValue>h5BOFd+BVCjdvSM1N0qgCFfZsn9tM4Hqif3b+QKrESw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -415,184 +415,22 @@
       <dsig:DigestValue>btECdtESw2SUVB12r5MLGebp0m2EdkkpFm0TrzwoU90=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Control\Incidencias\gastos\conceptos\ConceptosGastosIncidenciasCbo.sql" size="403">
+  <file name="Control\Incidencias\gastos\costePorConcepto\CostesPorConceptoBatch.sql" size="3958">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>vpR3DpJPgOClZrpZANSwY+4Vnxr9FP7JTlxRMntN6iQ=</dsig:DigestValue>
+      <dsig:DigestValue>3PWjK2CEE0TWgyZV88VSdxeOQmLt/Qv1yrMmflVAOFM=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Control\Incidencias\gastos\conceptos\ConceptosGastosIncidenciasDelete.sql" size="438">
+  <file name="Control\Incidencias\gastos\gastosIncidencias\GastosIncidenciasBatch.sql" size="7647">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>0ZxvfWpagM+SbFb5r7EepHeX9+gM+Ika3/e05ycajFE=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Control\Incidencias\gastos\conceptos\ConceptosGastosIncidenciasInsert.sql" size="843">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>RdzwG7NNmyowSd6iyvCY6xgWSHcN2Xy0cO8atqWQ84Y=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Control\Incidencias\gastos\conceptos\ConceptosGastosIncidenciasSelect.sql" size="500">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>yyjxEM4VJuCTZckyfDcjDR49yWtLhVUnhLYGfjYoelA=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Control\Incidencias\gastos\conceptos\ConceptosGastosIncidenciasSelectDgv.sql" size="854">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>qqsAVbbykY295dIUyaxUOG/rutd1RvAasIgwcNHDDtg=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Control\Incidencias\gastos\conceptos\ConceptosGastosIncidenciasUpdate.sql" size="823">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>8npPWKB757HANberwvevr+0FFN/kgPw+qdlxtZGJlJ0=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Control\Incidencias\gastos\costePorConcepto\CostesPorConceptoBatch.sql" size="4339">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>/4+FpkCtN48S7Bxy/388p1YtpxiO/lmmDyaXZgKl5Lo=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Control\Incidencias\gastos\costePorConcepto\CostesPorConceptoDelete.sql" size="402">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>LmAgOdNXvpOu8/F8U8uS+UWbe9OpG39rEotdZwNMsSA=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Control\Incidencias\gastos\costePorConcepto\CostesPorConceptoInsert.sql" size="786">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>WDTjgMj2S08ecG28NjBYZDo63vO7dcZOWBmkZzFvhG8=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Control\Incidencias\gastos\costePorConcepto\CostesPorConceptoSelect.sql" size="458">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>EGh+uX+BiNjzrk2wp9ar2ifaAGCcK1WnLeXAzQoh5sg=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Control\Incidencias\gastos\costePorConcepto\CostesPorConceptoSelectDgv.sql" size="690">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>USZH61UqzDc/s9tObT4R612PWY6r3Bn0W3GswajXAPs=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Control\Incidencias\gastos\costePorConcepto\CostesPorConceptoSelectDgvBy.sql" size="785">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>c/Ch7ydSmwTPyntbhBPkoTyoWU77CZgDDcEzsIo0nSw=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Control\Incidencias\gastos\costePorConcepto\CostesPorConceptoUpdate.sql" size="766">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>wsbbAYdybS2emiIS6BoBNXo1POibxOPkeP3SBTil7i8=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Control\Incidencias\gastos\gastosIncidencias\GastosIncidenciasBatch.sql" size="5500">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>TWTVzd//1UkiDUdtjYbP8hW+pZ4i4gIE5/kwGe3XfHg=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Control\Incidencias\gastos\gastosIncidencias\GastosIncidenciasDelete.sql" size="402">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>GtFuQbUIo7wdCpZMV/vFNAkWDjjOMeELPpmM9473N+s=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Control\Incidencias\gastos\gastosIncidencias\GastosIncidenciasInsert.sql" size="962">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>OuoF/R/K9rJ74N77oppVnY54XTnyXBytzG0HcD8zLlE=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Control\Incidencias\gastos\gastosIncidencias\GastosIncidenciasSelect.sql" size="511">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>bj6EoisHxgOyC2WJu9YSZm2t32dvRebFrPjQtYnrMuw=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Control\Incidencias\gastos\gastosIncidencias\GastosIncidenciasSelectDgv.sql" size="1229">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>MK348Mt76iA4LHFk6d91BerYotOGQWL08IXtkib0TMw=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Control\Incidencias\gastos\gastosIncidencias\GastosIncidenciasSelectDgvBy.sql" size="1400">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>zWV1zoJZmZPy9DLoHCvy6eMoL0eRoZUhaEwJ6Q/xXRk=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Control\Incidencias\gastos\gastosIncidencias\GastosIncidenciasUpdate.sql" size="933">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>Hye+0PSR9NoeBgCGwaDZ9M2ditx3Wxz099kS+wBfLDg=</dsig:DigestValue>
+      <dsig:DigestValue>VzAOknIomxWkhkLDJv7lHiuf+Ff4yVEgkjpXxXYV12U=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Control\Incidencias\gastos\tablas.sql" size="1643">
@@ -611,60 +449,6 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>BK4b0uBpVKP7O730TisnKNmeeeFeFaKC6ODmuh7f/ek=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Control\Incidencias\gastos\tiposConceptos\TiposConceptosCbo.sql" size="355">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>mYO0GrBM4Q/1d98IBYJRP1JcIQWr/dkb1vx6yWUkYiM=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Control\Incidencias\gastos\tiposConceptos\TiposConceptosDelete.sql" size="390">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>OaiLAYAhN/KekRxR8uz1YeH+1K4orrAETaBTaqrSgfg=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Control\Incidencias\gastos\tiposConceptos\TiposConceptosInsert.sql" size="633">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>3/rmtiH1BICXCgh4eLH7pzOBJemnDwj0Be9Gx6ewyuc=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Control\Incidencias\gastos\tiposConceptos\TiposConceptosSelect.sql" size="402">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>YGxS6FG6fpOeHJRx9X4h65QSCRACOZZl2Mc1Zz4wiRY=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Control\Incidencias\gastos\tiposConceptos\TiposConceptosSelectDgv.sql" size="426">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>coGpClfxHnbvPXIs4UwXtmUzboWXOrfezVoMUeJl3bM=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Control\Incidencias\gastos\tiposConceptos\TiposConceptosUpdate.sql" size="619">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>oQmjQ08hCB+ugNl0UoGT8jJtcXmgxTe43hYH9qSjRfw=</dsig:DigestValue>
     </hash>
   </file>
   <file name="La Andaluza.exe.config" size="26247">

@@ -1,16 +1,6 @@
-IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[CostesPorConceptoCbo]') AND type in (N'P', N'PC'))
-DROP PROCEDURE [dbo].[CostesPorConceptoCbo]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[CostesPorConceptoCbo]       @ID int
-AS
-BEGIN
- select id, Coste from CostesPorConceptoCbo where Id_ConceptosGastosIncidencias = @ID
-END
-GO
+use[la]
+go
+
 
 SET NOCOUNT ON
 

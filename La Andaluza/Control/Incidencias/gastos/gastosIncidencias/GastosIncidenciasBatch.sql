@@ -108,16 +108,41 @@ SELECT
      ,[dbo].[GastosIncidencias].[Cantidad]
      ,[dbo].[ConceptosGastosIncidencias].[Descripcion]
      ,[dbo].[CostesPorConcepto].[Coste]
-     ,[dbo].[Proveedores].[Nombre]
-     ,[dbo].[Empleados].[Nombre]
-     ,[dbo].[Clientes].[Nombre]
+     ,[dbo].[Proveedores].[Nombre] Causante
+
 FROM
      [dbo].[GastosIncidencias]
      INNER JOIN [dbo].[ConceptosGastosIncidencias] ON [dbo].[GastosIncidencias].[Id_concepto] = [dbo].[ConceptosGastosIncidencias].[Id]
      INNER JOIN [dbo].[CostesPorConcepto] ON [dbo].[GastosIncidencias].[Id_costeConcepto] = [dbo].[CostesPorConcepto].[Id]
-     INNER JOIN [dbo].[Proveedores] ON [dbo].[GastosIncidencias].[Id_proveedor] = [dbo].[Proveedores].[ProveedorID]
-     INNER JOIN [dbo].[Empleados] ON [dbo].[GastosIncidencias].[Id_empleado] = [dbo].[Empleados].[Id]
-     INNER JOIN [dbo].[Clientes] ON [dbo].[GastosIncidencias].[Id_cliente] = [dbo].[Clientes].[ClienteID]
+     left JOIN [dbo].[Proveedores] ON [dbo].[GastosIncidencias].[Id_proveedor] = [dbo].[Proveedores].[ProveedorID]
+
+union
+
+SELECT
+      [dbo].[GastosIncidencias].[Id] Id
+     ,[dbo].[GastosIncidencias].[Cantidad]
+     ,[dbo].[ConceptosGastosIncidencias].[Descripcion]
+     ,[dbo].[CostesPorConcepto].[Coste]
+     ,[dbo].[Empleados].[Nombre] Causante
+FROM
+     [dbo].[GastosIncidencias]
+     INNER JOIN [dbo].[ConceptosGastosIncidencias] ON [dbo].[GastosIncidencias].[Id_concepto] = [dbo].[ConceptosGastosIncidencias].[Id]
+     INNER JOIN [dbo].[CostesPorConcepto] ON [dbo].[GastosIncidencias].[Id_costeConcepto] = [dbo].[CostesPorConcepto].[Id]
+     left JOIN [dbo].[Empleados] ON [dbo].[GastosIncidencias].[Id_empleado] = [dbo].[Empleados].[Id]
+
+union
+
+SELECT
+      [dbo].[GastosIncidencias].[Id] Id
+     ,[dbo].[GastosIncidencias].[Cantidad]
+     ,[dbo].[ConceptosGastosIncidencias].[Descripcion]
+     ,[dbo].[CostesPorConcepto].[Coste]
+     ,[dbo].[Clientes].[Nombre] Causante
+FROM
+     [dbo].[GastosIncidencias]
+     INNER JOIN [dbo].[ConceptosGastosIncidencias] ON [dbo].[GastosIncidencias].[Id_concepto] = [dbo].[ConceptosGastosIncidencias].[Id]
+     INNER JOIN [dbo].[CostesPorConcepto] ON [dbo].[GastosIncidencias].[Id_costeConcepto] = [dbo].[CostesPorConcepto].[Id]
+     left JOIN [dbo].[Clientes] ON [dbo].[GastosIncidencias].[Id_cliente] = [dbo].[Clientes].[ClienteID]
 End
 
 GO
@@ -132,20 +157,49 @@ CREATE PROCEDURE [dbo].[GastosIncidenciasSelectDgvBy]  @Id_controlIncidencia int
 AS 
 BEGIN
 SELECT
-      [dbo].[GastosIncidencias].[Id]
+      [dbo].[GastosIncidencias].[Id] Id
      ,[dbo].[GastosIncidencias].[Cantidad]
-     ,[dbo].[ConceptosGastosIncidencias].[Descripcion] AS Id_concepto
-     ,[dbo].[CostesPorConcepto].[Coste] AS Id_costeConcepto
-     ,[dbo].[Proveedores].[Nombre] AS Id_proveedor
-     ,[dbo].[Empleados].[Nombre] AS Id_empleado
-     ,[dbo].[Clientes].[Nombre] AS Id_cliente
+     ,[dbo].[ConceptosGastosIncidencias].[Descripcion]
+     ,[dbo].[CostesPorConcepto].[Coste]
+     ,[dbo].[Proveedores].[Nombre] Causante
+
 FROM
      [dbo].[GastosIncidencias]
      INNER JOIN [dbo].[ConceptosGastosIncidencias] ON [dbo].[GastosIncidencias].[Id_concepto] = [dbo].[ConceptosGastosIncidencias].[Id]
      INNER JOIN [dbo].[CostesPorConcepto] ON [dbo].[GastosIncidencias].[Id_costeConcepto] = [dbo].[CostesPorConcepto].[Id]
-     INNER JOIN [dbo].[Proveedores] ON [dbo].[GastosIncidencias].[Id_proveedor] = [dbo].[Proveedores].[ProveedorID]
-     INNER JOIN [dbo].[Empleados] ON [dbo].[GastosIncidencias].[Id_empleado] = [dbo].[Empleados].[Id]
-     INNER JOIN [dbo].[Clientes] ON [dbo].[GastosIncidencias].[Id_cliente] = [dbo].[Clientes].[ClienteID]
+     left JOIN [dbo].[Proveedores] ON [dbo].[GastosIncidencias].[Id_proveedor] = [dbo].[Proveedores].[ProveedorID]
+WHERE
+     [dbo].[GastosIncidencias].[Id_controlIncidencia] = @Id_controlIncidencia
+
+union
+
+SELECT
+      [dbo].[GastosIncidencias].[Id] Id
+     ,[dbo].[GastosIncidencias].[Cantidad]
+     ,[dbo].[ConceptosGastosIncidencias].[Descripcion]
+     ,[dbo].[CostesPorConcepto].[Coste]
+     ,[dbo].[Empleados].[Nombre] Causante
+FROM
+     [dbo].[GastosIncidencias]
+     INNER JOIN [dbo].[ConceptosGastosIncidencias] ON [dbo].[GastosIncidencias].[Id_concepto] = [dbo].[ConceptosGastosIncidencias].[Id]
+     INNER JOIN [dbo].[CostesPorConcepto] ON [dbo].[GastosIncidencias].[Id_costeConcepto] = [dbo].[CostesPorConcepto].[Id]
+     left JOIN [dbo].[Empleados] ON [dbo].[GastosIncidencias].[Id_empleado] = [dbo].[Empleados].[Id]
+WHERE
+     [dbo].[GastosIncidencias].[Id_controlIncidencia] = @Id_controlIncidencia
+
+union
+
+SELECT
+      [dbo].[GastosIncidencias].[Id] Id
+     ,[dbo].[GastosIncidencias].[Cantidad]
+     ,[dbo].[ConceptosGastosIncidencias].[Descripcion]
+     ,[dbo].[CostesPorConcepto].[Coste]
+     ,[dbo].[Clientes].[Nombre] Causante
+FROM
+     [dbo].[GastosIncidencias]
+     INNER JOIN [dbo].[ConceptosGastosIncidencias] ON [dbo].[GastosIncidencias].[Id_concepto] = [dbo].[ConceptosGastosIncidencias].[Id]
+     INNER JOIN [dbo].[CostesPorConcepto] ON [dbo].[GastosIncidencias].[Id_costeConcepto] = [dbo].[CostesPorConcepto].[Id]
+     left JOIN [dbo].[Clientes] ON [dbo].[GastosIncidencias].[Id_cliente] = [dbo].[Clientes].[ClienteID]
 WHERE
      [dbo].[GastosIncidencias].[Id_controlIncidencia] = @Id_controlIncidencia
 
