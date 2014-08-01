@@ -45,20 +45,20 @@ Partial Class frmEntGastosIncidencias
         Me.btnActualizarCoste = New System.Windows.Forms.Button()
         Me.gpCAusante = New System.Windows.Forms.GroupBox()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.rbCliente = New System.Windows.Forms.RadioButton()
         Me.rbEmpleado = New System.Windows.Forms.RadioButton()
         Me.rbProveedor = New System.Windows.Forms.RadioButton()
-        Me.rbCliente = New System.Windows.Forms.RadioButton()
-        CType(Me.GeneralBindingSource,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.tlpMiddle.SuspendLayout
-        Me.gpCAusante.SuspendLayout
-        Me.TableLayoutPanel1.SuspendLayout
-        Me.SuspendLayout
+        CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.tlpMiddle.SuspendLayout()
+        Me.gpCAusante.SuspendLayout()
+        Me.TableLayoutPanel1.SuspendLayout()
+        Me.SuspendLayout()
         '
         'txtCantidad
         '
         Me.txtCantidad.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtCantidad.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtCantidad.Font = New System.Drawing.Font("Microsoft Sans Serif", 9!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.txtCantidad.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCantidad.Location = New System.Drawing.Point(97, 18)
         Me.txtCantidad.Name = "txtCantidad"
         Me.txtCantidad.Size = New System.Drawing.Size(395, 21)
@@ -70,7 +70,7 @@ Partial Class frmEntGastosIncidencias
         Me.cboconcepto.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cboconcepto.Dock = System.Windows.Forms.DockStyle.Fill
         Me.cboconcepto.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cboconcepto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.cboconcepto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cboconcepto.Location = New System.Drawing.Point(97, 45)
         Me.cboconcepto.Name = "cboconcepto"
         Me.cboconcepto.Size = New System.Drawing.Size(395, 23)
@@ -82,13 +82,13 @@ Partial Class frmEntGastosIncidencias
         Me.butVerId_concepto.Dock = System.Windows.Forms.DockStyle.Fill
         Me.butVerId_concepto.FlatAppearance.BorderSize = 0
         Me.butVerId_concepto.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.butVerId_concepto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.butVerId_concepto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butVerId_concepto.Image = Global.La_Andaluza.My.Resources.Resources.agenda
         Me.butVerId_concepto.Location = New System.Drawing.Point(498, 45)
         Me.butVerId_concepto.Name = "butVerId_concepto"
         Me.butVerId_concepto.Size = New System.Drawing.Size(26, 23)
         Me.butVerId_concepto.TabIndex = 5
-        Me.butVerId_concepto.TabStop = false
+        Me.butVerId_concepto.TabStop = False
         '
         'butAddId_concepto
         '
@@ -96,13 +96,13 @@ Partial Class frmEntGastosIncidencias
         Me.butAddId_concepto.Dock = System.Windows.Forms.DockStyle.Fill
         Me.butAddId_concepto.FlatAppearance.BorderSize = 0
         Me.butAddId_concepto.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.butAddId_concepto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.butAddId_concepto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butAddId_concepto.Image = Global.La_Andaluza.My.Resources.Resources.edit_add_2
         Me.butAddId_concepto.Location = New System.Drawing.Point(530, 45)
         Me.butAddId_concepto.Name = "butAddId_concepto"
         Me.butAddId_concepto.Size = New System.Drawing.Size(28, 23)
         Me.butAddId_concepto.TabIndex = 6
-        Me.butAddId_concepto.TabStop = false
+        Me.butAddId_concepto.TabStop = False
         '
         'cbocosteConcepto
         '
@@ -110,7 +110,7 @@ Partial Class frmEntGastosIncidencias
         Me.cbocosteConcepto.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cbocosteConcepto.Dock = System.Windows.Forms.DockStyle.Fill
         Me.cbocosteConcepto.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cbocosteConcepto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.cbocosteConcepto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbocosteConcepto.Location = New System.Drawing.Point(97, 74)
         Me.cbocosteConcepto.Name = "cbocosteConcepto"
         Me.cbocosteConcepto.Size = New System.Drawing.Size(395, 23)
@@ -122,13 +122,13 @@ Partial Class frmEntGastosIncidencias
         Me.butVerId_costeConcepto.Dock = System.Windows.Forms.DockStyle.Fill
         Me.butVerId_costeConcepto.FlatAppearance.BorderSize = 0
         Me.butVerId_costeConcepto.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.butVerId_costeConcepto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.butVerId_costeConcepto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butVerId_costeConcepto.Image = Global.La_Andaluza.My.Resources.Resources.agenda
         Me.butVerId_costeConcepto.Location = New System.Drawing.Point(498, 74)
         Me.butVerId_costeConcepto.Name = "butVerId_costeConcepto"
         Me.butVerId_costeConcepto.Size = New System.Drawing.Size(26, 23)
         Me.butVerId_costeConcepto.TabIndex = 8
-        Me.butVerId_costeConcepto.TabStop = false
+        Me.butVerId_costeConcepto.TabStop = False
         '
         'butAddId_costeConcepto
         '
@@ -136,13 +136,13 @@ Partial Class frmEntGastosIncidencias
         Me.butAddId_costeConcepto.Dock = System.Windows.Forms.DockStyle.Fill
         Me.butAddId_costeConcepto.FlatAppearance.BorderSize = 0
         Me.butAddId_costeConcepto.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.butAddId_costeConcepto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.butAddId_costeConcepto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butAddId_costeConcepto.Image = Global.La_Andaluza.My.Resources.Resources.edit_add_2
         Me.butAddId_costeConcepto.Location = New System.Drawing.Point(530, 74)
         Me.butAddId_costeConcepto.Name = "butAddId_costeConcepto"
         Me.butAddId_costeConcepto.Size = New System.Drawing.Size(28, 23)
         Me.butAddId_costeConcepto.TabIndex = 9
-        Me.butAddId_costeConcepto.TabStop = false
+        Me.butAddId_costeConcepto.TabStop = False
         '
         'cboproveedor
         '
@@ -150,8 +150,8 @@ Partial Class frmEntGastosIncidencias
         Me.cboproveedor.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cboproveedor.Dock = System.Windows.Forms.DockStyle.Fill
         Me.cboproveedor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cboproveedor.Font = New System.Drawing.Font("Microsoft Sans Serif", 9!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
-        Me.cboproveedor.Location = New System.Drawing.Point(87, 3)
+        Me.cboproveedor.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cboproveedor.Location = New System.Drawing.Point(86, 3)
         Me.cboproveedor.Name = "cboproveedor"
         Me.cboproveedor.Size = New System.Drawing.Size(400, 23)
         Me.cboproveedor.TabIndex = 4
@@ -162,13 +162,13 @@ Partial Class frmEntGastosIncidencias
         Me.butVerId_proveedor.Dock = System.Windows.Forms.DockStyle.Fill
         Me.butVerId_proveedor.FlatAppearance.BorderSize = 0
         Me.butVerId_proveedor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.butVerId_proveedor.Font = New System.Drawing.Font("Microsoft Sans Serif", 9!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.butVerId_proveedor.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butVerId_proveedor.Image = Global.La_Andaluza.My.Resources.Resources.agenda
-        Me.butVerId_proveedor.Location = New System.Drawing.Point(493, 3)
+        Me.butVerId_proveedor.Location = New System.Drawing.Point(492, 3)
         Me.butVerId_proveedor.Name = "butVerId_proveedor"
         Me.butVerId_proveedor.Size = New System.Drawing.Size(25, 28)
         Me.butVerId_proveedor.TabIndex = 11
-        Me.butVerId_proveedor.TabStop = false
+        Me.butVerId_proveedor.TabStop = False
         '
         'butAddId_proveedor
         '
@@ -176,13 +176,13 @@ Partial Class frmEntGastosIncidencias
         Me.butAddId_proveedor.Dock = System.Windows.Forms.DockStyle.Fill
         Me.butAddId_proveedor.FlatAppearance.BorderSize = 0
         Me.butAddId_proveedor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.butAddId_proveedor.Font = New System.Drawing.Font("Microsoft Sans Serif", 9!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.butAddId_proveedor.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butAddId_proveedor.Image = Global.La_Andaluza.My.Resources.Resources.edit_add_2
-        Me.butAddId_proveedor.Location = New System.Drawing.Point(524, 3)
+        Me.butAddId_proveedor.Location = New System.Drawing.Point(523, 3)
         Me.butAddId_proveedor.Name = "butAddId_proveedor"
-        Me.butAddId_proveedor.Size = New System.Drawing.Size(22, 28)
+        Me.butAddId_proveedor.Size = New System.Drawing.Size(23, 28)
         Me.butAddId_proveedor.TabIndex = 12
-        Me.butAddId_proveedor.TabStop = false
+        Me.butAddId_proveedor.TabStop = False
         '
         'cboempleado
         '
@@ -190,8 +190,8 @@ Partial Class frmEntGastosIncidencias
         Me.cboempleado.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cboempleado.Dock = System.Windows.Forms.DockStyle.Fill
         Me.cboempleado.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cboempleado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
-        Me.cboempleado.Location = New System.Drawing.Point(87, 37)
+        Me.cboempleado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cboempleado.Location = New System.Drawing.Point(86, 37)
         Me.cboempleado.Name = "cboempleado"
         Me.cboempleado.Size = New System.Drawing.Size(400, 23)
         Me.cboempleado.TabIndex = 5
@@ -202,13 +202,13 @@ Partial Class frmEntGastosIncidencias
         Me.butVerId_empleado.Dock = System.Windows.Forms.DockStyle.Fill
         Me.butVerId_empleado.FlatAppearance.BorderSize = 0
         Me.butVerId_empleado.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.butVerId_empleado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.butVerId_empleado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butVerId_empleado.Image = Global.La_Andaluza.My.Resources.Resources.agenda
-        Me.butVerId_empleado.Location = New System.Drawing.Point(493, 37)
+        Me.butVerId_empleado.Location = New System.Drawing.Point(492, 37)
         Me.butVerId_empleado.Name = "butVerId_empleado"
         Me.butVerId_empleado.Size = New System.Drawing.Size(25, 28)
         Me.butVerId_empleado.TabIndex = 14
-        Me.butVerId_empleado.TabStop = false
+        Me.butVerId_empleado.TabStop = False
         '
         'butAddId_empleado
         '
@@ -216,13 +216,13 @@ Partial Class frmEntGastosIncidencias
         Me.butAddId_empleado.Dock = System.Windows.Forms.DockStyle.Fill
         Me.butAddId_empleado.FlatAppearance.BorderSize = 0
         Me.butAddId_empleado.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.butAddId_empleado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.butAddId_empleado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butAddId_empleado.Image = Global.La_Andaluza.My.Resources.Resources.edit_add_2
-        Me.butAddId_empleado.Location = New System.Drawing.Point(524, 37)
+        Me.butAddId_empleado.Location = New System.Drawing.Point(523, 37)
         Me.butAddId_empleado.Name = "butAddId_empleado"
-        Me.butAddId_empleado.Size = New System.Drawing.Size(22, 28)
+        Me.butAddId_empleado.Size = New System.Drawing.Size(23, 28)
         Me.butAddId_empleado.TabIndex = 15
-        Me.butAddId_empleado.TabStop = false
+        Me.butAddId_empleado.TabStop = False
         '
         'cbocliente
         '
@@ -230,8 +230,8 @@ Partial Class frmEntGastosIncidencias
         Me.cbocliente.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cbocliente.Dock = System.Windows.Forms.DockStyle.Fill
         Me.cbocliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cbocliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 9!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
-        Me.cbocliente.Location = New System.Drawing.Point(87, 71)
+        Me.cbocliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbocliente.Location = New System.Drawing.Point(86, 71)
         Me.cbocliente.Name = "cbocliente"
         Me.cbocliente.Size = New System.Drawing.Size(400, 23)
         Me.cbocliente.TabIndex = 6
@@ -242,13 +242,13 @@ Partial Class frmEntGastosIncidencias
         Me.butVerId_cliente.Dock = System.Windows.Forms.DockStyle.Fill
         Me.butVerId_cliente.FlatAppearance.BorderSize = 0
         Me.butVerId_cliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.butVerId_cliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 9!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.butVerId_cliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butVerId_cliente.Image = Global.La_Andaluza.My.Resources.Resources.agenda
-        Me.butVerId_cliente.Location = New System.Drawing.Point(493, 71)
+        Me.butVerId_cliente.Location = New System.Drawing.Point(492, 71)
         Me.butVerId_cliente.Name = "butVerId_cliente"
         Me.butVerId_cliente.Size = New System.Drawing.Size(25, 38)
         Me.butVerId_cliente.TabIndex = 17
-        Me.butVerId_cliente.TabStop = false
+        Me.butVerId_cliente.TabStop = False
         '
         'butAddId_cliente
         '
@@ -256,13 +256,13 @@ Partial Class frmEntGastosIncidencias
         Me.butAddId_cliente.Dock = System.Windows.Forms.DockStyle.Fill
         Me.butAddId_cliente.FlatAppearance.BorderSize = 0
         Me.butAddId_cliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.butAddId_cliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 9!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.butAddId_cliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butAddId_cliente.Image = Global.La_Andaluza.My.Resources.Resources.edit_add_2
-        Me.butAddId_cliente.Location = New System.Drawing.Point(524, 71)
+        Me.butAddId_cliente.Location = New System.Drawing.Point(523, 71)
         Me.butAddId_cliente.Name = "butAddId_cliente"
-        Me.butAddId_cliente.Size = New System.Drawing.Size(22, 38)
+        Me.butAddId_cliente.Size = New System.Drawing.Size(23, 38)
         Me.butAddId_cliente.TabIndex = 18
-        Me.butAddId_cliente.TabStop = false
+        Me.butAddId_cliente.TabStop = False
         '
         'lblCantidad
         '
@@ -296,12 +296,12 @@ Partial Class frmEntGastosIncidencias
         '
         'tlpMiddle
         '
-        Me.tlpMiddle.AutoSize = true
+        Me.tlpMiddle.AutoSize = True
         Me.tlpMiddle.ColumnCount = 4
-        Me.tlpMiddle.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 94!))
-        Me.tlpMiddle.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 401!))
-        Me.tlpMiddle.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 32!))
-        Me.tlpMiddle.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 34!))
+        Me.tlpMiddle.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 94.0!))
+        Me.tlpMiddle.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 401.0!))
+        Me.tlpMiddle.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 32.0!))
+        Me.tlpMiddle.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 34.0!))
         Me.tlpMiddle.Controls.Add(Me.btnActualizarCoste, 1, 8)
         Me.tlpMiddle.Controls.Add(Me.lblCantidad, 0, 1)
         Me.tlpMiddle.Controls.Add(Me.txtCantidad, 1, 1)
@@ -325,8 +325,8 @@ Partial Class frmEntGastosIncidencias
         Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 137!))
-        Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 124!))
+        Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 137.0!))
+        Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 124.0!))
         Me.tlpMiddle.Size = New System.Drawing.Size(561, 361)
         Me.tlpMiddle.TabIndex = 8
         '
@@ -342,7 +342,7 @@ Partial Class frmEntGastosIncidencias
         Me.btnActualizarCoste.TabIndex = 9
         Me.btnActualizarCoste.Text = "Actualizar el coste del concepto al actual"
         Me.btnActualizarCoste.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnActualizarCoste.UseVisualStyleBackColor = true
+        Me.btnActualizarCoste.UseVisualStyleBackColor = True
         '
         'gpCAusante
         '
@@ -353,7 +353,7 @@ Partial Class frmEntGastosIncidencias
         Me.gpCAusante.Name = "gpCAusante"
         Me.gpCAusante.Size = New System.Drawing.Size(555, 131)
         Me.gpCAusante.TabIndex = 10
-        Me.gpCAusante.TabStop = false
+        Me.gpCAusante.TabStop = False
         Me.gpCAusante.Text = "Causante"
         '
         'TableLayoutPanel1
@@ -361,8 +361,8 @@ Partial Class frmEntGastosIncidencias
         Me.TableLayoutPanel1.ColumnCount = 4
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.12598!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 82.87402!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 31!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 31.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.rbCliente, 0, 2)
         Me.TableLayoutPanel1.Controls.Add(Me.rbEmpleado, 0, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.rbProveedor, 0, 0)
@@ -379,44 +379,47 @@ Partial Class frmEntGastosIncidencias
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(3, 16)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 3
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(549, 112)
         Me.TableLayoutPanel1.TabIndex = 19
         '
+        'rbCliente
+        '
+        Me.rbCliente.AutoSize = True
+        Me.rbCliente.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.rbCliente.Location = New System.Drawing.Point(3, 71)
+        Me.rbCliente.Name = "rbCliente"
+        Me.rbCliente.Size = New System.Drawing.Size(77, 38)
+        Me.rbCliente.TabIndex = 21
+        Me.rbCliente.TabStop = True
+        Me.rbCliente.Text = "Cliente"
+        Me.rbCliente.UseVisualStyleBackColor = True
+        '
         'rbEmpleado
         '
-        Me.rbEmpleado.AutoSize = true
+        Me.rbEmpleado.AutoSize = True
+        Me.rbEmpleado.Dock = System.Windows.Forms.DockStyle.Fill
         Me.rbEmpleado.Location = New System.Drawing.Point(3, 37)
         Me.rbEmpleado.Name = "rbEmpleado"
-        Me.rbEmpleado.Size = New System.Drawing.Size(72, 17)
+        Me.rbEmpleado.Size = New System.Drawing.Size(77, 28)
         Me.rbEmpleado.TabIndex = 19
-        Me.rbEmpleado.TabStop = true
+        Me.rbEmpleado.TabStop = True
         Me.rbEmpleado.Text = "Empleado"
-        Me.rbEmpleado.UseVisualStyleBackColor = true
+        Me.rbEmpleado.UseVisualStyleBackColor = True
         '
         'rbProveedor
         '
-        Me.rbProveedor.AutoSize = true
+        Me.rbProveedor.AutoSize = True
+        Me.rbProveedor.Dock = System.Windows.Forms.DockStyle.Fill
         Me.rbProveedor.Location = New System.Drawing.Point(3, 3)
         Me.rbProveedor.Name = "rbProveedor"
-        Me.rbProveedor.Size = New System.Drawing.Size(74, 17)
+        Me.rbProveedor.Size = New System.Drawing.Size(77, 28)
         Me.rbProveedor.TabIndex = 20
-        Me.rbProveedor.TabStop = true
+        Me.rbProveedor.TabStop = True
         Me.rbProveedor.Text = "Proveedor"
-        Me.rbProveedor.UseVisualStyleBackColor = true
-        '
-        'rbCliente
-        '
-        Me.rbCliente.AutoSize = true
-        Me.rbCliente.Location = New System.Drawing.Point(3, 71)
-        Me.rbCliente.Name = "rbCliente"
-        Me.rbCliente.Size = New System.Drawing.Size(57, 17)
-        Me.rbCliente.TabIndex = 21
-        Me.rbCliente.TabStop = true
-        Me.rbCliente.Text = "Cliente"
-        Me.rbCliente.UseVisualStyleBackColor = true
+        Me.rbProveedor.UseVisualStyleBackColor = True
         '
         'frmEntGastosIncidencias
         '
@@ -464,7 +467,7 @@ End Sub
     Private WithEvents btnActualizarCoste As System.Windows.Forms.Button
     Private WithEvents gpCAusante As System.Windows.Forms.GroupBox
     Private WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
-    Friend WithEvents rbEmpleado As System.Windows.Forms.RadioButton
-    Friend WithEvents rbProveedor As System.Windows.Forms.RadioButton
-    Friend WithEvents rbCliente As System.Windows.Forms.RadioButton
+    Private WithEvents rbEmpleado As System.Windows.Forms.RadioButton
+    Private WithEvents rbProveedor As System.Windows.Forms.RadioButton
+    Private WithEvents rbCliente As System.Windows.Forms.RadioButton
 End Class

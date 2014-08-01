@@ -28,7 +28,8 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[GastosIncidenciasInsert]
-      @Cantidad decimal
+	@Id_controlIncidencia int
+      ,@Cantidad decimal
      ,@Id_concepto int
      ,@Id_costeConcepto int
      ,@Id_proveedor int
@@ -43,7 +44,8 @@ SET NOCOUNT ON
 
 INSERT INTO [dbo].[GastosIncidencias]
      (
-      Cantidad
+	 Id_controlIncidencia
+     ,Cantidad
      ,Id_concepto
      ,Id_costeConcepto
      ,Id_proveedor
@@ -54,7 +56,8 @@ INSERT INTO [dbo].[GastosIncidencias]
      )
 VALUES
      (
-      @Cantidad
+	 @Id_controlIncidencia
+     ,@Cantidad
      ,@Id_concepto
      ,@Id_costeConcepto
      ,@Id_proveedor
@@ -86,6 +89,7 @@ SELECT
      ,Id_proveedor
      ,Id_empleado
      ,Id_cliente
+	 ,Id_controlIncidencia
 FROM
      [dbo].[GastosIncidencias]
 WHERE
@@ -114,7 +118,7 @@ FROM
      [dbo].[GastosIncidencias]
      INNER JOIN [dbo].[ConceptosGastosIncidencias] ON [dbo].[GastosIncidencias].[Id_concepto] = [dbo].[ConceptosGastosIncidencias].[Id]
      INNER JOIN [dbo].[CostesPorConcepto] ON [dbo].[GastosIncidencias].[Id_costeConcepto] = [dbo].[CostesPorConcepto].[Id]
-     left JOIN [dbo].[Proveedores] ON [dbo].[GastosIncidencias].[Id_proveedor] = [dbo].[Proveedores].[ProveedorID]
+     INNER JOIN [dbo].[Proveedores] ON [dbo].[GastosIncidencias].[Id_proveedor] = [dbo].[Proveedores].[ProveedorID]
 
 union
 
@@ -128,7 +132,7 @@ FROM
      [dbo].[GastosIncidencias]
      INNER JOIN [dbo].[ConceptosGastosIncidencias] ON [dbo].[GastosIncidencias].[Id_concepto] = [dbo].[ConceptosGastosIncidencias].[Id]
      INNER JOIN [dbo].[CostesPorConcepto] ON [dbo].[GastosIncidencias].[Id_costeConcepto] = [dbo].[CostesPorConcepto].[Id]
-     left JOIN [dbo].[Empleados] ON [dbo].[GastosIncidencias].[Id_empleado] = [dbo].[Empleados].[Id]
+     INNER JOIN [dbo].[Empleados] ON [dbo].[GastosIncidencias].[Id_empleado] = [dbo].[Empleados].[Id]
 
 union
 
@@ -142,7 +146,7 @@ FROM
      [dbo].[GastosIncidencias]
      INNER JOIN [dbo].[ConceptosGastosIncidencias] ON [dbo].[GastosIncidencias].[Id_concepto] = [dbo].[ConceptosGastosIncidencias].[Id]
      INNER JOIN [dbo].[CostesPorConcepto] ON [dbo].[GastosIncidencias].[Id_costeConcepto] = [dbo].[CostesPorConcepto].[Id]
-     left JOIN [dbo].[Clientes] ON [dbo].[GastosIncidencias].[Id_cliente] = [dbo].[Clientes].[ClienteID]
+     INNER JOIN [dbo].[Clientes] ON [dbo].[GastosIncidencias].[Id_cliente] = [dbo].[Clientes].[ClienteID]
 End
 
 GO
@@ -167,7 +171,7 @@ FROM
      [dbo].[GastosIncidencias]
      INNER JOIN [dbo].[ConceptosGastosIncidencias] ON [dbo].[GastosIncidencias].[Id_concepto] = [dbo].[ConceptosGastosIncidencias].[Id]
      INNER JOIN [dbo].[CostesPorConcepto] ON [dbo].[GastosIncidencias].[Id_costeConcepto] = [dbo].[CostesPorConcepto].[Id]
-     left JOIN [dbo].[Proveedores] ON [dbo].[GastosIncidencias].[Id_proveedor] = [dbo].[Proveedores].[ProveedorID]
+     INNER JOIN [dbo].[Proveedores] ON [dbo].[GastosIncidencias].[Id_proveedor] = [dbo].[Proveedores].[ProveedorID]
 WHERE
      [dbo].[GastosIncidencias].[Id_controlIncidencia] = @Id_controlIncidencia
 
@@ -183,7 +187,7 @@ FROM
      [dbo].[GastosIncidencias]
      INNER JOIN [dbo].[ConceptosGastosIncidencias] ON [dbo].[GastosIncidencias].[Id_concepto] = [dbo].[ConceptosGastosIncidencias].[Id]
      INNER JOIN [dbo].[CostesPorConcepto] ON [dbo].[GastosIncidencias].[Id_costeConcepto] = [dbo].[CostesPorConcepto].[Id]
-     left JOIN [dbo].[Empleados] ON [dbo].[GastosIncidencias].[Id_empleado] = [dbo].[Empleados].[Id]
+     INNER JOIN [dbo].[Empleados] ON [dbo].[GastosIncidencias].[Id_empleado] = [dbo].[Empleados].[Id]
 WHERE
      [dbo].[GastosIncidencias].[Id_controlIncidencia] = @Id_controlIncidencia
 
@@ -199,7 +203,7 @@ FROM
      [dbo].[GastosIncidencias]
      INNER JOIN [dbo].[ConceptosGastosIncidencias] ON [dbo].[GastosIncidencias].[Id_concepto] = [dbo].[ConceptosGastosIncidencias].[Id]
      INNER JOIN [dbo].[CostesPorConcepto] ON [dbo].[GastosIncidencias].[Id_costeConcepto] = [dbo].[CostesPorConcepto].[Id]
-     left JOIN [dbo].[Clientes] ON [dbo].[GastosIncidencias].[Id_cliente] = [dbo].[Clientes].[ClienteID]
+     INNER JOIN [dbo].[Clientes] ON [dbo].[GastosIncidencias].[Id_cliente] = [dbo].[Clientes].[ClienteID]
 WHERE
      [dbo].[GastosIncidencias].[Id_controlIncidencia] = @Id_controlIncidencia
 

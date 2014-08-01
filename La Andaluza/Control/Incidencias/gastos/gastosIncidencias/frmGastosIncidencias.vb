@@ -14,6 +14,7 @@ Public Class frmGastosIncidencias
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
         MyBase.newRegForm = CType(New frmEntGastosIncidencias(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR), BasesParaCompatibilidad.DetailedSimpleForm)
+        dboGastosIncidencias = New DBO_GastosIncidencias
         dboGastosIncidencias.Id_controlIncidencia = m_MaestroID
         newRegForm.SetDataBussinesObject(CType(Me.dboGastosIncidencias, BasesParaCompatibilidad.databussines))
     End Sub
