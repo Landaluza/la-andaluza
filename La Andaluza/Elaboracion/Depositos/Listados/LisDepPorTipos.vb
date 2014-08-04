@@ -113,8 +113,11 @@ Public Class LisDepPorTipos
             Dim BanderaBotas As Boolean = True
             Dim acidez As Double = 0
             Dim alcohol As Double = 0
+            Dim contRegistros As Integer
 
             If Tab.Rows.Count > 0 Then
+                contRegistros = 0
+
                 While i < Tab.Rows.Count 'Id
                     If Not Convert.IsDBNull(Tab.Rows(i).Item("TipoProductoID")) And Not Convert.ToBoolean(TabTipPro.Rows(ContadorProductos).Item("Enologico")) Then
                         If Convert.ToInt32(Tab.Rows(i).Item("TipoProductoID")) = Convert.ToInt32(TabTipPro.Rows(ContadorProductos).Item("Id")) Then
@@ -222,13 +225,14 @@ Public Class LisDepPorTipos
                         End If ' If Tab.Rows(i).Item("TipoLoteID") = 10 Then 'TipoLote = botas
                     End If
                     i += 1
+                    contRegistros += 1
                 End While
 
                 'Define footer
                 valor = rt.Rows.Item(Fila)
                 rt.Cells(Fila, 4).Text = Format(TotalCantidad, "#,##")
-                rt.Cells(Fila, 5).Text = Format(acidez, "0.#0") ' Format(GradosAcidez / TotalCantidad, "0,##")
-                rt.Cells(Fila, 6).Text = Format(alcohol, "0.#0") 'Format(GradosAlcohol / TotalCantidad, "0,##")
+                rt.Cells(Fila, 5).Text = Format(GradosAcidez / TotalCantidad, "0.#0") ' Format(acidez / contRegistros, "0.#0") ' Format(GradosAcidez / TotalCantidad, "0,##")
+                rt.Cells(Fila, 6).Text = Format(GradosAlcohol / TotalCantidad, "0.#0") 'Format(alcohol / contRegistros, "0.#0") 'Format(GradosAlcohol / TotalCantidad, "0,##")
                 rt.Cells(Fila, 7).Text = Format(GradosAcidez, "#,##")
                 rt.Cells(Fila, 8).Text = Format(GradosAlcohol, "#,##")
                 rt.Cells(Fila, 4).Style.TextAlignHorz = C1.C1Preview.AlignHorzEnum.Right
