@@ -145,7 +145,7 @@
     </Reference>
     <Reference Include="Incidencias entre fechas, Version=14.7.25.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\pruebas generador\La Andaluza\Bases\ZLibrerias\Incidencias entre fechas.dll</HintPath>
+      <HintPath>Bases\ZLibrerias\Incidencias entre fechas.dll</HintPath>
     </Reference>
     <Reference Include="InformeContratosEmpleados, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
