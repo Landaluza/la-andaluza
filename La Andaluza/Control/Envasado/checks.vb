@@ -7,6 +7,7 @@
     Private InformesCalidad As InformesCalidad.frmjuegos
     Private frmIncidenciasEntreFehcas As Incidencias_entre_fechas.frmIncidenciasEntreFehcas
     Private frmResumenOEE As OEE.frmOee
+    Private frmEnvasadosEntreFechas As Envasados_entre_fechas.frmEnvasadosEntreFehcas
     Private frmEspera As BasesParaCompatibilidad.frmEspera
     Public Sub New()
 
@@ -62,12 +63,31 @@
     End Sub
 
     Private Sub tsResumenOEE_Click(sender As Object, e As EventArgs) Handles tsResumenOEE.Click
-        frmEspera = New BasesParaCompatibilidad.frmEspera("Genrando informe, espere unos segundos")
+        frmEspera = New BasesParaCompatibilidad.frmEspera("Generando informe, espere unos segundos")
 
         Try
             frmResumenOEE = New OEE.frmOee(BasesParaCompatibilidad.Config.connectionString)
             frmResumenOEE.Text = "Resumen OEE"
             GUImain.añadirPestaña(frmResumenOEE)
+        Catch ex As Exception
+            MessageBox.Show("Error generando informe. Detalles: " & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            frmEspera.Close()
+        End Try
+    End Sub
+
+    Private Sub tssOEEEnvasadosEntreFechas_Click(sender As Object, e As EventArgs) Handles tssOEEEnvasadosEntreFechas.Click
+        frmSeleccionDosFechas = New frmSeleccionDosFechas
+        frmEspera = New BasesParaCompatibilidad.frmEspera("Generando informe, espere unos segundos")
+
+        Try
+            frmSeleccionDosFechas.ShowDialog()
+            If frmSeleccionDosFechas.DialogResult = Windows.Forms.DialogResult.OK Then
+                frmEspera.Show()
+                frmEnvasadosEntreFechas = New Envasados_entre_fechas.frmEnvasadosEntreFehcas(BasesParaCompatibilidad.Config.connectionString, frmSeleccionDosFechas.FechaHoraInicioSeleccionada, frmSeleccionDosFechas.FechaHoraFinSeleccionada)
+                frmEnvasadosEntreFechas.Text = "Envasados entre fechas"
+                GUImain.añadirPestaña(frmEnvasadosEntreFechas)
+            End If
         Catch ex As Exception
             MessageBox.Show("Error generando informe. Detalles: " & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally

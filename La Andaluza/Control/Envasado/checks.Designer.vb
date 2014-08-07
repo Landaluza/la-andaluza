@@ -30,6 +30,8 @@ Partial Class checks
         Me.tsOEE = New System.Windows.Forms.ToolStripButton()
         Me.tsEntreFechas = New System.Windows.Forms.ToolStripButton()
         Me.tsResumenOEE = New System.Windows.Forms.ToolStripButton()
+        Me.tssOEEEnvasadosEntreFechas = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
         Me.TabControl1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -85,7 +87,7 @@ Partial Class checks
         Me.ToolStrip1.AutoSize = False
         Me.ToolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsOEE, Me.tsEntreFechas, Me.tsResumenOEE})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1, Me.tsOEE, Me.tsResumenOEE, Me.tsEntreFechas, Me.tssOEEEnvasadosEntreFechas})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 505)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(691, 56)
@@ -99,23 +101,39 @@ Partial Class checks
         Me.tsOEE.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsOEE.Name = "tsOEE"
         Me.tsOEE.Size = New System.Drawing.Size(104, 66)
-        Me.tsOEE.Text = "Calculo OEE"
+        Me.tsOEE.Text = "Calculo"
         '
         'tsEntreFechas
         '
         Me.tsEntreFechas.Image = Global.La_Andaluza.My.Resources.Resources.appointmentmissed16
         Me.tsEntreFechas.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsEntreFechas.Name = "tsEntreFechas"
-        Me.tsEntreFechas.Size = New System.Drawing.Size(91, 53)
-        Me.tsEntreFechas.Text = "Entre fechas"
+        Me.tsEntreFechas.Size = New System.Drawing.Size(153, 53)
+        Me.tsEntreFechas.Text = "Incidencias entre fechas"
         '
         'tsResumenOEE
         '
         Me.tsResumenOEE.Image = Global.La_Andaluza.My.Resources.Resources.document_open_recent
         Me.tsResumenOEE.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsResumenOEE.Name = "tsResumenOEE"
-        Me.tsResumenOEE.Size = New System.Drawing.Size(100, 53)
-        Me.tsResumenOEE.Text = "Resumen OEE"
+        Me.tsResumenOEE.Size = New System.Drawing.Size(76, 53)
+        Me.tsResumenOEE.Text = "Resumen"
+        '
+        'tssOEEEnvasadosEntreFechas
+        '
+        Me.tssOEEEnvasadosEntreFechas.Image = Global.La_Andaluza.My.Resources.Resources.ark_4
+        Me.tssOEEEnvasadosEntreFechas.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tssOEEEnvasadosEntreFechas.Name = "tssOEEEnvasadosEntreFechas"
+        Me.tssOEEEnvasadosEntreFechas.Size = New System.Drawing.Size(149, 53)
+        Me.tssOEEEnvasadosEntreFechas.Text = "Envasados entre fechas"
+        '
+        'ToolStripLabel1
+        '
+        Me.ToolStripLabel1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.ToolStripLabel1.Margin = New System.Windows.Forms.Padding(0, 1, 15, 2)
+        Me.ToolStripLabel1.Name = "ToolStripLabel1"
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(28, 53)
+        Me.ToolStripLabel1.Text = "OEE"
         '
         'checks
         '
@@ -141,4 +159,6 @@ Partial Class checks
     Private WithEvents tsOEE As System.Windows.Forms.ToolStripButton
     Private WithEvents tsEntreFechas As System.Windows.Forms.ToolStripButton
     Private WithEvents tsResumenOEE As System.Windows.Forms.ToolStripButton
+    Private WithEvents ToolStripLabel1 As System.Windows.Forms.ToolStripLabel
+    Private WithEvents tssOEEEnvasadosEntreFechas As System.Windows.Forms.ToolStripButton
 End Class
