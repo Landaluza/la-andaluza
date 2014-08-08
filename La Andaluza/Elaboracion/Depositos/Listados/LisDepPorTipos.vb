@@ -1,6 +1,5 @@
 ﻿Imports C1.C1Preview
 
-
 Public Class LisDepPorTipos
     Private doc As C1PrintDocument
     Private ExisteProducto As Boolean
