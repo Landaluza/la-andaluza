@@ -646,4 +646,74 @@ Public Class MenuDispatcher
         Dim frm As New InformeResumenVinagre.SelectorFecha(BasesParaCompatibilidad.Config.connectionString)
         frm.ShowDialog()
     End Sub
+
+    Private Sub ResumenDiarioToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ResumenDiarioToolStripMenuItem.Click, ToolStripMenuItem9.Click, ToolStripMenuItem26.Click
+        Dim frmfecha As New frmSeleccionFecha
+        Dim frmEspera As New BasesParaCompatibilidad.frmEspera("Genrando informe, espere unos segundos")
+
+        Try
+            frmfecha.ShowDialog()
+            If frmfecha.DialogResult = Windows.Forms.DialogResult.OK Then
+                frmEspera.Show()
+                Dim InformesCalidad As New InformesCalidad.frmjuegos(BasesParaCompatibilidad.Config.connectionString, frmfecha.FechaHoraSeleccionada)
+                GUImain.añadirPestaña(InformesCalidad) 'frm.Show()
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error generando informe. Detalles: " & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            frmEspera.Close()
+        End Try
+    End Sub
+
+    Private Sub ResumenEntreFechasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ResumenEntreFechasToolStripMenuItem.Click, ToolStripMenuItem27.Click, ToolStripMenuItem10.Click
+        Dim frmSeleccionDosFechas As New frmSeleccionDosFechas
+        Dim frmEspera As New BasesParaCompatibilidad.frmEspera("Generando informe, espere unos segundos")
+
+        Try
+            frmSeleccionDosFechas.ShowDialog()
+            If frmSeleccionDosFechas.DialogResult = Windows.Forms.DialogResult.OK Then
+                frmEspera.Show()
+                Dim frmEnvasadosEntreFechas As New Envasados_entre_fechas.frmEnvasadosEntreFehcas(BasesParaCompatibilidad.Config.connectionString, frmSeleccionDosFechas.FechaHoraInicioSeleccionada, frmSeleccionDosFechas.FechaHoraFinSeleccionada)
+                frmEnvasadosEntreFechas.Text = "Envasados entre fechas"
+                GUImain.añadirPestaña(frmEnvasadosEntreFechas)
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error generando informe. Detalles: " & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            frmEspera.Close()
+        End Try
+    End Sub
+
+    Private Sub ResumenIncidenciasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ResumenIncidenciasToolStripMenuItem.Click, ToolStripMenuItem28.Click, ToolStripMenuItem17.Click
+        Dim frmSeleccionDosFechas As New frmSeleccionDosFechas
+        Dim frmEspera As New BasesParaCompatibilidad.frmEspera("Genrando informe, espere unos segundos")
+
+        Try
+            frmSeleccionDosFechas.ShowDialog()
+            If frmSeleccionDosFechas.DialogResult = Windows.Forms.DialogResult.OK Then
+                frmEspera.Show()
+                Dim frmIncidenciasEntreFehcas As New Incidencias_entre_fechas.frmIncidenciasEntreFehcas(BasesParaCompatibilidad.Config.connectionString, frmSeleccionDosFechas.FechaHoraInicioSeleccionada, frmSeleccionDosFechas.FechaHoraFinSeleccionada)
+                frmIncidenciasEntreFehcas.Text = "Incidencias entre fechas"
+                GUImain.añadirPestaña(frmIncidenciasEntreFehcas)
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error generando informe. Detalles: " & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            frmEspera.Close()
+        End Try
+    End Sub
+
+    Private Sub REsumenIvanToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles REsumenIvanToolStripMenuItem.Click, ToolStripMenuItem29.Click, ToolStripMenuItem23.Click
+        Dim frmEspera As New BasesParaCompatibilidad.frmEspera("Generando informe, espere unos segundos")
+
+        Try
+            Dim frmResumenOEE As New OEE.frmOee(BasesParaCompatibilidad.Config.connectionString)
+            frmResumenOEE.Text = "Resumen OEE"
+            GUImain.añadirPestaña(frmResumenOEE)
+        Catch ex As Exception
+            MessageBox.Show("Error generando informe. Detalles: " & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            frmEspera.Close()
+        End Try
+    End Sub
 End Class

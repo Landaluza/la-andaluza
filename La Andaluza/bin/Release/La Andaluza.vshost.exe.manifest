@@ -117,7 +117,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ju5eKWyVVLVJnL+3xpXa8OBn1m6F3i+wA3I7NcrKwaY=</dsig:DigestValue>
+        <dsig:DigestValue>6vGG9M6agaFStIf7FaRRjwrjB2433ep6hrtw27rRcd8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -170,14 +170,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Envasados entre fechas.dll" size="179712">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Envasados entre fechas.dll" size="180224">
       <assemblyIdentity name="Envasados entre fechas" version="14.7.25.1" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>cZ+X5v0NcnWONXyitEIpLFFIogsIZqQXRcpQVC6AnQo=</dsig:DigestValue>
+        <dsig:DigestValue>rBL6cGIpccdEwEVzmQi89ZPcwRZuOum4WcXoiOhFehQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -309,7 +309,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>BPmZnFvPOpIjHIcA1hFfhq/3vprVm2+2SZ4kLevOw1A=</dsig:DigestValue>
+        <dsig:DigestValue>6abQs1Guztps24c1doo1/r3U0DnHf0wmGtCAIkbdp78=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

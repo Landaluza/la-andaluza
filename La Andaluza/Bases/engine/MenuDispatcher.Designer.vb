@@ -48,6 +48,7 @@ Partial Class MenuDispatcher
         Me.PlanesGeneralesHigieneToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VinagreJerezToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.InformeEnterFechasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.InformeResumenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmCalidad = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmEspecificacionesBBDD = New System.Windows.Forms.ToolStripMenuItem()
         Me.LegislacionProductosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -221,6 +222,7 @@ Partial Class MenuDispatcher
         Me.ToolStripMenuItem719 = New System.Windows.Forms.ToolStripMenuItem()
         Me.VinagresJerezToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.InformeEntreFechasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.InformeResumenToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem720 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem721 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem722 = New System.Windows.Forms.ToolStripMenuItem()
@@ -407,6 +409,7 @@ Partial Class MenuDispatcher
         Me.ToolStripMenuItem1061 = New System.Windows.Forms.ToolStripMenuItem()
         Me.VinagresJerezToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.InformeEntreFechasToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.InformeResumenToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1070 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1071 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1100 = New System.Windows.Forms.ToolStripMenuItem()
@@ -440,9 +443,24 @@ Partial Class MenuDispatcher
         Me.ToolStripMenuItem18 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem19 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem20 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.InformeResumenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.InformeResumenToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.InformeResumenToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ControlToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OEEToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ResumenDiarioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ResumenEntreFechasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ResumenIncidenciasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.REsumenIvanToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem7 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem8 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem9 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem10 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem17 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem23 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem24 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem25 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem26 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem27 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem28 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem29 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MSAdministrador.SuspendLayout()
         Me.MSEnvasado.SuspendLayout()
         Me.MSElaboracion.SuspendLayout()
@@ -458,12 +476,12 @@ Partial Class MenuDispatcher
         Me.MSAdministrador.BackColor = System.Drawing.SystemColors.Control
         Me.MSAdministrador.GripMargin = New System.Windows.Forms.Padding(2)
         Me.MSAdministrador.ImageScalingSize = New System.Drawing.Size(22, 22)
-        Me.MSAdministrador.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmGerencia, Me.tsmAdministracion, Me.tsmSgi, Me.tsmCalidad, Me.tsmLaboratorio, Me.tsmMantenimiento, Me.tsmBodega, Me.tsmCompras, Me.ComercialToolStripMenuItem, Me.tsmEnvasados, Me.tsmAlmacen, Me.ExpedicionesToolStripMenuItem, Me.tsmCambiarSesionBBDD})
+        Me.MSAdministrador.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmGerencia, Me.tsmAdministracion, Me.tsmSgi, Me.tsmCalidad, Me.tsmLaboratorio, Me.ControlToolStripMenuItem, Me.tsmMantenimiento, Me.tsmBodega, Me.tsmCompras, Me.ComercialToolStripMenuItem, Me.tsmEnvasados, Me.tsmAlmacen, Me.ExpedicionesToolStripMenuItem, Me.tsmCambiarSesionBBDD})
         Me.MSAdministrador.Location = New System.Drawing.Point(0, 0)
         Me.MSAdministrador.MinimumSize = New System.Drawing.Size(1092, 25)
         Me.MSAdministrador.Name = "MSAdministrador"
         Me.MSAdministrador.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
-        Me.MSAdministrador.Size = New System.Drawing.Size(1100, 25)
+        Me.MSAdministrador.Size = New System.Drawing.Size(1279, 25)
         Me.MSAdministrador.TabIndex = 15
         '
         'tsmGerencia
@@ -640,7 +658,7 @@ Partial Class MenuDispatcher
         Me.tsmSeguridadLaboralBBDD.Name = "tsmSeguridadLaboralBBDD"
         Me.tsmSeguridadLaboralBBDD.ShortcutKeyDisplayString = "Ctrl+Z"
         Me.tsmSeguridadLaboralBBDD.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Z), System.Windows.Forms.Keys)
-        Me.tsmSeguridadLaboralBBDD.Size = New System.Drawing.Size(250, 28)
+        Me.tsmSeguridadLaboralBBDD.Size = New System.Drawing.Size(244, 22)
         Me.tsmSeguridadLaboralBBDD.Text = "&Seguridad Laboral"
         '
         'PlanesGeneralesHigieneToolStripMenuItem
@@ -648,22 +666,28 @@ Partial Class MenuDispatcher
         Me.PlanesGeneralesHigieneToolStripMenuItem.Name = "PlanesGeneralesHigieneToolStripMenuItem"
         Me.PlanesGeneralesHigieneToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl+X"
         Me.PlanesGeneralesHigieneToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.X), System.Windows.Forms.Keys)
-        Me.PlanesGeneralesHigieneToolStripMenuItem.Size = New System.Drawing.Size(250, 28)
+        Me.PlanesGeneralesHigieneToolStripMenuItem.Size = New System.Drawing.Size(244, 22)
         Me.PlanesGeneralesHigieneToolStripMenuItem.Text = "&Planes generales higiene"
         '
         'VinagreJerezToolStripMenuItem
         '
         Me.VinagreJerezToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.InformeEnterFechasToolStripMenuItem, Me.InformeResumenToolStripMenuItem})
         Me.VinagreJerezToolStripMenuItem.Name = "VinagreJerezToolStripMenuItem"
-        Me.VinagreJerezToolStripMenuItem.Size = New System.Drawing.Size(250, 28)
+        Me.VinagreJerezToolStripMenuItem.Size = New System.Drawing.Size(244, 22)
         Me.VinagreJerezToolStripMenuItem.Text = "Vinagres Jerez"
         '
         'InformeEnterFechasToolStripMenuItem
         '
         Me.InformeEnterFechasToolStripMenuItem.Image = Global.La_Andaluza.My.Resources.Resources.document_16
         Me.InformeEnterFechasToolStripMenuItem.Name = "InformeEnterFechasToolStripMenuItem"
-        Me.InformeEnterFechasToolStripMenuItem.Size = New System.Drawing.Size(189, 28)
+        Me.InformeEnterFechasToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
         Me.InformeEnterFechasToolStripMenuItem.Text = "Informe entre fechas"
+        '
+        'InformeResumenToolStripMenuItem
+        '
+        Me.InformeResumenToolStripMenuItem.Name = "InformeResumenToolStripMenuItem"
+        Me.InformeResumenToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
+        Me.InformeResumenToolStripMenuItem.Text = "Informe resumen"
         '
         'tsmCalidad
         '
@@ -1280,7 +1304,7 @@ Partial Class MenuDispatcher
         Me.MSEnvasado.MinimumSize = New System.Drawing.Size(1092, 25)
         Me.MSEnvasado.Name = "MSEnvasado"
         Me.MSEnvasado.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
-        Me.MSEnvasado.Size = New System.Drawing.Size(1100, 25)
+        Me.MSEnvasado.Size = New System.Drawing.Size(1279, 25)
         Me.MSEnvasado.TabIndex = 16
         '
         'tsmEnvasadosEnvasado
@@ -1370,7 +1394,7 @@ Partial Class MenuDispatcher
         Me.MSElaboracion.MinimumSize = New System.Drawing.Size(1092, 25)
         Me.MSElaboracion.Name = "MSElaboracion"
         Me.MSElaboracion.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
-        Me.MSElaboracion.Size = New System.Drawing.Size(1100, 25)
+        Me.MSElaboracion.Size = New System.Drawing.Size(1279, 25)
         Me.MSElaboracion.TabIndex = 17
         '
         'ToolStripMenuItem230
@@ -1473,7 +1497,7 @@ Partial Class MenuDispatcher
         Me.MSAlmacen.MinimumSize = New System.Drawing.Size(1092, 25)
         Me.MSAlmacen.Name = "MSAlmacen"
         Me.MSAlmacen.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
-        Me.MSAlmacen.Size = New System.Drawing.Size(1100, 25)
+        Me.MSAlmacen.Size = New System.Drawing.Size(1279, 25)
         Me.MSAlmacen.TabIndex = 18
         '
         'ToolStripMenuItem416
@@ -1798,7 +1822,7 @@ Partial Class MenuDispatcher
         Me.MSMantenimiento.MinimumSize = New System.Drawing.Size(1092, 25)
         Me.MSMantenimiento.Name = "MSMantenimiento"
         Me.MSMantenimiento.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
-        Me.MSMantenimiento.Size = New System.Drawing.Size(1100, 25)
+        Me.MSMantenimiento.Size = New System.Drawing.Size(1279, 25)
         Me.MSMantenimiento.TabIndex = 19
         '
         'ToolStripMenuItem524
@@ -1940,12 +1964,12 @@ Partial Class MenuDispatcher
         Me.MSCalidad.BackColor = System.Drawing.SystemColors.Control
         Me.MSCalidad.GripMargin = New System.Windows.Forms.Padding(2)
         Me.MSCalidad.ImageScalingSize = New System.Drawing.Size(22, 22)
-        Me.MSCalidad.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem11, Me.ToolStripMenuItem695, Me.ToolStripMenuItem717, Me.ToolStripMenuItem720, Me.ToolStripMenuItem728, Me.ToolStripMenuItem741, Me.ToolStripMenuItem743, Me.ToolStripMenuItem758, Me.ToolStripMenuItem776, Me.ToolStripMenuItem786, Me.ToolStripMenuItem805, Me.ToolStripMenuItem829, Me.ToolStripMenuItem839})
+        Me.MSCalidad.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem11, Me.ToolStripMenuItem695, Me.ToolStripMenuItem717, Me.ToolStripMenuItem720, Me.ToolStripMenuItem728, Me.ToolStripMenuItem7, Me.ToolStripMenuItem741, Me.ToolStripMenuItem743, Me.ToolStripMenuItem758, Me.ToolStripMenuItem776, Me.ToolStripMenuItem786, Me.ToolStripMenuItem805, Me.ToolStripMenuItem829, Me.ToolStripMenuItem839})
         Me.MSCalidad.Location = New System.Drawing.Point(0, 125)
         Me.MSCalidad.MinimumSize = New System.Drawing.Size(1092, 25)
         Me.MSCalidad.Name = "MSCalidad"
         Me.MSCalidad.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
-        Me.MSCalidad.Size = New System.Drawing.Size(1100, 25)
+        Me.MSCalidad.Size = New System.Drawing.Size(1279, 25)
         Me.MSCalidad.TabIndex = 20
         '
         'ToolStripMenuItem11
@@ -2086,7 +2110,7 @@ Partial Class MenuDispatcher
         '
         Me.VinagresJerezToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.InformeEntreFechasToolStripMenuItem, Me.InformeResumenToolStripMenuItem1})
         Me.VinagresJerezToolStripMenuItem.Name = "VinagresJerezToolStripMenuItem"
-        Me.VinagresJerezToolStripMenuItem.Size = New System.Drawing.Size(250, 28)
+        Me.VinagresJerezToolStripMenuItem.Size = New System.Drawing.Size(244, 22)
         Me.VinagresJerezToolStripMenuItem.Text = "Vinagres Jerez"
         '
         'InformeEntreFechasToolStripMenuItem
@@ -2095,6 +2119,12 @@ Partial Class MenuDispatcher
         Me.InformeEntreFechasToolStripMenuItem.Name = "InformeEntreFechasToolStripMenuItem"
         Me.InformeEntreFechasToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
         Me.InformeEntreFechasToolStripMenuItem.Text = "Informe entre fechas"
+        '
+        'InformeResumenToolStripMenuItem1
+        '
+        Me.InformeResumenToolStripMenuItem1.Name = "InformeResumenToolStripMenuItem1"
+        Me.InformeResumenToolStripMenuItem1.Size = New System.Drawing.Size(183, 22)
+        Me.InformeResumenToolStripMenuItem1.Text = "Informe resumen"
         '
         'ToolStripMenuItem720
         '
@@ -2750,12 +2780,12 @@ Partial Class MenuDispatcher
         Me.MSControl.BackColor = System.Drawing.SystemColors.Control
         Me.MSControl.GripMargin = New System.Windows.Forms.Padding(2)
         Me.MSControl.ImageScalingSize = New System.Drawing.Size(22, 22)
-        Me.MSControl.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem857, Me.ToolStripMenuItem891, Me.ToolStripMenuItem899, Me.ToolStripMenuItem914, Me.ToolStripMenuItem957, Me.ToolStripMenuItem16, Me.ÇToolStripMenuItem, Me.ToolStripMenuItem866, Me.ToolStripMenuItem947, Me.ToolStripMenuItem929, Me.ToolStripMenuItem1000, Me.ToolStripMenuItem1010})
+        Me.MSControl.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem857, Me.ToolStripMenuItem891, Me.ToolStripMenuItem899, Me.ToolStripMenuItem24, Me.ToolStripMenuItem914, Me.ToolStripMenuItem957, Me.ToolStripMenuItem16, Me.ÇToolStripMenuItem, Me.ToolStripMenuItem866, Me.ToolStripMenuItem947, Me.ToolStripMenuItem929, Me.ToolStripMenuItem1000, Me.ToolStripMenuItem1010})
         Me.MSControl.Location = New System.Drawing.Point(0, 150)
         Me.MSControl.MinimumSize = New System.Drawing.Size(1092, 25)
         Me.MSControl.Name = "MSControl"
         Me.MSControl.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
-        Me.MSControl.Size = New System.Drawing.Size(1100, 25)
+        Me.MSControl.Size = New System.Drawing.Size(1279, 25)
         Me.MSControl.TabIndex = 21
         '
         'ToolStripMenuItem857
@@ -2831,7 +2861,7 @@ Partial Class MenuDispatcher
         Me.ToolStripMenuItem900.Name = "ToolStripMenuItem900"
         Me.ToolStripMenuItem900.ShortcutKeyDisplayString = "Ctrl+1"
         Me.ToolStripMenuItem900.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D1), System.Windows.Forms.Keys)
-        Me.ToolStripMenuItem900.Size = New System.Drawing.Size(254, 22)
+        Me.ToolStripMenuItem900.Size = New System.Drawing.Size(260, 28)
         Me.ToolStripMenuItem900.Text = "&Lotes"
         '
         'ToolStripMenuItem901
@@ -2839,7 +2869,7 @@ Partial Class MenuDispatcher
         Me.ToolStripMenuItem901.Name = "ToolStripMenuItem901"
         Me.ToolStripMenuItem901.ShortcutKeyDisplayString = "Ctrl+2"
         Me.ToolStripMenuItem901.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D2), System.Windows.Forms.Keys)
-        Me.ToolStripMenuItem901.Size = New System.Drawing.Size(254, 22)
+        Me.ToolStripMenuItem901.Size = New System.Drawing.Size(260, 28)
         Me.ToolStripMenuItem901.Text = "&Parametros"
         '
         'ToolStripMenuItem902
@@ -2848,7 +2878,7 @@ Partial Class MenuDispatcher
         Me.ToolStripMenuItem902.ShortcutKeyDisplayString = "Ctrl+Shift+2"
         Me.ToolStripMenuItem902.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
             Or System.Windows.Forms.Keys.D2), System.Windows.Forms.Keys)
-        Me.ToolStripMenuItem902.Size = New System.Drawing.Size(254, 22)
+        Me.ToolStripMenuItem902.Size = New System.Drawing.Size(260, 28)
         Me.ToolStripMenuItem902.Text = "Tipos de p&arametros"
         '
         'ToolStripMenuItem903
@@ -2856,7 +2886,7 @@ Partial Class MenuDispatcher
         Me.ToolStripMenuItem903.Name = "ToolStripMenuItem903"
         Me.ToolStripMenuItem903.ShortcutKeyDisplayString = "Ctrl+3"
         Me.ToolStripMenuItem903.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D3), System.Windows.Forms.Keys)
-        Me.ToolStripMenuItem903.Size = New System.Drawing.Size(254, 22)
+        Me.ToolStripMenuItem903.Size = New System.Drawing.Size(260, 28)
         Me.ToolStripMenuItem903.Text = "&Unidades de Medidas"
         '
         'ToolStripMenuItem904
@@ -2864,7 +2894,7 @@ Partial Class MenuDispatcher
         Me.ToolStripMenuItem904.Name = "ToolStripMenuItem904"
         Me.ToolStripMenuItem904.ShortcutKeyDisplayString = "Ctrl+4"
         Me.ToolStripMenuItem904.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D4), System.Windows.Forms.Keys)
-        Me.ToolStripMenuItem904.Size = New System.Drawing.Size(254, 22)
+        Me.ToolStripMenuItem904.Size = New System.Drawing.Size(260, 28)
         Me.ToolStripMenuItem904.Text = "&Tipos de lotes"
         '
         'ToolStripMenuItem905
@@ -2872,7 +2902,7 @@ Partial Class MenuDispatcher
         Me.ToolStripMenuItem905.Name = "ToolStripMenuItem905"
         Me.ToolStripMenuItem905.ShortcutKeyDisplayString = "Ctrl+5"
         Me.ToolStripMenuItem905.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D5), System.Windows.Forms.Keys)
-        Me.ToolStripMenuItem905.Size = New System.Drawing.Size(254, 22)
+        Me.ToolStripMenuItem905.Size = New System.Drawing.Size(260, 28)
         Me.ToolStripMenuItem905.Text = "Tipos de &productos"
         '
         'ToolStripMenuItem906
@@ -2881,7 +2911,7 @@ Partial Class MenuDispatcher
         Me.ToolStripMenuItem906.Name = "ToolStripMenuItem906"
         Me.ToolStripMenuItem906.ShortcutKeyDisplayString = "Ctrl+6"
         Me.ToolStripMenuItem906.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D6), System.Windows.Forms.Keys)
-        Me.ToolStripMenuItem906.Size = New System.Drawing.Size(254, 22)
+        Me.ToolStripMenuItem906.Size = New System.Drawing.Size(260, 28)
         Me.ToolStripMenuItem906.Text = "&Medidas de productos"
         '
         'ToolStripMenuItem907
@@ -2890,7 +2920,7 @@ Partial Class MenuDispatcher
         Me.ToolStripMenuItem907.Name = "ToolStripMenuItem907"
         Me.ToolStripMenuItem907.ShortcutKeyDisplayString = "Ctrl+7"
         Me.ToolStripMenuItem907.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D7), System.Windows.Forms.Keys)
-        Me.ToolStripMenuItem907.Size = New System.Drawing.Size(254, 22)
+        Me.ToolStripMenuItem907.Size = New System.Drawing.Size(260, 28)
         Me.ToolStripMenuItem907.Text = "Muestras -> &cantidades"
         '
         'ToolStripMenuItem908
@@ -2898,7 +2928,7 @@ Partial Class MenuDispatcher
         Me.ToolStripMenuItem908.Name = "ToolStripMenuItem908"
         Me.ToolStripMenuItem908.ShortcutKeyDisplayString = "Ctrl+8"
         Me.ToolStripMenuItem908.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D8), System.Windows.Forms.Keys)
-        Me.ToolStripMenuItem908.Size = New System.Drawing.Size(254, 22)
+        Me.ToolStripMenuItem908.Size = New System.Drawing.Size(260, 28)
         Me.ToolStripMenuItem908.Text = "Muestras -> me&didas"
         '
         'ToolStripMenuItem909
@@ -2907,7 +2937,7 @@ Partial Class MenuDispatcher
         Me.ToolStripMenuItem909.Name = "ToolStripMenuItem909"
         Me.ToolStripMenuItem909.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
             Or System.Windows.Forms.Keys.D3), System.Windows.Forms.Keys)
-        Me.ToolStripMenuItem909.Size = New System.Drawing.Size(254, 22)
+        Me.ToolStripMenuItem909.Size = New System.Drawing.Size(260, 28)
         Me.ToolStripMenuItem909.Text = "&Boletines"
         '
         'ToolStripMenuItem910
@@ -2915,13 +2945,13 @@ Partial Class MenuDispatcher
         Me.ToolStripMenuItem910.Name = "ToolStripMenuItem910"
         Me.ToolStripMenuItem910.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
             Or System.Windows.Forms.Keys.D4), System.Windows.Forms.Keys)
-        Me.ToolStripMenuItem910.Size = New System.Drawing.Size(254, 22)
+        Me.ToolStripMenuItem910.Size = New System.Drawing.Size(260, 28)
         Me.ToolStripMenuItem910.Text = "Emp&resas"
         '
         'ToolStripMenuItem911
         '
         Me.ToolStripMenuItem911.Name = "ToolStripMenuItem911"
-        Me.ToolStripMenuItem911.Size = New System.Drawing.Size(254, 22)
+        Me.ToolStripMenuItem911.Size = New System.Drawing.Size(260, 28)
         Me.ToolStripMenuItem911.Text = "Mantenimiento boletines"
         '
         'ToolStripMenuItem914
@@ -2935,7 +2965,7 @@ Partial Class MenuDispatcher
         '
         Me.ToolStripMenuItem915.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem916, Me.ToolStripMenuItem917, Me.ToolStripMenuItem919})
         Me.ToolStripMenuItem915.Name = "ToolStripMenuItem915"
-        Me.ToolStripMenuItem915.Size = New System.Drawing.Size(239, 22)
+        Me.ToolStripMenuItem915.Size = New System.Drawing.Size(245, 28)
         Me.ToolStripMenuItem915.Text = "&Depositos"
         '
         'ToolStripMenuItem916
@@ -2984,7 +3014,7 @@ Partial Class MenuDispatcher
         Me.ToolStripMenuItem928.Name = "ToolStripMenuItem928"
         Me.ToolStripMenuItem928.ShortcutKeyDisplayString = "Ctrl+0"
         Me.ToolStripMenuItem928.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D0), System.Windows.Forms.Keys)
-        Me.ToolStripMenuItem928.Size = New System.Drawing.Size(239, 22)
+        Me.ToolStripMenuItem928.Size = New System.Drawing.Size(245, 28)
         Me.ToolStripMenuItem928.Text = "&Recipientes para Salidas"
         '
         'ToolStripMenuItem957
@@ -3499,7 +3529,7 @@ Partial Class MenuDispatcher
         Me.MSAdministracion.MinimumSize = New System.Drawing.Size(1092, 25)
         Me.MSAdministracion.Name = "MSAdministracion"
         Me.MSAdministracion.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
-        Me.MSAdministracion.Size = New System.Drawing.Size(1100, 25)
+        Me.MSAdministracion.Size = New System.Drawing.Size(1279, 25)
         Me.MSAdministracion.TabIndex = 22
         '
         'ToolStripMenuItem1037
@@ -3583,7 +3613,7 @@ Partial Class MenuDispatcher
         '
         Me.VinagresJerezToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.InformeEntreFechasToolStripMenuItem1, Me.InformeResumenToolStripMenuItem2})
         Me.VinagresJerezToolStripMenuItem1.Name = "VinagresJerezToolStripMenuItem1"
-        Me.VinagresJerezToolStripMenuItem1.Size = New System.Drawing.Size(250, 28)
+        Me.VinagresJerezToolStripMenuItem1.Size = New System.Drawing.Size(244, 22)
         Me.VinagresJerezToolStripMenuItem1.Text = "Vinagres Jerez"
         '
         'InformeEntreFechasToolStripMenuItem1
@@ -3592,6 +3622,12 @@ Partial Class MenuDispatcher
         Me.InformeEntreFechasToolStripMenuItem1.Name = "InformeEntreFechasToolStripMenuItem1"
         Me.InformeEntreFechasToolStripMenuItem1.Size = New System.Drawing.Size(183, 22)
         Me.InformeEntreFechasToolStripMenuItem1.Text = "Informe entre fechas"
+        '
+        'InformeResumenToolStripMenuItem2
+        '
+        Me.InformeResumenToolStripMenuItem2.Name = "InformeResumenToolStripMenuItem2"
+        Me.InformeResumenToolStripMenuItem2.Size = New System.Drawing.Size(183, 22)
+        Me.InformeResumenToolStripMenuItem2.Text = "Informe resumen"
         '
         'ToolStripMenuItem1070
         '
@@ -3865,29 +3901,125 @@ Partial Class MenuDispatcher
         Me.ToolStripMenuItem20.Size = New System.Drawing.Size(280, 22)
         Me.ToolStripMenuItem20.Text = "Existencias por tipo vinagre"
         '
-        'InformeResumenToolStripMenuItem
+        'ControlToolStripMenuItem
         '
-        Me.InformeResumenToolStripMenuItem.Name = "InformeResumenToolStripMenuItem"
-        Me.InformeResumenToolStripMenuItem.Size = New System.Drawing.Size(189, 28)
-        Me.InformeResumenToolStripMenuItem.Text = "Informe resumen"
+        Me.ControlToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OEEToolStripMenuItem})
+        Me.ControlToolStripMenuItem.Name = "ControlToolStripMenuItem"
+        Me.ControlToolStripMenuItem.Size = New System.Drawing.Size(59, 21)
+        Me.ControlToolStripMenuItem.Text = "Control"
         '
-        'InformeResumenToolStripMenuItem1
+        'OEEToolStripMenuItem
         '
-        Me.InformeResumenToolStripMenuItem1.Name = "InformeResumenToolStripMenuItem1"
-        Me.InformeResumenToolStripMenuItem1.Size = New System.Drawing.Size(189, 28)
-        Me.InformeResumenToolStripMenuItem1.Text = "Informe resumen"
+        Me.OEEToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ResumenDiarioToolStripMenuItem, Me.ResumenEntreFechasToolStripMenuItem, Me.ResumenIncidenciasToolStripMenuItem, Me.REsumenIvanToolStripMenuItem})
+        Me.OEEToolStripMenuItem.Name = "OEEToolStripMenuItem"
+        Me.OEEToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.OEEToolStripMenuItem.Text = "OEE"
         '
-        'InformeResumenToolStripMenuItem2
+        'ResumenDiarioToolStripMenuItem
         '
-        Me.InformeResumenToolStripMenuItem2.Name = "InformeResumenToolStripMenuItem2"
-        Me.InformeResumenToolStripMenuItem2.Size = New System.Drawing.Size(189, 28)
-        Me.InformeResumenToolStripMenuItem2.Text = "Informe resumen"
+        Me.ResumenDiarioToolStripMenuItem.Name = "ResumenDiarioToolStripMenuItem"
+        Me.ResumenDiarioToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.ResumenDiarioToolStripMenuItem.Text = "Resumen diario"
+        '
+        'ResumenEntreFechasToolStripMenuItem
+        '
+        Me.ResumenEntreFechasToolStripMenuItem.Name = "ResumenEntreFechasToolStripMenuItem"
+        Me.ResumenEntreFechasToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.ResumenEntreFechasToolStripMenuItem.Text = "Resumen entre fechas"
+        '
+        'ResumenIncidenciasToolStripMenuItem
+        '
+        Me.ResumenIncidenciasToolStripMenuItem.Name = "ResumenIncidenciasToolStripMenuItem"
+        Me.ResumenIncidenciasToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.ResumenIncidenciasToolStripMenuItem.Text = "Resumen incidencias"
+        '
+        'REsumenIvanToolStripMenuItem
+        '
+        Me.REsumenIvanToolStripMenuItem.Name = "REsumenIvanToolStripMenuItem"
+        Me.REsumenIvanToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.REsumenIvanToolStripMenuItem.Text = "Resumen ivan"
+        '
+        'ToolStripMenuItem7
+        '
+        Me.ToolStripMenuItem7.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem8})
+        Me.ToolStripMenuItem7.Name = "ToolStripMenuItem7"
+        Me.ToolStripMenuItem7.Size = New System.Drawing.Size(59, 21)
+        Me.ToolStripMenuItem7.Text = "Control"
+        '
+        'ToolStripMenuItem8
+        '
+        Me.ToolStripMenuItem8.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem9, Me.ToolStripMenuItem10, Me.ToolStripMenuItem17, Me.ToolStripMenuItem23})
+        Me.ToolStripMenuItem8.Name = "ToolStripMenuItem8"
+        Me.ToolStripMenuItem8.Size = New System.Drawing.Size(152, 22)
+        Me.ToolStripMenuItem8.Text = "OEE"
+        '
+        'ToolStripMenuItem9
+        '
+        Me.ToolStripMenuItem9.Name = "ToolStripMenuItem9"
+        Me.ToolStripMenuItem9.Size = New System.Drawing.Size(190, 22)
+        Me.ToolStripMenuItem9.Text = "Resumen diario"
+        '
+        'ToolStripMenuItem10
+        '
+        Me.ToolStripMenuItem10.Name = "ToolStripMenuItem10"
+        Me.ToolStripMenuItem10.Size = New System.Drawing.Size(190, 22)
+        Me.ToolStripMenuItem10.Text = "Resumen entre fechas"
+        '
+        'ToolStripMenuItem17
+        '
+        Me.ToolStripMenuItem17.Name = "ToolStripMenuItem17"
+        Me.ToolStripMenuItem17.Size = New System.Drawing.Size(190, 22)
+        Me.ToolStripMenuItem17.Text = "Resumen incidencias"
+        '
+        'ToolStripMenuItem23
+        '
+        Me.ToolStripMenuItem23.Name = "ToolStripMenuItem23"
+        Me.ToolStripMenuItem23.Size = New System.Drawing.Size(190, 22)
+        Me.ToolStripMenuItem23.Text = "Resumen ivan"
+        '
+        'ToolStripMenuItem24
+        '
+        Me.ToolStripMenuItem24.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem25})
+        Me.ToolStripMenuItem24.Name = "ToolStripMenuItem24"
+        Me.ToolStripMenuItem24.Size = New System.Drawing.Size(59, 21)
+        Me.ToolStripMenuItem24.Text = "Control"
+        '
+        'ToolStripMenuItem25
+        '
+        Me.ToolStripMenuItem25.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem26, Me.ToolStripMenuItem27, Me.ToolStripMenuItem28, Me.ToolStripMenuItem29})
+        Me.ToolStripMenuItem25.Name = "ToolStripMenuItem25"
+        Me.ToolStripMenuItem25.Size = New System.Drawing.Size(152, 22)
+        Me.ToolStripMenuItem25.Text = "OEE"
+        '
+        'ToolStripMenuItem26
+        '
+        Me.ToolStripMenuItem26.Name = "ToolStripMenuItem26"
+        Me.ToolStripMenuItem26.Size = New System.Drawing.Size(190, 22)
+        Me.ToolStripMenuItem26.Text = "Resumen diario"
+        '
+        'ToolStripMenuItem27
+        '
+        Me.ToolStripMenuItem27.Name = "ToolStripMenuItem27"
+        Me.ToolStripMenuItem27.Size = New System.Drawing.Size(190, 22)
+        Me.ToolStripMenuItem27.Text = "Resumen entre fechas"
+        '
+        'ToolStripMenuItem28
+        '
+        Me.ToolStripMenuItem28.Name = "ToolStripMenuItem28"
+        Me.ToolStripMenuItem28.Size = New System.Drawing.Size(190, 22)
+        Me.ToolStripMenuItem28.Text = "Resumen incidencias"
+        '
+        'ToolStripMenuItem29
+        '
+        Me.ToolStripMenuItem29.Name = "ToolStripMenuItem29"
+        Me.ToolStripMenuItem29.Size = New System.Drawing.Size(190, 22)
+        Me.ToolStripMenuItem29.Text = "Resumen ivan"
         '
         'MenuDispatcher
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1100, 503)
+        Me.ClientSize = New System.Drawing.Size(1279, 503)
         Me.Controls.Add(Me.MSAdministracion)
         Me.Controls.Add(Me.MSControl)
         Me.Controls.Add(Me.MSCalidad)
@@ -4340,4 +4472,22 @@ End Sub
     Friend WithEvents InformeResumenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents InformeResumenToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents InformeResumenToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem24 As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents ToolStripMenuItem7 As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents ToolStripMenuItem8 As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents ToolStripMenuItem9 As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents ToolStripMenuItem10 As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents ToolStripMenuItem17 As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents ToolStripMenuItem23 As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents ToolStripMenuItem25 As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents ToolStripMenuItem26 As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents ToolStripMenuItem27 As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents ToolStripMenuItem28 As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents ToolStripMenuItem29 As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents ControlToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents OEEToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents ResumenDiarioToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents ResumenEntreFechasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents ResumenIncidenciasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents REsumenIvanToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class
