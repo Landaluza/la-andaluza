@@ -545,8 +545,8 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.txtAlbaranCargaMaestroID.ParametroID = 0
         Me.txtAlbaranCargaMaestroID.Size = New System.Drawing.Size(57, 20)
         Me.txtAlbaranCargaMaestroID.TabIndex = 1000000001
-        Me.txtAlbaranCargaMaestroID.ValorMaximo = 0.0!
-        Me.txtAlbaranCargaMaestroID.ValorMinimo = 0.0!
+        Me.txtAlbaranCargaMaestroID.ValorMaximo = 0.0R
+        Me.txtAlbaranCargaMaestroID.ValorMinimo = 0.0R
         '
         'txtMaestroID
         '
@@ -566,8 +566,8 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.txtMaestroID.ParametroID = 0
         Me.txtMaestroID.Size = New System.Drawing.Size(57, 20)
         Me.txtMaestroID.TabIndex = 1000000003
-        Me.txtMaestroID.ValorMaximo = 0.0!
-        Me.txtMaestroID.ValorMinimo = 0.0!
+        Me.txtMaestroID.ValorMaximo = 0.0R
+        Me.txtMaestroID.ValorMinimo = 0.0R
         '
         'FechaDateTimePicker
         '
@@ -596,8 +596,8 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.ClienteIDCuadroDeTexto.ParametroID = 0
         Me.ClienteIDCuadroDeTexto.Size = New System.Drawing.Size(87, 20)
         Me.ClienteIDCuadroDeTexto.TabIndex = 1
-        Me.ClienteIDCuadroDeTexto.ValorMaximo = 0.0!
-        Me.ClienteIDCuadroDeTexto.ValorMinimo = 0.0!
+        Me.ClienteIDCuadroDeTexto.ValorMaximo = 0.0R
+        Me.ClienteIDCuadroDeTexto.ValorMinimo = 0.0R
         '
         'SerieQSIDCuadroDeTexto
         '
@@ -617,8 +617,8 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.SerieQSIDCuadroDeTexto.ParametroID = 0
         Me.SerieQSIDCuadroDeTexto.Size = New System.Drawing.Size(87, 20)
         Me.SerieQSIDCuadroDeTexto.TabIndex = 1000000009
-        Me.SerieQSIDCuadroDeTexto.ValorMaximo = 0.0!
-        Me.SerieQSIDCuadroDeTexto.ValorMinimo = 0.0!
+        Me.SerieQSIDCuadroDeTexto.ValorMaximo = 0.0R
+        Me.SerieQSIDCuadroDeTexto.ValorMinimo = 0.0R
         '
         'NumeroQSCuadroDeTexto
         '
@@ -638,8 +638,8 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.NumeroQSCuadroDeTexto.ParametroID = 0
         Me.NumeroQSCuadroDeTexto.Size = New System.Drawing.Size(87, 20)
         Me.NumeroQSCuadroDeTexto.TabIndex = 1000000011
-        Me.NumeroQSCuadroDeTexto.ValorMaximo = 0.0!
-        Me.NumeroQSCuadroDeTexto.ValorMinimo = 0.0!
+        Me.NumeroQSCuadroDeTexto.ValorMaximo = 0.0R
+        Me.NumeroQSCuadroDeTexto.ValorMinimo = 0.0R
         '
         'AlmacenSalidaQSIDCuadroDeTexto
         '
@@ -659,8 +659,8 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.AlmacenSalidaQSIDCuadroDeTexto.ParametroID = 0
         Me.AlmacenSalidaQSIDCuadroDeTexto.Size = New System.Drawing.Size(87, 20)
         Me.AlmacenSalidaQSIDCuadroDeTexto.TabIndex = 1000000013
-        Me.AlmacenSalidaQSIDCuadroDeTexto.ValorMaximo = 0.0!
-        Me.AlmacenSalidaQSIDCuadroDeTexto.ValorMinimo = 0.0!
+        Me.AlmacenSalidaQSIDCuadroDeTexto.ValorMaximo = 0.0R
+        Me.AlmacenSalidaQSIDCuadroDeTexto.ValorMinimo = 0.0R
         '
         'AgenciaIDCuadroDeTexto
         '
@@ -680,8 +680,8 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.AgenciaIDCuadroDeTexto.ParametroID = 0
         Me.AgenciaIDCuadroDeTexto.Size = New System.Drawing.Size(87, 20)
         Me.AgenciaIDCuadroDeTexto.TabIndex = 1000000015
-        Me.AgenciaIDCuadroDeTexto.ValorMaximo = 0.0!
-        Me.AgenciaIDCuadroDeTexto.ValorMinimo = 0.0!
+        Me.AgenciaIDCuadroDeTexto.ValorMaximo = 0.0R
+        Me.AgenciaIDCuadroDeTexto.ValorMinimo = 0.0R
         '
         'PorteFormaPagoIDCuadroDeTexto
         '
@@ -701,8 +701,8 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.PorteFormaPagoIDCuadroDeTexto.ParametroID = 0
         Me.PorteFormaPagoIDCuadroDeTexto.Size = New System.Drawing.Size(87, 20)
         Me.PorteFormaPagoIDCuadroDeTexto.TabIndex = 1000000017
-        Me.PorteFormaPagoIDCuadroDeTexto.ValorMaximo = 0.0!
-        Me.PorteFormaPagoIDCuadroDeTexto.ValorMinimo = 0.0!
+        Me.PorteFormaPagoIDCuadroDeTexto.ValorMaximo = 0.0R
+        Me.PorteFormaPagoIDCuadroDeTexto.ValorMinimo = 0.0R
         '
         'PorteImporteCuadroDeTexto
         '
@@ -722,8 +722,8 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.PorteImporteCuadroDeTexto.ParametroID = 0
         Me.PorteImporteCuadroDeTexto.Size = New System.Drawing.Size(87, 20)
         Me.PorteImporteCuadroDeTexto.TabIndex = 1000000019
-        Me.PorteImporteCuadroDeTexto.ValorMaximo = 0.0!
-        Me.PorteImporteCuadroDeTexto.ValorMinimo = 0.0!
+        Me.PorteImporteCuadroDeTexto.ValorMaximo = 0.0R
+        Me.PorteImporteCuadroDeTexto.ValorMinimo = 0.0R
         '
         'MatriculaCuadroDeTexto
         '
@@ -742,8 +742,8 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.MatriculaCuadroDeTexto.ParametroID = 0
         Me.MatriculaCuadroDeTexto.Size = New System.Drawing.Size(92, 20)
         Me.MatriculaCuadroDeTexto.TabIndex = 1000000021
-        Me.MatriculaCuadroDeTexto.ValorMaximo = 0.0!
-        Me.MatriculaCuadroDeTexto.ValorMinimo = 0.0!
+        Me.MatriculaCuadroDeTexto.ValorMaximo = 0.0R
+        Me.MatriculaCuadroDeTexto.ValorMinimo = 0.0R
         '
         'ConductorCuadroDeTexto
         '
@@ -763,8 +763,8 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.ConductorCuadroDeTexto.ParametroID = 0
         Me.ConductorCuadroDeTexto.Size = New System.Drawing.Size(291, 20)
         Me.ConductorCuadroDeTexto.TabIndex = 1000000023
-        Me.ConductorCuadroDeTexto.ValorMaximo = 0.0!
-        Me.ConductorCuadroDeTexto.ValorMinimo = 0.0!
+        Me.ConductorCuadroDeTexto.ValorMaximo = 0.0R
+        Me.ConductorCuadroDeTexto.ValorMinimo = 0.0R
         '
         'ConductorDNICuadroDeTexto
         '
@@ -784,8 +784,8 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.ConductorDNICuadroDeTexto.ParametroID = 0
         Me.ConductorDNICuadroDeTexto.Size = New System.Drawing.Size(109, 20)
         Me.ConductorDNICuadroDeTexto.TabIndex = 1000000025
-        Me.ConductorDNICuadroDeTexto.ValorMaximo = 0.0!
-        Me.ConductorDNICuadroDeTexto.ValorMinimo = 0.0!
+        Me.ConductorDNICuadroDeTexto.ValorMaximo = 0.0R
+        Me.ConductorDNICuadroDeTexto.ValorMinimo = 0.0R
         '
         'ResponsableCargaIDCuadroDeTexto
         '
@@ -805,8 +805,8 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.ResponsableCargaIDCuadroDeTexto.ParametroID = 0
         Me.ResponsableCargaIDCuadroDeTexto.Size = New System.Drawing.Size(64, 20)
         Me.ResponsableCargaIDCuadroDeTexto.TabIndex = 1000000027
-        Me.ResponsableCargaIDCuadroDeTexto.ValorMaximo = 0.0!
-        Me.ResponsableCargaIDCuadroDeTexto.ValorMinimo = 0.0!
+        Me.ResponsableCargaIDCuadroDeTexto.ValorMaximo = 0.0R
+        Me.ResponsableCargaIDCuadroDeTexto.ValorMinimo = 0.0R
         '
         'ResponsableAdministracionIDCuadroDeTexto
         '
@@ -826,8 +826,8 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.ResponsableAdministracionIDCuadroDeTexto.ParametroID = 0
         Me.ResponsableAdministracionIDCuadroDeTexto.Size = New System.Drawing.Size(64, 20)
         Me.ResponsableAdministracionIDCuadroDeTexto.TabIndex = 1000000029
-        Me.ResponsableAdministracionIDCuadroDeTexto.ValorMaximo = 0.0!
-        Me.ResponsableAdministracionIDCuadroDeTexto.ValorMinimo = 0.0!
+        Me.ResponsableAdministracionIDCuadroDeTexto.ValorMaximo = 0.0R
+        Me.ResponsableAdministracionIDCuadroDeTexto.ValorMinimo = 0.0R
         '
         'HoraLlegadaDateTimePicker
         '
@@ -867,8 +867,8 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.ObservacionesCuadroDeTexto.ParametroID = 0
         Me.ObservacionesCuadroDeTexto.Size = New System.Drawing.Size(376, 20)
         Me.ObservacionesCuadroDeTexto.TabIndex = 1000000035
-        Me.ObservacionesCuadroDeTexto.ValorMaximo = 0.0!
-        Me.ObservacionesCuadroDeTexto.ValorMinimo = 0.0!
+        Me.ObservacionesCuadroDeTexto.ValorMaximo = 0.0R
+        Me.ObservacionesCuadroDeTexto.ValorMinimo = 0.0R
         '
         'Reserva1CuadroDeTexto
         '
@@ -888,8 +888,8 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.Reserva1CuadroDeTexto.ParametroID = 0
         Me.Reserva1CuadroDeTexto.Size = New System.Drawing.Size(101, 20)
         Me.Reserva1CuadroDeTexto.TabIndex = 1000000037
-        Me.Reserva1CuadroDeTexto.ValorMaximo = 0.0!
-        Me.Reserva1CuadroDeTexto.ValorMinimo = 0.0!
+        Me.Reserva1CuadroDeTexto.ValorMaximo = 0.0R
+        Me.Reserva1CuadroDeTexto.ValorMinimo = 0.0R
         '
         'Reserva2CuadroDeTexto
         '
@@ -909,8 +909,8 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.Reserva2CuadroDeTexto.ParametroID = 0
         Me.Reserva2CuadroDeTexto.Size = New System.Drawing.Size(87, 20)
         Me.Reserva2CuadroDeTexto.TabIndex = 1000000039
-        Me.Reserva2CuadroDeTexto.ValorMaximo = 0.0!
-        Me.Reserva2CuadroDeTexto.ValorMinimo = 0.0!
+        Me.Reserva2CuadroDeTexto.ValorMaximo = 0.0R
+        Me.Reserva2CuadroDeTexto.ValorMinimo = 0.0R
         '
         'Reserva3CuadroDeTexto
         '
@@ -930,8 +930,8 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.Reserva3CuadroDeTexto.ParametroID = 0
         Me.Reserva3CuadroDeTexto.Size = New System.Drawing.Size(136, 20)
         Me.Reserva3CuadroDeTexto.TabIndex = 1000000041
-        Me.Reserva3CuadroDeTexto.ValorMaximo = 0.0!
-        Me.Reserva3CuadroDeTexto.ValorMinimo = 0.0!
+        Me.Reserva3CuadroDeTexto.ValorMaximo = 0.0R
+        Me.Reserva3CuadroDeTexto.ValorMinimo = 0.0R
         '
         'dgvPalet
         '
@@ -1324,8 +1324,8 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.txtPesoBruto.ParametroID = 0
         Me.txtPesoBruto.Size = New System.Drawing.Size(71, 20)
         Me.txtPesoBruto.TabIndex = 1000000052
-        Me.txtPesoBruto.ValorMaximo = 0.0!
-        Me.txtPesoBruto.ValorMinimo = 0.0!
+        Me.txtPesoBruto.ValorMaximo = 0.0R
+        Me.txtPesoBruto.ValorMinimo = 0.0R
         '
         'butAlbaranProvisional
         '
@@ -1353,8 +1353,8 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.txtPesoNeto.ParametroID = 0
         Me.txtPesoNeto.Size = New System.Drawing.Size(71, 20)
         Me.txtPesoNeto.TabIndex = 1000000053
-        Me.txtPesoNeto.ValorMaximo = 0.0!
-        Me.txtPesoNeto.ValorMinimo = 0.0!
+        Me.txtPesoNeto.ValorMaximo = 0.0R
+        Me.txtPesoNeto.ValorMinimo = 0.0R
         '
         'GroupBox2
         '
@@ -1469,8 +1469,8 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.txtRemolque1.ParametroID = 0
         Me.txtRemolque1.Size = New System.Drawing.Size(109, 20)
         Me.txtRemolque1.TabIndex = 1000000035
-        Me.txtRemolque1.ValorMaximo = 0.0!
-        Me.txtRemolque1.ValorMinimo = 0.0!
+        Me.txtRemolque1.ValorMaximo = 0.0R
+        Me.txtRemolque1.ValorMinimo = 0.0R
         '
         'txtCabeza
         '
@@ -1489,8 +1489,8 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.txtCabeza.ParametroID = 0
         Me.txtCabeza.Size = New System.Drawing.Size(109, 20)
         Me.txtCabeza.TabIndex = 1000000021
-        Me.txtCabeza.ValorMaximo = 0.0!
-        Me.txtCabeza.ValorMinimo = 0.0!
+        Me.txtCabeza.ValorMaximo = 0.0R
+        Me.txtCabeza.ValorMinimo = 0.0R
         '
         'CuadroDeTexto2
         '
@@ -1510,8 +1510,8 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.CuadroDeTexto2.ParametroID = 0
         Me.CuadroDeTexto2.Size = New System.Drawing.Size(87, 20)
         Me.CuadroDeTexto2.TabIndex = 1000000019
-        Me.CuadroDeTexto2.ValorMaximo = 0.0!
-        Me.CuadroDeTexto2.ValorMinimo = 0.0!
+        Me.CuadroDeTexto2.ValorMaximo = 0.0R
+        Me.CuadroDeTexto2.ValorMinimo = 0.0R
         '
         'txtConductor
         '
@@ -1531,8 +1531,8 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.txtConductor.ParametroID = 0
         Me.txtConductor.Size = New System.Drawing.Size(291, 20)
         Me.txtConductor.TabIndex = 1000000023
-        Me.txtConductor.ValorMaximo = 0.0!
-        Me.txtConductor.ValorMinimo = 0.0!
+        Me.txtConductor.ValorMaximo = 0.0R
+        Me.txtConductor.ValorMinimo = 0.0R
         '
         'CuadroDeTexto4
         '
@@ -1552,8 +1552,8 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.CuadroDeTexto4.ParametroID = 0
         Me.CuadroDeTexto4.Size = New System.Drawing.Size(87, 20)
         Me.CuadroDeTexto4.TabIndex = 1000000017
-        Me.CuadroDeTexto4.ValorMaximo = 0.0!
-        Me.CuadroDeTexto4.ValorMinimo = 0.0!
+        Me.CuadroDeTexto4.ValorMaximo = 0.0R
+        Me.CuadroDeTexto4.ValorMinimo = 0.0R
         '
         'txtDNI
         '
@@ -1573,8 +1573,8 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.txtDNI.ParametroID = 0
         Me.txtDNI.Size = New System.Drawing.Size(109, 20)
         Me.txtDNI.TabIndex = 1000000025
-        Me.txtDNI.ValorMaximo = 0.0!
-        Me.txtDNI.ValorMinimo = 0.0!
+        Me.txtDNI.ValorMaximo = 0.0R
+        Me.txtDNI.ValorMinimo = 0.0R
         '
         'CuadroDeTexto6
         '
@@ -1594,8 +1594,8 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.CuadroDeTexto6.ParametroID = 0
         Me.CuadroDeTexto6.Size = New System.Drawing.Size(87, 20)
         Me.CuadroDeTexto6.TabIndex = 1000000015
-        Me.CuadroDeTexto6.ValorMaximo = 0.0!
-        Me.CuadroDeTexto6.ValorMinimo = 0.0!
+        Me.CuadroDeTexto6.ValorMaximo = 0.0R
+        Me.CuadroDeTexto6.ValorMinimo = 0.0R
         '
         'DateTimePicker1
         '
@@ -1633,8 +1633,8 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.txtTotalBultos.Size = New System.Drawing.Size(68, 20)
         Me.txtTotalBultos.TabIndex = 1000000054
         Me.txtTotalBultos.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.txtTotalBultos.ValorMaximo = 0.0!
-        Me.txtTotalBultos.ValorMinimo = 0.0!
+        Me.txtTotalBultos.ValorMaximo = 0.0R
+        Me.txtTotalBultos.ValorMinimo = 0.0R
         '
         'Label6
         '
