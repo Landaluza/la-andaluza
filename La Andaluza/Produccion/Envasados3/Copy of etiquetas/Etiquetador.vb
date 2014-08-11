@@ -114,12 +114,12 @@ Public Class Etiquetador
     End Sub
 
     Public Sub printPanel(ByRef panel As Panel)
-        Me.panel = panel
-        'DESACTIVADO HASTA PRUEBAS
-        AddHandler Me.documentoImpresoraEtiquetas.PrintPage, AddressOf PDoc_PrintPage
-        'Aumentarcalidad()
-        Me.documentoImpresoraEtiquetas.Print()
-        RemoveHandler Me.documentoImpresoraEtiquetas.PrintPage, AddressOf PDoc_PrintPage
+        'Me.panel = panel
+        ''DESACTIVADO HASTA PRUEBAS
+        'AddHandler Me.documentoImpresoraEtiquetas.PrintPage, AddressOf PDoc_PrintPage
+        ''Aumentarcalidad()
+        'Me.documentoImpresoraEtiquetas.Print()
+        'RemoveHandler Me.documentoImpresoraEtiquetas.PrintPage, AddressOf PDoc_PrintPage
     End Sub
 
     Private Sub PDoc_PrintPage(sender As Object, e As System.Drawing.Printing.PrintPageEventArgs)
