@@ -9,7 +9,7 @@ Public Class frmDepositosMain
 
     Private frmExistenciasPorDepositoFecha As InformesDepositos.frmExistenciasPorDepositoFecha
     Private LisDepPorTipos As LisDepPorTipos
-    Private LisDepResumen As LisDepResumen
+    'Private LisDepResumen As LisDepResumen
     Public Sub New()
 
         InitializeComponent()
@@ -21,14 +21,16 @@ Public Class frmDepositosMain
         Engine_LA.FormEnPestaña(frmMaterialConstruccion, TabPage2)
     End Sub
 
-    Private Sub btndepositos_Click(sender As Object, e As EventArgs) Handles btndepositos.Click
-        LisDepResumen = New LisDepResumen
-        GUImain.añadirPestaña(LisDepResumen)
-    End Sub
+    'Private Sub btndepositos_Click(sender As Object, e As EventArgs) Handles btndepositos.Click
+    '    LisDepResumen = New LisDepResumen
+    '    GUImain.añadirPestaña(LisDepResumen)
+    'End Sub
 
     Private Sub btnTipos_Click(sender As Object, e As EventArgs) Handles btnTipos.Click
         LisDepPorTipos = New LisDepPorTipos
         GUImain.añadirPestaña(LisDepPorTipos)
+
+
     End Sub
 
     Private Sub btnFechas_Click(sender As Object, e As EventArgs) Handles btnFechas.Click
@@ -44,7 +46,7 @@ Public Class frmDepositosMain
         End Try
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Public Sub listadoDepositos(sender As Object, e As EventArgs) Handles Button1.Click
         Dim report As New Report
         Dim table As TableDataSource
 
@@ -52,6 +54,7 @@ Public Class frmDepositosMain
         Try
             'report.Load("\\192.168.1.200\datos\informatica\La Andaluza app\Depositos.frx")
             report.Load(Config.ListadoDepositos)
+            report.SetParameterValue("MyParameter", BasesParaCompatibilidad.Config.connectionString)
         Catch ex As Exception
             MessageBox.Show("Problema cargando el informe, revise que el archivo se encuentre en el servidor", "Error de archivo", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub

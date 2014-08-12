@@ -1563,7 +1563,6 @@ C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andalu
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEntDepositos.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmResumenDepositos.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.LisDepPorTipos.resources
-C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.LisDepResumen.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmAlturas.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEntAlturas.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEntMaterialConstruccion.resources

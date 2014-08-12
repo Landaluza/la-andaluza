@@ -49,6 +49,8 @@ Public Class frmTiposFormatosLineas_TiposFormatos
                 .FormatoColumna("Velocidad", BasesParaCompatibilidad.TiposColumna.Miles, 90)
                 .FormatoColumna("PersonalRecomendado", "Personal recomendado", BasesParaCompatibilidad.TiposColumna.Miles, 90)
                 .Columns("FormatoLinea").Visible = False
+                .Columns("TipoFormatoID").Visible = False
+                .Columns("Id").Visible = False
 
             End With
         End If

@@ -8,8 +8,7 @@ Public Class MenuDispatcher
     Private frmDepositos As frmDepositos
     Private frmLotesEnologico As frmLotesEnologico
     Private frmMaterialConstruccion As frmMaterialConstruccion
-    Private frmProcesos As frmProcesos
-    Private LisDepResumen As LisDepResumen
+    Private frmProcesos As frmProcesos    
     Private LisDepPorTipos As LisDepPorTipos
     Private frmUnidadesMedidas As frmUnidadesMedidas
     Private frmTiposFormatosLineas As frmTiposFormatosLineas
@@ -178,8 +177,8 @@ Public Class MenuDispatcher
     End Sub
 
     Private Sub ExistenciasPorDepositoToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem920.Click, ToolStripMenuItem749.Click, ToolStripMenuItem236.Click, ToolStripMenuItem19.Click
-        LisDepResumen = New LisDepResumen
-        GUImain.añadirPestaña(LisDepResumen)
+        Dim frm As New frmDepositosMain
+        frm.listadoDepositos(Nothing, Nothing)
     End Sub
 
     Private Sub ExistenciasPorTipoVinagreToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem921.Click, ToolStripMenuItem750.Click, ToolStripMenuItem237.Click, ToolStripMenuItem20.Click

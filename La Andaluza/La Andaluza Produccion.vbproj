@@ -49,7 +49,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>264</ApplicationRevision>
+    <ApplicationRevision>266</ApplicationRevision>
     <ApplicationVersion>2014.7.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -1716,12 +1716,6 @@
       <DependentUpon>LisDepPorTipos.vb</DependentUpon>
     </Compile>
     <Compile Include="Elaboracion\Depositos\Listados\LisDepPorTipos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Elaboracion\Depositos\Listados\LisDepResumen.Designer.vb">
-      <DependentUpon>LisDepResumen.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Elaboracion\Depositos\Listados\LisDepResumen.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Elaboracion\Depositos\new\alturas\DBO_Alturas.vb" />
@@ -5303,9 +5297,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Elaboracion\Depositos\Listados\LisDepPorTipos.resx">
       <DependentUpon>LisDepPorTipos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Elaboracion\Depositos\Listados\LisDepResumen.resx">
-      <DependentUpon>LisDepResumen.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Elaboracion\Depositos\new\alturas\frmAlturas.resx">
       <DependentUpon>frmAlturas.vb</DependentUpon>
