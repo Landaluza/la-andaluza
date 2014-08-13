@@ -85,8 +85,7 @@ Public Class frmEtiqueta0
                 Else
                     If Me.dbo_etiquetasPalet.EAN13 = "" Then
                         'Me.BarCodes1D1.Visible = False
-                        Me.Barcode1.Visible = False
-                        'calcular_codigoBarras2()
+                        Me.Barcode1.Visible = False                        'calcular_codigoBarras2()
                     End If
 
                     If Me.dbo_etiquetasPalet.EAN14 = "" Then
