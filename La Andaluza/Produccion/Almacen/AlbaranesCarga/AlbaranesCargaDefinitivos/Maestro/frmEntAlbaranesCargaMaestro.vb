@@ -25,7 +25,7 @@ Public Class frmEntAlbaranesCargaMaestro
     Private Respuesta As MsgBoxResult
     Private oQS As Object
     Private oMensajesQS As Object
-    Private TiempoEspera As Integer = 10000
+    Private TiempoEspera As Integer = 600
     Private Medida As Integer
     Private Albaran As String
     Public Sub New()
@@ -422,54 +422,120 @@ Public Class frmEntAlbaranesCargaMaestro
 
     Private Function SiExisteTextoTeclea(ByVal Texto As String, ByVal Row As Integer, ByVal Col As Integer, ByVal Teclas As String) As Boolean
         'Dim Len As String = Texto.Length
-        If Not (CBool(oQS.WaitForStringInRect(Texto, Row, Col, Row, (Col + Texto.Length), TiempoEspera))) Then
-            Respuesta = MsgBox(" No encuentro " & Texto & " en la linea " & Row.ToString & Chr(13) & "Verificar el problema." & Chr(13) & "¿Paramos la macro?", _
-                        MsgBoxStyle.DefaultButton2 Or MsgBoxStyle.YesNo, _
-                        " ¿Verificación? ")
+        Dim cont As Integer = 0
+        While Not (CBool(oQS.WaitForStringInRect(Texto, Row, Col, Row, (Col + Texto.Length), TiempoEspera)))
+            'Respuesta = MsgBox(" No encuentro " & Texto & " en la linea " & Row.ToString & Chr(13) & "Verificar el problema." & Chr(13) & "¿Paramos la macro?", _
+            '            MsgBoxStyle.DefaultButton2 Or MsgBoxStyle.YesNo, _
+            '            " ¿Verificación? ")
 
-            If Respuesta = MsgBoxResult.Yes Then
-                Return True
-            Else
-                If (CBool(oMensajesQS.WaitForInputReady(TiempoEspera))) Then
-                    oQS.SendKeys(Teclas)
-                    Return False
+            'If Respuesta = MsgBoxResult.Yes Then
+            '    Return True
+            'Else
+            '    If (CBool(oMensajesQS.WaitForInputReady(TiempoEspera))) Then
+            '        oQS.SendKeys(Teclas)
+            '        Return False
+            '    Else
+            '        Respuesta = MsgBox("Hay un error esperando en QS." & Chr(13) & "Pulsa sobre la ventana de QS y usa la tecla [Control]" & Chr(13) & "¿Paramos la macro?", _
+            '         MsgBoxStyle.DefaultButton2 Or MsgBoxStyle.YesNo, _
+            '         " ¿Verificación? ")
+
+            '        If Respuesta = MsgBoxResult.Yes Then
+            '            Return True
+            '        Else
+            '            If (CBool(oMensajesQS.WaitForInputReady(TiempoEspera))) Then
+            '                oQS.SendKeys(Teclas)
+            '                Return False
+            '            Else
+            '                Respuesta = MsgBox("Sigue existiendo un error esperando en QS." & Chr(13) & "Pulsa sobre la ventana de QS y usa la tecla [Control]" & Chr(13) & "¿Paramos la macro?", _
+            '                            MsgBoxStyle.DefaultButton2 Or MsgBoxStyle.YesNo, _
+            '                           " ¿Verificación? ")
+
+            '                If Respuesta = MsgBoxResult.Yes Then
+            '                    Return True
+            '                Else
+            '                    If (CBool(oMensajesQS.WaitForInputReady(TiempoEspera))) Then
+            '                        oQS.SendKeys(Teclas)
+            '                        Return False
+            '                    Else
+            '                        MsgBox("Sigue existiendo un error esperando en QS." & Chr(13) & "La macro se detiene", MsgBoxStyle.Exclamation)
+            '                        Return True
+            '                    End If
+            '                End If
+            '            End If
+            '        End If
+            '    End If
+            'End If
+            cont += 1
+
+            If cont >= 100 Then
+                Respuesta = MsgBox(" No encuentro " & Texto & " en la linea " & Row.ToString & Chr(13) & "Verificar el problema." & Chr(13) & "¿Paramos la macro?", _
+                            MsgBoxStyle.DefaultButton2 Or MsgBoxStyle.YesNo, _
+                            " ¿Verificación? ")
+
+                If Respuesta = MsgBoxResult.Yes Then
+                    Return True
                 Else
-                    Respuesta = MsgBox("Hay un error esperando en QS." & Chr(13) & "Pulsa sobre la ventana de QS y usa la tecla [Control]" & Chr(13) & "¿Paramos la macro?", _
-                     MsgBoxStyle.DefaultButton2 Or MsgBoxStyle.YesNo, _
-                     " ¿Verificación? ")
-
-                    If Respuesta = MsgBoxResult.Yes Then
-                        Return True
-                    Else
-                        If (CBool(oMensajesQS.WaitForInputReady(TiempoEspera))) Then
-                            oQS.SendKeys(Teclas)
-                            Return False
-                        Else
-                            Respuesta = MsgBox("Sigue existiendo un error esperando en QS." & Chr(13) & "Pulsa sobre la ventana de QS y usa la tecla [Control]" & Chr(13) & "¿Paramos la macro?", _
-                                        MsgBoxStyle.DefaultButton2 Or MsgBoxStyle.YesNo, _
-                                       " ¿Verificación? ")
-
-                            If Respuesta = MsgBoxResult.Yes Then
-                                Return True
-                            Else
-                                If (CBool(oMensajesQS.WaitForInputReady(TiempoEspera))) Then
-                                    oQS.SendKeys(Teclas)
-                                    Return False
-                                Else
-                                    MsgBox("Sigue existiendo un error esperando en QS." & Chr(13) & "La macro se detiene", MsgBoxStyle.Exclamation)
-                                    Return True
-                                End If
-                            End If
-                        End If
-                    End If
+                    cont = 0
                 End If
             End If
-        Else
-            oQS.SendKeys(Teclas)
-            Return False
-        End If
+        End While
+
+        oQS.SendKeys(Teclas)
+        Return False
+        'End If
 
     End Function
+
+    'Private Function SiExisteTextoTeclea(ByVal Texto As String, ByVal Row As Integer, ByVal Col As Integer, ByVal Teclas As String) As Boolean
+    '    'Dim Len As String = Texto.Length
+    '    If Not (CBool(oQS.WaitForStringInRect(Texto, Row, Col, Row, (Col + Texto.Length), TiempoEspera))) Then
+    '        Respuesta = MsgBox(" No encuentro " & Texto & " en la linea " & Row.ToString & Chr(13) & "Verificar el problema." & Chr(13) & "¿Paramos la macro?", _
+    '                    MsgBoxStyle.DefaultButton2 Or MsgBoxStyle.YesNo, _
+    '                    " ¿Verificación? ")
+
+    '        If Respuesta = MsgBoxResult.Yes Then
+    '            Return True
+    '        Else
+    '            If (CBool(oMensajesQS.WaitForInputReady(TiempoEspera))) Then
+    '                oQS.SendKeys(Teclas)
+    '                Return False
+    '            Else
+    '                Respuesta = MsgBox("Hay un error esperando en QS." & Chr(13) & "Pulsa sobre la ventana de QS y usa la tecla [Control]" & Chr(13) & "¿Paramos la macro?", _
+    '                 MsgBoxStyle.DefaultButton2 Or MsgBoxStyle.YesNo, _
+    '                 " ¿Verificación? ")
+
+    '                If Respuesta = MsgBoxResult.Yes Then
+    '                    Return True
+    '                Else
+    '                    If (CBool(oMensajesQS.WaitForInputReady(TiempoEspera))) Then
+    '                        oQS.SendKeys(Teclas)
+    '                        Return False
+    '                    Else
+    '                        Respuesta = MsgBox("Sigue existiendo un error esperando en QS." & Chr(13) & "Pulsa sobre la ventana de QS y usa la tecla [Control]" & Chr(13) & "¿Paramos la macro?", _
+    '                                    MsgBoxStyle.DefaultButton2 Or MsgBoxStyle.YesNo, _
+    '                                   " ¿Verificación? ")
+
+    '                        If Respuesta = MsgBoxResult.Yes Then
+    '                            Return True
+    '                        Else
+    '                            If (CBool(oMensajesQS.WaitForInputReady(TiempoEspera))) Then
+    '                                oQS.SendKeys(Teclas)
+    '                                Return False
+    '                            Else
+    '                                MsgBox("Sigue existiendo un error esperando en QS." & Chr(13) & "La macro se detiene", MsgBoxStyle.Exclamation)
+    '                                Return True
+    '                            End If
+    '                        End If
+    '                    End If
+    '                End If
+    '            End If
+    '        End If
+    '    Else
+    '        oQS.SendKeys(Teclas)
+    '        Return False
+    '    End If
+
+    'End Function
     Private Sub butAlbaranQS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAlbaranQS.Click
         'QS.SalidaJR(dgvTotalPalets, dgvAcumulados)
 
@@ -518,12 +584,12 @@ Public Class frmEntAlbaranesCargaMaestro
                                    MsgBoxStyle.DefaultButton2 Or MsgBoxStyle.YesNo, _
                                    " ¿Verificación ")
 
-            If (CType(oMensajesQS.WaitForInputReady(1000), Boolean)) Then
+            If (CType(oMensajesQS.WaitForInputReady(TiempoEspera), Boolean)) Then
             Else
                 MsgBox("Hay un error esperando en QS." & Chr(13) & "Pulsa sobre la ventana de QS y usa la tecla [Control]", MsgBoxStyle.Information)
             End If
 
-            If (CBool(oMensajesQS.WaitForInputReady(1000))) Then
+            If (CBool(oMensajesQS.WaitForInputReady(TiempoEspera))) Then
             Else
                 MsgBox("Sigue existiendo un error esperando en QS." & Chr(13) & "Pulsa sobre la ventana de QS y usa compruebalo.", MsgBoxStyle.Information)
             End If
@@ -563,7 +629,7 @@ Public Class frmEntAlbaranesCargaMaestro
             My.Computer.Clipboard.Clear()
             Albaran = InputBox("Introduce numero de albaran", "Albaran")
 
-            If (CBool(oMensajesQS.WaitForInputReady(1000))) Then
+            If (CBool(oMensajesQS.WaitForInputReady(TiempoEspera))) Then
                 oQS.SendKeys("[pf3][enter]")
             Else
                 MsgBox("Hay un error esperando en QS." & Chr(13) & "Pulsa sobre la ventana de QS y usa la tecla [Control]", MsgBoxStyle.Information)
@@ -620,12 +686,12 @@ Public Class frmEntAlbaranesCargaMaestro
                                MsgBoxStyle.DefaultButton2 Or MsgBoxStyle.YesNo, _
                                " ¿Verificación ")
 
-            If (CBool(oMensajesQS.WaitForInputReady(1000))) Then
+            If (CBool(oMensajesQS.WaitForInputReady(TiempoEspera))) Then
             Else
                 MsgBox("Hay un error esperando en QS." & Chr(13) & "Pulsa sobre la ventana de QS y usa la tecla [Control]")
             End If
 
-            If (CBool(oMensajesQS.WaitForInputReady(1000))) Then
+            If (CBool(oMensajesQS.WaitForInputReady(TiempoEspera))) Then
             Else
                 MsgBox("Sigue existiendo un error esperando en QS." & Chr(13) & "Pulsa sobre la ventana de QS y usa compruebalo.", MsgBoxStyle.Information)
             End If
@@ -653,7 +719,7 @@ Public Class frmEntAlbaranesCargaMaestro
             If ex.Message = "ECLErr object is unable to load error message number 37130, reason code 0.(Session error)" Then
                 MsgBox("Hay un problema al crear en enlace con QS", MsgBoxStyle.Exclamation)
             Else
-                If (CBool(oMensajesQS.WaitForInputReady(1000))) Then
+                If (CBool(oMensajesQS.WaitForInputReady(TiempoEspera))) Then
                     MsgBox("Hay un error esperando en QS." & Chr(13) & "Pulsa sobre la ventana de QS y usa la tecla [Control]", MsgBoxStyle.Information)
                 Else
                     MsgBox(ex.ToString, MsgBoxStyle.Critical, "Error")
@@ -681,7 +747,7 @@ Public Class frmEntAlbaranesCargaMaestro
 
             My.Computer.Clipboard.Clear()
 
-            If (CBool(oMensajesQS.WaitForInputReady(1000))) Then
+            If (CBool(oMensajesQS.WaitForInputReady(TiempoEspera))) Then
                 oQS.SendKeys("[pf3][enter]")
             Else
                 MsgBox("Hay un error esperando en QS." & Chr(13) & "Pulsa sobre la ventana de QS y usa la tecla [Control]", MsgBoxStyle.Information)
@@ -714,12 +780,12 @@ Public Class frmEntAlbaranesCargaMaestro
                                  MsgBoxStyle.DefaultButton2 Or MsgBoxStyle.YesNo, _
                                  " ¿Verificación ")
 
-            If (CBool(oMensajesQS.WaitForInputReady(1000))) Then
+            If (CBool(oMensajesQS.WaitForInputReady(TiempoEspera))) Then
             Else
                 MsgBox("Hay un error esperando en QS." & Chr(13) & "Pulsa sobre la ventana de QS y usa la tecla [Control]", MsgBoxStyle.Information)
             End If
 
-            If (CBool(oMensajesQS.WaitForInputReady(1000))) Then
+            If (CBool(oMensajesQS.WaitForInputReady(TiempoEspera))) Then
             Else
                 MsgBox("Sigue existiendo un error esperando en QS." & Chr(13) & "Pulsa sobre la ventana de QS y usa compruebalo.", MsgBoxStyle.Information)
             End If
@@ -1125,13 +1191,7 @@ Public Class frmEntAlbaranesCargaMaestro
 
         '''QS.AlbaranJR(txtRemolque1.Text, txtConductor.Text, txtDNI.Text, dgvAcumulados)
 
-        Dim Matricula As String
-        Dim Chofer As String
-        Dim DNI As String
-        Dim Fecha As String
-        Dim PrecioPorte As Double = 400 '352.8
-        Dim PesoBruto As Double
-        Dim PrecioKilo As Double
+        
 
         Try
             oQS = CreateObject("PCOMM.autECLPS")
@@ -1184,77 +1244,89 @@ Public Class frmEntAlbaranesCargaMaestro
                                    MsgBoxStyle.DefaultButton2 Or MsgBoxStyle.YesNo, _
                                    " ¿Verificación ")
 
-            If (CBool(oMensajesQS.WaitForInputReady(1000))) Then
+            If (CBool(oMensajesQS.WaitForInputReady(TiempoEspera))) Then
             Else
                 MsgBox("Hay un error esperando en QS." & Chr(13) & "Pulsa sobre la ventana de QS y usa la tecla [Control]", MsgBoxStyle.Information)
             End If
 
-            If (CBool(oMensajesQS.WaitForInputReady(1000))) Then
+            If (CBool(oMensajesQS.WaitForInputReady(TiempoEspera))) Then
             Else
                 MsgBox("Sigue existiendo un error esperando en QS." & Chr(13) & "Pulsa sobre la ventana de QS y usa compruebalo.", MsgBoxStyle.Information)
             End If
 
-            If Respuesta = MsgBoxResult.Yes Then
-                'Pulsar F20 para grabar:
-                If SiExisteTextoTeclea("Cód.Articulo", 19, 2, "[pf20]") Then Return
-                'Tipo de porte:
-                If SiExisteTextoTeclea("Tipo", 8, 3, "[tab]P[tab]") Then Return
+            Return
 
-                'Envio:Tiene que pedir la compañia que carga - OJO CON EL TAMAÑO DEL HUECO (20 POSICIONES) 
-                If SiExisteTextoTeclea("Envio", 8, 37, "FUENTES E HIJOS[tab]") Then Return
+            'If Respuesta = MsgBoxResult.Yes Then
 
-                'Matricula: Tiene que pedirla - OJO CON EL TAMAÑO DEL HUECO (8 POSICIONES)
-                Matricula = txtRemolque1.Text
-                Matricula = Matricula + Space(8)
-                Matricula = Matricula.ToString.Substring(0, 8)
-                If SiExisteTextoTeclea("Matrícula", 9, 2, Matricula) Then Return
-
-                'Chofer: Tiene que pedirlo - OJO CON EL TAMAÑO DEL HUECO (20 POSICIONES)
-                Chofer = txtConductor.Text
-                Chofer = Chofer + Space(20)
-                Chofer = Chofer.ToString.Substring(0, 20)
-                If SiExisteTextoTeclea("Chofer", 9, 24, Chofer) Then Return
-
-                'DNI: Tiene que pedirlo - OJO CON EL TAMAÑO DEL HUECO (15 POSICIONES)
-                DNI = txtDNI.Text
-                DNI = DNI + Space(15)
-                DNI = DNI.ToString.Substring(0, 15)
-                If SiExisteTextoTeclea("DNI", 9, 55, DNI) Then Return
-
-                'Descarga: Tiene que poner la fecha de hoy
-                Fecha = System.DateTime.Today.ToString
-                If SiExisteTextoTeclea("Descarga", 10, 2, Fecha + "[tab][tab]") Then Return
-
-                'Precio Kilo: OJO SOLO PUEDE CONTENER 5 DoubleES
-                PesoBruto = InputBox("Introduce Peso bruto", "Peso bruto")
-                PrecioKilo = Format(PrecioPorte / PesoBruto, "#0.#0000")
-                If SiExisteTextoTeclea("Precio", 11, 3, PrecioKilo.ToString + "[tab][enter]") Then Return
-                'El precio Kilo es lo que da dividir el precio acordado (352,80) entre el peso neto en QS
+            '    Dim Matricula As String
+            '    Dim Chofer As String
+            '    Dim DNI As String
+            '    Dim Fecha As String
+            '    Dim PrecioPorte As Double = 400 '352.8
+            '    Dim PesoBruto As Double
+            '    Dim PrecioKilo As Double
 
 
-                Dim Respuesta1 As MsgBoxResult
-                Respuesta1 = MsgBox(" ¿Hay que pulsar F23?", _
-                                   MsgBoxStyle.DefaultButton2 Or MsgBoxStyle.YesNo, _
-                                   " ¿F23 ")
-                If Respuesta1 = MsgBoxResult.Yes Then
-                    'Pulsar F23 para continuar
-                    If SiExisteTextoTeclea("Riesgo Concedido", 24, 2, "[pf23]") Then Return
+            '    'Pulsar F20 para grabar:
+            '    If SiExisteTextoTeclea("Cód.Articulo", 19, 2, "[pf20]") Then Return
+            '    'Tipo de porte:
+            '    If SiExisteTextoTeclea("Tipo", 8, 3, "[tab]P[tab]") Then Return
 
-                Else
-                End If
-                'If SiExisteTextoTeclea("Riesgo Concedido", 24, 2, "[pf23]") Then return
+            '    'Envio:Tiene que pedir la compañia que carga - OJO CON EL TAMAÑO DEL HUECO (20 POSICIONES) 
+            '    If SiExisteTextoTeclea("Envio", 8, 37, "FUENTES E HIJOS[tab]") Then Return
 
-                'Pulsar F5 para imprimir
-                If SiExisteTextoTeclea("F5=Imprimir", 23, 2, "[pf5]") Then Return
-                'Volver pantalla principal
-                If SiExisteTextoTeclea("El albarán", 24, 2, "[pf3][pf12][pf12]") Then Return
+            '    'Matricula: Tiene que pedirla - OJO CON EL TAMAÑO DEL HUECO (8 POSICIONES)
+            '    Matricula = txtRemolque1.Text
+            '    Matricula = Matricula + Space(8)
+            '    Matricula = Matricula.ToString.Substring(0, 8)
+            '    If SiExisteTextoTeclea("Matrícula", 9, 2, Matricula) Then Return
+
+            '    'Chofer: Tiene que pedirlo - OJO CON EL TAMAÑO DEL HUECO (20 POSICIONES)
+            '    Chofer = txtConductor.Text
+            '    Chofer = Chofer + Space(20)
+            '    Chofer = Chofer.ToString.Substring(0, 20)
+            '    If SiExisteTextoTeclea("Chofer", 9, 24, Chofer) Then Return
+
+            '    'DNI: Tiene que pedirlo - OJO CON EL TAMAÑO DEL HUECO (15 POSICIONES)
+            '    DNI = txtDNI.Text
+            '    DNI = DNI + Space(15)
+            '    DNI = DNI.ToString.Substring(0, 15)
+            '    If SiExisteTextoTeclea("DNI", 9, 55, DNI) Then Return
+
+            '    'Descarga: Tiene que poner la fecha de hoy
+            '    Fecha = System.DateTime.Today.ToString
+            '    If SiExisteTextoTeclea("Descarga", 10, 2, Fecha + "[tab][tab]") Then Return
+
+            '    'Precio Kilo: OJO SOLO PUEDE CONTENER 5 DoubleES
+            '    PesoBruto = InputBox("Introduce Peso bruto", "Peso bruto")
+            '    PrecioKilo = Format(PrecioPorte / PesoBruto, "#0.#0000")
+            '    If SiExisteTextoTeclea("Precio", 11, 3, PrecioKilo.ToString + "[tab][enter]") Then Return
+            '    'El precio Kilo es lo que da dividir el precio acordado (352,80) entre el peso neto en QS
 
 
-            Else
-                'Volver a la pantalla principal
-                If SiExisteTextoTeclea("Cód.Articulo", 19, 2, "[pf12][enter][pf12][pf12][pf12][pf3][pf12][pf12]") Then Return
+            '    Dim Respuesta1 As MsgBoxResult
+            '    Respuesta1 = MsgBox(" ¿Hay que pulsar F23?", _
+            '                       MsgBoxStyle.DefaultButton2 Or MsgBoxStyle.YesNo, _
+            '                       " ¿F23 ")
+            '    If Respuesta1 = MsgBoxResult.Yes Then
+            '        'Pulsar F23 para continuar
+            '        If SiExisteTextoTeclea("Riesgo Concedido", 24, 2, "[pf23]") Then Return
 
-            End If
+            '    Else
+            '    End If
+            '    'If SiExisteTextoTeclea("Riesgo Concedido", 24, 2, "[pf23]") Then return
+
+            '    'Pulsar F5 para imprimir
+            '    If SiExisteTextoTeclea("F5=Imprimir", 23, 2, "[pf5]") Then Return
+            '    'Volver pantalla principal
+            '    If SiExisteTextoTeclea("El albarán", 24, 2, "[pf3][pf12][pf12]") Then Return
+
+
+            'Else
+            '    'Volver a la pantalla principal
+            '    If SiExisteTextoTeclea("Cód.Articulo", 19, 2, "[pf12][enter][pf12][pf12][pf12][pf3][pf12][pf12]") Then Return
+
+            'End If
 
 
         Catch ex As Exception
@@ -1262,40 +1334,40 @@ Public Class frmEntAlbaranesCargaMaestro
             Return
         End Try
 
-        Dim cabecera As String
-        Dim texto As String
-        Dim detalle As String
-        Dim pie As String
-        Dim pie2 As String
-        Dim tlf As String
-        Dim fecha_recogida As Date = Now.Date.AddDays(1)
-        If fecha_recogida.DayOfWeek = DayOfWeek.Saturday Then fecha_recogida.AddDays(2)
+        'Dim cabecera As String
+        'Dim texto As String
+        'Dim detalle As String
+        'Dim pie As String
+        'Dim pie2 As String
+        'Dim tlf As String
+        'Dim fecha_recogida As Date = Now.Date.AddDays(1)
+        'If fecha_recogida.DayOfWeek = DayOfWeek.Saturday Then fecha_recogida.AddDays(2)
 
-        pie2 = txtDNI.Text
-        pie = txtConductor.Text
+        'pie2 = txtDNI.Text
+        'pie = txtConductor.Text
 
-        Try
-            tlf = dtb.Consultar("select movil from conductores where dni='" & pie2 & "'", False).Rows(0).Item(0).ToString
-        Catch ex As Exception
-            tlf = InputBox("No se pudo recuperar el telefono de contacto del conductor. Introduzcalo manualmente")
-        End Try
-
-
-        detalle = "Mi teléfono de contacto es " & tlf & _
-            Environment.NewLine & Environment.NewLine & _
-            Environment.NewLine & Environment.NewLine & _
-            Environment.NewLine & "Firmado:"
-
-        texto = "Yo, D. " & pie & ", con DNI " & pie2 & " firmo que he sido informado de la obligación de entergar la mercancía hoy recogida en Vinagrería La Andaluza, a las " _
-            & "07:00 del dia " & fecha_recogida.Day & " de " & _
-            fecha_recogida.ToString("MMMM", Globalization.CultureInfo.CreateSpecificCulture("es-ES")) & ", en su lugar de entrega." & Environment.NewLine & _
-            "En caso de no poder cumplir con los horarios previstos ponerse en contacto con Francisco Gallego Vidal o Cesar Monserrate (tl.968830979)"
-
-        cabecera = "En Jerez de la Frontera a " & Now.Date.Day.ToString & " de " & Now.Date.ToString("MMMM", Globalization.CultureInfo.CreateSpecificCulture("es-ES")) & " de " & Now.Date.Year
+        'Try
+        '    tlf = dtb.Consultar("select movil from conductores where dni='" & pie2 & "'", False).Rows(0).Item(0).ToString
+        'Catch ex As Exception
+        '    tlf = InputBox("No se pudo recuperar el telefono de contacto del conductor. Introduzcalo manualmente")
+        'End Try
 
 
-        Dim a As New Carta_de_portes.frmCartaDePortes(cabecera, texto, detalle, pie, pie2)
-        a.ShowDialog()
+        'detalle = "Mi teléfono de contacto es " & tlf & _
+        '    Environment.NewLine & Environment.NewLine & _
+        '    Environment.NewLine & Environment.NewLine & _
+        '    Environment.NewLine & "Firmado:"
+
+        'texto = "Yo, D. " & pie & ", con DNI " & pie2 & " firmo que he sido informado de la obligación de entergar la mercancía hoy recogida en Vinagrería La Andaluza, a las " _
+        '    & "07:00 del dia " & fecha_recogida.Day & " de " & _
+        '    fecha_recogida.ToString("MMMM", Globalization.CultureInfo.CreateSpecificCulture("es-ES")) & ", en su lugar de entrega." & Environment.NewLine & _
+        '    "En caso de no poder cumplir con los horarios previstos ponerse en contacto con Francisco Gallego Vidal o Cesar Monserrate (tl.968830979)"
+
+        'cabecera = "En Jerez de la Frontera a " & Now.Date.Day.ToString & " de " & Now.Date.ToString("MMMM", Globalization.CultureInfo.CreateSpecificCulture("es-ES")) & " de " & Now.Date.Year
+
+
+        'Dim a As New Carta_de_portes.frmCartaDePortes(cabecera, texto, detalle, pie, pie2)
+        'a.ShowDialog()
     End Sub
 
     Private Sub butMercadonaCanarias_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butMercadonaCanarias.Click
@@ -1324,7 +1396,7 @@ Public Class frmEntAlbaranesCargaMaestro
 
             My.Computer.Clipboard.Clear()
 
-            If (CBool(oMensajesQS.WaitForInputReady(1000))) Then
+            If (CBool(oMensajesQS.WaitForInputReady(TiempoEspera))) Then
                 oQS.SendKeys("[pf3][enter]")
             Else
                 MsgBox("Hay un error esperando en QS." & Chr(13) & "Pulsa sobre la ventana de QS y usa la tecla [Control]", MsgBoxStyle.Information)
@@ -1356,12 +1428,12 @@ Public Class frmEntAlbaranesCargaMaestro
                                  MsgBoxStyle.DefaultButton2 Or MsgBoxStyle.YesNo, _
                                  " ¿Verificación ")
 
-            If (CBool(oMensajesQS.WaitForInputReady(1000))) Then
+            If (CBool(oMensajesQS.WaitForInputReady(TiempoEspera))) Then
             Else
                 MsgBox("Hay un error esperando en QS." & Chr(13) & "Pulsa sobre la ventana de QS y usa la tecla [Control]", MsgBoxStyle.Information)
             End If
 
-            If (CBool(oMensajesQS.WaitForInputReady(1000))) Then
+            If (CBool(oMensajesQS.WaitForInputReady(TiempoEspera))) Then
             Else
                 MsgBox("Sigue existiendo un error esperando en QS." & Chr(13) & "Pulsa sobre la ventana de QS y usa compruebalo.", MsgBoxStyle.Information)
             End If
@@ -2021,12 +2093,12 @@ Public Class frmEntAlbaranesCargaMaestro
                                    MsgBoxStyle.DefaultButton2 Or MsgBoxStyle.YesNo, _
                                    " ¿Verificación ")
 
-            If (CBool(oMensajesQS.WaitForInputReady(1000))) Then
+            If (CBool(oMensajesQS.WaitForInputReady(TiempoEspera))) Then
             Else
                 MsgBox("Hay un error esperando en QS." & Chr(13) & "Pulsa sobre la ventana de QS y usa la tecla [Control]", MsgBoxStyle.Information)
             End If
 
-            If (CBool(oMensajesQS.WaitForInputReady(1000))) Then
+            If (CBool(oMensajesQS.WaitForInputReady(TiempoEspera))) Then
             Else
                 MsgBox("Sigue existiendo un error esperando en QS." & Chr(13) & "Pulsa sobre la ventana de QS y usa compruebalo.", MsgBoxStyle.Information)
             End If
@@ -2091,12 +2163,12 @@ Public Class frmEntAlbaranesCargaMaestro
                                  MsgBoxStyle.DefaultButton2 Or MsgBoxStyle.YesNo, _
                                  " ¿Verificación ")
 
-            If (CBool(oMensajesQS.WaitForInputReady(1000))) Then
+            If (CBool(oMensajesQS.WaitForInputReady(TiempoEspera))) Then
             Else
                 MsgBox("Hay un error esperando en QS." & Chr(13) & "Pulsa sobre la ventana de QS y usa la tecla [Control]", MsgBoxStyle.Information)
             End If
 
-            If (CBool(oMensajesQS.WaitForInputReady(1000))) Then
+            If (CBool(oMensajesQS.WaitForInputReady(TiempoEspera))) Then
             Else
                 MsgBox("Sigue existiendo un error esperando en QS." & Chr(13) & "Pulsa sobre la ventana de QS y usa compruebalo.", MsgBoxStyle.Information)
             End If
