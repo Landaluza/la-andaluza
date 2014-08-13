@@ -70,4 +70,27 @@ Public Class frmDepositosMain
         report.Show()
 
     End Sub
+
+    Private Sub btnListDepTipos_Click(sender As Object, e As EventArgs) Handles btnListDepTipos.Click
+        Dim report As New Report
+        Dim table As TableDataSource
+
+        Try
+            'report.Load("\\192.168.1.200\datos\informatica\La Andaluza app\Depositos.frx")
+            report.Load(Config.ListadoDepositosTipos)
+            report.SetParameterValue("MyParameter", BasesParaCompatibilidad.Config.connectionString)
+        Catch ex As Exception
+            MessageBox.Show("Problema cargando el informe, revise que el archivo se encuentre en el servidor", "Error de archivo", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End Try
+
+        Try
+            table = TryCast(report.GetDataSource("tblReport1"), TableDataSource)
+        Catch ex As Exception
+            MessageBox.Show("Problema recuperando los datos para el informe", "Error de consulta a la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End Try
+
+        report.Show()
+    End Sub
 End Class

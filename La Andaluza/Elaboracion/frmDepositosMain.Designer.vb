@@ -23,6 +23,7 @@ Partial Class frmDepositosMain
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.btnListDepTipos = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.btnFechas = New System.Windows.Forms.Button()
@@ -36,6 +37,7 @@ Partial Class frmDepositosMain
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.btnListDepTipos)
         Me.Panel1.Controls.Add(Me.Button1)
         Me.Panel1.Controls.Add(Me.Panel2)
         Me.Panel1.Controls.Add(Me.btnFechas)
@@ -46,6 +48,18 @@ Partial Class frmDepositosMain
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(713, 67)
         Me.Panel1.TabIndex = 0
+        '
+        'btnListDepTipos
+        '
+        Me.btnListDepTipos.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnListDepTipos.Image = Global.La_Andaluza.My.Resources.Resources.emblem_important_2_256
+        Me.btnListDepTipos.Location = New System.Drawing.Point(366, 11)
+        Me.btnListDepTipos.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnListDepTipos.Name = "btnListDepTipos"
+        Me.btnListDepTipos.Size = New System.Drawing.Size(94, 50)
+        Me.btnListDepTipos.TabIndex = 10
+        Me.btnListDepTipos.Text = "Existencias por tipo Nuevo"
+        Me.btnListDepTipos.UseVisualStyleBackColor = True
         '
         'Button1
         '
@@ -152,4 +166,5 @@ Partial Class frmDepositosMain
     Private WithEvents btnTipos As System.Windows.Forms.Button
     Private WithEvents Panel2 As System.Windows.Forms.Panel
     Private WithEvents Button1 As System.Windows.Forms.Button
+    Private WithEvents btnListDepTipos As System.Windows.Forms.Button
 End Class

@@ -22,6 +22,7 @@
     Private Shared ventasPath As String
     Private Shared ventaslocalPath As String
     Private Shared InformeListadoDepositos As String
+    Private Shared InformeListadoDepositosTipos As String
     Private Shared InformeListadoPedidosPendientes As String
     Private Shared ruta_servidor As String
     Private Shared versionApp As String
@@ -37,6 +38,7 @@
         'Config.ventasPath = "Z:\Informatica\La Andaluza app\ExcelFile\Book1.xlsx"
         Config.ventasPath = "ExcelFile\Book1.xlsx"
         Config.InformeListadoDepositos = "Depositos.frx"
+        Config.InformeListadoDepositosTipos = "ListadoDepositosPorTipos.frx"
         Config.InformeListadoPedidosPendientes = "report1.frx"
         Config.MailReportAddress = "administracion@landaluza.es"
         Config.MailClientHost = "smtp.1and1.es"
@@ -77,6 +79,12 @@
         End Get
     End Property
 
+    Public Shared ReadOnly Property ListadoDepositosTipos As String
+        Get
+            Return InformeListadoDepositosTipos
+        End Get
+    End Property
+
     Public Shared ReadOnly Property PedidosPendientes As String
         Get
             Return InformeListadoPedidosPendientes
@@ -97,8 +105,10 @@
             Return retorno
         End If
 
+        Dim tempPath As String
         Dim ruta_servidor_ventas As String = Config.ruta_servidor & Config.ventasPath
         Dim ruta_servidor_depositos As String = Config.ruta_servidor & Config.InformeListadoDepositos
+        Dim ruta_servidor_depositos_tipos As String = Config.ruta_servidor & Config.InformeListadoDepositosTipos
         Dim ruta_servidor_pedidos As String = Config.ruta_servidor & Config.InformeListadoPedidosPendientes
 
         Try
@@ -125,7 +135,7 @@
         End Try
 
         Try
-            Dim tempPath As String = Application.StartupPath & InformeListadoDepositos
+            tempPath = Application.StartupPath & InformeListadoDepositos
 
             If System.IO.File.Exists(ruta_servidor_depositos) Then
 
@@ -148,7 +158,30 @@
         End Try
 
         Try
-            Dim tempPath As String = Application.StartupPath & InformeListadoPedidosPendientes
+            tempPath = Application.StartupPath & InformeListadoDepositosTipos
+
+            If System.IO.File.Exists(ruta_servidor_depositos_tipos) Then
+
+                If System.IO.File.Exists(tempPath) Then
+                    System.IO.File.Delete(tempPath)
+                    System.IO.File.Copy(ruta_servidor_depositos_tipos, tempPath)
+                    Config.InformeListadoDepositosTipos = tempPath
+                Else
+                    System.IO.File.Copy(ruta_servidor_depositos_tipos, tempPath)
+                    Config.InformeListadoDepositosTipos = tempPath
+                End If
+            Else
+                If System.IO.File.Exists(tempPath) Then
+                    Config.InformeListadoDepositosTipos = tempPath
+                End If
+            End If
+        Catch ex As Exception
+            Config.InformeListadoDepositosTipos = ruta_servidor_depositos_tipos
+            retorno = False
+        End Try
+
+        Try
+            tempPath = Application.StartupPath & InformeListadoPedidosPendientes
 
             If System.IO.File.Exists(ruta_servidor_pedidos) Then
 
