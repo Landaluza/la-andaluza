@@ -49,7 +49,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>294</ApplicationRevision>
+    <ApplicationRevision>295</ApplicationRevision>
     <ApplicationVersion>2014.7.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -251,43 +251,69 @@
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosEtiquetas\frmArtEtiquetasInicial.Designer.vb">
-      <DependentUpon>frmArtEtiquetasInicial.vb</DependentUpon>
+    <Compile Include="Administracion\Articulos\ArticulosFichasTecnicas\ArticulosFichasTecnicasEstados\DBO_ArticulosFichasTecnicasEstados.vb" />
+    <Compile Include="Administracion\Articulos\ArticulosFichasTecnicas\ArticulosFichasTecnicasEstados\frmArticulosFichasTecnicasEstados.Designer.vb">
+      <DependentUpon>frmArticulosFichasTecnicasEstados.vb</DependentUpon>
     </Compile>
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosEtiquetas\frmArtEtiquetasInicial.vb">
+    <Compile Include="Administracion\Articulos\ArticulosFichasTecnicas\ArticulosFichasTecnicasEstados\frmArticulosFichasTecnicasEstados.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosFichasTecnicas\frmArticulosFichasTecnicas.Designer.vb">
+    <Compile Include="Administracion\Articulos\ArticulosFichasTecnicas\ArticulosFichasTecnicasEstados\frmEntArticulosFichasTecnicasEstados.Designer.vb">
+      <DependentUpon>frmEntArticulosFichasTecnicasEstados.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Articulos\ArticulosFichasTecnicas\ArticulosFichasTecnicasEstados\frmEntArticulosFichasTecnicasEstados.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracion\Articulos\ArticulosFichasTecnicas\ArticulosFichasTecnicasEstados\spArticulosFichasTecnicasEstados.vb" />
+    <Compile Include="Administracion\Articulos\ArticulosFichasTecnicas\DBO_ArticulosFichasTecnicas.vb" />
+    <Compile Include="Administracion\Articulos\ArticulosFichasTecnicas\frmArticulosFichasTecnicas.Designer.vb">
       <DependentUpon>frmArticulosFichasTecnicas.vb</DependentUpon>
     </Compile>
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosFichasTecnicas\frmArticulosFichasTecnicas.vb">
+    <Compile Include="Administracion\Articulos\ArticulosFichasTecnicas\frmArticulosFichasTecnicas.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosFichasTecnicas\frmEntArticulosFichasTecnicas.Designer.vb">
+    <Compile Include="Administracion\Articulos\ArticulosFichasTecnicas\frmEntArticulosFichasTecnicas.Designer.vb">
       <DependentUpon>frmEntArticulosFichasTecnicas.vb</DependentUpon>
     </Compile>
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosFichasTecnicas\frmEntArticulosFichasTecnicas.vb">
+    <Compile Include="Administracion\Articulos\ArticulosFichasTecnicas\frmEntArticulosFichasTecnicas.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosGraneles\DBO_ArticulosGraneles.vb" />
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosGraneles\spArticulosGraneles.vb" />
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosIngredientesIDI\spArticulosIngredientesIDI.vb" />
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosIngredientes\DBO_ArticulosIngredientes.vb" />
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosIngredientes\spArticulosIngredientes.vb" />
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosMateriasPrimas\ArticulosMateriasPrimasTipos\frmArticulosMateriasPrimasTipos.Designer.vb">
+    <Compile Include="Administracion\Articulos\ArticulosFichasTecnicas\spArticulosFichasTecnicas.vb" />
+    <Compile Include="Administracion\Articulos\ArticulosGraneles\ArticulosGranelesTipos\DBO_ArticulosGranelesTipos.vb" />
+    <Compile Include="Administracion\Articulos\ArticulosGraneles\ArticulosGranelesTipos\spArticulosGranelesTipos.vb" />
+    <Compile Include="Administracion\Articulos\ArticulosGraneles\DBO_ArticulosGraneles.vb" />
+    <Compile Include="Administracion\Articulos\ArticulosGraneles\spArticulosGraneles.vb" />
+    <Compile Include="Administracion\Articulos\ArticulosIngredientesIDI\spArticulosIngredientesIDI.vb" />
+    <Compile Include="Administracion\Articulos\ArticulosIngredientes\ArticulosIngredientesTipos\DBO_ArticulosIngredientesTipos.vb" />
+    <Compile Include="Administracion\Articulos\ArticulosIngredientes\ArticulosIngredientesTipos\frmArticulosIngredientesTipos.Designer.vb">
+      <DependentUpon>frmArticulosIngredientesTipos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Articulos\ArticulosIngredientes\ArticulosIngredientesTipos\frmArticulosIngredientesTipos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracion\Articulos\ArticulosIngredientes\ArticulosIngredientesTipos\frmEntArticulosIngredientesTipos.Designer.vb">
+      <DependentUpon>frmEntArticulosIngredientesTipos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Articulos\ArticulosIngredientes\ArticulosIngredientesTipos\frmEntArticulosIngredientesTipos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracion\Articulos\ArticulosIngredientes\ArticulosIngredientesTipos\spArticulosIngredientesTipos.vb" />
+    <Compile Include="Administracion\Articulos\ArticulosIngredientes\DBO_ArticulosIngredientes.vb" />
+    <Compile Include="Administracion\Articulos\ArticulosIngredientes\spArticulosIngredientes.vb" />
+    <Compile Include="Administracion\Articulos\ArticulosMateriasPrimas\ArticulosMateriasPrimasTipos\frmArticulosMateriasPrimasTipos.Designer.vb">
       <DependentUpon>frmArticulosMateriasPrimasTipos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosMateriasPrimas\ArticulosMateriasPrimasTipos\frmArticulosMateriasPrimasTipos.vb">
+    <Compile Include="Administracion\Articulos\ArticulosMateriasPrimas\ArticulosMateriasPrimasTipos\frmArticulosMateriasPrimasTipos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosMateriasPrimas\ArticulosMateriasPrimasTipos\frmEntArticulosMateriasPrimasTipos.Designer.vb">
+    <Compile Include="Administracion\Articulos\ArticulosMateriasPrimas\ArticulosMateriasPrimasTipos\frmEntArticulosMateriasPrimasTipos.Designer.vb">
       <DependentUpon>frmEntArticulosMateriasPrimasTipos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosMateriasPrimas\ArticulosMateriasPrimasTipos\frmEntArticulosMateriasPrimasTipos.vb">
+    <Compile Include="Administracion\Articulos\ArticulosMateriasPrimas\ArticulosMateriasPrimasTipos\frmEntArticulosMateriasPrimasTipos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosMateriasPrimas\DBO_ArticulosMateriasPrimas.vb" />
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosMateriasPrimas\spArticulosMateriasPrimas.vb" />
+    <Compile Include="Administracion\Articulos\ArticulosMateriasPrimas\DBO_ArticulosMateriasPrimas.vb" />
+    <Compile Include="Administracion\Articulos\ArticulosMateriasPrimas\spArticulosMateriasPrimas.vb" />
     <Compile Include="Administracion\Articulos\Articulos1\CompuestoPor\DBO_Articulos1CompuestoPor2.vb" />
     <Compile Include="Administracion\Articulos\Articulos1\CompuestoPor\frmArticulos1CompuestoPor.Designer.vb">
       <DependentUpon>frmArticulos1CompuestoPor.vb</DependentUpon>
@@ -432,34 +458,34 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Administracion\Articulos\Ventas\spVentas.vb" />
-    <Compile Include="Administracion\Articulos\_nuevo\ArticulosTipos\DBO_ArticulosTipos.vb" />
-    <Compile Include="Administracion\Articulos\_nuevo\ArticulosTipos\frmArticulosTipos.Designer.vb">
+    <Compile Include="Administracion\Articulos\ArticulosTipos\DBO_ArticulosTipos.vb" />
+    <Compile Include="Administracion\Articulos\ArticulosTipos\frmArticulosTipos.Designer.vb">
       <DependentUpon>frmArticulosTipos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Administracion\Articulos\_nuevo\ArticulosTipos\frmArticulosTipos.vb">
+    <Compile Include="Administracion\Articulos\ArticulosTipos\frmArticulosTipos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administracion\Articulos\_nuevo\ArticulosTipos\frmEntArticulosTipos.Designer.vb">
+    <Compile Include="Administracion\Articulos\ArticulosTipos\frmEntArticulosTipos.Designer.vb">
       <DependentUpon>frmEntArticulosTipos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Administracion\Articulos\_nuevo\ArticulosTipos\frmEntArticulosTipos.vb">
+    <Compile Include="Administracion\Articulos\ArticulosTipos\frmEntArticulosTipos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administracion\Articulos\_nuevo\ArticulosTipos\spArticulosTipos.vb" />
-    <Compile Include="Administracion\Articulos\_nuevo\etiquetas tipos\DBO_ArticulosEtiquetasTipos.vb" />
-    <Compile Include="Administracion\Articulos\_nuevo\etiquetas tipos\frmArticulosEtiquetasTipos.Designer.vb">
+    <Compile Include="Administracion\Articulos\ArticulosTipos\spArticulosTipos.vb" />
+    <Compile Include="Administracion\Articulos\etiquetas tipos\DBO_ArticulosEtiquetasTipos.vb" />
+    <Compile Include="Administracion\Articulos\etiquetas tipos\frmArticulosEtiquetasTipos.Designer.vb">
       <DependentUpon>frmArticulosEtiquetasTipos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Administracion\Articulos\_nuevo\etiquetas tipos\frmArticulosEtiquetasTipos.vb">
+    <Compile Include="Administracion\Articulos\etiquetas tipos\frmArticulosEtiquetasTipos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administracion\Articulos\_nuevo\etiquetas tipos\frmEntArticulosEtiquetasTipos.Designer.vb">
+    <Compile Include="Administracion\Articulos\etiquetas tipos\frmEntArticulosEtiquetasTipos.Designer.vb">
       <DependentUpon>frmEntArticulosEtiquetasTipos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Administracion\Articulos\_nuevo\etiquetas tipos\frmEntArticulosEtiquetasTipos.vb">
+    <Compile Include="Administracion\Articulos\etiquetas tipos\frmEntArticulosEtiquetasTipos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administracion\Articulos\_nuevo\etiquetas tipos\spArticulosEtiquetasTipos.vb" />
+    <Compile Include="Administracion\Articulos\etiquetas tipos\spArticulosEtiquetasTipos.vb" />
     <Compile Include="Administracion\AsuntosPendientes\detallesGestiones\DBO_DetallesGestionesPendientes.vb" />
     <Compile Include="Administracion\AsuntosPendientes\detallesGestiones\frmDetallesGestionesPendientes.Designer.vb">
       <DependentUpon>frmDetallesGestionesPendientes.vb</DependentUpon>
@@ -2923,36 +2949,8 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Administracion\Articulos\ArticulosFichasPaletizados1\spArticulosFichasPaletizados1.vb" />
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosGraneles\ArticulosGranelesTipos\DBO_ArticulosGranelesTipos.vb" />
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosGraneles\ArticulosGranelesTipos\frmArticulosGranelesTipos.Designer.vb">
-      <DependentUpon>frmArticulosGranelesTipos.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosGraneles\ArticulosGranelesTipos\frmArticulosGranelesTipos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosGraneles\ArticulosGranelesTipos\frmEntArticulosGranelesTipos.Designer.vb">
-      <DependentUpon>frmEntArticulosGranelesTipos.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosGraneles\ArticulosGranelesTipos\frmEntArticulosGranelesTipos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosGraneles\ArticulosGranelesTipos\spArticulosGranelesTipos.vb" />
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosIngredientes\ArticulosIngredientesTipos\DBO_ArticulosIngredientesTipos.vb" />
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosIngredientes\ArticulosIngredientesTipos\frmArticulosIngredientesTipos.Designer.vb">
-      <DependentUpon>frmArticulosIngredientesTipos.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosIngredientes\ArticulosIngredientesTipos\frmArticulosIngredientesTipos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosIngredientes\ArticulosIngredientesTipos\frmEntArticulosIngredientesTipos.Designer.vb">
-      <DependentUpon>frmEntArticulosIngredientesTipos.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosIngredientes\ArticulosIngredientesTipos\frmEntArticulosIngredientesTipos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosIngredientes\ArticulosIngredientesTipos\spArticulosIngredientesTipos.vb" />
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosMateriasPrimas\ArticulosMateriasPrimasTipos\DBO_ArticulosMateriasPrimasTipos.vb" />
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosMateriasPrimas\ArticulosMateriasPrimasTipos\spArticulosMateriasPrimasTipos.vb" />
+    <Compile Include="Administracion\Articulos\ArticulosMateriasPrimas\ArticulosMateriasPrimasTipos\DBO_ArticulosMateriasPrimasTipos.vb" />
+    <Compile Include="Administracion\Articulos\ArticulosMateriasPrimas\ArticulosMateriasPrimasTipos\spArticulosMateriasPrimasTipos.vb" />
     <Compile Include="Administracion\Articulos\ArticulosTipos\ArticulosTiposDocumentos\DBO_ArticulosTiposDocumentos.vb" />
     <Compile Include="Administracion\Articulos\ArticulosTipos\ArticulosTiposDocumentos\frmArticulosTiposDocumentos.Designer.vb">
       <DependentUpon>frmArticulosTiposDocumentos.vb</DependentUpon>
@@ -2981,22 +2979,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Administracion\Articulos\ArticulosUnidadesMedidas\spArticulosUnidadesMedidas.vb" />
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosFichasTecnicas\ArticulosFichasTecnicasEstados\DBO_ArticulosFichasTecnicasEstados.vb" />
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosFichasTecnicas\ArticulosFichasTecnicasEstados\frmArticulosFichasTecnicasEstados.Designer.vb">
-      <DependentUpon>frmArticulosFichasTecnicasEstados.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosFichasTecnicas\ArticulosFichasTecnicasEstados\frmArticulosFichasTecnicasEstados.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosFichasTecnicas\ArticulosFichasTecnicasEstados\frmEntArticulosFichasTecnicasEstados.Designer.vb">
-      <DependentUpon>frmEntArticulosFichasTecnicasEstados.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosFichasTecnicas\ArticulosFichasTecnicasEstados\frmEntArticulosFichasTecnicasEstados.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosFichasTecnicas\ArticulosFichasTecnicasEstados\spArticulosFichasTecnicasEstados.vb" />
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosFichasTecnicas\DBO_ArticulosFichasTecnicas.vb" />
-    <Compile Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosFichasTecnicas\spArticulosFichasTecnicas.vb" />
     <Compile Include="Administracion\Articulos\Asistentes\ArticulosEnvasados\forms\auxiliares\frmSeleccionMonodosis.Designer.vb">
       <DependentUpon>frmSeleccionMonodosis.vb</DependentUpon>
     </Compile>
@@ -4659,22 +4641,31 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosEtiquetas\frmArtEtiquetasInicial.resx">
-      <DependentUpon>frmArtEtiquetasInicial.vb</DependentUpon>
+    <EmbeddedResource Include="Administracion\Articulos\ArticulosFichasTecnicas\ArticulosFichasTecnicasEstados\frmArticulosFichasTecnicasEstados.resx">
+      <DependentUpon>frmArticulosFichasTecnicasEstados.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosFichasTecnicas\frmArticulosFichasTecnicas.resx">
+    <EmbeddedResource Include="Administracion\Articulos\ArticulosFichasTecnicas\ArticulosFichasTecnicasEstados\frmEntArticulosFichasTecnicasEstados.resx">
+      <DependentUpon>frmEntArticulosFichasTecnicasEstados.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administracion\Articulos\ArticulosFichasTecnicas\frmArticulosFichasTecnicas.resx">
       <DependentUpon>frmArticulosFichasTecnicas.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosFichasTecnicas\frmEntArticulosFichasTecnicas.resx">
+    <EmbeddedResource Include="Administracion\Articulos\ArticulosFichasTecnicas\frmEntArticulosFichasTecnicas.resx">
       <DependentUpon>frmEntArticulosFichasTecnicas.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosMateriasPrimas\ArticulosMateriasPrimasTipos\frmArticulosMateriasPrimasTipos.resx">
+    <EmbeddedResource Include="Administracion\Articulos\ArticulosIngredientes\ArticulosIngredientesTipos\frmArticulosIngredientesTipos.resx">
+      <DependentUpon>frmArticulosIngredientesTipos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administracion\Articulos\ArticulosIngredientes\ArticulosIngredientesTipos\frmEntArticulosIngredientesTipos.resx">
+      <DependentUpon>frmEntArticulosIngredientesTipos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administracion\Articulos\ArticulosMateriasPrimas\ArticulosMateriasPrimasTipos\frmArticulosMateriasPrimasTipos.resx">
       <DependentUpon>frmArticulosMateriasPrimasTipos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosMateriasPrimas\ArticulosMateriasPrimasTipos\frmEntArticulosMateriasPrimasTipos.resx">
+    <EmbeddedResource Include="Administracion\Articulos\ArticulosMateriasPrimas\ArticulosMateriasPrimasTipos\frmEntArticulosMateriasPrimasTipos.resx">
       <DependentUpon>frmEntArticulosMateriasPrimasTipos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administracion\Articulos\Articulos1\CompuestoPor\frmArticulos1CompuestoPor.resx">
@@ -4737,19 +4728,19 @@
     <EmbeddedResource Include="Administracion\Articulos\Ventas\frmEntVentasArticulo.resx">
       <DependentUpon>frmEntVentasArticulo.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administracion\Articulos\_nuevo\ArticulosTipos\frmArticulosTipos.resx">
+    <EmbeddedResource Include="Administracion\Articulos\ArticulosTipos\frmArticulosTipos.resx">
       <DependentUpon>frmArticulosTipos.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administracion\Articulos\_nuevo\ArticulosTipos\frmEntArticulosTipos.resx">
+    <EmbeddedResource Include="Administracion\Articulos\ArticulosTipos\frmEntArticulosTipos.resx">
       <DependentUpon>frmEntArticulosTipos.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administracion\Articulos\_nuevo\etiquetas tipos\frmArticulosEtiquetasTipos.resx">
+    <EmbeddedResource Include="Administracion\Articulos\etiquetas tipos\frmArticulosEtiquetasTipos.resx">
       <DependentUpon>frmArticulosEtiquetasTipos.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administracion\Articulos\_nuevo\etiquetas tipos\frmEntArticulosEtiquetasTipos.resx">
+    <EmbeddedResource Include="Administracion\Articulos\etiquetas tipos\frmEntArticulosEtiquetasTipos.resx">
       <DependentUpon>frmEntArticulosEtiquetasTipos.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -5777,27 +5768,6 @@
     <EmbeddedResource Include="Administracion\Articulos\ArticulosFichasPaletizados1\frmEntArticulosFichasPaletizados1.resx">
       <DependentUpon>frmEntArticulosFichasPaletizados1.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosFichasTecnicas\ArticulosFichasTecnicasEstados\frmArticulosFichasTecnicasEstados.resx">
-      <DependentUpon>frmArticulosFichasTecnicasEstados.vb</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosFichasTecnicas\ArticulosFichasTecnicasEstados\frmEntArticulosFichasTecnicasEstados.resx">
-      <DependentUpon>frmEntArticulosFichasTecnicasEstados.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosGraneles\ArticulosGranelesTipos\frmArticulosGranelesTipos.resx">
-      <DependentUpon>frmArticulosGranelesTipos.vb</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosGraneles\ArticulosGranelesTipos\frmEntArticulosGranelesTipos.resx">
-      <DependentUpon>frmEntArticulosGranelesTipos.vb</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosIngredientes\ArticulosIngredientesTipos\frmArticulosIngredientesTipos.resx">
-      <DependentUpon>frmArticulosIngredientesTipos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosIngredientes\ArticulosIngredientesTipos\frmEntArticulosIngredientesTipos.resx">
-      <DependentUpon>frmEntArticulosIngredientesTipos.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Administracion\Articulos\ArticulosTipos\ArticulosTiposDocumentos\frmArticulosTiposDocumentos.resx">
       <DependentUpon>frmArticulosTiposDocumentos.vb</DependentUpon>
     </EmbeddedResource>
@@ -6504,7 +6474,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Administracion\Articulos\Antiguo comprobar si se usa\ArticulosEnvasesPrimarios\ArticulosEnvasesPrimarios.docx" />
     <None Include="Administracion\Proveedores1\PedidosProveedores\Listados\report1.frx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
