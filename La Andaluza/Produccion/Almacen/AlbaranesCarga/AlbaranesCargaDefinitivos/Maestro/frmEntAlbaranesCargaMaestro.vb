@@ -31,7 +31,7 @@ Public Class frmEntAlbaranesCargaMaestro
     Public Sub New()
         InitializeComponent()
 
-        macrosender = New MacroSender
+
         dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
         ctlAlbDet = New ctlAlbaranesCargaDetalles
         dtsAlb = New dtsAlbaranesCargaMaestro.AlbaranesCargaMaestroDataTable
@@ -425,6 +425,7 @@ Public Class frmEntAlbaranesCargaMaestro
    
     Private Sub butAlbaranQS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAlbaranQS.Click
         'QS.SalidaJR(dgvTotalPalets, dgvAcumulados)
+        macrosender = New MacroSender
 
         Try
             If Not Me.macrosender.conectar() Then
@@ -499,11 +500,20 @@ Public Class frmEntAlbaranesCargaMaestro
         Catch ex As Exception
             MsgBox("Ocurrio un error." & vbLf & " Detalles: " & ex.Message, MsgBoxStyle.Critical, "Error")
         End Try
+
+        Try
+            macrosender.desconectar()
+            macrosender = Nothing
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub butEntradaJR_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butEntradaJR.Click
         'QS.EntradaJR(dgvTotalPalets, dgvAcumulados)
         'http://publib.boulder.ibm.com/infocenter/pcomhelp/v5r9/index.jsp?topic=/com.ibm.pcomm.doc/books/html/host_access08.htm
+
+        macrosender = New MacroSender
 
         Try
             If Not Me.macrosender.conectar() Then
@@ -609,17 +619,28 @@ Public Class frmEntAlbaranesCargaMaestro
                 End If
             End If
         End Try
+
+        Try
+            macrosender.desconectar()
+            macrosender = Nothing
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub butJRaMercadona_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butJRaMercadona.Click
         ' QS.JR_a_Mercadona(txtRemolque1.Text, txtConductor.Text, txtDNI.Text)
+
+        macrosender = New MacroSender
+        Dim Pedido As String
+        Dim Transportista As String
+        Dim Matricula As String
+        Dim Chofer As String
+        Dim DNI As String
+        Dim Fecha As String
+
         Try
-            Dim Pedido As String
-            Dim Transportista As String
-            Dim Matricula As String
-            Dim Chofer As String
-            Dim DNI As String
-            Dim Fecha As String
+            
             Pedido = InputBox("Introduce numero de pedido", "Pedido")
 
 
@@ -729,6 +750,13 @@ Public Class frmEntAlbaranesCargaMaestro
 
 
             End If
+
+            Try
+                macrosender.desconectar()
+                macrosender = Nothing
+            Catch ex As Exception
+
+            End Try
         Catch ex As Exception
             MsgBox("Ocurrio un error." & vbLf & " Detalles: " & ex.Message, MsgBoxStyle.Critical, "Error")
         End Try
@@ -1069,7 +1097,7 @@ Public Class frmEntAlbaranesCargaMaestro
 
 
     Private Sub butLAaJR_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butLAaJR.Click
-
+        macrosender = New MacroSender
         '''QS.AlbaranJR(txtRemolque1.Text, txtConductor.Text, txtDNI.Text, dgvAcumulados)
 
         Dim Matricula As String
@@ -1244,24 +1272,33 @@ Public Class frmEntAlbaranesCargaMaestro
 
         Dim a As New Carta_de_portes.frmCartaDePortes(cabecera, texto, detalle, pie, pie2)
         a.ShowDialog()
+
+        Try
+            macrosender.desconectar()
+            macrosender = Nothing
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub butMercadonaCanarias_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butMercadonaCanarias.Click
         'QS.SalidaMecadonaCanarias(txtRemolque1.Text, txtConductor.Text, txtDNI.Text)
+        macrosender = New MacroSender
+        Dim Pedido As Integer
+        Dim Consignatario As String
+        Dim NIF As String
+        Dim Direccion As String
+        Dim Municipio As String
+        Dim CodigoPostal As String
+        Dim Pais As String = "11"
+        Dim Matricula As String
+        Dim Chofer As String
+        Dim DNI As String
+        Dim Fecha As String
+        Dim Contenedor As String
+        Dim Precinto As String
+
         Try
-            Dim Pedido As Integer
-            Dim Consignatario As String
-            Dim NIF As String
-            Dim Direccion As String
-            Dim Municipio As String
-            Dim CodigoPostal As String
-            Dim Pais As String = "11"
-            Dim Matricula As String
-            Dim Chofer As String
-            Dim DNI As String
-            Dim Fecha As String
-            Dim Contenedor As String
-            Dim Precinto As String
             Pedido = CType(InputBox("Introduce numero de pedido", "Pedido"), Integer)
 
 
@@ -1296,8 +1333,6 @@ Public Class frmEntAlbaranesCargaMaestro
             If Respuesta = MsgBoxResult.Yes Then
                 'Pulsar F23 para continuar
                 If macrosender.SiExisteTextoTeclea("Riesgo Concedido", 24, 2, "[pf23]") Then Return
-
-            Else
             End If
 
             Respuesta = MsgBox(" ¿Todo correcto?", _
@@ -1417,45 +1452,49 @@ Public Class frmEntAlbaranesCargaMaestro
             Else
                 'Volver a la pantalla principal
                 If macrosender.SiExisteTextoTeclea("Cód.Articulo", 19, 2, "[pf12][pf12][pf12][pf3]") Then Return
-
-
             End If
 
         Catch ex As Exception
             MsgBox("Ocurrio un error." & vbLf & " Detalles: " & ex.Message, MsgBoxStyle.Critical, "Error")
         End Try
+
+        Try
+            macrosender.desconectar()
+            macrosender = Nothing
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub butAlbaranProvisional_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAlbaranProvisional.Click
         'QS.AlbaranProvisional(txtRemolque1.Text, txtConductor.Text, txtDNI.Text, cboClientes.SelectedText)
+
+        Dim Albaran As String
+        Dim Serie As String
+        Dim CodigoQS As String
+        Dim CIF As String
+        'Dim LugarEntrega As String
+        'Dim DescripcionMercancia As String
+        'Dim NumeroDocumento As String
+        Dim OperadorTransporte As String
+        'Dim MatriculaRemolque As String
+        Dim FechaEntrega As String
+        Dim Portes As String
+        'Dim Transportista As String
+        'Dim DNITransportista As String
+        'Dim PesoBruto As String
+        Dim Anchocolumna As Integer = 300
+        Dim Anchocolumna1 As Integer = 300
+        Dim Fecha As String = System.DateTime.Today.ToString.Substring(0, 10)
+        Dim Fila As Integer = 1
+
+        Dim DireccionJRSabater As String = "    J.R.SABATER, S.A." + Environment.NewLine + _
+                                           "    AV. MURCIA, 61 APARTADO 59" + Environment.NewLine + _
+                                           "    30110 - CABEZO DE TORRES" + Environment.NewLine + _
+                                           "    MURCIA         TELF: 968830979" + Environment.NewLine
+
         Try
             'Albaran Provisional
-
-            Dim Albaran As String
-            Dim Serie As String
-            Dim CodigoQS As String
-            Dim CIF As String
-
-            'Dim LugarEntrega As String
-            'Dim DescripcionMercancia As String
-            'Dim NumeroDocumento As String
-            Dim OperadorTransporte As String
-            'Dim MatriculaRemolque As String
-            Dim FechaEntrega As String
-            Dim Portes As String
-            'Dim Transportista As String
-            'Dim DNITransportista As String
-            'Dim PesoBruto As String
-            Dim Anchocolumna As Integer = 300
-            Dim Anchocolumna1 As Integer = 300
-            Dim Fecha As String = System.DateTime.Today.ToString.Substring(0, 10)
-            Dim Fila As Integer = 1
-            Dim DireccionJRSabater As String = "    J.R.SABATER, S.A." + Environment.NewLine + _
-                                               "    AV. MURCIA, 61 APARTADO 59" + Environment.NewLine + _
-                                               "    30110 - CABEZO DE TORRES" + Environment.NewLine + _
-                                               "    MURCIA         TELF: 968830979" + Environment.NewLine
-
-
 
             Dim oWord As New Microsoft.Office.Interop.Word.Application
             Dim oDoc As Microsoft.Office.Interop.Word.Document
@@ -1914,10 +1953,12 @@ Public Class frmEntAlbaranesCargaMaestro
 
     Private Sub butRegistrarPortesSalidaQS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butRegistrarPortesSalidaQS.Click
         ' QS.RegistroPortes(dgvTotalPalets)
+        macrosender = New MacroSender
+        Dim Albaran As String
+        Dim Cantidad As String
+        Dim Precio As String
+
         Try
-            Dim Albaran As String
-            Dim Cantidad As String
-            Dim Precio As String
 
             If Not Me.macrosender.conectar() Then
                 MessageBox.Show("No se pudo conectar con QS", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
@@ -1992,17 +2033,26 @@ Public Class frmEntAlbaranesCargaMaestro
         Catch ex As Exception
             MsgBox("Ocurrio un error." & vbLf & " Detalles: " & ex.Message, MsgBoxStyle.Critical, "Error")
         End Try
+
+        Try
+            macrosender.desconectar()
+            macrosender = Nothing
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub ButEmbotelladoPedido_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButEmbotelladoPedido.Click
         ' QS.Embotellado_pedido(txtRemolque1.Text, txtConductor.Text, txtDNI.Text)
+        macrosender = New MacroSender
+        Dim Pedido As String
+        Dim Transportista As String
+        Dim Matricula As String
+        Dim Chofer As String
+        Dim DNI As String
+        Dim Fecha As String
+
         Try
-            Dim Pedido As String
-            Dim Transportista As String
-            Dim Matricula As String
-            Dim Chofer As String
-            Dim DNI As String
-            Dim Fecha As String
 
             If Not Me.macrosender.conectar() Then
                 MessageBox.Show("No se pudo conectar con QS", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
@@ -2090,6 +2140,13 @@ Public Class frmEntAlbaranesCargaMaestro
             End If
         Catch ex As Exception
             MsgBox("Ocurrio un error." & vbLf & " Detalles: " & ex.Message, MsgBoxStyle.Critical, "Error")
+        End Try
+
+        Try
+            macrosender.desconectar()
+            macrosender = Nothing
+        Catch ex As Exception
+
         End Try
     End Sub
 

@@ -1,6 +1,6 @@
 ﻿Public Class MacroSender
     Private TiempoEspera As Integer
-    Private Respuesta As DialogResult
+
     Private oMensajesQS As Object
     Private oQS As Object
     Public Property TiempoDeEspera As Integer
@@ -65,9 +65,10 @@
             cont += 1
 
             If cont >= 100 Then
-                Respuesta = MsgBox(" No encuentro " & Texto & " en la linea " & Row.ToString & Chr(13) & "Verificar el problema." & Chr(13) & "¿Paramos la macro?", _
-                            MsgBoxStyle.DefaultButton2 Or MsgBoxStyle.YesNo, _
-                            " ¿Verificación? ")
+                Dim Respuesta As DialogResult
+                Respuesta = MessageBox.Show(" No encuentro " & Texto & " en la linea " & Row.ToString & Chr(13) & "Verificar el problema." & Chr(13) & "¿Paramos la macro?", _
+                           " ¿Verificación? ", MessageBoxButtons.YesNo, _
+                             MessageBoxIcon.Question)
 
                 If Respuesta = MsgBoxResult.Yes Then
                     Return True
