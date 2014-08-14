@@ -179,6 +179,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Bases\ZLibrerias\InformesVinagreJerez.dll</HintPath>
     </Reference>
+    <Reference Include="MacroAdapter, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bases\ZLibrerias\MacroAdapter.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -1861,9 +1865,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Otros\Idiomas\spIdiomas.vb" />
-    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\macros\MacroBatch.vb" />
-    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\macros\MacroOperation.vb" />
-    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\macros\MacroSender.vb" />
     <Compile Include="Produccion\Almacen\Movimientos\Copy of AgnadirAcarga.Designer.vb">
       <DependentUpon>Copy of AgnadirAcarga.vb</DependentUpon>
     </Compile>
@@ -6683,6 +6684,7 @@
     <None Include="Bases\ZLibrerias\Incidencias entre fechas.dll" />
     <None Include="Bases\ZLibrerias\Envasados entre fechas.dll" />
     <None Include="Bases\ZLibrerias\BasesParaCompatibilidad.dll" />
+    <None Include="Bases\ZLibrerias\MacroAdapter.dll" />
     <Content Include="Resources\window_new.ico" />
     <Content Include="Resources\window_new_3.ico" />
     <None Include="Resources\text-x-makefile.png" />

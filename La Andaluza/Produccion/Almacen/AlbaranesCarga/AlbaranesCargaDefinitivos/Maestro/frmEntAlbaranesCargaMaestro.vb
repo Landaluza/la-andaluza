@@ -21,7 +21,7 @@ Public Class frmEntAlbaranesCargaMaestro
     Private tsExcel As ToolStripButton
     Private tsNuevoPalet As ToolStripButton
     Private dtb as BasesParaCompatibilidad.Database
-    Private macrosender As MacroSender
+    Private macrosender As MacroAdapter.MacroSender
     Private Respuesta As MsgBoxResult
     'Private oQS As Object
     'Private oMensajesQS As Object
@@ -425,7 +425,7 @@ Public Class frmEntAlbaranesCargaMaestro
    
     Private Sub butAlbaranQS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAlbaranQS.Click
         'QS.SalidaJR(dgvTotalPalets, dgvAcumulados)
-        macrosender = New MacroSender
+        macrosender = New MacroAdapter.MacroSender
 
         Try
             If Not Me.macrosender.conectar() Then
@@ -513,7 +513,7 @@ Public Class frmEntAlbaranesCargaMaestro
         'QS.EntradaJR(dgvTotalPalets, dgvAcumulados)
         'http://publib.boulder.ibm.com/infocenter/pcomhelp/v5r9/index.jsp?topic=/com.ibm.pcomm.doc/books/html/host_access08.htm
 
-        macrosender = New MacroSender
+        macrosender = New MacroAdapter.MacroSender
 
         Try
             If Not Me.macrosender.conectar() Then
@@ -631,7 +631,7 @@ Public Class frmEntAlbaranesCargaMaestro
     Private Sub butJRaMercadona_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butJRaMercadona.Click
         ' QS.JR_a_Mercadona(txtRemolque1.Text, txtConductor.Text, txtDNI.Text)
 
-        macrosender = New MacroSender
+        macrosender = New MacroAdapter.MacroSender
         Dim Pedido As String
         Dim Transportista As String
         Dim Matricula As String
@@ -1097,7 +1097,7 @@ Public Class frmEntAlbaranesCargaMaestro
 
 
     Private Sub butLAaJR_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butLAaJR.Click
-        macrosender = New MacroSender
+        macrosender = New MacroAdapter.MacroSender
         '''QS.AlbaranJR(txtRemolque1.Text, txtConductor.Text, txtDNI.Text, dgvAcumulados)
 
         Dim Matricula As String
@@ -1283,7 +1283,7 @@ Public Class frmEntAlbaranesCargaMaestro
 
     Private Sub butMercadonaCanarias_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butMercadonaCanarias.Click
         'QS.SalidaMecadonaCanarias(txtRemolque1.Text, txtConductor.Text, txtDNI.Text)
-        macrosender = New MacroSender
+        macrosender = New MacroAdapter.MacroSender
         Dim Pedido As Integer
         Dim Consignatario As String
         Dim NIF As String
@@ -1953,7 +1953,7 @@ Public Class frmEntAlbaranesCargaMaestro
 
     Private Sub butRegistrarPortesSalidaQS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butRegistrarPortesSalidaQS.Click
         ' QS.RegistroPortes(dgvTotalPalets)
-        macrosender = New MacroSender
+        macrosender = New MacroAdapter.MacroSender
         Dim Albaran As String
         Dim Cantidad As String
         Dim Precio As String
@@ -2044,7 +2044,7 @@ Public Class frmEntAlbaranesCargaMaestro
 
     Private Sub ButEmbotelladoPedido_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButEmbotelladoPedido.Click
         ' QS.Embotellado_pedido(txtRemolque1.Text, txtConductor.Text, txtDNI.Text)
-        macrosender = New MacroSender
+        macrosender = New MacroAdapter.MacroSender
         Dim Pedido As String
         Dim Transportista As String
         Dim Matricula As String

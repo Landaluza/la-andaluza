@@ -1331,6 +1331,7 @@ C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\InformeRe
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\InformesCalidad.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\InformesEmpleados.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\InformesVinagreJerez.dll
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\MacroAdapter.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Microsoft.Office.Interop.Word.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Microsoft.VisualBasic.PowerPacks.Vs.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\OEE.dll
@@ -1349,6 +1350,7 @@ C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\C1.C1Repo
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\C1.Win.C1Report.2.xml
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Microsoft.Office.Interop.Word.xml
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\office.xml
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza Produccion.vbprojResolveAssemblyReference.cache
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmArtEtiquetasInicial.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmArticulosFichasTecnicas.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEntArticulosFichasTecnicas.resources
