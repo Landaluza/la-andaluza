@@ -15,6 +15,12 @@ Public Class frmNoticias
         Dim f As New frmEntNoticias(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, sp)
         AddHandler f.afterSave, AddressOf dgvFill
         MyBase.newRegForm = f
+
+        Dim ts As New ToolStripButton("Vigencia")
+        ts.Image = My.Resources.checkbox_2
+        ts.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
+        AddHandler ts.Click, AddressOf cambiarVigencia
+        Me.bdnGeneral.Items.Add(ts)
     End Sub
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
@@ -42,6 +48,12 @@ Public Class frmNoticias
                 .FormatoColumna("Texto", BasesParaCompatibilidad.TiposColumna.Izquierda, True)
                 .FormatoColumna("Fecha", BasesParaCompatibilidad.TiposColumna.FechaCorta, 90)
             End With
+        End If
+    End Sub
+
+    Private Sub cambiarVigencia(sender As Object, e As EventArgs)
+        If CType(sp, spNoticias).CambiarVigencia(dgvGeneral.CurrentRow.Cells("Id").Value) Then
+            dgvFill()
         End If
     End Sub
 End Class

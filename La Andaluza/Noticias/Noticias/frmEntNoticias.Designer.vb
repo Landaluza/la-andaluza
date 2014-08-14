@@ -29,7 +29,6 @@ Partial Class frmEntNoticias
         Me.lblTexto = New System.Windows.Forms.Label()
         Me.lblFecha = New System.Windows.Forms.Label()
         Me.tlpMiddle = New System.Windows.Forms.TableLayoutPanel()
-
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -136,13 +135,6 @@ Partial Class frmEntNoticias
         Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 19.0!))
         Me.tlpMiddle.Size = New System.Drawing.Size(419, 216)
         Me.tlpMiddle.TabIndex = 8
-        '
-        'tlpTop
-        '
-
-
-
-
         '
         'TabControl1
         '
