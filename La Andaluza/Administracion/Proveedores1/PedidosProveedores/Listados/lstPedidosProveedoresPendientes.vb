@@ -1,6 +1,4 @@
-﻿Imports FastReport
-Imports FastReport.Data
-Imports FastReport.Utils
+﻿
 
 Public Class lstPedidosProveedoresPendientes
     Private bw As System.ComponentModel.BackgroundWorker
@@ -48,28 +46,36 @@ Public Class lstPedidosProveedoresPendientes
     End Sub
 
     Private Sub FastReport()
-        Dim report As New Report
-        Dim table As TableDataSource
+        Dim report As New ReportAdapter.Reporte(BasesParaCompatibilidad.Config.connectionString, Config.PedidosPendientes)
 
         Try
-            '.Load("\\192.168.1.200Administracion\Proveedores1\PedidosProveedores\Listados\report1.frx")
-            'report.Load("\\192.168.1.200\datos\informatica\La Andaluza app\report1.frx")
-            report.Load(Config.PedidosPendientes)
-        Catch ex As Exception
-            MessageBox.Show("Problema cargando el informe, revise que el archivo se encuentre en el servidor", "Error de archivo", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Exit Sub
-        End Try        
-        report.SetParameterValue("MyParameter", BasesParaCompatibilidad.Config.connectionString)
+            report.abrir()
 
-        Try
-            table = TryCast(report.GetDataSource("tblReport1"), TableDataSource)
         Catch ex As Exception
-            MessageBox.Show("Problema recuperando los datos para el informe", "Error de consulta a la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Exit Sub
+            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+        'Dim report As New Report
+        'Dim table As TableDataSource
 
-        table.SelectCommand = mSQL
-        report.Show()
+        'Try
+        '    '.Load("\\192.168.1.200Administracion\Proveedores1\PedidosProveedores\Listados\report1.frx")
+        '    'report.Load("\\192.168.1.200\datos\informatica\La Andaluza app\report1.frx")
+        '    report.Load(Config.PedidosPendientes)
+        'Catch ex As Exception
+        '    MessageBox.Show("Problema cargando el informe, revise que el archivo se encuentre en el servidor", "Error de archivo", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '    Exit Sub
+        'End Try        
+        'report.SetParameterValue("MyParameter", BasesParaCompatibilidad.Config.connectionString)
+
+        'Try
+        '    table = TryCast(report.GetDataSource("tblReport1"), TableDataSource)
+        'Catch ex As Exception
+        '    MessageBox.Show("Problema recuperando los datos para el informe", "Error de consulta a la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '    Exit Sub
+        'End Try
+
+        'table.SelectCommand = mSQL
+        'report.Show()
     End Sub
 
 End Class

@@ -1,6 +1,4 @@
-﻿Imports FastReport
-Imports FastReport.Data
-Imports FastReport.Utils
+﻿
 
 Public Class frmDepositosMain
     Private frmEspera As BasesParaCompatibilidad.frmEspera
@@ -47,50 +45,63 @@ Public Class frmDepositosMain
     End Sub
 
     Public Sub listadoDepositos(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim report As New Report
-        Dim table As TableDataSource
-
-        '.Load("Elaboracion\Depositos\Listados\Depositos.frx")
+        Dim report As New ReportAdapter.Reporte(BasesParaCompatibilidad.Config.connectionString, Config.ListadoDepositos)
         Try
-            'report.Load("\\192.168.1.200\datos\informatica\La Andaluza app\Depositos.frx")
-            report.Load(Config.ListadoDepositos)
-            report.SetParameterValue("MyParameter", BasesParaCompatibilidad.Config.connectionString)
+            report.abrir()
         Catch ex As Exception
-            MessageBox.Show("Problema cargando el informe, revise que el archivo se encuentre en el servidor", "Error de archivo", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Exit Sub
+            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+       
 
-        Try
-            table = TryCast(report.GetDataSource("tblReport1"), TableDataSource)
-        Catch ex As Exception
-            MessageBox.Show("Problema recuperando los datos para el informe", "Error de consulta a la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Exit Sub
-        End Try
+        'Dim report As New Report
+        'Dim table As TableDataSource
 
-        report.Show()
+        ''.Load("Elaboracion\Depositos\Listados\Depositos.frx")
+        'Try
+        '    'report.Load("\\192.168.1.200\datos\informatica\La Andaluza app\Depositos.frx")
+        '    report.Load(Config.ListadoDepositos)
+        '    report.SetParameterValue("MyParameter", BasesParaCompatibilidad.Config.connectionString)
+        'Catch ex As Exception
+        '    MessageBox.Show("Problema cargando el informe, revise que el archivo se encuentre en el servidor", "Error de archivo", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '    Exit Sub
+        'End Try
+
+        'Try
+        '    table = TryCast(report.GetDataSource("tblReport1"), TableDataSource)
+        'Catch ex As Exception
+        '    MessageBox.Show("Problema recuperando los datos para el informe", "Error de consulta a la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '    Exit Sub
+        'End Try
+
+        'report.Show()
 
     End Sub
 
     Private Sub btnListDepTipos_Click(sender As Object, e As EventArgs) Handles btnListDepTipos.Click
-        Dim report As New Report
-        Dim table As TableDataSource
-
+        Dim report As New ReportAdapter.Reporte(BasesParaCompatibilidad.Config.connectionString, Config.ListadoDepositosTipos)
         Try
-            'report.Load("\\192.168.1.200\datos\informatica\La Andaluza app\Depositos.frx")
-            report.Load(Config.ListadoDepositosTipos)
-            report.SetParameterValue("MyParameter", BasesParaCompatibilidad.Config.connectionString)
+            report.abrir()
         Catch ex As Exception
-            MessageBox.Show("Problema cargando el informe, revise que el archivo se encuentre en el servidor", "Error de archivo", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Exit Sub
+            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+        'Dim table As TableDataSource
 
-        Try
-            table = TryCast(report.GetDataSource("tblReport1"), TableDataSource)
-        Catch ex As Exception
-            MessageBox.Show("Problema recuperando los datos para el informe", "Error de consulta a la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Exit Sub
-        End Try
+        'Try
+        '    'report.Load("\\192.168.1.200\datos\informatica\La Andaluza app\Depositos.frx")
+        '    report.Load(Config.ListadoDepositosTipos)
+        '    report.SetParameterValue("MyParameter", BasesParaCompatibilidad.Config.connectionString)
+        'Catch ex As Exception
+        '    MessageBox.Show("Problema cargando el informe, revise que el archivo se encuentre en el servidor", "Error de archivo", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '    Exit Sub
+        'End Try
 
-        report.Show()
+        'Try
+        '    table = TryCast(report.GetDataSource("tblReport1"), TableDataSource)
+        'Catch ex As Exception
+        '    MessageBox.Show("Problema recuperando los datos para el informe", "Error de consulta a la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '    Exit Sub
+        'End Try
+
+        'report.Show()
     End Sub
 End Class
