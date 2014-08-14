@@ -42,9 +42,10 @@
 
     Public Function desconectar() As Boolean
         Try
-            oQS.StopCommunication()
-            oMensajesQS.StopCommunication()
-
+            'oQS.StopCommunication()
+            'oMensajesQS.StopCommunication()
+            oQS = Nothing
+            oMensajesQS = Nothing
             Return True
         Catch ex As Exception
             Return False
@@ -60,11 +61,13 @@
     End Sub
     Public Function SiExisteTextoTeclea(ByVal Texto As String, ByVal Row As Integer, ByVal Col As Integer, ByVal Teclas As String) As Boolean
         'Dim Len As String = Texto.Length
+        Threading.Thread.Sleep(2000)
         Dim cont As Integer = 0
-        While Not (CBool(oQS.WaitForStringInRect(Texto, Row, Col, Row, (Col + Texto.Length), TiempoEspera)))
+
+        While Not CBool(oQS.WaitForStringInRect(Texto, Row, Col, Row, (Col + Texto.Length), TiempoEspera, False))
             cont += 1
 
-            If cont >= 100 Then
+            If cont >= 15 Then
                 Dim Respuesta As DialogResult
                 Respuesta = MessageBox.Show(" No encuentro " & Texto & " en la linea " & Row.ToString & Chr(13) & "Verificar el problema." & Chr(13) & "¿Paramos la macro?", _
                            " ¿Verificación? ", MessageBoxButtons.YesNo, _
