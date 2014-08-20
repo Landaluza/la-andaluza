@@ -26,6 +26,7 @@
     Private Shared InformeListadoPedidosPendientes As String
     Private Shared InformeListadoPedidosPendientesPorFecha As String
     Private Shared InformeListadoPedidosPendientesPorProveedores As String
+    Private Shared InformeListadoPedidosPendientesIncumplidos As String
     Private Shared ruta_servidor As String
     Private Shared versionApp As String
 
@@ -44,6 +45,7 @@
         Config.InformeListadoPedidosPendientes = "report1.frx"
         Config.InformeListadoPedidosPendientesPorFecha = "listadoPedidosPendientesFecha.frx"
         Config.InformeListadoPedidosPendientesPorProveedores = "listadoPedidosPendientesProveedor.frx"
+        Config.InformeListadoPedidosPendientesIncumplidos = "listadoPedidosPendientesIncumplida.frx"
         Config.MailReportAddress = "administracion@landaluza.es"
         Config.MailClientHost = "smtp.1and1.es"
         Config.QS_Sesion = "Sesión A - [24 x 80]"
@@ -107,6 +109,12 @@
         End Get
     End Property
 
+    Public Shared ReadOnly Property PedidosPendientesIncumplidos As String
+        Get
+            Return InformeListadoPedidosPendientesIncumplidos
+        End Get
+    End Property
+
     'Public Function CargarMenuPersonal() As Collection
     '    Dim mydocpath As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "menu.obj"
     '    Dim f As New File
@@ -128,6 +136,7 @@
         Dim ruta_servidor_pedidos As String = Config.ruta_servidor & Config.InformeListadoPedidosPendientes
         Dim ruta_servidor_pedidos_fecha As String = Config.ruta_servidor & Config.InformeListadoPedidosPendientesPorFecha
         Dim ruta_servidor_pedidos_proveedores As String = Config.ruta_servidor & Config.InformeListadoPedidosPendientesPorProveedores
+        Dim ruta_servidor_pedidos_incumplidos As String = Config.ruta_servidor & Config.InformeListadoPedidosPendientesIncumplidos
 
         Try
             If System.IO.File.Exists(ruta_servidor_ventas) Then
@@ -247,7 +256,7 @@
         Try
             tempPath = Application.StartupPath & InformeListadoPedidosPendientesPorProveedores
 
-            If System.IO.File.Exists(ruta_servidor_pedidos_fecha) Then
+            If System.IO.File.Exists(ruta_servidor_pedidos_proveedores) Then
 
                 If System.IO.File.Exists(tempPath) Then
                     System.IO.File.Delete(tempPath)
@@ -267,6 +276,28 @@
             retorno = False
         End Try
 
+        Try
+            tempPath = Application.StartupPath & InformeListadoPedidosPendientesIncumplidos
+
+            If System.IO.File.Exists(ruta_servidor_pedidos_incumplidos) Then
+
+                If System.IO.File.Exists(tempPath) Then
+                    System.IO.File.Delete(tempPath)
+                    System.IO.File.Copy(ruta_servidor_pedidos_incumplidos, tempPath)
+                    Config.InformeListadoPedidosPendientesIncumplidos = tempPath
+                Else
+                    System.IO.File.Copy(ruta_servidor_pedidos_incumplidos, tempPath)
+                    Config.InformeListadoPedidosPendientesIncumplidos = tempPath
+                End If
+            Else
+                If System.IO.File.Exists(tempPath) Then
+                    Config.InformeListadoPedidosPendientesIncumplidos = tempPath
+                End If
+            End If
+        Catch ex As Exception
+            Config.InformeListadoPedidosPendientesIncumplidos = ruta_servidor_pedidos_incumplidos
+            retorno = False
+        End Try
 
         Return retorno
     End Function
