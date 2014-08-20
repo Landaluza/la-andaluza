@@ -890,7 +890,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Administracion\Proveedores1\Proveedores_Articulos\spProveedores_Articulos.vb" />
-    <Compile Include="Administracion\Proveedores_y_articulos\clsProveedores.vb" />
     <Compile Include="Administracion\Proveedores_y_articulos\ctlProveedores.vb" />
     <Compile Include="Administracion\Proveedores_y_articulos\Proveedor_Articulos\MotivosCeseServicio\DBO_MotivosCeseServicio.vb" />
     <Compile Include="Administracion\Proveedores_y_articulos\Proveedor_Articulos\MotivosCeseServicio\frmEntMotivosCeseServicio.Designer.vb">
@@ -920,17 +919,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Administracion\Proveedores_y_articulos\Proveedor_Articulos\PeriodosServicio\spPeriodosServicio.vb" />
-    <Compile Include="Administracion\Proveedores_y_articulos\TiposProveedores\clsProv_TipProv.vb" />
-    <Compile Include="Administracion\Proveedores_y_articulos\TiposProveedores\clsTiposProveedores.vb" />
-    <Compile Include="Administracion\Proveedores_y_articulos\TiposProveedores\dtsTiposProveedores.Designer.vb">
-      <DependentUpon>dtsTiposProveedores.xsd</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Include="Administracion\Proveedores_y_articulos\TiposProveedores\dtsTiposProveedores.vb">
-      <DependentUpon>dtsTiposProveedores.xsd</DependentUpon>
-      <SubType>code</SubType>
-    </Compile>
     <Compile Include="Administracion\Visitas\frmVisitasMain.Designer.vb">
       <DependentUpon>frmVisitasMain.vb</DependentUpon>
     </Compile>
@@ -6474,17 +6462,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Administracion\Proveedores_y_articulos\TiposProveedores\dtsTiposProveedores.xsc">
-      <DependentUpon>dtsTiposProveedores.xsd</DependentUpon>
-    </None>
-    <None Include="Administracion\Proveedores_y_articulos\TiposProveedores\dtsTiposProveedores.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>dtsTiposProveedores.Designer.vb</LastGenOutput>
-    </None>
-    <None Include="Administracion\Proveedores_y_articulos\TiposProveedores\dtsTiposProveedores.xss">
-      <DependentUpon>dtsTiposProveedores.xsd</DependentUpon>
-    </None>
     <None Include="Control\_antiguos\Lotes\CompuestoPor\dtsCompuestoPor.xsc">
       <DependentUpon>dtsCompuestoPor.xsd</DependentUpon>
     </None>
