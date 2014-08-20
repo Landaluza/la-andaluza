@@ -890,7 +890,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Administracion\Proveedores1\Proveedores_Articulos\spProveedores_Articulos.vb" />
-    <Compile Include="Administracion\Proveedores_y_articulos\ctlProveedores.vb" />
     <Compile Include="Administracion\Proveedores_y_articulos\Proveedor_Articulos\MotivosCeseServicio\DBO_MotivosCeseServicio.vb" />
     <Compile Include="Administracion\Proveedores_y_articulos\Proveedor_Articulos\MotivosCeseServicio\frmEntMotivosCeseServicio.Designer.vb">
       <DependentUpon>frmEntMotivosCeseServicio.vb</DependentUpon>
@@ -4039,15 +4038,6 @@
     </Compile>
     <Compile Include="Administracion\Proveedores1\Reuniones\ReunionesTipos\spTiposReuniones.vb" />
     <Compile Include="Administracion\Proveedores1\Reuniones\spReuniones.vb" />
-    <Compile Include="Administracion\Proveedores_y_articulos\dtsProveedores.Designer.vb">
-      <DependentUpon>dtsProveedores.xsd</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Include="Administracion\Proveedores_y_articulos\dtsProveedores.vb">
-      <DependentUpon>dtsProveedores.xsd</DependentUpon>
-      <SubType>code</SubType>
-    </Compile>
     <Compile Include="Bases\engine\SplashScreen1.Designer.vb">
       <DependentUpon>SplashScreen1.vb</DependentUpon>
     </Compile>
@@ -6578,17 +6568,6 @@
     <None Include="My Project\DataSources\Entities.datasource" />
     <None Include="My Project\DataSources\PaletsProducidosEntities.datasource" />
     <None Include="My Project\DataSources\PedidosProveedoresDocumentosContainer.datasource" />
-    <None Include="Administracion\Proveedores_y_articulos\dtsProveedores.xsc">
-      <DependentUpon>dtsProveedores.xsd</DependentUpon>
-    </None>
-    <None Include="Administracion\Proveedores_y_articulos\dtsProveedores.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>dtsProveedores.Designer.vb</LastGenOutput>
-    </None>
-    <None Include="Administracion\Proveedores_y_articulos\dtsProveedores.xss">
-      <DependentUpon>dtsProveedores.xsd</DependentUpon>
-    </None>
     <None Include="Control\Especificaciones\dtsEspecificaciones.xsc">
       <DependentUpon>dtsEspecificaciones.xsd</DependentUpon>
     </None>
