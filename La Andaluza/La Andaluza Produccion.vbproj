@@ -199,10 +199,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Bases\ZLibrerias\OEE.dll</HintPath>
     </Reference>
-    <Reference Include="ReportAdapter, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Bases\ZLibrerias\ReportAdapter.dll</HintPath>
-    </Reference>
     <Reference Include="System">
       <Private>True</Private>
     </Reference>
@@ -6609,7 +6605,6 @@
     <None Include="Bases\ZLibrerias\Envasados entre fechas.dll" />
     <None Include="Bases\ZLibrerias\BasesParaCompatibilidad.dll" />
     <None Include="Bases\ZLibrerias\MacroAdapter.dll" />
-    <None Include="Bases\ZLibrerias\ReportAdapter.dll" />
     <Content Include="Resources\window_new.ico" />
     <Content Include="Resources\window_new_3.ico" />
     <None Include="Resources\text-x-makefile.png" />

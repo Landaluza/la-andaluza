@@ -26,6 +26,8 @@
     Private Shared InformeListadoPedidosPendientes As String
     Private Shared InformeListadoPedidosPendientesPorFecha As String
     Private Shared InformeListadoPedidosPendientesPorProveedores As String
+    Private Shared InformeListadoPedidosPendientesUnaFecha As String
+    Private Shared InformeListadoPedidosPendientesUnProveedor As String
     Private Shared InformeListadoPedidosPendientesIncumplidos As String
     Private Shared ruta_servidor As String
     Private Shared versionApp As String
@@ -45,7 +47,9 @@
         Config.InformeListadoPedidosPendientes = "report1.frx"
         Config.InformeListadoPedidosPendientesPorFecha = "listadoPedidosPendientesFecha.frx"
         Config.InformeListadoPedidosPendientesPorProveedores = "listadoPedidosPendientesProveedor.frx"
-        Config.InformeListadoPedidosPendientesIncumplidos = "listadoPedidosPendientesIncumplida.frx"
+        Config.InformeListadoPedidosPendientesUnaFecha = "listadoPedidosPendientesFecha.frx"
+        Config.InformeListadoPedidosPendientesUnProveedor = "listadoPedidosPendientesunProveedor.frx"
+        Config.InformeListadoPedidosPendientesIncumplidos = "listadoPedidosPendientesDia.frx"
         Config.MailReportAddress = "administracion@landaluza.es"
         Config.MailClientHost = "smtp.1and1.es"
         Config.QS_Sesion = "Sesión A - [24 x 80]"
@@ -103,9 +107,20 @@
         End Get
     End Property
 
+    Public Shared ReadOnly Property PedidosPendientesUnaFecha As String
+        Get
+            Return InformeListadoPedidosPendientesUnaFecha
+        End Get
+    End Property
     Public Shared ReadOnly Property PedidosPendientesPorProveedores As String
         Get
             Return InformeListadoPedidosPendientesPorProveedores
+        End Get
+    End Property
+
+    Public Shared ReadOnly Property PedidosPendientesUnProveedor As String
+        Get
+            Return InformeListadoPedidosPendientesUnProveedor
         End Get
     End Property
 
@@ -136,6 +151,8 @@
         Dim ruta_servidor_pedidos As String = Config.ruta_servidor & Config.InformeListadoPedidosPendientes
         Dim ruta_servidor_pedidos_fecha As String = Config.ruta_servidor & Config.InformeListadoPedidosPendientesPorFecha
         Dim ruta_servidor_pedidos_proveedores As String = Config.ruta_servidor & Config.InformeListadoPedidosPendientesPorProveedores
+        Dim ruta_servidor_pedidos_una_fecha As String = Config.ruta_servidor & Config.InformeListadoPedidosPendientesUnaFecha
+        Dim ruta_servidor_pedidos_un_proveedor As String = Config.ruta_servidor & Config.InformeListadoPedidosPendientesUnProveedor
         Dim ruta_servidor_pedidos_incumplidos As String = Config.ruta_servidor & Config.InformeListadoPedidosPendientesIncumplidos
 
         Try
@@ -299,9 +316,56 @@
             retorno = False
         End Try
 
+
+        Try
+            tempPath = Application.StartupPath & InformeListadoPedidosPendientesUnaFecha
+
+            If System.IO.File.Exists(ruta_servidor_pedidos_una_fecha) Then
+
+                If System.IO.File.Exists(tempPath) Then
+                    System.IO.File.Delete(tempPath)
+                    System.IO.File.Copy(ruta_servidor_pedidos_una_fecha, tempPath)
+                    Config.InformeListadoPedidosPendientesUnaFecha = tempPath
+                Else
+                    System.IO.File.Copy(ruta_servidor_pedidos_una_fecha, tempPath)
+                    Config.InformeListadoPedidosPendientesUnaFecha = tempPath
+                End If
+            Else
+                If System.IO.File.Exists(tempPath) Then
+                    Config.InformeListadoPedidosPendientesUnaFecha = tempPath
+                End If
+            End If
+        Catch ex As Exception
+            Config.InformeListadoPedidosPendientesUnaFecha = ruta_servidor_pedidos_una_fecha
+            retorno = False
+        End Try
+
+
+        Try
+            tempPath = Application.StartupPath & InformeListadoPedidosPendientesUnProveedor
+
+            If System.IO.File.Exists(ruta_servidor_pedidos_un_proveedor) Then
+
+                If System.IO.File.Exists(tempPath) Then
+                    System.IO.File.Delete(tempPath)
+                    System.IO.File.Copy(ruta_servidor_pedidos_un_proveedor, tempPath)
+                    Config.InformeListadoPedidosPendientesUnProveedor = tempPath
+                Else
+                    System.IO.File.Copy(ruta_servidor_pedidos_un_proveedor, tempPath)
+                    Config.InformeListadoPedidosPendientesUnProveedor = tempPath
+                End If
+            Else
+                If System.IO.File.Exists(tempPath) Then
+                    Config.InformeListadoPedidosPendientesUnProveedor = tempPath
+                End If
+            End If
+        Catch ex As Exception
+            Config.InformeListadoPedidosPendientesUnProveedor = ruta_servidor_pedidos_un_proveedor
+            retorno = False
+        End Try
+
         Return retorno
     End Function
-
     Public Function NumeroVersion() As String
         ' •————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
         ' | if running the deployed application, you can get the version from the ApplicationDeployment information. If you try |
