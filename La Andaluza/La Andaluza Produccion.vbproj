@@ -49,7 +49,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>304</ApplicationRevision>
+    <ApplicationRevision>305</ApplicationRevision>
     <ApplicationVersion>2014.7.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -1894,13 +1894,6 @@
     </Compile>
     <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Detalle\Listados\frmLisAlbaranesCarga.vb">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Maestro\clsAlbaranCargaProMaestro.vb" />
-    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Maestro\ctlAlbaranCargaProMaestro.vb" />
-    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Maestro\dtsAlbaranCargaProMaestro.Designer.vb">
-      <DependentUpon>dtsAlbaranCargaProMaestro.xsd</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Produccion\Almacen\Movimientos\Copy of AgnadirAcarga.Designer.vb">
       <DependentUpon>Copy of AgnadirAcarga.vb</DependentUpon>
@@ -6509,17 +6502,6 @@
     </None>
     <None Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Detalle\dtsAlbaranesCargaProviDetalles.xss">
       <DependentUpon>dtsAlbaranesCargaProviDetalles.xsd</DependentUpon>
-    </None>
-    <None Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Maestro\dtsAlbaranCargaProMaestro.xsc">
-      <DependentUpon>dtsAlbaranCargaProMaestro.xsd</DependentUpon>
-    </None>
-    <None Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Maestro\dtsAlbaranCargaProMaestro.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>dtsAlbaranCargaProMaestro.Designer.vb</LastGenOutput>
-    </None>
-    <None Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Maestro\dtsAlbaranCargaProMaestro.xss">
-      <DependentUpon>dtsAlbaranCargaProMaestro.xsd</DependentUpon>
     </None>
     <None Include="Produccion\Envasados2\Listados\dtsTiposVinagres.xsc">
       <DependentUpon>dtsTiposVinagres.xsd</DependentUpon>

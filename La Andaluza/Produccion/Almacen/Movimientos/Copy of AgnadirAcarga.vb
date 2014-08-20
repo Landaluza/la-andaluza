@@ -5,7 +5,6 @@
     Private Tabla As DataTable
     Private O_Item As ListViewItem
 
-    Private ctlAlb As New ctlAlbaranCargaProMaestro
     Private ctlAlbDet As New ctlAlbaranesCargaProviDetalles
     Private codigoMaestro As String
     Public Event AfterSave(ByRef sender As Object)
