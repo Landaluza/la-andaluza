@@ -9,8 +9,8 @@ Public Class frmEntAlbaranesCargaMaestro
     Private ctlAlbDet As ctlAlbaranesCargaDetalles
     Private dtsAlb As dtsAlbaranesCargaMaestro.AlbaranesCargaMaestroDataTable
     Private ctlAlb As ctlAlbaranesCargaMaestro
-    Private ctlAlbProMae As ctlAlbaranCargaProMaestro
-    Private ctlAlbProDet As ctlAlbaranesCargaProviDetalles
+    'Private ctlAlbProMae As ctlAlbaranCargaProMaestro
+    'Private ctlAlbProDet As ctlAlbaranesCargaProviDetalles
 
     Private totalCajas As Integer
     Private m_MaestroProID As String
@@ -36,8 +36,8 @@ Public Class frmEntAlbaranesCargaMaestro
         ctlAlbDet = New ctlAlbaranesCargaDetalles
         dtsAlb = New dtsAlbaranesCargaMaestro.AlbaranesCargaMaestroDataTable
         ctlAlb = New ctlAlbaranesCargaMaestro
-        ctlAlbProMae = New ctlAlbaranCargaProMaestro
-        ctlAlbProDet = New ctlAlbaranesCargaProviDetalles
+        ' ctlAlbProMae = New ctlAlbaranCargaProMaestro
+        'ctlAlbProDet = New ctlAlbaranesCargaProviDetalles
         FechaDateTimePicker.activarFoco()
         HoraLlegadaDateTimePicker.activarFoco()
         HoraSalidaDateTimePicker.activarFoco()

@@ -49,7 +49,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>303</ApplicationRevision>
+    <ApplicationRevision>304</ApplicationRevision>
     <ApplicationVersion>2014.7.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -1007,6 +1007,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Control\_antiguos\Lotes\spLotes.vb" />
+    <Compile Include="Elaboracion\Depositos\ctlDepositos.vb" />
     <Compile Include="Elaboracion\Depositos\dtsDepositos1.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1711,7 +1712,6 @@
     <Compile Include="Elaboracion\Depositos\clsDepositos.vb" />
     <Compile Include="Elaboracion\Depositos\clsToneles.vb" />
     <Compile Include="Elaboracion\Depositos\clsTransicubas.vb" />
-    <Compile Include="Elaboracion\Depositos\ctlDepositos.vb" />
     <Compile Include="Elaboracion\Depositos\dtsDepositos.vb">
       <DependentUpon>dtsDepositos.xsd</DependentUpon>
     </Compile>
@@ -1882,6 +1882,26 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Otros\Idiomas\spIdiomas.vb" />
+    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Detalle\clsAlbaranesCargaProviDetalles.vb" />
+    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Detalle\ctlAlbaranesCargaProviDetalles.vb" />
+    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Detalle\dtsAlbaranesCargaProviDetalles.Designer.vb">
+      <DependentUpon>dtsAlbaranesCargaProviDetalles.xsd</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Detalle\Listados\frmLisAlbaranesCarga.Designer.vb">
+      <DependentUpon>frmLisAlbaranesCarga.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Detalle\Listados\frmLisAlbaranesCarga.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Maestro\clsAlbaranCargaProMaestro.vb" />
+    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Maestro\ctlAlbaranCargaProMaestro.vb" />
+    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Maestro\dtsAlbaranCargaProMaestro.Designer.vb">
+      <DependentUpon>dtsAlbaranCargaProMaestro.xsd</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Include="Produccion\Almacen\Movimientos\Copy of AgnadirAcarga.Designer.vb">
       <DependentUpon>Copy of AgnadirAcarga.vb</DependentUpon>
     </Compile>
@@ -2025,50 +2045,6 @@
       <DependentUpon>frmEntAlbaranesCargaMaestro.vb</DependentUpon>
     </Compile>
     <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\frmEntAlbaranesCargaMaestro.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Detalle\Listados\frmLisAlbaranesCarga.Designer.vb">
-      <DependentUpon>frmLisAlbaranesCarga.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Detalle\Listados\frmLisAlbaranesCarga.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Maestro\clsAlbaranCargaProMaestro.vb" />
-    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Detalle\clsAlbaranesCargaProviDetalles.vb" />
-    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Maestro\ctlAlbaranCargaProMaestro.vb" />
-    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Detalle\ctlAlbaranesCargaProviDetalles.vb" />
-    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Maestro\dtsAlbaranCargaProMaestro.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dtsAlbaranCargaProMaestro.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Detalle\dtsAlbaranesCargaProviDetalles.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dtsAlbaranesCargaProviDetalles.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Maestro\frmAlbaranCargaProMaestro.Designer.vb">
-      <DependentUpon>frmAlbaranCargaProMaestro.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Maestro\frmAlbaranCargaProMaestro.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Detalle\frmAlbaranesCargaProviDetalles.Designer.vb">
-      <DependentUpon>frmAlbaranesCargaProviDetalles.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Detalle\frmAlbaranesCargaProviDetalles.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Maestro\frmEntAlbaranCargaProMaestro.Designer.vb">
-      <DependentUpon>frmEntAlbaranCargaProMaestro.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Maestro\frmEntAlbaranCargaProMaestro.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Detalle\frmEntAlbaranesCargaProviDetalles.Designer.vb">
-      <DependentUpon>frmEntAlbaranesCargaProviDetalles.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Detalle\frmEntAlbaranesCargaProviDetalles.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Produccion\Almacen\AlbaranesCarga\frmDevolucionCarga.Designer.vb">
@@ -5345,18 +5321,6 @@
     <EmbeddedResource Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Detalle\Listados\frmLisAlbaranesCarga.resx">
       <DependentUpon>frmLisAlbaranesCarga.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Maestro\frmAlbaranCargaProMaestro.resx">
-      <DependentUpon>frmAlbaranCargaProMaestro.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Detalle\frmAlbaranesCargaProviDetalles.resx">
-      <DependentUpon>frmAlbaranesCargaProviDetalles.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Maestro\frmEntAlbaranCargaProMaestro.resx">
-      <DependentUpon>frmEntAlbaranCargaProMaestro.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Detalle\frmEntAlbaranesCargaProviDetalles.resx">
-      <DependentUpon>frmEntAlbaranesCargaProviDetalles.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Produccion\Almacen\AlbaranesCarga\frmDevolucionCarga.resx">
       <DependentUpon>frmDevolucionCarga.vb</DependentUpon>
     </EmbeddedResource>
@@ -6535,6 +6499,28 @@
     <None Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\dtsAlbaranesCargaMaestro.xss">
       <DependentUpon>dtsAlbaranesCargaMaestro.xsd</DependentUpon>
     </None>
+    <None Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Detalle\dtsAlbaranesCargaProviDetalles.xsc">
+      <DependentUpon>dtsAlbaranesCargaProviDetalles.xsd</DependentUpon>
+    </None>
+    <None Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Detalle\dtsAlbaranesCargaProviDetalles.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsAlbaranesCargaProviDetalles.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Detalle\dtsAlbaranesCargaProviDetalles.xss">
+      <DependentUpon>dtsAlbaranesCargaProviDetalles.xsd</DependentUpon>
+    </None>
+    <None Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Maestro\dtsAlbaranCargaProMaestro.xsc">
+      <DependentUpon>dtsAlbaranCargaProMaestro.xsd</DependentUpon>
+    </None>
+    <None Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Maestro\dtsAlbaranCargaProMaestro.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsAlbaranCargaProMaestro.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Maestro\dtsAlbaranCargaProMaestro.xss">
+      <DependentUpon>dtsAlbaranCargaProMaestro.xsd</DependentUpon>
+    </None>
     <None Include="Produccion\Envasados2\Listados\dtsTiposVinagres.xsc">
       <DependentUpon>dtsTiposVinagres.xsd</DependentUpon>
     </None>
@@ -6780,28 +6766,6 @@
     <None Include="Bases\ZLibrerias\wiaaut.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Maestro\dtsAlbaranCargaProMaestro.xsc">
-      <DependentUpon>dtsAlbaranCargaProMaestro.xsd</DependentUpon>
-    </None>
-    <None Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Maestro\dtsAlbaranCargaProMaestro.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>dtsAlbaranCargaProMaestro.Designer.vb</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Maestro\dtsAlbaranCargaProMaestro.xss">
-      <DependentUpon>dtsAlbaranCargaProMaestro.xsd</DependentUpon>
-    </None>
-    <None Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Detalle\dtsAlbaranesCargaProviDetalles.xsc">
-      <DependentUpon>dtsAlbaranesCargaProviDetalles.xsd</DependentUpon>
-    </None>
-    <None Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Detalle\dtsAlbaranesCargaProviDetalles.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>dtsAlbaranesCargaProviDetalles.Designer.vb</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Detalle\dtsAlbaranesCargaProviDetalles.xss">
-      <DependentUpon>dtsAlbaranesCargaProviDetalles.xsd</DependentUpon>
-    </None>
     <None Include="Administracion\CargaNecesidadesJR\Detalles\dtsCargaNecesidadesJRDetalles.xsc">
       <DependentUpon>dtsCargaNecesidadesJRDetalles.xsd</DependentUpon>
     </None>
@@ -6881,7 +6845,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaMaestro1\" />
     <Folder Include="Produccion\Envasados2\_OLD\" />
     <Folder Include="Produccion\Partes\Causas\causas_fuentes\" />
   </ItemGroup>
