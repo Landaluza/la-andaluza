@@ -1,11 +1,9 @@
 ﻿Public Class AgnadirAcarga
     Private spAlamacen As spAlmacenPalets
-    'Dim ctlPal As New ctlPaletsProducidos
-    'Dim spPaletsProducidos As New spPaletsProducidos
     Private Tabla As DataTable
     Private O_Item As ListViewItem
 
-    Private ctlAlbDet As New ctlAlbaranesCargaProviDetalles
+    Private ctlAlbDet As ctlAlbaranesCargaProviDetalles
     Private codigoMaestro As String
     Public Event AfterSave(ByRef sender As Object)
     Public Event AfterAdd(ByRef sender As Object)
@@ -17,6 +15,7 @@
     Public Sub New(ByVal MaestroProID As Integer)
         InitializeComponent()
 
+        ctlAlbDet = New ctlAlbaranesCargaProviDetalles
         spAlamacen = New spAlmacenPalets
         Me.codigoMaestro = MaestroProID
         spPaletsProducidos2 = New spPaletsProducidos2
@@ -47,7 +46,7 @@
 
                     Dim Linea As String = "PaletsProducidosSelectArticuloCodigoQSBySCC " & txtSCC.Text
 
-                    ctlAlbDet.SetAlbaranCargaProviDetalleID(0)
+                    'ctlAlbDet.SetAlbaranCargaProviDetalleID(0)
                     Tabla = dtb.Consultar(Linea)
 
 
