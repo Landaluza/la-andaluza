@@ -8,7 +8,7 @@ Public Class frmEntLotesEnologicos
     Private ctlTipPro As spTiposProductos
     Private spTiposPRoductos As spTiposProductos
     Private spMedidas As spMedidasProductos
-    Private ctlPro As ctlProveedores
+    ' Private ctlPro As ctlProveedores
     Private OldLib As OldLib
     Dim spproveedores As spProveedores
     Public Sub New()
@@ -19,7 +19,7 @@ Public Class frmEntLotesEnologicos
         ctlLot = New ctlLotes
         ctlTipLot = New spTiposLotes
         spTiposPRoductos = New spTiposProductos
-        ctlPro = New ctlProveedores
+        'ctlPro = New ctlProveedores
         OldLib = New OldLib
         spproveedores = New spProveedores
         ctlTipPro = New spTiposProductos

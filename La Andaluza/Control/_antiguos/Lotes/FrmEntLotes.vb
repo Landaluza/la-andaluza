@@ -14,11 +14,11 @@ Public Class FrmEntLotes
     'Private ctlTipPro As New ctlTiposProductos
     Private spTiposProductos As spTiposProductos
     Private ctlCor As spCorredores 'ctlCorredores
-    Private ctlProv As ctlProveedores
+    Private ctlProv As spProveedores 'ctlProveedores
     Private ctlEsp As ctlEspecificaciones
     Private ctlMed As spMuestrasMedidas
     Private ctlCant As spMuestrasCantidades
-    Private ctlLabExt As ctlProveedores
+    'Private ctlLabExt As spProveedores
     'Dim ctlPer As New ctlPersonal
     Private ctlRecSal As ctlRecipientesSalidas
 
@@ -58,11 +58,11 @@ Public Class FrmEntLotes
         Me.ctlTipLot = New spTiposLotes
         Me.spTiposProductos = New spTiposProductos
         Me.ctlCor = New spCorredores 'ctlCorredores
-        Me.ctlProv = New ctlProveedores
+        Me.ctlProv = New spProveedores
         Me.ctlEsp = New ctlEspecificaciones
         Me.ctlMed = New spMuestrasMedidas
         Me.ctlCant = New spMuestrasCantidades
-        Me.ctlLabExt = New ctlProveedores
+        ' Me.ctlLabExt = New ctlProveedores
         'Dim ctlPer As New ctlPersonal
         Me.ctlRecSal = New ctlRecipientesSalidas
         Me.tTipLot = New DataTable
@@ -130,7 +130,7 @@ Public Class FrmEntLotes
         cboProveedor.DisplayMember = "Display"
 
         'cboProveedoresLabExternos.DataSource = OldLib.HacerTablasObligatorias(ctlLabExt.devolverProveedoresAnaliticas())
-        cboProveedoresLabExternos.DataSource = OldLib.HacerTablasObligatorias(ctlLabExt.devolverProveedoresAnaliticas())
+        cboProveedoresLabExternos.DataSource = OldLib.HacerTablasObligatorias(ctlProv.devolverProveedoresAnaliticas())
         cboProveedoresLabExternos.ValueMember = "ID"
         cboProveedoresLabExternos.DisplayMember = "Display"
 

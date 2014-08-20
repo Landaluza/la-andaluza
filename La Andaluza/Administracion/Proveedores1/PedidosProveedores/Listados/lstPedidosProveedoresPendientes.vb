@@ -3,7 +3,7 @@
 Public Class lstPedidosProveedoresPendientes
     ' Private bw As System.ComponentModel.BackgroundWorker
     Private orden As Integer
-    Private fecha As String
+    Private fecha As Date
     Private proveedor As Integer    
     'Private mSQL As String = Nothing
 

@@ -22,7 +22,8 @@ Public Class frmElegirOrdenListadoPedidos
 
     Public ReadOnly Property Fecha As String
         Get
-            Return dtpFecha.Value.Year & If(dtpFecha.Value.Month < 10, "0" & dtpFecha.Value.Month, Convert.ToString(dtpFecha.Value.Month)) & If(dtpFecha.Value.Day < 10, "0" & dtpFecha.Value.Day, Convert.ToString(dtpFecha.Value.Day))
+            'Return dtpFecha.Value.Year & If(dtpFecha.Value.Month < 10, "0" & dtpFecha.Value.Month, Convert.ToString(dtpFecha.Value.Month)) & If(dtpFecha.Value.Day < 10, "0" & dtpFecha.Value.Day, Convert.ToString(dtpFecha.Value.Day))
+            Return dtpFecha.Value.Date
         End Get
     End Property
 
