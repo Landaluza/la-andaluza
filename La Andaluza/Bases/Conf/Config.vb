@@ -24,6 +24,8 @@
     Private Shared InformeListadoDepositos As String
     Private Shared InformeListadoDepositosTipos As String
     Private Shared InformeListadoPedidosPendientes As String
+    Private Shared InformeListadoPedidosPendientesPorFecha As String
+    Private Shared InformeListadoPedidosPendientesPorProveedores As String
     Private Shared ruta_servidor As String
     Private Shared versionApp As String
 
@@ -40,6 +42,8 @@
         Config.InformeListadoDepositos = "Depositos.frx"
         Config.InformeListadoDepositosTipos = "ListadoDepositosPorTipos.frx"
         Config.InformeListadoPedidosPendientes = "report1.frx"
+        Config.InformeListadoPedidosPendientesPorFecha = "listadoPedidosPendientesFecha.frx"
+        Config.InformeListadoPedidosPendientesPorProveedores = "listadoPedidosPendientesProveedor.frx"
         Config.MailReportAddress = "administracion@landaluza.es"
         Config.MailClientHost = "smtp.1and1.es"
         Config.QS_Sesion = "Sesión A - [24 x 80]"
@@ -91,6 +95,18 @@
         End Get
     End Property
 
+    Public Shared ReadOnly Property PedidosPendientesPorFecha As String
+        Get
+            Return InformeListadoPedidosPendientesPorFecha
+        End Get
+    End Property
+
+    Public Shared ReadOnly Property PedidosPendientesPorProveedores As String
+        Get
+            Return InformeListadoPedidosPendientesPorProveedores
+        End Get
+    End Property
+
     'Public Function CargarMenuPersonal() As Collection
     '    Dim mydocpath As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "menu.obj"
     '    Dim f As New File
@@ -110,6 +126,8 @@
         Dim ruta_servidor_depositos As String = Config.ruta_servidor & Config.InformeListadoDepositos
         Dim ruta_servidor_depositos_tipos As String = Config.ruta_servidor & Config.InformeListadoDepositosTipos
         Dim ruta_servidor_pedidos As String = Config.ruta_servidor & Config.InformeListadoPedidosPendientes
+        Dim ruta_servidor_pedidos_fecha As String = Config.ruta_servidor & Config.InformeListadoPedidosPendientesPorFecha
+        Dim ruta_servidor_pedidos_proveedores As String = Config.ruta_servidor & Config.InformeListadoPedidosPendientesPorProveedores
 
         Try
             If System.IO.File.Exists(ruta_servidor_ventas) Then
@@ -202,6 +220,53 @@
             Config.InformeListadoPedidosPendientes = ruta_servidor_pedidos
             retorno = False
         End Try
+
+        Try
+            tempPath = Application.StartupPath & InformeListadoPedidosPendientesPorFecha
+
+            If System.IO.File.Exists(ruta_servidor_pedidos_fecha) Then
+
+                If System.IO.File.Exists(tempPath) Then
+                    System.IO.File.Delete(tempPath)
+                    System.IO.File.Copy(ruta_servidor_pedidos_fecha, tempPath)
+                    Config.InformeListadoPedidosPendientesPorFecha = tempPath
+                Else
+                    System.IO.File.Copy(ruta_servidor_pedidos_fecha, tempPath)
+                    Config.InformeListadoPedidosPendientesPorFecha = tempPath
+                End If
+            Else
+                If System.IO.File.Exists(tempPath) Then
+                    Config.InformeListadoPedidosPendientesPorFecha = tempPath
+                End If
+            End If
+        Catch ex As Exception
+            Config.InformeListadoPedidosPendientesPorFecha = ruta_servidor_pedidos_fecha
+            retorno = False
+        End Try
+
+        Try
+            tempPath = Application.StartupPath & InformeListadoPedidosPendientesPorProveedores
+
+            If System.IO.File.Exists(ruta_servidor_pedidos_fecha) Then
+
+                If System.IO.File.Exists(tempPath) Then
+                    System.IO.File.Delete(tempPath)
+                    System.IO.File.Copy(ruta_servidor_pedidos_proveedores, tempPath)
+                    Config.InformeListadoPedidosPendientesPorProveedores = tempPath
+                Else
+                    System.IO.File.Copy(ruta_servidor_pedidos_proveedores, tempPath)
+                    Config.InformeListadoPedidosPendientesPorProveedores = tempPath
+                End If
+            Else
+                If System.IO.File.Exists(tempPath) Then
+                    Config.InformeListadoPedidosPendientesPorProveedores = tempPath
+                End If
+            End If
+        Catch ex As Exception
+            Config.InformeListadoPedidosPendientesPorProveedores = ruta_servidor_pedidos_proveedores
+            retorno = False
+        End Try
+
 
         Return retorno
     End Function

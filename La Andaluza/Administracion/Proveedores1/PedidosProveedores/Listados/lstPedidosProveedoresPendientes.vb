@@ -1,19 +1,17 @@
 ﻿
 
 Public Class lstPedidosProveedoresPendientes
-    Private bw As System.ComponentModel.BackgroundWorker
+    ' Private bw As System.ComponentModel.BackgroundWorker
     Private orden As Integer
     Private fecha As String
-    Private proveedor As Integer
-    'Private Property my_connection_string As String = Config.connectionString
-    '"Data Source=MAMVAIO\SQL2012;AttachDbFilename=;Initial Catalog=LA;Integrated Security=True;Persist Security Info=False;User ID=;Password="
-    ' Private Property my_connection_string As String = " Data Source=SERVIDOR1;AttachDbFilename=;Initial Catalog=LA;Integrated Security=False;Persist Security Info=False;User ID=ssa;Password=Trucha0122"
+    Private proveedor As Integer    
     Private mSQL As String = Nothing
 
+
     Public Sub New()
-        bw = New System.ComponentModel.BackgroundWorker
-        AddHandler bw.DoWork, AddressOf cargar_datos
-        AddHandler bw.RunWorkerCompleted, AddressOf FastReport
+        'bw = New System.ComponentModel.BackgroundWorker
+        'AddHandler bw.DoWork, AddressOf cargar_datos
+        'AddHandler bw.RunWorkerCompleted, AddressOf FastReport
     End Sub
 
     Public Sub GenerarListado()
@@ -23,7 +21,8 @@ Public Class lstPedidosProveedoresPendientes
         Me.fecha = frm.Fecha
         Me.proveedor = frm.Proveedor
         frm.Dispose()
-        bw.RunWorkerAsync()
+        'bw.RunWorkerAsync()
+        FastReport()
     End Sub
 
     Private Sub cargar_datos()
@@ -46,7 +45,25 @@ Public Class lstPedidosProveedoresPendientes
     End Sub
 
     Private Sub FastReport()
-        Dim report As New ReportAdapter.Reporte(BasesParaCompatibilidad.Config.connectionString, Config.PedidosPendientes)
+        Dim origen As String = String.Empty
+
+        Select Case Me.orden
+            Case 1
+                origen = Config.PedidosPendientes
+            Case 2
+                origen = Config.PedidosPendientesPorProveedores
+            Case 3
+                origen = Config.PedidosPendientesPorFecha
+            Case 4
+                mSQL = "SELECT PedidosProveedoresMaestros.Numero AS OrderBy, PedidosProveedoresMaestros.PedidoProveedorMaestroID, PedidosProveedoresMaestros.Numero, Proveedores.Nombre, PedidosProveedoresMaestros.FechaEmision, PedidosProveedoresMaestros.FechaServicio, PedidosProveedoresMaestros.EstadoID, PedidosProveedoresMaestros.Observaciones as Observaciones1, PedidosProveedoresDetalles.PedidoProveedorDetalleID, PedidosProveedoresDetalles.Cantidad as Cantidad1, isnull(PedidosProveedoresDetalles.Observaciones, '') as Observaciones2, PedidosProveedoresDetalles.PedidoProveedorMaestroID, Articulos1.DescripcionLA, PedidosProveedoresEstados.Descripcion AS Estado, isnull(Articulos1.CodigoQS,'-') CodigoQS, convert(NVARCHAR, PedidosProveedoresEntregas.Fecha, 103) as Fecha, PedidosProveedoresEntregas.Cantidad as Cantidad2, PedidosProveedoresEntregas.Observaciones as Observaciones3 FROM PedidosProveedoresMaestros INNER JOIN Proveedores ON PedidosProveedoresMaestros.ProveedorID = Proveedores.ProveedorID INNER JOIN PedidosProveedoresDetalles ON PedidosProveedoresMaestros.PedidoProveedorMaestroID = PedidosProveedoresDetalles.PedidoProveedorMaestroID INNER JOIN Articulos1 ON PedidosProveedoresDetalles.ArticuloID = Articulos1.ArticuloID INNER JOIN PedidosProveedoresEstados ON PedidosProveedoresDetalles.EstadoID = PedidosProveedoresEstados.PedidoProveedorEstadoID LEFT JOIN PedidosProveedoresEntregas ON PedidosProveedoresDetalles.PedidoProveedorDetalleID = PedidosProveedoresEntregas.PedidoProveedorDetalleID WHERE PedidosProveedoresMaestros.EstadoID < 5 AND PedidosProveedoresDetalles.EstadoID <> 5 AND convert(varchar(10),PedidosProveedoresMaestros.FechaServicio,112) = " & fecha & " ORDER BY OrderBy"
+            Case 5
+                mSQL = "SELECT PedidosProveedoresMaestros.Numero AS OrderBy, PedidosProveedoresMaestros.PedidoProveedorMaestroID, PedidosProveedoresMaestros.Numero, Proveedores.Nombre, PedidosProveedoresMaestros.FechaEmision, PedidosProveedoresMaestros.FechaServicio, PedidosProveedoresMaestros.EstadoID, PedidosProveedoresMaestros.Observaciones as Observaciones1, PedidosProveedoresDetalles.PedidoProveedorDetalleID, PedidosProveedoresDetalles.Cantidad as Cantidad1, isnull(PedidosProveedoresDetalles.Observaciones, '') as Observaciones2, PedidosProveedoresDetalles.PedidoProveedorMaestroID, Articulos1.DescripcionLA, PedidosProveedoresEstados.Descripcion AS Estado, isnull(Articulos1.CodigoQS,'-') CodigoQS, convert(NVARCHAR, PedidosProveedoresEntregas.Fecha, 103) as Fecha, PedidosProveedoresEntregas.Cantidad as Cantidad2, PedidosProveedoresEntregas.Observaciones as Observaciones3 FROM PedidosProveedoresMaestros INNER JOIN Proveedores ON PedidosProveedoresMaestros.ProveedorID = Proveedores.ProveedorID INNER JOIN PedidosProveedoresDetalles ON PedidosProveedoresMaestros.PedidoProveedorMaestroID = PedidosProveedoresDetalles.PedidoProveedorMaestroID INNER JOIN Articulos1 ON PedidosProveedoresDetalles.ArticuloID = Articulos1.ArticuloID INNER JOIN PedidosProveedoresEstados ON PedidosProveedoresDetalles.EstadoID = PedidosProveedoresEstados.PedidoProveedorEstadoID LEFT JOIN PedidosProveedoresEntregas ON PedidosProveedoresDetalles.PedidoProveedorDetalleID = PedidosProveedoresEntregas.PedidoProveedorDetalleID WHERE PedidosProveedoresMaestros.EstadoID < 5 AND PedidosProveedoresDetalles.EstadoID <> 5 AND Proveedores.Proveedorid = " & Me.proveedor.ToString & " ORDER BY OrderBy"
+            Case 6
+                mSQL = "SELECT PedidosProveedoresMaestros.Numero AS OrderBy, PedidosProveedoresMaestros.PedidoProveedorMaestroID, PedidosProveedoresMaestros.Numero, Proveedores.Nombre, PedidosProveedoresMaestros.FechaEmision, PedidosProveedoresMaestros.FechaServicio, PedidosProveedoresMaestros.EstadoID, PedidosProveedoresMaestros.Observaciones as Observaciones1, PedidosProveedoresDetalles.PedidoProveedorDetalleID, PedidosProveedoresDetalles.Cantidad as Cantidad1, isnull(PedidosProveedoresDetalles.Observaciones, '') as Observaciones2, PedidosProveedoresDetalles.PedidoProveedorMaestroID, Articulos1.DescripcionLA, PedidosProveedoresEstados.Descripcion AS Estado, isnull(Articulos1.CodigoQS,'-') CodigoQS, convert(NVARCHAR, PedidosProveedoresEntregas.Fecha, 103) as Fecha, PedidosProveedoresEntregas.Cantidad as Cantidad2, PedidosProveedoresEntregas.Observaciones as Observaciones3 FROM PedidosProveedoresMaestros INNER JOIN Proveedores ON PedidosProveedoresMaestros.ProveedorID = Proveedores.ProveedorID INNER JOIN PedidosProveedoresDetalles ON PedidosProveedoresMaestros.PedidoProveedorMaestroID = PedidosProveedoresDetalles.PedidoProveedorMaestroID INNER JOIN Articulos1 ON PedidosProveedoresDetalles.ArticuloID = Articulos1.ArticuloID INNER JOIN PedidosProveedoresEstados ON PedidosProveedoresDetalles.EstadoID = PedidosProveedoresEstados.PedidoProveedorEstadoID LEFT JOIN PedidosProveedoresEntregas ON PedidosProveedoresDetalles.PedidoProveedorDetalleID = PedidosProveedoresEntregas.PedidoProveedorDetalleID WHERE PedidosProveedoresMaestros.EstadoID < 5 AND PedidosProveedoresDetalles.EstadoID <> 5 AND PedidosProveedoresMaestros.FechaServicio < SYSDATETIME() ORDER BY OrderBy"
+        End Select
+
+
+        Dim report As New ReportAdapter.Reporte(BasesParaCompatibilidad.Config.connectionString, origen)
 
         Try
             report.abrir()

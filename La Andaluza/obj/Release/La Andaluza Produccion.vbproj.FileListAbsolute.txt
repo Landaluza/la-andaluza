@@ -1349,6 +1349,7 @@ C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\C1.C1Repo
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\C1.Win.C1Report.2.xml
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Microsoft.Office.Interop.Word.xml
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\office.xml
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza Produccion.vbprojResolveAssemblyReference.cache
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmArticulosFichasTecnicasEstados.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEntArticulosFichasTecnicasEstados.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmArticulosFichasTecnicas.resources
