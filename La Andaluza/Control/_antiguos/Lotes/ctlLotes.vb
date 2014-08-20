@@ -1,12 +1,23 @@
 Public Class ctlLotes
-    Dim clsLot As New clsLotes
-    Dim clsEsp As New clsValoresespecificaciones
-    Dim clsAnaVal As New clsAnaliticasValores
-    Dim clsAnaReq As New clsAnaliticasRequerimientos
-    Dim clsObs As New clsObservaciones
-    Dim clsMueObs As New clsMuestrasObservaciones
-    Dim clsAna As New clsAnaliticas
-    Dim clsAnaExt As New clsAnaliticasExternas
+    Private clsLot As New clsLotes
+    Private clsEsp As New clsValoresespecificaciones
+    Private clsAnaVal As New clsAnaliticasValores
+    Private clsAnaReq As New clsAnaliticasRequerimientos
+    Private clsObs As New clsObservaciones
+    Private clsMueObs As New clsMuestrasObservaciones
+    Private clsAna As New clsAnaliticas
+    Private clsAnaExt As New clsAnaliticasExternas
+
+    Public Sub New()
+        clsLot = New clsLotes
+        clsEsp = New clsValoresespecificaciones
+        clsAnaVal = New clsAnaliticasValores
+        clsAnaReq = New clsAnaliticasRequerimientos
+        clsObs = New clsObservaciones
+        clsMueObs = New clsMuestrasObservaciones
+        clsAna = New clsAnaliticas
+        clsAnaExt = New clsAnaliticasExternas
+    End Sub
 
     Public Function CantidadDeMaceraciones() As Integer
         Return clsLot.CantidadDeMaceraciones()
@@ -97,227 +108,12 @@ Public Class ctlLotes
         End If
     End Sub
 
-    Public Function devolverLotesEnologicosParaMovimientoPorProceso(ByVal Proceso As Integer) As DataTable
-        Return clsLot.devolverLotesEnologicosParaMovimientoPorProceso(Proceso)
-    End Function
-
-    Public Function devolverLotesEnologicosPorTipoMovimientoyTipoProducto(ByVal TipoMovimiento As Integer, ByVal TipoProducto As Integer) As DataTable
-        Return clsLot.devolverLotesEnologicosPorTipoMovimientoProcesoyTipoProducto(TipoMovimiento, TipoProducto)
-    End Function
-
-    Public Sub devolverLotesEnologicosParaMovimientosPorLoteID(ByVal LoteID As Integer, ByRef CantidadRestante As String, ByRef TipoProductoID As Integer, ByRef CodigoLote As String)
-        clsLot._LoteID = LoteID
-        clsLot.DevolverEnologicosParaMovimientosPorLoteID()
-        CantidadRestante = clsLot._CantidadRestante
-        TipoProductoID = clsLot._TipoProductoID
-        CodigoLote = clsLot._CodigoLote
-    End Sub
-
-    Function validarLoteDiferencia(ByVal codigo As String, ByRef cantidad As Double, ByRef descr As String) As Integer
-        clsLot._CodigoLote = codigo
-        clsLot.validarLoteDiferencia()
-        cantidad = clsLot._CantidadRestante
-        descr = clsLot._Descripcion
-        Return clsLot._LoteID
-    End Function
 
     '---------------------------------------------------MOVIMIENTOS----------------------------------------------------------
-    Public Function guardarLoteDesdeMovimiento(ByVal LotePartidaID As Integer, _
-                                               ByVal LoteFinalID As Integer, _
-                                               ByVal codigoLote As String, _
-                                               ByVal cantidadRestantePartida As Double, _
-                                               ByVal fechaFinal As Date, _
-                                               ByVal cantidadActualFinal As Double, _
-                                               ByVal DepositoID As Integer, _
-                                               ByVal TipoProductoID As Integer, _
-                                               ByVal TipoLoteID As Integer, _
-                                               ByVal TercerLote As Boolean, _
-                                               ByVal descripcion As String, _
-                                               ByVal observacion As String, _
-                                               ByVal conMuestra As Boolean, _
-                                               ByVal RecipienteSalida As Integer, _
-                                               ByVal TransicubaID As Integer) _
-                                               As Integer
-
-        Dim RecipienteSalidaId As String
-        If RecipienteSalida = 0 Then
-            RecipienteSalidaId = "null"
-        Else
-            RecipienteSalidaId = RecipienteSalida
-        End If
-
-        Dim lote As Integer = verificar_lote(codigoLote)
-
-
-        If BasesParaCompatibilidad.BD.ConsultaProcedAlmacenado("guardarLoteDesdeMovimiento", _
-                                    Convert.ToString(LotePartidaID) & "," & _
-                                    Convert.ToString(LoteFinalID) & ",'" & _
-                                    codigoLote & "'," & _
-                                    Convert.ToString(cantidadRestantePartida).Replace(",", ".") & ",'" & _
-                                   BasesParaCompatibilidad.Calendar.ArmarFecha(fechaFinal) & "'," & _
-                                    Convert.ToString(cantidadActualFinal).Replace(",", ".") & "," & _
-                                    DepositoID.ToString & "," & _
-                                    Convert.ToString(TipoProductoID) & "," & _
-                                    Convert.ToString(TipoLoteID) & ",'" & _
-                                    TercerLote & "','" & _
-                                    conMuestra & "'," & _
-                                    BasesParaCompatibilidad.Config.User & ",'" & _
-                                    descripcion & "','" & _
-                                    observacion & "'," & _
-                                    RecipienteSalidaId) Is Nothing Then
-
-            Return 0
-        End If
-
-
-        If TransicubaID <> 0 Then
-            Dim ctldep As New ctlDepositos
-            ctldep.SetTransicubaID(TransicubaID)
-            If ctldep.darDeBajaTransicuba() = 0 Then
-                Return 0
-            End If
-        End If
-
-        If TercerLote Then
-            If lote <> 0 Then
-                Return lote
-            Else
-                Return BasesParaCompatibilidad.BD.ConsultaVer("max(LoteID)", "Lotes").Rows(0).Item(0)
-            End If
-        Else
-            Return LoteFinalID
-        End If
-    End Function
-
-    Public Function verificar_lote(ByVal codigoLote As String) As Integer
-        Dim consulta As String = "select loteid from lotes where codigolote = '" & CodigoLote & "'"
-        Dim dtb as BasesParaCompatibilidad.Database
-        If BasesParaCompatibilidad.BD.transaction Is Nothing Then
-            dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Else
-            dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server, BasesParaCompatibilidad.BD.Cnx, BasesParaCompatibilidad.BD.transaction)
-        End If
-        Dim dt As DataTable = dtb.Consultar(consulta, False)
-        If dt Is Convert.DBNull Then Return 0
-        If dt.Rows.Count = 0 Then Return 0
-        If dt.Rows(0) Is Convert.DBNull Then Return 0
-
-        If dt.Rows(0).Item(0) Is Convert.DBNull Then Return 0
-        Return dt.Rows(0).Item(0)
-
-    End Function
-
-    Public Function guardarLoteDesdeMovimiento(ByVal codigoLote As String, _
-                                          ByVal cantidadRestante As Double, _
-                                          ByVal Fecha As Date, _
-                                          ByVal DepositoID As Integer, _
-                                          ByVal TipoProductoID As Integer, _
-                                          ByVal TipoLoteID As Integer, _
-                                          ByVal descripcion As String, _
-                                          ByVal observacion As String, _
-                                          ByVal conMuestra As Boolean) _
-                                          As Integer
-
-        clsLot._CodigoLote = codigoLote
-        clsLot._CantidadRestante = cantidadRestante
-        clsLot._Fecha = Fecha
-        clsLot._DepositoID = DepositoID
-        clsLot._TipoProductoID = TipoProductoID
-        clsLot._TipoLoteID = TipoLoteID
-        clsLot._Descripcion = descripcion
-        clsLot._Observacion = observacion
-        If conMuestra Then
-            clsLot._Botellas = 1
-            clsLot._Referencia = (BasesParaCompatibilidad.BD.ConsultaVer("max(Referencia)", "Lotes").Rows(0).Item(0)) + 1
-            messagebox.show("La referencia de la muestra es: " & clsLot._Referencia.ToString, "", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        Else
-            clsLot._Botellas = 0
-            clsLot._Referencia = 0
-        End If
-
-        clsLot.Insertar()
-        Return BasesParaCompatibilidad.BD.ConsultaVer("max(LoteID)", "Lotes").Rows(0).Item(0)
-    End Function
-
-    Public Sub CargarParaMovimiento(ByVal DepositoID As Integer, ByRef LoteId As Integer, ByRef LoteActual As String, ByRef TipoProductoID As Integer, ByRef Descripcion As String, ByRef obser As String, ByRef CantidadActual As String)
-        clsLot._DepositoID = DepositoID
-        clsLot.cargarParaMovimientoPorDeposito()
-        LoteId = clsLot._LoteID
-        LoteActual = clsLot._CodigoLote
-        TipoProductoID = clsLot._TipoProductoID
-        Descripcion = clsLot._Descripcion
-        CantidadActual = clsLot._CantidadRestante
-        obser = clsLot._Observacion
-    End Sub
-
-    Public Function devolverTipoLote() As String
-        Return clsLot.devolverTipoLote()
-    End Function
-
-    Public Sub devolverDatosLotePorLoteID(ByVal LoteID As Integer, _
-                                          ByRef txtSalidaTipoProducto As Integer, _
-                                          ByRef txtSalidaTipoLote As Integer, _
-                                          ByRef txtSalidaCantidad As String, _
-                                          ByRef txtSalidaMedida As Integer, _
-                                          ByRef txtSalidadDescripcion As String, _
-                                          ByRef txtSalidadObservaciones As String)
-
-
-        clsLot._LoteID = LoteID
-        clsLot.devolverDatosLotePorLoteID()
-        txtSalidaTipoLote = clsLot._TipoLoteID
-        txtSalidaTipoProducto = clsLot._TipoProductoID
-        txtSalidaCantidad = clsLot._CantidadRestante
-        txtSalidaMedida = clsLot._MedidaID
-        txtSalidadDescripcion = clsLot._Descripcion
-        txtSalidadObservaciones = clsLot._Observacion
-    End Sub
-
-    Public Sub devolverDatosLotePorDepositoID(ByVal FinalDepositoID As String, _
-                                              ByRef txtFinalLoteID As String, _
-                                              ByRef txtFinalTipoProductoInicial As String, _
-                                              ByRef txtFinalTipoLoteInicial As String, _
-                                              ByRef txtFinalLoteInicial As String, _
-                                              ByRef txtFinalCantidadInicial As String, _
-                                              ByRef txtFinalDescripcionInicial As String, _
-                                              ByRef txtFinalObservacionInicial As String)
-
-
-        clsLot._DepositoID = FinalDepositoID
-        clsLot.devolverDatosLotePorDepositoID()
-        txtFinalLoteID = clsLot._LoteID
-        txtFinalTipoProductoInicial = clsLot._TipoProductoID
-        txtFinalTipoLoteInicial = clsLot._TipoLoteID
-        txtFinalLoteInicial = clsLot._CodigoLote
-        txtFinalCantidadInicial = clsLot._CantidadRestante
-        txtFinalDescripcionInicial = clsLot._Descripcion
-        txtFinalObservacionInicial = clsLot._Observacion
-    End Sub
-
-    Public Function devolverPorTipoProductoID(ByVal TipoProductoID As Integer) As DataTable
-        Return clsLot.devolverPorTipoProductoID(TipoProductoID)
-    End Function
-
-    Public Function devolverPorTipoProductoID() As DataTable
-        Return clsLot.devolverPorTipoProductoID()
-    End Function
 
     Public Function devolverReferencia() As Integer
         clsLot.devolverReferencia()
         Return clsLot._Referencia
-    End Function
-
-    Public Function GuardarLoteCompra(ByVal TipoProducto As Integer, ByVal tipoLote As Integer, ByVal proveedor As Integer, ByVal Cantidad As Double, ByVal Fecha As Date, ByVal CodigoLote As String, ByVal descrip As String, ByVal obs As String) As Integer
-        devolverReferencia()
-        clsLot._TipoProductoID = TipoProducto
-        clsLot._TipoLoteID = tipoLote
-        clsLot._ProveedorID = proveedor
-        clsLot._CantidadRestante = Cantidad
-        clsLot._CodigoLote = CodigoLote
-        clsLot._Fecha = Fecha
-        clsLot._Descripcion = descrip
-        clsLot._Observacion = obs
-        Return clsLot.guardarLoteCompra()
     End Function
 
     Public Sub mostrarLotesComponentes(ByRef dts As dtsLotesComponentes.LotesComponentesDataTable)
@@ -363,16 +159,6 @@ Public Class ctlLotes
             i = i + 1
         End While
     End Sub
-
-    Public Function EsComponente() As Boolean
-        Dim tabla As New DataTable
-        tabla = clsLot.DevolverLotesQueCompone()
-        If tabla.Rows.Count > 0 Then
-            Return True
-        Else
-            Return False
-        End If
-    End Function
 
     '-----------------------------------------------------LOTES-----------------------------------------------------------------
     Public Sub mostrarTrazabilidadLote(ByRef dts As dtsLotesTrazabilidad.LotesTrazabilidadDataTable, ByVal Lote As Integer)
@@ -510,8 +296,8 @@ Public Class ctlLotes
         Return 0
     End Function
 
-    Dim MostrarAnaliticas As Boolean
-    Sub MostrarParametrosAnalitica(ByVal analiticaID As Integer, _
+    Private MostrarAnaliticas As Boolean
+    Public Sub MostrarParametrosAnalitica(ByVal analiticaID As Integer, _
     ByRef txtAcidez As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef Acidez As Boolean, ByRef txtAlcohol As BasesParaCompatibilidad.CuadroDeTextoMuestra, _
     ByRef Alcohol As Boolean, ByRef txtExtracto As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef Extracto As Boolean, ByRef txtExtractoGrado As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef txtCenizas As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef Cenizas As Boolean, _
     ByRef txtMetanol As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef Metanol As String, ByRef txtHg As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef Hg As String, ByRef txtAs As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef As_ As Boolean, _
@@ -941,122 +727,7 @@ Public Class ctlLotes
         End If
     End Sub
 
-    Public Sub mostrarTodosLotes1(ByRef dtsMue As dtsLotes.LotesDataTable, ByVal top100 As Boolean)
-        Dim tabla As New DataTable
-        tabla = clsLot.devolverTodosNoEnologicos(top100)
-        Dim i As Integer
-        Dim reg As dtsLotes.LotesRow
-        dtsMue.Clear()
-        While i < tabla.Rows.Count
-            reg = dtsMue.NewLotesRow
-            reg.LoteID = tabla.Rows(i).Item(0)
-
-            If IsDBNull(tabla.Rows(i).Item(1)) Then
-                reg.Descripcion = ""
-            Else
-                reg.Descripcion = tabla.Rows(i).Item(1)
-            End If
-            reg.Fecha = tabla.Rows(i).Item(2)
-            reg.Fecha = reg.Fecha.Date
-            If IsDBNull(tabla.Rows(i).Item(3)) Then
-                reg.CantidadRestante = 0
-            Else
-                reg.CantidadRestante = tabla.Rows(i).Item(3)
-            End If
-
-            If IsDBNull(tabla.Rows(i).Item(4)) Then
-                reg.Observacion = ""
-            Else
-                reg.Observacion = tabla.Rows(i).Item(4)
-            End If
-
-            If IsDBNull(tabla.Rows(i).Item(5)) Then
-                reg.LoteProveedor = ""
-            Else
-                reg.LoteProveedor = tabla.Rows(i).Item(5)
-            End If
-
-            If IsDBNull(tabla.Rows(i).Item(6)) Then
-                reg.Botellas = ""
-            Else
-                reg.Botellas = tabla.Rows(i).Item(6)
-            End If
-
-
-            If IsDBNull(tabla.Rows(i).Item(7)) Then
-                reg.Cantidad = 0
-            Else
-                reg.Cantidad = tabla.Rows(i).Item(7)
-            End If
-
-            If IsDBNull(tabla.Rows(i).Item(8)) Then
-                reg.Medida = 0
-            Else
-                reg.Medida = tabla.Rows(i).Item(8)
-            End If
-
-            If IsDBNull(tabla.Rows(i).Item(9)) Then
-                reg.Corredor = ""
-            Else
-                reg.Corredor = tabla.Rows(i).Item(9)
-            End If
-            If IsDBNull(tabla.Rows(i).Item(10)) Then
-                reg.TipoLote = 0
-            Else
-                reg.TipoLote = tabla.Rows(i).Item(10)
-            End If
-
-            If IsDBNull(tabla.Rows(i).Item(11)) Then
-                reg.TipoProducto = 0
-            Else
-                reg.TipoProducto = tabla.Rows(i).Item(11)
-            End If
-
-            If IsDBNull(tabla.Rows(i).Item(12)) Then
-                reg.Proveedor = ""
-            Else
-                reg.Proveedor = tabla.Rows(i).Item(12)
-            End If
-            If IsDBNull(tabla.Rows(i).Item(13)) Then
-                reg.LoteConjuntoCompra = ""
-            Else
-                reg.LoteConjuntoCompra = tabla.Rows(i).Item(13)
-            End If
-            If IsDBNull(tabla.Rows(i).Item(14)) Then
-                reg.Especificacion = ""
-            Else
-                reg.Especificacion = tabla.Rows(i).Item(14)
-            End If
-
-            If IsDBNull(tabla.Rows(i).Item(15)) Then
-                reg.SinEspecificacion = False
-            Else
-                reg.SinEspecificacion = tabla.Rows(i).Item(15)
-            End If
-            reg.CodigoLote = tabla.Rows(i).Item(16)
-
-            If IsDBNull(tabla.Rows(i).Item(17)) Then
-                reg.DepositoID = ""
-            Else
-                reg.DepositoID = tabla.Rows(i).Item(17)
-            End If
-
-            If IsDBNull(tabla.Rows(i).Item(18)) Then
-                reg.Referencia = "0"
-            Else
-                reg.Referencia = tabla.Rows(i).Item(18)
-            End If
-            If IsDBNull(tabla.Rows(i).Item(19)) Then
-                reg.DepositoPrevio = ""
-            Else
-                reg.DepositoPrevio = tabla.Rows(i).Item(19)
-            End If
-            dtsMue.AddLotesRow(reg)
-            reg = Nothing
-            i = i + 1
-        End While
-    End Sub
-
+   
     Public Function mostrarTodosLotesPorTipoLoteoProducto(ByVal TipoLoteId As Integer, ByVal tipoProductoID As Integer, ByVal enologicos As Boolean, ByVal top100 As Boolean, Optional ByVal id As Integer = Nothing) As DataTable
         Dim tabla As New DataTable
         clsLot._TipoLoteID = TipoLoteId
@@ -1210,11 +881,6 @@ Public Class ctlLotes
             reg = Nothing
             i = i + 1
         End While
-    End Sub
-
-    Private Sub InsertarLote(ByVal nom As String)
-        clsLot._Descripcion = nom
-        clsLot.Insertar()
     End Sub
 
     Private Sub guardarObservacionesLotes(ByVal txtobservacion As BasesParaCompatibilidad.CuadroDeTextoMuestra)
@@ -1456,47 +1122,7 @@ Public Class ctlLotes
         Return True
     End Function
 
-    Public Sub ModificarCantidadRestante_Deposito(ByVal LoteID As Integer, _
-                                                  ByVal DepositoID As Integer, _
-                                                  ByVal CantidadRestante As Double)
 
-        clsLot._LoteID = LoteID
-        clsLot._CantidadRestante = CantidadRestante
-        If CantidadRestante = 0 Then
-            clsLot._DepositoID = 0
-        Else
-            clsLot._DepositoID = DepositoID
-        End If
-        clsLot.ModificarCantidadRestante_Deposito()
-    End Sub
 
-    Public Sub ModificarDesdeMovimiento(ByVal LoteID As Integer, _
-                                        ByVal DepositoID As Integer, _
-                                        ByVal CantidadRestante As Double, _
-                                        ByVal Descripcion As String, _
-                                        ByVal Observacion As String)
 
-        clsLot._LoteID = LoteID
-        If CantidadRestante = 0 Then
-            clsLot._DepositoID = 0
-        Else
-            clsLot._DepositoID = DepositoID
-        End If
-        clsLot._CantidadRestante = CantidadRestante
-        clsLot._Descripcion = Descripcion
-        clsLot._Observacion = Observacion
-        clsLot.ModificarDesdeMovimiento()
-    End Sub
-
-    Public Sub ModificarDesdeMovimiento(ByVal LoteID As Integer, _
-                                        ByVal CantidadRestante As Double, _
-                                        ByVal Descripcion As String, _
-                                        ByVal Observacion As String)
-
-        clsLot._LoteID = LoteID
-        clsLot._CantidadRestante = CantidadRestante
-        clsLot._Descripcion = Descripcion
-        clsLot._Observacion = Observacion
-        clsLot.ModificarDesdeMovimientoMAM()
-    End Sub
 End Class

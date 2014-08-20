@@ -375,57 +375,6 @@ Public Class clsLotes
         _RecipienteSalidaID = 0
     End Sub
 
-    Public Sub cargarParaMovimientoPorDeposito()
-        Dim tabla As DataTable = BasesParaCompatibilidad.BD.ConsultaVer("LoteID, Descripcion, CantidadRestante, TipoProductoId, CodigoLote, observacion", _
-                                   "Lotes", _
-                                   "Lotes.DepositoID =" & Convert.ToString(DepositoID))
-
-        Try
-            LoteID = Convert.ToInt32(tabla.Rows(0).Item("LoteID"))
-            If IsDBNull(tabla.Rows(0).Item(1)) Then
-                Descripcion = ""
-            Else
-                Descripcion = CStr(tabla.Rows(0).Item(1))
-            End If
-            If IsDBNull(tabla.Rows(0).Item(2)) Then
-                CantidadRestante = 0
-            Else
-                CantidadRestante = tabla.Rows(0).Item(2)
-            End If
-
-            If IsDBNull(tabla.Rows(0).Item(3)) Then
-                TipoProductoID = "NULL"
-            Else
-                TipoProductoID = CStr(tabla.Rows(0).Item(3))
-            End If
-            CodigoLote = CStr(tabla.Rows(0).Item(4))
-            If IsDBNull(tabla.Rows(0).Item(5)) Then
-                Observacion = ""
-            Else
-                Observacion = CStr(tabla.Rows(0).Item(5))
-            End If
-
-        Catch ex As Exception
-            LoteID = 0
-            Descripcion = ""
-            CantidadRestante = 0
-            _TipoProductoID = 0
-            CodigoLote = ""
-            Observacion = ""
-        End Try
-
-    End Sub
-
-    Public Function LoteEsEnologico() As Boolean
-        Try
-            Return BasesParaCompatibilidad.BD.ConsultaVer("TiposProductos.Enologico", _
-                                  "Lotes inner join tiposproductos", _
-                                  "LoteID = " & Convert.ToString(LoteID)).Rows(0).Item(0)
-
-        Catch ex As Exception
-            Return False
-        End Try
-    End Function
 
     Public Sub devolverReferencia()
         Try
@@ -436,35 +385,7 @@ Public Class clsLotes
         End Try
     End Sub
 
-    Public Function devolverTipoLote() As String
-        Try
-            Return Convert.ToString(BasesParaCompatibilidad.BD.ConsultaVer("TiposLotes.Descripcion", _
-                                   "Lotes LEFT OUTER JOIN TiposLotes ON Lotes.TipoLoteID = TiposLotes.TipoLoteID", _
-                                   "Lotes.DepositoID =" & Convert.ToString(DepositoID)).Rows(0).Item(0))
-        Catch ex As Exception
-            Return ""
-        End Try
-    End Function
 
-    Public Function guardarLoteCompra() As Integer
-        Try
-            If BasesParaCompatibilidad.BD.ConsultaInsertar(Referencia & ",'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha) & "'," & _
-                                "'" & Convert.ToString(CantidadRestante) & "'," & _
-                                "" & Convert.ToString(TipoLoteID) & "," & _
-                                "" & Convert.ToString(TipoProductoID) & "," & _
-                                Convert.ToString(ProveedorID) & "," & _
-                                "'" & CodigoLote & "','" & Descripcion & "','" & Observacion & "'", _
-                                "Lotes(Referencia,Fecha,CantidadRestante,TipoLoteID,TipoProductoID,ProveedorID,CodigoLote,descripcion,observacion,FechaModificacion,UsuarioModificacion)") = 0 Then
-                LoteID = 0
-                Return LoteID
-            End If
-
-            LoteID = Convert.ToInt32(BasesParaCompatibilidad.BD.ConsultaVer("max(LoteID)", "Lotes").Rows(0).Item(0))
-            Return LoteID
-        Catch ex As Exception
-            Return (0)
-        End Try
-    End Function
 
     Public Function devolverTodosEnologicos(ByVal top100 As Boolean, Optional ByVal id As Integer = Nothing) As DataTable
         If id = Nothing Then
@@ -568,11 +489,6 @@ Public Class clsLotes
         End If
     End Function
 
-    Public Function devolverPorTipoProductoID(ByVal TipoProductoID As Integer) As DataTable
-        Return BasesParaCompatibilidad.BD.ConsultaVer("Lotes.LoteID, Lotes.CodigoLote", _
-                              "Lotes", _
-                              "Lotes.CantidadRestante >0 AND Lotes.TipoProductoID = " & Convert.ToString(TipoProductoID))
-    End Function
 
     Public Function devolverPorTipoProductoID(Optional ByVal top100 As Boolean = False, Optional ByVal id As Integer = Nothing) As DataTable
         If id = Nothing Then
@@ -598,138 +514,7 @@ Public Class clsLotes
         End If
     End Function
 
-    Public Sub devolverDatosLotePorLoteID()
-        Dim strSELECT As String
-        Dim strFROM As String
-        Dim strWHERE As String
 
-        strSELECT = "TiposProductos.TipoProductoID AS TipoProductoDescripcion," & _
-                    "TiposLotes.TipoLoteID AS TipoLoteDescripcion," & _
-                    "TiposProductos.MedidaID AS MedidaDescripcion," & _
-                    "case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante, " & _
-                    "Lotes.Descripcion," & _
-                    "Lotes.Observacion"
-
-        strFROM = "Lotes LEFT OUTER JOIN TiposLotes ON Lotes.TipoLoteID = TiposLotes.TipoLoteID " & _
-                  "LEFT OUTER JOIN TiposProductos ON Lotes.TipoProductoID = TiposProductos.TipoProductoID "
-
-        strWHERE = "Lotes.LoteID = " & LoteID.ToString
-        Dim tabla As DataTable = BasesParaCompatibilidad.BD.ConsultaVer(strSELECT, strFROM, strWHERE)
-
-        Try
-            If IsDBNull(tabla.Rows(0).Item("TipoProductoDescripcion")) Then
-                _TipoProductoID = 0
-            Else
-                TipoProductoID = CStr(tabla.Rows(0).Item("TipoProductoDescripcion"))
-            End If
-
-            If IsDBNull(tabla.Rows(0).Item("TipoLoteDescripcion")) Then
-                _TipoLoteID = 0
-            Else
-                TipoLoteID = CStr(tabla.Rows(0).Item("TipoLoteDescripcion"))
-            End If
-
-            If IsDBNull(tabla.Rows(0).Item("MedidaDescripcion")) Then
-                _MedidaID = 0
-            Else
-                _MedidaID = CStr(tabla.Rows(0).Item("MedidaDescripcion"))
-            End If
-
-            If IsDBNull(tabla.Rows(0).Item("CantidadRestante")) Then
-                CantidadRestante = 0
-            Else
-                CantidadRestante = tabla.Rows(0).Item("CantidadRestante")
-            End If
-
-            If IsDBNull(tabla.Rows(0).Item("Descripcion")) Then
-                Descripcion = ""
-            Else
-                Descripcion = CStr(tabla.Rows(0).Item("Descripcion"))
-            End If
-
-            If IsDBNull(tabla.Rows(0).Item("Observacion")) Then
-                Observacion = ""
-            Else
-                Observacion = CStr(tabla.Rows(0).Item("Observacion"))
-            End If
-        Catch ex As Exception
-            Descripcion = ""
-            CantidadRestante = 0
-            _TipoProductoID = 0
-            _TipoLoteID = 0
-            _MedidaID = 0
-            CodigoLote = ""
-            Observacion = ""
-        End Try
-    End Sub
-
-    Public Sub devolverDatosLotePorDepositoID()
-        Dim strSELECT As String
-        Dim strFROM As String
-        Dim strWHERE As String
-
-        strSELECT = "LoteID," & _
-                    "TiposProductos.TipoProductoID AS TipoProductoDescripcion," & _
-                    "TiposLotes.TipoLoteID AS TipoLoteDescripcion," & _
-                    "CodigoLote," & _
-                    "case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante, " & _
-                    "Lotes.Descripcion," & _
-                    "Lotes.Observacion"
-
-        strFROM = "Lotes LEFT OUTER JOIN TiposLotes ON Lotes.TipoLoteID = TiposLotes.TipoLoteID " & _
-                  "LEFT OUTER JOIN TiposProductos ON Lotes.TipoProductoID = TiposProductos.TipoProductoID "
-
-        strWHERE = "Lotes.DepositoID = " & DepositoID.ToString
-        Dim tabla As DataTable = BasesParaCompatibilidad.BD.ConsultaVer(strSELECT, strFROM, strWHERE)
-
-        Try
-            _LoteID = Convert.ToInt32(tabla.Rows(0).Item("LoteID"))
-
-            If IsDBNull(tabla.Rows(0).Item("TipoProductoDescripcion")) Then
-                _TipoProductoID = 0
-            Else
-                TipoProductoID = CStr(tabla.Rows(0).Item("TipoProductoDescripcion"))
-            End If
-
-            If IsDBNull(tabla.Rows(0).Item("TipoLoteDescripcion")) Then
-                _TipoLoteID = 0
-            Else
-                TipoLoteID = CStr(tabla.Rows(0).Item("TipoLoteDescripcion"))
-            End If
-
-            If IsDBNull(tabla.Rows(0).Item("CodigoLote")) Then
-                CodigoLote = ""
-            Else
-                CodigoLote = CStr(tabla.Rows(0).Item("CodigoLote"))
-            End If
-
-            If IsDBNull(tabla.Rows(0).Item("CantidadRestante")) Then
-                CantidadRestante = 0
-            Else
-                CantidadRestante = tabla.Rows(0).Item("CantidadRestante")
-            End If
-
-            If IsDBNull(tabla.Rows(0).Item("Descripcion")) Then
-                Descripcion = ""
-            Else
-                Descripcion = CStr(tabla.Rows(0).Item("Descripcion"))
-            End If
-
-            If IsDBNull(tabla.Rows(0).Item("Observacion")) Then
-                Observacion = ""
-            Else
-                Observacion = CStr(tabla.Rows(0).Item("Observacion"))
-            End If
-        Catch ex As Exception
-            Descripcion = ""
-            CantidadRestante = 0
-            _TipoProductoID = 0
-            _TipoLoteID = 0
-            _MedidaID = 0
-            CodigoLote = ""
-            Observacion = ""
-        End Try
-    End Sub
 
     Public Function ModificarLoteEnologico() As Integer
         Try
@@ -784,45 +569,8 @@ Public Class clsLotes
         End Try
     End Function
 
-    Public Sub ModificarCantidadRestante_Deposito()
-        Try
-            BasesParaCompatibilidad.BD.ConsultaModificar("Lotes", _
-                                 "DepositoID = " & DepositoID & "," & _
-                                 "CantidadRestante = '" & Convert.ToString(CantidadRestante) & "'", _
-                                 "LoteID = " & Convert.ToString(LoteID))
-
-        Catch ex As Exception
-            messagebox.show("Error en ModificarCantidadRestante_y_Deposito", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
-
-    Public Sub ModificarDesdeMovimiento()
-        Try
-            BasesParaCompatibilidad.BD.ConsultaModificar("Lotes", _
-                                 "DepositoID = " & DepositoID & "," & _
-                                 "CantidadRestante = '" & Convert.ToString(CantidadRestante) & "'," & _
-                                 "Descripcion = '" & Descripcion & "'," & _
-                                 "Observacion = '" & Observacion & "'", _
-                                 "LoteID = " & Convert.ToString(LoteID))
-
-        Catch ex As Exception
-            messagebox.show("Error en ModificarDesdeMovimiento", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
-
-    Public Sub ModificarDesdeMovimientoMAM()
-        Try
-            BasesParaCompatibilidad.BD.ConsultaModificar("Lotes", _
-                                 "CantidadRestante = '" & Convert.ToString(CantidadRestante) & "'," & _
-                                 "Descripcion = '" & Descripcion & "'," & _
-                                 "Observacion = '" & Observacion & "'", _
-                                 "LoteID = " & Convert.ToString(LoteID))
 
 
-        Catch ex As Exception
-            messagebox.show("Error en ModificarDesdeMovimiento", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
 
     Public Function Insertar() As Integer
         Try
@@ -880,45 +628,7 @@ Public Class clsLotes
         End Try
     End Function
 
-    Public Function devolverLotesEnologicosParaMovimientoPorProceso(ByVal Proceso As Integer) As DataTable
-        Return BasesParaCompatibilidad.BD.ConsultaVer("Lotes.LoteID, Lotes.CodigoLote", _
-                              "Lotes LEFT OUTER JOIN TiposProductos ON Lotes.TipoProductoID = TiposProductos.TipoProductoID inner join usosProductos on TiposProductos.TipoProductoID = usosproductos.TipoProductoID", _
-                              "(usosProductos.ProcesoID = " & Proceso & " and CantidadRestante > 0)")
-    End Function
 
-    Public Function devolverLotesEnologicosPorTipoMovimientoProcesoyTipoProducto(ByVal TipoMovimiento As Integer, ByVal TipoProducto As Integer) As DataTable
-        Return BasesParaCompatibilidad.BD.ConsultaVer("Lotes.LoteID, Lotes.CodigoLote", _
-                              "Lotes LEFT OUTER JOIN TiposProductos ON Lotes.TipoProductoID = TiposProductos.TipoProductoID inner join usosProductos on TiposProductos.TipoProductoID = usosproductos.TipoProductoID", _
-                              "(Lotes.ProcesoID = " & TipoMovimiento & " and Lotes.TipoProductoID = " & TipoProducto & "  and CantidadRestante > 0)")
-    End Function
-
-    Public Sub validarLoteDiferencia()
-        Try
-            Dim tabla As DataTable = BasesParaCompatibilidad.BD.ConsultaVer("Lotes.LoteID, cantidadRestante, descripcion", "Lotes", "codigoLote = '" & CodigoLote & "'")
-            LoteID = Convert.ToInt32(tabla.Rows(0).Item(0))
-            CantidadRestante = tabla.Rows(0).Item(1)
-            Descripcion = CStr(tabla.Rows(0).Item(2))
-        Catch ex As Exception
-            LoteID = 0
-            CantidadRestante = 0
-            Descripcion = ""
-        End Try
-    End Sub
-
-    Public Sub DevolverEnologicosParaMovimientosPorLoteID()
-        Dim tabla As DataTable = BasesParaCompatibilidad.BD.ConsultaVer("Lotes.LoteID, Lotes.CantidadRestante,TipoProductoID, Lotes.CodigoLote", "Lotes", "LoteID =" & Convert.ToString(LoteID))
-        Try
-            LoteID = Convert.ToInt32(tabla.Rows(0).Item(0))
-            CantidadRestante = tabla.Rows(0).Item(1)
-            TipoProductoID = CStr(tabla.Rows(0).Item(2))
-            CodigoLote = CStr(tabla.Rows(0).Item(0))
-        Catch ex As Exception
-            LoteID = 0
-            CantidadRestante = 0
-            TipoProductoID = 0
-            CodigoLote = ""
-        End Try
-    End Sub
 
     Public Function DevolverLotesComponentes() As DataTable
         Return BasesParaCompatibilidad.BD.ConsultaVer("LotePartida.LoteID, LotePartida.CodigoLote, CompuestoPor.Cantidad, Movimientos.Observaciones", _
