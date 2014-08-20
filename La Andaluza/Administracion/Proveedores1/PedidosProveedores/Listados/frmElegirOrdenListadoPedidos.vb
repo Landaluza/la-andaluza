@@ -28,32 +28,37 @@ Public Class frmElegirOrdenListadoPedidos
 
     Private Sub butByNumero_Click(sender As Object, e As EventArgs) Handles butByNumero.Click
         Orden = 1
+        Me.DialogResult = Windows.Forms.DialogResult.OK
         Me.Close()
     End Sub
 
     Private Sub butByProveedor_Click(sender As Object, e As EventArgs) Handles butByProveedor.Click
         Orden = 2
+        Me.DialogResult = Windows.Forms.DialogResult.OK
         Me.Close()
     End Sub
 
     Private Sub butByFecha_Click(sender As Object, e As EventArgs) Handles butByFecha.Click
         Orden = 3
+        Me.DialogResult = Windows.Forms.DialogResult.OK
         Me.Close()
     End Sub
 
     Private Sub butDia_Click(sender As Object, e As EventArgs) Handles butDia.Click
         Orden = 4
+        Me.DialogResult = Windows.Forms.DialogResult.OK
         Me.Close()
     End Sub
 
     Private Sub butProveedor_Click(sender As Object, e As EventArgs) Handles butProveedor.Click
         Orden = 5
-        'Me.DialogResult = Windows.Forms.DialogResult.OK
+        Me.DialogResult = Windows.Forms.DialogResult.OK
         Me.Close()
     End Sub
 
     Private Sub butEntregaIncumplida_Click(sender As Object, e As EventArgs) Handles butEntregaIncumplida.Click
         Orden = 6
+        Me.DialogResult = Windows.Forms.DialogResult.OK
         Me.Close()
     End Sub
 
