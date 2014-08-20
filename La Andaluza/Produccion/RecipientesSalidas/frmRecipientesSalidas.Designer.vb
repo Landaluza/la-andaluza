@@ -1,6 +1,6 @@
-ï»¿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class frmRecipientesSalidas
-    Inherits BasesParaCompatibilidad.FrmAheredarOld
+    Inherits BasesParaCompatibilidad.gridsimpleform
 
     'Form invalida a Dispose para limpiar la lista de componentes.
     <System.Diagnostics.DebuggerNonUserCode()> _
@@ -11,26 +11,28 @@ Partial Class frmRecipientesSalidas
         MyBase.Dispose(disposing)
     End Sub
 
-    'Requerido por el DiseÃ±ador de Windows Forms
+    'Requerido por el Diseñador de Windows Forms
     Private components As System.ComponentModel.IContainer
 
-    'NOTA: el DiseÃ±ador de Windows Forms necesita el siguiente procedimiento
-    'Se puede modificar usando el DiseÃ±ador de Windows Forms.  
-    'No lo modifique con el editor de cÃ³digo.
+    'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
+    'Se puede modificar usando el Diseñador de Windows Forms.  
+    'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
-    Private Overloads Sub InitializeComponent()
+    Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
         'frmRecipientesSalidas
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
-        Me.ClientSize = New System.Drawing.Size(629, 570)
-        Me.Margin = New System.Windows.Forms.Padding(5)
-        Me.MinimumSize = New System.Drawing.Size(615, 594)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.ClientSize = New System.Drawing.Size(835, 461)
+        Me.DoubleBuffered = True
+        Me.MinimumSize = New System.Drawing.Size(400, 400)
         Me.Name = "frmRecipientesSalidas"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Recipientes para Salidas"
+        Me.Text = "Recipientessalidas
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

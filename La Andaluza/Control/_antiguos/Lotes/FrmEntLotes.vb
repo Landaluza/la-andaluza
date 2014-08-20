@@ -11,16 +11,14 @@ Public Class FrmEntLotes
     Private ctlDep As ctlDepositos
     Private ctlLot As ctlLotes
     Private ctlTipLot As spTiposLotes
-    'Private ctlTipPro As New ctlTiposProductos
     Private spTiposProductos As spTiposProductos
-    Private ctlCor As spCorredores 'ctlCorredores
-    Private ctlProv As spProveedores 'ctlProveedores
+    Private ctlCor As spCorredores
+    Private ctlProv As spProveedores
     Private ctlEsp As ctlEspecificaciones
     Private ctlMed As spMuestrasMedidas
     Private ctlCant As spMuestrasCantidades
     'Private ctlLabExt As spProveedores
-    'Dim ctlPer As New ctlPersonal
-    Private ctlRecSal As ctlRecipientesSalidas
+    Private ctlRecSal As spRecipientesSalidas 'ctlRecipientesSalidas
 
     Private LoteID As Integer
     Private AnaliticaID As Integer
@@ -64,7 +62,7 @@ Public Class FrmEntLotes
         Me.ctlCant = New spMuestrasCantidades
         ' Me.ctlLabExt = New ctlProveedores
         'Dim ctlPer As New ctlPersonal
-        Me.ctlRecSal = New ctlRecipientesSalidas
+        Me.ctlRecSal = New spRecipientesSalidas
         Me.tTipLot = New DataTable
         Me.OldLib = New OldLib
         Me.spTiposLotes = New spTiposLotes
@@ -162,9 +160,10 @@ Public Class FrmEntLotes
         cboDepositoPrevio.ValueMember = "ID"
         cboDepositoPrevio.DisplayMember = "Display"
 
-        cboRecipientes.DataSource = OldLib.HacerTablasNoObligatorias(ctlRecSal.devolverRecipientesSalidas)
-        cboRecipientes.ValueMember = "ID"
-        cboRecipientes.DisplayMember = "Display"
+        'cboRecipientes.DataSource = OldLib.HacerTablasNoObligatorias(ctlRecSal.devolverRecipientesSalidas)
+        'cboRecipientes.ValueMember = "ID"
+        'cboRecipientes.DisplayMember = "Display"
+        ctlRecSal.cargar_RecipientesSalidas(cboRecipientes)
 
         cboMuestras.DataSource = OldLib.HacerTablasNoObligatorias(ctlLot.DevolverMuestrasAnaliticas)
         cboMuestras.ValueMember = "ID"

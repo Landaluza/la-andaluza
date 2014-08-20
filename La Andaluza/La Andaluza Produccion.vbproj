@@ -49,7 +49,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>302</ApplicationRevision>
+    <ApplicationRevision>303</ApplicationRevision>
     <ApplicationVersion>2014.7.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -4311,6 +4311,20 @@
     </Compile>
     <Compile Include="Administracion\Visitas\VisitasTipos\spVisitasTipos.vb" />
     <Compile Include="Bases\Clases\Mail.vb" />
+    <Compile Include="Produccion\RecipientesSalidas\DBO_RecipientesSalidas.vb" />
+    <Compile Include="Produccion\RecipientesSalidas\frmEntRecipientesSalidas.Designer.vb">
+      <DependentUpon>frmEntRecipientesSalidas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Produccion\RecipientesSalidas\frmEntRecipientesSalidas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Produccion\RecipientesSalidas\frmRecipientesSalidas.Designer.vb">
+      <DependentUpon>frmRecipientesSalidas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Produccion\RecipientesSalidas\frmRecipientesSalidas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Produccion\RecipientesSalidas\spRecipientesSalidas.vb" />
     <Compile Include="Produccion\TiposMateriales\DBO_TiposMateriales.vb" />
     <Compile Include="Produccion\TiposMateriales\frmEntTiposMateriales.Designer.vb">
       <DependentUpon>frmEntTiposMateriales.vb</DependentUpon>
@@ -4586,25 +4600,6 @@
       <DependentUpon>frmBackup.vb</DependentUpon>
     </Compile>
     <Compile Include="Bases\Utilidades\frmBackup.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\RecipientesSalidas\clsRecipientesSalidas.vb" />
-    <Compile Include="Produccion\RecipientesSalidas\ctlRecipientesSalidas.vb" />
-    <Compile Include="Produccion\RecipientesSalidas\dtsRecipientesSalidas.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dtsRecipientesSalidas.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\RecipientesSalidas\frmEntRecipientesSalidas.Designer.vb">
-      <DependentUpon>frmEntRecipientesSalidas.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\RecipientesSalidas\frmEntRecipientesSalidas.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\RecipientesSalidas\frmRecipientesSalidas.Designer.vb">
-      <DependentUpon>frmRecipientesSalidas.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\RecipientesSalidas\frmRecipientesSalidas.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -6395,6 +6390,12 @@
     <EmbeddedResource Include="Administracion\Visitas\VisitasTipos\frmVisitasTipos.resx">
       <DependentUpon>frmVisitasTipos.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Produccion\RecipientesSalidas\frmEntRecipientesSalidas.resx">
+      <DependentUpon>frmEntRecipientesSalidas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Produccion\RecipientesSalidas\frmRecipientesSalidas.resx">
+      <DependentUpon>frmRecipientesSalidas.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Produccion\TiposMateriales\frmEntTiposMateriales.resx">
       <DependentUpon>frmEntTiposMateriales.vb</DependentUpon>
     </EmbeddedResource>
@@ -6437,12 +6438,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Bases\Utilidades\frmBackup.resx">
       <DependentUpon>frmBackup.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\RecipientesSalidas\frmEntRecipientesSalidas.resx">
-      <DependentUpon>frmEntRecipientesSalidas.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\RecipientesSalidas\frmRecipientesSalidas.resx">
-      <DependentUpon>frmRecipientesSalidas.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -6831,17 +6826,6 @@
     </None>
     <None Include="app.config" />
     <None Include="My Project\DataSources\ControlesLotesGranel.datasource" />
-    <None Include="Produccion\RecipientesSalidas\dtsRecipientesSalidas.xsc">
-      <DependentUpon>dtsRecipientesSalidas.xsd</DependentUpon>
-    </None>
-    <None Include="Produccion\RecipientesSalidas\dtsRecipientesSalidas.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>dtsRecipientesSalidas.Designer.vb</LastGenOutput>
-    </None>
-    <None Include="Produccion\RecipientesSalidas\dtsRecipientesSalidas.xss">
-      <DependentUpon>dtsRecipientesSalidas.xsd</DependentUpon>
-    </None>
     <Content Include="Resources\LA  sin texto 48 x 48.ico" />
     <None Include="Resources\insert-horizontal-rule.png" />
     <Content Include="Resources\Logo JR Sabater.gif" />
