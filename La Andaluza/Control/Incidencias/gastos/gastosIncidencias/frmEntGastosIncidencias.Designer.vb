@@ -48,6 +48,12 @@ Partial Class frmEntGastosIncidencias
         Me.rbEmpleado = New System.Windows.Forms.RadioButton()
         Me.rbProveedor = New System.Windows.Forms.RadioButton()
         Me.btnVerCosteConvepto = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.txtCantidadRef = New System.Windows.Forms.TextBox()
+        Me.txtObservaciones = New System.Windows.Forms.TextBox()
+        Me.cboMedidaProducto = New System.Windows.Forms.ComboBox()
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tlpMiddle.SuspendLayout()
         Me.gpCAusante.SuspendLayout()
@@ -137,9 +143,9 @@ Partial Class frmEntGastosIncidencias
         Me.cboproveedor.Dock = System.Windows.Forms.DockStyle.Fill
         Me.cboproveedor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cboproveedor.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cboproveedor.Location = New System.Drawing.Point(86, 3)
+        Me.cboproveedor.Location = New System.Drawing.Point(92, 3)
         Me.cboproveedor.Name = "cboproveedor"
-        Me.cboproveedor.Size = New System.Drawing.Size(399, 23)
+        Me.cboproveedor.Size = New System.Drawing.Size(392, 23)
         Me.cboproveedor.TabIndex = 4
         '
         'butVerId_proveedor
@@ -150,7 +156,7 @@ Partial Class frmEntGastosIncidencias
         Me.butVerId_proveedor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.butVerId_proveedor.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butVerId_proveedor.Image = Global.La_Andaluza.My.Resources.Resources.agenda
-        Me.butVerId_proveedor.Location = New System.Drawing.Point(491, 3)
+        Me.butVerId_proveedor.Location = New System.Drawing.Point(490, 3)
         Me.butVerId_proveedor.Name = "butVerId_proveedor"
         Me.butVerId_proveedor.Size = New System.Drawing.Size(25, 28)
         Me.butVerId_proveedor.TabIndex = 11
@@ -164,9 +170,9 @@ Partial Class frmEntGastosIncidencias
         Me.butAddId_proveedor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.butAddId_proveedor.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butAddId_proveedor.Image = Global.La_Andaluza.My.Resources.Resources.edit_add_2
-        Me.butAddId_proveedor.Location = New System.Drawing.Point(522, 3)
+        Me.butAddId_proveedor.Location = New System.Drawing.Point(521, 3)
         Me.butAddId_proveedor.Name = "butAddId_proveedor"
-        Me.butAddId_proveedor.Size = New System.Drawing.Size(24, 28)
+        Me.butAddId_proveedor.Size = New System.Drawing.Size(25, 28)
         Me.butAddId_proveedor.TabIndex = 12
         Me.butAddId_proveedor.TabStop = False
         '
@@ -177,9 +183,9 @@ Partial Class frmEntGastosIncidencias
         Me.cboempleado.Dock = System.Windows.Forms.DockStyle.Fill
         Me.cboempleado.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cboempleado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cboempleado.Location = New System.Drawing.Point(86, 37)
+        Me.cboempleado.Location = New System.Drawing.Point(92, 37)
         Me.cboempleado.Name = "cboempleado"
-        Me.cboempleado.Size = New System.Drawing.Size(399, 23)
+        Me.cboempleado.Size = New System.Drawing.Size(392, 23)
         Me.cboempleado.TabIndex = 5
         '
         'butVerId_empleado
@@ -190,7 +196,7 @@ Partial Class frmEntGastosIncidencias
         Me.butVerId_empleado.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.butVerId_empleado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butVerId_empleado.Image = Global.La_Andaluza.My.Resources.Resources.agenda
-        Me.butVerId_empleado.Location = New System.Drawing.Point(491, 37)
+        Me.butVerId_empleado.Location = New System.Drawing.Point(490, 37)
         Me.butVerId_empleado.Name = "butVerId_empleado"
         Me.butVerId_empleado.Size = New System.Drawing.Size(25, 28)
         Me.butVerId_empleado.TabIndex = 14
@@ -204,9 +210,9 @@ Partial Class frmEntGastosIncidencias
         Me.butAddId_empleado.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.butAddId_empleado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butAddId_empleado.Image = Global.La_Andaluza.My.Resources.Resources.edit_add_2
-        Me.butAddId_empleado.Location = New System.Drawing.Point(522, 37)
+        Me.butAddId_empleado.Location = New System.Drawing.Point(521, 37)
         Me.butAddId_empleado.Name = "butAddId_empleado"
-        Me.butAddId_empleado.Size = New System.Drawing.Size(24, 28)
+        Me.butAddId_empleado.Size = New System.Drawing.Size(25, 28)
         Me.butAddId_empleado.TabIndex = 15
         Me.butAddId_empleado.TabStop = False
         '
@@ -217,9 +223,9 @@ Partial Class frmEntGastosIncidencias
         Me.cbocliente.Dock = System.Windows.Forms.DockStyle.Fill
         Me.cbocliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cbocliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbocliente.Location = New System.Drawing.Point(86, 71)
+        Me.cbocliente.Location = New System.Drawing.Point(92, 71)
         Me.cbocliente.Name = "cbocliente"
-        Me.cbocliente.Size = New System.Drawing.Size(399, 23)
+        Me.cbocliente.Size = New System.Drawing.Size(392, 23)
         Me.cbocliente.TabIndex = 6
         '
         'butVerId_cliente
@@ -230,9 +236,9 @@ Partial Class frmEntGastosIncidencias
         Me.butVerId_cliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.butVerId_cliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butVerId_cliente.Image = Global.La_Andaluza.My.Resources.Resources.agenda
-        Me.butVerId_cliente.Location = New System.Drawing.Point(491, 71)
+        Me.butVerId_cliente.Location = New System.Drawing.Point(490, 71)
         Me.butVerId_cliente.Name = "butVerId_cliente"
-        Me.butVerId_cliente.Size = New System.Drawing.Size(25, 38)
+        Me.butVerId_cliente.Size = New System.Drawing.Size(25, 30)
         Me.butVerId_cliente.TabIndex = 17
         Me.butVerId_cliente.TabStop = False
         '
@@ -244,9 +250,9 @@ Partial Class frmEntGastosIncidencias
         Me.butAddId_cliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.butAddId_cliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butAddId_cliente.Image = Global.La_Andaluza.My.Resources.Resources.edit_add_2
-        Me.butAddId_cliente.Location = New System.Drawing.Point(522, 71)
+        Me.butAddId_cliente.Location = New System.Drawing.Point(521, 71)
         Me.butAddId_cliente.Name = "butAddId_cliente"
-        Me.butAddId_cliente.Size = New System.Drawing.Size(24, 38)
+        Me.butAddId_cliente.Size = New System.Drawing.Size(25, 30)
         Me.butAddId_cliente.TabIndex = 18
         Me.butAddId_cliente.TabStop = False
         '
@@ -300,10 +306,16 @@ Partial Class frmEntGastosIncidencias
         Me.tlpMiddle.Controls.Add(Me.butAddId_costeConcepto, 3, 3)
         Me.tlpMiddle.Controls.Add(Me.gpCAusante, 0, 7)
         Me.tlpMiddle.Controls.Add(Me.btnVerCosteConvepto, 2, 3)
+        Me.tlpMiddle.Controls.Add(Me.Label1, 0, 9)
+        Me.tlpMiddle.Controls.Add(Me.Label2, 0, 10)
+        Me.tlpMiddle.Controls.Add(Me.Label3, 0, 11)
+        Me.tlpMiddle.Controls.Add(Me.txtCantidadRef, 1, 9)
+        Me.tlpMiddle.Controls.Add(Me.txtObservaciones, 1, 11)
+        Me.tlpMiddle.Controls.Add(Me.cboMedidaProducto, 1, 10)
         Me.tlpMiddle.Location = New System.Drawing.Point(54, 28)
         Me.tlpMiddle.Name = "tlpMiddle"
         Me.tlpMiddle.Padding = New System.Windows.Forms.Padding(0, 15, 0, 0)
-        Me.tlpMiddle.RowCount = 9
+        Me.tlpMiddle.RowCount = 12
         Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle())
@@ -311,9 +323,12 @@ Partial Class frmEntGastosIncidencias
         Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 137.0!))
-        Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 124.0!))
-        Me.tlpMiddle.Size = New System.Drawing.Size(561, 366)
+        Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 129.0!))
+        Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32.0!))
+        Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
+        Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27.0!))
+        Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 109.0!))
+        Me.tlpMiddle.Size = New System.Drawing.Size(561, 426)
         Me.tlpMiddle.TabIndex = 8
         '
         'btnActualizarCoste
@@ -322,7 +337,7 @@ Partial Class frmEntGastosIncidencias
         Me.btnActualizarCoste.FlatAppearance.BorderSize = 0
         Me.btnActualizarCoste.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnActualizarCoste.Image = Global.La_Andaluza.My.Resources.Resources.view_refresh_4
-        Me.btnActualizarCoste.Location = New System.Drawing.Point(97, 245)
+        Me.btnActualizarCoste.Location = New System.Drawing.Point(97, 237)
         Me.btnActualizarCoste.Name = "btnActualizarCoste"
         Me.btnActualizarCoste.Size = New System.Drawing.Size(252, 23)
         Me.btnActualizarCoste.TabIndex = 9
@@ -337,7 +352,7 @@ Partial Class frmEntGastosIncidencias
         Me.gpCAusante.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gpCAusante.Location = New System.Drawing.Point(3, 108)
         Me.gpCAusante.Name = "gpCAusante"
-        Me.gpCAusante.Size = New System.Drawing.Size(555, 131)
+        Me.gpCAusante.Size = New System.Drawing.Size(555, 123)
         Me.gpCAusante.TabIndex = 10
         Me.gpCAusante.TabStop = False
         Me.gpCAusante.Text = "Causante"
@@ -345,10 +360,10 @@ Partial Class frmEntGastosIncidencias
         'TableLayoutPanel1
         '
         Me.TableLayoutPanel1.ColumnCount = 4
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.12598!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 82.87402!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.27515!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 81.72485!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 31.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 29.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.rbCliente, 0, 2)
         Me.TableLayoutPanel1.Controls.Add(Me.rbEmpleado, 0, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.rbProveedor, 0, 0)
@@ -368,7 +383,7 @@ Partial Class frmEntGastosIncidencias
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(549, 112)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(549, 104)
         Me.TableLayoutPanel1.TabIndex = 19
         '
         'rbCliente
@@ -377,7 +392,7 @@ Partial Class frmEntGastosIncidencias
         Me.rbCliente.Dock = System.Windows.Forms.DockStyle.Fill
         Me.rbCliente.Location = New System.Drawing.Point(3, 71)
         Me.rbCliente.Name = "rbCliente"
-        Me.rbCliente.Size = New System.Drawing.Size(77, 38)
+        Me.rbCliente.Size = New System.Drawing.Size(83, 30)
         Me.rbCliente.TabIndex = 21
         Me.rbCliente.TabStop = True
         Me.rbCliente.Text = "Cliente"
@@ -389,7 +404,7 @@ Partial Class frmEntGastosIncidencias
         Me.rbEmpleado.Dock = System.Windows.Forms.DockStyle.Fill
         Me.rbEmpleado.Location = New System.Drawing.Point(3, 37)
         Me.rbEmpleado.Name = "rbEmpleado"
-        Me.rbEmpleado.Size = New System.Drawing.Size(77, 28)
+        Me.rbEmpleado.Size = New System.Drawing.Size(83, 28)
         Me.rbEmpleado.TabIndex = 19
         Me.rbEmpleado.TabStop = True
         Me.rbEmpleado.Text = "Empleado"
@@ -401,7 +416,7 @@ Partial Class frmEntGastosIncidencias
         Me.rbProveedor.Dock = System.Windows.Forms.DockStyle.Fill
         Me.rbProveedor.Location = New System.Drawing.Point(3, 3)
         Me.rbProveedor.Name = "rbProveedor"
-        Me.rbProveedor.Size = New System.Drawing.Size(77, 28)
+        Me.rbProveedor.Size = New System.Drawing.Size(83, 28)
         Me.rbProveedor.TabIndex = 20
         Me.rbProveedor.TabStop = True
         Me.rbProveedor.Text = "Proveedor"
@@ -421,28 +436,87 @@ Partial Class frmEntGastosIncidencias
         Me.btnVerCosteConvepto.TabIndex = 12
         Me.btnVerCosteConvepto.TabStop = False
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label1.Location = New System.Drawing.Point(3, 266)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(88, 24)
+        Me.Label1.TabIndex = 13
+        Me.Label1.Text = "Cantidad rª"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label2.Location = New System.Drawing.Point(3, 290)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(88, 27)
+        Me.Label2.TabIndex = 14
+        Me.Label2.Text = "Medida"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label3.Location = New System.Drawing.Point(3, 317)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(88, 109)
+        Me.Label3.TabIndex = 15
+        Me.Label3.Text = "Observaciones"
+        '
+        'txtCantidadRef
+        '
+        Me.txtCantidadRef.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtCantidadRef.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtCantidadRef.Location = New System.Drawing.Point(97, 269)
+        Me.txtCantidadRef.Name = "txtCantidadRef"
+        Me.txtCantidadRef.Size = New System.Drawing.Size(395, 20)
+        Me.txtCantidadRef.TabIndex = 16
+        '
+        'txtObservaciones
+        '
+        Me.txtObservaciones.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtObservaciones.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtObservaciones.Location = New System.Drawing.Point(97, 320)
+        Me.txtObservaciones.Multiline = True
+        Me.txtObservaciones.Name = "txtObservaciones"
+        Me.txtObservaciones.Size = New System.Drawing.Size(395, 103)
+        Me.txtObservaciones.TabIndex = 17
+        '
+        'cboMedidaProducto
+        '
+        Me.cboMedidaProducto.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.cboMedidaProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cboMedidaProducto.FormattingEnabled = True
+        Me.cboMedidaProducto.Location = New System.Drawing.Point(97, 293)
+        Me.cboMedidaProducto.Name = "cboMedidaProducto"
+        Me.cboMedidaProducto.Size = New System.Drawing.Size(395, 21)
+        Me.cboMedidaProducto.TabIndex = 18
+        '
         'frmEntGastosIncidencias
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
-        Me.ClientSize = New System.Drawing.Size(669, 398)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.ClientSize = New System.Drawing.Size(669, 462)
         Me.Controls.Add(Me.tlpMiddle)
         Me.Cursor = System.Windows.Forms.Cursors.Default
-        Me.Icon = CType(resources.GetObject("$this.Icon"),System.Drawing.Icon)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MinimumSize = New System.Drawing.Size(448, 254)
         Me.Name = "frmEntGastosIncidencias"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "GastosIncidencias"
         Me.Controls.SetChildIndex(Me.tlpMiddle, 0)
-        CType(Me.GeneralBindingSource,System.ComponentModel.ISupportInitialize).EndInit
-        Me.tlpMiddle.ResumeLayout(false)
-        Me.tlpMiddle.PerformLayout
-        Me.gpCAusante.ResumeLayout(false)
-        Me.TableLayoutPanel1.ResumeLayout(false)
-        Me.TableLayoutPanel1.PerformLayout
-        Me.ResumeLayout(false)
-        Me.PerformLayout
+        CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.tlpMiddle.ResumeLayout(False)
+        Me.tlpMiddle.PerformLayout()
+        Me.gpCAusante.ResumeLayout(False)
+        Me.TableLayoutPanel1.ResumeLayout(False)
+        Me.TableLayoutPanel1.PerformLayout()
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
 
-End Sub
+    End Sub
 
     Private WithEvents txtCantidad As System.Windows.Forms.TextBox
     Private WithEvents cboconcepto As System.Windows.Forms.ComboBox
@@ -470,4 +544,10 @@ End Sub
     Private WithEvents rbProveedor As System.Windows.Forms.RadioButton
     Private WithEvents rbCliente As System.Windows.Forms.RadioButton
     Private WithEvents btnVerCosteConvepto As System.Windows.Forms.Button
+    Private WithEvents Label1 As System.Windows.Forms.Label
+    Private WithEvents Label2 As System.Windows.Forms.Label
+    Private WithEvents Label3 As System.Windows.Forms.Label
+    Private WithEvents txtCantidadRef As System.Windows.Forms.TextBox
+    Private WithEvents txtObservaciones As System.Windows.Forms.TextBox
+    Private WithEvents cboMedidaProducto As System.Windows.Forms.ComboBox
 End Class

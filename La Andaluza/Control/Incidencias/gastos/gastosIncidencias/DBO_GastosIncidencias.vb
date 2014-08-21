@@ -8,7 +8,10 @@ Inherits BasesParaCompatibilidad.DataBussines
    Private m_Id_costeConcepto As BasesParaCompatibilidad.DataBussinesParameter
    Private m_Id_proveedor As BasesParaCompatibilidad.DataBussinesParameter
    Private m_Id_empleado As BasesParaCompatibilidad.DataBussinesParameter
-   Private m_Id_cliente As BasesParaCompatibilidad.DataBussinesParameter
+    Private m_Id_cliente As BasesParaCompatibilidad.DataBussinesParameter
+    Private m_Observaciones As BasesParaCompatibilidad.DataBussinesParameter
+    Private m_CantidadReferencia As BasesParaCompatibilidad.DataBussinesParameter
+    Private m_Id_medidaProducto As BasesParaCompatibilidad.DataBussinesParameter
 
    Public Sub New()
        MyBase.New()
@@ -19,7 +22,10 @@ Inherits BasesParaCompatibilidad.DataBussines
        m_Id_costeConcepto= New BasesParaCompatibilidad.DataBussinesParameter("@Id_costeConcepto","Id_costeConcepto")
        m_Id_proveedor= New BasesParaCompatibilidad.DataBussinesParameter("@Id_proveedor","Id_proveedor")
        m_Id_empleado= New BasesParaCompatibilidad.DataBussinesParameter("@Id_empleado","Id_empleado")
-       m_Id_cliente= New BasesParaCompatibilidad.DataBussinesParameter("@Id_cliente","Id_cliente")
+        m_Id_cliente = New BasesParaCompatibilidad.DataBussinesParameter("@Id_cliente", "Id_cliente")
+        m_Observaciones = New BasesParaCompatibilidad.DataBussinesParameter("@Observaciones", "Observaciones")
+        m_CantidadReferencia = New BasesParaCompatibilidad.DataBussinesParameter("@CantidadReferencia ", "CantidadReferencia ")
+        m_Id_medidaProducto = New BasesParaCompatibilidad.DataBussinesParameter("@Id_medidaProducto", "Id_medidaProducto")
        MyBase.primaryKey = m_Id
        añadirParametros()
    End Sub
@@ -121,6 +127,41 @@ Inherits BasesParaCompatibilidad.DataBussines
        End Set
    End Property
 
+    Public Property CantidadReferencia() As Double
+        Get
+            If m_CantidadReferencia.value Is Convert.DBNull Then
+                Return 0
+            End If
+            Return CType(m_CantidadReferencia.value, Double)
+        End Get
+        Set(ByVal value As Double)
+            m_CantidadReferencia.value = value
+        End Set
+    End Property
+
+    Public Property Id_MedidaReferencia() As Integer
+        Get
+            If m_Id_medidaProducto.value Is Convert.DBNull Then
+                Return 0
+            End If
+            Return CType(m_Id_medidaProducto.value, Integer)
+        End Get
+        Set(ByVal value As Integer)
+            m_Id_medidaProducto.value = value
+        End Set
+    End Property
+
+    Public Property Observaciones() As String
+        Get
+            If m_Observaciones.value Is Convert.DBNull Then
+                Return String.Empty
+            End If
+            Return CType(m_Observaciones.value, Integer)
+        End Get
+        Set(ByVal value As String)
+            m_Observaciones.value = value
+        End Set
+    End Property
    Private Sub añadirParametros()
        MyBase.atributos.Add(m_Id, m_Id.sqlName)
        MyBase.atributos.Add(m_Id_controlIncidencia, m_Id_controlIncidencia.sqlName)
@@ -129,6 +170,9 @@ Inherits BasesParaCompatibilidad.DataBussines
        MyBase.atributos.Add(m_Id_costeConcepto, m_Id_costeConcepto.sqlName)
        MyBase.atributos.Add(m_Id_proveedor, m_Id_proveedor.sqlName)
        MyBase.atributos.Add(m_Id_empleado, m_Id_empleado.sqlName)
-       MyBase.atributos.Add(m_Id_cliente, m_Id_cliente.sqlName)
+        MyBase.atributos.Add(m_Id_cliente, m_Id_cliente.sqlName)
+        MyBase.atributos.Add(m_CantidadReferencia, m_CantidadReferencia.sqlName)
+        MyBase.atributos.Add(m_Id_medidaProducto, m_Id_medidaProducto.sqlName)
+        MyBase.atributos.Add(m_Observaciones, m_Observaciones.sqlName)
    End Sub
 End Class

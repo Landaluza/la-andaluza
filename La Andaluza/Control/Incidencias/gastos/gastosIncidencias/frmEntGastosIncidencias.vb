@@ -28,12 +28,13 @@ Public Class frmEntGastosIncidencias
         s4.cargar_empleados(Me.cboempleado)
         Dim s5 As New spClientes
         s5.cargar_Clientes(Me.cbocliente)
+        Dim s6 As New spMedidasProductos
+        s6.cargar_MedidasProductos(cboMedidaProducto)
+
         If (Me.mododeapertura = VISION) Then
             Me.cboconcepto.enabled = False
-            Me.lblId_concepto.enabled = False
 
             Me.cbocosteConcepto.enabled = False
-            Me.lblId_costeConcepto.enabled = False
 
             Me.cboproveedor.enabled = False
             Me.rbProveedor.Enabled = False
@@ -44,6 +45,7 @@ Public Class frmEntGastosIncidencias
             Me.cbocliente.enabled = False
             Me.rbCliente.Enabled = False
 
+            Me.cboMedidaProducto.Enabled = False
         End If
         If Config.userType <> 4 And Config.userType <> 9 Then
             butAddId_concepto.enabled = False
@@ -66,6 +68,10 @@ Public Class frmEntGastosIncidencias
         cboconcepto.SelectedValue = m_DBO_GastosIncidencias.Id_concepto
         cbocosteConcepto.SelectedValue = m_DBO_GastosIncidencias.Id_costeConcepto
         cboproveedor.SelectedValue = m_DBO_GastosIncidencias.Id_proveedor
+        txtCantidadRef.Text = m_DBO_GastosIncidencias.CantidadReferencia
+        txtObservaciones.Text = m_DBO_GastosIncidencias.Observaciones
+        cboMedidaProducto.SelectedValue = m_DBO_GastosIncidencias.Id_MedidaReferencia
+
         If Not cboproveedor.SelectedValue Is Nothing Then rbProveedor.Checked = True
         cboempleado.SelectedValue = m_DBO_GastosIncidencias.Id_empleado
         If Not cboempleado.SelectedValue Is Nothing Then rbEmpleado.Checked = True
@@ -87,69 +93,86 @@ Public Class frmEntGastosIncidencias
                 errores = errores & "El campo Cantidad debe ser numérico." & Environment.NewLine()
             End If
             m_DBO_GastosIncidencias.Cantidad = System.Convert.ToDouble(txtCantidad.Text.Replace(".", ","))
+        End If
+
+        If txtCantidadRef.Text <> "" Then
+            If Not IsNumeric(txtCantidadRef.Text) Then
+                If errores = "" Then txtCantidad.Focus()
+                errores = errores & "El campo Cantidad debe ser numérico." & Environment.NewLine()
             End If
+            m_DBO_GastosIncidencias.CantidadReferencia = System.Convert.ToDouble(txtCantidadRef.Text.Replace(".", ","))
 
-
-            If cboconcepto.SelectedValue = Nothing Then
-                If errores = "" Then cboconcepto.Focus()
-                errores = errores & "No seleccionó un valor para Id_concepto." & Environment.NewLine()
+            If Not cboMedidaProducto.SelectedValue Is Nothing Then
+                m_DBO_GastosIncidencias.Id_MedidaReferencia = cboMedidaProducto.SelectedValue
             Else
-                m_DBO_GastosIncidencias.Id_concepto = System.Convert.ToInt32(cboconcepto.SelectedValue)
+                m_DBO_GastosIncidencias.Id_MedidaReferencia = 0
             End If
+        Else
+            m_DBO_GastosIncidencias.Id_MedidaReferencia = 0
+        End If
 
-            If cbocosteConcepto.SelectedValue = Nothing Then
-                If errores = "" Then cbocosteConcepto.Focus()
-                errores = errores & "No seleccionó un valor para Id_costeConcepto." & Environment.NewLine()
+        m_DBO_GastosIncidencias.Observaciones = txtObservaciones.Text
+
+        If cboconcepto.SelectedValue = Nothing Then
+            If errores = "" Then cboconcepto.Focus()
+            errores = errores & "No seleccionó un valor para Id_concepto." & Environment.NewLine()
+        Else
+            m_DBO_GastosIncidencias.Id_concepto = System.Convert.ToInt32(cboconcepto.SelectedValue)
+        End If
+
+        If cbocosteConcepto.SelectedValue = Nothing Then
+            If errores = "" Then cbocosteConcepto.Focus()
+            errores = errores & "No seleccionó un valor para Id_costeConcepto." & Environment.NewLine()
+        Else
+            m_DBO_GastosIncidencias.Id_costeConcepto = System.Convert.ToInt32(cbocosteConcepto.SelectedValue)
+        End If
+
+        Me.m_DBO_GastosIncidencias.Id_cliente = 0
+        Me.m_DBO_GastosIncidencias.Id_empleado = 0
+        Me.m_DBO_GastosIncidencias.Id_proveedor = 0
+
+
+        If (cbocliente.SelectedValue Is Nothing And cboproveedor.SelectedValue Is Nothing And cboempleado.SelectedValue Is Nothing) _
+            Or (Not rbCliente.Checked And Not rbEmpleado.Checked And Not rbProveedor.Checked) Then
+
+            errores = errores & "No seleccionó un valor para el causante." & Environment.NewLine()
+        Else
+            If rbCliente.Checked Then
+                If cbocliente Is Nothing Then
+                    If errores = "" Then cbocliente.Focus()
+                    errores = errores & "No seleccionó un valor para cliente." & Environment.NewLine()
+                Else
+                    Me.m_DBO_GastosIncidencias.Id_cliente = cbocliente.SelectedValue
+                End If
             Else
-                m_DBO_GastosIncidencias.Id_costeConcepto = System.Convert.ToInt32(cbocosteConcepto.SelectedValue)
-            End If
-
-            Me.m_DBO_GastosIncidencias.Id_cliente = 0
-            Me.m_DBO_GastosIncidencias.Id_empleado = 0
-            Me.m_DBO_GastosIncidencias.Id_proveedor = 0
-
-
-            If (cbocliente.SelectedValue Is Nothing And cboproveedor.SelectedValue Is Nothing And cboempleado.SelectedValue Is Nothing) _
-                Or (Not rbCliente.Checked And Not rbEmpleado.Checked And Not rbProveedor.Checked) Then
-
-                errores = errores & "No seleccionó un valor para el causante." & Environment.NewLine()
-            Else
-                If rbCliente.Checked Then
-                    If cbocliente Is Nothing Then
-                        If errores = "" Then cbocliente.Focus()
-                        errores = errores & "No seleccionó un valor para cliente." & Environment.NewLine()
+                If rbEmpleado.Checked Then
+                    If cboempleado Is Nothing Then
+                        If errores = "" Then cboempleado.Focus()
+                        errores = errores & "No seleccionó un valor para empleado." & Environment.NewLine()
                     Else
-                        Me.m_DBO_GastosIncidencias.Id_cliente = cbocliente.SelectedValue
+                        Me.m_DBO_GastosIncidencias.Id_empleado = cboempleado.SelectedValue
                     End If
                 Else
-                    If rbEmpleado.Checked Then
-                        If cboempleado Is Nothing Then
-                            If errores = "" Then cboempleado.Focus()
-                            errores = errores & "No seleccionó un valor para empleado." & Environment.NewLine()
+                    If rbProveedor.Checked Then
+                        If cboproveedor Is Nothing Then
+                            If errores = "" Then cboproveedor.Focus()
+                            errores = errores & "No seleccionó un valor para proveedor." & Environment.NewLine()
                         Else
-                            Me.m_DBO_GastosIncidencias.Id_empleado = cboempleado.SelectedValue
-                        End If
-                    Else
-                        If rbProveedor.Checked Then
-                            If cboproveedor Is Nothing Then
-                                If errores = "" Then cboproveedor.Focus()
-                                errores = errores & "No seleccionó un valor para proveedor." & Environment.NewLine()
-                            Else
-                                Me.m_DBO_GastosIncidencias.Id_proveedor = cboproveedor.SelectedValue
-                            End If
+                            Me.m_DBO_GastosIncidencias.Id_proveedor = cboproveedor.SelectedValue
                         End If
                     End If
                 End If
             End If
+        End If
 
 
-            If (errores = String.Empty) Then
-                dbo = CType(m_DBO_GastosIncidencias, BasesParaCompatibilidad.DataBussines)
-                Return True
-            Else
-                MessageBox.Show("Rellene correctamente el formulario, se han encontrado os siguientes errores:" & Environment.NewLine() & Environment.NewLine() & errores, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                Return False
-            End If
+        If (errores = String.Empty) Then
+            dbo = CType(m_DBO_GastosIncidencias, BasesParaCompatibilidad.DataBussines)
+            Return True
+        Else
+            MessageBox.Show("Rellene correctamente el formulario, se han encontrado os siguientes errores:" & Environment.NewLine() & Environment.NewLine() & errores, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            Return False
+        End If
     End Function
 
     Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
