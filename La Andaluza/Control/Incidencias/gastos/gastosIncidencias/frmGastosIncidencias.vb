@@ -13,7 +13,8 @@ Public Class frmGastosIncidencias
     End Sub
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
-        MyBase.newRegForm = CType(New frmEntGastosIncidencias(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR), BasesParaCompatibilidad.DetailedSimpleForm)
+        MyBase.newRegForm = CType(New frmEntGastosIncidencias(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR), BasesParaCompatibilidad.DetailedSimpleForm)
+        AddHandler newRegForm.afterSave, AddressOf dgvFill
         dboGastosIncidencias = New DBO_GastosIncidencias
         dboGastosIncidencias.Id_controlIncidencia = m_MaestroID
         newRegForm.SetDataBussinesObject(CType(Me.dboGastosIncidencias, BasesParaCompatibilidad.databussines))
@@ -23,7 +24,8 @@ Public Class frmGastosIncidencias
         dboGastosIncidencias = CType(sp, spGastosIncidencias).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer))
         If Not dboGastosIncidencias Is Nothing Then
             MyBase.newRegForm = CType(New frmEntGastosIncidencias(BasesParaCompatibilidad.GridSimpleForm.ACCION_MODIFICAR), BasesParaCompatibilidad.DetailedSimpleForm)
-            newRegForm.SetDataBussinesObject(CType(Me.dboGastosIncidencias, BasesParaCompatibilidad.databussines))
+            newRegForm.SetDataBussinesObject(CType(Me.dboGastosIncidencias, BasesParaCompatibilidad.DataBussines))
+            AddHandler newRegForm.afterSave, AddressOf dgvFill
         Else
             MyBase.EventHandeld = True
             Messagebox.show("No se pudo recuperar los datos", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
