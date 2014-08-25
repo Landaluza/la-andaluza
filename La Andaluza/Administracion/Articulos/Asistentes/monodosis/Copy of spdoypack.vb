@@ -7,32 +7,55 @@ Class spDoypack2
         dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
     End Sub
     Public Function FormatoPorArticulo(ByVal p1 As Integer) As Integer
-        Dim dt As DataTable = dtb.Consultar("select id_tipoFormato from doypack where id_articuloPrimario = " & p1, False)
+        dtb.PrepararConsulta("select id_tipoFormato from doypack where id_articuloPrimario = @id")
+        dtb.AñadirParametroConsulta("@id", p1)
+        Dim dt As DataTable = dtb.Consultar()
+        'Dim dt As DataTable = dtb.Consultar("select id_tipoFormato from doypack where id_articuloPrimario = " & p1, False)
         Return If(IsDBNull(dt.Rows(0).Item(0)), Nothing, dt.Rows(0).Item(0))
     End Function
 
     Public Function MarcaPorArticulo(ByVal p1 As Integer) As Integer
-        Dim dt As DataTable = dtb.Consultar("select id_marca from doypack where id_articuloPrimario = " & p1, False)
+        dtb.PrepararConsulta("select id_marca from doypack where id_articuloPrimario = @id")
+        dtb.AñadirParametroConsulta("@id", p1)
+        Dim dt As DataTable = dtb.Consultar()
+
+        'Dim dt As DataTable = dtb.Consultar("select id_marca from doypack where id_articuloPrimario = " & p1, False)
         Return If(IsDBNull(dt.Rows(0).Item(0)), Nothing, dt.Rows(0).Item(0))
     End Function
 
     Public Function CajaPorArticulo(ByVal p1 As Integer) As Integer
-        Dim dt As DataTable = dtb.Consultar("select id_caja from doypack where id_articuloPrimario = " & p1, False)
+        dtb.PrepararConsulta("select id_caja from doypack where id_articuloPrimario =  @id")
+        dtb.AñadirParametroConsulta("@id", p1)
+        Dim dt As DataTable = dtb.Consultar()
+
+        'Dim dt As DataTable = dtb.Consultar("select id_caja from doypack where id_articuloPrimario = " & p1, False)
         Return If(IsDBNull(dt.Rows(0).Item(0)), Nothing, dt.Rows(0).Item(0))
     End Function
 
     Public Function ProductoPorArticulo(ByVal p1 As Integer) As Integer
-        Dim dt As DataTable = dtb.Consultar("select id_TipoProducto from doypack where id_articuloPrimario = " & p1, False)
+        dtb.PrepararConsulta("select id_TipoProducto from doypack where id_articuloPrimario =  @id")
+        dtb.AñadirParametroConsulta("@id", p1)
+        Dim dt As DataTable = dtb.Consultar()
+
+        'Dim dt As DataTable = dtb.Consultar("select id_TipoProducto from doypack where id_articuloPrimario = " & p1, False)
         Return If(IsDBNull(dt.Rows(0).Item(0)), Nothing, dt.Rows(0).Item(0))
     End Function
 
     Public Function PaletNCPorArticulo(ByVal p1 As Integer) As Integer
-        Dim dt As DataTable = dtb.Consultar("select id_PaletProducidoNoConforme from doypack where id_articuloPrimario = " & p1, False)
+        dtb.PrepararConsulta("select id_PaletProducidoNoConforme from doypack where id_articuloPrimario =  @id")
+        dtb.AñadirParametroConsulta("@id", p1)
+        Dim dt As DataTable = dtb.Consultar()
+
+        ' Dim dt As DataTable = dtb.Consultar("select id_PaletProducidoNoConforme from doypack where id_articuloPrimario = " & p1, False)
         Return If(IsDBNull(dt.Rows(0).Item(0)), Nothing, dt.Rows(0).Item(0))
     End Function
 
     Public Function EanPorArticulo(ByVal p1 As Integer) As Integer
-        Dim dt As DataTable = dtb.Consultar("select ean13 from doypack where id_articuloPrimario = " & p1, False)
+        dtb.PrepararConsulta("select ean13 from doypack where id_articuloPrimario =  @id")
+        dtb.AñadirParametroConsulta("@id", p1)
+        Dim dt As DataTable = dtb.Consultar()
+
+        'Dim dt As DataTable = dtb.Consultar("select ean13 from doypack where id_articuloPrimario = " & p1, False)
         Return If(IsDBNull(dt.Rows(0).Item(0)), Nothing, dt.Rows(0).Item(0))
     End Function
 
@@ -93,9 +116,14 @@ Class spDoypack2
 
         Dim Dbo_DoyPack As New Dbo_DoyPack
         Dim selectProcedure As String = "[dbo].[doypackSelectBy]"
+        dtb.PrepararConsulta("[dbo].[doypackSelectBy] @p1, @p2")
+        dtb.AñadirParametroConsulta("@p1", p1)
+        dtb.AñadirParametroConsulta("@p2", p2)
+
 
         Try
-            Dim dt As DataTable = dtb.Consultar(selectProcedure & " " & p1 & ", " & p2)
+            Dim dt As DataTable = dtb.Consultar()
+            'Dim dt As DataTable = dtb.Consultar(selectProcedure & " " & p1 & ", " & p2)
             For Each row As DataRow In dt.Rows
                 Dbo_DoyPack = New Dbo_DoyPack
                 Dbo_DoyPack.ArticuloPrimarioID = p1
@@ -120,7 +148,10 @@ Class spDoypack2
     Public Function selectRecords(ByVal id As Integer) As DataTable
         Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
         ', id_marca, id_paletproducidoNoConforme
-        Return dtb.Consultar("select doypack.id,articulos1.descripcionLa, doypack.cantidad, id_monodosis from monodosis, articulos1, doypack where monodosis.id_articuloPrimario = articulos1.articuloid and monodosis.id_articuloPrimario = doypack.id_monodosis and doypack.id_articuloPrimario = " & id, False)
+        dtb.PrepararConsulta("select doypack.id,articulos1.descripcionLa, doypack.cantidad, id_monodosis from monodosis, articulos1, doypack where monodosis.id_articuloPrimario = articulos1.articuloid and monodosis.id_articuloPrimario = doypack.id_monodosis and doypack.id_articuloPrimario = @id")
+        dtb.AñadirParametroConsulta("@id", id)
+        Return dtb.Consultar
+        'Return dtb.Consultar("select doypack.id,articulos1.descripcionLa, doypack.cantidad, id_monodosis from monodosis, articulos1, doypack where monodosis.id_articuloPrimario = articulos1.articuloid and monodosis.id_articuloPrimario = doypack.id_monodosis and doypack.id_articuloPrimario = " & id, False)
     End Function
 
     Public Function actualizarFormatoPorArticulo(ByVal p1 As Integer, ByVal formato As Integer, ByVal id_marca As Integer, ByVal id_caja As Integer, id_NC As Integer, id_producto As Integer, ean As String) As Boolean
@@ -131,11 +162,12 @@ Class spDoypack2
     Public Function esDoypack(ByVal p1 As Integer, Optional dtb as BasesParaCompatibilidad.Database = Nothing) As Boolean
         Dim dt As DataTable
 
-        If dtb Is Nothing Then
-            dt = dtb.Consultar("Select count(*) from doypack where id_articuloPrimario = " & p1, False)
-        Else
-            dt = dtb.Consultar("Select count(*) from doypack where id_articuloPrimario = " & p1, False)
-        End If
+        
+        'dt = dtb.Consultar("Select count(*) from doypack where id_articuloPrimario = " & p1, False)
+
+        dtb.PrepararConsulta("Select count(*) from doypack where id_articuloPrimario = @id")
+        dtb.AñadirParametroConsulta("@id", p1)
+        dt = dtb.Consultar
 
         If dt.Rows(0).Item(0) = 0 Then
             Return False
@@ -270,7 +302,10 @@ Class spDoypack2
             dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
         End If
 
-        Return dtb.Consultar("select id from ComposicionesArticulos where FechaFinVigencia is null and id_articulo =" & Id_articulo, False).Rows(0).Item(0)
+        dtb.PrepararConsulta("select id from ComposicionesArticulos where FechaFinVigencia is null and id_articulo = @id")
+        dtb.AñadirParametroConsulta("@id", Id_articulo)
+        Return dtb.Consultar.Rows(0).Item(0)
+        'Return dtb.Consultar("select id from ComposicionesArticulos where FechaFinVigencia is null and id_articulo =" & Id_articulo, False).Rows(0).Item(0)
     End Function
 
 End Class

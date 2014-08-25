@@ -95,7 +95,11 @@ Public Class frmModDetExtras
 
         Me.frmProveedores_Articulos = New frmProveedores_Articulos(0, ArticuloId)
         Engine_LA.FormEnPestaña(Me.frmProveedores_Articulos, tbpProveedores)
-        Dim dt As DataTable = dtb.Consultar("PedidosProveedoresDetallesSelectByArticuloID " & ArticuloId)
+        'Dim dt As DataTable = dtb.Consultar("PedidosProveedoresDetallesSelectByArticuloID " & ArticuloId)
+        dtb.PrepararConsulta("PedidosProveedoresDetallesSelectByArticuloID @id")
+        dtb.AñadirParametroConsulta("@id", ArticuloId)
+        Dim dt As DataTable = dtb.Consultar
+        'Dim dt As DataTable = dtb.Consultar("PedidosProveedoresDetallesSelectByArticuloID " & ArticuloId)
 
         If Not dt Is Nothing Then
             With dgvPedidos
