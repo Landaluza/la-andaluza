@@ -7,6 +7,8 @@
     End Sub
 
     Public Function recuperarDatos(ByVal filtro As String, Optional ByVal camiones As Boolean = True, Optional ByVal conductores As Boolean = True) As DataTable
+
+
         query = "select x.tipo, x.nombre, x.id, x.otros from ("
 
         If conductores Then
@@ -18,15 +20,14 @@
 
         query = query & ") as x order by x.nombre"
 
-        Return dtb.Consultar(query, _
-                             False)
+        Return dtb.Consultar(query, False)
 
-        'Return dtb.Consultar("select x.tipo, x.nombre, x.id from " & _
-        '                     "(Select 1 tipo, Nombre+' '+Apellido1+' '+Apellido2 nombre, conductorid id from conductores where Nombre+' '+Apellido1+' '+Apellido2 like '%" & filtro & "%'" & _
-        '                     "union " & _
-        '                     "select 2 tipo, MatriculaCabeza nombre, camionid id from camiones where MatriculaCabeza like '%" & filtro & "%' " & _
-        '                     ") as x order by x.nombre", _
-        '                     False)
+        ''Return dtb.Consultar("select x.tipo, x.nombre, x.id from " & _
+        ''                     "(Select 1 tipo, Nombre+' '+Apellido1+' '+Apellido2 nombre, conductorid id from conductores where Nombre+' '+Apellido1+' '+Apellido2 like '%" & filtro & "%'" & _
+        ''                     "union " & _
+        ''                     "select 2 tipo, MatriculaCabeza nombre, camionid id from camiones where MatriculaCabeza like '%" & filtro & "%' " & _
+        ''                     ") as x order by x.nombre", _
+        ''                     False)
     End Function
 
 End Class

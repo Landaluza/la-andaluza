@@ -54,8 +54,10 @@ Public Class frmEntCargaNecesidadesJR2Maestro
     End Sub
 
     Private Sub ActualizarGrilla()
-
-        dgvDetalles.DataSource = dtb.Consultar("CargaNecesidadesJRDetallesSelectByMaestroDgv " & m_DBO_CargaNecesidadesJRMaestro.CargaNecesidadesJRMaestroID)
+        dtb.PrepararConsulta("CargaNecesidadesJRDetallesSelectByMaestroDgv @id")
+        dtb.AñadirParametroConsulta("@id", m_DBO_CargaNecesidadesJRMaestro.CargaNecesidadesJRMaestroID)
+        dgvDetalles.DataSource = dtb.Consultar
+        'dgvDetalles.DataSource = dtb.Consultar("CargaNecesidadesJRDetallesSelectByMaestroDgv " & m_DBO_CargaNecesidadesJRMaestro.CargaNecesidadesJRMaestroID)
     End Sub
 
     Private Sub GetValores()

@@ -56,23 +56,36 @@ Public Class spEmpleados
     End Sub
 
     Public Function devolver_empleados_por_linea(ByVal linea As Integer) As DataTable
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Return dtb.Consultar("exec EmpleadosPorLineaCbo " & linea, False)
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.PrepararConsulta("EmpleadosPorLineaCbo @linea")
+        dtb.AñadirParametroConsulta("@linea", linea)
+        Return dtb.Consultar()
+        'Return dtb.Consultar("exec EmpleadosPorLineaCbo " & linea, False)
     End Function
 
     Public Function devolver_empleados_por_linea_libres(ByVal linea As Integer) As DataTable
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Return dtb.Consultar("exec EmpleadosPorLineaLibresCbo " & linea, False)
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.PrepararConsulta("EmpleadosPorLineaLibresCbo @linea")
+        dtb.AñadirParametroConsulta("@linea", linea)
+        Return dtb.Consultar
+        'Return dtb.Consultar("exec EmpleadosPorLineaLibresCbo " & linea, False)
     End Function
 
     Public Function devolver_Empleados_Envasados_ocupados(ByVal envasado As Integer) As DataTable
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Return dtb.Consultar("exec EmpleadosEnvasados_Situacion_Ocupados " & envasado, False)
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.PrepararConsulta("EmpleadosEnvasados_Situacion_Ocupados @envasado")
+        dtb.AñadirParametroConsulta("@envasado", envasado)
+        Return dtb.Consultar
+        'Return dtb.Consultar("exec EmpleadosEnvasados_Situacion_Ocupados " & envasado, False)
     End Function
 
     Public Function devolver_Empleados_Envasados_ocupados_por_linea(ByVal linea As Integer, ByVal envasado As Integer) As DataTable
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Return dtb.Consultar("exec EmpleadosEnvasados_Situacion_Ocupados_por_linea " & linea & ", " & envasado, False)
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.PrepararConsulta("EmpleadosEnvasados_Situacion_Ocupados_por_linea @linea, @envasado")
+        dtb.AñadirParametroConsulta("@linea", linea)
+        dtb.AñadirParametroConsulta("@envasado", envasado)
+        Return dtb.Consultar
+        'Return dtb.Consultar("exec EmpleadosEnvasados_Situacion_Ocupados_por_linea " & linea & ", " & envasado, False)
     End Function
 
     Public Function devolver_Empleados_Envasados_Situacion_Actual() As DataTable

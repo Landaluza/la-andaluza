@@ -113,11 +113,10 @@ Class spMonodosis
     Function esMonodosis(ByVal p1 As Integer, Optional dtb as BasesParaCompatibilidad.Database = Nothing) As Boolean
         Dim dt As DataTable
 
-        If dtb Is Nothing Then
-            dt = dtb.Consultar("Select count(*) from monodosis where id_articuloPrimario = " & p1, False)
-        Else
-            dt = dtb.Consultar("Select count(*) from monodosis where id_articuloPrimario = " & p1, False)
-        End If
+        dtb.PrepararConsulta("Select count(*) from monodosis where id_articuloPrimario = @id")
+        dtb.AñadirParametroConsulta("@id", p1)
+        dt = dtb.Consultar
+        'dt = dtb.Consultar("Select count(*) from monodosis where id_articuloPrimario = " & p1, False)
 
         If dt.Rows(0).Item(0) = 0 Then
             Return False
