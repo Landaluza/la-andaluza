@@ -56,13 +56,20 @@ Public Class spArticulos1
     'End Function
 
     Public Function certificadosByArticuloId(ByVal articuloID As Integer) As DataTable
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Return dtb.Consultar("exec Articulos_certificadosSelect " & articuloID, False)
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.PrepararConsulta("Articulos_certificadosSelect @id")
+        dtb.AñadirParametroConsulta("@id", articuloID)
+
+        Return dtb.Consultar
+        ' Return dtb.Consultar("exec Articulos_certificadosSelect " & articuloID, False)
     End Function
 
     Public Function comprobarCambioTipo(ByVal id As Integer) As Boolean
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Dim dt As DataTable = dtb.Consultar("select count(*) from (select articuloid from articulosEnvasesterciarios union select articuloid from ArticulosEnvasesSecundarios union select articuloid from ArticulosGraneles union select articuloid from ArticulosIngredientes union select articuloid from ArticulosIngredientesIDI union select articuloid from ArticulosMateriasPrimas union select id_articulo as articulid from ArticulosPrimarios) as x where x.articuloid = " & id, False)
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.PrepararConsulta("select count(*) from (select articuloid from articulosEnvasesterciarios union select articuloid from ArticulosEnvasesSecundarios union select articuloid from ArticulosGraneles union select articuloid from ArticulosIngredientes union select articuloid from ArticulosIngredientesIDI union select articuloid from ArticulosMateriasPrimas union select id_articulo as articulid from ArticulosPrimarios) as x where x.articuloid = @id")
+        dtb.AñadirParametroConsulta("@id", id)
+        Dim dt As DataTable = dtb.Consultar
+        'Dim dt As DataTable = dtb.Consultar("select count(*) from (select articuloid from articulosEnvasesterciarios union select articuloid from ArticulosEnvasesSecundarios union select articuloid from ArticulosGraneles union select articuloid from ArticulosIngredientes union select articuloid from ArticulosIngredientesIDI union select articuloid from ArticulosMateriasPrimas union select id_articulo as articulid from ArticulosPrimarios) as x where x.articuloid = " & id, False)
 
         Try
             If Convert.ToInt32(dt.Rows(0).Item(0)) = 0 Then

@@ -17,7 +17,6 @@ Public Class frmEntArticulosFichasTecnicas
     End Sub
 
     Private Sub frmEntArticulosFichasTecnicas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        'Me.cboArticuloID.mam_DataSource("ArticulosFichasTecnicas_ArticulosCbo"), False)
         Dim spArticulo As New spArticulos1
         Dim spEmp As New spEmpleados
         Dim spProv As New spProveedores
@@ -27,13 +26,6 @@ Public Class frmEntArticulosFichasTecnicas
         spEmp.cargar_Empleados(cboAprobadorID)
         spProv.cargar_ComboBox(cboProveedorID)
         spart.cargar_combo(cboEstadoID)
-        'Me.cboArticuloID.mam_DataSource(dtb.consultar("Articulos1Cbo"), False)
-
-
-        'Me.cboProveedorID.mam_DataSource(dtb.consultar("ArticulosFichasTecnicas_ProveedoresCbo"), False)
-        'Me.cboAprobadorID.mam_DataSource("ArticulosFichasTecnicas_EmpleadosCbo"), False)
-        ' Me.cboAprobadorID.mam_DataSource(dtb.consultar("EmpleadosSelectCbo"), False)
-        'Me.cboEstadoID.mam_DataSource(dtb.consultar("ArticulosFichasTecnicas_ArticulosFichasTecnicasEstadosCbo"), False)
         Me.butVer.Visible = True
         SetValores(m_DBO_ArticulosFichasTecnica.ArticuloFichaTecnicaID, False)
     End Sub

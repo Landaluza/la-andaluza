@@ -7,7 +7,13 @@
     End Sub
 
     Public Sub select_record(ByRef p1 As DBO_articulosGranelesCompuestoPor)
-        Dim dt As DataTable = dtb.Consultar("select subcantidad, orden from articulosIngredientes_articulos1Compuestopor where id_articuloIngrediente =" & p1.ArticuloComponente & " and id_articulo = " & p1.ArticuloPrincipal & " and id_elaboracion_fase = " & p1.Fase & String.Empty, False)
+        dtb.PrepararConsulta("select subcantidad, orden from articulosIngredientes_articulos1Compuestopor where id_articuloIngrediente = @componente and id_articulo = @articulo and id_elaboracion_fase = @fase")
+        dtb.AñadirParametroConsulta("@componente", p1.ArticuloComponente)
+        dtb.AñadirParametroConsulta("@articulo", p1.ArticuloPrincipal)
+        dtb.AñadirParametroConsulta("@fase", p1.Fase)
+        Dim dt As DataTable = dtb.Consultar
+
+        ' Dim dt As DataTable = dtb.Consultar("select subcantidad, orden from articulosIngredientes_articulos1Compuestopor where id_articuloIngrediente =" & p1.ArticuloComponente & " and id_articulo = " & p1.ArticuloPrincipal & " and id_elaboracion_fase = " & p1.Fase & String.Empty, False)
         p1.Cantidad = dt.Rows(0).Item(0)
         p1.Orden = dt.Rows(0).Item(1)
         p1.Old_Cantidad = dt.Rows(0).Item(0)
@@ -15,14 +21,25 @@
     End Sub
 
     Public Function DataTableFill(ByVal id As Integer) As DataTable
-        Return dtb.Consultar("select " & _
+        dtb.PrepararConsulta("select " & _
                                 "articulos1.articuloid, descripcionLa, costeUnitario, cantidad*costeunitario subtotal, orden, fase, subcantidad as cantidad, elaboraciones_fases.id id_fase " & _
                             "from articulos1_articulos1_compuestoPor, articulos1, elaboraciones_fases, articulosIngredientes_articulos1Compuestopor " & _
                             "where articulosIngredientes_articulos1Compuestopor.id_elaboracion_fase = elaboraciones_fases.id " & _
                             "and articulosIngredientes_articulos1Compuestopor.id_articulo = articulos1_articulos1_compuestoPor.id_articulo  " & _
                             "and articulosIngredientes_articulos1Compuestopor.id_articuloIngrediente = articulos1_articulos1_compuestoPor.id_articuloCompuestoPor  " & _
                             "and articulosIngredientes_articulos1Compuestopor.id_articuloIngrediente = articulos1.articuloid  " & _
-                            "and articulosIngredientes_articulos1Compuestopor.id_articulo =" & id & " order by descripcionLa, fase, orden", False)
+                            "and articulosIngredientes_articulos1Compuestopor.id_articulo = @id order by descripcionLa, fase, orden")
+        dtb.AñadirParametroConsulta("@id", id)
+
+        Return dtb.Consultar
+        'Return dtb.Consultar("select " & _
+        '                        "articulos1.articuloid, descripcionLa, costeUnitario, cantidad*costeunitario subtotal, orden, fase, subcantidad as cantidad, elaboraciones_fases.id id_fase " & _
+        '                    "from articulos1_articulos1_compuestoPor, articulos1, elaboraciones_fases, articulosIngredientes_articulos1Compuestopor " & _
+        '                    "where articulosIngredientes_articulos1Compuestopor.id_elaboracion_fase = elaboraciones_fases.id " & _
+        '                    "and articulosIngredientes_articulos1Compuestopor.id_articulo = articulos1_articulos1_compuestoPor.id_articulo  " & _
+        '                    "and articulosIngredientes_articulos1Compuestopor.id_articuloIngrediente = articulos1_articulos1_compuestoPor.id_articuloCompuestoPor  " & _
+        '                    "and articulosIngredientes_articulos1Compuestopor.id_articuloIngrediente = articulos1.articuloid  " & _
+        '                    "and articulosIngredientes_articulos1Compuestopor.id_articulo =" & id & " order by descripcionLa, fase, orden", False)
     End Function
 
     Function Eliminar(p1 As DBO_articulosGranelesCompuestoPor) As Boolean

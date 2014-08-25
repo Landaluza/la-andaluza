@@ -5,8 +5,11 @@
         dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
     End Sub
 
-    Public Function DataTableFill(ByVal id As Integer) As DataTable        
-        Return dtb.Consultar("select articuloid, descripcionLa, cantidad, costeUnitario, cantidad*costeunitario subtotal from articulos1_articulos1_compuestoPor, articulos1 where id_articuloCompuestopor = articuloid and id_articulo = " & id, False)
+    Public Function DataTableFill(ByVal id As Integer) As DataTable
+        dtb.PrepararConsulta("select articuloid, descripcionLa, cantidad, costeUnitario, cantidad*costeunitario subtotal from articulos1_articulos1_compuestoPor, articulos1 where id_articuloCompuestopor = articuloid and id_articulo = @id")
+        dtb.AñadirParametroConsulta("@id", id)
+        Return dtb.Consultar
+        'Return dtb.Consultar("select articuloid, descripcionLa, cantidad, costeUnitario, cantidad*costeunitario subtotal from articulos1_articulos1_compuestoPor, articulos1 where id_articuloCompuestopor = articuloid and id_articulo = " & id, False)
     End Function
 
     Public Function Eliminar(ByVal id As Integer, ByVal id2 As Integer) As Boolean
@@ -66,7 +69,10 @@
     End Function
 
     Public Function CargarCombo1(ByVal id As Integer) As DataTable
-        Return dtb.Consultar("select ArticuloID, DescripcionLA from Articulos1 WHERE Articulos1.ArticuloTpoID =" & id, False)
+        dtb.PrepararConsulta("select ArticuloID, DescripcionLA from Articulos1 WHERE Articulos1.ArticuloTpoID = @id")
+        dtb.AñadirParametroConsulta("@id", id)
+        Return dtb.Consultar
+        'Return dtb.Consultar("select ArticuloID, DescripcionLA from Articulos1 WHERE Articulos1.ArticuloTpoID =" & id, False)
     End Function
 
     'si es secundario sobre terciario actualizar el terciario
