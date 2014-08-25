@@ -15,7 +15,11 @@ Public Class frmChekeModificacionPalets
     End Sub
 
     Private Sub dgvFill()
-        datasource = dtb.Consultar("exec comparacion_produccion_paletsmodificados2 '" & Me.dtpInicio.Value.ToShortDateString & "', " & Me.cboUsuario.SelectedValue, False)
+        dtb.PrepararConsulta("comparacion_produccion_paletsmodificados2 @inicio, @usuario")
+        dtb.AñadirParametroConsulta("@inicio", Me.dtpInicio.Value)
+        dtb.AñadirParametroConsulta("@usuario", Me.cboUsuario.SelectedValue)
+        datasource = dtb.Consultar
+        'datasource = dtb.Consultar("exec comparacion_produccion_paletsmodificados2 '" & Me.dtpInicio.Value.ToShortDateString & "', " & Me.cboUsuario.SelectedValue, False)
 
         If Not datasource Is Nothing Then
             DataGridView1.SuspendLayout()

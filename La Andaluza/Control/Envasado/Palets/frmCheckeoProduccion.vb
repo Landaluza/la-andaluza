@@ -16,7 +16,11 @@ Public Class frmCheckeoProduccion
 
     Private Sub dgvFill()
         Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
-        Dim dt As DataTable = dtb.Consultar("exec comparacion_produccion_entradas '" & Me.dtpInicio.Value.ToShortDateString & "', '" & Me.dtpFin.Value.ToShortDateString & "'", False)
+        dtb.PrepararConsulta("comparacion_produccion_entradas @desde, @hasta")
+        dtb.AñadirParametroConsulta("@desde", Me.dtpInicio.Value)
+        dtb.AñadirParametroConsulta("@hasta", Me.dtpFin.Value)
+        Dim dt As DataTable = dtb.Consultar
+        'Dim dt As DataTable = dtb.Consultar("exec comparacion_produccion_entradas '" & Me.dtpInicio.Value.ToShortDateString & "', '" & Me.dtpFin.Value.ToShortDateString & "'", False)
 
         If Not dt Is Nothing Then
             Me.DataGridView1.DataSource = dt

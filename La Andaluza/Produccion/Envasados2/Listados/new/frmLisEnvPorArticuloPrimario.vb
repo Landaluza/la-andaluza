@@ -25,10 +25,12 @@ Public Class frmLisEnvPorArticuloPrimario
     End Sub
 
     Private Sub dgvFill()
-
-        consulta = "exec SumaEnvasesEntreFechas '" & _
-                              Format("yyyy/MM/dd", dtpDesde.Value) & "', '" & _
-                                 Format("yyyy/MM/dd", dtpHasta.Value) & "'"
+        dtb.PrepararConsulta("SumaEnvasesEntreFechas @desde, @hasta")
+        dtb.AñadirParametroConsulta("@desde", dtpDesde.Value)
+        dtb.AñadirParametroConsulta("@hasta", dtpHasta.Value)
+        'consulta = "exec SumaEnvasesEntreFechas '" & _
+        '                      Format("yyyy/MM/dd", dtpDesde.Value) & "', '" & _
+        '                         Format("yyyy/MM/dd", dtpHasta.Value) & "'"
 
 
         If Not BackgroundWorker1.IsBusy Then
@@ -39,8 +41,8 @@ Public Class frmLisEnvPorArticuloPrimario
 
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
         Try
-
-            datasource = dtb.Consultar(consulta, False)
+            datasource = dtb.Consultar()
+            'datasource = dtb.Consultar(consulta, False)
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try

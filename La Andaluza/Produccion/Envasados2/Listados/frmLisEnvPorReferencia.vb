@@ -29,8 +29,14 @@ Public Class frmLisEnvPorReferencia
         TotalLitros = 0
 
         Try
+            dtb.PrepararConsulta("PaletsContenidosSelectDatosEnvasados @desde, @hasta, @ref, @otro")
+            dtb.AñadirParametroConsulta("@desde", dtpDesde.Value)
+            dtb.AñadirParametroConsulta("@hasta", dtpHasta.Value.AddDays(1))
+            dtb.AñadirParametroConsulta("@ref", cboReferencia.SelectedValue)
+            dtb.AñadirParametroConsulta("@otro", 0)
+            datasource = dtb.Consultar
 
-            datasource = dtb.Consultar("exec PaletsContenidosSelectDatosEnvasados" & "'" & dtpDesde.Value.ToString & "','" & dtpHasta.Value.AddDays(1).ToString & "'," & cboReferencia.SelectedValue & ",0")
+            'datasource = dtb.Consultar("exec PaletsContenidosSelectDatosEnvasados" & "'" & dtpDesde.Value.ToString & "','" & dtpHasta.Value.AddDays(1).ToString & "'," & cboReferencia.SelectedValue & ",0")
             If Not datasource Is Nothing Then
                 dgvEnvasados.Visible = False
                 With dgvEnvasados
@@ -91,7 +97,14 @@ Public Class frmLisEnvPorReferencia
     Private Sub btnPorSCC_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPorSCC.Click
         TotalCajas = 0
         Me.Text = "Listado todos los palets"
-        datasource = dtb.Consultar("exec getSCC '" & dtpDesde.Value & "','" & dtpHasta.Value & "'," & cboReferencia.SelectedValue & ",0")
+
+        dtb.PrepararConsulta("getSCC @desde, @hasta, @ref, @otro")
+        dtb.AñadirParametroConsulta("@desde", dtpDesde.Value)
+        dtb.AñadirParametroConsulta("@hasta", dtpHasta.Value)
+        dtb.AñadirParametroConsulta("@ref", cboReferencia.SelectedValue)
+        dtb.AñadirParametroConsulta("@otro", 0)
+        datasource = dtb.Consultar
+        'datasource = dtb.Consultar("exec getSCC '" & dtpDesde.Value.Date.ToShortDateString & "','" & dtpHasta.Value.Date.ToShortDateString & "'," & cboReferencia.SelectedValue & ",0")
 
         If Not datasource Is Nothing Then
             With dgvEnvasados
@@ -121,7 +134,14 @@ Public Class frmLisEnvPorReferencia
     End Sub
 
     Private Sub btnNoSCC_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNoSCC.Click
-        datasource = dtb.Consultar("exec getSCC '" & dtpDesde.Value & "','" & dtpHasta.Value & "'," & cboReferencia.SelectedValue & "," & Me.txtSCC.Text)
+
+        dtb.PrepararConsulta("getSCC @desde, @hasta, @ref, @otro")
+        dtb.AñadirParametroConsulta("@desde", dtpDesde.Value)
+        dtb.AñadirParametroConsulta("@hasta", dtpHasta.Value)
+        dtb.AñadirParametroConsulta("@ref", cboReferencia.SelectedValue)
+        dtb.AñadirParametroConsulta("@otro", Me.txtSCC.Text)
+        datasource = dtb.Consultar
+        'datasource = dtb.Consultar("exec getSCC '" & dtpDesde.Value.Date.ToShortDateString & "','" & dtpHasta.Value.Date.ToShortDateString & "'," & cboReferencia.SelectedValue & "," & Me.txtSCC.Text)
 
         If Not datasource Is Nothing Then
             With dgvEnvasados
@@ -157,7 +177,13 @@ Public Class frmLisEnvPorReferencia
     Private Sub btnAgrupados_Click(sender As System.Object, e As System.EventArgs) Handles btnAgrupados.Click
         Me.Cursor = Cursors.WaitCursor
         TotalCajas = 0
-        datasource = dtb.Consultar("exec PaletsContenidosSelectDatosEnvasados '" & dtpDesde.Value & "','" & dtpHasta.Value.AddDays(1) & "'," & cboReferencia.SelectedValue & ",1")
+        dtb.PrepararConsulta("PaletsContenidosSelectDatosEnvasados @desde, @hasta, @ref, @otro")
+        dtb.AñadirParametroConsulta("@desde", dtpDesde.Value)
+        dtb.AñadirParametroConsulta("@hasta", dtpHasta.Value.AddDays(1))
+        dtb.AñadirParametroConsulta("@ref", cboReferencia.SelectedValue)
+        dtb.AñadirParametroConsulta("@otro", 1)
+        datasource = dtb.Consultar
+        ' datasource = dtb.Consultar("exec PaletsContenidosSelectDatosEnvasados '" & dtpDesde.Value & "','" & dtpHasta.Value.AddDays(1) & "'," & cboReferencia.SelectedValue & ",1")
         Me.Text = "Listado todos los palets"
 
         If Not datasource Is Nothing Then

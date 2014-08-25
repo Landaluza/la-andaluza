@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="La Andaluza.exe" version="2014.7.1.311" publicKeyToken="0000000000000000" language="es-ES" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="La Andaluza.exe" version="2014.7.1.314" publicKeyToken="0000000000000000" language="es-ES" processorArchitecture="msil" type="win32" />
   <description asmv2:iconFile="Resources\LogoBandejaLa2.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
@@ -117,7 +117,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>JEd0Vm3vB+B7S1JMhaIJ4KTadZaTFKav6xIgflXMdmA=</dsig:DigestValue>
+        <dsig:DigestValue>BP3ZRa18Hs7ysG9RGEROkSrgbhTZFW4F5yPJ6jshKl8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -302,14 +302,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="La Andaluza.exe" size="10115072">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="La Andaluza.exe" size="10114560">
       <assemblyIdentity name="La Andaluza" version="2014.2.1.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>jy1P5638CpFi5AOXGP2gpSe340sIdF8xCMZlJ58uXTw=</dsig:DigestValue>
+        <dsig:DigestValue>/syye82//iKOwEskWIkWeLyC/7E5WSM+EPlEA6YplhQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
