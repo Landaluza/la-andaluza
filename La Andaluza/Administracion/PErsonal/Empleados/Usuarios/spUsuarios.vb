@@ -70,8 +70,11 @@ Public Class spUsuarios
         Dim spTiposUsuarios As New spTiposUsuarios
 
         Try
-
-            dt = dtb.Consultar("exec [UsuariosValidar] " & login & ", " & pass, False)
+            dtb.PrepararConsulta("UsuariosValidar @login, @pass")
+            dtb.AñadirParametroConsulta("@login", login)
+            dtb.AñadirParametroConsulta("@pass", pass)
+            dt = dtb.Consultar
+            'dt = dtb.Consultar("exec [UsuariosValidar] " & login & ", " & pass, False)
 
             If dt.Rows(0).Item(0) > 0 Then
                 dbo = select_record_by_usuario(login)
@@ -80,7 +83,10 @@ Public Class spUsuarios
                 Config.UserType = dbo.TipoUsuarioID
 
                 Config.dataFillNotificaction = False
-                Config.Worker = dtb.Consultar("select id from empleados where id_usuario=" & BasesParaCompatibilidad.Config.User, False).Rows(0).Item(0)
+                dtb.PrepararConsulta("select id from empleados where id_usuario= @id")
+                dtb.AñadirParametroConsulta("@id", BasesParaCompatibilidad.Config.User)
+                Config.Worker = dtb.Consultar().Rows(0).Item(0)
+                'Config.Worker = dtb.Consultar("select id from empleados where id_usuario=" & BasesParaCompatibilidad.Config.User, False).Rows(0).Item(0)
 
                 Return True
             Else

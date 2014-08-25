@@ -16,7 +16,11 @@
             Dim captura As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\temp.jpg"
             Dim file As New BasesParaCompatibilidad.File()
             Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-            Dim usuario As String = dtb.Consultar("select usuario from usuarios where usuarioid=" & BasesParaCompatibilidad.Config.User, False).Rows(0).Item(0)
+            ' Dim usuario As String = dtb.Consultar("select usuario from usuarios where usuarioid=" & BasesParaCompatibilidad.Config.User, False).Rows(0).Item(0)
+            dtb.PrepararConsulta("select usuario from usuarios where usuarioid= @id")
+            dtb.AñadirParametroConsulta("@id", BasesParaCompatibilidad.Config.User)
+            Dim usuario As String = dtb.Consultar().Rows(0).Item(0)
+
 
             file.saveImage(Me.bitmap, captura)
 

@@ -126,8 +126,11 @@ Public Class spEmpleados
 
     Public Function devolver_linea_envasado_por_empleado(ByVal id_empleado As Integer) As Integer
         Try
-            Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-            Dim linea As Integer = dtb.Consultar("select id_lineaEnvasado from empleados_lineasEnvasado where Id_empleado = " & id_empleado, False).Rows(0).Item(0)
+            Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+            dtb.PrepararConsulta("select id_lineaEnvasado from empleados_lineasEnvasado where Id_empleado = @id")
+            dtb.AñadirParametroConsulta("@id", id_empleado)
+            Dim linea As Integer = dtb.Consultar().Rows(0).Item(0)
+            'Dim linea As Integer = dtb.Consultar("select id_lineaEnvasado from empleados_lineasEnvasado where Id_empleado = " & id_empleado, False).Rows(0).Item(0)
             Return if(IsDBNull(linea), 1, linea)
         Catch ex As Exception
             Return 1
@@ -140,12 +143,15 @@ Public Class spEmpleados
     End Sub
 
     Function devolver_Empleados_actuales_del_formato(ByVal formatoEnvasadoId As Integer) As DataTable
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Return dtb.Consultar("exec EmpleadosActualesPorFormatoEnvasado " & formatoEnvasadoId, False)
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.PrepararConsulta("EmpleadosActualesPorFormatoEnvasado @formato")
+        dtb.AñadirParametroConsulta("@formato", formatoEnvasadoId)
+        Return dtb.Consultar
+        'Return dtb.Consultar("exec EmpleadosActualesPorFormatoEnvasado " & formatoEnvasadoId, False)
     End Function
 
     Function devolver_empleados_con_turnos_sin_fin() As DataTable
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
         Return dtb.Consultar("exec EmpleadosEnvasados_TurnosSinFinalizar", False)
     End Function
 End Class

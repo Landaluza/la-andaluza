@@ -29,7 +29,10 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Function
 
     Public Function SelectDgvByArticulo(ByVal articulo As Integer) As DataTable
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Return dtb.Consultar("exec [dbo].[Proveedores_ArticulosSelectDgvByArticulo] " & articulo, False)
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.PrepararConsulta("[dbo].[Proveedores_ArticulosSelectDgvByArticulo] @id")
+        dtb.AñadirParametroConsulta("@id", articulo)
+        Return dtb.Consultar
+        'Return dtb.Consultar("exec [dbo].[Proveedores_ArticulosSelectDgvByArticulo] " & articulo, False)
     End Function
 End Class
