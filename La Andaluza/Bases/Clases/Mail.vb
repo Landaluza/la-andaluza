@@ -221,7 +221,10 @@ Module Mail
             'Dim dt As System.Data.DataTable = SelectArticulosFichasTecnicasByMaestroID(dgvGrilla.CurrentRow.Cells("PedidoProveedorMaestroID").Value)
             Dim spPedidosProveedoresDocumentos1 As New spPedidosProveedoresDocumentos1
             Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-            Dim dt As System.Data.DataTable = dtb.consultar("ArticulosFichasTecnicasByMaestroIDSelect " & dgvGrilla.CurrentRow.Cells("PedidoProveedorMaestroID").Value)
+            'Dim dt As System.Data.DataTable = dtb.consultar("ArticulosFichasTecnicasByMaestroIDSelect " & dgvGrilla.CurrentRow.Cells("PedidoProveedorMaestroID").Value)
+            dtb.PrepararConsulta("ArticulosFichasTecnicasByMaestroIDSelect @id")
+            dtb.AñadirParametroConsulta("@id", dgvGrilla.CurrentRow.Cells("PedidoProveedorMaestroID").Value)
+            Dim dt As System.Data.DataTable = dtb.Consultar()
             If dt.Rows.Count > 0 Then
 
                 Try
@@ -235,7 +238,7 @@ Module Mail
                         If IO.File.Exists(psi.FileName) Then
                             Process.Start(psi)
 
-                            If messagebox.show("¿Es la especificacion correcta?","", MessageBoxButtons.YesNo, MessageBoxIcon.Question ) = DialogResult.Yes Then
+                            If MessageBox.Show("¿Es la especificacion correcta?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
                                 message.Attachments.Add(New System.Net.Mail.Attachment(Convert.ToString(dt.Rows(j).Item("Ruta"))))
 
                                 Dim dbo_PedidosProveedoresDocumentos As New DBO_PedidosProveedoresDocumentos1
@@ -247,7 +250,7 @@ Module Mail
                                 dbo_PedidosProveedoresDocumentos.Fecha = System.DateTime.Now
                                 dbo_PedidosProveedoresDocumentos.Observaciones = String.Empty
                                 dbo_PedidosProveedoresDocumentos.PedidoProveedorMaestroID = dgvGrilla.CurrentRow.Cells("PedidoProveedorMaestroID").Value
-                                dbo_PedidosProveedoresDocumentos.FechaModificacion = System.DateTime.Now.date
+                                dbo_PedidosProveedoresDocumentos.FechaModificacion = System.DateTime.Now.Date
                                 dbo_PedidosProveedoresDocumentos.UsuarioModificacion = BasesParaCompatibilidad.Config.User
 
                                 spPedidosProveedoresDocumentos1.PedidosProveedoresDocumentos1Insert(dbo_PedidosProveedoresDocumentos)
@@ -271,7 +274,7 @@ Module Mail
                         End If
                     Next
                 Catch ex As Exception
-                    messagebox.show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End Try
 
             Else

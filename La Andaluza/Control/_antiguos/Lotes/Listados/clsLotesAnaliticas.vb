@@ -169,7 +169,11 @@ Public Class clsLotesAnaliticas
 #Region "Funciones"
     Public Function comprobar_disponibilidad_boletin_envasado(ByVal m_CodigoLote As String) As Boolean
         'Dim tab As System.Data.DataTable = DataTableFill("LotesSelectByCodigoLoteTerminado '" & m_CodigoLote & "'")
-        Dim tab As System.Data.DataTable = dtb.Consultar("LotesAnalizadosByCodigoLote '" & m_CodigoLote & "'")
+        '        Dim tab As System.Data.DataTable = dtb.Consultar("LotesAnalizadosByCodigoLote '" & m_CodigoLote & "'")
+        dtb.PrepararConsulta("LotesAnalizadosByCodigoLote @cod")
+        dtb.AñadirParametroConsulta("@cod", m_CodigoLote)
+        Dim tab As System.Data.DataTable = dtb.Consultar()
+
         Return tab.Rows.Count > 0
     End Function
 #End Region
