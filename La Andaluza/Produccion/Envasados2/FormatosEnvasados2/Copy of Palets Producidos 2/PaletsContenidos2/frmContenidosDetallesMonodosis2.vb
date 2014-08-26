@@ -19,7 +19,11 @@ Public Class frmContenidosDetallesMonodosis2
 
     Private Sub frmContenidosDetallesMonodosis_Shown(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Shown
         Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
-        Dim dt As DataTable = dtb.Consultar("exec PaletsContenidosSelectMonodosis " & tipoFormato, False)
+        dtb.PrepararConsulta("PaletsContenidosSelectMonodosis @tipo")
+        dtb.AñadirParametroConsulta("@tipo", tipoFormato)
+        Dim dt As DataTable = dtb.Consultar()
+
+        'Dim dt As DataTable = dtb.Consultar("exec PaletsContenidosSelectMonodosis " & tipoFormato, False)
         Me.dgvGrilla.DataSource = dt
 
         Me.dgvGrilla.Columns("paletproducidoID").Visible = False

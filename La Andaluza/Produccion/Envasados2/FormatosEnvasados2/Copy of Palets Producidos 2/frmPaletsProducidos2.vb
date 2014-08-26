@@ -213,11 +213,17 @@ Public Class frmPaletsProducidos2
 
         ' Protected Overrides Sub cargar_datos()
         If Me.Embebido Then
-            dataSource = dtb.Consultar("PaletsProducidos6SelectByFormatoEnvasadoID " & Me.formatoId)
+            dtb.PrepararConsulta("PaletsProducidos6SelectByFormatoEnvasadoID @for")
+            dtb.AñadirParametroConsulta("@for", Me.formatoId)
+            dataSource = dtb.Consultar()
+            'dataSource = dtb.Consultar("PaletsProducidos6SelectByFormatoEnvasadoID " & Me.formatoId)
         Else
 
             If Me.cbEstado.Checked Then
-                dataSource = dtb.Consultar("PaletsProducidos5SelectDgvByEstado " & Me.cboEstado.SelectedValue)
+                dtb.PrepararConsulta("PaletsProducidos5SelectDgvByEstado @estado")
+                dtb.AñadirParametroConsulta("@estado", Me.cboEstado.SelectedValue)
+                dataSource = dtb.Consultar()
+                'dataSource = dtb.Consultar("PaletsProducidos5SelectDgvByEstado " & Me.cboEstado.SelectedValue)
             Else
                 dataSource = dtb.Consultar(spSelectDgv)
             End If
