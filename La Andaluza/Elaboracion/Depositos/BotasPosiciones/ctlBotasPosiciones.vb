@@ -101,8 +101,11 @@ Public Class ctlBotasPosiciones
 
     Public Function devolverAlturasPorPiernas(ByVal pierna As Integer) As DataTable
         dboAltura.PiernaID = pierna 'clsPie._PiernaID
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Return dtb.Consultar("select AlturaID,Descripcion from Alturas where PiernaID=" & pierna & " order by descripcion", False)
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.PrepararConsulta("select AlturaID,Descripcion from Alturas where PiernaID= @pierna order by descripcion")
+        dtb.AñadirParametroConsulta("@pierna", pierna)
+        Return dtb.Consultar
+        'Return dtb.Consultar("select AlturaID,Descripcion from Alturas where PiernaID=" & pierna & " order by descripcion", False)
         'Return clsAlt.DevolverPorPiernas()
     End Function
 
@@ -155,8 +158,11 @@ Public Class ctlBotasPosiciones
 
     Public Function devolverPosicionesPorAlturas() As DataTable
         dboPosiciones.AlturaID = dboAltura.ID
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Return dtb.Consultar("select PosicionID,Descripcion from Posiciones where AlturaID=" & dboPosiciones.AlturaID & " order by Descripcion", False)
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.PrepararConsulta("select PosicionID,Descripcion from Posiciones where AlturaID= @alt order by Descripcion")
+        dtb.AñadirParametroConsulta("@alt", dboPosiciones.AlturaID)
+        Return dtb.Consultar
+        'Return dtb.Consultar("select PosicionID,Descripcion from Posiciones where AlturaID=" & dboPosiciones.AlturaID & " order by Descripcion", False)
         'Return clsPos.DevolverPorAlturas()
     End Function
 End Class
