@@ -109,9 +109,16 @@ Public Class frmPaletSCC
         LblCajasExisten.Visible = True
 
         Try
-            lblDescripcion.Text = dt.Rows.Item(0).Item("Description")
-            Dim LastRow As Integer = dt.Rows.Count - 1
-            LblCajasExisten.Text = dt.Rows.Item(LastRow).Item("CajasFinal")
+            If dt.Rows.Item(0).Item("Description") Is Convert.DBNull Then
+                lblDescripcion.Text = dt.Rows.Item(1).Item("Description")
+                Dim LastRow As Integer = dt.Rows.Count
+                LblCajasExisten.Text = dt.Rows.Item(LastRow).Item("CajasFinal")
+            Else
+                lblDescripcion.Text = dt.Rows.Item(0).Item("Description")
+                Dim LastRow As Integer = dt.Rows.Count - 1
+                LblCajasExisten.Text = dt.Rows.Item(LastRow).Item("CajasFinal")
+            End If
+
         Catch ex As Exception
             MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
