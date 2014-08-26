@@ -35,7 +35,11 @@ Public Class frmChekeModificacionPalets
 
     Private Sub dgvFillDetalles()
 
-        datasourceDetalles = dtb.Consultar("exec PaletsContenidos2ByPaletProducidoID " & Me.DataGridView1.CurrentRow.Cells("paletProducidoID").Value, False)
+        dtb.PrepararConsulta("PaletsContenidos2ByPaletProducidoID @id")
+        dtb.AñadirParametroConsulta("@id", Me.DataGridView1.CurrentRow.Cells("paletProducidoID").Value)
+        datasourceDetalles = dtb.Consultar()
+
+        'datasourceDetalles = dtb.Consultar("exec PaletsContenidos2ByPaletProducidoID " & Me.DataGridView1.CurrentRow.Cells("paletProducidoID").Value, False)
         datasourceDetalles.Columns.Add("Lote")
         For Each row As DataRow In datasourceDetalles.Rows
 

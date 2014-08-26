@@ -72,33 +72,102 @@ Public Class frmMediaProduccion
         Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
 
         If Me.chbArticulo.Checked Then
-            Me.txtMedia.Text = dtb.Consultar("select isnull(avg(datediff(minute, horainicio, horafin)), 1) " & _
+            dtb.PrepararConsulta("select isnull(avg(datediff(minute, horainicio, horafin)), 1) " & _
                                              "from paletsContenidos, paletsproducidos, formatosEnvasados, tiposformatosLineas " & _
                                              "where paletsproducidos.paletproducidoid = paletscontenidos.paletproducidoid " & _
                                              "and formatoid = formatoEnvasadoid " & _
                                              "and formatosEnvasados.tipoformatoLineaid = tiposformatosLineas.tipoformatoLineaid " & _
-                                             "and lineaEnvasadoid = " & Me.linea & " " & _
-                                             "and formatoEnvasadoid=" & Me.articulo & " " & _
-                                             "and envasadoid = " & Me.envasado, False).Rows(0).Item(0)
+                                             "and lineaEnvasadoid = @linea " & _
+                                             "and formatoEnvasadoid= @articulo " & _
+                                             "and envasadoid = @envasado ")
+            dtb.AñadirParametroConsulta("@linea", Me.linea)
+            dtb.AñadirParametroConsulta("@articulo", Me.articulo)
+            dtb.AñadirParametroConsulta("@envasado", Me.envasado)
 
-            Me.txtSuperior.Text = dtb.Consultar("select isnull(avg(datediff(minute, horainicio, horafin)), 1) " & _
+            Me.txtMedia.Text = dtb.Consultar().Rows(0).Item(0)
+            'Me.txtMedia.Text = dtb.Consultar("select isnull(avg(datediff(minute, horainicio, horafin)), 1) " & _
+            '                                 "from paletsContenidos, paletsproducidos, formatosEnvasados, tiposformatosLineas " & _
+            '                                 "where paletsproducidos.paletproducidoid = paletscontenidos.paletproducidoid " & _
+            '                                 "and formatoid = formatoEnvasadoid " & _
+            '                                 "and formatosEnvasados.tipoformatoLineaid = tiposformatosLineas.tipoformatoLineaid " & _
+            '                                 "and lineaEnvasadoid = " & Me.linea & " " & _
+            '                                 "and formatoEnvasadoid=" & Me.articulo & " " & _
+            '                                 "and envasadoid = " & Me.envasado, False).Rows(0).Item(0)
+
+            dtb.PrepararConsulta("select isnull(avg(datediff(minute, horainicio, horafin)), 1) " & _
                                                 "from paletsContenidos, paletsproducidos, formatosEnvasados, tiposformatosLineas " & _
                                                 "where paletsproducidos.paletproducidoid = paletscontenidos.paletproducidoid " & _
                                                 "and formatoid = formatoEnvasadoid " & _
                                                 "and formatosEnvasados.tipoformatoLineaid = tiposformatosLineas.tipoformatoLineaid " & _
-                                                "and lineaEnvasadoid = " & Me.linea & " " & _
-                                                "and formatoEnvasadoid=" & Me.articulo & " " & _
-                                                "and envasadoid = " & Me.envasado & " " & _
-                                                "and datediff(minute, horainicio, horafin) > " & Me.filtro, False).Rows(0).Item(0)
+                                                "and lineaEnvasadoid = @linea " & _
+                                                "and formatoEnvasadoid= @articulo " & _
+                                                "and envasadoid = @envasado " & _
+                                                "and datediff(minute, horainicio, horafin) > @filtro ")
 
-            Me.dgvProduccion.DataSource = dtb.Consultar("select SCC, datediff(minute, horainicio, horafin) Minutos from paletsContenidos, paletsproducidos, formatosEnvasados, tiposformatosLineas where paletsproducidos.paletproducidoid = paletscontenidos.paletproducidoid and formatoid = formatoEnvasadoid and formatosEnvasados.tipoformatoLineaid = tiposformatosLineas.tipoformatoLineaid  and lineaEnvasadoid = " & Me.linea & " and formatoEnvasadoid=" & Me.articulo & " and envasadoid = " & Me.envasado, False)
-            Me.dgvSuperior.DataSource = dtb.Consultar("select SCC, datediff(minute, horainicio, horafin) Minutos from paletsContenidos, paletsproducidos, formatosEnvasados, tiposformatosLineas where paletsproducidos.paletproducidoid = paletscontenidos.paletproducidoid and formatoid = formatoEnvasadoid and formatosEnvasados.tipoformatoLineaid = tiposformatosLineas.tipoformatoLineaid  and lineaEnvasadoid = " & Me.linea & " and formatoEnvasadoid=" & Me.articulo & " and envasadoid = " & Me.envasado & " and datediff(minute, horainicio, horafin) > " & Me.filtro, False)
+            dtb.AñadirParametroConsulta("@linea", Me.linea)
+            dtb.AñadirParametroConsulta("@articulo", Me.articulo)
+            dtb.AñadirParametroConsulta("@envasado", Me.envasado)
+            dtb.AñadirParametroConsulta("@filtro", Me.filtro)
+
+            Me.txtSuperior.Text = dtb.Consultar().Rows(0).Item(0)
+
+            'Me.txtSuperior.Text = dtb.Consultar("select isnull(avg(datediff(minute, horainicio, horafin)), 1) " & _
+            '                                    "from paletsContenidos, paletsproducidos, formatosEnvasados, tiposformatosLineas " & _
+            '                                    "where paletsproducidos.paletproducidoid = paletscontenidos.paletproducidoid " & _
+            '                                    "and formatoid = formatoEnvasadoid " & _
+            '                                    "and formatosEnvasados.tipoformatoLineaid = tiposformatosLineas.tipoformatoLineaid " & _
+            '                                    "and lineaEnvasadoid = " & Me.linea & " " & _
+            '                                    "and formatoEnvasadoid=" & Me.articulo & " " & _
+            '                                    "and envasadoid = " & Me.envasado & " " & _
+            '                                    "and datediff(minute, horainicio, horafin) > " & Me.filtro, False).Rows(0).Item(0)
+
+            dtb.PrepararConsulta("select SCC, datediff(minute, horainicio, horafin) Minutos from paletsContenidos, paletsproducidos, formatosEnvasados, tiposformatosLineas where paletsproducidos.paletproducidoid = paletscontenidos.paletproducidoid and formatoid = formatoEnvasadoid and formatosEnvasados.tipoformatoLineaid = tiposformatosLineas.tipoformatoLineaid  and lineaEnvasadoid = @linea and formatoEnvasadoid= @articulo and envasadoid = @envasado ")
+            dtb.AñadirParametroConsulta("@linea", Me.linea)
+            dtb.AñadirParametroConsulta("@articulo", Me.articulo)
+            dtb.AñadirParametroConsulta("@envasado", Me.envasado)
+            Me.dgvProduccion.DataSource = dtb.Consultar()
+
+            'Me.dgvProduccion.DataSource = dtb.Consultar("select SCC, datediff(minute, horainicio, horafin) Minutos from paletsContenidos, paletsproducidos, formatosEnvasados, tiposformatosLineas where paletsproducidos.paletproducidoid = paletscontenidos.paletproducidoid and formatoid = formatoEnvasadoid and formatosEnvasados.tipoformatoLineaid = tiposformatosLineas.tipoformatoLineaid  and lineaEnvasadoid = " & Me.linea & " and formatoEnvasadoid=" & Me.articulo & " and envasadoid = " & Me.envasado, False)
+
+            dtb.PrepararConsulta("select SCC, datediff(minute, horainicio, horafin) Minutos from paletsContenidos, paletsproducidos, formatosEnvasados, tiposformatosLineas where paletsproducidos.paletproducidoid = paletscontenidos.paletproducidoid and formatoid = formatoEnvasadoid and formatosEnvasados.tipoformatoLineaid = tiposformatosLineas.tipoformatoLineaid  and lineaEnvasadoid = @linea and formatoEnvasadoid= @articulo and envasadoid = @envasado and datediff(minute, horainicio, horafin) > @filtro")
+            dtb.AñadirParametroConsulta("@linea", Me.linea)
+            dtb.AñadirParametroConsulta("@articulo", Me.articulo)
+            dtb.AñadirParametroConsulta("@envasado", Me.envasado)
+            dtb.AñadirParametroConsulta("@filtro", Me.filtro)
+
+            Me.dgvSuperior.DataSource = dtb.Consultar()
+
+            'Me.dgvSuperior.DataSource = dtb.Consultar("select SCC, datediff(minute, horainicio, horafin) Minutos from paletsContenidos, paletsproducidos, formatosEnvasados, tiposformatosLineas where paletsproducidos.paletproducidoid = paletscontenidos.paletproducidoid and formatoid = formatoEnvasadoid and formatosEnvasados.tipoformatoLineaid = tiposformatosLineas.tipoformatoLineaid  and lineaEnvasadoid = " & Me.linea & " and formatoEnvasadoid=" & Me.articulo & " and envasadoid = " & Me.envasado & " and datediff(minute, horainicio, horafin) > " & Me.filtro, False)
         Else
-            Me.txtMedia.Text = dtb.Consultar("select isnull(avg(datediff(minute, horainicio, horafin)), 1) from paletsContenidos, paletsproducidos, formatosEnvasados, tiposformatosLineas where paletsproducidos.paletproducidoid = paletscontenidos.paletproducidoid and formatoid = formatoEnvasadoid and formatosEnvasados.tipoformatoLineaid = tiposformatosLineas.tipoformatoLineaid and lineaEnvasadoid = " & Me.linea & " and envasadoid = " & Me.envasado, False).Rows(0).Item(0)
-            Me.txtSuperior.Text = dtb.Consultar("select isnull(avg(datediff(minute, horainicio, horafin)), 1) from paletsContenidos, paletsproducidos, formatosEnvasados, tiposformatosLineas where paletsproducidos.paletproducidoid = paletscontenidos.paletproducidoid and formatoid = formatoEnvasadoid and formatosEnvasados.tipoformatoLineaid = tiposformatosLineas.tipoformatoLineaid and lineaEnvasadoid = " & Me.linea & " and envasadoid = " & Me.envasado & " and datediff(minute, horainicio, horafin) > " & Me.filtro, False).Rows(0).Item(0)
+            dtb.PrepararConsulta("select isnull(avg(datediff(minute, horainicio, horafin)), 1) from paletsContenidos, paletsproducidos, formatosEnvasados, tiposformatosLineas where paletsproducidos.paletproducidoid = paletscontenidos.paletproducidoid and formatoid = formatoEnvasadoid and formatosEnvasados.tipoformatoLineaid = tiposformatosLineas.tipoformatoLineaid and lineaEnvasadoid = @linea and envasadoid = @envasado")
+            dtb.AñadirParametroConsulta("@linea", Me.linea)
+            dtb.AñadirParametroConsulta("@envasado", Me.envasado)
 
-            Me.dgvProduccion.DataSource = dtb.Consultar("select SCC, datediff(minute, horainicio, horafin) Minutos from paletsContenidos, paletsproducidos, formatosEnvasados, tiposformatosLineas where paletsproducidos.paletproducidoid = paletscontenidos.paletproducidoid and formatoid = formatoEnvasadoid and formatosEnvasados.tipoformatoLineaid = tiposformatosLineas.tipoformatoLineaid  and lineaEnvasadoid = " & Me.linea & " and envasadoid = " & Me.envasado, False)
-            Me.dgvSuperior.DataSource = dtb.Consultar("select SCC, datediff(minute, horainicio, horafin) Minutos from paletsContenidos, paletsproducidos, formatosEnvasados, tiposformatosLineas where paletsproducidos.paletproducidoid = paletscontenidos.paletproducidoid and formatoid = formatoEnvasadoid and formatosEnvasados.tipoformatoLineaid = tiposformatosLineas.tipoformatoLineaid  and lineaEnvasadoid = " & Me.linea & " and envasadoid = " & Me.envasado & " and datediff(minute, horainicio, horafin) > " & Me.filtro, False)
+            Me.txtMedia.Text = dtb.Consultar().Rows(0).Item(0)
+
+            'Me.txtMedia.Text = dtb.Consultar("select isnull(avg(datediff(minute, horainicio, horafin)), 1) from paletsContenidos, paletsproducidos, formatosEnvasados, tiposformatosLineas where paletsproducidos.paletproducidoid = paletscontenidos.paletproducidoid and formatoid = formatoEnvasadoid and formatosEnvasados.tipoformatoLineaid = tiposformatosLineas.tipoformatoLineaid and lineaEnvasadoid = " & Me.linea & " and envasadoid = " & Me.envasado, False).Rows(0).Item(0)
+            dtb.PrepararConsulta("select isnull(avg(datediff(minute, horainicio, horafin)), 1) from paletsContenidos, paletsproducidos, formatosEnvasados, tiposformatosLineas where paletsproducidos.paletproducidoid = paletscontenidos.paletproducidoid and formatoid = formatoEnvasadoid and formatosEnvasados.tipoformatoLineaid = tiposformatosLineas.tipoformatoLineaid and lineaEnvasadoid = @linea and envasadoid = @envasado and datediff(minute, horainicio, horafin) > @filtro ")
+            dtb.AñadirParametroConsulta("@linea", Me.linea)
+            dtb.AñadirParametroConsulta("@envasado", Me.envasado)
+            dtb.AñadirParametroConsulta("@filtro", Me.filtro)
+            Me.txtSuperior.Text = dtb.Consultar().Rows(0).Item(0)
+
+            'Me.txtSuperior.Text = dtb.Consultar("select isnull(avg(datediff(minute, horainicio, horafin)), 1) from paletsContenidos, paletsproducidos, formatosEnvasados, tiposformatosLineas where paletsproducidos.paletproducidoid = paletscontenidos.paletproducidoid and formatoid = formatoEnvasadoid and formatosEnvasados.tipoformatoLineaid = tiposformatosLineas.tipoformatoLineaid and lineaEnvasadoid = " & Me.linea & " and envasadoid = " & Me.envasado & " and datediff(minute, horainicio, horafin) > " & Me.filtro, False).Rows(0).Item(0)
+
+            dtb.PrepararConsulta("select SCC, datediff(minute, horainicio, horafin) Minutos from paletsContenidos, paletsproducidos, formatosEnvasados, tiposformatosLineas where paletsproducidos.paletproducidoid = paletscontenidos.paletproducidoid and formatoid = formatoEnvasadoid and formatosEnvasados.tipoformatoLineaid = tiposformatosLineas.tipoformatoLineaid  and lineaEnvasadoid = @linea and envasadoid = @envasado")
+            dtb.AñadirParametroConsulta("@linea", Me.linea)
+            dtb.AñadirParametroConsulta("@envasado", Me.envasado)
+            Me.dgvProduccion.DataSource = dtb.Consultar()
+
+            'Me.dgvProduccion.DataSource = dtb.Consultar("select SCC, datediff(minute, horainicio, horafin) Minutos from paletsContenidos, paletsproducidos, formatosEnvasados, tiposformatosLineas where paletsproducidos.paletproducidoid = paletscontenidos.paletproducidoid and formatoid = formatoEnvasadoid and formatosEnvasados.tipoformatoLineaid = tiposformatosLineas.tipoformatoLineaid  and lineaEnvasadoid = " & Me.linea & " and envasadoid = " & Me.envasado, False)
+
+            dtb.PrepararConsulta("select SCC, datediff(minute, horainicio, horafin) Minutos from paletsContenidos, paletsproducidos, formatosEnvasados, tiposformatosLineas where paletsproducidos.paletproducidoid = paletscontenidos.paletproducidoid and formatoid = formatoEnvasadoid and formatosEnvasados.tipoformatoLineaid = tiposformatosLineas.tipoformatoLineaid  and lineaEnvasadoid = @linea and envasadoid = @envasado and datediff(minute, horainicio, horafin) > @filtro ")
+            dtb.AñadirParametroConsulta("@linea", Me.linea)
+            dtb.AñadirParametroConsulta("@envasado", Me.envasado)
+            dtb.AñadirParametroConsulta("@filtro", Me.filtro)
+            Me.dgvSuperior.DataSource = dtb.Consultar()
+
+            'Me.dgvSuperior.DataSource = dtb.Consultar("select SCC, datediff(minute, horainicio, horafin) Minutos from paletsContenidos, paletsproducidos, formatosEnvasados, tiposformatosLineas where paletsproducidos.paletproducidoid = paletscontenidos.paletproducidoid and formatoid = formatoEnvasadoid and formatosEnvasados.tipoformatoLineaid = tiposformatosLineas.tipoformatoLineaid  and lineaEnvasadoid = " & Me.linea & " and envasadoid = " & Me.envasado & " and datediff(minute, horainicio, horafin) > " & Me.filtro, False)
         End If
 
         With Me.dgvSuperior

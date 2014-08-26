@@ -686,7 +686,10 @@ Public Class frmEntplantillasBoletines
         Dim pie, comentarios, Ruta As String
         Dim bmp As Bitmap = Nothing
 
-        tab = dtb.consultar("LotesAnalizadosSelectDetallesByCodigoLote '" & m_CodigoLote & "'")
+        dtb.PrepararConsulta("LotesAnalizadosSelectDetallesByCodigoLote @cod")
+        dtb.AñadirParametroConsulta("@cod", m_CodigoLote)
+        tab = dtb.Consultar
+        'tab = dtb.consultar("LotesAnalizadosSelectDetallesByCodigoLote '" & m_CodigoLote & "'")
 
         If tab.Rows.Count > 0 Then
             pie = ""
@@ -811,10 +814,17 @@ Public Class frmEntplantillasBoletines
 
             'generacion del cuerpo
             contCategorias = 0
-            tablaCategorias = dtb.consultar("LotesSelectCategoriasParametrosByCodigoLote '" & m_CodigoLote & "'")
+            dtb.PrepararConsulta("LotesSelectCategoriasParametrosByCodigoLote @cod")
+            dtb.AñadirParametroConsulta("@cod", m_CodigoLote)
+            tablaCategorias = dtb.Consultar()
+            'tablaCategorias = dtb.consultar("LotesSelectCategoriasParametrosByCodigoLote '" & m_CodigoLote & "'")
 
             While contCategorias < tablaCategorias.Rows.Count
-                tabAnaliticas = dtb.consultar("LotesSelectByCodigoLoteYCatagoriaParametro '" & m_CodigoLote & "', " & tablaCategorias.Rows(contCategorias).Item("ID"))
+                dtb.PrepararConsulta("LotesSelectByCodigoLoteYCatagoriaParametro @cod, @cat")
+                dtb.AñadirParametroConsulta("@cod", m_CodigoLote)
+                dtb.AñadirParametroConsulta("@cat", tablaCategorias.Rows(contCategorias).Item("ID"))
+                tabAnaliticas = dtb.Consultar()
+                ' tabAnaliticas = dtb.Consultar("LotesSelectByCodigoLoteYCatagoriaParametro '" & m_CodigoLote & "', " & tablaCategorias.Rows(contCategorias).Item("ID"))
 
                 If esCategoriaImprimible(tabAnaliticas) Then
                     TituloColumna(oDoc, tablaCategorias.Rows(contCategorias).Item("Nombre"))
