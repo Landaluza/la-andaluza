@@ -270,8 +270,10 @@ Public Class frmEntAlbaranesCargaMaestro
         'txtMaestroID.Visible = False
         'Guardo el numero del albaran provisional
         'Me.txtMaestroID.Text = cadena
-
-        Dim dtPalets As System.Data.DataTable = dtb.consultar("SelectPaletsByAlbaranPro4 " & m_MaestroProID)
+        dtb.PrepararConsulta("SelectPaletsByAlbaranPro4 @id")
+        dtb.AñadirParametroConsulta("@id", m_MaestroProID)
+        Dim dtPalets As System.Data.DataTable = dtb.Consultar()
+        'Dim dtPalets As System.Data.DataTable = dtb.consultar("SelectPaletsByAlbaranPro4 " & m_MaestroProID)
 
         For Each row As DataRow In dtPalets.Rows
             'row.Item("Lote") = DevuelveFechaJuliana(Convert.ToDateTime(row.Item("lote"))).ToString
@@ -306,7 +308,10 @@ Public Class frmEntAlbaranesCargaMaestro
             .FormatoGeneral()
         End With
 
-        Dim dtAcu As System.Data.DataTable = dtb.Consultar("sumCajasByCodigoLote4 " & m_MaestroProID)
+        dtb.PrepararConsulta("sumCajasByCodigoLote4 @id")
+        dtb.AñadirParametroConsulta("@id", m_MaestroProID)
+        Dim dtAcu As System.Data.DataTable = dtb.Consultar()
+        'Dim dtAcu As System.Data.DataTable = dtb.Consultar("sumCajasByCodigoLote4 " & m_MaestroProID)
 
         dtAcu.Columns.Add("Lote")
         For Each row As DataRow In dtAcu.Rows
@@ -346,7 +351,10 @@ Public Class frmEntAlbaranesCargaMaestro
 
         With dgvTotalPalets
             .Width = 300
-            .dataSource = dtb.Consultar("sumPaletsByTipo " & m_MaestroProID)
+            dtb.PrepararConsulta("sumPaletsByTipo @id")
+            dtb.AñadirParametroConsulta("@id", m_MaestroProID)
+            .DataSource = dtb.Consultar()
+            '.dataSource = dtb.Consultar("sumPaletsByTipo " & m_MaestroProID)
             .FormatoColumna("TipoPaletID", "Tipo", BasesParaCompatibilidad.TiposColumna.Miles, 40, 0)
             .FormatoColumna("descripcion", "Descripcion", BasesParaCompatibilidad.TiposColumna.Descripcion, 180, 1)
             .FormatoColumna("Cantidad", "Cantidad", BasesParaCompatibilidad.TiposColumna.Miles, , 2)
@@ -360,14 +368,20 @@ Public Class frmEntAlbaranesCargaMaestro
         'End If
 
         With dgvTotales
-            .dataSource = dtb.Consultar("AlbaranesCargaProviDetallesSumCajas " & m_MaestroProID)
+            dtb.PrepararConsulta("AlbaranesCargaProviDetallesSumCajas @id")
+            dtb.AñadirParametroConsulta("@id", m_MaestroProID)
+            .DataSource = dtb.Consultar()
+            '.DataSource = dtb.Consultar("AlbaranesCargaProviDetallesSumCajas " & m_MaestroProID)
             .FormatoColumna("CodigoQS", "CodigoQS", BasesParaCompatibilidad.TiposColumna.QS, 120, 0)
             .FormatoColumna("Cajas", "Cajas", BasesParaCompatibilidad.TiposColumna.Miles, , 1)
             .FormatoColumna("AticuloDescripcion", "Articulo", BasesParaCompatibilidad.TiposColumna.Izquierda, 480, 2)
             .FormatoGeneral()
         End With
 
-        Dim dtTotalPalets As System.Data.DataTable = dtb.consultar("AlbaranesCargaProviDetallesTotalesPorTipoPalet " & m_MaestroProID)
+        dtb.PrepararConsulta("AlbaranesCargaProviDetallesTotalesPorTipoPalet @id")
+        dtb.AñadirParametroConsulta("@id", m_MaestroProID)
+        Dim dtTotalPalets As System.Data.DataTable = dtb.Consultar()
+        'Dim dtTotalPalets As System.Data.DataTable = dtb.consultar("AlbaranesCargaProviDetallesTotalesPorTipoPalet " & m_MaestroProID)
 
         If Not dtTotalPalets Is Nothing Then
             With dgvTotalesPorPalet
@@ -414,7 +428,10 @@ Public Class frmEntAlbaranesCargaMaestro
 
     Private Sub btnToExcel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnToExcel.Click
         Dim dgv As New DataGridView
-        dgv.dataSource = dtb.Consultar("SelectPaletsByAlbaranPro", m_MaestroProID)
+        dtb.PrepararConsulta("SelectPaletsByAlbaranPro @id")
+        dtb.AñadirParametroConsulta("@id", m_MaestroProID)
+        dgv.DataSource = dtb.Consultar()
+        'dgv.dataSource = dtb.Consultar("SelectPaletsByAlbaranPro", m_MaestroProID)
         Dim mse As New BasesParaCompatibilidad.MicrosoftOfficeExporter
         mse.ExportToExcel("Many", Me.Text, dgv)
         dgv.Dispose()
@@ -1251,7 +1268,10 @@ Public Class frmEntAlbaranesCargaMaestro
         pie = txtConductor.Text
 
         Try
-            tlf = dtb.Consultar("select movil from conductores where dni='" & pie2 & "'", False).Rows(0).Item(0).ToString
+            dtb.PrepararConsulta("select movil from conductores where dni= @dni")
+            dtb.AñadirParametroConsulta("@dni", pie2)
+            tlf = dtb.Consultar().Rows(0).Item(0).ToString
+            'tlf = dtb.Consultar("select movil from conductores where dni='" & pie2 & "'", False).Rows(0).Item(0).ToString
         Catch ex As Exception
             tlf = InputBox("No se pudo recuperar el telefono de contacto del conductor. Introduzcalo manualmente")
         End Try
