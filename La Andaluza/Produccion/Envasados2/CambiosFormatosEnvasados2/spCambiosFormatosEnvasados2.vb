@@ -143,18 +143,29 @@ Class spCambiosFormatosEnvasados2
     End Function
 
     Public Function selectUltimaHoraPorLineaYformato(linea As Integer, formato As Object) As DateTime
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Return dtb.Consultar("exec CambiosFormatosSelectUltimaHora " & linea & "," & formato, False).Rows(0).Item(0)
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.PrepararConsulta("CambiosFormatosSelectUltimaHora @linea, @formato")
+        dtb.AñadirParametroConsulta("@linea", linea)
+        dtb.AñadirParametroConsulta("@formato", formato)
+        Return dtb.Consultar().Rows(0).Item(0)
+        'Return dtb.Consultar("exec CambiosFormatosSelectUltimaHora " & linea & "," & formato, False).Rows(0).Item(0)
     End Function
 
     Function recuperar_ultimo_formato_por_linea_de_formatoEnvasado(ByVal linea As Integer, ByVal formato As Integer) As Integer
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Return dtb.Consultar("exec CambiosFormatosSelectUltimoFormato " & linea & "," & formato, False).Rows(0).Item(0)
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.PrepararConsulta("CambiosFormatosSelectUltimoFormato @linea, @formato")
+        dtb.AñadirParametroConsulta("@linea", linea)
+        dtb.AñadirParametroConsulta("@formato", formato)
+        Return dtb.Consultar().Rows(0).Item(0)
+        '        Return dtb.Consultar("exec CambiosFormatosSelectUltimoFormato " & linea & "," & formato, False).Rows(0).Item(0)
     End Function
 
     Function recuperar_personal_habitual_por_linea(ByVal linea As Integer) As Integer
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Return dtb.Consultar("exec CambiosFormatosSelecPersonalHabitual " & linea, False).Rows(0).Item(0)
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.PrepararConsulta("CambiosFormatosSelecPersonalHabitual @linea")
+        dtb.AñadirParametroConsulta("@linea", linea)
+        Return dtb.Consultar().Rows(0).Item(0)
+        '        Return dtb.Consultar("exec CambiosFormatosSelecPersonalHabitual " & linea, False).Rows(0).Item(0)
     End Function
 
 

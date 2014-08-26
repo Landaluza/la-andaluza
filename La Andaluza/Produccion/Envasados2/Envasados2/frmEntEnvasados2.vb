@@ -212,10 +212,18 @@ Public Class frmEntEnvasados2
     Private Sub rellenarSeguimiento()
         Dim dtSeg As DataTable
         If cboLineas.SelectedIndex = 0 Then
-            dtSeg = dtb.Consultar("EnvasadosSeguimientoTodos " & Convert.ToString(m_DBO_Envasado.EnvasadoID))
+            dtb.PrepararConsulta("EnvasadosSeguimientoTodos @id")
+            dtb.AñadirParametroConsulta("@id", m_DBO_Envasado.EnvasadoID)
+            'dtSeg = dtb.Consultar("EnvasadosSeguimientoTodos " & Convert.ToString(m_DBO_Envasado.EnvasadoID))
         Else
-            dtSeg = dtb.Consultar("EnvasadosSeguimientoPorLineaID " & Convert.ToString(m_DBO_Envasado.EnvasadoID) & ", " & Convert.ToString(m_DBO_Envasado.LineaID))
+            dtb.PrepararConsulta("EnvasadosSeguimientoPorLineaID @id, @linea")
+            dtb.AñadirParametroConsulta("@id", m_DBO_Envasado.EnvasadoID)
+            dtb.AñadirParametroConsulta("@linea", m_DBO_Envasado.LineaID)
+            ' dtSeg = dtb.Consultar("EnvasadosSeguimientoPorLineaID " & Convert.ToString(m_DBO_Envasado.EnvasadoID) & ", " & Convert.ToString(m_DBO_Envasado.LineaID))
         End If
+
+        dtSeg = dtb.Consultar
+
         If Not dtSeg Is Nothing Then
             If dtSeg.Rows.Count Then
                 dgvSeguimientoProduccion.DataSource = dtSeg
