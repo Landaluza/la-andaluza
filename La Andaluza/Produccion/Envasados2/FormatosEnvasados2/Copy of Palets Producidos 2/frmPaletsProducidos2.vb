@@ -126,12 +126,20 @@ Public Class frmPaletsProducidos2
             If response = DialogResult.Yes Then
                 System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
                 CType(sp, spPaletsProducidos2).DeletePaletsProducidos2(dgvGeneral.CurrentRow.Cells("PaletProducidoID").Value, If(multiopcion = True, True, False))
-                GeneralBindingSource.DataSource = dtb.Consultar("PaletsProducidos3SelectByFormatoEnvasadoID " & Me.formatoId)
+
+                dtb.PrepararConsulta("PaletsProducidos3SelectByFormatoEnvasadoID @for")
+                dtb.AñadirParametroConsulta("@for", Me.formatoId)
+                GeneralBindingSource.DataSource = dtb.Consultar()
+                '                GeneralBindingSource.DataSource = dtb.Consultar("PaletsProducidos3SelectByFormatoEnvasadoID " & Me.formatoId)
                 System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.Default
             ElseIf response = DialogResult.No And multiopcion Then
                 System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
                 CType(sp, spPaletsProducidos2).DeletePaletsProducidos2(dgvGeneral.CurrentRow.Cells("PaletProducidoID").Value, False)
-                GeneralBindingSource.DataSource = dtb.Consultar("PaletsProducidos3SelectByFormatoEnvasadoID " & Me.formatoId)
+
+                dtb.PrepararConsulta("PaletsProducidos3SelectByFormatoEnvasadoID @for")
+                dtb.AñadirParametroConsulta("@for", Me.formatoId)
+                GeneralBindingSource.DataSource = dtb.Consultar()
+                'GeneralBindingSource.DataSource = dtb.Consultar("PaletsProducidos3SelectByFormatoEnvasadoID " & Me.formatoId)
                 System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.Default
             End If
         Catch ex As Exception

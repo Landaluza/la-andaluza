@@ -180,7 +180,11 @@ Public Class frmEntPaletsProducidos2
             Dim sp As New spFormatosEnvasados
             Dim dbo As DBO_FormatosEnvasados = sp.Select_Record(If(Me.formatoId = Nothing, Me.m_DBO_PaletProducido.FormatoID, Me.formatoId), BasesParaCompatibilidad.BD.transaction)
             If dbo Is Nothing Then Return
-            m_Tabla = dtb.Consultar("exec PaletsProducidos3SelectPaletsIncompletos " & dbo.TipoFormatoEnvasadoID)
+
+            dtb.PrepararConsulta("PaletsProducidos3SelectPaletsIncompletos @id")
+            dtb.AñadirParametroConsulta("@id", dbo.TipoFormatoEnvasadoID)
+            m_Tabla = dtb.Consultar()
+            'm_Tabla = dtb.Consultar("exec PaletsProducidos3SelectPaletsIncompletos " & dbo.TipoFormatoEnvasadoID)
 
             If m_Tabla.Rows.Count > 0 Then
                 grbIncompletos.Visible = True
@@ -228,7 +232,10 @@ Public Class frmEntPaletsProducidos2
     Private Sub ActualizarMovimientos(ByVal SSCC As String)
         Dim dtr As DataTable
         Try
-            dtr = dtb.consultar("exec PaletsProducidos2SelectPaletsIncompletosMAM " & SSCC)
+            dtb.PrepararConsulta("PaletsProducidos2SelectPaletsIncompletosMAM @scc")
+            dtb.AñadirParametroConsulta("@scc", SSCC)
+            dtr = dtb.Consultar()
+            'dtr = dtb.Consultar("exec PaletsProducidos2SelectPaletsIncompletosMAM " & SSCC)
             If Not dtr Is Nothing Then
                 With dgvMovimientos
                     SuspendLayout()
