@@ -1958,3 +1958,10 @@ C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andalu
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza.application
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza.exe
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza.pdb
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEnlaces.resources
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Interop.MSTSCLib.dll
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\AxInterop.MSTSCLib.dll
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\Interop.MSTSCLib.dll
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\AxInterop.MSTSCLib.dll
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza Produccion.vbproj.ResolveComReference.cache
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmAccesoRemoto.resources

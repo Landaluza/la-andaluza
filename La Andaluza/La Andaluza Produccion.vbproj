@@ -49,7 +49,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>328</ApplicationRevision>
+    <ApplicationRevision>331</ApplicationRevision>
     <ApplicationVersion>2014.7.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -1866,6 +1866,18 @@
       <DependentUpon>frmNoticias2.vb</DependentUpon>
     </Compile>
     <Compile Include="Noticias\Visor\frmNoticias2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Otros\frmAccesoRemoto.Designer.vb">
+      <DependentUpon>frmAccesoRemoto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Otros\frmAccesoRemoto.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Otros\frmEnlaces.Designer.vb">
+      <DependentUpon>frmEnlaces.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Otros\frmEnlaces.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Otros\Idiomas\DBO_Idiomas.vb" />
@@ -5287,6 +5299,12 @@
     <EmbeddedResource Include="Noticias\Visor\frmNoticias2.resx">
       <DependentUpon>frmNoticias2.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Otros\frmAccesoRemoto.resx">
+      <DependentUpon>frmAccesoRemoto.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Otros\frmEnlaces.resx">
+      <DependentUpon>frmEnlaces.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Otros\Idiomas\frmEntIdiomas.resx">
       <DependentUpon>frmEntIdiomas.vb</DependentUpon>
     </EmbeddedResource>
@@ -6894,6 +6912,25 @@
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxMSTSCLib">
+      <Guid>{8C11EFA1-92C3-11D1-BC1E-00C04FA31489}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="MSTSCLib">
+      <Guid>{8C11EFA1-92C3-11D1-BC1E-00C04FA31489}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

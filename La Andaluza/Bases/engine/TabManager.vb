@@ -41,7 +41,15 @@
         myTabPage.Tag = MULTIPESTAÑA
         tabControl.SelectedTab = myTabPage
 
+        AddHandler f.TextChanged, AddressOf actualizarTitulo
         AddHandler f.FormClosed, AddressOf frmGui.CerrarPestaña
+    End Sub
+
+    Private Sub actualizarTitulo(sender As Object, e As EventArgs)
+        Dim frm As Form = sender
+        Dim control As Control = sender
+        Dim page As TabPage = control.Parent
+        page.Text = frm.Text & (CIERRE_PESTAÑA)
     End Sub
 
     Public Sub añadirPestañaSinCierre(ByRef f As Form)

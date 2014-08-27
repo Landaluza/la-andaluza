@@ -715,4 +715,17 @@ Public Class MenuDispatcher
             frmEspera.Close()
         End Try
     End Sub
+
+    Private Sub JRToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles JRToolStripMenuItem1.Click
+        Dim enlace As String = "http://192.60.52.103/sabater/"
+        Dim frm As New frmEnlaces(enlace)
+        GUImain.añadirPestaña(frm)
+    End Sub
+
+    Private Sub ConsejoReguladorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConsejoReguladorToolStripMenuItem.Click
+        'Dim fil As New BasesParaCompatibilidad.File
+        'fil.open("Z:\Administracion\Documentacion\Consejo Regulador Jerez\CONSEJO VINO.RDP")
+        Dim frm As New frmAccesoRemoto
+        GUImain.añadirPestaña(frm)
+    End Sub
 End Class
