@@ -464,6 +464,8 @@ Partial Class MenuDispatcher
         Me.JRToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.JRToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ConsejoReguladorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EnlacesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ConsejoReguladorToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MSAdministrador.SuspendLayout()
         Me.MSEnvasado.SuspendLayout()
         Me.MSElaboracion.SuspendLayout()
@@ -2005,7 +2007,7 @@ Partial Class MenuDispatcher
         Me.MSCalidad.BackColor = System.Drawing.SystemColors.Control
         Me.MSCalidad.GripMargin = New System.Windows.Forms.Padding(2)
         Me.MSCalidad.ImageScalingSize = New System.Drawing.Size(22, 22)
-        Me.MSCalidad.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem11, Me.ToolStripMenuItem695, Me.ToolStripMenuItem717, Me.ToolStripMenuItem720, Me.ToolStripMenuItem728, Me.ToolStripMenuItem7, Me.ToolStripMenuItem741, Me.ToolStripMenuItem743, Me.ToolStripMenuItem758, Me.ToolStripMenuItem776, Me.ToolStripMenuItem786, Me.ToolStripMenuItem805, Me.ToolStripMenuItem829, Me.ToolStripMenuItem839})
+        Me.MSCalidad.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem11, Me.ToolStripMenuItem695, Me.ToolStripMenuItem717, Me.ToolStripMenuItem720, Me.ToolStripMenuItem728, Me.ToolStripMenuItem7, Me.ToolStripMenuItem741, Me.ToolStripMenuItem743, Me.ToolStripMenuItem758, Me.ToolStripMenuItem776, Me.ToolStripMenuItem786, Me.ToolStripMenuItem805, Me.ToolStripMenuItem829, Me.ToolStripMenuItem839, Me.EnlacesToolStripMenuItem})
         Me.MSCalidad.Location = New System.Drawing.Point(0, 125)
         Me.MSCalidad.MinimumSize = New System.Drawing.Size(1092, 25)
         Me.MSCalidad.Name = "MSCalidad"
@@ -4037,6 +4039,19 @@ Partial Class MenuDispatcher
         Me.ConsejoReguladorToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
         Me.ConsejoReguladorToolStripMenuItem.Text = "Consejo regulador"
         '
+        'EnlacesToolStripMenuItem
+        '
+        Me.EnlacesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConsejoReguladorToolStripMenuItem1})
+        Me.EnlacesToolStripMenuItem.Name = "EnlacesToolStripMenuItem"
+        Me.EnlacesToolStripMenuItem.Size = New System.Drawing.Size(58, 21)
+        Me.EnlacesToolStripMenuItem.Text = "Enlaces"
+        '
+        'ConsejoReguladorToolStripMenuItem1
+        '
+        Me.ConsejoReguladorToolStripMenuItem1.Name = "ConsejoReguladorToolStripMenuItem1"
+        Me.ConsejoReguladorToolStripMenuItem1.Size = New System.Drawing.Size(171, 22)
+        Me.ConsejoReguladorToolStripMenuItem1.Text = "Consejo regulador"
+        '
         'MenuDispatcher
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -4515,4 +4530,6 @@ End Sub
     Private WithEvents InformeResumenToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Private WithEvents InformeResumenToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
     Private WithEvents ToolStripMenuItem24 As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents EnlacesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents ConsejoReguladorToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
 End Class
