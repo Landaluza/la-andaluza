@@ -49,7 +49,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>332</ApplicationRevision>
+    <ApplicationRevision>336</ApplicationRevision>
     <ApplicationVersion>2014.7.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -1868,12 +1868,15 @@
     <Compile Include="Noticias\Visor\frmNoticias2.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Otros\frmAccesoRemoto.Designer.vb">
+    <Compile Include="Otros\Acceso remoto\frmAccesoRemoto.Designer.vb">
       <DependentUpon>frmAccesoRemoto.vb</DependentUpon>
     </Compile>
-    <Compile Include="Otros\frmAccesoRemoto.vb">
+    <Compile Include="Otros\Acceso remoto\frmAccesoRemoto.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Otros\Acceso remoto\RemoteSession.vb" />
+    <Compile Include="Otros\Acceso remoto\SessionConsejoRegulador.vb" />
+    <Compile Include="Otros\Acceso remoto\SessionEtiquetas.vb" />
     <Compile Include="Otros\frmEnlaces.Designer.vb">
       <DependentUpon>frmEnlaces.vb</DependentUpon>
     </Compile>
@@ -5299,7 +5302,7 @@
     <EmbeddedResource Include="Noticias\Visor\frmNoticias2.resx">
       <DependentUpon>frmNoticias2.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Otros\frmAccesoRemoto.resx">
+    <EmbeddedResource Include="Otros\Acceso remoto\frmAccesoRemoto.resx">
       <DependentUpon>frmAccesoRemoto.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Otros\frmEnlaces.resx">
