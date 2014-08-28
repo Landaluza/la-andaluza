@@ -1,22 +1,25 @@
 ﻿Public Class frmEnlaces
-
+    Private titulo As String
     Public Sub New()
-
-        ' Llamada necesaria para el diseñador.
         InitializeComponent()
     End Sub
-    Public Sub New(ByVal link As String, Optional ByVal parametros As String = "")
+    Public Sub New(ByVal titulo As String, ByVal link As String, Optional ByVal parametros As String = "")
         InitializeComponent()
 
-
-        cargar(link, parametros)
+        cargar(titulo, link, parametros)
     End Sub
 
     Private Sub WebBrowser1_DocumentCompleted(sender As Object, e As WebBrowserDocumentCompletedEventArgs) Handles WebBrowser1.DocumentCompleted
-        Me.Text = Me.WebBrowser1.DocumentTitle
+        If Me.WebBrowser1.DocumentTitle = "" Then
+            Me.Text = titulo
+        Else
+            Me.Text = Me.WebBrowser1.DocumentTitle
+        End If
     End Sub
 
-    Public Sub cargar(ByVal link As String, Optional ByVal parametros As String = "")
+    Public Sub cargar(ByVal titulo As String, ByVal link As String, Optional ByVal parametros As String = "")
+        Me.titulo = titulo
+
         If parametros = "" Then
             Me.WebBrowser1.Navigate(link)
         Else

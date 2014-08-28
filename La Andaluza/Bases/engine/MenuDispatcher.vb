@@ -719,7 +719,7 @@ Public Class MenuDispatcher
     Private Sub JRToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles JRToolStripMenuItem1.Click
         Dim enlace As String = "http://192.60.52.103/sabater/login.php"
         Dim postdata As String = "txtLogin=jerez999&txtClave=jerez&Aceptar=Aceptar"
-        Dim frm As New frmEnlaces(enlace, postdata)
+        Dim frm As New frmEnlaces("JR", enlace, postdata)
         GUImain.añadirPestaña(frm)
     End Sub
 
