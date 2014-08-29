@@ -114,13 +114,20 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Function
 
     Public Function empleados_pendientes(ByVal envasadoID As Integer, ByVal LineaID As Integer) As DataTable
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Return dtb.Consultar("empleados_formatosEnvasadosPendientes " & envasadoID & ", " & LineaID, False)
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.PrepararConsulta("empleados_formatosEnvasadosPendientes @env, @linea")
+        dtb.AñadirParametroConsulta("@env", envasadoID)
+        dtb.AñadirParametroConsulta("@linea", LineaID)
+        Return dtb.Consultar()
+        'Return dtb.Consultar("empleados_formatosEnvasadosPendientes " & envasadoID & ", " & LineaID, False)
     End Function
 
     Function recuperar_envasado_empleados_pendientes_dias_anteriores(ByVal LineaID As Integer) As Integer
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Return dtb.Consultar("empleados_formatosEnvasadosEnvasadosPendientesAnteriores " & LineaID, False).Rows(0).Item(0)
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.PrepararConsulta("empleados_formatosEnvasadosEnvasadosPendientesAnteriores @linea")
+        dtb.AñadirParametroConsulta("@linea", LineaID)
+        Return dtb.Consultar().Rows(0).Item(0)
+        '        Return dtb.Consultar("empleados_formatosEnvasadosEnvasadosPendientesAnteriores " & LineaID, False).Rows(0).Item(0)
     End Function
 
 End Class

@@ -1351,6 +1351,7 @@ C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Microsoft
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\office.xml
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Interop.MSTSCLib.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\AxInterop.MSTSCLib.dll
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza Produccion.vbprojResolveAssemblyReference.cache
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\Interop.MSTSCLib.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\AxInterop.MSTSCLib.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza Produccion.vbproj.ResolveComReference.cache
