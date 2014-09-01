@@ -74,7 +74,6 @@ Public Class spUsuarios
             dtb.AñadirParametroConsulta("@login", login)
             dtb.AñadirParametroConsulta("@pass", pass)
             dt = dtb.Consultar
-            'dt = dtb.Consultar("exec [UsuariosValidar] " & login & ", " & pass, False)
 
             If dt.Rows(0).Item(0) > 0 Then
                 dbo = select_record_by_usuario(login)
@@ -86,11 +85,9 @@ Public Class spUsuarios
                 dtb.PrepararConsulta("select id from empleados where id_usuario= @id")
                 dtb.AñadirParametroConsulta("@id", BasesParaCompatibilidad.Config.User)
                 Config.Worker = dtb.Consultar().Rows(0).Item(0)
-                'Config.Worker = dtb.Consultar("select id from empleados where id_usuario=" & BasesParaCompatibilidad.Config.User, False).Rows(0).Item(0)
 
                 Return True
             Else
-                ' messagebox.show("Contraseña incorrecta")
                 Return False
             End If
         Catch ex As Exception

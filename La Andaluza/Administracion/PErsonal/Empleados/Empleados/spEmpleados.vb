@@ -60,7 +60,6 @@ Public Class spEmpleados
         dtb.PrepararConsulta("EmpleadosPorLineaCbo @linea")
         dtb.AñadirParametroConsulta("@linea", linea)
         Return dtb.Consultar()
-        'Return dtb.Consultar("exec EmpleadosPorLineaCbo " & linea, False)
     End Function
 
     Public Function devolver_empleados_por_linea_libres(ByVal linea As Integer) As DataTable
@@ -68,7 +67,6 @@ Public Class spEmpleados
         dtb.PrepararConsulta("EmpleadosPorLineaLibresCbo @linea")
         dtb.AñadirParametroConsulta("@linea", linea)
         Return dtb.Consultar
-        'Return dtb.Consultar("exec EmpleadosPorLineaLibresCbo " & linea, False)
     End Function
 
     Public Function devolver_Empleados_Envasados_ocupados(ByVal envasado As Integer) As DataTable
@@ -76,7 +74,6 @@ Public Class spEmpleados
         dtb.PrepararConsulta("EmpleadosEnvasados_Situacion_Ocupados @envasado")
         dtb.AñadirParametroConsulta("@envasado", envasado)
         Return dtb.Consultar
-        'Return dtb.Consultar("exec EmpleadosEnvasados_Situacion_Ocupados " & envasado, False)
     End Function
 
     Public Function devolver_Empleados_Envasados_ocupados_por_linea(ByVal linea As Integer, ByVal envasado As Integer) As DataTable
@@ -85,7 +82,6 @@ Public Class spEmpleados
         dtb.AñadirParametroConsulta("@linea", linea)
         dtb.AñadirParametroConsulta("@envasado", envasado)
         Return dtb.Consultar
-        'Return dtb.Consultar("exec EmpleadosEnvasados_Situacion_Ocupados_por_linea " & linea & ", " & envasado, False)
     End Function
 
     Public Function devolver_Empleados_Envasados_Situacion_Actual() As DataTable
@@ -94,25 +90,20 @@ Public Class spEmpleados
     End Function
 
     Public Sub cargar_empleados_envasados(ByRef cbo As ComboBox)
-        'Me.cargar_empleados_por_perfil(cbo, 3, 6)
         cbo.mam_DataSource("EmpleadosEnvasados", False)
     End Sub
 
     Function devolver_Empleados_Envasados() As DataTable
         Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        'Return dtb.Consultar("exec EmpleadosPorTipoUsuario2 3, 6", False)
         Return dtb.Consultar("exec EmpleadosEnvasados", False)
     End Function
 
     Function devolver_Empleados_Envasados_libres() As DataTable
         Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        'Return dtb.Consultar("exec EmpleadosPorTipoUsuario2SinOcupacion 3, 6", False)
-        'Return dtb.Consultar("exec EmpleadosPorTipoUsuario2SinOcupacion_variosDep 3, 6, 4, 9", False)
         Return dtb.Consultar("exec EmpleadosEnvasadosSinOcupacion", False)
     End Function
 
     Sub cargar_Empleados_Envasados_libres(ByRef cbo As ComboBox)
-        'cbo.mam_DataSource("EmpleadosPorTipoUsuario2SinOcupacion 3, 6", False)
         cbo.mam_DataSource("exec EmpleadosEnvasadosSinOcupacion", False)
     End Sub
 
@@ -130,7 +121,6 @@ Public Class spEmpleados
             dtb.PrepararConsulta("select id_lineaEnvasado from empleados_lineasEnvasado where Id_empleado = @id")
             dtb.AñadirParametroConsulta("@id", id_empleado)
             Dim linea As Integer = dtb.Consultar().Rows(0).Item(0)
-            'Dim linea As Integer = dtb.Consultar("select id_lineaEnvasado from empleados_lineasEnvasado where Id_empleado = " & id_empleado, False).Rows(0).Item(0)
             Return if(IsDBNull(linea), 1, linea)
         Catch ex As Exception
             Return 1
@@ -147,7 +137,6 @@ Public Class spEmpleados
         dtb.PrepararConsulta("EmpleadosActualesPorFormatoEnvasado @formato")
         dtb.AñadirParametroConsulta("@formato", formatoEnvasadoId)
         Return dtb.Consultar
-        'Return dtb.Consultar("exec EmpleadosActualesPorFormatoEnvasado " & formatoEnvasadoId, False)
     End Function
 
     Function devolver_empleados_con_turnos_sin_fin() As DataTable

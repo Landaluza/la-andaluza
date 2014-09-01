@@ -32,7 +32,6 @@ Public Class spempleados_contratos
         dtb.PrepararConsulta("select max(fecha_final) from empleados_contratos where id_empleado = @id")
         dtb.AñadirParametroConsulta("@id", id_empleado)
         Dim row As Object = dtb.Consultar().Rows(0).Item(0)
-        'Dim row As Object = dtb.Consultar("select max(fecha_final) from empleados_contratos where id_empleado = " & id_empleado, False).Rows(0).Item(0)
         Return if(IsDBNull(row), "-", row)
     End Function
 
