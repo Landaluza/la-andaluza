@@ -34,7 +34,6 @@ Public Class spEspecificacionLegal
         Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
         Dim dts As New dtsEspecificaciones.ValoresEspecificacionesDataTable
 
-        '        dt = dtb.Consultar("LegislacionProductosSelectParametros " & Legislacion)
         dtb.PrepararConsulta("LegislacionProductosSelectParametros @id")
         dtb.AñadirParametroConsulta("@id", Legislacion)
         dt = dtb.Consultar()

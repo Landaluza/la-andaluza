@@ -213,12 +213,10 @@ Public Class frmEntplantillasBoletines
                     dtb.AñadirParametroConsulta("@cod", m_CodigoLote)
                     dtb.AñadirParametroConsulta("@id", tablaCategorias.Rows(contCategorias).Item("ID"))
                     tablaParametros = dtb.Consultar()
-                    'tablaParametros = dtb.Consultar("LotesSelectByCodigoLoteYCatagoriaParametro '" & m_CodigoLote & "', " & tablaCategorias.Rows(contCategorias).Item("ID"))
                 Else
                     dtb.PrepararConsulta("LotesSelectByCatagoriaParametro @id")
                     dtb.AñadirParametroConsulta("@id", tablaCategorias.Rows(contCategorias).Item("ID"))
                     tablaParametros = dtb.Consultar()
-                    'tablaParametros = dtb.Consultar("LotesSelectByCatagoriaParametro " & tablaCategorias.Rows(contCategorias).Item("ID"))
                 End If
             Else
                 If Me.ModoDeApertura = MODIFICACION Then
@@ -226,15 +224,12 @@ Public Class frmEntplantillasBoletines
                     dtb.AñadirParametroConsulta("@bol", m_boletin.id)
                     dtb.AñadirParametroConsulta("@cat", tablaCategorias.Rows(contCategorias).Item("ID"))
                     tablaParametros = dtb.Consultar()
-                    'tablaParametros = dtb.Consultar("PlantillasBoletinesSelectByCatagoriaParametro_Plantilla '" & m_boletin.id & "', " & tablaCategorias.Rows(contCategorias).Item("ID"))
                 Else
-                    'tablaParametros = DataTableFill("LotesSelectByCodigoLote_CatagoriaParametro_Plantilla '" & m_CodigoLote & "', " & tablaCategorias.Rows(contCategorias).Item("ID") & ", " & m_plantilla)
                     dtb.PrepararConsulta("LotesSelectByCodigoLote_CatagoriaParametro_Plantilla @cod, @cat, @bol")
                     dtb.AñadirParametroConsulta("@cod", m_CodigoLote)
                     dtb.AñadirParametroConsulta("@cat", tablaCategorias.Rows(contCategorias).Item("ID"))
                     dtb.AñadirParametroConsulta("@bol", m_boletin.id)
                     tablaParametros = dtb.Consultar()
-                    '                    tablaParametros = dtb.Consultar("LotesSelectByCodigoLote_CatagoriaParametro_Plantilla '" & m_CodigoLote & "', " & tablaCategorias.Rows(contCategorias).Item("ID") & ", " & m_boletin.id)
                 End If
             End If
             grupo = New GroupBox
