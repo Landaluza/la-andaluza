@@ -345,13 +345,16 @@ Public Class frmNoConformes
         'initdgvMain()
         'dt3 = DataTableFill("PaletsProducidosByArticulo3 ")
         'dt3 = DataTableFill("PaletsProducidosByArticulo6 ")
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        dt3 = dtb.Consultar(spArticulo, True)
-        Me.DataBindToDataGrid3()
+
+        'Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+        'dt3 = dtb.Consultar(spArticulo, True)
+        'Me.DataBindToDataGrid3()
+
         'dt2 = DataTableFill("PaletsProducidosByLote ")
         'DataBindToDataGrid2()
         'dt = DataTableFill("PaletsProducidosByEnAlmacen2 ")
         'DataBindToDataGrid()
+        initdgvMain()
         initDgvPalets()
 
         initDgvLotes()

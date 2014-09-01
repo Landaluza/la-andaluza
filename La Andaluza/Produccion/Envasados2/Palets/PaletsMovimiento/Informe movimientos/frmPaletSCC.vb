@@ -120,7 +120,7 @@ Public Class frmPaletSCC
             End If
 
         Catch ex As Exception
-            MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            LblCajasExisten.Text = dt.Rows.Item(dt.Rows.Count - 1).Item("CajasFinal")
         End Try
 
         With dgvMovimientos

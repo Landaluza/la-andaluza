@@ -716,21 +716,21 @@ Public Class MenuDispatcher
         End Try
     End Sub
 
-    Private Sub JRToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles JRToolStripMenuItem1.Click
+    Private Sub JRToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles JRToolStripMenuItem1.Click, JRToolStripMenuItem2.Click
         Dim enlace As String = "http://192.60.52.103/sabater/login.php"
         Dim postdata As String = "txtLogin=jerez999&txtClave=jerez&Aceptar=Aceptar"
         Dim frm As New frmEnlaces("JR", enlace, postdata)
         GUImain.añadirPestaña(frm)
     End Sub
 
-    Private Sub ConsejoReguladorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConsejoReguladorToolStripMenuItem.Click, ConsejoReguladorToolStripMenuItem1.Click
+    Private Sub ConsejoReguladorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConsejoReguladorToolStripMenuItem.Click, ConsejoReguladorToolStripMenuItem1.Click, ConsejoReguladorToolStripMenuItem2.Click
         'Dim fil As New BasesParaCompatibilidad.File
         'fil.open("Z:\Administracion\Documentacion\Consejo Regulador Jerez\CONSEJO VINO.RDP")
         Dim frm As New frmAccesoRemoto(New SessionConsejoRegulador)
         GUImain.añadirPestaña(frm)
     End Sub
 
-    Private Sub EtiquetasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EtiquetasToolStripMenuItem.Click, EtiqeutasToolStripMenuItem.Click
+    Private Sub EtiquetasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EtiquetasToolStripMenuItem.Click, EtiqeutasToolStripMenuItem.Click, EtiquetasToolStripMenuItem1.Click
         Dim frm As New frmAccesoRemoto(New SessionEtiquetas)
         GUImain.añadirPestaña(frm)
     End Sub
