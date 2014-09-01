@@ -93,14 +93,12 @@ Public Class frmEntProveedores
                     dtb.PrepararConsulta("Select id_pais, id_provincia from provincias, poblaciones where poblaciones.id_provincia = provincias.id and poblaciones.id = @id")
                     dtb.AñadirParametroConsulta("@id", m_DBO_Proveedores.Id_poblacion)
                     Dim dt As DataTable = dtb.Consultar()
-                    ' Dim dt As DataTable = dtb.Consultar("Select id_pais, id_provincia from provincias, poblaciones where poblaciones.id_provincia = provincias.id and poblaciones.id = " & m_DBO_Proveedores.Id_poblacion, False)
                     cbPais.SelectedValue = dt.Rows(0).Item(0)
                     cbProvincia.SelectedValue = dt.Rows(0).Item(1)
 
                     dtb.PrepararConsulta("Select id_pais, id_provincia from provincias, poblaciones where poblaciones.id_provincia = provincias.id and poblaciones.id = @id")
                     dtb.AñadirParametroConsulta("@id", m_DBO_Proveedores.Id_poblacion2)
                     dt = dtb.Consultar()
-                    'dt = dtb.Consultar("Select id_pais, id_provincia from provincias, poblaciones where poblaciones.id_provincia = provincias.id and poblaciones.id = " & m_DBO_Proveedores.Id_poblacion2, False)
                     cbPais2.SelectedValue = dt.Rows(0).Item(0)
                     cbProvincia2.SelectedValue = dt.Rows(0).Item(1)
                 Catch ex As Exception
@@ -406,7 +404,6 @@ Public Class frmEntProveedores
         dtb.AñadirParametroConsulta("@id", Me.m_DBO_Proveedores.ProveedorID)
 
         With dgvProveedores
-            '.DataSource = dtb.Consultar("Proveedores_ProveedoresTiposSelectByProveedorID '" & Me.m_DBO_Proveedores.ProveedorID & "'")
             .DataSource = dtb.Consultar()
             .Columns(0).Visible = False
             .Columns(2).Width = 30

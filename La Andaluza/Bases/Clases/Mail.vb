@@ -218,10 +218,8 @@ Module Mail
         Inherits Mail
 
         Protected Sub addAtachmentsFromDataBase(ByVal dgvGrilla As System.Windows.Forms.DataGridView)
-            'Dim dt As System.Data.DataTable = SelectArticulosFichasTecnicasByMaestroID(dgvGrilla.CurrentRow.Cells("PedidoProveedorMaestroID").Value)
             Dim spPedidosProveedoresDocumentos1 As New spPedidosProveedoresDocumentos1
             Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-            'Dim dt As System.Data.DataTable = dtb.consultar("ArticulosFichasTecnicasByMaestroIDSelect " & dgvGrilla.CurrentRow.Cells("PedidoProveedorMaestroID").Value)
             dtb.PrepararConsulta("ArticulosFichasTecnicasByMaestroIDSelect @id")
             dtb.AñadirParametroConsulta("@id", dgvGrilla.CurrentRow.Cells("PedidoProveedorMaestroID").Value)
             Dim dt As System.Data.DataTable = dtb.Consultar()

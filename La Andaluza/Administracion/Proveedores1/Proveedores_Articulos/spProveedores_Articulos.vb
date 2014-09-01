@@ -33,6 +33,5 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         dtb.PrepararConsulta("[dbo].[Proveedores_ArticulosSelectDgvByArticulo] @id")
         dtb.AñadirParametroConsulta("@id", articulo)
         Return dtb.Consultar
-        'Return dtb.Consultar("exec [dbo].[Proveedores_ArticulosSelectDgvByArticulo] " & articulo, False)
     End Function
 End Class

@@ -6,7 +6,6 @@
         Dim dt As DataTable
 
         Try
-            '            dt = dtb.Consultar("Select texto, id from notificaciones where id_TipoUsuario = " & Config.UserType & " and leido = 0", False)
             dtb.PrepararConsulta("Select texto, id from notificaciones where id_TipoUsuario = @id and leido = 0")
             dtb.AñadirParametroConsulta("@id", Config.UserType)
             dt = dtb.Consultar()
