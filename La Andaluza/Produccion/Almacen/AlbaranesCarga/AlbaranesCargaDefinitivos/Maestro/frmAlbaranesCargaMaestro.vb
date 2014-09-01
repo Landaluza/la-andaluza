@@ -14,7 +14,6 @@ Public Class frmAlbaranesCargaMaestro
         dtsAlb = New dtsAlbaranesCargaMaestro.AlbaranesCargaMaestroDataTable
     End Sub
     Protected Overrides Sub cargar_datos()
-        'ctlAlb.mostrarTodosAlbaranesCargaMaestro(dtsAlb)
         dataSource = dtb.Consultar("select AlbaranesCargaMaestro.AlbaranCargaMaestroID,AlbaranesCargaMaestro.AlbaranCargaProMaestroID,AlbaranesCargaMaestro.Fecha,AlbaranesCargaMaestro.ClienteID,AlbaranesCargaMaestro.SerieQSID,AlbaranesCargaMaestro.NumeroQS,AlbaranesCargaMaestro.AlmacenSalidaQSID,AlbaranesCargaMaestro.AgenciaID,AlbaranesCargaMaestro.PorteFormaPagoID,AlbaranesCargaMaestro.PorteImporte,AlbaranesCargaMaestro.Matricula,AlbaranesCargaMaestro.Conductor,AlbaranesCargaMaestro.ConductorDNI,AlbaranesCargaMaestro.ResponsableCargaID,AlbaranesCargaMaestro.ResponsableAdministracionID,AlbaranesCargaMaestro.HoraLlegada,AlbaranesCargaMaestro.HoraSalida,AlbaranesCargaMaestro.Observaciones,AlbaranesCargaMaestro.Reserva1,AlbaranesCargaMaestro.Reserva2,AlbaranesCargaMaestro.Reserva3 from AlbaranesCargaMaestro order by fecha asc, NumeroQS asc", False)
     End Sub
 
@@ -24,10 +23,6 @@ Public Class frmAlbaranesCargaMaestro
     Protected Overrides Sub BindDataSource()
 
         If Not dtsAlb Is Nothing Then
-            'GeneralBindingSource.DataMember = "AlbaranesCargaMaestro"
-            ' GeneralBindingSource.DataSource = dtsAlb
-            'GeneralBindingSource. dataSource = dtb.Consultar("AlbaranesCargaMaestro1SelectDgv1")
-
             dgvGeneral.DataSource = dataSource 'GeneralBindingSource
             dgvGeneral.ReadOnly = True
 
@@ -58,22 +53,7 @@ Public Class frmAlbaranesCargaMaestro
                 .MoveLast()
             End With
 
-            'With dgvGeneral
-            '    .Columns("AlbaranCargaMaestroID").Visible = False
-
-            '    .FormatoColumna("NumeroQS", "NumeroQS", BasesParaCompatibilidad.TiposColumna.Derecha, 70, 0)
-            '    .FormatoColumna("Fecha", "Fecha", BasesParaCompatibilidad.TiposColumna.FechaCorta, , 1)
-            '    .FormatoColumna("Cliente", BasesParaCompatibilidad.TiposColumna.Izquierda, 60, 3)
-            '    .FormatoColumna("Observaciones", "Observaciones", BasesParaCompatibilidad.TiposColumna.Observaciones, 400, 4)
-            '    .FormatoGeneral()
-            '    .MoveLast()
-            'End With
-
-            'Oculto Eliminar y Modificar, porque necesito controlar que los palets que se han dado de baja en almacen, se vuelvan a dar de alta
-            ' para recoger los cambios 
             butEliminar.Visible = False
-            'butModificar.Visible = False
-            'GeneralBindingSource.MoveLast()
         End If
     End Sub
 
@@ -83,10 +63,6 @@ Public Class frmAlbaranesCargaMaestro
         FrmEnt.CargarDatos(0, 0, 0, Today, 0, 0, 0, 0, 0, 0, 0, "", "", "", 0, 0, DateTime.Now.TimeOfDay, DateTime.Now.TimeOfDay, "", "", "", "")
         FrmEnt.ShowDialog()
         dgvFill()
-        'ctlAlb.mostrarTodosAlbaranesCargaMaestro(dtsAlb)
-        'GeneralBindingSource.Position = 1
-        'GeneralBindingSource.Position = 0
-        'dgvGeneral.MoveLast()
     End Sub
 
     Overrides Sub Modificar()
@@ -119,9 +95,6 @@ Public Class frmAlbaranesCargaMaestro
                        dgvGeneral.CurrentRow.Cells(20).Value)
             FrmEnt.ShowDialog()
             dgvFill()
-            'ctlAlb.mostrarTodosAlbaranesCargaMaestro(dtsAlb)
-            'GeneralBindingSource.Position = 1
-            'GeneralBindingSource.Position = Posicion
         Else
             MessageBox.Show("no hay celda seleccionada", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End If
@@ -161,24 +134,6 @@ Public Class frmAlbaranesCargaMaestro
     End Sub
 
     Overrides Sub Eliminar()
-        'Dim Posicion As Integer = GeneralBindingSource.Position
-        'If Posicion >= 0 Then
-        '    Dim response As DialogResult
-        '    response = MessageBox.Show(" Realmente desea eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-        '    If response = DialogResult.Yes Then
-        '        ctlAlb.SetAlbaranCargaMaestroID(dgvGeneral.Rows(Posicion).Cells(0).Value)
-        '        ctlAlb.EliminarAlbaranCargaMaestro()
-        '        ctlAlb.mostrarTodosAlbaranesCargaMaestro(dtsAlb)
-        '        If Posicion > 0 Then
-        '            GeneralBindingSource.Position = Posicion - 1
-        '        Else
-        '            GeneralBindingSource.Position = 0
-        '        End If
-        '    End If
-        'Else
-        '    messagebox.show("No hay celda seleccionada", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        'End If
-
         If Not dgvGeneral.CurrentRow Is Nothing Then
             Dim response As DialogResult
             response = MessageBox.Show(" Realmente desea eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
