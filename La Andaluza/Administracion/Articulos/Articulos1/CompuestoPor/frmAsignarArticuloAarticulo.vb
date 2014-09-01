@@ -21,10 +21,8 @@ Public Class frmAsignarArticuloAarticulo
         Dim dt As DataTable
 
         If Me.AsignarSecundario Then
-            'dt = dtb.Consultar("select descripcionLa, articulos1.articuloid, envasesecundarioID from articulos1, articulosenvasessecundarios where articulosenvasessecundarios.articuloid = articulos1.articuloID and articulotpoid = 9 and articulos1.articuloid not in(select articuloid from articulosenvasessecundarios where envasesecundarioid in (select id_articuloenvasesecundario from articulosenvasesterciarios))", False)
             dt = dtb.Consultar("select descripcionLa, articulos1.articuloid, envasesecundarioID from articulos1, articulosenvasessecundarios where articulosenvasessecundarios.articuloid = articulos1.articuloID and articulotpoid = 9 ", False)
         Else
-            'dt = dtb.Consultar("select descripcionLa, articulos1.articuloid from articulos1 where articulotpoid = 8 and articulos1.articuloid not in(select isnull(id_articuloPrimario, 0) from articulosenvasessecundarios)", False)
             dt = dtb.Consultar("select descripcionLa, articulos1.articuloid from articulos1 where articulotpoid = 8 ", False)
         End If
 

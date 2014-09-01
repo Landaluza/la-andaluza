@@ -9,8 +9,6 @@
         dtb.PrepararConsulta("select 	articuloid, descripcionLa, cantidad, subtotal from 	ComposicionesArticulos, ComposicionesArticulosDetalles, articulos1 where ComposicionesArticulosDetalles.id_articulo = articuloid and ComposicionesArticulos.id_articulo = @id")
         dtb.AñadirParametroConsulta("@id", id)
         Return dtb.Consultar
-
-        'Return dtb.Consultar("select 	articuloid, descripcionLa, cantidad, subtotal from 	ComposicionesArticulos, ComposicionesArticulosDetalles, articulos1 where ComposicionesArticulosDetalles.id_articulo = articuloid and ComposicionesArticulos.id_articulo = " & id, False)
     End Function
 
     Public Function Eliminar(ByVal id As Integer, ByVal id2 As Integer) As Boolean
@@ -76,8 +74,6 @@
         dtb.PrepararConsulta("select ArticuloID, DescripcionLA from Articulos1 WHERE Articulos1.ArticuloTpoID = @id")
         dtb.AñadirParametroConsulta("@id", id)
         Return dtb.Consultar()
-
-        ' Return dtb.Consultar("select ArticuloID, DescripcionLA from Articulos1 WHERE Articulos1.ArticuloTpoID =" & id, False)
     End Function
 
     'si es secundario sobre terciario actualizar el terciario

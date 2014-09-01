@@ -31,7 +31,6 @@ Public Class frmSelectorArticulo
         dtb.PrepararConsulta("Articulos1SelectDgvBy @idexcluido")
         dtb.AñadirParametroConsulta("@idexcluido", idExcluido)
         Dim dt As DataTable = dtb.Consultar()
-        'Dim dt As DataTable = dtb.Consultar("exec Articulos1SelectDgvBy " & idExcluido)
         Dim row As DataRow
         Dim c As New Collection
         For Each row In dt.Rows
