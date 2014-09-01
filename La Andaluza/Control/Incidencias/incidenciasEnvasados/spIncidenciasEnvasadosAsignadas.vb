@@ -6,7 +6,6 @@
         dtb.PrepararConsulta("IncidenciasSelectDgvByControlIncidencia @id")
         dtb.AñadirParametroConsulta("@id", id_controlIncidencia)
         Return dtb.Consultar
-        'Return dtb.Consultar("IncidenciasSelectDgvByControlIncidencia " & id_controlIncidencia, False)
     End Function
 
     Public Function asignables(ByVal fecha As DateTime, ByVal tipoIncidenciaCalidad As Integer) As DataTable
@@ -15,7 +14,6 @@
         dtb.AñadirParametroConsulta("@tipo", tipoIncidenciaCalidad)
         dtb.AñadirParametroConsulta("@fecha", fecha.Year & If(fecha.Month < 10, "0" & fecha.Month, Convert.ToString(fecha.Month)) & If(fecha.Day < 10, "0" & fecha.Day, Convert.ToString(fecha.Day)))
         Return dtb.Consultar
-        'Return dtb.Consultar("IncidenciasSelectDgvByFecha " & tipoIncidenciaCalidad & ", " & fecha.Year & If(fecha.Month < 10, "0" & fecha.Month, Convert.ToString(fecha.Month)) & If(fecha.Day < 10, "0" & fecha.Day, Convert.ToString(fecha.Day)), False)
     End Function
 
     Public Function asignar_incidencia_envasado(ByVal id_incidenciaEnvasado As Integer, ByVal id_ControlIncidencia As Integer) As Boolean

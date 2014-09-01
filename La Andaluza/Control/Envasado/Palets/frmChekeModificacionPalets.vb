@@ -19,7 +19,6 @@ Public Class frmChekeModificacionPalets
         dtb.AñadirParametroConsulta("@inicio", Me.dtpInicio.Value)
         dtb.AñadirParametroConsulta("@usuario", Me.cboUsuario.SelectedValue)
         datasource = dtb.Consultar
-        'datasource = dtb.Consultar("exec comparacion_produccion_paletsmodificados2 '" & Me.dtpInicio.Value.ToShortDateString & "', " & Me.cboUsuario.SelectedValue, False)
 
         If Not datasource Is Nothing Then
             DataGridView1.SuspendLayout()
@@ -39,7 +38,6 @@ Public Class frmChekeModificacionPalets
         dtb.AñadirParametroConsulta("@id", Me.DataGridView1.CurrentRow.Cells("paletProducidoID").Value)
         datasourceDetalles = dtb.Consultar()
 
-        'datasourceDetalles = dtb.Consultar("exec PaletsContenidos2ByPaletProducidoID " & Me.DataGridView1.CurrentRow.Cells("paletProducidoID").Value, False)
         datasourceDetalles.Columns.Add("Lote")
         For Each row As DataRow In datasourceDetalles.Rows
 

@@ -105,8 +105,6 @@ Public Class ctlBotasPosiciones
         dtb.PrepararConsulta("select AlturaID,Descripcion from Alturas where PiernaID= @pierna order by descripcion")
         dtb.AñadirParametroConsulta("@pierna", pierna)
         Return dtb.Consultar
-        'Return dtb.Consultar("select AlturaID,Descripcion from Alturas where PiernaID=" & pierna & " order by descripcion", False)
-        'Return clsAlt.DevolverPorPiernas()
     End Function
 
     '-------------------------------- POSICIONES -------------------------------------------
@@ -114,19 +112,6 @@ Public Class ctlBotasPosiciones
     Dim clsPos As New spPosiciones
     Dim dboPosiciones As New DBO_Posiciones
 
-    'Public Sub CargarPorPosicion(ByRef dbonave As DBO_Naves)
-    '    Dim tabla As New DataTable
-    '    tabla = clsPos.Cargar()
-    '    Try
-    '        dbonave.ID = tabla.Rows(0).Item(0)
-    '        clsPie._PiernaID = tabla.Rows(0).Item(1)
-    '        clsAlt._AlturaID = tabla.Rows(0).Item(2)
-    '    Catch ex As Exception
-    '        dbonave.ID = 0
-    '        clsPie._PiernaID = 0
-    '        clsAlt._AlturaID = 0
-    '    End Try
-    'End Sub
 
     Public Function GetPosicionID() As Integer
         Return dboPosiciones.ID
@@ -139,7 +124,6 @@ Public Class ctlBotasPosiciones
     Public Function devolverPosiciones() As DataTable
         Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
         Return dtb.Consultar("select Posiciones.PosicionID,Posiciones.Descripcion,Alturas.Descripcion As Alturas from Posiciones LEFT JOIN Alturas On Posiciones.AlturaID = Alturas.AlturaID", False)
-        'Return clsPos.Devolver()
     End Function
 
 
@@ -162,7 +146,5 @@ Public Class ctlBotasPosiciones
         dtb.PrepararConsulta("select PosicionID,Descripcion from Posiciones where AlturaID= @alt order by Descripcion")
         dtb.AñadirParametroConsulta("@alt", dboPosiciones.AlturaID)
         Return dtb.Consultar
-        'Return dtb.Consultar("select PosicionID,Descripcion from Posiciones where AlturaID=" & dboPosiciones.AlturaID & " order by Descripcion", False)
-        'Return clsPos.DevolverPorAlturas()
     End Function
 End Class

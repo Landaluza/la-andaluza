@@ -32,7 +32,6 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         dtb.AñadirParametroConsulta("@id", id_concepto)
         Dim dt As DataTable = dtb.Consultar()
 
-        'Dim dt As DataTable = dtb.Consultar("select id, Coste from CostesPorConcepto where Id_ConceptosGastosIncidencias = " & id_concepto, False)
         cbo.mam_DataSource(dt, False)
     End Sub
 
@@ -41,7 +40,6 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         dtb.AñadirParametroConsulta("@id", id_concepto)
         Dim dt As DataTable = dtb.Consultar()
 
-        'Dim dt As DataTable = dtb.Consultar("select top 1 id, coste from costesporconcepto where id_ConceptosGastosIncidencias =" & id_concepto & " order by fecha desc", False)
         Return dt.Rows(0)
     End Function
 End Class
