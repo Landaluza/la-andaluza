@@ -10,7 +10,6 @@ Class spDoypack2
         dtb.PrepararConsulta("select id_tipoFormato from doypack where id_articuloPrimario = @id")
         dtb.AñadirParametroConsulta("@id", p1)
         Dim dt As DataTable = dtb.Consultar()
-        'Dim dt As DataTable = dtb.Consultar("select id_tipoFormato from doypack where id_articuloPrimario = " & p1, False)
         Return If(IsDBNull(dt.Rows(0).Item(0)), Nothing, dt.Rows(0).Item(0))
     End Function
 
@@ -19,7 +18,6 @@ Class spDoypack2
         dtb.AñadirParametroConsulta("@id", p1)
         Dim dt As DataTable = dtb.Consultar()
 
-        'Dim dt As DataTable = dtb.Consultar("select id_marca from doypack where id_articuloPrimario = " & p1, False)
         Return If(IsDBNull(dt.Rows(0).Item(0)), Nothing, dt.Rows(0).Item(0))
     End Function
 
@@ -28,7 +26,6 @@ Class spDoypack2
         dtb.AñadirParametroConsulta("@id", p1)
         Dim dt As DataTable = dtb.Consultar()
 
-        'Dim dt As DataTable = dtb.Consultar("select id_caja from doypack where id_articuloPrimario = " & p1, False)
         Return If(IsDBNull(dt.Rows(0).Item(0)), Nothing, dt.Rows(0).Item(0))
     End Function
 
@@ -37,7 +34,6 @@ Class spDoypack2
         dtb.AñadirParametroConsulta("@id", p1)
         Dim dt As DataTable = dtb.Consultar()
 
-        'Dim dt As DataTable = dtb.Consultar("select id_TipoProducto from doypack where id_articuloPrimario = " & p1, False)
         Return If(IsDBNull(dt.Rows(0).Item(0)), Nothing, dt.Rows(0).Item(0))
     End Function
 
@@ -46,7 +42,6 @@ Class spDoypack2
         dtb.AñadirParametroConsulta("@id", p1)
         Dim dt As DataTable = dtb.Consultar()
 
-        ' Dim dt As DataTable = dtb.Consultar("select id_PaletProducidoNoConforme from doypack where id_articuloPrimario = " & p1, False)
         Return If(IsDBNull(dt.Rows(0).Item(0)), Nothing, dt.Rows(0).Item(0))
     End Function
 
@@ -55,38 +50,12 @@ Class spDoypack2
         dtb.AñadirParametroConsulta("@id", p1)
         Dim dt As DataTable = dtb.Consultar()
 
-        'Dim dt As DataTable = dtb.Consultar("select ean13 from doypack where id_articuloPrimario = " & p1, False)
         Return If(IsDBNull(dt.Rows(0).Item(0)), Nothing, dt.Rows(0).Item(0))
     End Function
 
     Public Function UltimoArticuloInsertado() As Integer
         Return dtb.Consultar("select max(articuloID) from articulos1", False).Rows(0).Item(0)
     End Function
-
-    'Public Function selectRecord(ByVal p1 As Integer) As Collection
-    '    Dim doys As New Collection
-    '    Dim Dbo_DoyPack As Dbo_DoyPack
-    '    Dim selectProcedure As String = "[dbo].[doypackSelect]"
-
-    '    Try
-    '        Dim dt As DataTable = DataTableFill(selectProcedure & " " & p1)
-    '        For Each row As DataRow In dt.Rows
-    '            Dbo_DoyPack = New Dbo_DoyPack
-    '            Dbo_DoyPack.ArticuloPrimarioID = p1
-    '            Dbo_DoyPack.ID = row.Item(0)
-    '            Dbo_DoyPack.Cantidad = row.Item(1)
-    '            Dbo_DoyPack.MonodosisID = row.Item(2)
-    '            Dbo_DoyPack.TipoFormatoID = row.Item(3)
-    '            Dbo_DoyPack.MarcaId = row.Item(4)
-    '            Dbo_DoyPack.Palet_NO_Conforme_ID = row.Item(5)
-    '            doys.Add(Dbo_DoyPack)
-    '        Next
-    '    Catch ex As Exception
-    '        doys = New Collection
-    '    End Try
-
-    '    Return doys
-    'End Function
 
     Public Function selectRecordById(ByVal p1 As Integer) As Dbo_DoyPack
 
@@ -151,7 +120,6 @@ Class spDoypack2
         dtb.PrepararConsulta("select doypack.id,articulos1.descripcionLa, doypack.cantidad, id_monodosis from monodosis, articulos1, doypack where monodosis.id_articuloPrimario = articulos1.articuloid and monodosis.id_articuloPrimario = doypack.id_monodosis and doypack.id_articuloPrimario = @id")
         dtb.AñadirParametroConsulta("@id", id)
         Return dtb.Consultar
-        'Return dtb.Consultar("select doypack.id,articulos1.descripcionLa, doypack.cantidad, id_monodosis from monodosis, articulos1, doypack where monodosis.id_articuloPrimario = articulos1.articuloid and monodosis.id_articuloPrimario = doypack.id_monodosis and doypack.id_articuloPrimario = " & id, False)
     End Function
 
     Public Function actualizarFormatoPorArticulo(ByVal p1 As Integer, ByVal formato As Integer, ByVal id_marca As Integer, ByVal id_caja As Integer, id_NC As Integer, id_producto As Integer, ean As String) As Boolean
@@ -161,9 +129,6 @@ Class spDoypack2
 
     Public Function esDoypack(ByVal p1 As Integer, Optional dtb as BasesParaCompatibilidad.Database = Nothing) As Boolean
         Dim dt As DataTable
-
-        
-        'dt = dtb.Consultar("Select count(*) from doypack where id_articuloPrimario = " & p1, False)
 
         dtb.PrepararConsulta("Select count(*) from doypack where id_articuloPrimario = @id")
         dtb.AñadirParametroConsulta("@id", p1)
