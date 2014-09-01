@@ -270,7 +270,6 @@ Class spDoypack2
         dtb.PrepararConsulta("select id from ComposicionesArticulos where FechaFinVigencia is null and id_articulo = @id")
         dtb.AñadirParametroConsulta("@id", Id_articulo)
         Return dtb.Consultar.Rows(0).Item(0)
-        'Return dtb.Consultar("select id from ComposicionesArticulos where FechaFinVigencia is null and id_articulo =" & Id_articulo, False).Rows(0).Item(0)
     End Function
 
 End Class

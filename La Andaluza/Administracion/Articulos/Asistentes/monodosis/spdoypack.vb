@@ -11,7 +11,6 @@ Class spdoypack
         dtb.PrepararConsulta("select id_tipoFormato from doypack where id_articuloPrimario = @id")
         dtb.AñadirParametroConsulta("@id", p1)
         Dim dt As DataTable = dtb.Consultar
-        'Dim dt As DataTable = dtb.Consultar("select id_tipoFormato from doypack where id_articuloPrimario = " & p1, False)
         Return If(IsDBNull(dt.Rows(0).Item(0)), Nothing, dt.Rows(0).Item(0))
     End Function
 
@@ -20,7 +19,6 @@ Class spdoypack
         dtb.AñadirParametroConsulta("@id", p1)
         Dim dt As DataTable = dtb.Consultar
 
-        'Dim dt As DataTable = dtb.Consultar("select id_marca from doypack where id_articuloPrimario = " & p1, False)
         Return If(IsDBNull(dt.Rows(0).Item(0)), Nothing, dt.Rows(0).Item(0))
     End Function
 
@@ -29,7 +27,6 @@ Class spdoypack
         dtb.AñadirParametroConsulta("@id", p1)
         Dim dt As DataTable = dtb.Consultar
 
-        'Dim dt As DataTable = dtb.Consultar("select id_caja from doypack where id_articuloPrimario = " & p1, False)
         Return If(IsDBNull(dt.Rows(0).Item(0)), Nothing, dt.Rows(0).Item(0))
     End Function
 
@@ -38,7 +35,6 @@ Class spdoypack
         dtb.AñadirParametroConsulta("@id", p1)
         Dim dt As DataTable = dtb.Consultar
 
-        'Dim dt As DataTable = dtb.Consultar("select id_TipoProducto from doypack where id_articuloPrimario = " & p1, False)
         Return If(IsDBNull(dt.Rows(0).Item(0)), Nothing, dt.Rows(0).Item(0))
     End Function
 
@@ -47,7 +43,6 @@ Class spdoypack
         dtb.AñadirParametroConsulta("@id", p1)
         Dim dt As DataTable = dtb.Consultar
 
-        ' Dim dt As DataTable = dtb.Consultar("select id_PaletProducidoNoConforme from doypack where id_articuloPrimario = " & p1, False)
         Return If(IsDBNull(dt.Rows(0).Item(0)), Nothing, dt.Rows(0).Item(0))
     End Function
 
@@ -56,7 +51,6 @@ Class spdoypack
         dtb.AñadirParametroConsulta("@id", p1)
         Dim dt As DataTable = dtb.Consultar
 
-        'Dim dt As DataTable = dtb.Consultar("select ean13 from doypack where id_articuloPrimario = " & p1, False)
         If dt Is Nothing Then Return String.Empty
         If dt.Rows(0) Is Nothing Then Return String.Empty
         If Convert.IsDBNull(dt.Rows(0).Item(0)) Then Return String.Empty
@@ -152,7 +146,6 @@ Class spdoypack
         dtb.PrepararConsulta("select doypack.id,articulos1.descripcionLa, doypack.cantidad, id_monodosis from monodosis, articulos1, doypack where monodosis.id_articuloPrimario = articulos1.articuloid and monodosis.id_articuloPrimario = doypack.id_monodosis and doypack.id_articuloPrimario = @id")
         dtb.AñadirParametroConsulta("@id", id)
         Return dtb.Consultar
-        'Return dtb.Consultar("select doypack.id,articulos1.descripcionLa, doypack.cantidad, id_monodosis from monodosis, articulos1, doypack where monodosis.id_articuloPrimario = articulos1.articuloid and monodosis.id_articuloPrimario = doypack.id_monodosis and doypack.id_articuloPrimario = " & id, False)
     End Function
 
     Public Function actualizarFormatoPorArticulo(ByVal p1 As Integer, ByVal formato As Integer, ByVal id_marca As Integer, ByVal id_caja As Integer, id_NC As Integer, id_producto As Integer, ean As String) As Boolean
@@ -170,7 +163,6 @@ Class spdoypack
         dtb.PrepararConsulta("Select count(*) from doypack where id_articuloPrimario =  @id")
         dtb.AñadirParametroConsulta("@id", p1)
         dt = dtb.Consultar()
-        'dt = dtb.Consultar("Select count(*) from doypack where id_articuloPrimario = " & p1, False)
 
         If dt.Rows(0).Item(0) = 0 Then
             Return False
@@ -308,7 +300,6 @@ Class spdoypack
         dtb.PrepararConsulta("select id from ComposicionesArticulos where FechaFinVigencia is null and id_articulo = @id")
         dtb.AñadirParametroConsulta("@id", Id_articulo)
         Return dtb.Consultar().Rows(0).Item(0)
-        'Return dtb.Consultar("select id from ComposicionesArticulos where FechaFinVigencia is null and id_articulo =" & Id_articulo, False).Rows(0).Item(0)
     End Function
 
 End Class

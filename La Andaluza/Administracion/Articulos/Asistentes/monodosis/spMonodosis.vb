@@ -116,7 +116,6 @@ Class spMonodosis
         dtb.PrepararConsulta("Select count(*) from monodosis where id_articuloPrimario = @id")
         dtb.AñadirParametroConsulta("@id", p1)
         dt = dtb.Consultar
-        'dt = dtb.Consultar("Select count(*) from monodosis where id_articuloPrimario = " & p1, False)
 
         If dt.Rows(0).Item(0) = 0 Then
             Return False
