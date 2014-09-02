@@ -87,8 +87,11 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Function
 
     Public Function ultima_hora(ByVal linea As Integer, ByVal envasado As String) As DateTime
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Dim dt As DataTable = dtb.Consultar("PaletsProducidos2GetUltimaHoraProduccionPorLinea2 " & linea & ", " & envasado)
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.PrepararConsulta("PaletsProducidos2GetUltimaHoraProduccionPorLinea2 @linea, @env")
+        dtb.AñadirParametroConsulta("@linea", linea)
+        dtb.AñadirParametroConsulta("@env", envasado)
+        Dim dt As DataTable = dtb.Consultar()
 
         If dt Is Nothing Then Return DateTime.Now
         If dt.Rows(0) Is Nothing Then Return DateTime.Now
@@ -98,7 +101,9 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Function
 
     Public Function PaletsContenidosPorPaletsProducidos(ByVal PaletProducidoID As Integer) As DataTable
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Return dtb.Consultar("PaletsContenidos2ByPaletProducidoID " & PaletProducidoID)
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.PrepararConsulta("PaletsContenidos2ByPaletProducidoID @id")
+        dtb.AñadirParametroConsulta("@id", PaletProducidoID)
+        Return dtb.Consultar()
     End Function
 End Class

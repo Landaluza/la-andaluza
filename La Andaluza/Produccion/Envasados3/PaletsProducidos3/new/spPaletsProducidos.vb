@@ -97,8 +97,10 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Sub
 
     Public Function devolver_palets_incompletos_por_TipoFormato(ByVal TipoFormatoId As Integer) As DataTable
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Return dtb.Consultar("exec PaletsProducidos3SelectPaletsIncompletos " & TipoFormatoId, False)
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.PrepararConsulta("PaletsProducidos3SelectPaletsIncompletos @id")
+        dtb.AñadirParametroConsulta("@id", TipoFormatoId)
+        Return dtb.Consultar()
     End Function
 
     Public Function devolver_ultimo_palet(ByRef trans As System.Data.SqlClient.SqlTransaction, ByRef con As System.Data.SqlClient.SqlConnection) As Integer
@@ -131,15 +133,20 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         End If
 
         Dim cuenta As Integer = 0
-        cuenta = dtb.Consultar("exec [dbo].[PaletsProducidos4CalcularCajas] " & scc, False).Rows(0).Item(0)
+        dtb.PrepararConsulta("PaletsProducidos4CalcularCajas @scc")
+        dtb.AñadirParametroConsulta("@scc", scc)
+        cuenta = dtb.Consultar().Rows(0).Item(0)
+        'cuenta = dtb.Consultar("exec [dbo].[PaletsProducidos4CalcularCajas] " & scc, False).Rows(0).Item(0)
         If trans Is Nothing Then dtb.Conectar()
 
         Return cuenta
     End Function
 
     Public Sub anadir_impresion_etiqueta(ByVal scc As String)
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        dtb.Consultar("update paletsproducidos set ContadorImpresion = ContadorImpresion +1 where scc =" & scc, False)
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.PrepararConsulta("update paletsproducidos set ContadorImpresion = ContadorImpresion +1 where scc = @scc")
+        dtb.AñadirParametroConsulta("@scc", scc)
+        dtb.Consultar()
     End Sub
 
     Public Function SelectPaletsProducidosBySccAndReferencia() As DataTable
@@ -170,11 +177,18 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Function
 
     Public Function seleccionarTipoPaletPorScc(ByVal scc As Integer) As Integer
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Dim dt As DataTable = dtb.Consultar("select palettipoid from articulosenvasesTerciarios, formatosEnvasados, paletsproducidos " & _
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.PrepararConsulta("select palettipoid from articulosenvasesTerciarios, formatosEnvasados, paletsproducidos " & _
         "where articulosenvasesTerciarios.sccetiquetaid = tipoformatoEnvasadoid " & _
         "and formatoEnvasadoid = formatoid " & _
-        "and scc = " & scc)
+        "and scc = @scc")
+        dtb.AñadirParametroConsulta("@scc", scc)
+
+        Dim dt As DataTable = dtb.Consultar()
+        'Dim dt As DataTable = dtb.Consultar("select palettipoid from articulosenvasesTerciarios, formatosEnvasados, paletsproducidos " & _
+        '"where articulosenvasesTerciarios.sccetiquetaid = tipoformatoEnvasadoid " & _
+        '"and formatoEnvasadoid = formatoid " & _
+        '"and scc = " & scc)
 
         If dt Is Nothing Then
             Return 0
