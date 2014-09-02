@@ -72,13 +72,16 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Sub
 
     Public Function seleccionarUltimoRegistro(Optional ByVal cnn as System.Data.SqlClient.SqlConnection = Nothing, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As Integer
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server, cnn, trans)
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server, cnn, trans)
         Return dtb.Consultar("select max(id) from Empleados_formatosEnvasados", False).Rows(0).Item(0)
     End Function
 
     Public Function es_parte_envasado(ByVal id As Integer) As Boolean
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        If dtb.Consultar("select count(*) from partesEnvasados_causasPArtesEnvasado where id = " & id & " and id_causaPArteEnvasado <>2", False).Rows(0).Item(0) = 0 Then
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.PrepararConsulta("select count(*) from partesEnvasados_causasPArtesEnvasado where id = @id and id_causaPArteEnvasado <>2")
+        dtb.AñadirParametroConsulta("@id", id)
+
+        If dtb.Consultar().Rows(0).Item(0) = 0 Then
             Return True
         Else
             Return False
@@ -86,8 +89,11 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Function
 
     Public Function numero_de_empleados_por_formato(ByVal formatoEnvasadoid As Integer) As Integer
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Return dtb.Consultar("select count(*) from empleados_formatosEnvasados where id_formatoEnvasado=" & formatoEnvasadoid, False).Rows(0).Item(0)
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.PrepararConsulta("select count(*) from empleados_formatosEnvasados where id_formatoEnvasado= @id")
+        dtb.AñadirParametroConsulta("@id", formatoEnvasadoid)
+
+        Return dtb.Consultar().Rows(0).Item(0)
     End Function
 
     Public Function actualizar_hora_fin(ByRef dbo As DBO_empleados_formatosEnvasados, Optional ByRef cnn As SqlClient.SqlConnection = Nothing, Optional ByRef trans As SqlClient.SqlTransaction = Nothing) As Boolean
@@ -96,8 +102,11 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Function
 
     Public Function hay_empleados_pendientes(ByVal envasadoID As Integer, ByVal LineaID As Integer) As Boolean
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        If dtb.Consultar("empleados_formatosEnvasadosCountPendientes " & envasadoID & ", " & LineaID, False).Rows(0).Item(0) > 0 Then
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.PrepararConsulta("empleados_formatosEnvasadosCountPendientes @env, @linea")
+        dtb.AñadirParametroConsulta("@env", envasadoID)
+        dtb.AñadirParametroConsulta("@linea", LineaID)
+        If dtb.Consultar().Rows(0).Item(0) > 0 Then
             Return True
         Else
             Return False
@@ -105,8 +114,11 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Function
 
     Public Function hay_empleados_pendientes_dias_anteriores(ByVal LineaID As Integer) As Boolean
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        If dtb.Consultar("empleados_formatosEnvasadosCountPendientesAnteriores " & LineaID, False).Rows(0).Item(0) > 0 Then
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.PrepararConsulta("empleados_formatosEnvasadosCountPendientesAnteriores @linea")
+        dtb.AñadirParametroConsulta("@linea", LineaID)
+
+        If dtb.Consultar().Rows(0).Item(0) > 0 Then
             Return True
         Else
             Return False
@@ -119,7 +131,6 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         dtb.AñadirParametroConsulta("@env", envasadoID)
         dtb.AñadirParametroConsulta("@linea", LineaID)
         Return dtb.Consultar()
-        'Return dtb.Consultar("empleados_formatosEnvasadosPendientes " & envasadoID & ", " & LineaID, False)
     End Function
 
     Function recuperar_envasado_empleados_pendientes_dias_anteriores(ByVal LineaID As Integer) As Integer
@@ -127,7 +138,6 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         dtb.PrepararConsulta("empleados_formatosEnvasadosEnvasadosPendientesAnteriores @linea")
         dtb.AñadirParametroConsulta("@linea", LineaID)
         Return dtb.Consultar().Rows(0).Item(0)
-        '        Return dtb.Consultar("empleados_formatosEnvasadosEnvasadosPendientesAnteriores " & LineaID, False).Rows(0).Item(0)
     End Function
 
 End Class

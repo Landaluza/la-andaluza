@@ -39,8 +39,11 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Function
 
     Function isNoConforme(ByVal parteId As Integer) As Boolean
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        If dtb.Consultar("select count(*) from PartesEnvasados_CausasPartesEnvasado where id_parteEnvasado = " & parteId, False).Rows(0).Item(0) > 0 Then
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.PrepararConsulta("select count(*) from PartesEnvasados_CausasPartesEnvasado where id_parteEnvasado = @id")
+        dtb.AñadirParametroConsulta("@id", parteId)
+
+        If dtb.Consultar().Rows(0).Item(0) > 0 Then
             Return True
         Else : Return False
         End If

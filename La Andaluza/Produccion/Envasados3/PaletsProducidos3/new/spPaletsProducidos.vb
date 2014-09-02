@@ -191,7 +191,10 @@ Inherits BasesParaCompatibilidad.StoredProcedure
             dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server, BasesParaCompatibilidad.BD.Cnx, trans)
         End If
 
-        Dim dt As DataTable = dtb.Consultar("select id_paletproducidonoconforme from articulosenvasesterciarios where sccetiquetaid = " & formato.ToString, False)
+        dtb.PrepararConsulta("select id_paletproducidonoconforme from articulosenvasesterciarios where sccetiquetaid = @tf")
+        dtb.AñadirParametroConsulta("@tf", formato)
+
+        Dim dt As DataTable = dtb.Consultar()
         If dt Is Nothing Then Return 0
         If Convert.IsDBNull(dt.Rows(0).Item(0)) Then Return 0
 
@@ -199,8 +202,10 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Function
 
     Public Function estaEtiquetado(ByVal id As Integer) As Boolean
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Dim dt As DataTable = dtb.Consultar("select isnull(contadorImpresiones, 0) from paletsproducidos where paletproducidoid = " & id, False)
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.PrepararConsulta("select isnull(contadorImpresiones, 0) from paletsproducidos where paletproducidoid = @id")
+        dtb.AñadirParametroConsulta("@id", id)
+        Dim dt As DataTable = dtb.Consultar()
         If dt Is Nothing Then Return False
         If dt.Rows(0) Is Nothing Then Return False
 

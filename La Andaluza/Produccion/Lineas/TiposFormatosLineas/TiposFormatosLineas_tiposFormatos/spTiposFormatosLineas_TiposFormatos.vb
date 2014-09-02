@@ -22,8 +22,12 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Function
 
     Public Overloads Function Select_Id_By(ByVal foramtoLinea As Int32, ByVal tipoFormato As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As Integer
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Return dtb.Consultar("select id from TiposFormatosLineas_TiposFormatos where TipoformatoLineaId =" & foramtoLinea & " and TipoFOrmatoID = " & tipoFormato & String.Empty, False).Rows(0).Item(0)
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.PrepararConsulta("select id from TiposFormatosLineas_TiposFormatos where TipoformatoLineaId = @linea and TipoFOrmatoID = @formato")
+        dtb.AñadirParametroConsulta("@linea", foramtoLinea)
+        dtb.AñadirParametroConsulta("@formato", tipoFormato)
+        Return dtb.Consultar().Rows(0).Item(0)
+        'Return dtb.Consultar("select id from TiposFormatosLineas_TiposFormatos where TipoformatoLineaId =" & foramtoLinea & " and TipoFOrmatoID = " & tipoFormato & String.Empty, False).Rows(0).Item(0)
     End Function
 
     Public Overrides Function Delete(ByVal Id As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As Boolean
