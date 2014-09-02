@@ -70,7 +70,9 @@ Public Class Monodosis
         dbo_movimiento.DocumentoID_IsDBNull = False
 
         Dim capacidad As Integer
-        capacidad = dtb.Consultar("select capacidadcaja from ArticulosEnvasadosHistoricoSinLinea where tipoformato = " & TipoFormatoEnvasadoID, False).Rows(0).Item(0)
+        dtb.PrepararConsulta("select capacidadcaja from ArticulosEnvasadosHistoricoSinLinea where tipoformato = @tf")
+        dtb.AñadirParametroConsulta("@tf", TipoFormatoEnvasadoID)
+        capacidad = dtb.Consultar().Rows(0).Item(0)
 
 
         dbo_movimiento.Cajas = dbo_movimiento.Cajas * capacidad
@@ -79,7 +81,9 @@ Public Class Monodosis
             Throw New Exception("No hay suficientes cajas para realizar el movimiento. Solo quedan " & tope & " monodosis (" & Convert.ToInt32(tope / capacidad) & "cajas)")
         End If
 
-        dbo_movimiento.Tipo = dtb.Consultar("select id_MovimentoEncajado from tiposcajas, ArticulosEnvasadosHistoricoSinLinea where ArticulosEnvasadosHistoricoSinLinea.tipocajaID = tiposcajas.tipocajaID and tipoformato = " & TipoFormatoEnvasadoID, False).Rows(0).Item(0)
+        dtb.PrepararConsulta("select id_MovimentoEncajado from tiposcajas, ArticulosEnvasadosHistoricoSinLinea where ArticulosEnvasadosHistoricoSinLinea.tipocajaID = tiposcajas.tipocajaID and tipoformato = @tf")
+        dtb.AñadirParametroConsulta("@tf", TipoFormatoEnvasadoID)
+        dbo_movimiento.Tipo = dtb.Consultar().Rows(0).Item(0)
         dbo_movimiento.Tipo_IsDBNull = False
         dbo_movimiento.PaletID_IsDBNull = False
         dbo_movimiento.Fecha = DateTime.Now

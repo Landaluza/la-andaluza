@@ -79,7 +79,11 @@ Inherits BasesParaCompatibilidad.StoredProcedure
 
     Function Select_Mas_Usado_Por_Maquina_Y_Linea(ByVal maquina As Integer, ByVal linea As Integer) As Object
         Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Dim dt As DataTable = dtb.Consultar("_TiposIncidencias2SelectMasUsadoPorMaquinaYlinea " & maquina & "," & linea, False)
+
+        dtb.PrepararConsulta("_TiposIncidencias2SelectMasUsadoPorMaquinaYlinea @maq, @linea")
+        dtb.AñadirParametroConsulta("@maq", maquina)
+        dtb.AñadirParametroConsulta("@linea", linea)
+        Dim dt As DataTable = dtb.Consultar()
         If Not dt Is Nothing Then
             If dt.Rows.Count > 0 Then
                 Return dt.Rows(0).Item(0)

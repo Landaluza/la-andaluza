@@ -8,7 +8,9 @@ Public Class DispensadorMonodosis
 
     Public Function EsDoyPack(ByVal tipoformato As Integer) As Boolean
         Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
-        Dim dt As DataTable = dtb.Consultar("exec ComprobarDoypack " & tipoformato, False)
+        dtb.PrepararConsulta("ComprobarDoypack @tf")
+        dtb.AñadirParametroConsulta("@tf", tipoformato)
+        Dim dt As DataTable = dtb.Consultar()
         If dt Is Nothing Then Return False
         If dt.Rows.Count = 0 Then Return False
         If CType(dt.Rows(0).Item(0), Integer) > 0 Then Return True
@@ -688,7 +690,9 @@ Public Class DispensadorMonodosis
         'Dim capacidad As Integer = DataTableFill("PaletsProducidosCapacidadFormatoByPaletProducidoID " & m_PaletProducidoDestino.PaletProducidoID).Rows(0).Item(0)
         Dim capacidad As Integer
 
-        capacidad = dtb.Consultar("select capacidadCaja from articulosEnvasadosHistorico where tipoformato = " & m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID, False).Rows(0).Item(0)
+        dtb.Consultar("select capacidadCaja from articulosEnvasadosHistorico where tipoformato = @tf")
+        dtb.Consultar("@tf", m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID)
+        capacidad = dtb.Consultar().Rows(0).Item(0)
         If CantidadUds <> Nothing Then
             capacidad = CantidadUds * capacidad
         End If
@@ -707,7 +711,9 @@ Public Class DispensadorMonodosis
         End If
         'End If
 
-        dbo_movimiento.Tipo = dtb.Consultar("select id_MovimentoEncajado from tiposcajas, articulosEnvasadoshistorico where articulosEnvasadoshistorico.tipocajaID = tiposcajas.tipocajaID and tipoformato = " & m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID, False).Rows(0).Item(0)
+        dtb.PrepararConsulta("select id_MovimentoEncajado from tiposcajas, articulosEnvasadoshistorico where articulosEnvasadoshistorico.tipocajaID = tiposcajas.tipocajaID and tipoformato = @tf")
+        dtb.AñadirParametroConsulta("@tf", m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID)
+        dbo_movimiento.Tipo = dtb.Consultar().Rows(0).Item(0)
         dbo_movimiento.Tipo_IsDBNull = False
         dbo_movimiento.PaletID_IsDBNull = False
         dbo_movimiento.Fecha = Today.Date

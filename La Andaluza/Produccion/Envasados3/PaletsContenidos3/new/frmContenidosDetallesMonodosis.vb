@@ -30,7 +30,10 @@ Public Class frmContenidosDetallesMonodosis
     End Sub
 
     Private Sub BackgroundWorker1_DoWork(sender As System.Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
-        datasource = dtb.Consultar("exec PaletsContenidosSelectMonodosis2 " & tipoFormato, False)
+        dtb.PrepararConsulta("PaletsContenidosSelectMonodosis2 @tf")
+        dtb.AñadirParametroConsulta("@tf", tipoFormato)
+        datasource = dtb.Consultar()
+        'datasource = dtb.Consultar("exec PaletsContenidosSelectMonodosis2 " & tipoFormato, False)
     End Sub
 
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As System.Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
