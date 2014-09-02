@@ -57,8 +57,11 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Sub
 
     Public Function devolver_TiposIncidenciasporMaquina(maquina As Integer) As DataTable
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Return dtb.Consultar("_Incidencias2SelectTiposIncidenciasPorMaquinaPorCategoriaIncidencia " & maquina & ", 8", True)
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.PrepararConsulta("_Incidencias2SelectTiposIncidenciasPorMaquinaPorCategoriaIncidencia @maq, @tip")
+        dtb.AñadirParametroConsulta("@maq", maquina)
+        dtb.AñadirParametroConsulta("@tip", 8)
+        Return dtb.Consultar()
     End Function
 
     Public Sub _Incidencias2SelectMaquinasPorLinea(ByRef cbo As ComboBox, ByVal linea As Integer)
