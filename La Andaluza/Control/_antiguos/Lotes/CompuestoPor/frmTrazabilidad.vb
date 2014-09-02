@@ -117,7 +117,7 @@ Public Class frmTrazabilidad
 
     Private Sub ModificarToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ModificarFormaPArtedeToolStripMenuItem1.Click
         If Not dgvComponenteDe.CurrentRow Is Nothing Then
-            Dim frm As New BasesParaCompatibilidad.frmEntrada("Nueva cantidad", "Introduce la nueva cantidad para este movimiento", dgvComponenteDe.CurrentRow.Cells("cantidad").Value.ToStrin)
+            Dim frm As New BasesParaCompatibilidad.frmEntrada("Nueva cantidad", "Introduce la nueva cantidad para este movimiento", dgvComponenteDe.CurrentRow.Cells("cantidad").Value.ToString)
             If frm.ShowDialog = Windows.Forms.DialogResult.OK Then
                 If actualizarTrazabilidad(frm.Result, dgvComponenteDe.CurrentRow.Cells("movimientoid").Value.ToString) Then
                     Me.BackgroundWorker1.RunWorkerAsync()
