@@ -63,8 +63,13 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     'End Sub
 
     Public Function devolver_media_creacion_contenidos(ByVal linea As Integer, ByVal tipo_formato As Integer) As Double
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Dim dt As DataTable = dtb.Consultar("select isnull(avg(datediff(minute, horainicio, horafin)), 1) from paletsContenidos, paletsproducidos, formatosEnvasados, tiposformatosLineas where paletsproducidos.paletproducidoid = paletscontenidos.paletproducidoid and formatoid = formatoEnvasadoid and formatosEnvasados.tipoformatoLineaid = tiposformatosLineas.tipoformatoLineaid and lineaEnvasadoid = " & linea & " and tipoformatoEnvasadoID = " & tipo_formato, False)
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+
+        dtb.PrepararConsulta("select isnull(avg(datediff(minute, horainicio, horafin)), 1) from paletsContenidos, paletsproducidos, formatosEnvasados, tiposformatosLineas where paletsproducidos.paletproducidoid = paletscontenidos.paletproducidoid and formatoid = formatoEnvasadoid and formatosEnvasados.tipoformatoLineaid = tiposformatosLineas.tipoformatoLineaid and lineaEnvasadoid = @linea and tipoformatoEnvasadoID = @tf")
+        dtb.AñadirParametroConsulta("@linea", linea)
+        dtb.AñadirParametroConsulta("@tf", tipo_formato)
+        Dim dt As DataTable = dtb.Consultar()
+        'Dim dt As DataTable = dtb.Consultar("select isnull(avg(datediff(minute, horainicio, horafin)), 1) from paletsContenidos, paletsproducidos, formatosEnvasados, tiposformatosLineas where paletsproducidos.paletproducidoid = paletscontenidos.paletproducidoid and formatoid = formatoEnvasadoid and formatosEnvasados.tipoformatoLineaid = tiposformatosLineas.tipoformatoLineaid and lineaEnvasadoid = " & linea & " and tipoformatoEnvasadoID = " & tipo_formato, False)
 
         If dt Is Nothing Then Return 15
         If dt.Rows.Count = 0 Then Return 15
@@ -75,15 +80,17 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Function
 
     Public Function devolver_monodosis_para_doypack(ByVal FormatoEnvasado As Integer) As DataTable
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Return dtb.Consultar("select descripcionLa, monodosis.id_tipoFormato, cantidad " & _
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.PrepararConsulta("select descripcionLa, monodosis.id_tipoFormato, cantidad " & _
                                             "from doypack, monodosis, articulos1  " & _
                                             "where  " & _
                                             "doypack.id_monodosis = monodosis.id_articuloPrimario " & _
                                             "and " & _
                                             "articulos1.articuloid = monodosis.id_articuloPrimario " & _
                                             "and " & _
-                                            "doypack.id_tipoformato = " & FormatoEnvasado, False)
+                                            "doypack.id_tipoformato = @id")
+        dtb.AñadirParametroConsulta("@id", FormatoEnvasado)
+        Return dtb.Consultar
     End Function
 
     Public Function ultima_hora(ByVal linea As Integer, ByVal envasado As String) As DateTime
