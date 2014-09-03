@@ -690,8 +690,8 @@ Public Class DispensadorMonodosis
         'Dim capacidad As Integer = DataTableFill("PaletsProducidosCapacidadFormatoByPaletProducidoID " & m_PaletProducidoDestino.PaletProducidoID).Rows(0).Item(0)
         Dim capacidad As Integer
 
-        dtb.Consultar("select capacidadCaja from articulosEnvasadosHistorico where tipoformato = @tf")
-        dtb.Consultar("@tf", m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID)
+        dtb.PrepararConsulta("select capacidadCaja from articulosEnvasadosHistorico where tipoformato = @tf")
+        dtb.AñadirParametroConsulta("@tf", m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID)
         capacidad = dtb.Consultar().Rows(0).Item(0)
         If CantidadUds <> Nothing Then
             capacidad = CantidadUds * capacidad

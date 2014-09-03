@@ -358,7 +358,11 @@ Class spPaletsProducidos2
             Dim p1 As String = PaletProducido.FormatoID.ToString
             Dim tabla As DataTable = dtb.Consultar("PaletsProducidos2CompletarContenidoPalet " & p1 & ",'" & Convert.ToString(scc) & "'")
 
-            PaletProducido.NroCajasCompletar = If(Convert.ToString(tabla.Rows(0).Item("CantidadCajas")) = String.Empty, 0, tabla.Rows(0).Item("CantidadCajas"))
+            If Convert.ToString(tabla.Rows(0).Item("CantidadCajas")) = String.Empty Then
+                PaletProducido.NroCajasCompletar = 0
+            Else
+                PaletProducido.NroCajasCompletar = tabla.Rows(0).Item("CantidadCajas")
+            End If
 
             PaletProducido.SCC = scc
             PaletProducido.PartePaletContenidoID = If(Convert.ToString(tabla.Rows(0).Item("ContenidoPalets")) = String.Empty, 0, tabla.Rows(0).Item("ContenidoPalets"))
