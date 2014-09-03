@@ -67,6 +67,7 @@
             Me.frmSecundario.Formato = Me.frmdatos.recuperarValor(frmWstepDatosGenerales.FORMATO)
             Me.frmSecundario.cboCajaID.SelectedValue = Me.frmdatos.recuperarValor(frmWstepDatosGenerales.CAJA)
             Me.frmSecundario.cboProducto.SelectedValue = Me.frmdatos.recuperarValor(frmWstepDatosGenerales.PRODUCTO)
+            Me.frmSecundario.Descripcion = Me.frmdatos.recuperarValor(frmWstepDatosGenerales.DESCRIPCION)
 
             If Me.frmSecundario.Enabled Then
                 Me.frmSecundario.QS = Me.frmArticulos1.QS

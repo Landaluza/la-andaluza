@@ -43,11 +43,11 @@ Public Class frmWstepArticuloSecundario
         End Set
     End Property
 
-    'Public WriteOnly Property Descripcion As String
-    '    Set(ByVal value As String)
-    '        Me.m_DBO_ArticulosEnvasesSecundario.Descripcion = value
-    '    End Set
-    'End Property
+    Public WriteOnly Property Descripcion As String
+        Set(ByVal value As String)
+            Me.m_DBO_TiposFormatos1.Descripcion = value
+        End Set
+    End Property
 
     Public WriteOnly Property Articulo As Integer
         Set(ByVal value As Integer)
@@ -119,16 +119,30 @@ Public Class frmWstepArticuloSecundario
             End If
 
             If Me.Enabled Then
-                Dim m_DBO_TiposFormatos1 As New DBO_ArticulosEnvasadosHistorico
+                Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server, BasesParaCompatibilidad.BD.Cnx, BasesParaCompatibilidad.BD.transaction)
+                'Dim m_DBO_TiposFormatos1 As New DBO_ArticulosEnvasadosHistorico
                 If Me.m_DBO_ArticulosEnvasesSecundario.ID = Nothing Then Me.m_DBO_ArticulosEnvasesSecundario.ArticuloID = dtb.Consultar("select max(articuloID) from Articulos1", False).Rows(0).Item(0)
-                If Me.m_DBO_TiposFormatos1.TipoFormatoID = Nothing Then
-                    Dim spt As New spArticulosEnvasadosHistoricos
-                    Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server, BasesParaCompatibilidad.BD.Cnx, BasesParaCompatibilidad.BD.transaction)
-                    m_DBO_TiposFormatos1.TipoFormatoID = spt.seleccionar_ultimo_registro(dtb)
-                End If
+                'If Me.m_DBO_TiposFormatos1.TipoFormatoID = Nothing Then
+                '    Dim spt As New spArticulosEnvasadosHistoricos
+                '    Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server, BasesParaCompatibilidad.BD.Cnx, BasesParaCompatibilidad.BD.transaction)
+                '    m_DBO_TiposFormatos1.TipoFormatoID = spt.seleccionar_ultimo_registro(dtb)
+                'End If
 
 
-                ' m_DBO_TiposFormatos1.Descripcion = m_DBO_ArticulosEnvasesSecundario.Descripcion
+                ''m_DBO_TiposFormatos1.Descripcion = m_DBO_ArticulosEnvasesSecundario.Descripcion
+                'm_DBO_TiposFormatos1.Separadores = m_DBO_ArticulosEnvasesSecundario.Separadores
+                'm_DBO_TiposFormatos1.CajasPalet = m_DBO_ArticulosEnvasesSecundario.CajasPalet
+                'm_DBO_TiposFormatos1.Genericas = m_DBO_ArticulosEnvasesSecundario.Genericas
+                'm_DBO_TiposFormatos1.Particulares = m_DBO_ArticulosEnvasesSecundario.Particulares
+                'm_DBO_TiposFormatos1.TipoProductoID = m_DBO_ArticulosEnvasesSecundario.ProductoID
+                'm_DBO_TiposFormatos1.TipoCajaID = m_DBO_ArticulosEnvasesSecundario.CajaID
+                'm_DBO_TiposFormatos1.TipoProductoID = m_DBO_ArticulosEnvasesSecundario.ProductoID
+
+                'Dim spTiposFormatos1 As New spArticulosEnvasadosHistorico1
+                'If Not spTiposFormatos1.GrabarTiposFormatos1Sintransaccion(m_DBO_TiposFormatos1, BasesParaCompatibilidad.BD.transaction) Then Return False
+
+
+
                 m_DBO_TiposFormatos1.Separadores = m_DBO_ArticulosEnvasesSecundario.Separadores
                 m_DBO_TiposFormatos1.CajasPalet = m_DBO_ArticulosEnvasesSecundario.CajasPalet
                 m_DBO_TiposFormatos1.Genericas = m_DBO_ArticulosEnvasesSecundario.Genericas
@@ -139,6 +153,11 @@ Public Class frmWstepArticuloSecundario
 
                 Dim spTiposFormatos1 As New spArticulosEnvasadosHistorico1
                 If Not spTiposFormatos1.GrabarTiposFormatos1Sintransaccion(m_DBO_TiposFormatos1, BasesParaCompatibilidad.BD.transaction) Then Return False
+
+                If Me.m_DBO_TiposFormatos1.TipoFormatoID = Nothing Then
+                    Dim spt As New spArticulosEnvasadosHistoricos
+                    m_DBO_TiposFormatos1.TipoFormatoID = spt.seleccionar_ultimo_registro(dtb)
+                End If
             End If
 
         End If
