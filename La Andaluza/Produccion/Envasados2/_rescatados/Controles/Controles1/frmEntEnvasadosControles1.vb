@@ -1,5 +1,5 @@
 Public Class frmEntEnvasadosControles1
-    inherits BasesParaCompatibilidad.FrmAHeredarEntOld
+    Inherits BasesParaCompatibilidad.FrmAHeredarEntOld
 
     Private m_DBO_EnvasadosControles1 As New DBO_EnvasadosControles1
     Private spEnvasadosControles1 As spEnvasadosControles1
@@ -18,7 +18,7 @@ Public Class frmEntEnvasadosControles1
 
     Overrides Sub SetValores()
         If Not IsNothing(m_DBO_EnvasadosControles1) Then
-            
+
             txtEnvasadoControl1ID.Text = m_DBO_EnvasadosControles1.EnvasadoControl1ID
             txtEnvasadoControlID.Text = If(m_DBO_EnvasadosControles1.EnvasadoControlID.HasValue, Convert.ToString(m_DBO_EnvasadosControles1.EnvasadoControlID), "")
             If Me.ModoDeApertura <> INSERCION Then
@@ -33,12 +33,12 @@ Public Class frmEntEnvasadosControles1
                 chbRetrocapsula.Checked = m_DBO_EnvasadosControles1.Retrocapsula
                 chbCaja.Checked = m_DBO_EnvasadosControles1.Caja
             End If
-            
+
         End If
     End Sub
 
     Private Sub GetValores()
-        
+
         'm_DBO_EnvasadosControles1.EnvasadoControlID = System.Convert.ToInt32(if(txtEnvasadoControlID.Text = "", Nothing, txtEnvasadoControlID.Text))
         m_DBO_EnvasadosControles1.Roscador1 = System.Convert.ToBoolean(chbRoscador1.Checked)
         m_DBO_EnvasadosControles1.Roscador2 = System.Convert.ToBoolean(chbRoscador2.Checked)
@@ -50,7 +50,7 @@ Public Class frmEntEnvasadosControles1
         m_DBO_EnvasadosControles1.Capsula = System.Convert.ToBoolean(chbCapsula.Checked)
         m_DBO_EnvasadosControles1.Retrocapsula = System.Convert.ToBoolean(chbRetrocapsula.Checked)
         m_DBO_EnvasadosControles1.Caja = System.Convert.ToBoolean(chbCaja.Checked)
-        
+
     End Sub
 
     Public Shadows Sub Guardar(ByRef m_DBO_EnvasadosControles1 As DBO_EnvasadosControles1)

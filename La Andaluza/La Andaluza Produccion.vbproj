@@ -49,7 +49,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>350</ApplicationRevision>
+    <ApplicationRevision>353</ApplicationRevision>
     <ApplicationVersion>2014.7.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -2237,6 +2237,20 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Produccion\Envasados2\Personal\spPersonalEnvasado.vb" />
+    <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles7\DBO_EnvasadosControles7.vb" />
+    <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles7\frmEntEnvasadosControles7.Designer.vb">
+      <DependentUpon>frmEntEnvasadosControles7.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles7\frmEntEnvasadosControles7.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles7\frmEnvasadosControles7.Designer.vb">
+      <DependentUpon>frmEnvasadosControles7.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles7\frmEnvasadosControles7.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles7\spEnvasadosControles7.vb" />
     <Compile Include="Produccion\Envasados3\ArticulosTerciarios\frmPaletsProducidos3.Designer.vb">
       <DependentUpon>frmPaletsProducidos3.vb</DependentUpon>
     </Compile>
@@ -5424,6 +5438,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Produccion\Envasados2\Personal\frmSituacionPersonal.resx">
       <DependentUpon>frmSituacionPersonal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Produccion\Envasados2\_rescatados\Controles\Controles7\frmEntEnvasadosControles7.resx">
+      <DependentUpon>frmEntEnvasadosControles7.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Produccion\Envasados2\_rescatados\Controles\Controles7\frmEnvasadosControles7.resx">
+      <DependentUpon>frmEnvasadosControles7.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Produccion\Envasados3\ArticulosTerciarios\frmPaletsProducidos3.resx">
       <DependentUpon>frmPaletsProducidos3.vb</DependentUpon>

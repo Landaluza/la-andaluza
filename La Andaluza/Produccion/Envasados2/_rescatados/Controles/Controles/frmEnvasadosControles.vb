@@ -53,6 +53,16 @@ Public Class frmEnvasadosControles
                 'Hay que comentar esta linea  "DBO_EnvasadosControles1 = Nothing" en el sp correspondiente
                 m_DBO_EnvasadoControlLinea = spEnvasadosControles1.SelectByEnvasadoControlID(m_EnvasadoControles.EnvasadoControlID)
                 m_FormLinea = New frmEntEnvasadosControles1(TipoAction, m_DBO_EnvasadoControlLinea)
+            Case Is = 7
+                Dim spEnvasadosControles7 As New spEnvasadosControles7
+                'Hay que comentar esta linea  "DBO_EnvasadosControles1 = Nothing" en el sp correspondiente
+                m_DBO_EnvasadoControlLinea = spEnvasadosControles7.SelectByEnvasadoControlID(m_EnvasadoControles.EnvasadoControlID)
+                m_FormLinea = New frmEntEnvasadosControles7(TipoAction, m_DBO_EnvasadoControlLinea)
+            Case Is = 8
+                Dim spEnvasadosControles1 As New spEnvasadosControles1
+                'Hay que comentar esta linea  "DBO_EnvasadosControles1 = Nothing" en el sp correspondiente
+                m_DBO_EnvasadoControlLinea = spEnvasadosControles1.SelectByEnvasadoControlID(m_EnvasadoControles.EnvasadoControlID)
+                m_FormLinea = New frmEntEnvasadosControles1(TipoAction, m_DBO_EnvasadoControlLinea)
             Case Is = 2
                 Dim spEnvasadosControles2 As New spEnvasadosControles2
                 m_DBO_EnvasadoControlLinea = spEnvasadosControles2.SelectByEnvasadoControlID(m_EnvasadoControles.EnvasadoControlID)
@@ -65,6 +75,8 @@ Public Class frmEnvasadosControles
                 Dim spEnvasadosControlesImar As New spEnvasadosControlesImar
                 m_DBO_EnvasadoControlLinea = spEnvasadosControlesImar.SelectByEnvasadoControlID(m_EnvasadoControles.EnvasadoControlID)
                 m_FormLinea = New frmEntEnvasadosControlesImar(TipoAction, m_DBO_EnvasadoControlLinea)
+            Case Else
+                Return
         End Select
 
         frmEnt = New frmEntEnvasadosControles(TipoAction, m_EnvasadoControles, m_DBO_EnvasadoControlLinea, m_FormLinea)

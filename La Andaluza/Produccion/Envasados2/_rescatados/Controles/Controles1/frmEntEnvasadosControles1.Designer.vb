@@ -1,4 +1,4 @@
-<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _ 
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class frmEntEnvasadosControles1
     Inherits BasesParaCompatibilidad.FrmAheredarEntOld
 
@@ -469,32 +469,32 @@ Partial Class frmEntEnvasadosControles1
 
     Private WithEvents txtEnvasadoControl1ID As BasesParaCompatibilidad.CuadroDeTexto
     Private WithEvents txtEnvasadoControlID As BasesParaCompatibilidad.CuadroDeTexto
-   Private WithEvents chbRoscador1 As System.Windows.Forms.CheckBox
-   Private WithEvents chbRoscador2 As System.Windows.Forms.CheckBox
-   Private WithEvents chbRoscador3 As System.Windows.Forms.CheckBox
-   Private WithEvents chbRoscador4 As System.Windows.Forms.CheckBox
-   Private WithEvents chbNivelDeLlenado As System.Windows.Forms.CheckBox
-   Private WithEvents chbCara As System.Windows.Forms.CheckBox
-   Private WithEvents chbContra As System.Windows.Forms.CheckBox
-   Private WithEvents chbCapsula As System.Windows.Forms.CheckBox
-   Private WithEvents chbRetrocapsula As System.Windows.Forms.CheckBox
-   Private WithEvents chbCaja As System.Windows.Forms.CheckBox
-   Private WithEvents lblEnvasadoControl1ID As System.Windows.Forms.Label
-   Private WithEvents lblEnvasadoControlID As System.Windows.Forms.Label
-   Private WithEvents lblRoscador1 As System.Windows.Forms.Label
-   Private WithEvents lblRoscador2 As System.Windows.Forms.Label
-   Private WithEvents lblRoscador3 As System.Windows.Forms.Label
-   Private WithEvents lblRoscador4 As System.Windows.Forms.Label
-   Private WithEvents lblNivelDeLlenado As System.Windows.Forms.Label
-   Private WithEvents lblCara As System.Windows.Forms.Label
-   Private WithEvents lblContra As System.Windows.Forms.Label
-   Private WithEvents lblCapsula As System.Windows.Forms.Label
-   Private WithEvents lblRetrocapsula As System.Windows.Forms.Label
-   Private WithEvents lblCaja As System.Windows.Forms.Label
-   Private WithEvents tlpMiddle As System.Windows.Forms.TableLayoutPanel
+    Private WithEvents chbRoscador1 As System.Windows.Forms.CheckBox
+    Private WithEvents chbRoscador2 As System.Windows.Forms.CheckBox
+    Private WithEvents chbRoscador3 As System.Windows.Forms.CheckBox
+    Private WithEvents chbRoscador4 As System.Windows.Forms.CheckBox
+    Private WithEvents chbNivelDeLlenado As System.Windows.Forms.CheckBox
+    Private WithEvents chbCara As System.Windows.Forms.CheckBox
+    Private WithEvents chbContra As System.Windows.Forms.CheckBox
+    Private WithEvents chbCapsula As System.Windows.Forms.CheckBox
+    Private WithEvents chbRetrocapsula As System.Windows.Forms.CheckBox
+    Private WithEvents chbCaja As System.Windows.Forms.CheckBox
+    Private WithEvents lblEnvasadoControl1ID As System.Windows.Forms.Label
+    Private WithEvents lblEnvasadoControlID As System.Windows.Forms.Label
+    Private WithEvents lblRoscador1 As System.Windows.Forms.Label
+    Private WithEvents lblRoscador2 As System.Windows.Forms.Label
+    Private WithEvents lblRoscador3 As System.Windows.Forms.Label
+    Private WithEvents lblRoscador4 As System.Windows.Forms.Label
+    Private WithEvents lblNivelDeLlenado As System.Windows.Forms.Label
+    Private WithEvents lblCara As System.Windows.Forms.Label
+    Private WithEvents lblContra As System.Windows.Forms.Label
+    Private WithEvents lblCapsula As System.Windows.Forms.Label
+    Private WithEvents lblRetrocapsula As System.Windows.Forms.Label
+    Private WithEvents lblCaja As System.Windows.Forms.Label
+    Private WithEvents tlpMiddle As System.Windows.Forms.TableLayoutPanel
 
-   Private WithEvents TextBox1 As System.Windows.Forms.TextBox
-   Private WithEvents TextBox2 As System.Windows.Forms.TextBox
-   Private WithEvents TextBox3 As System.Windows.Forms.TextBox
-   Private WithEvents TextBox4 As System.Windows.Forms.TextBox
+    Private WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Private WithEvents TextBox2 As System.Windows.Forms.TextBox
+    Private WithEvents TextBox3 As System.Windows.Forms.TextBox
+    Private WithEvents TextBox4 As System.Windows.Forms.TextBox
 End Class

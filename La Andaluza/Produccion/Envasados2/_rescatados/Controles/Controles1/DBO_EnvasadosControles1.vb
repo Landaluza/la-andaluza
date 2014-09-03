@@ -1,6 +1,6 @@
 Public Class DBO_EnvasadosControles1
 
-    
+
     Private m_EnvasadoControl1ID As Int32
     Private m_EnvasadoControlID As Nullable(Of Int32)
     Private m_Roscador1 As Boolean
@@ -13,15 +13,15 @@ Public Class DBO_EnvasadosControles1
     Private m_Capsula As Boolean
     Private m_Retrocapsula As Boolean
     Private m_Caja As Boolean
-    Private m_FechaModificacion As date
+    Private m_FechaModificacion As Date
     Private m_UsuarioModificacion As Int32
-    
+
 
     Public Sub New()
 
     End Sub
 
-    
+
     Public Property EnvasadoControl1ID() As Int32
         Get
             Return m_EnvasadoControl1ID
@@ -148,5 +148,5 @@ Public Class DBO_EnvasadosControles1
         End Set
     End Property
 
-    
+
 End Class

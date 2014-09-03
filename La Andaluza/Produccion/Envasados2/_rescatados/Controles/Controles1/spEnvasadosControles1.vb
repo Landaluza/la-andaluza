@@ -1,7 +1,7 @@
 
 
 Class spEnvasadosControles1
-    inherits BasesParaCompatibilidad.sp
+    Inherits BasesParaCompatibilidad.sp
 
     Public Sub New()
         MyBase.New("[dbo].[EnvasadosControles1Select]", "[dbo].[EnvasadosControles1Insert]", "[dbo].[EnvasadosControles1Update]", _
@@ -10,7 +10,7 @@ Class spEnvasadosControles1
     Public Function SelectByEnvasadoControlID(ByVal EnvasadoControlID As Int32) As DBO_EnvasadosControles1
         BasesParaCompatibilidad.BD.Conectar()
         Dim DBO_EnvasadosControles1 As New DBO_EnvasadosControles1
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
         Dim selectProcedure As String = "[dbo].[EnvasadosControles1SelectByEnvasadoControlID]"
         Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
         selectCommand.CommandType = CommandType.StoredProcedure
@@ -87,11 +87,11 @@ Class spEnvasadosControles1
 
     Public Function EnvasadosControles1Insert(ByVal dbo_EnvasadosControles1 As DBO_EnvasadosControles1) As Boolean
         BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
         Dim insertProcedure As String = "[dbo].[EnvasadosControles1Insert]"
         Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
         insertCommand.CommandType = CommandType.StoredProcedure
-        
+
         insertCommand.Parameters.AddWithValue("@EnvasadoControlID", If(dbo_EnvasadosControles1.EnvasadoControlID.HasValue, dbo_EnvasadosControles1.EnvasadoControlID, Convert.DBNull))
         insertCommand.Parameters.AddWithValue("@Roscador1", dbo_EnvasadosControles1.Roscador1)
         insertCommand.Parameters.AddWithValue("@Roscador2", dbo_EnvasadosControles1.Roscador2)
@@ -105,7 +105,7 @@ Class spEnvasadosControles1
         insertCommand.Parameters.AddWithValue("@Caja", dbo_EnvasadosControles1.Caja)
         insertCommand.Parameters.AddWithValue("@FechaModificacion", dbo_EnvasadosControles1.FechaModificacion)
         insertCommand.Parameters.AddWithValue("@UsuarioModificacion", dbo_EnvasadosControles1.UsuarioModificacion)
-        
+
         insertCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         insertCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
         Try
@@ -125,7 +125,7 @@ Class spEnvasadosControles1
 
     Public Function EnvasadosControles1Update(ByVal newDBO_EnvasadosControles1 As DBO_EnvasadosControles1) As Boolean
         BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
         Dim updateProcedure As String = "[dbo].[EnvasadosControles1Update]"
         Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
         updateCommand.CommandType = CommandType.StoredProcedure
@@ -156,7 +156,7 @@ Class spEnvasadosControles1
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdateEnvasadosControles1" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdateEnvasadosControles1" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
             connection.Close()
@@ -165,7 +165,7 @@ Class spEnvasadosControles1
 
     Public Function EnvasadosControles1Delete(ByVal EnvasadoControl1ID As Int32) As Boolean
         BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
         Dim deleteProcedure As String = "[dbo].[EnvasadosControles1Delete]"
         Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
         deleteCommand.CommandType = CommandType.StoredProcedure
