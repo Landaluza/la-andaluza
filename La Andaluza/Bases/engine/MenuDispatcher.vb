@@ -633,7 +633,7 @@ Public Class MenuDispatcher
         GUImain.añadirPestaña(frmVisitasMain)
     End Sub
   
-    Private Sub DepositosToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles DepositosToolStripMenuItem1.Click
+    Private Sub DepositosToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles DepositosToolStripMenuItem1.Click, ToolStripMenuItem915.Click, ToolStripMenuItem744.Click
         frmDepositosMain = New frmDepositosMain
         GUImain.añadirPestaña(frmDepositosMain)
     End Sub
