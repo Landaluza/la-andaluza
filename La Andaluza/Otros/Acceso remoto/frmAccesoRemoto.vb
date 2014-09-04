@@ -21,8 +21,15 @@
                 rdp.Domain = sesion.Domain
                 rdp.UserName = sesion.User
 
+                Dim adv As MSTSCLib.IMsRdpClientAdvancedSettings2 = DirectCast(rdp.AdvancedSettings, MSTSCLib.IMsRdpClientAdvancedSettings2)
+                adv.RedirectPrinters = True
+                adv.RedirectPorts = True
+                adv.RedirectDrives = True
+                adv.RdpdrLocalPrintingDocName = "docRemoto"
+                adv.BitmapPersistence = 1
+                adv.EnableAutoReconnect = True 
+
                 If sesion.Port <> "" Then
-                    Dim adv As MSTSCLib.IMsRdpClientAdvancedSettings2 = DirectCast(rdp.AdvancedSettings, MSTSCLib.IMsRdpClientAdvancedSettings2)
                     adv.RDPPort = sesion.Port
                 End If
 

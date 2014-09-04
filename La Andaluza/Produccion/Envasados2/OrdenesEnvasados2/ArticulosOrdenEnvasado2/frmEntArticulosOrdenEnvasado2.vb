@@ -71,8 +71,9 @@ Public Class frmEntArticulosOrdenEnvasado2
     Private Sub cboArticuloEnvasadoID_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cboArticuloEnvasadoID.SelectedIndexChanged
         If Not cboArticuloEnvasadoID.SelectedValue Is Nothing Then
             If Convert.ToString(cboArticuloEnvasadoID.SelectedValue) <> "System.Data.DataRowView" Then
-                dgvPicos.DataSource = dtb.Consultar("exec PaletsProducidosIncompletosByTipoFormato " & Convert.ToString(cboArticuloEnvasadoID.SelectedValue), False)
-                'dgvPicos. dataSource = dtb.Consultar("PaletsProducidosIncompletosByTipoFormato " & cboArticuloEnvasadoID.SelectedValue)
+                dtb.PrepararConsulta("PaletsProducidosIncompletosByTipoFormato @art")
+                dtb.AñadirParametroConsulta("@art", cboArticuloEnvasadoID.SelectedValue)
+                dgvPicos.DataSource = dtb.Consultar()
                 dgvPicos.Columns("TipoFormatoID").Visible = False
                 dgvPicos.FormatoColumna("SCC", BasesParaCompatibilidad.TiposColumna.Izquierda, 40, 0)
                 dgvPicos.FormatoColumna("Descripcion", BasesParaCompatibilidad.TiposColumna.Izquierda, 180, 1)

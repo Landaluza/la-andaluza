@@ -149,8 +149,11 @@ Public Class spMaterialesEnvasados2
     End Function
 
     Public Function selectProveedorMasUsado(ByVal p1 As Integer, ByVal p2 As Integer) As Integer
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Return dtb.Consultar("exec ProveedoresSelectMasUsadoPorTipoMaterial " & p1 & "," & p2, False).Rows(0).Item(0)
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.PrepararConsulta("ProveedoresSelectMasUsadoPorTipoMaterial @p1, @p2")
+        dtb.AñadirParametroConsulta("@p1", p1)
+        dtb.AñadirParametroConsulta("@p2", p2)
+        Return dtb.Consultar().Rows(0).Item(0)
     End Function
 
 End Class
