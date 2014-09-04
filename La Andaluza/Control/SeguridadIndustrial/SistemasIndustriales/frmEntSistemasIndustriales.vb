@@ -19,7 +19,6 @@ Public Class frmEntSistemasIndustriales
         ModificarBindingNavigator()
 
         If Me.Text.Substring(0, 3) = "Ver" Then
-            'GeneralBindingSource. dataSource = dtb.Consultar("SistemasIndustrialesSelectAll")
             GeneralBindingSource.Position = m_Pos
         End If
 

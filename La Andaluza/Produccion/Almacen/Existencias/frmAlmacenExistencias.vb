@@ -242,7 +242,6 @@ Public Class frmAlmacenExistencias
                 txtSumPalets.Text = Format(TotalPalets, "##,###")
 
                 With dgvTotales
-                    '. dataSource = dtb.Consultar("PaletsProducidosByArticulo3 ") 'Solo se utiliza en este frm
                     .DataSource = dt3
 
                     .Columns("sccPicos").Visible = False
@@ -282,7 +281,6 @@ Public Class frmAlmacenExistencias
                 Dim filterManager2 As DgvFilterPopup.DgvFilterManager
 
                 With dgvPalet
-                    '. dataSource = dtb.Consultar("PaletsProducidosByEnAlmacen2 ")
                     .DataSource = dt
                     .FormatoColumna("SCC", BasesParaCompatibilidad.TiposColumna.Derecha, 40)
                     .FormatoColumna("Articulo", BasesParaCompatibilidad.TiposColumna.Izquierda, True)
@@ -320,9 +318,7 @@ Public Class frmAlmacenExistencias
                 Dim filterManager As DgvFilterPopup.DgvFilterManager
 
                 With dgvLotes
-                    '. dataSource = dtb.Consultar("PaletsProducidosByLote ") 'Solo se utiliza en este frm
-
-                    .DataSource = dt2 'DataTableFill("PaletsProducidosByLote ") 'Solo se utiliza en este frm
+                    .DataSource = dt2
                     .Columns("CodigoQS").Visible = False
                     .FormatoColumna("Descripcion", "Articulo", BasesParaCompatibilidad.TiposColumna.Izquierda, True, 1)
                     .FormatoColumna("Cajas", "Cajas", BasesParaCompatibilidad.TiposColumna.Miles, , 2)

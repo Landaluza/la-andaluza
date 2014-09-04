@@ -156,7 +156,6 @@
                     dtb.PrepararConsulta("SelectSCC @scc")
                     dtb.AñadirParametroConsulta("@scc", Me.txtSCC.Text)
                     Tabla = dtb.Consultar
-                    'Tabla = dtb.Consultar("exec SelectSCC " & Me.txtSCC.Text, False)
 
 
                     If Tabla.Rows.Count > 0 Then
@@ -210,7 +209,6 @@
                                     dtb.PrepararConsulta("SelectSCClotes @scc")
                                     dtb.AñadirParametroConsulta("@scc", Me.txtSCC.Text)
                                     Dim dt As DataTable = dtb.Consultar()
-                                    'Dim dt As DataTable = dtb.consultar("SelectSCClotes", Me.txtSCC.Text)
                                     For Each row As DataRow In dt.Rows
                                         lotes = lotes & calendar.DevuelveFechaJuliana(row.Item(0)) & ", "
                                     Next

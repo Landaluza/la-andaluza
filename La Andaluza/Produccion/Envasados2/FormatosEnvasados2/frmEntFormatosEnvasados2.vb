@@ -198,7 +198,9 @@ Public Class frmEntFormatosEnvasados2
         Dim m_Descripcion As String = ""
         Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
         Try
-            m_Tabla = dtb.consultar("[TiposFormatosSelectDgvByTipoFormatoEnvasadoID]", m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID)
+            dtb.PrepararConsulta("TiposFormatosSelectDgvByTipoFormatoEnvasadoID @id")
+            dtb.AñadirParametroConsulta(" @id", m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID)
+            m_Tabla = dtb.Consultar()
             m_TipoProductoID = m_Tabla.Rows(0).Item("TipoProductoID")
             m_Descripcion = m_Tabla.Rows(0).Item("Descripcion")
         Catch ex As Exception

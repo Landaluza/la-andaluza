@@ -148,7 +148,6 @@ Class spCambiosFormatosEnvasados2
         dtb.AñadirParametroConsulta("@linea", linea)
         dtb.AñadirParametroConsulta("@formato", formato)
         Return dtb.Consultar().Rows(0).Item(0)
-        'Return dtb.Consultar("exec CambiosFormatosSelectUltimaHora " & linea & "," & formato, False).Rows(0).Item(0)
     End Function
 
     Function recuperar_ultimo_formato_por_linea_de_formatoEnvasado(ByVal linea As Integer, ByVal formato As Integer) As Integer
@@ -157,7 +156,6 @@ Class spCambiosFormatosEnvasados2
         dtb.AñadirParametroConsulta("@linea", linea)
         dtb.AñadirParametroConsulta("@formato", formato)
         Return dtb.Consultar().Rows(0).Item(0)
-        '        Return dtb.Consultar("exec CambiosFormatosSelectUltimoFormato " & linea & "," & formato, False).Rows(0).Item(0)
     End Function
 
     Function recuperar_personal_habitual_por_linea(ByVal linea As Integer) As Integer
@@ -165,7 +163,6 @@ Class spCambiosFormatosEnvasados2
         dtb.PrepararConsulta("CambiosFormatosSelecPersonalHabitual @linea")
         dtb.AñadirParametroConsulta("@linea", linea)
         Return dtb.Consultar().Rows(0).Item(0)
-        '        Return dtb.Consultar("exec CambiosFormatosSelecPersonalHabitual " & linea, False).Rows(0).Item(0)
     End Function
 
 

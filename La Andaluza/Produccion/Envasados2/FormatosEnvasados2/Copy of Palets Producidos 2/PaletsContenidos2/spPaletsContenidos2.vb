@@ -146,18 +146,23 @@ Class spPaletsContenidos2
     End Function
 
     Public Function PaletsContenidosPorPaletsProducidos(ByVal PaletProducidoID As Integer) As DataTable
-        Return dtb.Consultar("PaletsContenidos2ByPaletProducidoID " & PaletProducidoID)
+        dtb.PrepararConsulta("PaletsContenidos2ByPaletProducidoID @id")
+        dtb.AñadirParametroConsulta("@id", PaletProducidoID)
+        Return dtb.Consultar()
     End Function
 
 
     Public Function PaletsContenidosPorPaletsProducidos(ByVal PaletProducidoID As Integer, ByRef dtb as BasesParaCompatibilidad.Database) As DataTable
-
-        Return dtb.Consultar("exec PaletsContenidos2ByPaletProducidoID " & PaletProducidoID, False)
+        dtb.PrepararConsulta("PaletsContenidos2ByPaletProducidoID @id")
+        dtb.AñadirParametroConsulta("@id", PaletProducidoID)
+        Return dtb.Consultar()
     End Function
 
     Public Function EliminarPaletContenido(ByVal PaletContenidoID As Integer) As Boolean
         Try
-            Dim tabla As DataTable = dtb.Consultar("PaletsContenidos2eliminarContenidoPalet " & Convert.ToString(PaletContenidoID))
+            dtb.PrepararConsulta("PaletsContenidos2eliminarContenidoPalet @id")
+            dtb.AñadirParametroConsulta("@id", PaletContenidoID)
+            Dim tabla As DataTable = dtb.Consultar()
 
             If Not Convert.ToBoolean(tabla.Rows(0).Item(0)) Then
                 MessageBox.Show("no se puede eliminar, se encuentra en uso", String.Empty, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)

@@ -184,7 +184,6 @@ Public Class frmEntPaletsProducidos2
             dtb.PrepararConsulta("PaletsProducidos3SelectPaletsIncompletos @id")
             dtb.AñadirParametroConsulta("@id", dbo.TipoFormatoEnvasadoID)
             m_Tabla = dtb.Consultar()
-            'm_Tabla = dtb.Consultar("exec PaletsProducidos3SelectPaletsIncompletos " & dbo.TipoFormatoEnvasadoID)
 
             If m_Tabla.Rows.Count > 0 Then
                 grbIncompletos.Visible = True
@@ -235,7 +234,6 @@ Public Class frmEntPaletsProducidos2
             dtb.PrepararConsulta("PaletsProducidos2SelectPaletsIncompletosMAM @scc")
             dtb.AñadirParametroConsulta("@scc", SSCC)
             dtr = dtb.Consultar()
-            'dtr = dtb.Consultar("exec PaletsProducidos2SelectPaletsIncompletosMAM " & SSCC)
             If Not dtr Is Nothing Then
                 With dgvMovimientos
                     SuspendLayout()

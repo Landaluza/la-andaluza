@@ -23,7 +23,6 @@ Public Class frmContenidosDetallesMonodosis2
         dtb.AñadirParametroConsulta("@tipo", tipoFormato)
         Dim dt As DataTable = dtb.Consultar()
 
-        'Dim dt As DataTable = dtb.Consultar("exec PaletsContenidosSelectMonodosis " & tipoFormato, False)
         Me.dgvGrilla.DataSource = dt
 
         Me.dgvGrilla.Columns("paletproducidoID").Visible = False

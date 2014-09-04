@@ -130,7 +130,6 @@ Public Class frmPaletsProducidos2
                 dtb.PrepararConsulta("PaletsProducidos3SelectByFormatoEnvasadoID @for")
                 dtb.AñadirParametroConsulta("@for", Me.formatoId)
                 GeneralBindingSource.DataSource = dtb.Consultar()
-                '                GeneralBindingSource.DataSource = dtb.Consultar("PaletsProducidos3SelectByFormatoEnvasadoID " & Me.formatoId)
                 System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.Default
             ElseIf response = DialogResult.No And multiopcion Then
                 System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
@@ -139,7 +138,6 @@ Public Class frmPaletsProducidos2
                 dtb.PrepararConsulta("PaletsProducidos3SelectByFormatoEnvasadoID @for")
                 dtb.AñadirParametroConsulta("@for", Me.formatoId)
                 GeneralBindingSource.DataSource = dtb.Consultar()
-                'GeneralBindingSource.DataSource = dtb.Consultar("PaletsProducidos3SelectByFormatoEnvasadoID " & Me.formatoId)
                 System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.Default
             End If
         Catch ex As Exception
@@ -216,14 +214,12 @@ Public Class frmPaletsProducidos2
             dtb.PrepararConsulta("PaletsProducidos6SelectByFormatoEnvasadoID @for")
             dtb.AñadirParametroConsulta("@for", Me.formatoId)
             dataSource = dtb.Consultar()
-            'dataSource = dtb.Consultar("PaletsProducidos6SelectByFormatoEnvasadoID " & Me.formatoId)
         Else
 
             If Me.cbEstado.Checked Then
                 dtb.PrepararConsulta("PaletsProducidos5SelectDgvByEstado @estado")
                 dtb.AñadirParametroConsulta("@estado", Me.cboEstado.SelectedValue)
                 dataSource = dtb.Consultar()
-                'dataSource = dtb.Consultar("PaletsProducidos5SelectDgvByEstado " & Me.cboEstado.SelectedValue)
             Else
                 dataSource = dtb.Consultar(spSelectDgv)
             End If

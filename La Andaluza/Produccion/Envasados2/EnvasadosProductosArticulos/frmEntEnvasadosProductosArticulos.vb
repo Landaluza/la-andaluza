@@ -227,7 +227,6 @@ Public Class frmEntEnvasadosProductosArticulos
             dtb.PrepararConsulta("CompuestoPorSelectByLoteFinal @lote")
             dtb.AñadirParametroConsulta("@lote", m_LoteID)
             m_CantidadInicial = dtb.Consultar().Rows(0).Item(0)
-            'm_CantidadInicial = dtb.Consultar("exec CompuestoPorSelectByLoteFinal " & m_LoteID).Rows(0).Item(0)
 
             m_CantidadEnvasadaAnterior = dgvLotes.CurrentRow.Cells("Usada").Value
 

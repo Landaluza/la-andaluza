@@ -282,14 +282,12 @@ Class spLotes1
         dtb.AñadirParametroConsulta("@pro", m_Producto)
         dtb.AñadirParametroConsulta("@otro", 0)
         Return dtb.Consultar().Rows.Count
-        '        Return dtb.Consultar("LotesByTipoProducto " & m_Producto & "," & 0).Rows.Count
     End Function
 
     Public Function DgvFillLotesTodosPorTipoProducto(ByVal m_Producto As Integer) As System.Data.DataTable
         dtb.PrepararConsulta("LotesAllByTipoProducto @pro")
         dtb.AñadirParametroConsulta("@pro", m_Producto)
         Return dtb.Consultar()
-        'Return dtb.Consultar("LotesAllByTipoProducto " & m_Producto)
     End Function
 
     Public Function DgvFillLotesTerminadosPorTipoProducto(ByVal m_Producto As Integer) As System.Data.DataTable
@@ -297,7 +295,6 @@ Class spLotes1
         dtb.AñadirParametroConsulta("@pro", m_Producto)
         dtb.AñadirParametroConsulta("@otro", 0)
         Return dtb.Consultar
-        ' Return dtb.Consultar("LotesByTipoProducto " & m_Producto & "," & 0)
     End Function
 
     Public Function DgvFillLotesTerminadosPorTipoProductoYLote(ByVal m_Producto As Integer, ByVal LoteId As Integer) As System.Data.DataTable
@@ -305,14 +302,12 @@ Class spLotes1
         dtb.AñadirParametroConsulta("@pro", m_Producto)
         dtb.AñadirParametroConsulta("@lote", LoteId)
         Return dtb.Consultar()
-        'Return dtb.Consultar("LotesByTipoProducto " & m_Producto & "," & LoteId)
     End Function
 
     Public Function calcularDensidad(ByVal m_LoteID As Integer) As Double
         dtb.PrepararConsulta("LotesSelectDensidadByLoteID @id")
         dtb.AñadirParametroConsulta("@id", m_LoteID)
         Return dtb.Consultar().Rows(0).Item(0)
-        '        Return dtb.Consultar("exec LotesSelectDensidadByLoteID " & m_LoteID).Rows(0).Item(0)
     End Function
 
     Function devolverproximocodigoLote(ByVal codigoSinLetra As String, Optional ByRef trans As SqlClient.SqlTransaction = Nothing) As String

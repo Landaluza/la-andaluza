@@ -356,7 +356,11 @@ Class spPaletsProducidos2
     Public Sub CompletarPaletContenido(ByRef PaletProducido As DBO_PaletsProducidos2)
         Try
             Dim p1 As String = PaletProducido.FormatoID.ToString
-            Dim tabla As DataTable = dtb.Consultar("PaletsProducidos2CompletarContenidoPalet " & p1 & ",'" & Convert.ToString(scc) & "'")
+            dtb.PrepararConsulta("PaletsProducidos2CompletarContenidoPalet @p1, @p2")
+            dtb.AñadirParametroConsulta("@p1", p1)
+            dtb.AñadirParametroConsulta("@p2", scc)
+
+            Dim tabla As DataTable = dtb.Consultar()
 
             If Convert.ToString(tabla.Rows(0).Item("CantidadCajas")) = String.Empty Then
                 PaletProducido.NroCajasCompletar = 0
@@ -481,8 +485,10 @@ Class spPaletsProducidos2
     End Sub
 
     Public Function estaEtiquetado(ByVal id As Integer) As Boolean
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Dim dt As DataTable = dtb.Consultar("select isnull(contadorImpresiones, 0) from paletsproducidos where paletproducidoid = " & id, False)
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.PrepararConsulta("select isnull(contadorImpresiones, 0) from paletsproducidos where paletproducidoid = @id")
+        dtb.AñadirParametroConsulta("@id", id)
+        Dim dt As DataTable = dtb.Consultar()
         If dt Is Nothing Then Return False
         If dt.Rows.Count = 0 Then Return False
         If dt.Rows(0) Is Nothing Then Return False
