@@ -40,38 +40,6 @@ Public Class spEnvasadosControlesUlma
         Return DBO_EnvasadosControlesUlma
     End Function
 
-    Public Function Select_Record(ByVal EnvasadoControlUlmaID As Int32) As DBO_EnvasadosControlesUlma
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim DBO_EnvasadosControlesUlma As New DBO_EnvasadosControlesUlma
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
-        Dim selectProcedure As String = "[dbo].[EnvasadosControlesUlmaSelect]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
-        selectCommand.CommandType = CommandType.StoredProcedure
-        selectCommand.Parameters.AddWithValue("@EnvasadoControlUlmaID", EnvasadoControlUlmaID)
-        Try
-            Dim reader As System.Data.SqlClient.SqlDataReader = selectCommand.ExecuteReader(CommandBehavior.SingleRow)
-            If reader.Read Then
-
-                DBO_EnvasadosControlesUlma.EnvasadoControlUlmaID = If(reader("EnvasadoControlUlmaID") Is Convert.DBNull, 0, Convert.ToInt32(reader("EnvasadoControlUlmaID")))
-                DBO_EnvasadosControlesUlma.EnvasadoControlID = If(reader("EnvasadoControlID") Is Convert.DBNull, 0, Convert.ToInt32(reader("EnvasadoControlID")))
-                DBO_EnvasadosControlesUlma.SoldaduraBolsa = If(reader("SoldaduraBolsa") Is Convert.DBNull, False, Convert.ToBoolean(reader("SoldaduraBolsa")))
-                DBO_EnvasadosControlesUlma.SuciedadBolsa = If(reader("SuciedadBolsa") Is Convert.DBNull, False, Convert.ToBoolean(reader("SuciedadBolsa")))
-                DBO_EnvasadosControlesUlma.CentradoBolsa = If(reader("CentradoBolsa") Is Convert.DBNull, False, Convert.ToBoolean(reader("CentradoBolsa")))
-                DBO_EnvasadosControlesUlma.DiseñoBobina = If(reader("DiseñoBobina") Is Convert.DBNull, False, Convert.ToBoolean(reader("DiseñoBobina")))
-                DBO_EnvasadosControlesUlma.FechaModificacion = If(reader("FechaModificacion") Is Convert.DBNull, System.DateTime.Now.Date, CDate(reader("FechaModificacion")))
-                DBO_EnvasadosControlesUlma.UsuarioModificacion = If(reader("UsuarioModificacion") Is Convert.DBNull, 0, Convert.ToInt32(reader("UsuarioModificacion")))
-
-            Else
-                DBO_EnvasadosControlesUlma = Nothing
-            End If
-            reader.Close()
-        Catch ex As System.Data.SqlClient.SqlException
-            Throw
-        Finally
-            connection.Close()
-        End Try
-        Return DBO_EnvasadosControlesUlma
-    End Function
 
     Public Function EnvasadosControlesUlmaInsert(ByVal dbo_EnvasadosControlesUlma As DBO_EnvasadosControlesUlma) As Boolean
         BasesParaCompatibilidad.BD.Conectar()
@@ -134,32 +102,6 @@ Public Class spEnvasadosControlesUlma
         Catch ex As System.Data.SqlClient.SqlException
             MessageBox.Show("Error en UpdateEnvasadosControlesUlma" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
             Return False
-        Finally
-            connection.Close()
-        End Try
-    End Function
-
-    Public Function EnvasadosControlesUlmaDelete(ByVal EnvasadoControlUlmaID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
-        Dim deleteProcedure As String = "[dbo].[EnvasadosControlesUlmaDelete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
-        deleteCommand.CommandType = CommandType.StoredProcedure
-        '<Tag=[Four][Start]> -- please do not remove this line
-        deleteCommand.Parameters.AddWithValue("@OldEnvasadoControlUlmaID", EnvasadoControlUlmaID)
-        '<Tag=[Four][End]> -- please do not remove this line
-        deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
-        deleteCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
-        Try
-            deleteCommand.ExecuteNonQuery()
-            Dim count As Integer = System.Convert.ToInt32(deleteCommand.Parameters("@ReturnValue").Value)
-            If count > 0 Then
-                Return True
-            Else
-                Return False
-            End If
-        Catch ex As System.Data.SqlClient.SqlException
-            Throw
         Finally
             connection.Close()
         End Try

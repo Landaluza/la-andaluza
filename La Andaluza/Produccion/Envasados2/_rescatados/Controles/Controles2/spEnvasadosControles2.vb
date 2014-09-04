@@ -49,47 +49,6 @@ Class spEnvasadosControles2
         Return DBO_EnvasadosControles2
     End Function
 
-    Public Function Select_Record(ByVal EnvasadoControl2ID As Int32) As DBO_EnvasadosControles2
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim DBO_EnvasadosControles2 As New DBO_EnvasadosControles2
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
-        Dim selectProcedure As String = "[dbo].[EnvasadosControles2Select]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
-        selectCommand.CommandType = CommandType.StoredProcedure
-        selectCommand.Parameters.AddWithValue("@EnvasadoControl2ID", EnvasadoControl2ID)
-        Try
-            Dim reader As System.Data.SqlClient.SqlDataReader = selectCommand.ExecuteReader(CommandBehavior.SingleRow)
-            If reader.Read Then
-
-                DBO_EnvasadosControles2.EnvasadoControl2ID = If(reader("EnvasadoControl2ID") Is Convert.DBNull, 0, Convert.ToInt32(reader("EnvasadoControl2ID")))
-                DBO_EnvasadosControles2.EnvasadoControlID = If(reader("EnvasadoControlID") Is Convert.DBNull, 0, Convert.ToInt32(reader("EnvasadoControlID")))
-                DBO_EnvasadosControles2.Boquilla1 = If(reader("Boquilla1") Is Convert.DBNull, False, Convert.ToBoolean(reader("Boquilla1")))
-                DBO_EnvasadosControles2.Boquilla2 = If(reader("Boquilla2") Is Convert.DBNull, False, Convert.ToBoolean(reader("Boquilla2")))
-                DBO_EnvasadosControles2.Boquilla3 = If(reader("Boquilla3") Is Convert.DBNull, False, Convert.ToBoolean(reader("Boquilla3")))
-                DBO_EnvasadosControles2.Boquilla4 = If(reader("Boquilla4") Is Convert.DBNull, False, Convert.ToBoolean(reader("Boquilla4")))
-                DBO_EnvasadosControles2.Boquilla5 = If(reader("Boquilla5") Is Convert.DBNull, False, Convert.ToBoolean(reader("Boquilla5")))
-                DBO_EnvasadosControles2.Boquilla6 = If(reader("Boquilla6") Is Convert.DBNull, False, Convert.ToBoolean(reader("Boquilla6")))
-                DBO_EnvasadosControles2.Etiquetado = If(reader("Etiquetado") Is Convert.DBNull, False, Convert.ToBoolean(reader("Etiquetado")))
-                DBO_EnvasadosControles2.Taponado = If(reader("Taponado") Is Convert.DBNull, False, Convert.ToBoolean(reader("Taponado")))
-                DBO_EnvasadosControles2.Bote = If(reader("Bote") Is Convert.DBNull, False, Convert.ToBoolean(reader("Bote")))
-                DBO_EnvasadosControles2.Etiqueta = If(reader("Etiqueta") Is Convert.DBNull, False, Convert.ToBoolean(reader("Etiqueta")))
-                DBO_EnvasadosControles2.Tapon = If(reader("Tapon") Is Convert.DBNull, False, Convert.ToBoolean(reader("Tapon")))
-                DBO_EnvasadosControles2.Retractil = If(reader("Retractil") Is Convert.DBNull, False, Convert.ToBoolean(reader("Retractil")))
-                DBO_EnvasadosControles2.Caja = If(reader("Caja") Is Convert.DBNull, False, Convert.ToBoolean(reader("Caja")))
-                DBO_EnvasadosControles2.FechaModificacion = If(reader("FechaModificacion") Is Convert.DBNull, System.DateTime.Now.Date, CDate(reader("FechaModificacion")))
-                DBO_EnvasadosControles2.UsuarioModificacion = If(reader("UsuarioModificacion") Is Convert.DBNull, 0, Convert.ToInt32(reader("UsuarioModificacion")))
-
-            Else
-                DBO_EnvasadosControles2 = Nothing
-            End If
-            reader.Close()
-        Catch ex As System.Data.SqlClient.SqlException
-            Throw
-        Finally
-            connection.Close()
-        End Try
-        Return DBO_EnvasadosControles2
-    End Function
 
     Public Function EnvasadosControles2Insert(ByVal dbo_EnvasadosControles2 As DBO_EnvasadosControles2) As Boolean
         BasesParaCompatibilidad.BD.Conectar()
@@ -170,32 +129,6 @@ Class spEnvasadosControles2
         Catch ex As System.Data.SqlClient.SqlException
             MessageBox.Show("Error en UpdateEnvasadosControles2" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
             Return False
-        Finally
-            connection.Close()
-        End Try
-    End Function
-
-    Public Function EnvasadosControles2Delete(ByVal EnvasadoControl2ID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
-        Dim deleteProcedure As String = "[dbo].[EnvasadosControles2Delete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
-        deleteCommand.CommandType = CommandType.StoredProcedure
-        '<Tag=[Four][Start]> -- please do not remove this line
-        deleteCommand.Parameters.AddWithValue("@OldEnvasadoControl2ID", EnvasadoControl2ID)
-        '<Tag=[Four][End]> -- please do not remove this line
-        deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
-        deleteCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
-        Try
-            deleteCommand.ExecuteNonQuery()
-            Dim count As Integer = System.Convert.ToInt32(deleteCommand.Parameters("@ReturnValue").Value)
-            If count > 0 Then
-                Return True
-            Else
-                Return False
-            End If
-        Catch ex As System.Data.SqlClient.SqlException
-            Throw
         Finally
             connection.Close()
         End Try

@@ -49,7 +49,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>358</ApplicationRevision>
+    <ApplicationRevision>359</ApplicationRevision>
     <ApplicationVersion>2014.7.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -2248,6 +2248,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles7\spEnvasadosControles7.vb" />
+    <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles\frmEnvasadosControles.Designer.vb">
+      <DependentUpon>frmEnvasadosControles.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles\frmEnvasadosControles.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Produccion\Envasados3\ArticulosTerciarios\frmPaletsProducidos3.Designer.vb">
       <DependentUpon>frmPaletsProducidos3.vb</DependentUpon>
     </Compile>
@@ -2789,24 +2795,12 @@
     <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles1\frmEntEnvasadosControles1.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles1\frmEnvasadosControles1.Designer.vb">
-      <DependentUpon>frmEnvasadosControles1.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles1\frmEnvasadosControles1.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles1\spEnvasadosControles1.vb" />
     <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles2\DBO_EnvasadosControles2.vb" />
     <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles2\frmEntEnvasadosControles2.Designer.vb">
       <DependentUpon>frmEntEnvasadosControles2.vb</DependentUpon>
     </Compile>
     <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles2\frmEntEnvasadosControles2.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles2\frmEnvasadosControles2.Designer.vb">
-      <DependentUpon>frmEnvasadosControles2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles2\frmEnvasadosControles2.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles2\spEnvasadosControles2.vb" />
@@ -2817,12 +2811,6 @@
     <Compile Include="Produccion\Envasados2\_rescatados\Controles\ControlesImar\frmEntEnvasadosControlesImar.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\ControlesImar\frmEnvasadosControlesImar.Designer.vb">
-      <DependentUpon>frmEnvasadosControlesImar.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\ControlesImar\frmEnvasadosControlesImar.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Produccion\Envasados2\_rescatados\Controles\ControlesImar\spEnvasadosControlesImar.vb" />
     <Compile Include="Produccion\Envasados2\_rescatados\Controles\ControlesUlma\DBO_EnvasadosControlesUlma.vb" />
     <Compile Include="Produccion\Envasados2\_rescatados\Controles\ControlesUlma\frmEntEnvasadosControlesUlma.Designer.vb">
@@ -2831,24 +2819,12 @@
     <Compile Include="Produccion\Envasados2\_rescatados\Controles\ControlesUlma\frmEntEnvasadosControlesUlma.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\ControlesUlma\frmEnvasadosControlesUlma.Designer.vb">
-      <DependentUpon>frmEnvasadosControlesUlma.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\ControlesUlma\frmEnvasadosControlesUlma.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Produccion\Envasados2\_rescatados\Controles\ControlesUlma\spEnvasadosControlesUlma.vb" />
     <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles\DBO_EnvasadosControles.vb" />
     <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles\frmEntEnvasadosControles.Designer.vb">
       <DependentUpon>frmEntEnvasadosControles.vb</DependentUpon>
     </Compile>
     <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles\frmEntEnvasadosControles.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles\frmEnvasadosControles.Designer.vb">
-      <DependentUpon>frmEnvasadosControles.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles\frmEnvasadosControles.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles\spEnvasadosControles.vb" />
@@ -5439,6 +5415,9 @@
     <EmbeddedResource Include="Produccion\Envasados2\_rescatados\Controles\Controles7\frmEntEnvasadosControles7.resx">
       <DependentUpon>frmEntEnvasadosControles7.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Produccion\Envasados2\_rescatados\Controles\Controles\frmEnvasadosControles.resx">
+      <DependentUpon>frmEnvasadosControles.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Produccion\Envasados3\ArticulosTerciarios\frmPaletsProducidos3.resx">
       <DependentUpon>frmPaletsProducidos3.vb</DependentUpon>
     </EmbeddedResource>
@@ -5667,32 +5646,17 @@
     <EmbeddedResource Include="Produccion\Envasados2\_rescatados\Controles\Controles1\frmEntEnvasadosControles1.resx">
       <DependentUpon>frmEntEnvasadosControles1.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\_rescatados\Controles\Controles1\frmEnvasadosControles1.resx">
-      <DependentUpon>frmEnvasadosControles1.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Produccion\Envasados2\_rescatados\Controles\Controles2\frmEntEnvasadosControles2.resx">
       <DependentUpon>frmEntEnvasadosControles2.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\_rescatados\Controles\Controles2\frmEnvasadosControles2.resx">
-      <DependentUpon>frmEnvasadosControles2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Produccion\Envasados2\_rescatados\Controles\ControlesImar\frmEntEnvasadosControlesImar.resx">
       <DependentUpon>frmEntEnvasadosControlesImar.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\_rescatados\Controles\ControlesImar\frmEnvasadosControlesImar.resx">
-      <DependentUpon>frmEnvasadosControlesImar.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Produccion\Envasados2\_rescatados\Controles\ControlesUlma\frmEntEnvasadosControlesUlma.resx">
       <DependentUpon>frmEntEnvasadosControlesUlma.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\_rescatados\Controles\ControlesUlma\frmEnvasadosControlesUlma.resx">
-      <DependentUpon>frmEnvasadosControlesUlma.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Produccion\Envasados2\_rescatados\Controles\Controles\frmEntEnvasadosControles.resx">
       <DependentUpon>frmEntEnvasadosControles.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\_rescatados\Controles\Controles\frmEnvasadosControles.resx">
-      <DependentUpon>frmEnvasadosControles.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Produccion\Envasados2\Palets\PaletsMovimiento\Informe movimientos\destruccion\frmListadoDestruccion.resx">
       <DependentUpon>frmListadoDestruccion.vb</DependentUpon>

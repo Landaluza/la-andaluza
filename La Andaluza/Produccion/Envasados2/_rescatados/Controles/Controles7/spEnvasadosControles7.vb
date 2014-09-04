@@ -128,32 +128,6 @@ Class spEnvasadosControles7
         End Try
     End Function
 
-    'Public Function EnvasadosControles1Delete(ByVal EnvasadoControl1ID As Int32) As Boolean
-    '    BasesParaCompatibilidad.BD.Conectar()
-    '    Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
-    '    Dim deleteProcedure As String = "[dbo].[EnvasadosControles7Delete]"
-    '    Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
-    '    deleteCommand.CommandType = CommandType.StoredProcedure
-    '    '<Tag=[Four][Start]> -- please do not remove this line
-    '    deleteCommand.Parameters.AddWithValue("@OldEnvasadoControl1ID", EnvasadoControl1ID)
-    '    '<Tag=[Four][End]> -- please do not remove this line
-    '    deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
-    '    deleteCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
-    '    Try
-    '        deleteCommand.ExecuteNonQuery()
-    '        Dim count As Integer = System.Convert.ToInt32(deleteCommand.Parameters("@ReturnValue").Value)
-    '        If count > 0 Then
-    '            Return True
-    '        Else
-    '            Return False
-    '        End If
-    '    Catch ex As System.Data.SqlClient.SqlException
-    '        Throw
-    '    Finally
-    '        connection.Close()
-    '    End Try
-    'End Function
-
     Public Sub GrabarEnvasadosControles1(ByVal dbo_EnvasadosControles1 As DBO_EnvasadosControles7)
         dbo_EnvasadosControles1.FechaModificacion = System.DateTime.Now.Date
         dbo_EnvasadosControles1.UsuarioModificacion = BasesParaCompatibilidad.Config.User

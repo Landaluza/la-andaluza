@@ -5,12 +5,10 @@ Public Class spInformePedidos
     Public Function SelectInformePedidos(ByVal ConNulos As Boolean) As DataTable
         BasesParaCompatibilidad.BD.Conectar()
         Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
-        Dim selectProcedure As String
 
         'selectProcedure = "[dbo].[InformePedidosDaniel]"
-        selectProcedure = "[dbo].[InformePedidosMAM2]"
 
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As New System.Data.SqlClient.SqlCommand("[dbo].[InformePedidosMAM2]", connection)
         Dim dt As New DataTable
         selectCommand.Parameters.AddWithValue("@ConCeros", ConNulos)
         selectCommand.CommandType = CommandType.StoredProcedure
@@ -90,8 +88,7 @@ Public Class spInformePedidos
     Public Function SelectInformePedidos_ClienteEnFecha() As DataTable
         BasesParaCompatibilidad.BD.Conectar()
         Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
-        Dim selectProcedure As String = "[dbo].[InformePedidos_ClienteFecha]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As New System.Data.SqlClient.SqlCommand("[dbo].[InformePedidos_ClienteFecha]", connection)
         Dim dt As New DataTable
         selectCommand.CommandType = CommandType.StoredProcedure
         Try
