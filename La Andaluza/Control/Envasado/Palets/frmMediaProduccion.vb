@@ -47,7 +47,10 @@ Public Class frmMediaProduccion
 
     Private Sub cargar_lineas()
         Try
-            Me.envasado = dtb.Consultar("select envasadoid from envasados where convert(varchar(10), fecha, 103) ='" & Me.dtpEnvasado.Value.ToShortDateString & "'", False).Rows(0).Item(0)
+            dtb.PrepararConsulta("select envasadoid from envasados where fecha = @fecha")
+            dtb.AñadirParametroConsulta("@fecha", Me.dtpEnvasado.Value.ToShortDateString)
+            Me.envasado = dtb.Consultar().Rows(0).Item(0)
+            '            Me.envasado = dtb.Consultar("select envasadoid from envasados where convert(varchar(10), fecha, 103) ='" & Me.dtpEnvasado.Value.ToShortDateString & "'", False).Rows(0).Item(0)
             If Not Me.cboLinea.Enabled Then Me.cboLinea.Enabled = True
         Catch ex As Exception
             Me.cboLinea.Enabled = False
@@ -59,8 +62,11 @@ Public Class frmMediaProduccion
             Me.linea = cboLinea.SelectedValue
 
             If Me.envasado <> Nothing And linea <> Nothing Then
-                'Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-                Me.cboArticulo.mam_DataSource("select formatoEnvasadoID, articulo descripcion from formatosEnvasados, tiposformatosLineas, articulosenvasadoshistorico where formatosEnvasados.tipoformatoLineaid = tiposformatosLineas.tipoformatoLineaid and formatosEnvasados.tipoformatoEnvasadoid = tipoformato and lineaEnvasadoid = " & Me.linea & " and envasadoid = " & Me.envasado, False)
+                dtb.PrepararConsulta("select formatoEnvasadoID, articulo descripcion from formatosEnvasados, tiposformatosLineas, articulosenvasadoshistorico where formatosEnvasados.tipoformatoLineaid = tiposformatosLineas.tipoformatoLineaid and formatosEnvasados.tipoformatoEnvasadoid = tipoformato and lineaEnvasadoid = @linea and envasadoid = @env")
+                dtb.AñadirParametroConsulta("@linea", Me.linea)
+                dtb.AñadirParametroConsulta("@env", Me.envasado)
+
+                Me.cboArticulo.mam_DataSource(dtb.Consultar, False)
             End If
         End If
     End Sub

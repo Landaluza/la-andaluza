@@ -13,7 +13,6 @@
                 dtb.PrepararConsulta("select codigoLote from lotes where loteid = @id")
                 dtb.AñadirParametroConsulta("@id", loteid)
                 web.send_GET("Lote aprobado, " & dtb.Consultar().Rows(0).Item(0), web.recuperar_id_tablet(17, dtb))
-                ' web.send_GET("Lote aprobado, " & dtb.Consultar("select codigoLote from lotes where loteid =" & loteid, False).Rows(0).Item(0), web.recuperar_id_tablet(17, dtb))
                 Return True
             End If
             Return False
@@ -30,7 +29,6 @@
                 dtb.PrepararConsulta("select codigoLote from lotes where loteid = @id")
                 dtb.AñadirParametroConsulta("@id", loteid)
                 web.send_GET("Lote NO aprobado, " & dtb.Consultar().Rows(0).Item(0), web.recuperar_id_tablet(17, dtb))
-                'web.send_GET("Lote NO aprobado, " & dtb.Consultar("select codigoLote from lotes where loteid =" & loteid, False).Rows(0).Item(0), web.recuperar_id_tablet(17, dtb))
                 Return True
             End If
             Return False
@@ -46,7 +44,6 @@
                 dtb.PrepararConsulta("select codigoLote from lotes where loteid = @id")
                 dtb.AñadirParametroConsulta("@id", loteid)
                 web.send_GET("Repetir muestra del lote " & dtb.Consultar().Rows(0).Item(0), web.recuperar_id_tablet(17, dtb))
-                'web.send_GET("Repetir muestra del lote " & dtb.Consultar("select codigoLote from lotes where loteid =" & loteid, False).Rows(0).Item(0), web.recuperar_id_tablet(17, dtb))
                 Return True
             End If
             Return False
@@ -57,8 +54,6 @@
 
     Public Function procede_de_elaboracion(ByVal loteid As Integer) As Boolean
         Try
-            'Dim query As String = "select count(*) from elaboraciones where isnull(revisado,0)<>1 and (isnull(estado,0) = 1 or isnull(estado,0) = 4) and id_lote =" & loteid
-            'Dim dt As DataTable = dtb.Consultar(query, False)
             dtb.PrepararConsulta("select count(*) from elaboraciones where isnull(revisado,0)<>1 and (isnull(estado,0) = 1 or isnull(estado,0) = 4) and id_lote = @id")
             dtb.AñadirParametroConsulta("@id", loteid)
             Dim dt As DataTable = dtb.Consultar()

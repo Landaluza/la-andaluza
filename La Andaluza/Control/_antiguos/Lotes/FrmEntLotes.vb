@@ -211,7 +211,6 @@ Public Class FrmEntLotes
         If (Me.Text.Substring(0, 8) <> "Insertar") Then
             ctlLot.mostrarTodosLotesPorTipoLoteoProducto(TipoLoteID, TipoProductoID, dtsMue, ConEnologicos, False, LoteID)
             GeneralBindingSource.DataSource = dtsMue
-            'GeneralBindingSource. dataSource = dtb.Consultar("Lotes1SelectEnt")
 
             GeneralBindingSource.Position = Posicion
             tsTrazabilidad.Visible = True

@@ -194,19 +194,13 @@ Public Class frmEntplantillasBoletines
             dtb.PrepararConsulta("LotesSelectCategoriasParametrosByCodigoLote @cod")
             dtb.AñadirParametroConsulta("@cod", m_CodigoLote)
             tablaCategorias = dtb.Consultar()
-            '            tablaCategorias = dtb.Consultar("LotesSelectCategoriasParametrosByCodigoLote '" & m_CodigoLote & "'")
         Else
-            'If Me.ModoDeApertura = MODIFICACION Then
-            'tablaCategorias = DataTableFill("LotesSelectCategoriasParametrosByPlantillaID " & m_DBO_plantillasBoletines.id)
-            'Else
             tablaCategorias = dtb.Consultar("LotesSelectAllCategoriasParametros")
-            'End If
         End If
 
         While contCategorias < tablaCategorias.Rows.Count
             contParametros = 0
 
-            'If Me.m_plantilla = Nothing Then
             If Me.m_boletin.id = Nothing Then
                 If Me.m_CodigoLote <> "" Then
                     dtb.PrepararConsulta("LotesSelectByCodigoLoteYCatagoriaParametro @cod, @id")

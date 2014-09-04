@@ -39,7 +39,10 @@
         Try
             retorno = retorno And dtb.ConsultaAlteraciones("delete from articulosIngredientes_articulos1Compuestopor where id_articuloIngrediente =" & p1.ArticuloComponente & " and id_articulo = " & p1.ArticuloPrincipal & " and id_elaboracion_fase = " & p1.Fase & String.Empty)
 
-            Dim dt As DataTable = dtb.Consultar("select count(*) from articulosIngredientes_articulos1Compuestopor where id_articuloIngrediente =" & p1.ArticuloComponente & " and id_articulo = " & p1.ArticuloPrincipal & String.Empty, False)
+            dtb.PrepararConsulta("select count(*) from articulosIngredientes_articulos1Compuestopor where id_articuloIngrediente = @ing and id_articulo = @art")
+            dtb.AñadirParametroConsulta("@ing", p1.ArticuloComponente)
+            dtb.AñadirParametroConsulta("@art", p1.ArticuloPrincipal)
+            Dim dt As DataTable = dtb.Consultar()
             If dt.Rows(0).Item(0) > 1 Then
                 retorno = retorno And dtb.ConsultaAlteraciones("update articulos1_articulos1_compuestoPor set cantidad=cantidad -" & Convert.ToString(p1.Old_Cantidad).Replace(",", ".") & " where id_articulo=" & p1.ArticuloPrincipal & " and id_articuloCompuestoPor=" & p1.ArticuloComponente & String.Empty)
             Else
@@ -71,7 +74,10 @@
         Dim retorno As Boolean = True
         Try
             ''compbrobacion para insertar solo una vez en compuesto por
-            Dim dt As DataTable = dtb.Consultar("select count(*) from articulos1_articulos1_compuestoPor where id_articulo=" & p1.ArticuloPrincipal & " and id_articuloCompuestoPor=" & p1.ArticuloComponente & String.Empty, False)
+            dtb.PrepararConsulta("select count(*) from articulos1_articulos1_compuestoPor where id_articulo= @artp and id_articuloCompuestoPor= @art")
+            dtb.AñadirParametroConsulta("@art", p1.ArticuloComponente)
+            dtb.AñadirParametroConsulta("@artp", p1.ArticuloPrincipal)
+            Dim dt As DataTable = dtb.Consultar()
             If dt.Rows(0).Item(0) = 0 Then
                 retorno = retorno And dtb.ConsultaAlteraciones("insert into articulos1_articulos1_compuestoPor(id_articulo, id_articuloCompuestoPor, cantidad) values(" & p1.ArticuloPrincipal & " ," & p1.ArticuloComponente & " ," & Replace(p1.Cantidad, ",", ".") & ")")
             Else
