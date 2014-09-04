@@ -105,7 +105,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>GaysuChvd5h0SLYctpJGoAJ+upHwJIkJAlXa/vybOC0=</dsig:DigestValue>
+        <dsig:DigestValue>42tgdEYuDZmnD6w+4YGYOfV2E8OQvjScOxyvfjpD8g0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -321,19 +321,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>czqCeMMzOai7XckOMwtbwufWIZW393KSP85ww5LPI5k=</dsig:DigestValue>
+        <dsig:DigestValue>1JyobUeaVUQPeGCGKWWUwu5I7yZ9eiaafj4WRGYn1xs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="La Andaluza.exe" size="10160640">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="La Andaluza.exe" size="10161152">
       <assemblyIdentity name="La Andaluza" version="2014.2.1.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>MXqf/LnogV79DgL8ldjXFo4LFcaWTiZNfwneamoWIOY=</dsig:DigestValue>
+        <dsig:DigestValue>A/Elwxg2diwUN08XglCCf0PEC10J+zf0mZ0Wsb317II=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

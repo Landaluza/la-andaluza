@@ -726,7 +726,18 @@ Public Class MenuDispatcher
     Private Sub ConsejoReguladorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConsejoReguladorToolStripMenuItem.Click, ConsejoReguladorToolStripMenuItem1.Click, ConsejoReguladorToolStripMenuItem2.Click
         'Dim fil As New BasesParaCompatibilidad.File
         'fil.open("Z:\Administracion\Documentacion\Consejo Regulador Jerez\CONSEJO VINO.RDP")
-        Dim frm As New frmAccesoRemoto(New SessionConsejoRegulador)
+        Dim s As RemoteSession
+
+        Select Case Config.UserType
+            Case 9
+                s = New SessionConsejoReguladorControl
+            Case 5
+                s = New SessionConsejoRegulador
+            Case Else
+                Return
+        End Select
+
+        Dim frm As New frmAccesoRemoto(s)
         GUImain.añadirPestaña(frm)
     End Sub
 
