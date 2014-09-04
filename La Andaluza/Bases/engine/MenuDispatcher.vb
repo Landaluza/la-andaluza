@@ -761,4 +761,19 @@ Public Class MenuDispatcher
         Dim frm As New frmAccesoRemoto(New SessionObrador)
         GUImain.añadirPestaña(frm)
     End Sub
+
+    Private Sub AlmacenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AlmacenToolStripMenuItem.Click, AlmcenToolStripMenuItem.Click
+        Dim frm As New frmAccesoRemoto(New SessionAlmacen)
+        GUImain.añadirPestaña(frm)
+    End Sub
+
+    Private Sub Linea1ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles Linea1ToolStripMenuItem.Click, Linea1ToolStripMenuItem1.Click
+        Dim frm As New frmAccesoRemoto(New SessionLinea1)
+        GUImain.añadirPestaña(frm)
+    End Sub
+
+    Private Sub Linea2ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles Linea2ToolStripMenuItem.Click, Linea2ToolStripMenuItem1.Click
+        Dim frm As New frmAccesoRemoto(New SessionLinea2)
+        GUImain.añadirPestaña(frm)
+    End Sub
 End Class

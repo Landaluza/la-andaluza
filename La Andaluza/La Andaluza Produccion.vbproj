@@ -49,7 +49,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>359</ApplicationRevision>
+    <ApplicationRevision>360</ApplicationRevision>
     <ApplicationVersion>2014.7.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -1875,8 +1875,11 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Otros\Acceso remoto\RemoteSession.vb" />
+    <Compile Include="Otros\Acceso remoto\SessionAlmacen.vb" />
     <Compile Include="Otros\Acceso remoto\SessionConsejoRegulador.vb" />
     <Compile Include="Otros\Acceso remoto\SessionEtiquetas.vb" />
+    <Compile Include="Otros\Acceso remoto\SessionLinea1.vb" />
+    <Compile Include="Otros\Acceso remoto\SessionLinea2.vb" />
     <Compile Include="Otros\Acceso remoto\SessionLinea3.vb" />
     <Compile Include="Otros\Acceso remoto\SessionLinea5.vb" />
     <Compile Include="Otros\Acceso remoto\SessionObrador.vb" />
