@@ -25,9 +25,11 @@
                 adv.RedirectPrinters = True
                 adv.RedirectPorts = True
                 adv.RedirectDrives = True
+                adv.RedirectSmartCards = True
                 adv.RdpdrLocalPrintingDocName = "docRemoto"
                 adv.BitmapPersistence = 1
-                adv.EnableAutoReconnect = True 
+                adv.EnableAutoReconnect = True
+                adv.DisplayConnectionBar = False
 
                 If sesion.Port <> "" Then
                     adv.RDPPort = sesion.Port

@@ -667,9 +667,14 @@ Public Class DispensadorMonodosis
         'dbo_MovimientoDB.Add(dbo_movimiento)
         Dim fecha As String = Now.Date.Day & "/" & Now.Date.Month & "/" & Now.Date.Year
         BasesParaCompatibilidad.BD.ConsultaInsertarSinDatosUsuario("'Envasado de " & m_PaletProducidoOrigen.FormatoDescripcion & " el " & fecha & ". SCC origen: " & m_PaletProducidoOrigen.SCC & "SCC destino:" & m_PaletProducidoDestino.SCC & "', 9, 0", "notificaciones(texto, id_tipousuario, leido)")
-        Dim mail As New Mail.Mail1And1(True, "Envasado de " & m_PaletProducidoOrigen.FormatoDescripcion, "Envasado de " & m_PaletProducidoOrigen.FormatoDescripcion & " el " & Convert.ToString(DateTime.Today.Date) & "." & Environment.NewLine & "SCC origen: " & m_PaletProducidoOrigen.SCC & ", cajas de origen: " & dbo_movimiento.Cajas & "; SCC destino:" & m_PaletProducidoDestino.SCC & ", Cajas encajadas: " & cajasInicioMail, String.Empty, _
-                                                                                    Config.MailReportAddress, Config.MailReportPass, "control@landaluza.es", _
-                                                                                    String.Empty, String.Empty, Config.MailClientHost, False)
+        Try
+            Dim mail As New Mail.Mail1And1(True, "Envasado de " & m_PaletProducidoOrigen.FormatoDescripcion, "Envasado de " & m_PaletProducidoOrigen.FormatoDescripcion & " el " & Convert.ToString(DateTime.Today.Date) & "." & Environment.NewLine & "SCC origen: " & m_PaletProducidoOrigen.SCC & ", cajas de origen: " & dbo_movimiento.Cajas & "; SCC destino:" & m_PaletProducidoDestino.SCC & ", Cajas encajadas: " & cajasInicioMail, String.Empty, _
+                                                                                   Config.MailReportAddress, Config.MailReportPass, "control@landaluza.es", _
+                                                                                   String.Empty, String.Empty, Config.MailClientHost, False)
+        Catch ex As Exception
+            MessageBox.Show("No se pudo notificar a cotnrol de este movimiento. Por favor, notifiquelo telefonicamente.", "Error de notificacion", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End Try
+       
     End Sub
 
     Private Sub ComprobarCantidadesEncajado(ByRef padre As frmEntPaletsProducidos2, _
