@@ -35,6 +35,7 @@
 
     Public Shared Sub Cargar_Ajustes_Predeterminados()
         ruta_servidor = "\\192.168.1.200\datos\informatica\La Andaluza app\"
+        'ruta_servidor = "Z:\informatica\La Andaluza app\"
 
         BasesParaCompatibilidad.Config.Server = BasesParaCompatibilidad.DataBase.SERVIDOR
         BasesParaCompatibilidad.DataBase.buildConnectionString(BasesParaCompatibilidad.Config.Server)
