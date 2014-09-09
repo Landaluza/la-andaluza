@@ -8,7 +8,7 @@
     Private puerto As String
     Private nombre As String
     Public Sub New()
-        servidor = "192.168.1.106"
+        servidor = "192.168.10.106"
         puerto = "5680"
         pass = "landaluza"
         usuario = "LANDALUZA\JL.GIL"

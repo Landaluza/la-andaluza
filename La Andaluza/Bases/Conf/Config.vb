@@ -1,6 +1,6 @@
 ﻿Public Class Config
     'Public Const SOCKET_PORT As Integer = 8090
-    'Public Const SOCKET_SERVER_IP As String = "192.168.1.47"
+    'Public Const SOCKET_SERVER_IP As String = "192.168.10.47"
 
     Public Shared ServerName As String
     Public Shared QS_Sesion As String
@@ -39,7 +39,7 @@
         BasesParaCompatibilidad.Config.Server = BasesParaCompatibilidad.DataBase.SERVIDOR
         BasesParaCompatibilidad.DataBase.buildConnectionString(BasesParaCompatibilidad.Config.Server)
         Config.MailReportPass = "Administracion2008"
-        Config.HelpUrl = "http://192.168.1.106/AyudaLA/index.php"
+        Config.HelpUrl = "http://192.168.10.106/AyudaLA/index.php"
         'Config.ventasPath = "Z:\Informatica\La Andaluza app\ExcelFile\Book1.xlsx"
         Config.ventasPath = "ExcelFile\Book1.xlsx"
         Config.InformeListadoDepositos = "Depositos.frx"

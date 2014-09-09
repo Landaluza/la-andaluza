@@ -58,7 +58,7 @@ Public Class frmDepositosMain
 
         ''.Load("Elaboracion\Depositos\Listados\Depositos.frx")
         'Try
-        '    'report.Load("\\192.168.1.200\datos\informatica\La Andaluza app\Depositos.frx")
+        '    'report.Load("\\192.168.10.200\datos\informatica\La Andaluza app\Depositos.frx")
         '    report.Load(Config.ListadoDepositos)
         '    report.SetParameterValue("MyParameter", BasesParaCompatibilidad.Config.connectionString)
         'Catch ex As Exception
@@ -87,7 +87,7 @@ Public Class frmDepositosMain
         'Dim table As TableDataSource
 
         'Try
-        '    'report.Load("\\192.168.1.200\datos\informatica\La Andaluza app\Depositos.frx")
+        '    'report.Load("\\192.168.10.200\datos\informatica\La Andaluza app\Depositos.frx")
         '    report.Load(Config.ListadoDepositosTipos)
         '    report.SetParameterValue("MyParameter", BasesParaCompatibilidad.Config.connectionString)
         'Catch ex As Exception
