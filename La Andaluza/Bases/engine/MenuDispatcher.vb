@@ -742,7 +742,7 @@ Public Class MenuDispatcher
         GUImain.añadirPestaña(frm)
     End Sub
 
-    Private Sub EtiquetasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EtiquetasToolStripMenuItem.Click, EtiqeutasToolStripMenuItem.Click, EtiquetasToolStripMenuItem1.Click
+    Private Sub EtiquetasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EtiquetasToolStripMenuItem.Click, EtiqeutasToolStripMenuItem.Click, EtiquetasToolStripMenuItem1.Click, EtiquetasToolStripMenuItem3.Click, EtiquetasToolStripMenuItem2.Click
         Dim frm As New frmAccesoRemoto(New SessionEtiquetas)
         GUImain.añadirPestaña(frm)
     End Sub
