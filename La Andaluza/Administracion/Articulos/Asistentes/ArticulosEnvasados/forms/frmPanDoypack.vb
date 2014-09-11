@@ -58,9 +58,10 @@ Public Class frmPanDoypack
         If Me.mododeapertura = BasesParaCompatibilidad.DetailedSimpleForm.MODIFICACION Then
             Me.cboFormato.SelectedValue = spdoypack.FormatoPorArticulo(Me.id)
             Me.cboProducto.SelectedValue = spdoypack.ProductoPorArticulo(Me.id)
-            Me.cboCaja.SelectedValue = spdoypack.MarcaPorArticulo(Me.id)
+            Me.cboCaja.SelectedValue = spdoypack.CajaPorArticulo(Me.id)
             Me.txtEan.Text = spdoypack.EanPorArticulo(Me.id)
             Me.cboSccNC.SelectedValue = spdoypack.PaletNCPorArticulo(Me.id)
+            Me.cboMarca.SelectedValue = spdoypack.MarcaPorArticulo(Me.id)
         End If
     End Sub
 

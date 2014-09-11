@@ -132,8 +132,6 @@ Partial Class frmPanDoypack
         '
         'cboMarca
         '
-        Me.cboMarca.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cboMarca.FormattingEnabled = True
         Me.cboMarca.Location = New System.Drawing.Point(61, 91)
         Me.cboMarca.Name = "cboMarca"
@@ -157,7 +155,7 @@ Partial Class frmPanDoypack
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cboSccNC.FormattingEnabled = True
         Me.cboSccNC.Location = New System.Drawing.Point(427, 125)
-        Me.cboSccNC.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.cboSccNC.Margin = New System.Windows.Forms.Padding(2)
         Me.cboSccNC.Name = "cboSccNC"
         Me.cboSccNC.Size = New System.Drawing.Size(126, 21)
         Me.cboSccNC.TabIndex = 12
@@ -179,7 +177,7 @@ Partial Class frmPanDoypack
         Me.cbEnvasado.Checked = True
         Me.cbEnvasado.CheckState = System.Windows.Forms.CheckState.Checked
         Me.cbEnvasado.Location = New System.Drawing.Point(9, 18)
-        Me.cbEnvasado.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.cbEnvasado.Margin = New System.Windows.Forms.Padding(2)
         Me.cbEnvasado.Name = "cbEnvasado"
         Me.cbEnvasado.Size = New System.Drawing.Size(15, 14)
         Me.cbEnvasado.TabIndex = 0
@@ -264,7 +262,7 @@ Partial Class frmPanDoypack
         Me.Panel1.Controls.Add(Me.Label4)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel1.Location = New System.Drawing.Point(0, 293)
-        Me.Panel1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(555, 155)
         Me.Panel1.TabIndex = 13
@@ -275,7 +273,7 @@ Partial Class frmPanDoypack
         Me.btnaddMarcas.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnaddMarcas.Image = Global.La_Andaluza.My.Resources.Resources.edit_add_2
         Me.btnaddMarcas.Location = New System.Drawing.Point(536, 92)
-        Me.btnaddMarcas.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnaddMarcas.Margin = New System.Windows.Forms.Padding(2)
         Me.btnaddMarcas.Name = "btnaddMarcas"
         Me.btnaddMarcas.Size = New System.Drawing.Size(18, 19)
         Me.btnaddMarcas.TabIndex = 66
@@ -287,7 +285,7 @@ Partial Class frmPanDoypack
         Me.btnverMarcas.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnverMarcas.Image = Global.La_Andaluza.My.Resources.Resources.search_3
         Me.btnverMarcas.Location = New System.Drawing.Point(514, 92)
-        Me.btnverMarcas.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnverMarcas.Margin = New System.Windows.Forms.Padding(2)
         Me.btnverMarcas.Name = "btnverMarcas"
         Me.btnverMarcas.Size = New System.Drawing.Size(20, 19)
         Me.btnverMarcas.TabIndex = 65

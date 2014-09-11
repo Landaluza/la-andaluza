@@ -49,7 +49,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>375</ApplicationRevision>
+    <ApplicationRevision>377</ApplicationRevision>
     <ApplicationVersion>2014.7.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -2745,25 +2745,7 @@
     <Compile Include="Produccion\Envasados3\DBO_Envasados3.vb" />
     <Compile Include="Produccion\Envasados3\formatos3\DBO_FormatosEnvasados.vb" />
     <Compile Include="Produccion\Envasados3\formatos3\spFormatosEnvasados.vb" />
-    <Compile Include="Produccion\Envasados3\frmConversorJulianoGregoriano.Designer.vb">
-      <DependentUpon>frmConversorJulianoGregoriano.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\frmConversorJulianoGregoriano.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Produccion\Envasados3\paso_intermedio\DBO_Envasados.vb" />
-    <Compile Include="Produccion\Envasados3\paso_intermedio\frmEntEnvasados.Designer.vb">
-      <DependentUpon>frmEntEnvasados.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\paso_intermedio\frmEntEnvasados.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\paso_intermedio\frmEnvasados.Designer.vb">
-      <DependentUpon>frmEnvasados.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\paso_intermedio\frmEnvasados.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Produccion\Envasados3\paso_intermedio\frmSelectorEnvasado.Designer.vb">
       <DependentUpon>frmSelectorEnvasado.vb</DependentUpon>
     </Compile>
@@ -5627,15 +5609,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Produccion\Lineas\Tareas_lineas\frmTareasEnvasado_LineasEnvasado.resx">
       <DependentUpon>frmTareasEnvasado_LineasEnvasado.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\frmConversorJulianoGregoriano.resx">
-      <DependentUpon>frmConversorJulianoGregoriano.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\paso_intermedio\frmEntEnvasados.resx">
-      <DependentUpon>frmEntEnvasados.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\paso_intermedio\frmEnvasados.resx">
-      <DependentUpon>frmEnvasados.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\PaletsContenidos2\frmEncajadoNoConforme.resx">
       <DependentUpon>frmEncajadoNoConforme.vb</DependentUpon>

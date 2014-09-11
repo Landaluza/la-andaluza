@@ -126,10 +126,6 @@ Public Class frmEntEnvasadosProductos
         End If
     End Sub
 
-    Private Sub butVerEnvasadoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim frmEnt As New frmEnvasados()
-        GUImain.añadirPestaña(frmEnt)
-    End Sub
 
     Private Sub butAddProductoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddProductoID.Click
         Dim DBO_TiposProductos As New DBO_TiposProductos

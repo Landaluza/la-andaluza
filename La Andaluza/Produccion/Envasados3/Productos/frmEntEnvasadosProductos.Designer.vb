@@ -33,7 +33,6 @@ Partial Class frmEntEnvasadosProductos
         Me.lblHoraFinal = New System.Windows.Forms.Label()
         Me.lblObservaciones = New System.Windows.Forms.Label()
         Me.tlpMiddle = New System.Windows.Forms.TableLayoutPanel()
-
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tlpMiddle.SuspendLayout()
@@ -49,7 +48,7 @@ Partial Class frmEntEnvasadosProductos
         Me.cboProducto.Dock = System.Windows.Forms.DockStyle.Fill
         Me.cboProducto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cboProducto.Location = New System.Drawing.Point(231, 14)
-        Me.cboProducto.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.cboProducto.Margin = New System.Windows.Forms.Padding(2)
         Me.cboProducto.Name = "cboProducto"
         Me.cboProducto.Size = New System.Drawing.Size(181, 23)
         Me.cboProducto.TabIndex = 1
@@ -63,7 +62,7 @@ Partial Class frmEntEnvasadosProductos
         Me.butVerProductoID.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butVerProductoID.Image = Global.La_Andaluza.My.Resources.Resources.agenda
         Me.butVerProductoID.Location = New System.Drawing.Point(416, 14)
-        Me.butVerProductoID.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.butVerProductoID.Margin = New System.Windows.Forms.Padding(2)
         Me.butVerProductoID.Name = "butVerProductoID"
         Me.butVerProductoID.Size = New System.Drawing.Size(18, 26)
         Me.butVerProductoID.TabIndex = 4
@@ -78,7 +77,7 @@ Partial Class frmEntEnvasadosProductos
         Me.butAddProductoID.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butAddProductoID.Image = Global.La_Andaluza.My.Resources.Resources.edit_add_2
         Me.butAddProductoID.Location = New System.Drawing.Point(438, 14)
-        Me.butAddProductoID.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.butAddProductoID.Margin = New System.Windows.Forms.Padding(2)
         Me.butAddProductoID.Name = "butAddProductoID"
         Me.butAddProductoID.Size = New System.Drawing.Size(18, 26)
         Me.butAddProductoID.TabIndex = 5
@@ -91,7 +90,7 @@ Partial Class frmEntEnvasadosProductos
         Me.dtpHoraInicio.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtpHoraInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.dtpHoraInicio.Location = New System.Drawing.Point(231, 44)
-        Me.dtpHoraInicio.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.dtpHoraInicio.Margin = New System.Windows.Forms.Padding(2)
         Me.dtpHoraInicio.Name = "dtpHoraInicio"
         Me.dtpHoraInicio.ShowUpDown = True
         Me.dtpHoraInicio.Size = New System.Drawing.Size(86, 21)
@@ -104,7 +103,7 @@ Partial Class frmEntEnvasadosProductos
         Me.dtpHoraFinal.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtpHoraFinal.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.dtpHoraFinal.Location = New System.Drawing.Point(231, 72)
-        Me.dtpHoraFinal.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.dtpHoraFinal.Margin = New System.Windows.Forms.Padding(2)
         Me.dtpHoraFinal.Name = "dtpHoraFinal"
         Me.dtpHoraFinal.ShowUpDown = True
         Me.dtpHoraFinal.Size = New System.Drawing.Size(86, 21)
@@ -117,7 +116,7 @@ Partial Class frmEntEnvasadosProductos
         Me.txtObservaciones.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txtObservaciones.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtObservaciones.Location = New System.Drawing.Point(231, 100)
-        Me.txtObservaciones.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtObservaciones.Margin = New System.Windows.Forms.Padding(2)
         Me.txtObservaciones.MaxLength = 500
         Me.txtObservaciones.Name = "txtObservaciones"
         Me.txtObservaciones.Size = New System.Drawing.Size(253, 21)
@@ -177,7 +176,7 @@ Partial Class frmEntEnvasadosProductos
         Me.tlpMiddle.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.tlpMiddle.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.tlpMiddle.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.tlpMiddle.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 168.0!))
+        Me.tlpMiddle.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 169.0!))
         Me.tlpMiddle.Controls.Add(Me.lblProductoID, 1, 1)
         Me.tlpMiddle.Controls.Add(Me.cboProducto, 2, 1)
         Me.tlpMiddle.Controls.Add(Me.butVerProductoID, 3, 1)
@@ -189,7 +188,7 @@ Partial Class frmEntEnvasadosProductos
         Me.tlpMiddle.Controls.Add(Me.lblObservaciones, 1, 4)
         Me.tlpMiddle.Controls.Add(Me.txtObservaciones, 2, 4)
         Me.tlpMiddle.Location = New System.Drawing.Point(22, 11)
-        Me.tlpMiddle.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tlpMiddle.Margin = New System.Windows.Forms.Padding(2)
         Me.tlpMiddle.Name = "tlpMiddle"
         Me.tlpMiddle.Padding = New System.Windows.Forms.Padding(0, 12, 0, 0)
         Me.tlpMiddle.RowCount = 6
@@ -202,19 +201,12 @@ Partial Class frmEntEnvasadosProductos
         Me.tlpMiddle.Size = New System.Drawing.Size(655, 138)
         Me.tlpMiddle.TabIndex = 8
         '
-        'tlpTop
-        '
-
-
-
-
-        '
         'SplitContainer1
         '
         Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitContainer1.IsSplitterFixed = True
         Me.SplitContainer1.Location = New System.Drawing.Point(0, 25)
-        Me.SplitContainer1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.SplitContainer1.Margin = New System.Windows.Forms.Padding(2)
         Me.SplitContainer1.Name = "SplitContainer1"
         Me.SplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal
         '
@@ -233,7 +225,7 @@ Partial Class frmEntEnvasadosProductos
         Me.Controls.Add(Me.SplitContainer1)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.MinimumSize = New System.Drawing.Size(428, 212)
         Me.Name = "frmEntEnvasadosProductos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent

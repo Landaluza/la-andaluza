@@ -23,7 +23,7 @@ Class spdoypack
     End Function
 
     Public Function CajaPorArticulo(ByVal p1 As Integer) As Integer
-        dtb.PrepararConsulta("select id_caja from doypack where id_articuloPrimario = @id")
+        dtb.PrepararConsulta("select id_tipoCaja from doypack where id_articuloPrimario = @id")
         dtb.AñadirParametroConsulta("@id", p1)
         Dim dt As DataTable = dtb.Consultar
 
