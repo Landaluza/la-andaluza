@@ -83,6 +83,7 @@ Class spMonodosis
                 DBO_monodosis.ProductoId = If(reader("id_Producto") Is Convert.DBNull, 0, Convert.ToInt32(reader("id_Producto")))
                 DBO_monodosis.CajaId = If(reader("id_Caja") Is Convert.DBNull, 0, Convert.ToInt32(reader("id_Caja")))
                 DBO_monodosis.Ean13 = If(reader("ean") Is Convert.DBNull, "0", Convert.ToString(reader("ean")))
+                DBO_monodosis.CantidadPorMatricula = If(reader("cantidad") Is Convert.DBNull, "0", Convert.ToString(reader("cantidad")))
             Else
                 DBO_monodosis = Nothing
             End If

@@ -59,13 +59,19 @@ Public Class frmLisAlbaranesCarga
         TotalBotellas = 0
         TotalLitros = 0
         Dim datasource As DataTable
-        Dim dt As DateTime = dtpDesde.Value
-        Dim dthasta As DateTime = dtpHasta.Value
-        strDesde = "'" & Format("yyyy/MM/dd", dt) & "'"
-        strHasta = "'" & Format("yyyy/MM/dd", dthasta) & "'"
+        'Dim dt As DateTime = dtpDesde.Value
+        'Dim dthasta As DateTime = dtpHasta.Value
+        'strDesde = "'" & Format("yyyy/MM/dd", dt) & "'"
+        'strHasta = "'" & Format("yyyy/MM/dd", dthasta) & "'"
         Referencia = cboReferencia.SelectedValue
 
-        datasource = dtb.Consultar("exec AlbaranesCargaProviDetallesSelectDgv " & strDesde & "," & strHasta & "," & Referencia)
+        'datasource = dtb.Consultar("exec AlbaranesCargaProviDetallesSelectDgv " & strDesde & "," & strHasta & "," & Referencia)
+        dtb.PrepararConsulta("AlbaranesCargaProviDetallesSelectDgv @desde, @hasta, @ref")
+        dtb.AñadirParametroConsulta("@desde", dtpDesde.Value.Date)
+        dtb.AñadirParametroConsulta("@hasta ", dtpHasta.Value.Date)
+        dtb.AñadirParametroConsulta("@ref", Referencia)
+        datasource = dtb.Consultar()
+
         If Not datasource Is Nothing Then
             dgvEnvasados.Visible = False
             With dgvEnvasados
@@ -73,9 +79,21 @@ Public Class frmLisAlbaranesCarga
                     .DataSource = datasource
                     .Columns("Scc").Visible = False
                 Else
-                    .DataSource = dtb.Consultar("exec AlbaranesCargaProviDetallesDesglosadoSelectDgv " & strDesde & "," & strHasta & "," & Referencia)
+                    Dim datasource2 As DataTable
+                    dtb.PrepararConsulta("AlbaranesCargaProviDetallesDesglosadoSelectDgv @desde, @hasta, @ref")
+                    dtb.AñadirParametroConsulta("@desde", dtpDesde.Value.Date)
+                    dtb.AñadirParametroConsulta("@hasta ", dtpHasta.Value.Date)
+                    dtb.AñadirParametroConsulta("@ref", Referencia)
+                    datasource2 = dtb.Consultar()
+                    '.DataSource = dtb.Consultar("exec AlbaranesCargaProviDetallesDesglosadoSelectDgv " & strDesde & "," & strHasta & "," & Referencia)
+                    If datasource2 Is Nothing Then
+                        Return
+                    End If
+
+                    .DataSource = datasource2
                     .Columns("Scc").Visible = True
                     .FormatoColumna("SCC", BasesParaCompatibilidad.TiposColumna.Miles, 55, 3)
+
                 End If
 
                 .SortMode(DataGridViewColumnSortMode.Automatic)

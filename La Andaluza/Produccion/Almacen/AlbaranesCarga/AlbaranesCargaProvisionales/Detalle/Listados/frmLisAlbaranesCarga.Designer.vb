@@ -55,10 +55,9 @@ Partial Class frmLisAlbaranesCarga
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(287, 38)
-        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label6.Location = New System.Drawing.Point(215, 31)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(92, 20)
+        Me.Label6.Size = New System.Drawing.Size(77, 16)
         Me.Label6.TabIndex = 40
         Me.Label6.Text = "TOTALES"
         '
@@ -66,10 +65,9 @@ Partial Class frmLisAlbaranesCarga
         '
         Me.lblLitros.AutoSize = True
         Me.lblLitros.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblLitros.Location = New System.Drawing.Point(624, 15)
-        Me.lblLitros.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblLitros.Location = New System.Drawing.Point(468, 12)
         Me.lblLitros.Name = "lblLitros"
-        Me.lblLitros.Size = New System.Drawing.Size(49, 17)
+        Me.lblLitros.Size = New System.Drawing.Size(38, 13)
         Me.lblLitros.TabIndex = 39
         Me.lblLitros.Text = "Litros"
         '
@@ -77,10 +75,9 @@ Partial Class frmLisAlbaranesCarga
         '
         Me.lblBotellas.AutoSize = True
         Me.lblBotellas.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblBotellas.Location = New System.Drawing.Point(516, 15)
-        Me.lblBotellas.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblBotellas.Location = New System.Drawing.Point(387, 12)
         Me.lblBotellas.Name = "lblBotellas"
-        Me.lblBotellas.Size = New System.Drawing.Size(66, 17)
+        Me.lblBotellas.Size = New System.Drawing.Size(52, 13)
         Me.lblBotellas.TabIndex = 38
         Me.lblBotellas.Text = "Botellas"
         '
@@ -88,10 +85,9 @@ Partial Class frmLisAlbaranesCarga
         '
         Me.lblTotalCajas.AutoSize = True
         Me.lblTotalCajas.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTotalCajas.Location = New System.Drawing.Point(419, 15)
-        Me.lblTotalCajas.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblTotalCajas.Location = New System.Drawing.Point(314, 12)
         Me.lblTotalCajas.Name = "lblTotalCajas"
-        Me.lblTotalCajas.Size = New System.Drawing.Size(48, 17)
+        Me.lblTotalCajas.Size = New System.Drawing.Size(38, 13)
         Me.lblTotalCajas.TabIndex = 37
         Me.lblTotalCajas.Text = "Cajas"
         '
@@ -102,8 +98,7 @@ Partial Class frmLisAlbaranesCarga
         Me.txtTotalLitros.EsUnicoID = 0
         Me.txtTotalLitros.EsUnicoTabla = ""
         Me.txtTotalLitros.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtTotalLitros.Location = New System.Drawing.Point(597, 34)
-        Me.txtTotalLitros.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtTotalLitros.Location = New System.Drawing.Point(448, 28)
         Me.txtTotalLitros.MaxLength = 30
         Me.txtTotalLitros.Minimo = 0
         Me.txtTotalLitros.Modificado = False
@@ -113,11 +108,11 @@ Partial Class frmLisAlbaranesCarga
         Me.txtTotalLitros.Numerico_SeparadorMiles = True
         Me.txtTotalLitros.Obligatorio = False
         Me.txtTotalLitros.ParametroID = 0
-        Me.txtTotalLitros.Size = New System.Drawing.Size(91, 26)
+        Me.txtTotalLitros.Size = New System.Drawing.Size(69, 22)
         Me.txtTotalLitros.TabIndex = 36
         Me.txtTotalLitros.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.txtTotalLitros.ValorMaximo = 0.0!
-        Me.txtTotalLitros.ValorMinimo = 0.0!
+        Me.txtTotalLitros.ValorMaximo = 0.0R
+        Me.txtTotalLitros.ValorMinimo = 0.0R
         '
         'txtTotalBotellas
         '
@@ -126,8 +121,7 @@ Partial Class frmLisAlbaranesCarga
         Me.txtTotalBotellas.EsUnicoID = 0
         Me.txtTotalBotellas.EsUnicoTabla = ""
         Me.txtTotalBotellas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtTotalBotellas.Location = New System.Drawing.Point(497, 34)
-        Me.txtTotalBotellas.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtTotalBotellas.Location = New System.Drawing.Point(373, 28)
         Me.txtTotalBotellas.MaxLength = 30
         Me.txtTotalBotellas.Minimo = 0
         Me.txtTotalBotellas.Modificado = False
@@ -137,11 +131,11 @@ Partial Class frmLisAlbaranesCarga
         Me.txtTotalBotellas.Numerico_SeparadorMiles = True
         Me.txtTotalBotellas.Obligatorio = False
         Me.txtTotalBotellas.ParametroID = 0
-        Me.txtTotalBotellas.Size = New System.Drawing.Size(91, 26)
+        Me.txtTotalBotellas.Size = New System.Drawing.Size(69, 22)
         Me.txtTotalBotellas.TabIndex = 35
         Me.txtTotalBotellas.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.txtTotalBotellas.ValorMaximo = 0.0!
-        Me.txtTotalBotellas.ValorMinimo = 0.0!
+        Me.txtTotalBotellas.ValorMaximo = 0.0R
+        Me.txtTotalBotellas.ValorMinimo = 0.0R
         '
         'txtTotalCajas
         '
@@ -150,8 +144,7 @@ Partial Class frmLisAlbaranesCarga
         Me.txtTotalCajas.EsUnicoID = 0
         Me.txtTotalCajas.EsUnicoTabla = ""
         Me.txtTotalCajas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtTotalCajas.Location = New System.Drawing.Point(397, 34)
-        Me.txtTotalCajas.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtTotalCajas.Location = New System.Drawing.Point(298, 28)
         Me.txtTotalCajas.MaxLength = 30
         Me.txtTotalCajas.Minimo = 0
         Me.txtTotalCajas.Modificado = False
@@ -161,11 +154,11 @@ Partial Class frmLisAlbaranesCarga
         Me.txtTotalCajas.Numerico_SeparadorMiles = True
         Me.txtTotalCajas.Obligatorio = False
         Me.txtTotalCajas.ParametroID = 0
-        Me.txtTotalCajas.Size = New System.Drawing.Size(91, 26)
+        Me.txtTotalCajas.Size = New System.Drawing.Size(69, 22)
         Me.txtTotalCajas.TabIndex = 34
         Me.txtTotalCajas.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.txtTotalCajas.ValorMaximo = 0.0!
-        Me.txtTotalCajas.ValorMinimo = 0.0!
+        Me.txtTotalCajas.ValorMaximo = 0.0R
+        Me.txtTotalCajas.ValorMinimo = 0.0R
         '
         'btnExcel
         '
@@ -173,10 +166,9 @@ Partial Class frmLisAlbaranesCarga
         Me.btnExcel.FlatAppearance.BorderSize = 0
         Me.btnExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnExcel.Image = Global.La_Andaluza.My.Resources.Resources.page_excel_16
-        Me.btnExcel.Location = New System.Drawing.Point(556, 18)
-        Me.btnExcel.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnExcel.Location = New System.Drawing.Point(417, 15)
         Me.btnExcel.Name = "btnExcel"
-        Me.btnExcel.Size = New System.Drawing.Size(32, 24)
+        Me.btnExcel.Size = New System.Drawing.Size(24, 20)
         Me.btnExcel.TabIndex = 33
         Me.btnExcel.UseVisualStyleBackColor = True
         '
@@ -186,30 +178,28 @@ Partial Class frmLisAlbaranesCarga
         Me.btnImprimir.FlatAppearance.BorderSize = 0
         Me.btnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnImprimir.Image = Global.La_Andaluza.My.Resources.Resources.document_print_16
-        Me.btnImprimir.Location = New System.Drawing.Point(516, 18)
-        Me.btnImprimir.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnImprimir.Location = New System.Drawing.Point(387, 15)
         Me.btnImprimir.Name = "btnImprimir"
-        Me.btnImprimir.Size = New System.Drawing.Size(32, 24)
+        Me.btnImprimir.Size = New System.Drawing.Size(24, 20)
         Me.btnImprimir.TabIndex = 32
         Me.btnImprimir.UseVisualStyleBackColor = True
         '
         'dtpDesde
         '
         Me.dtpDesde.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpDesde.Location = New System.Drawing.Point(77, 49)
-        Me.dtpDesde.Margin = New System.Windows.Forms.Padding(4)
+        Me.dtpDesde.Location = New System.Drawing.Point(58, 40)
         Me.dtpDesde.Name = "dtpDesde"
-        Me.dtpDesde.Size = New System.Drawing.Size(115, 22)
+        Me.dtpDesde.Size = New System.Drawing.Size(87, 20)
         Me.dtpDesde.TabIndex = 23
         Me.dtpDesde.Value = New Date(2010, 1, 1, 0, 0, 0, 0)
         '
         'btnPorDias
         '
+        Me.btnPorDias.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnPorDias.Image = Global.La_Andaluza.My.Resources.Resources.search_3
-        Me.btnPorDias.Location = New System.Drawing.Point(18, 79)
-        Me.btnPorDias.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnPorDias.Location = New System.Drawing.Point(14, 64)
         Me.btnPorDias.Name = "btnPorDias"
-        Me.btnPorDias.Size = New System.Drawing.Size(180, 28)
+        Me.btnPorDias.Size = New System.Drawing.Size(135, 23)
         Me.btnPorDias.TabIndex = 29
         Me.btnPorDias.Text = "Por dias"
         Me.btnPorDias.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
@@ -218,20 +208,18 @@ Partial Class frmLisAlbaranesCarga
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(208, 54)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label3.Location = New System.Drawing.Point(156, 44)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(49, 17)
+        Me.Label3.Size = New System.Drawing.Size(38, 13)
         Me.Label3.TabIndex = 28
         Me.Label3.Text = "Hasta:"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(15, 22)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.Location = New System.Drawing.Point(11, 18)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(77, 17)
+        Me.Label1.Size = New System.Drawing.Size(59, 13)
         Me.Label1.TabIndex = 26
         Me.Label1.Text = "Referencia"
         '
@@ -239,41 +227,38 @@ Partial Class frmLisAlbaranesCarga
         '
         Me.dgvEnvasados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvEnvasados.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgvEnvasados.Location = New System.Drawing.Point(0, 116)
-        Me.dgvEnvasados.Margin = New System.Windows.Forms.Padding(4)
+        Me.dgvEnvasados.Location = New System.Drawing.Point(0, 94)
         Me.dgvEnvasados.Name = "dgvEnvasados"
         Me.dgvEnvasados.RowTemplate.Height = 16
         Me.dgvEnvasados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvEnvasados.Size = New System.Drawing.Size(1221, 825)
+        Me.dgvEnvasados.Size = New System.Drawing.Size(916, 671)
         Me.dgvEnvasados.TabIndex = 25
         Me.dgvEnvasados.Visible = False
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(15, 54)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label2.Location = New System.Drawing.Point(11, 44)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(53, 17)
+        Me.Label2.Size = New System.Drawing.Size(41, 13)
         Me.Label2.TabIndex = 27
         Me.Label2.Text = "Desde:"
         '
         'dtpHasta
         '
         Me.dtpHasta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpHasta.Location = New System.Drawing.Point(267, 49)
-        Me.dtpHasta.Margin = New System.Windows.Forms.Padding(4)
+        Me.dtpHasta.Location = New System.Drawing.Point(200, 40)
         Me.dtpHasta.Name = "dtpHasta"
-        Me.dtpHasta.Size = New System.Drawing.Size(115, 22)
+        Me.dtpHasta.Size = New System.Drawing.Size(87, 20)
         Me.dtpHasta.TabIndex = 24
         '
         'cboReferencia
         '
+        Me.cboReferencia.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cboReferencia.FormattingEnabled = True
-        Me.cboReferencia.Location = New System.Drawing.Point(101, 18)
-        Me.cboReferencia.Margin = New System.Windows.Forms.Padding(4)
+        Me.cboReferencia.Location = New System.Drawing.Point(76, 15)
         Me.cboReferencia.Name = "cboReferencia"
-        Me.cboReferencia.Size = New System.Drawing.Size(405, 24)
+        Me.cboReferencia.Size = New System.Drawing.Size(305, 21)
         Me.cboReferencia.TabIndex = 22
         '
         'Panel1
@@ -286,10 +271,9 @@ Partial Class frmLisAlbaranesCarga
         Me.Panel1.Controls.Add(Me.lblBotellas)
         Me.Panel1.Controls.Add(Me.lblTotalCajas)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel1.Location = New System.Drawing.Point(0, 941)
-        Me.Panel1.Margin = New System.Windows.Forms.Padding(4)
+        Me.Panel1.Location = New System.Drawing.Point(0, 765)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1221, 73)
+        Me.Panel1.Size = New System.Drawing.Size(916, 59)
         Me.Panel1.TabIndex = 42
         '
         'Panel2
@@ -310,56 +294,53 @@ Partial Class frmLisAlbaranesCarga
         Me.Panel2.Controls.Add(Me.btnPorDias)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
-        Me.Panel2.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1221, 116)
+        Me.Panel2.Size = New System.Drawing.Size(916, 94)
         Me.Panel2.TabIndex = 43
         '
         'cboLugaresEntrega
         '
+        Me.cboLugaresEntrega.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cboLugaresEntrega.FormattingEnabled = True
-        Me.cboLugaresEntrega.Location = New System.Drawing.Point(797, 44)
-        Me.cboLugaresEntrega.Margin = New System.Windows.Forms.Padding(4)
+        Me.cboLugaresEntrega.Location = New System.Drawing.Point(598, 36)
         Me.cboLugaresEntrega.Name = "cboLugaresEntrega"
-        Me.cboLugaresEntrega.Size = New System.Drawing.Size(387, 24)
+        Me.cboLugaresEntrega.Size = New System.Drawing.Size(291, 21)
         Me.cboLugaresEntrega.TabIndex = 37
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(692, 48)
-        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label5.Location = New System.Drawing.Point(519, 39)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(98, 17)
+        Me.Label5.Size = New System.Drawing.Size(73, 13)
         Me.Label5.TabIndex = 38
         Me.Label5.Text = "Lugar entrega"
         '
         'cboClientes
         '
+        Me.cboClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cboClientes.FormattingEnabled = True
-        Me.cboClientes.Location = New System.Drawing.Point(797, 12)
-        Me.cboClientes.Margin = New System.Windows.Forms.Padding(4)
+        Me.cboClientes.Location = New System.Drawing.Point(598, 10)
         Me.cboClientes.Name = "cboClientes"
-        Me.cboClientes.Size = New System.Drawing.Size(387, 24)
+        Me.cboClientes.Size = New System.Drawing.Size(291, 21)
         Me.cboClientes.TabIndex = 35
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(692, 16)
-        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label4.Location = New System.Drawing.Point(519, 13)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(51, 17)
+        Me.Label4.Size = New System.Drawing.Size(39, 13)
         Me.Label4.TabIndex = 36
         Me.Label4.Text = "Cliente"
         '
         'btnDesglose
         '
+        Me.btnDesglose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnDesglose.Image = Global.La_Andaluza.My.Resources.Resources.search_3
-        Me.btnDesglose.Location = New System.Drawing.Point(332, 79)
-        Me.btnDesglose.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnDesglose.Location = New System.Drawing.Point(249, 64)
         Me.btnDesglose.Name = "btnDesglose"
-        Me.btnDesglose.Size = New System.Drawing.Size(174, 28)
+        Me.btnDesglose.Size = New System.Drawing.Size(130, 23)
         Me.btnDesglose.TabIndex = 34
         Me.btnDesglose.Text = "Por días desglosado"
         Me.btnDesglose.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
@@ -367,14 +348,13 @@ Partial Class frmLisAlbaranesCarga
         '
         'frmLisAlbaranesCarga
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1221, 1014)
+        Me.ClientSize = New System.Drawing.Size(916, 824)
         Me.Controls.Add(Me.dgvEnvasados)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
-        Me.Margin = New System.Windows.Forms.Padding(4)
-        Me.MinimumSize = New System.Drawing.Size(1229, 1007)
+        Me.MinimumSize = New System.Drawing.Size(926, 825)
         Me.Name = "frmLisAlbaranesCarga"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "frmLisAlbaranesCarga"
