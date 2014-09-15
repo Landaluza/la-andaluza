@@ -840,7 +840,7 @@ Partial Class frmEntEpis
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(646, 674)
         Me.Controls.Add(Me.tlpMiddle)
-        Me.MinimumSize = New System.Drawing.Size(373, 674)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntEpis"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Epis"

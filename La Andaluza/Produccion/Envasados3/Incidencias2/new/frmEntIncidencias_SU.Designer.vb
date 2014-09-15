@@ -340,7 +340,7 @@ Partial Class frmEntIncidencias_SU
         Me.Controls.Add(Me.SplitContainer2)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
-        Me.MinimumSize = New System.Drawing.Size(622, 264)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntIncidencias"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Incidencias"

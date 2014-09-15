@@ -75,7 +75,7 @@ Partial Class frmEntRecipientesSalidas
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.Controls.Add(Me.tlpMiddle)
         Me.ClientSize = New System.Drawing.Size(436, 107)
-        Me.MinimumSize = New System.Drawing.Size(436, 107)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntRecipientesSalidas
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "RecipientesSalidas"

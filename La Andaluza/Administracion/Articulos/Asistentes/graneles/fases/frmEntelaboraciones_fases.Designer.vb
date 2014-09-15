@@ -202,7 +202,7 @@ Partial Class frmEntelaboraciones_fases
         Me.ClientSize = New System.Drawing.Size(494, 197)
         Me.Controls.Add(Me.tlpMiddle)
         Me.Controls.Add(Me.ToolStrip1)
-        Me.MinimumSize = New System.Drawing.Size(512, 188)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntelaboraciones_fases"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "elaboraciones_fases"

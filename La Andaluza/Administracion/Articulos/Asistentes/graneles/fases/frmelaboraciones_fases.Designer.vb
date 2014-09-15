@@ -85,7 +85,7 @@ Partial Class frmelaboraciones_fases
         Me.Controls.Add(Me.dgvGrilla)
         Me.Controls.Add(Me.ToolStrip1)
         Me.DoubleBuffered = True
-        Me.MinimumSize = New System.Drawing.Size(400, 400)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmelaboraciones_fases"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "elaboraciones_fases"

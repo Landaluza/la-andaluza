@@ -354,7 +354,7 @@ Partial Class frmLisAlbaranesCarga
         Me.Controls.Add(Me.dgvEnvasados)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
-        Me.MinimumSize = New System.Drawing.Size(926, 825)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmLisAlbaranesCarga"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "frmLisAlbaranesCarga"

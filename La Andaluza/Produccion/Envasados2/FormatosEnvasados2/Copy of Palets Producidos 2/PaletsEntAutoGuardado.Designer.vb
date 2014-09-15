@@ -69,7 +69,7 @@ Partial Class PaletsEntAutoGuardado
         Me.MaximizeBox = False
         Me.MaximumSize = New System.Drawing.Size(527, 249)
         Me.MinimizeBox = False
-        Me.MinimumSize = New System.Drawing.Size(527, 249)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "PaletsEntAutoGuardado"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Auto-guardado de Palet"

@@ -27,7 +27,7 @@ Partial Class frmArticulosDocumentos
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.ClientSize = New System.Drawing.Size(1926, 567)
         Me.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
-        Me.MinimumSize = New System.Drawing.Size(478, 55)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmArticulosDocumentos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()

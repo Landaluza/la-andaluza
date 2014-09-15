@@ -520,7 +520,7 @@ Partial Class frmEntFormatosEnvasados2
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.MaximizeBox = True
-        Me.MinimumSize = New System.Drawing.Size(966, 375)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntFormatosEnvasados2"
         Me.Text = "FormatosEnvasados2"
         Me.Controls.SetChildIndex(Me.lblTipoFormatoEnvasadoID, 0)

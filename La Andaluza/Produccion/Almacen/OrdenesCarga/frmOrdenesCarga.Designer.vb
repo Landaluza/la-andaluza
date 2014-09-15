@@ -27,7 +27,7 @@ Partial Class frmOrdenesCarga
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(495, 463)
         Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.MinimumSize = New System.Drawing.Size(465, 490)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmOrdenesCarga"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "OrdenesDeCarga"

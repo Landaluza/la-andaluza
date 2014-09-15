@@ -256,7 +256,7 @@ Partial Class frmEntTurnosTrabajo
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.MinimumSize = New System.Drawing.Size(336, 217)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntTurnosTrabajo"
         Me.Text = "TurnosTrabajo"
         Me.Controls.SetChildIndex(Me.tlpMiddle, 0)

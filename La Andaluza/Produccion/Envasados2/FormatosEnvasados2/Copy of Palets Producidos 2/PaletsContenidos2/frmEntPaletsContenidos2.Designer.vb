@@ -406,7 +406,7 @@ Partial Class frmEntPaletsContenidos2
         Me.DoubleBuffered = True
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.MinimumSize = New System.Drawing.Size(564, 237)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntPaletsContenidos2"
         Me.Text = "ContenidosPalets2"
         Me.Controls.SetChildIndex(Me.txtTodoCorrecto, 0)

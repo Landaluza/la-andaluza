@@ -27,7 +27,7 @@ Partial Class frmArticulosFichasPaletizados1
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.ClientSize = New System.Drawing.Size(1103, 567)
         Me.Margin = New System.Windows.Forms.Padding(5)
-        Me.MinimumSize = New System.Drawing.Size(635, 590)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmArticulosFichasPaletizados1"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Articulos fichas paletizados"

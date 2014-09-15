@@ -166,7 +166,7 @@ Partial Class frmEntPaletsMovimientoSubTipo
         Me.Controls.Add(Me.tlpMiddle)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
-        Me.MinimumSize = New System.Drawing.Size(423, 192)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntPaletsMovimientoSubTipo"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "PaletsMovimientoSubTipo"

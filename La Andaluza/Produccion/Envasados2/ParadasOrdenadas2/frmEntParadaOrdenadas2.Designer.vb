@@ -272,7 +272,7 @@ Partial Class frmEntParadaOrdenadas2
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.MinimumSize = New System.Drawing.Size(390, 210)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntParadaOrdenadas2"
         Me.Text = "ParadaOrdenadas2"
         Me.Controls.SetChildIndex(Me.txtTodoCorrecto, 0)

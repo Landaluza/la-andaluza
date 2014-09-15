@@ -316,7 +316,7 @@ Partial Class frmEntPaletsContenidosMonodosis
         Me.Controls.Add(Me.SplitMermas)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.MinimumSize = New System.Drawing.Size(428, 235)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntPaletsContenidosMonodosis"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = " "

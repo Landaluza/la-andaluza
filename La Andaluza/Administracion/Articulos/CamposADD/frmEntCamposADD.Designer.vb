@@ -257,7 +257,7 @@ Partial Class frmEntCamposADD
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(726, 209)
         Me.Controls.Add(Me.tlpMiddle)
-        Me.MinimumSize = New System.Drawing.Size(443, 246)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntCamposADD"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "CamposADD"

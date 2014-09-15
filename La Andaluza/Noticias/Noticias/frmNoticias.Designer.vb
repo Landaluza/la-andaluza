@@ -28,7 +28,7 @@ Partial Class frmNoticias
         Me.ClientSize = New System.Drawing.Size(835, 461)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.DoubleBuffered = True
-        Me.MinimumSize = New System.Drawing.Size(400, 400)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmNoticias"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Noticias"

@@ -451,7 +451,7 @@ Partial Class frmLisEnvPorReferencia
         Me.Controls.Add(Me.Panel1)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.MinimumSize = New System.Drawing.Size(461, 705)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmLisEnvPorReferencia"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Envasados secundarios entre fechas"

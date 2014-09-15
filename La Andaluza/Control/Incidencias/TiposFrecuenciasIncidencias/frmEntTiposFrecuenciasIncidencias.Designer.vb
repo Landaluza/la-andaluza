@@ -115,7 +115,7 @@ Partial Class frmEntTiposFrecuenciasIncidencias
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.MinimumSize = New System.Drawing.Size(402, 135)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntTiposFrecuenciasIncidencias"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "TiposFrecuenciasIncidencias"

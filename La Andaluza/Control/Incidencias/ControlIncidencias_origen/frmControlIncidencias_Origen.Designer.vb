@@ -96,7 +96,7 @@ Partial Class frmControlIncidencias_Origen
         Me.Controls.Add(Me.DataGridView1)
         Me.DoubleBuffered = True
         Me.Margin = New System.Windows.Forms.Padding(5)
-        Me.MinimumSize = New System.Drawing.Size(531, 485)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmControlIncidencias_Origen"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "ControlIncidencias_Clientes"

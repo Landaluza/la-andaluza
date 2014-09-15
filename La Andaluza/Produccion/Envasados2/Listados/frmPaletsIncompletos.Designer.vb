@@ -58,7 +58,7 @@ Partial Class frmPaletsIncompletos
         Me.ClientSize = New System.Drawing.Size(812, 601)
         Me.Controls.Add(Me.dgvPalet)
         Me.Margin = New System.Windows.Forms.Padding(5)
-        Me.MinimumSize = New System.Drawing.Size(818, 626)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmPaletsIncompletos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Palets Incompletos"

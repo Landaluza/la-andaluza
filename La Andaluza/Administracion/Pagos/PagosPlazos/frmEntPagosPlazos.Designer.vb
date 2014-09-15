@@ -166,7 +166,7 @@ Partial Class frmEntPagosPlazos
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(676, 129)
         Me.Controls.Add(Me.tlpMiddle)
-        Me.MinimumSize = New System.Drawing.Size(334, 161)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntPagosPlazos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "PagosPlazos"

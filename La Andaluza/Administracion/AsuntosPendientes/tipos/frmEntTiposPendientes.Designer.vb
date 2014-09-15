@@ -78,7 +78,7 @@ Partial Class frmEntTiposPendientes
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.ClientSize = New System.Drawing.Size(473, 184)
         Me.Controls.Add(Me.tlpMiddle)
-        Me.MinimumSize = New System.Drawing.Size(479, 123)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntTiposPendientes"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "TiposPendientes"

@@ -97,7 +97,7 @@ Partial Class frmEntcargos
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.Controls.Add(Me.tlpMiddle)
         Me.ClientSize = New System.Drawing.Size(414, 134)
-        Me.MinimumSize = New System.Drawing.Size(414, 134)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntcargos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "cargos"

@@ -93,7 +93,7 @@ Partial Class frmEntPersonalCompetencias
         Me.Controls.Add(Me.tlpMiddle)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MinimumSize = New System.Drawing.Size(553, 123)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntPersonalCompetencias"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "PersonalCompetencias"

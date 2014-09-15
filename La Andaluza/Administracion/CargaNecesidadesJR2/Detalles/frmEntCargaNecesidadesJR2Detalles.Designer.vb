@@ -408,7 +408,7 @@ Partial Class frmEntCargaNecesidadesJR2Detalles
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(746, 285)
         Me.Controls.Add(Me.tlpMiddle)
-        Me.MinimumSize = New System.Drawing.Size(416, 323)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntCargaNecesidadesJR2Detalles"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "CargaNecesidadesJRDetalles"

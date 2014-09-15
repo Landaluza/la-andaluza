@@ -65,7 +65,7 @@ Partial Class frmEntDepartamentos
         Me.Controls.Add(Me.lblNombre)
         Me.Controls.Add(Me.txtNombre)
         Me.Cursor = System.Windows.Forms.Cursors.Default
-        Me.MinimumSize = New System.Drawing.Size(450, 123)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntDepartamentos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Departamentos"

@@ -382,7 +382,7 @@ Partial Class frmEntempleados_contratos
         Me.Controls.Add(Me.cboid_empleado)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MinimumSize = New System.Drawing.Size(535, 380)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntempleados_contratos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "empleados_contratos"

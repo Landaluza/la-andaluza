@@ -171,7 +171,7 @@ Partial Class frmEntTareas
         Me.Controls.Add(Me.tlpMiddle)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MinimumSize = New System.Drawing.Size(443, 163)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntTareas"
         Me.Text = "Tareas"
         Me.Controls.SetChildIndex(Me.tlpMiddle, 0)

@@ -76,7 +76,7 @@ Partial Class frmEntcabecerasEtiquetas
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.ClientSize = New System.Drawing.Size(481, 148)
         Me.Controls.Add(Me.tlpMiddle)
-        Me.MinimumSize = New System.Drawing.Size(437, 123)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntcabecerasEtiquetas"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "cabecerasEtiquetas"

@@ -157,7 +157,7 @@ Partial Class frmEntPaletsContenidos
         Me.ClientSize = New System.Drawing.Size(577, 258)
         Me.Controls.Add(Me.Panel1)
         Me.Cursor = System.Windows.Forms.Cursors.Default
-        Me.MinimumSize = New System.Drawing.Size(569, 284)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntPaletsContenidos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = " "

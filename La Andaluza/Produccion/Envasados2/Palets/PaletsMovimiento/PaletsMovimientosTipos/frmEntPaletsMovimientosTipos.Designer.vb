@@ -230,7 +230,7 @@ Partial Class frmEntPaletsMovimientosTipos
         Me.ClientSize = New System.Drawing.Size(577, 220)
         Me.Controls.Add(Me.tlpMiddle)
         Me.Cursor = System.Windows.Forms.Cursors.Default
-        Me.MinimumSize = New System.Drawing.Size(583, 248)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntPaletsMovimientosTipos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "PaletsMovimientosTipos"

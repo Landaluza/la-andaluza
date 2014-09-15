@@ -204,7 +204,7 @@ Partial Class frmEntArticulosUnidadesMedidas
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(930, 188)
         Me.Controls.Add(Me.tlpMiddle)
-        Me.MinimumSize = New System.Drawing.Size(380, 188)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntArticulosUnidadesMedidas"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "ArticulosUnidadesMedidas"

@@ -524,7 +524,7 @@ Partial Class frmEntEnvasadosControles7
         Me.Controls.Add(Me.tlpMiddle)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MinimumSize = New System.Drawing.Size(280, 404)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntEnvasadosControles7"
         Me.Text = "EnvasadosControles1"
         Me.Controls.SetChildIndex(Me.tlpMiddle, 0)

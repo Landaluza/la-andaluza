@@ -132,7 +132,7 @@ Partial Class frmEntEmpleados_competencias
         Me.Controls.Add(Me.butVerid_personalCompetencia)
         Me.Controls.Add(Me.butAddid_personalCompetencia)
         Me.Cursor = System.Windows.Forms.Cursors.Default
-        Me.MinimumSize = New System.Drawing.Size(560, 190)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntEmpleados_competencias"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Empleados_competencias"

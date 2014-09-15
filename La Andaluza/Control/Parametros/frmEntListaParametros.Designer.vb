@@ -196,7 +196,7 @@ Partial Class frmEntListaParametros
         Me.Controls.Add(Me.cboid_parametroTipo)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MinimumSize = New System.Drawing.Size(428, 165)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntListaParametros"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "ListaParametros"

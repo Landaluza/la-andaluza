@@ -321,7 +321,7 @@ Partial Class frmEntMaterialesEnvasados
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.Controls.Add(Me.tlpMiddle)
         Me.ClientSize = New System.Drawing.Size(469, 302)
-        Me.MinimumSize = New System.Drawing.Size(469, 302)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntMaterialesEnvasados"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "MaterialesEnvasados"

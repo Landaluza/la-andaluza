@@ -27,7 +27,7 @@ Partial Class frmLotesEnologico
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.ClientSize = New System.Drawing.Size(1119, 714)
         Me.Margin = New System.Windows.Forms.Padding(5)
-        Me.MinimumSize = New System.Drawing.Size(1125, 744)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmLotesEnologico"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Lotes Enologicos de Compras"

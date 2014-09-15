@@ -314,7 +314,7 @@ Partial Class frmEntPaletsContenidosDoypack
         Me.Controls.Add(Me.SplitMermas)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.MinimumSize = New System.Drawing.Size(569, 282)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntPaletsContenidosDoypack"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = " "

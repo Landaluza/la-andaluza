@@ -290,7 +290,7 @@ Partial Class frmEntArticulosOrdenEnvasado2
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4)
-        Me.MinimumSize = New System.Drawing.Size(389, 250)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntArticulosOrdenEnvasado2"
         Me.Text = "ArticulosOrdenEnvasado"
         Me.Controls.SetChildIndex(Me.txtTodoCorrecto, 0)

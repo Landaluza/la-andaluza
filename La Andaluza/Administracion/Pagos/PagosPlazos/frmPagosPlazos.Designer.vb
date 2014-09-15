@@ -28,7 +28,7 @@ Partial Class frmPagosPlazos
         Me.ClientSize = New System.Drawing.Size(627, 567)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable
         Me.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
-        Me.MinimumSize = New System.Drawing.Size(595, 591)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmPagosPlazos"
         Me.Text = "Tipos"
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()

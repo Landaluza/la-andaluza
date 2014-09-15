@@ -28,7 +28,7 @@ Partial Class frmEmpleados_competencias
         Me.ClientSize = New System.Drawing.Size(1113, 567)
         Me.DoubleBuffered = True
         Me.Margin = New System.Windows.Forms.Padding(5)
-        Me.MinimumSize = New System.Drawing.Size(531, 485)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEmpleados_competencias"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Empleados_competencias"

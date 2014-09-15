@@ -264,7 +264,7 @@ Partial Class frmEntUsuarios
         Me.Controls.Add(Me.txtpass)
         Me.Controls.Add(Me.lblpass)
         Me.Cursor = System.Windows.Forms.Cursors.Default
-        Me.MinimumSize = New System.Drawing.Size(515, 282)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntUsuarios"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Usuarios"

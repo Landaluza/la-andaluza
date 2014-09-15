@@ -119,7 +119,7 @@ Partial Class frmEntPuestosTrabajos
         Me.Controls.Add(Me.cboDepartamento)
         Me.Controls.Add(Me.lblId_Departamento)
         Me.Cursor = System.Windows.Forms.Cursors.Default
-        Me.MinimumSize = New System.Drawing.Size(510, 157)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntPuestosTrabajos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "PuestosTrabajos"

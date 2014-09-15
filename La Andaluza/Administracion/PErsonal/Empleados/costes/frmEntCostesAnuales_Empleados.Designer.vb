@@ -231,7 +231,7 @@ Partial Class frmEntCostesAnuales_Empleados
         Me.Controls.Add(Me.lblFestivo)
         Me.Controls.Add(Me.txtExtra)
         Me.Cursor = System.Windows.Forms.Cursors.Default
-        Me.MinimumSize = New System.Drawing.Size(484, 313)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntCostesAnuales_Empleados"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "CostesAnuales_Empleados"

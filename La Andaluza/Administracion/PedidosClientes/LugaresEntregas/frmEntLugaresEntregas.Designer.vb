@@ -104,7 +104,7 @@ Partial Class frmEntLugaresEntregas
         Me.ClientSize = New System.Drawing.Size(555, 174)
         Me.Controls.Add(Me.tlpMiddle)
         Me.Cursor = System.Windows.Forms.Cursors.Default
-        Me.MinimumSize = New System.Drawing.Size(534, 155)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntLugaresEntregas"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "LugaresEntregas"

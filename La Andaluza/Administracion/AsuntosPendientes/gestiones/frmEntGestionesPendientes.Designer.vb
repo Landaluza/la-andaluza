@@ -155,7 +155,7 @@ Partial Class frmEntGestionesPendientes
         Me.ClientSize = New System.Drawing.Size(594, 301)
         Me.Controls.Add(Me.tlpMiddle)
         Me.Cursor = System.Windows.Forms.Cursors.Default
-        Me.MinimumSize = New System.Drawing.Size(527, 250)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntGestionesPendientes"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "GestionesPendientes"

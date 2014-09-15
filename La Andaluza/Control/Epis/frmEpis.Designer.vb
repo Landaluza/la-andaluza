@@ -27,7 +27,7 @@ Partial Class frmEpis
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.ClientSize = New System.Drawing.Size(928, 567)
         Me.Margin = New System.Windows.Forms.Padding(5)
-        Me.MinimumSize = New System.Drawing.Size(635, 590)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEpis"
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

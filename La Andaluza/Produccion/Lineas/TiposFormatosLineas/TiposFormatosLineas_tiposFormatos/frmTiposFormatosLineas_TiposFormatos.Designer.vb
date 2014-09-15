@@ -28,7 +28,7 @@ Partial Class frmTiposFormatosLineas_TiposFormatos
         Me.ClientSize = New System.Drawing.Size(1029, 567)
         Me.DoubleBuffered = True
         Me.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
-        Me.MinimumSize = New System.Drawing.Size(531, 484)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmTiposFormatosLineas_TiposFormatos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "TiposFormatosLineas_TiposFormatos"

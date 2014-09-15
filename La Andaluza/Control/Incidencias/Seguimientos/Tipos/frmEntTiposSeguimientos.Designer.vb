@@ -110,7 +110,7 @@ Partial Class frmEntTiposSeguimientos
         Me.Controls.Add(Me.lblObservaciones)
         Me.Controls.Add(Me.txtObservaciones)
         Me.Cursor = System.Windows.Forms.Cursors.Default
-        Me.MinimumSize = New System.Drawing.Size(532, 155)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntTiposSeguimientos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "TiposSeguimientos"

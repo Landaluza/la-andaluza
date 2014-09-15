@@ -29,7 +29,7 @@ Partial Class frmcabecerasEtiquetas
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(835, 461)
         Me.DoubleBuffered = True
-        Me.MinimumSize = New System.Drawing.Size(400, 400)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmcabecerasEtiquetas"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "cabecerasEtiquetas

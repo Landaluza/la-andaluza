@@ -130,7 +130,7 @@ Partial Class frmEntTipos_contratos
         Me.ClientSize = New System.Drawing.Size(491, 134)
         Me.Controls.Add(Me.tlpMiddle)
         Me.Cursor = System.Windows.Forms.Cursors.Default
-        Me.MinimumSize = New System.Drawing.Size(497, 155)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntTipos_contratos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Tipos_contratos"

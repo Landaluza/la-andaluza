@@ -31,7 +31,7 @@ Partial Class frmProcessosCalidad_Clasesenvasado
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(811, 559)
         Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.MinimumSize = New System.Drawing.Size(361, 397)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmProcessosCalidad_Clasesenvasado"
         Me.Text = "frmProcessosCalidad_Clasesenvasado"
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()

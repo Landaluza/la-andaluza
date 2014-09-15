@@ -27,7 +27,7 @@ Partial Class frmPedidosClientesDetalles2
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.ClientSize = New System.Drawing.Size(632, 567)
         Me.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
-        Me.MinimumSize = New System.Drawing.Size(638, 592)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmPedidosClientesDetalles2"
         Me.Text = "Detalle pedido"
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()

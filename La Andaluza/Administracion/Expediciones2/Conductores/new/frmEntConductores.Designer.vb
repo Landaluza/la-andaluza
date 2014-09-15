@@ -233,7 +233,7 @@ Partial Class frmEntConductores
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.ClientSize = New System.Drawing.Size(670, 406)
         Me.Controls.Add(Me.tlpMiddle)
-        Me.MinimumSize = New System.Drawing.Size(532, 310)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntConductores"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Conductores"

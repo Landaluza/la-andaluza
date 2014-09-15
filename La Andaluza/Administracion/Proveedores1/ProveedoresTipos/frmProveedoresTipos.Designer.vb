@@ -27,7 +27,7 @@ Partial Class frmProveedoresTipos
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.ClientSize = New System.Drawing.Size(629, 580)
         Me.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
-        Me.MinimumSize = New System.Drawing.Size(626, 607)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmProveedoresTipos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "TiposProveedores"

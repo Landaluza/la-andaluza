@@ -632,7 +632,7 @@ Partial Class frmEntPedidosProveedoresDetalles
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4)
-        Me.MinimumSize = New System.Drawing.Size(561, 298)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntPedidosProveedoresDetalles"
         Me.Text = "PedidosProveedoresDetalles"
         Me.Controls.SetChildIndex(Me.tlpMiddle, 0)

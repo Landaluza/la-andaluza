@@ -29,7 +29,7 @@ Partial Class frmDetallelIncidencias
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.DoubleBuffered = True
         Me.Margin = New System.Windows.Forms.Padding(4)
-        Me.MinimumSize = New System.Drawing.Size(400, 399)
+         Me.MinimumSize = New System.Drawing.Size(0,0)
         Me.Name = "frmControlIncidencias"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "ControlIncidencias"

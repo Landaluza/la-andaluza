@@ -357,7 +357,7 @@ Partial Class frmEntCamiones
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.ClientSize = New System.Drawing.Size(665, 393)
         Me.Controls.Add(Me.tlpMiddle)
-        Me.MinimumSize = New System.Drawing.Size(568, 348)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntCamiones"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Camiones"

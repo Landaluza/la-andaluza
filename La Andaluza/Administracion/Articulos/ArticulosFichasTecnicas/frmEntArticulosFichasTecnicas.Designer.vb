@@ -507,7 +507,7 @@ Partial Class frmEntArticulosFichasTecnicas
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(5)
-        Me.MinimumSize = New System.Drawing.Size(495, 533)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntArticulosFichasTecnicas"
         Me.Text = "ArticulosFichasTecnicas"
         Me.Controls.SetChildIndex(Me.tlpMiddle, 0)

@@ -272,7 +272,7 @@ Partial Class frmEntProtocolosMedicos
         Me.Controls.Add(Me.butVerMedico)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MinimumSize = New System.Drawing.Size(465, 271)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntProtocolosMedicos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "ProtocolosMedicos"

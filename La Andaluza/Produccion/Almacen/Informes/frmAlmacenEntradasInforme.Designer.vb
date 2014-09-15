@@ -119,7 +119,7 @@ Partial Class frmAlmacenEntradasInforme
         Me.Controls.Add(Me.SplitContainer1)
         Me.Controls.Add(Me.bdnGeneral)
         Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.MinimumSize = New System.Drawing.Size(1064, 612)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmAlmacenEntradasInforme"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "frmAlmacenEntradasInforme"

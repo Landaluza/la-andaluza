@@ -27,7 +27,7 @@ Partial Class frmDepositos
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.ClientSize = New System.Drawing.Size(629, 758)
         Me.Margin = New System.Windows.Forms.Padding(5)
-        Me.MinimumSize = New System.Drawing.Size(585, 784)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmDepositos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Depositos"

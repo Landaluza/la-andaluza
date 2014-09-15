@@ -309,7 +309,7 @@ Partial Class frmSaludLaboral
         Me.Controls.Add(Me.Panel1)
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.MaximizeBox = False
-        Me.MinimumSize = New System.Drawing.Size(19, 423)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmSaludLaboral"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Salud Laboral"

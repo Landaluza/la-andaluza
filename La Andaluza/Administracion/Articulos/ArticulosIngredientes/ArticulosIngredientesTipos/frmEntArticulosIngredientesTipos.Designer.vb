@@ -175,7 +175,7 @@ Partial Class frmEntArticulosIngredientesTipos
         Me.ClientSize = New System.Drawing.Size(715, 198)
         Me.Controls.Add(Me.panContenidos)
         Me.Cursor = System.Windows.Forms.Cursors.Default
-        Me.MinimumSize = New System.Drawing.Size(348, 161)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntArticulosIngredientesTipos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "ArticulosIngredientesTipos"

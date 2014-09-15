@@ -289,7 +289,7 @@ Partial Class frmEntControlesEntregasEpis
         Me.Controls.Add(Me.tlpMiddle)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MinimumSize = New System.Drawing.Size(362, 242)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntControlesEntregasEpis"
         Me.Text = "ControlesEntregasEpis"
         Me.Controls.SetChildIndex(Me.tlpMiddle, 0)

@@ -137,7 +137,7 @@ Partial Class frmEntEspecificacionesLegales
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.MinimumSize = New System.Drawing.Size(407, 189)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntEspecificacionesLegales"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Especificaciones legales"

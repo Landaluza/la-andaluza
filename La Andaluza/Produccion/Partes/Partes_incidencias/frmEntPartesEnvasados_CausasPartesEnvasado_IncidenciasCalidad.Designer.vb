@@ -98,7 +98,7 @@ Partial Class frmEntPartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.MinimumSize = New System.Drawing.Size(498, 136)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntPartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "PartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad"

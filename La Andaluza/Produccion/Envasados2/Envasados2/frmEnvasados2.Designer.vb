@@ -268,7 +268,7 @@ Partial Class frmEnvasados2
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.PanDBelow)
         Me.Margin = New System.Windows.Forms.Padding(4)
-        Me.MinimumSize = New System.Drawing.Size(16, 593)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEnvasados2"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Envasados"

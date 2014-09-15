@@ -169,7 +169,7 @@ Partial Class frmGenerarAnaliticasCloro
         Me.Controls.Add(Me.cboAnalista)
         Me.MaximumSize = New System.Drawing.Size(1029, 656)
         Me.MinimizeBox = False
-        Me.MinimumSize = New System.Drawing.Size(1029, 656)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmGenerarAnaliticasCloro"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "frmGenerarAnaliticasCloro"

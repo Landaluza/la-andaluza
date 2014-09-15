@@ -28,7 +28,7 @@ Partial Class frmPaletsContenidos2
         Me.ClientSize = New System.Drawing.Size(629, 567)
         Me.DoubleBuffered = True
         Me.Margin = New System.Windows.Forms.Padding(5)
-        Me.MinimumSize = New System.Drawing.Size(65, 54)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmPaletsContenidos2"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Contenidos"

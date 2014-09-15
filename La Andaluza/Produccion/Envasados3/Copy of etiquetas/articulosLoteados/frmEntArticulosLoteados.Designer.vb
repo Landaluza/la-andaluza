@@ -120,7 +120,7 @@ Partial Class frmEntArticulosLoteados
         Me.Controls.Add(Me.tlpMiddle)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MinimumSize = New System.Drawing.Size(472, 138)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntArticulosLoteados"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "ArticulosLoteados"

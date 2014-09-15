@@ -247,7 +247,7 @@ Partial Class frmEntTiposBotellas
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.ClientSize = New System.Drawing.Size(522, 263)
         Me.Controls.Add(Me.tlpMiddle)
-        Me.MinimumSize = New System.Drawing.Size(524, 253)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntTiposBotellas"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "TiposBotellas"

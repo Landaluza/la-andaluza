@@ -47,7 +47,7 @@ Partial Class frmSelectorArticulo
         Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.MaximizeBox = False
         Me.MaximumSize = New System.Drawing.Size(829, 563)
-        Me.MinimumSize = New System.Drawing.Size(829, 563)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmSelectorArticulo"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Para continuar la migración seleccione el articulo a borrar"

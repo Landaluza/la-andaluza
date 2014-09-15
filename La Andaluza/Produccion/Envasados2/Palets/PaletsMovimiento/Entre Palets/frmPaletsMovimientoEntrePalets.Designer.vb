@@ -690,7 +690,7 @@ Partial Class frmPaletsMovimientoEntrePalets
         Me.Controls.Add(Me.gpbOrigen)
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.MinimizeBox = False
-        Me.MinimumSize = New System.Drawing.Size(18, 726)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmPaletsMovimientoEntrePalets"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "frmPaletsMovimientoEntrePalets"

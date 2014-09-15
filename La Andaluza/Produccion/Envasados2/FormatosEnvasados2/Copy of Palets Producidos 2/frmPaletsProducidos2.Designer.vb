@@ -75,7 +75,7 @@ Partial Class frmPaletsProducidos2
         Me.ClientSize = New System.Drawing.Size(988, 567)
         Me.Controls.Add(Me.Panel1)
         Me.Margin = New System.Windows.Forms.Padding(5)
-        Me.MinimumSize = New System.Drawing.Size(398, 55)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmPaletsProducidos2"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Palets producidos"

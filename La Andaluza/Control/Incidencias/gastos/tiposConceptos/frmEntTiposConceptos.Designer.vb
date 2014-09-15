@@ -75,7 +75,7 @@ Partial Class frmEntTiposConceptos
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.Controls.Add(Me.tlpMiddle)
         Me.ClientSize = New System.Drawing.Size(399, 107)
-        Me.MinimumSize = New System.Drawing.Size(399, 107)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntTiposConceptos
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "TiposConceptos"

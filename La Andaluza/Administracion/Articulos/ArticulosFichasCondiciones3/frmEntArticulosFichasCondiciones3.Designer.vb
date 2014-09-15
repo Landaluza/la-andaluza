@@ -994,7 +994,7 @@ Partial Class frmEntArticulosFichasCondiciones3
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(5)
-        Me.MinimumSize = New System.Drawing.Size(563, 835)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntArticulosFichasCondiciones3"
         Me.Text = "ArticulosFichasCondiciones3"
         Me.Controls.SetChildIndex(Me.tlpMiddle, 0)

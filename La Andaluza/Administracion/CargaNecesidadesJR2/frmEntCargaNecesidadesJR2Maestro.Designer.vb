@@ -463,7 +463,7 @@ Partial Class frmEntCargaNecesidadesJR2Maestro
         Me.Controls.Add(Me.TabControl1)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
-        Me.MinimumSize = New System.Drawing.Size(553, 357)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntCargaNecesidadesJR2Maestro"
         Me.Text = "CargaNecesidadesJRMaestro"
         Me.Controls.SetChildIndex(Me.TabControl1, 0)

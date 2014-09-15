@@ -103,7 +103,7 @@ Partial Class frmEntTiposUsuarios
         Me.Controls.Add(Me.lblpermisos)
         Me.Controls.Add(Me.txtpermisos)
         Me.Cursor = System.Windows.Forms.Cursors.Default
-        Me.MinimumSize = New System.Drawing.Size(491, 155)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntTiposUsuarios"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "TiposUsuarios"

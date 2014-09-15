@@ -4227,7 +4227,7 @@ Partial Class FrmEntLotes
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.MaximizeBox = True
-        Me.MinimumSize = New System.Drawing.Size(1032, 823)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "FrmEntLotes"
         Me.Controls.SetChildIndex(Me.txtLoteID, 0)
         Me.Controls.SetChildIndex(Me.butInfoTrazabilidad, 0)

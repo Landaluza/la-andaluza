@@ -204,7 +204,7 @@ Partial Class frmGeneradorBoletines
         Me.ClientSize = New System.Drawing.Size(1028, 687)
         Me.Controls.Add(Me.panReporte)
         Me.DoubleBuffered = True
-        Me.MinimumSize = New System.Drawing.Size(402, 401)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmGeneradorBoletines"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Boletines"

@@ -29,7 +29,7 @@ Partial Class frmNoticias2
         Me.ClientSize = New System.Drawing.Size(835, 461)
         Me.DoubleBuffered = True
         Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.MinimumSize = New System.Drawing.Size(402, 401)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmNoticias2"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Noticias2"

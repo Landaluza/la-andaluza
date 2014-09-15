@@ -761,7 +761,7 @@ Partial Class frmResumen
         Me.Controls.Add(Me.grbProduccion)
         Me.Controls.Add(Me.GroupBox1)
         Me.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
-        Me.MinimumSize = New System.Drawing.Size(635, 590)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmResumen"
         Me.Text = "Form1"
         Me.Controls.SetChildIndex(Me.GroupBox1, 0)

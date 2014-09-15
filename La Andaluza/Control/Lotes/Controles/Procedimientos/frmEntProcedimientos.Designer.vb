@@ -229,7 +229,7 @@ Partial Class frmEntProcedimientos
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.MinimumSize = New System.Drawing.Size(403, 208)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntProcedimientos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Procedimientos"

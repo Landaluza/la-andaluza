@@ -278,7 +278,7 @@ Partial Class frmEntArticulosMinMax
         Me.Controls.Add(Me.lblMaximoProveedor)
         Me.Controls.Add(Me.txtMinimoProveedor)
         Me.Cursor = System.Windows.Forms.Cursors.Default
-        Me.MinimumSize = New System.Drawing.Size(550, 437)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntArticulosMinMax"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "ArticulosMinMax"

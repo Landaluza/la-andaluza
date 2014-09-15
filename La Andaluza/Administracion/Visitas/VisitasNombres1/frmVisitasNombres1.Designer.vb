@@ -29,7 +29,7 @@ Partial Class frmVisitasNombres1
         Me.ClientSize = New System.Drawing.Size(1105, 567)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable
         Me.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
-        Me.MinimumSize = New System.Drawing.Size(1111, 485)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmVisitasNombres1"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Visitantes"

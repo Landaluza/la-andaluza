@@ -225,7 +225,7 @@ Partial Class frmEntReuniones
         Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.MaximizeBox = False
         Me.MaximumSize = New System.Drawing.Size(464, 249)
-        Me.MinimumSize = New System.Drawing.Size(464, 249)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntReuniones"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Reuniones"

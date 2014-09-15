@@ -490,7 +490,7 @@ Partial Class frmEntEnvasadosControles2
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(280, 485)
         Me.Controls.Add(Me.tlpMiddle)
-        Me.MinimumSize = New System.Drawing.Size(280, 485)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntEnvasadosControles2"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "EnvasadosControles2"

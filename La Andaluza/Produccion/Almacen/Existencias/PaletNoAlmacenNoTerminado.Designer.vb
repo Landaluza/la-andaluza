@@ -27,7 +27,7 @@ Partial Class PaletNoAlmacenNoTerminado
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.ClientSize = New System.Drawing.Size(1105, 769)
         Me.Margin = New System.Windows.Forms.Padding(5)
-        Me.MinimumSize = New System.Drawing.Size(1111, 793)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "PaletNoAlmacenNoTerminado"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "PaletNoAlmacenNoTerminado"

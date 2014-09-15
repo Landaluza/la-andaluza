@@ -220,7 +220,7 @@ Partial Class frmEntArticulos_ArticulosCertificadosTipos
         Me.Controls.Add(Me.tlpMiddle)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MinimumSize = New System.Drawing.Size(653, 217)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntArticulos_ArticulosCertificadosTipos"
         Me.Text = "Articulos_ArticulosCertificadosTipos"
         Me.Controls.SetChildIndex(Me.tlpMiddle, 0)

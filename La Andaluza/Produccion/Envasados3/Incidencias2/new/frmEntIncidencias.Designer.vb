@@ -401,7 +401,7 @@ Partial Class frmEntIncidencias
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.MinimizeBox = False
-        Me.MinimumSize = New System.Drawing.Size(470, 222)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntIncidencias"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Incidencias"

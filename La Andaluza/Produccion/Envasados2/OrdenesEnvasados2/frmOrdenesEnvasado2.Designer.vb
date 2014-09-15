@@ -27,7 +27,7 @@ Partial Class frmOrdenesEnvasado2
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.ClientSize = New System.Drawing.Size(629, 567)
         Me.Margin = New System.Windows.Forms.Padding(5)
-        Me.MinimumSize = New System.Drawing.Size(635, 588)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmOrdenesEnvasado2"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Ordenes envasados"

@@ -207,7 +207,7 @@ Partial Class frmEntComunicaciones
         Me.ClientSize = New System.Drawing.Size(556, 298)
         Me.Controls.Add(Me.tlpMiddle)
         Me.Cursor = System.Windows.Forms.Cursors.Default
-        Me.MinimumSize = New System.Drawing.Size(509, 279)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntComunicaciones"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Comunicaciones"

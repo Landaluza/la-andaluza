@@ -181,7 +181,7 @@ Partial Class frmLisEnvPorArticuloPrimario
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
         Me.Margin = New System.Windows.Forms.Padding(4)
-        Me.MinimumSize = New System.Drawing.Size(1194, 482)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmLisEnvPorArticuloPrimario"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Articulos primarios entre fechas"

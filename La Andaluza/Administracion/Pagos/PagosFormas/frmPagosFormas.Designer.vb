@@ -28,7 +28,7 @@ Partial Class frmPagosFormas
         Me.ClientSize = New System.Drawing.Size(776, 567)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable
         Me.Margin = New System.Windows.Forms.Padding(5)
-        Me.MinimumSize = New System.Drawing.Size(781, 591)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmPagosFormas"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Formas de pago"

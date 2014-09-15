@@ -28,7 +28,7 @@ Partial Class frmLineasEnvasado
         Me.ClientSize = New System.Drawing.Size(1113, 567)
         Me.DoubleBuffered = True
         Me.Margin = New System.Windows.Forms.Padding(5)
-        Me.MinimumSize = New System.Drawing.Size(531, 485)
+        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmLineasEnvasado"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Lineas de envasado"
