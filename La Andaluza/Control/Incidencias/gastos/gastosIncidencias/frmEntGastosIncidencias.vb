@@ -1,3 +1,4 @@
+Imports BasesParaCompatibilidad.dtpExtension
 Public Class frmEntGastosIncidencias
     Inherits BasesParaCompatibilidad.DetailedSimpleForm
     Implements BasesParaCompatibilidad.Savable
@@ -5,7 +6,7 @@ Public Class frmEntGastosIncidencias
     Private m_DBO_GastosIncidencias As DBO_GastosIncidencias
     Private spCostesPorConcepto As New spCostesPorConcepto
     Public Sub New(ByVal modoDeApertura As String, Optional ByRef v_sp As spGastosIncidencias = Nothing, Optional ByRef v_dbo As DBO_GastosIncidencias = Nothing)
-        MyBase.new(modoDeApertura, v_sp, CType(v_dbo, BasesParaCompatibilidad.databussines))
+        MyBase.New(modoDeApertura, v_sp, CType(v_dbo, BasesParaCompatibilidad.DataBussines))
         InitializeComponent()
         spCostesPorConcepto = New spCostesPorConcepto
         If v_sp Is Nothing Then
@@ -15,6 +16,8 @@ Public Class frmEntGastosIncidencias
         End If
         m_DBO_GastosIncidencias = If(v_dbo Is Nothing, New DBO_GastosIncidencias, v_dbo)
         dbo = m_DBO_GastosIncidencias
+
+        Me.dtpFecha.activarFoco()
     End Sub
 
     Private Sub frmEntGastosIncidencias_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -25,38 +28,38 @@ Public Class frmEntGastosIncidencias
         Dim s3 As New spProveedores
         s3.cargar_Proveedores(Me.cboproveedor)
         Dim s4 As New spEmpleados
-        s4.cargar_empleados(Me.cboempleado)
+        s4.cargar_Empleados(Me.cboempleado)
         Dim s5 As New spClientes
         s5.cargar_Clientes(Me.cbocliente)
         Dim s6 As New spMedidasProductos
         s6.cargar_MedidasProductos(cboMedidaProducto)
 
-        If (Me.mododeapertura = VISION) Then
-            Me.cboconcepto.enabled = False
+        If (Me.ModoDeApertura = VISION) Then
+            Me.cboconcepto.Enabled = False
 
-            Me.cbocosteConcepto.enabled = False
+            Me.cbocosteConcepto.Enabled = False
 
-            Me.cboproveedor.enabled = False
+            Me.cboproveedor.Enabled = False
             Me.rbProveedor.Enabled = False
 
-            Me.cboempleado.enabled = False
+            Me.cboempleado.Enabled = False
             Me.rbEmpleado.Enabled = False
 
-            Me.cbocliente.enabled = False
+            Me.cbocliente.Enabled = False
             Me.rbCliente.Enabled = False
 
             Me.cboMedidaProducto.Enabled = False
         End If
-        If Config.userType <> 4 And Config.userType <> 9 Then
-            butAddId_concepto.enabled = False
-            butVerId_concepto.enabled = False
-            butAddId_costeConcepto.enabled = False
-            butAddId_proveedor.enabled = False
-            butVerId_proveedor.enabled = False
-            butAddId_empleado.enabled = False
-            butVerId_empleado.enabled = False
-            butAddId_cliente.enabled = False
-            butVerId_cliente.enabled = False
+        If Config.UserType <> 4 And Config.UserType <> 9 Then
+            butAddId_concepto.Enabled = False
+            butVerId_concepto.Enabled = False
+            butAddId_costeConcepto.Enabled = False
+            butAddId_proveedor.Enabled = False
+            butVerId_proveedor.Enabled = False
+            butAddId_empleado.Enabled = False
+            butVerId_empleado.Enabled = False
+            butAddId_cliente.Enabled = False
+            butVerId_cliente.Enabled = False
         End If
 
     End Sub
@@ -71,6 +74,7 @@ Public Class frmEntGastosIncidencias
         txtCantidadRef.Text = m_DBO_GastosIncidencias.CantidadReferencia
         txtObservaciones.Text = m_DBO_GastosIncidencias.Observaciones
         cboMedidaProducto.SelectedValue = m_DBO_GastosIncidencias.Id_MedidaReferencia
+        dtpFecha.Value = m_DBO_GastosIncidencias.Fecha
 
         If Not cboproveedor.SelectedValue Is Nothing Then rbProveedor.Checked = True
         cboempleado.SelectedValue = m_DBO_GastosIncidencias.Id_empleado
@@ -81,8 +85,14 @@ Public Class frmEntGastosIncidencias
     End Sub
 
     Protected Overrides Function GetValores() As Boolean Implements BasesParaCompatibilidad.Savable.getValores
-        Dim errores As String = String.empty
+        Dim errores As String = String.Empty
 
+        If dtpFecha.Value.Date > DateTime.Now.Date Then
+            dtpFecha.Focus()
+            errores = errores & "La fecha no puede ser posterior a hoy." & Environment.NewLine()
+        Else
+            m_DBO_GastosIncidencias.Fecha = dtpFecha.Value.Date
+        End If
 
         If txtCantidad.Text = "" Then
             If errores = "" Then txtCantidad.Focus()
@@ -198,7 +208,7 @@ Public Class frmEntGastosIncidencias
 
     Private Sub butAddId_concepto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_concepto.Click
         Dim DBO_ConceptosGastosIncidencias As New DBO_ConceptosGastosIncidencias
-        Dim frmEnt As New frmEntConceptosGastosIncidencias(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spConceptosGastosIncidencias, DBO_ConceptosGastosIncidencias)
+        Dim frmEnt As New frmEntConceptosGastosIncidencias(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spConceptosGastosIncidencias, DBO_ConceptosGastosIncidencias)
         frmEnt.ShowDialog()
         Dim s As New spConceptosGastosIncidencias
         s.cargar_ConceptosGastosIncidencias(Me.cboconcepto)
@@ -211,7 +221,7 @@ Public Class frmEntGastosIncidencias
 
     Private Sub butAddId_costeConcepto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_costeConcepto.Click
         Dim DBO_CostesPorConcepto As New DBO_CostesPorConcepto
-        Dim frmEnt As New frmEntCostesPorConcepto(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spCostesPorConcepto, DBO_CostesPorConcepto)
+        Dim frmEnt As New frmEntCostesPorConcepto(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spCostesPorConcepto, DBO_CostesPorConcepto)
         frmEnt.ShowDialog()
         Dim s As New spCostesPorConcepto
         s.cargar_CostesPorConcepto(Me.cbocosteConcepto, Convert.ToInt32(Me.cboconcepto.SelectedValue))
@@ -224,7 +234,7 @@ Public Class frmEntGastosIncidencias
 
     Private Sub butAddId_proveedor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_proveedor.Click
         Dim DBO_Proveedores As New DBO_Proveedores
-        Dim frmEnt As New frmEntProveedores(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spProveedores, DBO_Proveedores)
+        Dim frmEnt As New frmEntProveedores(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spProveedores, DBO_Proveedores)
         frmEnt.ShowDialog()
         Dim s As New spProveedores
         s.cargar_Proveedores(Me.cboproveedor)
@@ -237,10 +247,10 @@ Public Class frmEntGastosIncidencias
 
     Private Sub butAddId_empleado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_empleado.Click
         Dim DBO_Empleados As New DBO_Empleados
-        Dim frmEnt As New frmEntEmpleados(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spEmpleados, DBO_Empleados)
+        Dim frmEnt As New frmEntEmpleados(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spEmpleados, DBO_Empleados)
         frmEnt.ShowDialog()
         Dim s As New spEmpleados
-        s.cargar_empleados(Me.cboempleado)
+        s.cargar_Empleados(Me.cboempleado)
     End Sub
 
     Private Sub frmEntGastosIncidencias_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown

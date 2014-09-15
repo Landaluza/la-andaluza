@@ -49,7 +49,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>383</ApplicationRevision>
+    <ApplicationRevision>384</ApplicationRevision>
     <ApplicationVersion>2014.7.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -1228,7 +1228,7 @@
     <Compile Include="Control\Incidencias\ControlIncidencias\frmEntControlIncidencias.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Control\Incidencias\ControlIncidencias\NewFolder1\DBO_ControlIncidencias.vb" />
+    <Compile Include="Control\Incidencias\ControlIncidencias\DBO_ControlIncidencias.vb" />
     <Compile Include="Control\Incidencias\ControlIncidencias\spControlIncidencias.vb" />
     <Compile Include="Control\Incidencias\ControlIncidencias_accionesCorrectivas\DBO_ControlIncidencias_AccionesCorrectivas.vb" />
     <Compile Include="Control\Incidencias\ControlIncidencias_accionesCorrectivas\frmControlIncidencias_AccionesCorrectivas.Designer.vb">
