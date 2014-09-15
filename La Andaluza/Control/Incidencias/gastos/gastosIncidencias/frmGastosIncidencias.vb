@@ -40,9 +40,11 @@ Public Class frmGastosIncidencias
             With dgvGeneral
                 .DataSource = GeneralBindingSource
                 .Columns("Id").Visible = False
+                .FormatoColumna("Cantidad", BasesParaCompatibilidad.TiposColumna.Double2, True)
                 .FormatoColumna("Descripcion", BasesParaCompatibilidad.TiposColumna.Izquierda, True)
                 .FormatoColumna("Coste", BasesParaCompatibilidad.TiposColumna.Double2, True)
                 .FormatoColumna("Causante", BasesParaCompatibilidad.TiposColumna.Izquierda, True)
+                .FormatoColumna("Referencia", BasesParaCompatibilidad.TiposColumna.Double2, True)
             End With
         End If
 

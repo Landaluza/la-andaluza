@@ -126,8 +126,6 @@ Public Class frmEntPedidosClientesMaestros2
 
     Sub RellenaTabPrincipal()
         frmPedidosClientesDetalles2 = New frmPedidosClientesDetalles2(m_DBO_PedidosClientesMaestros2.PedidoClienteMaestroID)
-        ' frHijo = f
-        ' frHijo.Embebido = True
         frmPedidosClientesDetalles2.Embebido = True
         frmPedidosClientesDetalles2.TopLevel = False
         frmPedidosClientesDetalles2.FormBorderStyle = Windows.Forms.FormBorderStyle.None

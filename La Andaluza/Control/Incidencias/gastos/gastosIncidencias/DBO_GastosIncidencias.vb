@@ -24,7 +24,7 @@ Inherits BasesParaCompatibilidad.DataBussines
        m_Id_empleado= New BasesParaCompatibilidad.DataBussinesParameter("@Id_empleado","Id_empleado")
         m_Id_cliente = New BasesParaCompatibilidad.DataBussinesParameter("@Id_cliente", "Id_cliente")
         m_Observaciones = New BasesParaCompatibilidad.DataBussinesParameter("@Observaciones", "Observaciones")
-        m_CantidadReferencia = New BasesParaCompatibilidad.DataBussinesParameter("@CantidadReferencia ", "CantidadReferencia ")
+        m_CantidadReferencia = New BasesParaCompatibilidad.DataBussinesParameter("@CantidadReferencia ", "CantidadReferencia")
         m_Id_medidaProducto = New BasesParaCompatibilidad.DataBussinesParameter("@Id_medidaProducto", "Id_medidaProducto")
        MyBase.primaryKey = m_Id
        añadirParametros()
@@ -156,7 +156,7 @@ Inherits BasesParaCompatibilidad.DataBussines
             If m_Observaciones.value Is Convert.DBNull Then
                 Return String.Empty
             End If
-            Return CType(m_Observaciones.value, Integer)
+            Return m_Observaciones.value.ToString
         End Get
         Set(ByVal value As String)
             m_Observaciones.value = value
