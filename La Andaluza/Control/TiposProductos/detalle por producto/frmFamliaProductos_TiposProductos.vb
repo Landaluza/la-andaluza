@@ -9,25 +9,25 @@ Public Class frmFamliaProductos_TiposProductos
        MyBase.new(new spFamliaProductos_TiposProductos(),MaestroID.ToString)
        InitializeComponent()
        dboFamliaProductos_TiposProductos = new DBO_FamliaProductos_TiposProductos
-       MyBase.newRegForm = ctype(New frmEntFamliaProductos_TiposProductos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, ctype(sp, spFamliaProductos_TiposProductos)), BasesParaCompatibilidad.DetailedSimpleForm)
-   End Sub
+        MyBase.newRegForm = CType(New frmEntDetallePorProducto(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, CType(sp, spFamliaProductos_TiposProductos)), BasesParaCompatibilidad.DetailedSimpleForm)
+    End Sub
 
-   Private Sub Insert_Before() Handles MyBase.BeforeInsert
-           MyBase.newRegForm = ctype(New frmEntFamliaProductos_TiposProductos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR), BasesParaCompatibilidad.DetailedSimpleForm)
-           dboFamliaProductos_TiposProductos.Id_TipoProducto = m_MaestroID
-       newRegForm.SetDataBussinesObject(ctype(Me.dboFamliaProductos_TiposProductos, BasesParaCompatibilidad.databussines))
-   End Sub
+    Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        MyBase.newRegForm = CType(New frmEntDetallePorProducto(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR), BasesParaCompatibilidad.DetailedSimpleForm)
+        dboFamliaProductos_TiposProductos.Id_FamiliaProducto = m_MaestroID
+        newRegForm.SetDataBussinesObject(CType(Me.dboFamliaProductos_TiposProductos, BasesParaCompatibilidad.databussines))
+    End Sub
 
-   Private Sub modify_Before() Handles MyBase.BeforeModify
-       dboFamliaProductos_TiposProductos =ctype(sp, spFamliaProductos_TiposProductos).Select_Record(ctype(dgvGeneral.CurrentRow.Cells("Id").Value, integer))
-       If Not dboFamliaProductos_TiposProductos Is Nothing Then
-           MyBase.newRegForm = ctype(New frmEntFamliaProductos_TiposProductos(BasesParaCompatibilidad.GridSimpleForm.ACCION_MODIFICAR), BasesParaCompatibilidad.DetailedSimpleForm)
-           newRegForm.SetDataBussinesObject(ctype(Me.dboFamliaProductos_TiposProductos,BasesParaCompatibilidad.databussines))
-       Else
-           MyBase.EventHandeld = True
-           Messagebox.show("No se pudo recuperar los datos",  "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-       End If
-   End Sub
+    Private Sub modify_Before() Handles MyBase.BeforeModify
+        dboFamliaProductos_TiposProductos = CType(sp, spFamliaProductos_TiposProductos).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer))
+        If Not dboFamliaProductos_TiposProductos Is Nothing Then
+            MyBase.newRegForm = CType(New frmEntDetallePorProducto(BasesParaCompatibilidad.GridSimpleForm.ACCION_MODIFICAR), BasesParaCompatibilidad.DetailedSimpleForm)
+            newRegForm.SetDataBussinesObject(CType(Me.dboFamliaProductos_TiposProductos, BasesParaCompatibilidad.databussines))
+        Else
+            MyBase.EventHandeld = True
+            Messagebox.show("No se pudo recuperar los datos", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+        End If
+    End Sub
 
    Protected Overrides Sub BindDataSource() Implements BasesParaCompatibilidad.Queriable.dataGridViewFill
        'dim dt as datatable = DataTableFill(Me.spFamliaProductos_TiposProductos.DataGridViewStoredProcedure)

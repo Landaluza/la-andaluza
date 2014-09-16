@@ -3,13 +3,13 @@ Public Class frmdetallePorFamilia
    Inherits BasesParaCompatibilidad.gridsimpleform
    Implements BasesParaCompatibilidad.Queriable
 
-   private dbodetallePorFamilia As DBO_detallePorFamilia
+    Private dbodetallePorFamilia As DBO_FamliaProductos_TiposProductos
        
    Public Sub New(Optional ByVal MaestroID As Integer = 0)
-       MyBase.new(new spdetallePorFamilia(),MaestroID.ToString)
+        MyBase.New(New spFamliaProductos_TiposProductos(), MaestroID.ToString)
        InitializeComponent()
-       dbodetallePorFamilia = new DBO_detallePorFamilia
-       MyBase.newRegForm = ctype(New frmEntdetallePorFamilia(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, ctype(sp, spdetallePorFamilia)), BasesParaCompatibilidad.DetailedSimpleForm)
+        dbodetallePorFamilia = New DBO_FamliaProductos_TiposProductos
+        MyBase.newRegForm = CType(New frmEntdetallePorFamilia(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, CType(sp, spFamliaProductos_TiposProductos)), BasesParaCompatibilidad.DetailedSimpleForm)
    End Sub
 
    Private Sub Insert_Before() Handles MyBase.BeforeInsert
@@ -19,7 +19,7 @@ Public Class frmdetallePorFamilia
    End Sub
 
    Private Sub modify_Before() Handles MyBase.BeforeModify
-       dbodetallePorFamilia =ctype(sp, spdetallePorFamilia).Select_Record(ctype(dgvGeneral.CurrentRow.Cells("Id").Value, integer))
+        dbodetallePorFamilia = CType(sp, spFamliaProductos_TiposProductos).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer))
        If Not dbodetallePorFamilia Is Nothing Then
            MyBase.newRegForm = ctype(New frmEntdetallePorFamilia(BasesParaCompatibilidad.GridSimpleForm.ACCION_MODIFICAR), BasesParaCompatibilidad.DetailedSimpleForm)
            newRegForm.SetDataBussinesObject(ctype(Me.dbodetallePorFamilia,BasesParaCompatibilidad.databussines))

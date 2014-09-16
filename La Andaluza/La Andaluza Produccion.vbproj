@@ -1000,6 +1000,46 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Control\Lotes\revision\spRevisionLotes.vb" />
+    <Compile Include="Control\TiposProductos\detalle por familia\frmdetallePorFamilia.Designer.vb">
+      <DependentUpon>frmdetallePorFamilia.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Control\TiposProductos\detalle por familia\frmdetallePorFamilia.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Control\TiposProductos\detalle por producto\frmEntDetallePorProducto.Designer.vb">
+      <DependentUpon>frmEntDetallePorProducto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Control\TiposProductos\detalle por producto\frmEntDetallePorProducto.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Control\TiposProductos\detalle por producto\frmFamliaProductos_TiposProductos.Designer.vb">
+      <DependentUpon>frmFamliaProductos_TiposProductos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Control\TiposProductos\detalle por producto\frmFamliaProductos_TiposProductos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Control\TiposProductos\Familia\Comun\frmEntDEtallePorFamilia.Designer.vb">
+      <DependentUpon>frmEntDEtallePorFamilia.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Control\TiposProductos\Familia\Comun\frmEntDEtallePorFamilia.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Control\TiposProductos\Familia\Comun\spFamliaProductos_TiposProductos.vb" />
+    <Compile Include="Control\TiposProductos\Familia\Comun\DBO_FamliaProductos_TiposProductos.vb" />
+    <Compile Include="Control\TiposProductos\Familia\DBO_FamiliaProducto.vb" />
+    <Compile Include="Control\TiposProductos\Familia\frmEntFamiliaProducto.Designer.vb">
+      <DependentUpon>frmEntFamiliaProducto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Control\TiposProductos\Familia\frmEntFamiliaProducto.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Control\TiposProductos\Familia\frmFamiliaProducto.Designer.vb">
+      <DependentUpon>frmFamiliaProducto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Control\TiposProductos\Familia\frmFamiliaProducto.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Control\TiposProductos\Familia\spFamiliaProducto.vb" />
     <Compile Include="Control\_antiguos\Lotes\CompuestoPor\frmTrazabilidad.Designer.vb">
       <DependentUpon>frmTrazabilidad.vb</DependentUpon>
     </Compile>
@@ -1670,17 +1710,17 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Control\TiposProductos\MedidasProductos\spMedidasProductos.vb" />
-    <Compile Include="Control\TiposProductos\nuevo2\DBO_TiposProductos.vb" />
-    <Compile Include="Control\TiposProductos\nuevo2\frmEntTiposProductos.Designer.vb">
+    <Compile Include="Control\TiposProductos\DBO_TiposProductos.vb" />
+    <Compile Include="Control\TiposProductos\frmEntTiposProductos.Designer.vb">
       <DependentUpon>frmEntTiposProductos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Control\TiposProductos\nuevo2\frmEntTiposProductos.vb">
+    <Compile Include="Control\TiposProductos\frmEntTiposProductos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Control\TiposProductos\nuevo2\frmTiposProductos.Designer.vb">
+    <Compile Include="Control\TiposProductos\frmTiposProductos.Designer.vb">
       <DependentUpon>frmTiposProductos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Control\TiposProductos\nuevo2\frmTiposProductos.vb">
+    <Compile Include="Control\TiposProductos\frmTiposProductos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Elaboracion\Depositos\BotasPosiciones\clsAlturas.vb" />
@@ -4163,7 +4203,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Control\TiposProductos\CompuestoPor\spTiposProductosCompuestoPor.vb" />
-    <Compile Include="Control\TiposProductos\nuevo2\spTiposProductos.vb" />
+    <Compile Include="Control\TiposProductos\spTiposProductos.vb" />
     <Compile Include="Administracion\Personal\TurnosTrabajo\DBO_TurnosTrabajo.vb" />
     <Compile Include="Administracion\Personal\TurnosTrabajo\frmEntTurnosTrabajo.Designer.vb">
       <DependentUpon>frmEntTurnosTrabajo.vb</DependentUpon>
@@ -5169,16 +5209,34 @@
     <EmbeddedResource Include="Control\TiposLotes\frmTiposLotes.resx">
       <DependentUpon>frmTiposLotes.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Control\TiposProductos\detalle por familia\frmdetallePorFamilia.resx">
+      <DependentUpon>frmdetallePorFamilia.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\TiposProductos\detalle por producto\frmEntDetallePorProducto.resx">
+      <DependentUpon>frmEntDetallePorProducto.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\TiposProductos\detalle por producto\frmFamliaProductos_TiposProductos.resx">
+      <DependentUpon>frmFamliaProductos_TiposProductos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\TiposProductos\Familia\Comun\frmEntDEtallePorFamilia.resx">
+      <DependentUpon>frmEntDEtallePorFamilia.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\TiposProductos\Familia\frmEntFamiliaProducto.resx">
+      <DependentUpon>frmEntFamiliaProducto.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\TiposProductos\Familia\frmFamiliaProducto.resx">
+      <DependentUpon>frmFamiliaProducto.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Control\TiposProductos\MedidasProductos\frmEntMedidasProductos.resx">
       <DependentUpon>frmEntMedidasProductos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Control\TiposProductos\MedidasProductos\frmMedidasProductos.resx">
       <DependentUpon>frmMedidasProductos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Control\TiposProductos\nuevo2\frmEntTiposProductos.resx">
+    <EmbeddedResource Include="Control\TiposProductos\frmEntTiposProductos.resx">
       <DependentUpon>frmEntTiposProductos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Control\TiposProductos\nuevo2\frmTiposProductos.resx">
+    <EmbeddedResource Include="Control\TiposProductos\frmTiposProductos.resx">
       <DependentUpon>frmTiposProductos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Control\_antiguos\Lotes\CompuestoPor\frmTrazabilidad.resx">
@@ -6531,6 +6589,27 @@
     <None Include="Bases\ZLibrerias\ReportAdapter.dll" />
     <None Include="Bases\ZLibrerias\BasesParaCompatibilidad.dll" />
     <None Include="Bases\ZLibrerias\InformeDepositos.dll" />
+    <Content Include="Control\TiposProductos\detalle por familia\detallePorFamiliaBatch.sql" />
+    <Content Include="Control\TiposProductos\detalle por familia\detallePorFamiliaDelete.sql" />
+    <Content Include="Control\TiposProductos\detalle por familia\detallePorFamiliaInsert.sql" />
+    <Content Include="Control\TiposProductos\detalle por familia\detallePorFamiliaSelect.sql" />
+    <Content Include="Control\TiposProductos\detalle por familia\detallePorFamiliaSelectDgv.sql" />
+    <Content Include="Control\TiposProductos\detalle por familia\detallePorFamiliaSelectDgvBy.sql" />
+    <Content Include="Control\TiposProductos\detalle por familia\detallePorFamiliaUpdate.sql" />
+    <Content Include="Control\TiposProductos\detalle por producto\FamliaProductos_TiposProductosBatch.sql" />
+    <Content Include="Control\TiposProductos\detalle por producto\FamliaProductos_TiposProductosDelete.sql" />
+    <Content Include="Control\TiposProductos\detalle por producto\FamliaProductos_TiposProductosInsert.sql" />
+    <Content Include="Control\TiposProductos\detalle por producto\FamliaProductos_TiposProductosSelect.sql" />
+    <Content Include="Control\TiposProductos\detalle por producto\FamliaProductos_TiposProductosSelectDgv.sql" />
+    <Content Include="Control\TiposProductos\detalle por producto\FamliaProductos_TiposProductosSelectDgvBy.sql" />
+    <Content Include="Control\TiposProductos\detalle por producto\FamliaProductos_TiposProductosUpdate.sql" />
+    <Content Include="Control\TiposProductos\Familia\FamiliaProductoBatch.sql" />
+    <Content Include="Control\TiposProductos\Familia\FamiliaProductoCbo.sql" />
+    <Content Include="Control\TiposProductos\Familia\FamiliaProductoDelete.sql" />
+    <Content Include="Control\TiposProductos\Familia\FamiliaProductoInsert.sql" />
+    <Content Include="Control\TiposProductos\Familia\FamiliaProductoSelect.sql" />
+    <Content Include="Control\TiposProductos\Familia\FamiliaProductoSelectDgv.sql" />
+    <Content Include="Control\TiposProductos\Familia\FamiliaProductoUpdate.sql" />
     <Content Include="Resources\window_new.ico" />
     <Content Include="Resources\window_new_3.ico" />
     <None Include="Resources\text-x-makefile.png" />
