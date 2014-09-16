@@ -102,7 +102,7 @@ Public Class frmEntDepositos
 
     Public Sub CargarDatos(ByVal Pos As Integer, _
                            ByVal DepositoID As Integer, _
-                           ByVal Codigo As Integer, _
+                           ByVal Codigo As String, _
                            ByVal FechaCreacion As DateTime, _
                            ByVal Capacidad As Double, _
                            ByVal DoctoUbicacionFisica As String, _
@@ -228,7 +228,7 @@ Public Class frmEntDepositos
                 Else
                     cdCodigo.Text = ""
                 End If
-                cdCodigo.Text = Convert.ToInt32(cdCodigo.Text)
+                cdCodigo.Text = cdCodigo.Text
             Catch ex As Exception
                 cdCodigo.Text = "1010101"
             End Try
@@ -274,11 +274,6 @@ Public Class frmEntDepositos
         End If
     End Sub
 
-    Private Sub cdCodigo_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        cdCodigo.EsUnicoID = ctlDep.GetBotaID()
-        cdCodigo.validarCodigoBota()
-    End Sub
-
     Private Sub gbBota_VisibleChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles gbBota.VisibleChanged
         If rbBota.Checked Then
             Try
@@ -287,7 +282,7 @@ Public Class frmEntDepositos
                 Else
                     cdCodigo.Text = ""
                 End If
-                cdCodigo.Text = Convert.ToInt32(cdCodigo.Text)
+                cdCodigo.Text = cdCodigo.Text
             Catch ex As Exception
                 cdCodigo.Text = "1010101"
             End Try

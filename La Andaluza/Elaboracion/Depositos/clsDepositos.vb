@@ -2,7 +2,7 @@ Public Class clsDepositos
 
 #Region "Atributos"
     Private DepositoID As Integer
-    Private Codigo As Integer
+    Private Codigo As String
     Private FechaCreacion As Date
     Private Capacidad As Integer
     Private DoctoUbicacionFisica As String
@@ -26,12 +26,12 @@ Public Class clsDepositos
         End Set
     End Property
 
-    Public Property _Codigo() As Integer
+    Public Property _Codigo() As String
         Get
             Return Codigo
         End Get
 
-        Set(ByVal value As Integer)
+        Set(ByVal value As String)
             Codigo = value
         End Set
     End Property
@@ -263,7 +263,7 @@ Public Class clsDepositos
     Public Function Modificar() As Integer
         Try
             BasesParaCompatibilidad.BD.ConsultaModificar("Depositos", _
-                                 "Codigo=" & Convert.ToString(Codigo) & "," & _
+                                 "Codigo='" & Codigo & "'," & _
                                  "FechaCreacion='" & BasesParaCompatibilidad.Calendar.ArmarFecha(FechaCreacion) & "'," & _
                                  "Capacidad='" & Capacidad & "'," & _
                                  "DoctoUbicacionFisica='" & DoctoUbicacionFisica & "'," & _
@@ -284,7 +284,7 @@ Public Class clsDepositos
         Try
             Dim calendar As New BasesParaCompatibilidad.Calendar
             BasesParaCompatibilidad.BD.ConsultaInsertar( _
-                              "" & Convert.ToString(Codigo) & "," & _
+                              "'" & Codigo & "'," & _
                               "'" & BasesParaCompatibilidad.Calendar.ArmarFecha(FechaCreacion) & "'," & _
                               "'" & Convert.ToString(Capacidad) & "'," & _
                               "'" & DoctoUbicacionFisica & "'," & _

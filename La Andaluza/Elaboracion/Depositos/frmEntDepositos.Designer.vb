@@ -52,7 +52,6 @@ Partial Class frmEntDepositos
         Me.gbTonel = New System.Windows.Forms.GroupBox()
         Me.txtContenidoHabitual = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.cdDescripcionTonel = New BasesParaCompatibilidad.CuadroDeTexto()
-        Me.cdCodigo = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.rbBota = New System.Windows.Forms.RadioButton()
         Me.rbTransicuba = New System.Windows.Forms.RadioButton()
         Me.butRuta = New System.Windows.Forms.Button()
@@ -66,6 +65,7 @@ Partial Class frmEntDepositos
         Me.gbPiernas = New System.Windows.Forms.GroupBox()
         Me.txtPiernasContenido = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.txtPiernasDescripcion = New BasesParaCompatibilidad.CuadroDeTexto()
+        Me.cdCodigo = New System.Windows.Forms.TextBox()
         FechaCreacionLabel = New System.Windows.Forms.Label()
         Label2 = New System.Windows.Forms.Label()
         Label3 = New System.Windows.Forms.Label()
@@ -99,7 +99,7 @@ Partial Class frmEntDepositos
         '
         'txtTodoCorrecto
         '
-        Me.txtTodoCorrecto.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtTodoCorrecto.Margin = New System.Windows.Forms.Padding(4)
         '
         'FechaCreacionLabel
         '
@@ -440,30 +440,6 @@ Partial Class frmEntDepositos
         Me.cdDescripcionTonel.ValorMaximo = 0.0R
         Me.cdDescripcionTonel.ValorMinimo = 0.0R
         '
-        'cdCodigo
-        '
-        Me.cdCodigo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.cdCodigo.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "Codigo", True))
-        Me.cdCodigo.EsUnicoCampo = ""
-        Me.cdCodigo.EsUnicoCampoID = ""
-        Me.cdCodigo.EsUnicoID = 0
-        Me.cdCodigo.EsUnicoTabla = ""
-        Me.cdCodigo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cdCodigo.Location = New System.Drawing.Point(91, 32)
-        Me.cdCodigo.Minimo = 0
-        Me.cdCodigo.Modificado = False
-        Me.cdCodigo.Name = "cdCodigo"
-        Me.cdCodigo.Numerico_EsNumerico = True
-        Me.cdCodigo.Numerico_NumeroDoublees = 0
-        Me.cdCodigo.Numerico_SeparadorMiles = False
-        Me.cdCodigo.Obligatorio = False
-        Me.cdCodigo.ParametroID = 0
-        Me.cdCodigo.Size = New System.Drawing.Size(82, 26)
-        Me.cdCodigo.TabIndex = 1000000024
-        Me.cdCodigo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.cdCodigo.ValorMaximo = 0.0R
-        Me.cdCodigo.ValorMinimo = 0.0R
-        '
         'rbBota
         '
         Me.rbBota.AutoSize = True
@@ -660,10 +636,21 @@ Partial Class frmEntDepositos
         Me.txtPiernasDescripcion.ValorMaximo = 0.0R
         Me.txtPiernasDescripcion.ValorMinimo = 0.0R
         '
+        'cdCodigo
+        '
+        Me.cdCodigo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.cdCodigo.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cdCodigo.Location = New System.Drawing.Point(92, 28)
+        Me.cdCodigo.Name = "cdCodigo"
+        Me.cdCodigo.Size = New System.Drawing.Size(139, 27)
+        Me.cdCodigo.TabIndex = 1000000030
+        Me.cdCodigo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
         'frmEntDepositos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(550, 451)
+        Me.Controls.Add(Me.cdCodigo)
         Me.Controls.Add(Me.gbPiernas)
         Me.Controls.Add(Me.rbPiernas)
         Me.Controls.Add(Label7)
@@ -674,7 +661,6 @@ Partial Class frmEntDepositos
         Me.Controls.Add(Me.gbTonel)
         Me.Controls.Add(Me.gbBota)
         Me.Controls.Add(Label4)
-        Me.Controls.Add(Me.cdCodigo)
         Me.Controls.Add(Me.rbBota)
         Me.Controls.Add(Me.rbTransicuba)
         Me.Controls.Add(FechaCreacionLabel)
@@ -689,7 +675,7 @@ Partial Class frmEntDepositos
         Me.Controls.Add(Me.gbTransicuba)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frmEntDepositos"
         Me.Controls.SetChildIndex(Me.gbTransicuba, 0)
         Me.Controls.SetChildIndex(Me.CapacidadCuadroDeTexto, 0)
@@ -704,7 +690,6 @@ Partial Class frmEntDepositos
         Me.Controls.SetChildIndex(Me.rbTransicuba, 0)
         Me.Controls.SetChildIndex(Me.rbBota, 0)
         Me.Controls.SetChildIndex(Me.txtTodoCorrecto, 0)
-        Me.Controls.SetChildIndex(Me.cdCodigo, 0)
         Me.Controls.SetChildIndex(Label4, 0)
         Me.Controls.SetChildIndex(Me.gbBota, 0)
         Me.Controls.SetChildIndex(Me.gbTonel, 0)
@@ -715,6 +700,7 @@ Partial Class frmEntDepositos
         Me.Controls.SetChildIndex(Label7, 0)
         Me.Controls.SetChildIndex(Me.rbPiernas, 0)
         Me.Controls.SetChildIndex(Me.gbPiernas, 0)
+        Me.Controls.SetChildIndex(Me.cdCodigo, 0)
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DtsDepositos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gbBota.ResumeLayout(False)
@@ -729,7 +715,7 @@ Partial Class frmEntDepositos
         Me.PerformLayout()
 
     End Sub
-   Private WithEvents DtsDepositos As La_Andaluza.dtsDepositos
+    Private WithEvents DtsDepositos As La_Andaluza.dtsDepositos
     Private WithEvents cdDescripcionTonel As BasesParaCompatibilidad.CuadroDeTexto
     Private WithEvents cdDescripcionTransicuba As BasesParaCompatibilidad.CuadroDeTexto
     Private WithEvents cbEstadoTransicuba As System.Windows.Forms.CheckBox
@@ -747,7 +733,6 @@ Partial Class frmEntDepositos
     Private WithEvents gbBota As System.Windows.Forms.GroupBox
     Private WithEvents gbTransicuba As System.Windows.Forms.GroupBox
     Private WithEvents gbTonel As System.Windows.Forms.GroupBox
-    Private WithEvents cdCodigo As BasesParaCompatibilidad.CuadroDeTexto
     Private WithEvents PosicionComboMAM As System.Windows.Forms.ComboBox
     Private WithEvents AlturaComboMAM As System.Windows.Forms.ComboBox
     Private WithEvents DepositoIDCuadroDeTexto As BasesParaCompatibilidad.CuadroDeTexto
@@ -757,5 +742,6 @@ Partial Class frmEntDepositos
     Private WithEvents gbPiernas As System.Windows.Forms.GroupBox
     Private WithEvents txtPiernasContenido As BasesParaCompatibilidad.CuadroDeTexto
     Private WithEvents txtPiernasDescripcion As BasesParaCompatibilidad.CuadroDeTexto
+    Private WithEvents cdCodigo As System.Windows.Forms.TextBox
 
 End Class

@@ -128,7 +128,7 @@ Public Class ctlDepositos
         End While
     End Sub
 
-    Public Sub GuardarDeposito(ByVal Codigo As Integer, ByVal FechaCreacion As Date, ByVal Capacidad As String, _
+    Public Sub GuardarDeposito(ByVal Codigo As String, ByVal FechaCreacion As Date, ByVal Capacidad As String, _
                ByVal DoctoUbicacionFisica As String, ByVal materialConstruccion As Integer, ByVal listado As Boolean)
         clsDep._Codigo = Codigo
         clsDep._Capacidad = Capacidad
