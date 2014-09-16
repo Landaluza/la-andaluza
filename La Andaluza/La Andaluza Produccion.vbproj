@@ -4196,19 +4196,6 @@
     <Compile Include="Administracion\Personal\Tareas\spTareas.vb" />
     <Compile Include="Produccion\Envasados2\Tipos formatos\TiposFormatos1\DBO_ArticulosEnvasadosHistorico.vb" />
     <Compile Include="Produccion\Envasados2\Tipos formatos\TiposFormatos1\spArticulosEnvasadosHistorico1.vb" />
-    <Compile Include="Control\TiposProductos\CompuestoPor\frmEntTiposProductosCompuestoPor.Designer.vb">
-      <DependentUpon>frmEntTiposProductosCompuestoPor.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Control\TiposProductos\CompuestoPor\frmEntTiposProductosCompuestoPor.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Control\TiposProductos\CompuestoPor\frmTiposProductosCompuestoPor.Designer.vb">
-      <DependentUpon>frmTiposProductosCompuestoPor.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Control\TiposProductos\CompuestoPor\frmTiposProductosCompuestoPor.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Control\TiposProductos\CompuestoPor\spTiposProductosCompuestoPor.vb" />
     <Compile Include="Control\TiposProductos\spTiposProductos.vb" />
     <Compile Include="Administracion\Personal\TurnosTrabajo\DBO_TurnosTrabajo.vb" />
     <Compile Include="Administracion\Personal\TurnosTrabajo\frmEntTurnosTrabajo.Designer.vb">
@@ -6334,12 +6321,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administracion\Personal\Tareas\frmTareas.resx">
       <DependentUpon>frmTareas.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Control\TiposProductos\CompuestoPor\frmEntTiposProductosCompuestoPor.resx">
-      <DependentUpon>frmEntTiposProductosCompuestoPor.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Control\TiposProductos\CompuestoPor\frmTiposProductosCompuestoPor.resx">
-      <DependentUpon>frmTiposProductosCompuestoPor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administracion\Personal\TurnosTrabajo\frmEntTurnosTrabajo.resx">
       <DependentUpon>frmEntTurnosTrabajo.vb</DependentUpon>
