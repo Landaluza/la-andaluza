@@ -49,7 +49,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>388</ApplicationRevision>
+    <ApplicationRevision>389</ApplicationRevision>
     <ApplicationVersion>2014.7.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -6530,6 +6530,7 @@
     <None Include="Bases\ZLibrerias\MacroAdapter.dll" />
     <None Include="Bases\ZLibrerias\ReportAdapter.dll" />
     <None Include="Bases\ZLibrerias\BasesParaCompatibilidad.dll" />
+    <None Include="Bases\ZLibrerias\InformeDepositos.dll" />
     <Content Include="Resources\window_new.ico" />
     <Content Include="Resources\window_new_3.ico" />
     <None Include="Resources\text-x-makefile.png" />
@@ -6547,7 +6548,6 @@
     <None Include="Resources\view_16.png" />
     <None Include="Bases\ZLibrerias\InformeContratosEmpleados.dll" />
     <None Include="Bases\ZLibrerias\InformesVinagreJerez.dll" />
-    <None Include="Bases\ZLibrerias\InformeDepositos.dll" />
     <None Include="Iconos\LA  sin texto 48 x 48.bmp" />
     <None Include="Iconos\LA  sin texto 48 x 48.ico" />
     <None Include="Iconos\LA con texto 256 x 256.ico" />
