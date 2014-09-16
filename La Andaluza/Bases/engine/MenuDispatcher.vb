@@ -14,8 +14,7 @@ Public Class MenuDispatcher
     Private frmTiposFormatosLineas As frmTiposFormatosLineas
     Private frmOrdenesEnvasado2 As frmOrdenesEnvasado2
     Private frmTiposMateriales As frmTiposMateriales
-    Private frmMedidasProductos As frmMedidasProductos
-    Private frmTiposProductos As frmTiposProductos
+    Private frmTiposProductoMain As frmTiposProductoMain
     Private frmMuestrasCantidades As frmMuestrasCantidades
     Private frmMuestrasMedidas As frmMuestrasMedidas
     Private frmMnLotes As FrmLotesEnologicos
@@ -209,14 +208,9 @@ Public Class MenuDispatcher
         GUImain.añadirPestaña(frmTiposMateriales)
     End Sub
 
-    Private Sub tsmMedidasProductosBBDD_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmMedidasProductosBBDD.Click, ToolStripMenuItem906.Click, ToolStripMenuItem735.Click
-        frmMedidasProductos = New frmMedidasProductos
-        GUImain.añadirPestaña(frmMedidasProductos)
-    End Sub
-
     Private Sub tsmTiposProductosBBDD_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmTiposProductosBBDD.Click, ToolStripMenuItem905.Click, ToolStripMenuItem734.Click
-        frmTiposProductos = New frmTiposProductos
-        GUImain.añadirPestaña(frmTiposProductos)
+        frmTiposProductoMain = New frmTiposProductoMain
+        GUImain.añadirPestaña(frmTiposProductoMain)
     End Sub
 
     Private Sub tsmMuestrasCantidadesBBDD_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmMuestrasCantidadesBBDD.Click, ToolStripMenuItem907.Click, ToolStripMenuItem736.Click

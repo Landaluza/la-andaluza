@@ -1959,3 +1959,10 @@ C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andalu
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza.application
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza.exe
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza.pdb
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmdetallePorFamilia.resources
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEntDetallePorProducto.resources
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmFamliaProductos_TiposProductos.resources
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEntDEtallePorFamilia.resources
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEntFamiliaProducto.resources
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmFamiliaProducto.resources
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmTiposProductoMain.resources

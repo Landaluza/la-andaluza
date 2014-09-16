@@ -1040,6 +1040,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Control\TiposProductos\Familia\spFamiliaProducto.vb" />
+    <Compile Include="Control\TiposProductos\frmTiposProductoMain.Designer.vb">
+      <DependentUpon>frmTiposProductoMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Control\TiposProductos\frmTiposProductoMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Control\_antiguos\Lotes\CompuestoPor\frmTrazabilidad.Designer.vb">
       <DependentUpon>frmTrazabilidad.vb</DependentUpon>
     </Compile>
@@ -5227,6 +5233,9 @@
     <EmbeddedResource Include="Control\TiposProductos\Familia\frmFamiliaProducto.resx">
       <DependentUpon>frmFamiliaProducto.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Control\TiposProductos\frmTiposProductoMain.resx">
+      <DependentUpon>frmTiposProductoMain.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Control\TiposProductos\MedidasProductos\frmEntMedidasProductos.resx">
       <DependentUpon>frmEntMedidasProductos.vb</DependentUpon>
     </EmbeddedResource>
@@ -6590,26 +6599,8 @@
     <None Include="Bases\ZLibrerias\BasesParaCompatibilidad.dll" />
     <None Include="Bases\ZLibrerias\InformeDepositos.dll" />
     <Content Include="Control\TiposProductos\detalle por familia\detallePorFamiliaBatch.sql" />
-    <Content Include="Control\TiposProductos\detalle por familia\detallePorFamiliaDelete.sql" />
-    <Content Include="Control\TiposProductos\detalle por familia\detallePorFamiliaInsert.sql" />
-    <Content Include="Control\TiposProductos\detalle por familia\detallePorFamiliaSelect.sql" />
-    <Content Include="Control\TiposProductos\detalle por familia\detallePorFamiliaSelectDgv.sql" />
-    <Content Include="Control\TiposProductos\detalle por familia\detallePorFamiliaSelectDgvBy.sql" />
-    <Content Include="Control\TiposProductos\detalle por familia\detallePorFamiliaUpdate.sql" />
     <Content Include="Control\TiposProductos\detalle por producto\FamliaProductos_TiposProductosBatch.sql" />
-    <Content Include="Control\TiposProductos\detalle por producto\FamliaProductos_TiposProductosDelete.sql" />
-    <Content Include="Control\TiposProductos\detalle por producto\FamliaProductos_TiposProductosInsert.sql" />
-    <Content Include="Control\TiposProductos\detalle por producto\FamliaProductos_TiposProductosSelect.sql" />
-    <Content Include="Control\TiposProductos\detalle por producto\FamliaProductos_TiposProductosSelectDgv.sql" />
-    <Content Include="Control\TiposProductos\detalle por producto\FamliaProductos_TiposProductosSelectDgvBy.sql" />
-    <Content Include="Control\TiposProductos\detalle por producto\FamliaProductos_TiposProductosUpdate.sql" />
     <Content Include="Control\TiposProductos\Familia\FamiliaProductoBatch.sql" />
-    <Content Include="Control\TiposProductos\Familia\FamiliaProductoCbo.sql" />
-    <Content Include="Control\TiposProductos\Familia\FamiliaProductoDelete.sql" />
-    <Content Include="Control\TiposProductos\Familia\FamiliaProductoInsert.sql" />
-    <Content Include="Control\TiposProductos\Familia\FamiliaProductoSelect.sql" />
-    <Content Include="Control\TiposProductos\Familia\FamiliaProductoSelectDgv.sql" />
-    <Content Include="Control\TiposProductos\Familia\FamiliaProductoUpdate.sql" />
     <Content Include="Resources\window_new.ico" />
     <Content Include="Resources\window_new_3.ico" />
     <None Include="Resources\text-x-makefile.png" />
