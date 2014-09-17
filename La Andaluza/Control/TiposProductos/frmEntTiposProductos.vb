@@ -4,6 +4,7 @@ Public Class frmEntTiposProductos
     Public Shadows Event afterSave(sender As Object, args As EventArgs) Implements  BasesParaCompatibilidad.savable.afterSave
     Private m_DBO_TiposProductos As DBO_TiposProductos
     Private frmFamilia As frmFamliaProductos_TiposProductos
+    Private frmClase As frmTiposProductos_ClasesProductos
 
     Public Sub New(ByVal modoDeApertura As String, Optional ByRef v_sp As spTiposProductos = Nothing, Optional ByRef v_dbo As DBO_TiposProductos = Nothing)
         MyBase.new(modoDeApertura, v_sp, v_dbo)
@@ -50,8 +51,11 @@ Public Class frmEntTiposProductos
 
         If Me.ModoDeApertura <> INSERCION Then
             frmFamilia = New frmFamliaProductos_TiposProductos(Me.m_DBO_TiposProductos.ID)
+            Me.frmClase = New frmTiposProductos_ClasesProductos(Me.m_DBO_TiposProductos.ID)
             Engine_LA.FormEnPestaña(frmFamilia, tpFamillia)
+            Engine_LA.FormEnPestaña(frmClase, tpClase)
         Else
+            Engine_LA.FormEnPestaña(New Form, tpFamillia)
             Engine_LA.FormEnPestaña(New Form, tpFamillia)
         End If
 

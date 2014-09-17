@@ -49,7 +49,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>396</ApplicationRevision>
+    <ApplicationRevision>397</ApplicationRevision>
     <ApplicationVersion>2014.7.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -1000,6 +1000,18 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Control\Lotes\revision\spRevisionLotes.vb" />
+    <Compile Include="Control\TiposProductos\clases\Por producto\frmEntTiposProductos_ClasesProductos.Designer.vb">
+      <DependentUpon>frmEntTiposProductos_ClasesProductos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Control\TiposProductos\clases\Por producto\frmEntTiposProductos_ClasesProductos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Control\TiposProductos\clases\Por producto\frmTiposProductos_ClasesProductos.Designer.vb">
+      <DependentUpon>frmTiposProductos_ClasesProductos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Control\TiposProductos\clases\Por producto\frmTiposProductos_ClasesProductos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Control\TiposProductos\clases\Por clase\DBO_TiposProductos_ClasesProductos.vb" />
     <Compile Include="Control\TiposProductos\clases\Por clase\frmEntClasesProductosPorClase.Designer.vb">
       <DependentUpon>frmEntClasesProductosPorClase.vb</DependentUpon>
@@ -5269,6 +5281,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Control\TiposLotes\frmTiposLotes.resx">
       <DependentUpon>frmTiposLotes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\TiposProductos\clases\Por producto\frmEntTiposProductos_ClasesProductos.resx">
+      <DependentUpon>frmEntTiposProductos_ClasesProductos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\TiposProductos\clases\Por producto\frmTiposProductos_ClasesProductos.resx">
+      <DependentUpon>frmTiposProductos_ClasesProductos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Control\TiposProductos\clases\Por clase\frmEntClasesProductosPorClase.resx">
       <DependentUpon>frmEntClasesProductosPorClase.vb</DependentUpon>

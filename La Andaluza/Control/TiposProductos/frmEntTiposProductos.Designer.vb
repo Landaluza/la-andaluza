@@ -37,8 +37,16 @@ Partial Class frmEntTiposProductos
         Me.chbNC = New System.Windows.Forms.CheckBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.tpFamillia = New System.Windows.Forms.TabPage()
+        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.TabControl2 = New System.Windows.Forms.TabControl()
+        Me.tpClase = New System.Windows.Forms.TabPage()
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer1.Panel1.SuspendLayout()
+        Me.SplitContainer1.Panel2.SuspendLayout()
+        Me.SplitContainer1.SuspendLayout()
+        Me.TabControl2.SuspendLayout()
         Me.SuspendLayout()
         '
         'txtDescripcion
@@ -221,11 +229,11 @@ Partial Class frmEntTiposProductos
         'TabControl1
         '
         Me.TabControl1.Controls.Add(Me.tpFamillia)
-        Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.TabControl1.Location = New System.Drawing.Point(0, 190)
+        Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TabControl1.Location = New System.Drawing.Point(0, 0)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(409, 221)
+        Me.TabControl1.Size = New System.Drawing.Size(255, 263)
         Me.TabControl1.TabIndex = 10
         '
         'tpFamillia
@@ -233,16 +241,53 @@ Partial Class frmEntTiposProductos
         Me.tpFamillia.Location = New System.Drawing.Point(4, 22)
         Me.tpFamillia.Name = "tpFamillia"
         Me.tpFamillia.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpFamillia.Size = New System.Drawing.Size(401, 195)
+        Me.tpFamillia.Size = New System.Drawing.Size(247, 237)
         Me.tpFamillia.TabIndex = 0
         Me.tpFamillia.Text = "Familia"
         Me.tpFamillia.UseVisualStyleBackColor = True
         '
+        'SplitContainer1
+        '
+        Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.SplitContainer1.Location = New System.Drawing.Point(0, 148)
+        Me.SplitContainer1.Name = "SplitContainer1"
+        '
+        'SplitContainer1.Panel1
+        '
+        Me.SplitContainer1.Panel1.Controls.Add(Me.TabControl1)
+        '
+        'SplitContainer1.Panel2
+        '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.TabControl2)
+        Me.SplitContainer1.Size = New System.Drawing.Size(530, 263)
+        Me.SplitContainer1.SplitterDistance = 255
+        Me.SplitContainer1.TabIndex = 11
+        '
+        'TabControl2
+        '
+        Me.TabControl2.Controls.Add(Me.tpClase)
+        Me.TabControl2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TabControl2.Location = New System.Drawing.Point(0, 0)
+        Me.TabControl2.Name = "TabControl2"
+        Me.TabControl2.SelectedIndex = 0
+        Me.TabControl2.Size = New System.Drawing.Size(271, 263)
+        Me.TabControl2.TabIndex = 11
+        '
+        'tpClase
+        '
+        Me.tpClase.Location = New System.Drawing.Point(4, 22)
+        Me.tpClase.Name = "tpClase"
+        Me.tpClase.Padding = New System.Windows.Forms.Padding(3)
+        Me.tpClase.Size = New System.Drawing.Size(263, 237)
+        Me.tpClase.TabIndex = 0
+        Me.tpClase.Text = "Clase"
+        Me.tpClase.UseVisualStyleBackColor = True
+        '
         'frmEntTiposProductos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(409, 411)
-        Me.Controls.Add(Me.TabControl1)
+        Me.ClientSize = New System.Drawing.Size(530, 411)
+        Me.Controls.Add(Me.SplitContainer1)
         Me.Controls.Add(Me.chbNC)
         Me.Controls.Add(Me.lblDescripcion)
         Me.Controls.Add(Me.txtDescripcion)
@@ -275,9 +320,14 @@ Partial Class frmEntTiposProductos
         Me.Controls.SetChildIndex(Me.txtDescripcion, 0)
         Me.Controls.SetChildIndex(Me.lblDescripcion, 0)
         Me.Controls.SetChildIndex(Me.chbNC, 0)
-        Me.Controls.SetChildIndex(Me.TabControl1, 0)
+        Me.Controls.SetChildIndex(Me.SplitContainer1, 0)
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl1.ResumeLayout(False)
+        Me.SplitContainer1.Panel1.ResumeLayout(False)
+        Me.SplitContainer1.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer1.ResumeLayout(False)
+        Me.TabControl2.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -299,4 +349,7 @@ Partial Class frmEntTiposProductos
     Private WithEvents chbNC As System.Windows.Forms.CheckBox
     Private WithEvents TabControl1 As System.Windows.Forms.TabControl
     Private WithEvents tpFamillia As System.Windows.Forms.TabPage
+    Friend WithEvents SplitContainer1 As System.Windows.Forms.SplitContainer
+    Private WithEvents TabControl2 As System.Windows.Forms.TabControl
+    Private WithEvents tpClase As System.Windows.Forms.TabPage
 End Class
