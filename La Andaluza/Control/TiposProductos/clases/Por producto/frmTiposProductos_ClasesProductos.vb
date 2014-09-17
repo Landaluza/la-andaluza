@@ -12,6 +12,7 @@ Public Class frmTiposProductos_ClasesProductos
         MyBase.newRegForm = CType(New frmEntTiposProductos_ClasesProductos(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, CType(sp, spTiposProductos_ClasesProductos)), BasesParaCompatibilidad.DetailedSimpleForm)
 
         Me.sp.DataGridViewStoredProcedure = New spTiposProductos_ClasesProductos().SelectDgvByProducto & " " & MaestroID
+        Me.dgvGeneral.ColumnHeadersVisible = False
     End Sub
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert

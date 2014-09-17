@@ -5,11 +5,12 @@ Public Class frmFamliaProductos_TiposProductos
 
     Private dboFamliaProductos_TiposProductos As DBO_FamliaProductos_TiposProductos
 
-    Public Sub New(Optional ByVal MaestroID As Integer = 0)
-        MyBase.new(New spFamliaProductos_TiposProductos(), MaestroID.ToString)
+    Public Sub New(ByVal MaestroID As Integer)
+        MyBase.New(New spFamliaProductos_TiposProductos(), MaestroID.ToString)
         InitializeComponent()
         dboFamliaProductos_TiposProductos = New DBO_FamliaProductos_TiposProductos
-        MyBase.newRegForm = CType(New frmEntDetallePorProducto(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, CType(sp, spFamliaProductos_TiposProductos)), BasesParaCompatibilidad.DetailedSimpleForm)
+        MyBase.newRegForm = CType(New frmEntDetallePorProducto(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, CType(sp, spFamliaProductos_TiposProductos)), BasesParaCompatibilidad.DetailedSimpleForm)
+        Me.dgvGeneral.ColumnHeadersVisible = False
     End Sub
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert

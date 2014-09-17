@@ -5,13 +5,14 @@ Public Class frmdetallePorFamilia
 
     Private dbodetallePorFamilia As DBO_FamliaProductos_TiposProductos
 
-    Public Sub New(Optional ByVal MaestroID As Integer = 0)
+    Public Sub New(ByVal MaestroID As Integer)
         MyBase.New(New spFamliaProductos_TiposProductos(), MaestroID.ToString)
         InitializeComponent()
         dbodetallePorFamilia = New DBO_FamliaProductos_TiposProductos
-        MyBase.newRegForm = CType(New frmEntDEtallePorFamilia(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, CType(sp, spFamliaProductos_TiposProductos)), BasesParaCompatibilidad.DetailedSimpleForm)
+        MyBase.newRegForm = CType(New frmEntDetallePorFamilia(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, CType(sp, spFamliaProductos_TiposProductos)), BasesParaCompatibilidad.DetailedSimpleForm)
 
         Me.sp.DataGridViewStoredProcedure = New spFamliaProductos_TiposProductos().SelectDgvByFamilia & " " & MaestroID
+        Me.dgvGeneral.ColumnHeadersVisible = False
     End Sub
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
