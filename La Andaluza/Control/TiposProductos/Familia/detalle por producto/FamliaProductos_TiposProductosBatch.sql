@@ -1,3 +1,4 @@
+use[la]
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[FamliaProductos_TiposProductosDelete]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[FamliaProductos_TiposProductosDelete]
 GO
@@ -29,6 +30,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[FamliaProductos_TiposProductosInsert]
       @Id_FamiliaProducto int
+	  ,@Id_TipoProducto int
      ,@UsuarioModificacion int
      ,@FechaModificacion datetime
 AS
@@ -39,12 +41,14 @@ SET NOCOUNT ON
 INSERT INTO [dbo].[FamliaProductos_TiposProductos]
      (
       Id_FamiliaProducto
+	  ,Id_TipoProducto
      ,UsuarioModificacion
      ,FechaModificacion
      )
 VALUES
      (
       @Id_FamiliaProducto
+	  ,@Id_TipoProducto
      ,@UsuarioModificacion
      ,@FechaModificacion
      )
@@ -66,6 +70,7 @@ BEGIN
 SELECT
       Id
      ,Id_FamiliaProducto
+	 ,Id_TipoProducto
 FROM
      [dbo].[FamliaProductos_TiposProductos]
 WHERE
@@ -99,12 +104,12 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROCEDURE [dbo].[FamliaProductos_TiposProductosSelectDgvBy]
+CREATE PROCEDURE [dbo].[FamliaProductos_TiposProductosSelectDgvBy] @Id_TipoProducto int
 AS 
 BEGIN
 SELECT
       [dbo].[FamliaProductos_TiposProductos].[Id]
-     ,[dbo].[FamiliaProducto].[Nombre] AS Id_FamiliaProducto
+     ,[dbo].[FamiliaProducto].[Nombre] 
 FROM
      [dbo].[FamliaProductos_TiposProductos]
      INNER JOIN [dbo].[FamiliaProducto] ON [dbo].[FamliaProductos_TiposProductos].[Id_FamiliaProducto] = [dbo].[FamiliaProducto].[Id]
@@ -114,6 +119,30 @@ WHERE
 End
 
 GO
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[FamliaProductos_TiposProductosSelectDgvByFamilia]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[FamliaProductos_TiposProductosSelectDgvByFamilia]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[FamliaProductos_TiposProductosSelectDgvByFamilia] @Id_FamiliaProducto int
+AS 
+BEGIN
+SELECT
+      [dbo].[FamliaProductos_TiposProductos].[Id]
+     ,[dbo].TiposProductos.descripcion Nombre
+FROM
+     [dbo].[FamliaProductos_TiposProductos]
+     INNER JOIN [dbo].TiposProductos ON [dbo].[FamliaProductos_TiposProductos].Id_TipoProducto = [dbo].TiposProductos.tipoProductoid
+WHERE
+     [dbo].[FamliaProductos_TiposProductos].Id_FamiliaProducto = @Id_FamiliaProducto
+
+End
+
+GO
+
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[FamliaProductos_TiposProductosUpdate]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[FamliaProductos_TiposProductosUpdate]
 GO
@@ -123,6 +152,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[FamliaProductos_TiposProductosUpdate] 
       @Id_FamiliaProducto int
+	  ,@Id_TipoProducto int 
      ,@Id int
      ,@UsuarioModificacion int
      ,@FechaModificacion datetime
@@ -134,6 +164,7 @@ SET NOCOUNT ON
 UPDATE [dbo].[FamliaProductos_TiposProductos]
 SET
       [Id_FamiliaProducto] = @Id_FamiliaProducto
+	  ,Id_TipoProducto = @Id_TipoProducto
      ,UsuarioModificacion = @UsuarioModificacion
      ,Fechamodificacion = @FechaModificacion
 WHERE

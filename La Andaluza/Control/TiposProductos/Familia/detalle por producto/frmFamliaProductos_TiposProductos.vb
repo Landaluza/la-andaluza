@@ -1,14 +1,14 @@
 Imports BasesParaCompatibilidad.DataGridViewExtension
 Public Class frmFamliaProductos_TiposProductos
-   Inherits BasesParaCompatibilidad.gridsimpleform
-   Implements BasesParaCompatibilidad.Queriable
+    Inherits BasesParaCompatibilidad.gridsimpleform
+    Implements BasesParaCompatibilidad.Queriable
 
-   private dboFamliaProductos_TiposProductos As DBO_FamliaProductos_TiposProductos
-       
-   Public Sub New(Optional ByVal MaestroID As Integer = 0)
-       MyBase.new(new spFamliaProductos_TiposProductos(),MaestroID.ToString)
-       InitializeComponent()
-       dboFamliaProductos_TiposProductos = new DBO_FamliaProductos_TiposProductos
+    Private dboFamliaProductos_TiposProductos As DBO_FamliaProductos_TiposProductos
+
+    Public Sub New(Optional ByVal MaestroID As Integer = 0)
+        MyBase.new(New spFamliaProductos_TiposProductos(), MaestroID.ToString)
+        InitializeComponent()
+        dboFamliaProductos_TiposProductos = New DBO_FamliaProductos_TiposProductos
         MyBase.newRegForm = CType(New frmEntDetallePorProducto(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, CType(sp, spFamliaProductos_TiposProductos)), BasesParaCompatibilidad.DetailedSimpleForm)
     End Sub
 
@@ -29,18 +29,18 @@ Public Class frmFamliaProductos_TiposProductos
         End If
     End Sub
 
-   Protected Overrides Sub BindDataSource() Implements BasesParaCompatibilidad.Queriable.dataGridViewFill
-       'dim dt as datatable = DataTableFill(Me.spFamliaProductos_TiposProductos.DataGridViewStoredProcedure)
+    Protected Overrides Sub BindDataSource() Implements BasesParaCompatibilidad.Queriable.dataGridViewFill
+        'dim dt as datatable = DataTableFill(Me.spFamliaProductos_TiposProductos.DataGridViewStoredProcedure)
 
-       If not datasource Is Nothing Then
-       GeneralBindingSource.DataSource = datasource
-               With dgvGeneral
-                   .DataSource = GeneralBindingSource
-               .Columns("Id").Visible = False
-               .FormatoColumna("Nombre", BasesParaCompatibilidad.TiposColumna.Izquierda, true)
-               End With
-       End If
+        If Not datasource Is Nothing Then
+            GeneralBindingSource.DataSource = datasource
+            With dgvGeneral
+                .DataSource = GeneralBindingSource
+                .Columns("Id").Visible = False
+                .FormatoColumna("Nombre", BasesParaCompatibilidad.TiposColumna.Izquierda, True)
+            End With
+        End If
 
-   End Sub
+    End Sub
 
 End Class

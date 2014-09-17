@@ -326,14 +326,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="La Andaluza.exe" size="10236416">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="La Andaluza.exe" size="10245632">
       <assemblyIdentity name="La Andaluza" version="2014.2.1.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>SVKLTOTbCdJAQp19b4u7RrNJFDsgC0hnhWVwN/XTzhM=</dsig:DigestValue>
+        <dsig:DigestValue>S7e5XZwTZcF5kfL3Jen5X+G7kK7WlN+dn3fFjYS3hqo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -478,31 +478,22 @@
       <dsig:DigestValue>NWsORCq+lbZ0o7vNkcIuFpc4Yk3+JZ15eNrpB636YRA=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Control\TiposProductos\detalle por familia\detallePorFamiliaBatch.sql" size="2968">
+  <file name="Control\TiposProductos\Familia\detalle por producto\FamliaProductos_TiposProductosBatch.sql" size="4720">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>qXMdcUtSD+EweBLjFUAV9nfXkXgwp/LXvSBY22UGcgY=</dsig:DigestValue>
+      <dsig:DigestValue>N/tBHvGAn+HrJOG3t1sLIb+cNgNK5MDSKc8Z4Btx4oI=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Control\TiposProductos\detalle por producto\FamliaProductos_TiposProductosBatch.sql" size="3759">
+  <file name="Control\TiposProductos\Familia\FamiliaProductoBatch.sql" size="3076">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>pHa/G7RmLAqNJ4+QJuOUAsO6uCkZQBv8AFYRiOdwri0=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Control\TiposProductos\Familia\FamiliaProductoBatch.sql" size="3067">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>VBOBQambBx70VaK3UqKwfdYpSNs8VbYSdNVCgRxGNSg=</dsig:DigestValue>
+      <dsig:DigestValue>UPGmcBgEHD+TGaiZ10ASX1JWq24ZGwjiJRbLmogtuBo=</dsig:DigestValue>
     </hash>
   </file>
   <file name="La Andaluza.exe.config" size="26247">

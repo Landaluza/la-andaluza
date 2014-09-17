@@ -11,14 +11,11 @@ Inherits BasesParaCompatibilidad.StoredProcedure
                      "[dbo].[FamliaProductos_TiposProductosSelectDgvBy]")
     End Sub
 
-    Public Sub New(ByVal stub As Boolean)
-        MyBase.New("[dbo].[FamliaProductos_TiposProductosSelect]", _
-                     "[dbo].[FamliaProductos_TiposProductosInsert]", _
-                     "[dbo].[FamliaProductos_TiposProductosUpdate]", _
-                     "[dbo].[FamliaProductos_TiposProductosDelete]", _
-                     "[dbo].[FamliaProductos_TiposProductosSelectDgv]", _
-                      "[dbo].[detallePorFamiliaSelectDgvBy]")
-    End Sub
+        Public ReadOnly Property SelectDgvByFamilia As String
+        Get
+            Return "FamliaProductos_TiposProductosSelectDgvByFamilia"
+        End Get
+    End Property
 
    Public Overloads Function Select_Record(ByVal Id As Integer, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As DBO_FamliaProductos_TiposProductos
        Dim dbo As New DBO_FamliaProductos_TiposProductos

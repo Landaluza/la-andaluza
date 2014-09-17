@@ -12,6 +12,7 @@ Inherits BasesParaCompatibilidad.StoredProcedure
                      "[dbo].[FamiliaProductoSelectDgvBy]")
    End Sub
 
+  
    Public Overloads Function Select_Record(ByVal Id As Integer, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As DBO_FamiliaProducto
        Dim dbo As New DBO_FamiliaProducto
        dbo.searchKey = dbo.item("Id")
