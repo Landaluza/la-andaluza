@@ -2,7 +2,8 @@ Public Class frmEntTiposDepositos
    Inherits BasesParaCompatibilidad.DetailedSimpleForm
    Implements BasesParaCompatibilidad.Savable
    Public Shadows Event afterSave(sender As Object, args As EventArgs) Implements BasesParaCompatibilidad.Savable.afterSave
-   Private m_DBO_TiposDepositos As DBO_TiposDepositos
+    Private m_DBO_TiposDepositos As DBO_TiposDepositos
+    Private frmDepositos As frmDepositosPorTipo
 
    Public Sub New(ByVal modoDeApertura As String, Optional ByRef v_sp As spTiposDepositos = Nothing, Optional ByRef v_dbo As DBO_TiposDepositos = Nothing)
        MyBase.new(modoDeApertura, v_sp, ctype(v_dbo, BasesParaCompatibilidad.databussines))
@@ -27,8 +28,15 @@ Public Class frmEntTiposDepositos
    Overrides Sub SetValores() Implements BasesParaCompatibilidad.Savable.setValores
        Me.m_DBO_TiposDepositos = ctype(dbo, DBO_TiposDepositos)
 
-           txtNombre.Text = m_DBO_TiposDepositos.Nombre
-           txtObservaciones.Text = m_DBO_TiposDepositos.Observaciones
+        txtNombre.Text = m_DBO_TiposDepositos.Nombre
+        txtObservaciones.Text = m_DBO_TiposDepositos.Observaciones
+
+        If Me.m_DBO_TiposDepositos.ID <> 0 Then
+            Me.frmDepositos = New frmDepositosPorTipo(m_DBO_TiposDepositos.ID)
+            Engine_LA.FormEnPestaña(frmDepositos, tpDEpositos)
+        Else
+            Engine_LA.FormEnPestaña(New Form, tpDEpositos)
+        End If
    End Sub
 
    Protected Overrides Function GetValores() as boolean Implements BasesParaCompatibilidad.Savable.getValores

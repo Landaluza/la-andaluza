@@ -4,6 +4,7 @@ Public Class frmDepositosMain
     Private frmEspera As BasesParaCompatibilidad.frmEspera
     Private frmDepositos As frmDepositos
     Private frmMaterialConstruccion As frmMaterialConstruccion
+    Private frmTiposDepositos As frmTiposDepositos
 
     Private frmExistenciasPorDepositoFecha As InformesDepositos.frmExistenciasPorDepositoFecha
     Private LisDepPorTipos As LisDepPorTipos
@@ -14,9 +15,11 @@ Public Class frmDepositosMain
 
         frmDepositos = New frmDepositos
         frmMaterialConstruccion = New frmMaterialConstruccion
+        frmTiposDepositos = New frmTiposDepositos
 
         Engine_LA.FormEnPestaña(frmDepositos, TabPage1)
         Engine_LA.FormEnPestaña(frmMaterialConstruccion, TabPage2)
+        Engine_LA.FormEnPestaña(frmTiposDepositos, tpTipos)
     End Sub
 
     'Private Sub btndepositos_Click(sender As Object, e As EventArgs) Handles btndepositos.Click

@@ -1,3 +1,4 @@
+Imports BasesParaCompatibilidad.ComboBoxExtension
 Public Class ctlDepositos
 
     Dim clsDep As New clsDepositos
@@ -14,6 +15,10 @@ Public Class ctlDepositos
         Return clsDep.devolverDepositosporCodigo()
     End Function
 
+    Public Sub devolverDepositosporCodigo(ByRef cbo As ComboBox)
+        cbo.mam_DataSource(clsDep.devolverDepositosporCodigo(), False)
+    End Sub
+
     Public Function devolverDepositos1() As DataTable
         Return clsDep.Devolver()
     End Function
@@ -25,7 +30,7 @@ Public Class ctlDepositos
     Public Function devolverDepositosVacios() As DataTable
         Return clsDep.devolverDepositosVacios()
     End Function
-    
+
     Public Function devolverDepositosPartidas() As DataTable
         Return clsDep.devolverDepositosPartidas()
     End Function
@@ -77,7 +82,7 @@ Public Class ctlDepositos
             reg.Codigo = tabla.Rows(i).Item(1)
 
             If Convert.IsDBNull(tabla.Rows(i).Item(2)) Then
-                reg.FechaCreacion = datetime.now
+                reg.FechaCreacion = DateTime.Now
             Else
                 reg.FechaCreacion = tabla.Rows(i).Item(2)
             End If

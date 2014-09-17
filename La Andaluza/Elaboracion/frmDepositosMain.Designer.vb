@@ -31,6 +31,7 @@ Partial Class frmDepositosMain
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.tpTipos = New System.Windows.Forms.TabPage()
         Me.Panel1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.SuspendLayout()
@@ -113,6 +114,7 @@ Partial Class frmDepositosMain
         Me.TabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
+        Me.TabControl1.Controls.Add(Me.tpTipos)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
         Me.TabControl1.Margin = New System.Windows.Forms.Padding(2)
@@ -143,6 +145,16 @@ Partial Class frmDepositosMain
         Me.TabPage2.Text = "Material de construccion"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
+        'tpTipos
+        '
+        Me.tpTipos.Location = New System.Drawing.Point(4, 25)
+        Me.tpTipos.Name = "tpTipos"
+        Me.tpTipos.Padding = New System.Windows.Forms.Padding(3)
+        Me.tpTipos.Size = New System.Drawing.Size(705, 297)
+        Me.tpTipos.TabIndex = 2
+        Me.tpTipos.Text = "Tipos"
+        Me.tpTipos.UseVisualStyleBackColor = True
+        '
         'frmDepositosMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -167,4 +179,5 @@ Partial Class frmDepositosMain
     Private WithEvents Panel2 As System.Windows.Forms.Panel
     Private WithEvents Button1 As System.Windows.Forms.Button
     Private WithEvents btnListDepTipos As System.Windows.Forms.Button
+    Private WithEvents tpTipos As System.Windows.Forms.TabPage
 End Class

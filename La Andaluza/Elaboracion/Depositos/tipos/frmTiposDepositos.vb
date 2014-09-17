@@ -5,16 +5,17 @@ Public Class frmTiposDepositos
 
    private dboTiposDepositos As DBO_TiposDepositos
        
-   Public Sub New(Optional ByVal MaestroID As Integer = 0)
-       MyBase.new(new spTiposDepositos(),MaestroID.ToString)
+   Public Sub New()
+       MyBase.new(new spTiposDepositos(), "")
        InitializeComponent()
        dboTiposDepositos = new DBO_TiposDepositos
        MyBase.newRegForm = ctype(New frmEntTiposDepositos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, ctype(sp, spTiposDepositos)), BasesParaCompatibilidad.DetailedSimpleForm)
    End Sub
 
-   Private Sub Insert_Before() Handles MyBase.BeforeInsert
-       newRegForm.SetDataBussinesObject(ctype(Me.dboTiposDepositos, BasesParaCompatibilidad.databussines))
-   End Sub
+    Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        Me.dboTiposDepositos = New DBO_TiposDepositos    
+        newRegForm.SetDataBussinesObject(CType(Me.dboTiposDepositos, BasesParaCompatibilidad.DataBussines))
+    End Sub
 
    Private Sub modify_Before() Handles MyBase.BeforeModify
        dboTiposDepositos =ctype(sp, spTiposDepositos).Select_Record(ctype(dgvGeneral.CurrentRow.Cells("Id").Value, integer))

@@ -49,7 +49,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>389</ApplicationRevision>
+    <ApplicationRevision>390</ApplicationRevision>
     <ApplicationVersion>2014.7.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -1856,6 +1856,34 @@
     </Compile>
     <Compile Include="Elaboracion\Depositos\new\posiciones\spPosiciones.vb" />
     <Compile Include="Elaboracion\Depositos\spREsumenDepositos.vb" />
+    <Compile Include="Elaboracion\Depositos\tipos\1\DBO_Depositos_TiposDepositos.vb" />
+    <Compile Include="Elaboracion\Depositos\tipos\1\frmDepositosPorTipo.Designer.vb">
+      <DependentUpon>frmDepositosPorTipo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Elaboracion\Depositos\tipos\1\frmDepositosPorTipo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Elaboracion\Depositos\tipos\1\frmEntDepositosPorTIpo.Designer.vb">
+      <DependentUpon>frmEntDepositosPorTIpo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Elaboracion\Depositos\tipos\1\frmEntDepositosPorTIpo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Elaboracion\Depositos\tipos\1\spDepositos_TiposDepositos.vb" />
+    <Compile Include="Elaboracion\Depositos\tipos\DBO_TiposDepositos.vb" />
+    <Compile Include="Elaboracion\Depositos\tipos\frmEntTiposDepositos.Designer.vb">
+      <DependentUpon>frmEntTiposDepositos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Elaboracion\Depositos\tipos\frmEntTiposDepositos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Elaboracion\Depositos\tipos\frmTiposDepositos.Designer.vb">
+      <DependentUpon>frmTiposDepositos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Elaboracion\Depositos\tipos\frmTiposDepositos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Elaboracion\Depositos\tipos\spTiposDepositos.vb" />
     <Compile Include="Elaboracion\frmDepositosMain.Designer.vb">
       <DependentUpon>frmDepositosMain.vb</DependentUpon>
     </Compile>
@@ -5304,6 +5332,18 @@
     <EmbeddedResource Include="Elaboracion\Depositos\new\posiciones\frmPosiciones.resx">
       <DependentUpon>frmPosiciones.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elaboracion\Depositos\tipos\1\frmDepositosPorTipo.resx">
+      <DependentUpon>frmDepositosPorTipo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elaboracion\Depositos\tipos\1\frmEntDepositosPorTIpo.resx">
+      <DependentUpon>frmEntDepositosPorTIpo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elaboracion\Depositos\tipos\frmEntTiposDepositos.resx">
+      <DependentUpon>frmEntTiposDepositos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elaboracion\Depositos\tipos\frmTiposDepositos.resx">
+      <DependentUpon>frmTiposDepositos.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Elaboracion\frmDepositosMain.resx">
       <DependentUpon>frmDepositosMain.vb</DependentUpon>
     </EmbeddedResource>
@@ -6582,6 +6622,8 @@
     <Content Include="Control\TiposProductos\detalle por familia\detallePorFamiliaBatch.sql" />
     <Content Include="Control\TiposProductos\detalle por producto\FamliaProductos_TiposProductosBatch.sql" />
     <Content Include="Control\TiposProductos\Familia\FamiliaProductoBatch.sql" />
+    <Content Include="Elaboracion\Depositos\tipos\1\Depositos_TiposDepositosBatch.sql" />
+    <Content Include="Elaboracion\Depositos\tipos\TiposDepositosBatch.sql" />
     <Content Include="Resources\window_new.ico" />
     <Content Include="Resources\window_new_3.ico" />
     <None Include="Resources\text-x-makefile.png" />

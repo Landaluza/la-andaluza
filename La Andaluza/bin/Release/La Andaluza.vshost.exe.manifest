@@ -326,14 +326,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="La Andaluza.exe" size="10192384">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="La Andaluza.exe" size="10219520">
       <assemblyIdentity name="La Andaluza" version="2014.2.1.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Eaqk9nYDpz1JmK1HkyF0f0+Xf7bzhFkUaqlQcS0jWF0=</dsig:DigestValue>
+        <dsig:DigestValue>SNQ2B7XHDDD/5dMotgn81zV08L2CLc7z0e94RMNpuDo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -503,6 +503,24 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>VBOBQambBx70VaK3UqKwfdYpSNs8VbYSdNVCgRxGNSg=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Elaboracion\Depositos\tipos\1\Depositos_TiposDepositosBatch.sql" size="4813">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>+X23M2dEPIsJANRnXjz7MFc6lsL8tb7QNDSTiKZB/ss=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Elaboracion\Depositos\tipos\TiposDepositosBatch.sql" size="3049">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>DvaTAc13JkI0HYPAbbmZfi2iEn0kqQS6yEky9Aq+oNI=</dsig:DigestValue>
     </hash>
   </file>
   <file name="La Andaluza.exe.config" size="26247">
