@@ -26,6 +26,7 @@ Partial Class frmTiposProductoMain
         Me.tpProductos = New System.Windows.Forms.TabPage()
         Me.tpFamilia = New System.Windows.Forms.TabPage()
         Me.tpMedidas = New System.Windows.Forms.TabPage()
+        Me.tpClases = New System.Windows.Forms.TabPage()
         Me.tab.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -35,6 +36,7 @@ Partial Class frmTiposProductoMain
         Me.tab.Controls.Add(Me.tpProductos)
         Me.tab.Controls.Add(Me.tpFamilia)
         Me.tab.Controls.Add(Me.tpMedidas)
+        Me.tab.Controls.Add(Me.tpClases)
         Me.tab.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tab.Location = New System.Drawing.Point(0, 0)
         Me.tab.Name = "tab"
@@ -72,6 +74,16 @@ Partial Class frmTiposProductoMain
         Me.tpMedidas.Text = "Medidas"
         Me.tpMedidas.UseVisualStyleBackColor = True
         '
+        'tpClases
+        '
+        Me.tpClases.Location = New System.Drawing.Point(4, 25)
+        Me.tpClases.Name = "tpClases"
+        Me.tpClases.Padding = New System.Windows.Forms.Padding(3)
+        Me.tpClases.Size = New System.Drawing.Size(747, 414)
+        Me.tpClases.TabIndex = 3
+        Me.tpClases.Text = "Clases"
+        Me.tpClases.UseVisualStyleBackColor = True
+        '
         'frmTiposProductoMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -88,4 +100,5 @@ Partial Class frmTiposProductoMain
     Private WithEvents tpProductos As System.Windows.Forms.TabPage
     Private WithEvents tpFamilia As System.Windows.Forms.TabPage
     Private WithEvents tpMedidas As System.Windows.Forms.TabPage
+    Private WithEvents tpClases As System.Windows.Forms.TabPage
 End Class

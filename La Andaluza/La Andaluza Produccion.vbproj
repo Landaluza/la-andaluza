@@ -49,7 +49,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>393</ApplicationRevision>
+    <ApplicationRevision>394</ApplicationRevision>
     <ApplicationVersion>2014.7.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -1000,6 +1000,20 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Control\Lotes\revision\spRevisionLotes.vb" />
+    <Compile Include="Control\TiposProductos\clases\Por clase\DBO_TiposProductos_ClasesProductos.vb" />
+    <Compile Include="Control\TiposProductos\clases\Por clase\frmEntTiposProductos_ClasesProductos.Designer.vb">
+      <DependentUpon>frmEntTiposProductos_ClasesProductos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Control\TiposProductos\clases\Por clase\frmEntTiposProductos_ClasesProductos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Control\TiposProductos\clases\Por clase\frmTiposProductos_ClasesProductos.Designer.vb">
+      <DependentUpon>frmTiposProductos_ClasesProductos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Control\TiposProductos\clases\Por clase\frmTiposProductos_ClasesProductos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Control\TiposProductos\clases\Por clase\spTiposProductos_ClasesProductos.vb" />
     <Compile Include="Control\TiposProductos\clases\DBO_ClasesProductos.vb" />
     <Compile Include="Control\TiposProductos\clases\frmClasesProductos.Designer.vb">
       <DependentUpon>frmClasesProductos.vb</DependentUpon>
@@ -5256,6 +5270,12 @@
     <EmbeddedResource Include="Control\TiposLotes\frmTiposLotes.resx">
       <DependentUpon>frmTiposLotes.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Control\TiposProductos\clases\Por clase\frmEntTiposProductos_ClasesProductos.resx">
+      <DependentUpon>frmEntTiposProductos_ClasesProductos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\TiposProductos\clases\Por clase\frmTiposProductos_ClasesProductos.resx">
+      <DependentUpon>frmTiposProductos_ClasesProductos.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Control\TiposProductos\clases\frmClasesProductos.resx">
       <DependentUpon>frmClasesProductos.vb</DependentUpon>
     </EmbeddedResource>
@@ -6657,9 +6677,13 @@
     <None Include="Bases\ZLibrerias\ReportAdapter.dll" />
     <None Include="Bases\ZLibrerias\BasesParaCompatibilidad.dll" />
     <None Include="Bases\ZLibrerias\InformeDepositos.dll" />
-    <Content Include="Control\TiposProductos\clases\ClasesProductosBatch.sql" />
-    <Content Include="Control\TiposProductos\Familia\detalle por producto\FamliaProductos_TiposProductosBatch.sql" />
-    <Content Include="Control\TiposProductos\Familia\FamiliaProductoBatch.sql" />
+    <Content Include="Control\TiposProductos\clases\Por clase\TiposProductos_ClasesProductosBatch.sql" />
+    <Content Include="Control\TiposProductos\clases\Por clase\TiposProductos_ClasesProductosDelete.sql" />
+    <Content Include="Control\TiposProductos\clases\Por clase\TiposProductos_ClasesProductosInsert.sql" />
+    <Content Include="Control\TiposProductos\clases\Por clase\TiposProductos_ClasesProductosSelect.sql" />
+    <Content Include="Control\TiposProductos\clases\Por clase\TiposProductos_ClasesProductosSelectDgv.sql" />
+    <Content Include="Control\TiposProductos\clases\Por clase\TiposProductos_ClasesProductosSelectDgvBy.sql" />
+    <Content Include="Control\TiposProductos\clases\Por clase\TiposProductos_ClasesProductosUpdate.sql" />
     <Content Include="Resources\window_new.ico" />
     <Content Include="Resources\window_new_3.ico" />
     <None Include="Resources\text-x-makefile.png" />
