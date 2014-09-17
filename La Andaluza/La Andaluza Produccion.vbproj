@@ -49,7 +49,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>392</ApplicationRevision>
+    <ApplicationRevision>393</ApplicationRevision>
     <ApplicationVersion>2014.7.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -1000,6 +1000,20 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Control\Lotes\revision\spRevisionLotes.vb" />
+    <Compile Include="Control\TiposProductos\clases\DBO_ClasesProductos.vb" />
+    <Compile Include="Control\TiposProductos\clases\frmClasesProductos.Designer.vb">
+      <DependentUpon>frmClasesProductos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Control\TiposProductos\clases\frmClasesProductos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Control\TiposProductos\clases\frmEntClasesProductos.Designer.vb">
+      <DependentUpon>frmEntClasesProductos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Control\TiposProductos\clases\frmEntClasesProductos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Control\TiposProductos\clases\spClasesProductos.vb" />
     <Compile Include="Control\TiposProductos\Familia\detalle por familia\frmdetallePorFamilia.Designer.vb">
       <DependentUpon>frmdetallePorFamilia.vb</DependentUpon>
     </Compile>
@@ -5242,6 +5256,12 @@
     <EmbeddedResource Include="Control\TiposLotes\frmTiposLotes.resx">
       <DependentUpon>frmTiposLotes.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Control\TiposProductos\clases\frmClasesProductos.resx">
+      <DependentUpon>frmClasesProductos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\TiposProductos\clases\frmEntClasesProductos.resx">
+      <DependentUpon>frmEntClasesProductos.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Control\TiposProductos\Familia\detalle por familia\frmdetallePorFamilia.resx">
       <DependentUpon>frmdetallePorFamilia.vb</DependentUpon>
     </EmbeddedResource>
@@ -6637,6 +6657,7 @@
     <None Include="Bases\ZLibrerias\ReportAdapter.dll" />
     <None Include="Bases\ZLibrerias\BasesParaCompatibilidad.dll" />
     <None Include="Bases\ZLibrerias\InformeDepositos.dll" />
+    <Content Include="Control\TiposProductos\clases\ClasesProductosBatch.sql" />
     <Content Include="Control\TiposProductos\Familia\detalle por producto\FamliaProductos_TiposProductosBatch.sql" />
     <Content Include="Control\TiposProductos\Familia\FamiliaProductoBatch.sql" />
     <Content Include="Resources\window_new.ico" />

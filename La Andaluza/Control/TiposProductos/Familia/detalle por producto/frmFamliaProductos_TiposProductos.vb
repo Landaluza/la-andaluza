@@ -14,18 +14,21 @@ Public Class frmFamliaProductos_TiposProductos
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
         MyBase.newRegForm = CType(New frmEntDetallePorProducto(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR), BasesParaCompatibilidad.DetailedSimpleForm)
-        dboFamliaProductos_TiposProductos.Id_FamiliaProducto = m_MaestroID
-        newRegForm.SetDataBussinesObject(CType(Me.dboFamliaProductos_TiposProductos, BasesParaCompatibilidad.databussines))
+        dboFamliaProductos_TiposProductos.Id_TipoProducto = m_MaestroID
+        newRegForm.SetDataBussinesObject(CType(Me.dboFamliaProductos_TiposProductos, BasesParaCompatibilidad.DataBussines))
+        AddHandler newRegForm.afterSave, AddressOf dgvFill
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
         dboFamliaProductos_TiposProductos = CType(sp, spFamliaProductos_TiposProductos).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer))
+
         If Not dboFamliaProductos_TiposProductos Is Nothing Then
-            MyBase.newRegForm = CType(New frmEntDetallePorProducto(BasesParaCompatibilidad.GridSimpleForm.ACCION_MODIFICAR), BasesParaCompatibilidad.DetailedSimpleForm)
-            newRegForm.SetDataBussinesObject(CType(Me.dboFamliaProductos_TiposProductos, BasesParaCompatibilidad.databussines))
+            MyBase.newRegForm = CType(New frmEntDetallePorProducto(BasesParaCompatibilidad.gridsimpleform.ACCION_MODIFICAR), BasesParaCompatibilidad.DetailedSimpleForm)
+            newRegForm.SetDataBussinesObject(CType(Me.dboFamliaProductos_TiposProductos, BasesParaCompatibilidad.DataBussines))
+            AddHandler newRegForm.afterSave, AddressOf dgvFill
         Else
             MyBase.EventHandeld = True
-            Messagebox.show("No se pudo recuperar los datos", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            MessageBox.Show("No se pudo recuperar los datos", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End If
     End Sub
 

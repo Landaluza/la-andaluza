@@ -3,6 +3,7 @@ Public Class frmEntTiposProductos
     Implements  BasesParaCompatibilidad.savable
     Public Shadows Event afterSave(sender As Object, args As EventArgs) Implements  BasesParaCompatibilidad.savable.afterSave
     Private m_DBO_TiposProductos As DBO_TiposProductos
+    Private frmFamilia As frmFamliaProductos_TiposProductos
 
     Public Sub New(ByVal modoDeApertura As String, Optional ByRef v_sp As spTiposProductos = Nothing, Optional ByRef v_dbo As DBO_TiposProductos = Nothing)
         MyBase.new(modoDeApertura, v_sp, v_dbo)
@@ -46,6 +47,13 @@ Public Class frmEntTiposProductos
         chbEnologico.Checked = m_DBO_TiposProductos.Enologico
         cboMedida.SelectedValue = m_DBO_TiposProductos.MedidaID
         If Not m_DBO_TiposProductos.id_palet_no_conforme = Nothing Then cboid_palet_no_conforme.SelectedValue = m_DBO_TiposProductos.id_palet_no_conforme
+
+        If Me.ModoDeApertura <> INSERCION Then
+            frmFamilia = New frmFamliaProductos_TiposProductos(Me.m_DBO_TiposProductos.ID)
+            Engine_LA.FormEnPestaña(frmFamilia, tpFamillia)
+        Else
+            Engine_LA.FormEnPestaña(New Form, tpFamillia)
+        End If
 
     End Sub
 

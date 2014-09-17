@@ -34,9 +34,11 @@ Partial Class frmEntTiposProductos
         Me.lblEnologico = New System.Windows.Forms.Label()
         Me.lblMedidaID = New System.Windows.Forms.Label()
         Me.lblid_palet_no_conforme = New System.Windows.Forms.Label()
-
         Me.chbNC = New System.Windows.Forms.CheckBox()
+        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.tpFamillia = New System.Windows.Forms.TabPage()
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabControl1.SuspendLayout()
         Me.SuspendLayout()
         '
         'txtDescripcion
@@ -49,7 +51,7 @@ Partial Class frmEntTiposProductos
         Me.txtDescripcion.EsUnicoTabla = ""
         Me.txtDescripcion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtDescripcion.Location = New System.Drawing.Point(151, 35)
-        Me.txtDescripcion.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtDescripcion.Margin = New System.Windows.Forms.Padding(2)
         Me.txtDescripcion.MaxLength = 50
         Me.txtDescripcion.Minimo = 0
         Me.txtDescripcion.Modificado = False
@@ -74,7 +76,7 @@ Partial Class frmEntTiposProductos
         Me.txtAbreviatura.EsUnicoTabla = ""
         Me.txtAbreviatura.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtAbreviatura.Location = New System.Drawing.Point(151, 63)
-        Me.txtAbreviatura.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtAbreviatura.Margin = New System.Windows.Forms.Padding(2)
         Me.txtAbreviatura.MaxLength = 3
         Me.txtAbreviatura.Minimo = 0
         Me.txtAbreviatura.Modificado = False
@@ -95,7 +97,7 @@ Partial Class frmEntTiposProductos
         Me.chbEnologico.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.chbEnologico.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chbEnologico.Location = New System.Drawing.Point(151, 92)
-        Me.chbEnologico.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.chbEnologico.Margin = New System.Windows.Forms.Padding(2)
         Me.chbEnologico.Name = "chbEnologico"
         Me.chbEnologico.Size = New System.Drawing.Size(180, 20)
         Me.chbEnologico.TabIndex = 2
@@ -108,7 +110,7 @@ Partial Class frmEntTiposProductos
         Me.cboMedida.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cboMedida.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cboMedida.Location = New System.Drawing.Point(151, 117)
-        Me.cboMedida.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.cboMedida.Margin = New System.Windows.Forms.Padding(2)
         Me.cboMedida.Name = "cboMedida"
         Me.cboMedida.Size = New System.Drawing.Size(181, 23)
         Me.cboMedida.TabIndex = 3
@@ -121,7 +123,7 @@ Partial Class frmEntTiposProductos
         Me.butVerMedidaID.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butVerMedidaID.Image = Global.La_Andaluza.My.Resources.Resources.view_16
         Me.butVerMedidaID.Location = New System.Drawing.Point(335, 117)
-        Me.butVerMedidaID.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.butVerMedidaID.Margin = New System.Windows.Forms.Padding(2)
         Me.butVerMedidaID.Name = "butVerMedidaID"
         Me.butVerMedidaID.Size = New System.Drawing.Size(18, 21)
         Me.butVerMedidaID.TabIndex = 4
@@ -135,7 +137,7 @@ Partial Class frmEntTiposProductos
         Me.butAddMedidaID.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butAddMedidaID.Image = Global.La_Andaluza.My.Resources.Resources.edit_add_2
         Me.butAddMedidaID.Location = New System.Drawing.Point(358, 117)
-        Me.butAddMedidaID.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.butAddMedidaID.Margin = New System.Windows.Forms.Padding(2)
         Me.butAddMedidaID.Name = "butAddMedidaID"
         Me.butAddMedidaID.Size = New System.Drawing.Size(18, 21)
         Me.butAddMedidaID.TabIndex = 5
@@ -149,7 +151,7 @@ Partial Class frmEntTiposProductos
         Me.cboid_palet_no_conforme.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cboid_palet_no_conforme.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cboid_palet_no_conforme.Location = New System.Drawing.Point(151, 147)
-        Me.cboid_palet_no_conforme.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.cboid_palet_no_conforme.Margin = New System.Windows.Forms.Padding(2)
         Me.cboid_palet_no_conforme.Name = "cboid_palet_no_conforme"
         Me.cboid_palet_no_conforme.Size = New System.Drawing.Size(181, 23)
         Me.cboid_palet_no_conforme.TabIndex = 4
@@ -204,29 +206,43 @@ Partial Class frmEntTiposProductos
         Me.lblid_palet_no_conforme.Text = "Palet no conforme"
         Me.lblid_palet_no_conforme.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'tlpTop
-        '
-
-
-
-
-        '
         'chbNC
         '
         Me.chbNC.BackColor = System.Drawing.SystemColors.Control
         Me.chbNC.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.chbNC.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chbNC.Location = New System.Drawing.Point(134, 148)
-        Me.chbNC.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.chbNC.Margin = New System.Windows.Forms.Padding(2)
         Me.chbNC.Name = "chbNC"
         Me.chbNC.Size = New System.Drawing.Size(13, 20)
         Me.chbNC.TabIndex = 9
         Me.chbNC.UseVisualStyleBackColor = False
         '
+        'TabControl1
+        '
+        Me.TabControl1.Controls.Add(Me.tpFamillia)
+        Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.TabControl1.Location = New System.Drawing.Point(0, 190)
+        Me.TabControl1.Name = "TabControl1"
+        Me.TabControl1.SelectedIndex = 0
+        Me.TabControl1.Size = New System.Drawing.Size(409, 221)
+        Me.TabControl1.TabIndex = 10
+        '
+        'tpFamillia
+        '
+        Me.tpFamillia.Location = New System.Drawing.Point(4, 22)
+        Me.tpFamillia.Name = "tpFamillia"
+        Me.tpFamillia.Padding = New System.Windows.Forms.Padding(3)
+        Me.tpFamillia.Size = New System.Drawing.Size(401, 195)
+        Me.tpFamillia.TabIndex = 0
+        Me.tpFamillia.Text = "Familia"
+        Me.tpFamillia.UseVisualStyleBackColor = True
+        '
         'frmEntTiposProductos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(406, 199)
+        Me.ClientSize = New System.Drawing.Size(409, 411)
+        Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.chbNC)
         Me.Controls.Add(Me.lblDescripcion)
         Me.Controls.Add(Me.txtDescripcion)
@@ -242,8 +258,7 @@ Partial Class frmEntTiposProductos
         Me.Controls.Add(Me.butVerMedidaID)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.MinimumSize = New System.Drawing.Size(0, 0)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "frmEntTiposProductos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "TiposProductos"
@@ -260,7 +275,9 @@ Partial Class frmEntTiposProductos
         Me.Controls.SetChildIndex(Me.txtDescripcion, 0)
         Me.Controls.SetChildIndex(Me.lblDescripcion, 0)
         Me.Controls.SetChildIndex(Me.chbNC, 0)
+        Me.Controls.SetChildIndex(Me.TabControl1, 0)
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabControl1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -280,4 +297,6 @@ Partial Class frmEntTiposProductos
     Private WithEvents lblid_palet_no_conforme As System.Windows.Forms.Label
 
     Private WithEvents chbNC As System.Windows.Forms.CheckBox
+    Private WithEvents TabControl1 As System.Windows.Forms.TabControl
+    Private WithEvents tpFamillia As System.Windows.Forms.TabPage
 End Class

@@ -47,6 +47,7 @@ Public Class frmEntDetallePorProducto
         Else
             m_DBO_FamliaProductos_TiposProductos.Id_FamiliaProducto = System.Convert.ToInt32(cboFamiliaProducto.SelectedValue)
         End If
+
         If (errores = String.empty) Then
             Dbo = CType(m_DBO_FamliaProductos_TiposProductos, BasesParaCompatibilidad.databussines)
             Return True
