@@ -10,6 +10,7 @@ Public Class frmEntDepositos
     Private OldLib As New OldLib
 
     Private spnaves As New spNaves
+    Private frmTiposDEpositoPorDeposito As frmTiposDEpositoPorDeposito
 
     Public Sub New()
 
@@ -139,6 +140,13 @@ Public Class frmEntDepositos
         'MaterialConstruccionIDComboMAM.DisplayMember = "Display"
         MaterialConstruccionIDComboMAM.Text = material
         ListadoCheckBox.Checked = listado
+
+        If DepositoID <> 0 Then
+            frmTiposDEpositoPorDeposito = New frmTiposDEpositoPorDeposito(DepositoID)
+            Engine_LA.FormEnPestaña(frmTiposDEpositoPorDeposito, tpTipos)
+        Else
+            Engine_LA.FormEnPestaña(New Form, tpTipos)
+        End If
     End Sub
 
     Private Sub butRuta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butRuta.Click

@@ -66,6 +66,11 @@ Partial Class frmEntDepositos
         Me.txtPiernasContenido = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.txtPiernasDescripcion = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.cdCodigo = New System.Windows.Forms.TextBox()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.tpTipos = New System.Windows.Forms.TabPage()
+        Me.TabControl2 = New System.Windows.Forms.TabControl()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
         FechaCreacionLabel = New System.Windows.Forms.Label()
         Label2 = New System.Windows.Forms.Label()
         Label3 = New System.Windows.Forms.Label()
@@ -90,6 +95,10 @@ Partial Class frmEntDepositos
         Me.gbTransicuba.SuspendLayout()
         Me.gbTonel.SuspendLayout()
         Me.gbPiernas.SuspendLayout()
+        Me.Panel1.SuspendLayout()
+        Me.TabControl1.SuspendLayout()
+        Me.TabControl2.SuspendLayout()
+        Me.TabPage2.SuspendLayout()
         Me.SuspendLayout()
         '
         'GeneralBindingSource
@@ -104,7 +113,7 @@ Partial Class frmEntDepositos
         'FechaCreacionLabel
         '
         FechaCreacionLabel.AutoSize = True
-        FechaCreacionLabel.Location = New System.Drawing.Point(239, 75)
+        FechaCreacionLabel.Location = New System.Drawing.Point(333, 69)
         FechaCreacionLabel.Name = "FechaCreacionLabel"
         FechaCreacionLabel.Size = New System.Drawing.Size(85, 13)
         FechaCreacionLabel.TabIndex = 1000000002
@@ -122,7 +131,7 @@ Partial Class frmEntDepositos
         'Label3
         '
         Label3.AutoSize = True
-        Label3.Location = New System.Drawing.Point(25, 101)
+        Label3.Location = New System.Drawing.Point(24, 101)
         Label3.Name = "Label3"
         Label3.Size = New System.Drawing.Size(118, 13)
         Label3.TabIndex = 1000000019
@@ -131,7 +140,7 @@ Partial Class frmEntDepositos
         'Label4
         '
         Label4.AutoSize = True
-        Label4.Location = New System.Drawing.Point(22, 36)
+        Label4.Location = New System.Drawing.Point(24, 35)
         Label4.Name = "Label4"
         Label4.Size = New System.Drawing.Size(43, 13)
         Label4.TabIndex = 1000000024
@@ -221,7 +230,7 @@ Partial Class frmEntDepositos
         'MaterialConstruccionIDLabel
         '
         MaterialConstruccionIDLabel.AutoSize = True
-        MaterialConstruccionIDLabel.Location = New System.Drawing.Point(28, 127)
+        MaterialConstruccionIDLabel.Location = New System.Drawing.Point(24, 126)
         MaterialConstruccionIDLabel.Name = "MaterialConstruccionIDLabel"
         MaterialConstruccionIDLabel.Size = New System.Drawing.Size(127, 13)
         MaterialConstruccionIDLabel.TabIndex = 1000000024
@@ -230,7 +239,7 @@ Partial Class frmEntDepositos
         'ListadoLabel
         '
         ListadoLabel.AutoSize = True
-        ListadoLabel.Location = New System.Drawing.Point(237, 45)
+        ListadoLabel.Location = New System.Drawing.Point(333, 35)
         ListadoLabel.Name = "ListadoLabel"
         ListadoLabel.Size = New System.Drawing.Size(44, 13)
         ListadoLabel.TabIndex = 1000000025
@@ -239,7 +248,7 @@ Partial Class frmEntDepositos
         'Label7
         '
         Label7.AutoSize = True
-        Label7.Location = New System.Drawing.Point(180, 71)
+        Label7.Location = New System.Drawing.Point(233, 71)
         Label7.Name = "Label7"
         Label7.Size = New System.Drawing.Size(32, 13)
         Label7.TabIndex = 1000000027
@@ -272,7 +281,7 @@ Partial Class frmEntDepositos
         '
         Me.FechaCreacionDateTimePicker.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.GeneralBindingSource, "FechaCreacion", True))
         Me.FechaCreacionDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.FechaCreacionDateTimePicker.Location = New System.Drawing.Point(333, 71)
+        Me.FechaCreacionDateTimePicker.Location = New System.Drawing.Point(424, 65)
         Me.FechaCreacionDateTimePicker.Name = "FechaCreacionDateTimePicker"
         Me.FechaCreacionDateTimePicker.Size = New System.Drawing.Size(82, 20)
         Me.FechaCreacionDateTimePicker.TabIndex = 1000000003
@@ -289,7 +298,7 @@ Partial Class frmEntDepositos
         Me.gbBota.Controls.Add(Me.PosicionComboMAM)
         Me.gbBota.Controls.Add(Label10)
         Me.gbBota.Controls.Add(Me.BotaTaponIDComboMAM)
-        Me.gbBota.Location = New System.Drawing.Point(68, 206)
+        Me.gbBota.Location = New System.Drawing.Point(177, 40)
         Me.gbBota.Name = "gbBota"
         Me.gbBota.Size = New System.Drawing.Size(295, 216)
         Me.gbBota.TabIndex = 1000000017
@@ -349,7 +358,7 @@ Partial Class frmEntDepositos
         Me.gbTransicuba.Controls.Add(Me.cbEstadoTransicuba)
         Me.gbTransicuba.Controls.Add(Label6)
         Me.gbTransicuba.Controls.Add(Me.cdDescripcionTransicuba)
-        Me.gbTransicuba.Location = New System.Drawing.Point(66, 206)
+        Me.gbTransicuba.Location = New System.Drawing.Point(177, 40)
         Me.gbTransicuba.Name = "gbTransicuba"
         Me.gbTransicuba.Size = New System.Drawing.Size(298, 132)
         Me.gbTransicuba.TabIndex = 1000000017
@@ -392,7 +401,7 @@ Partial Class frmEntDepositos
         Me.gbTonel.Controls.Add(Me.txtContenidoHabitual)
         Me.gbTonel.Controls.Add(Label5)
         Me.gbTonel.Controls.Add(Me.cdDescripcionTonel)
-        Me.gbTonel.Location = New System.Drawing.Point(66, 206)
+        Me.gbTonel.Location = New System.Drawing.Point(177, 40)
         Me.gbTonel.Name = "gbTonel"
         Me.gbTonel.Size = New System.Drawing.Size(299, 132)
         Me.gbTonel.TabIndex = 1000000016
@@ -444,7 +453,7 @@ Partial Class frmEntDepositos
         '
         Me.rbBota.AutoSize = True
         Me.rbBota.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.rbBota.Location = New System.Drawing.Point(359, 167)
+        Me.rbBota.Location = New System.Drawing.Point(41, 112)
         Me.rbBota.Name = "rbBota"
         Me.rbBota.Size = New System.Drawing.Size(46, 17)
         Me.rbBota.TabIndex = 1000000023
@@ -455,7 +464,7 @@ Partial Class frmEntDepositos
         '
         Me.rbTransicuba.AutoSize = True
         Me.rbTransicuba.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.rbTransicuba.Location = New System.Drawing.Point(167, 167)
+        Me.rbTransicuba.Location = New System.Drawing.Point(41, 69)
         Me.rbTransicuba.Name = "rbTransicuba"
         Me.rbTransicuba.Size = New System.Drawing.Size(77, 17)
         Me.rbTransicuba.TabIndex = 1000000022
@@ -468,7 +477,7 @@ Partial Class frmEntDepositos
         Me.butRuta.FlatAppearance.BorderSize = 0
         Me.butRuta.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.butRuta.Image = Global.La_Andaluza.My.Resources.Resources.folder_magnify
-        Me.butRuta.Location = New System.Drawing.Point(500, 92)
+        Me.butRuta.Location = New System.Drawing.Point(515, 96)
         Me.butRuta.Name = "butRuta"
         Me.butRuta.Size = New System.Drawing.Size(33, 22)
         Me.butRuta.TabIndex = 1000000020
@@ -478,7 +487,7 @@ Partial Class frmEntDepositos
         '
         Me.rbTonel.AutoSize = True
         Me.rbTonel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.rbTonel.Location = New System.Drawing.Point(78, 167)
+        Me.rbTonel.Location = New System.Drawing.Point(41, 46)
         Me.rbTonel.Name = "rbTonel"
         Me.rbTonel.Size = New System.Drawing.Size(51, 17)
         Me.rbTonel.TabIndex = 1000000021
@@ -492,7 +501,7 @@ Partial Class frmEntDepositos
         Me.DoctoUbicacionfisicaCuadroDeTexto.EsUnicoCampoID = ""
         Me.DoctoUbicacionfisicaCuadroDeTexto.EsUnicoID = 0
         Me.DoctoUbicacionfisicaCuadroDeTexto.EsUnicoTabla = ""
-        Me.DoctoUbicacionfisicaCuadroDeTexto.Location = New System.Drawing.Point(152, 97)
+        Me.DoctoUbicacionfisicaCuadroDeTexto.Location = New System.Drawing.Point(164, 97)
         Me.DoctoUbicacionfisicaCuadroDeTexto.Minimo = 0
         Me.DoctoUbicacionfisicaCuadroDeTexto.Modificado = False
         Me.DoctoUbicacionfisicaCuadroDeTexto.Name = "DoctoUbicacionfisicaCuadroDeTexto"
@@ -522,7 +531,7 @@ Partial Class frmEntDepositos
         Me.CapacidadCuadroDeTexto.Numerico_SeparadorMiles = True
         Me.CapacidadCuadroDeTexto.Obligatorio = False
         Me.CapacidadCuadroDeTexto.ParametroID = 0
-        Me.CapacidadCuadroDeTexto.Size = New System.Drawing.Size(82, 20)
+        Me.CapacidadCuadroDeTexto.Size = New System.Drawing.Size(139, 20)
         Me.CapacidadCuadroDeTexto.TabIndex = 1000000016
         Me.CapacidadCuadroDeTexto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.CapacidadCuadroDeTexto.ValorMaximo = 0.0R
@@ -536,7 +545,7 @@ Partial Class frmEntDepositos
         Me.DepositoIDCuadroDeTexto.EsUnicoID = 0
         Me.DepositoIDCuadroDeTexto.EsUnicoTabla = ""
         Me.DepositoIDCuadroDeTexto.Font = New System.Drawing.Font("Microsoft Sans Serif", 5.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DepositoIDCuadroDeTexto.Location = New System.Drawing.Point(335, 74)
+        Me.DepositoIDCuadroDeTexto.Location = New System.Drawing.Point(393, 73)
         Me.DepositoIDCuadroDeTexto.Minimo = 0
         Me.DepositoIDCuadroDeTexto.Modificado = False
         Me.DepositoIDCuadroDeTexto.Name = "DepositoIDCuadroDeTexto"
@@ -558,22 +567,24 @@ Partial Class frmEntDepositos
         Me.MaterialConstruccionIDComboMAM.FormattingEnabled = True
         Me.MaterialConstruccionIDComboMAM.Location = New System.Drawing.Point(164, 123)
         Me.MaterialConstruccionIDComboMAM.Name = "MaterialConstruccionIDComboMAM"
-        Me.MaterialConstruccionIDComboMAM.Size = New System.Drawing.Size(200, 21)
+        Me.MaterialConstruccionIDComboMAM.Size = New System.Drawing.Size(342, 21)
         Me.MaterialConstruccionIDComboMAM.TabIndex = 1000000025
         '
         'ListadoCheckBox
         '
+        Me.ListadoCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.ListadoCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("CheckState", Me.GeneralBindingSource, "Listado", True))
-        Me.ListadoCheckBox.Location = New System.Drawing.Point(290, 39)
+        Me.ListadoCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ListadoCheckBox.Location = New System.Drawing.Point(424, 29)
         Me.ListadoCheckBox.Name = "ListadoCheckBox"
-        Me.ListadoCheckBox.Size = New System.Drawing.Size(104, 24)
+        Me.ListadoCheckBox.Size = New System.Drawing.Size(82, 24)
         Me.ListadoCheckBox.TabIndex = 1000000026
         '
         'rbPiernas
         '
         Me.rbPiernas.AutoSize = True
         Me.rbPiernas.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.rbPiernas.Location = New System.Drawing.Point(277, 167)
+        Me.rbPiernas.Location = New System.Drawing.Point(41, 91)
         Me.rbPiernas.Name = "rbPiernas"
         Me.rbPiernas.Size = New System.Drawing.Size(59, 17)
         Me.rbPiernas.TabIndex = 1000000028
@@ -586,7 +597,7 @@ Partial Class frmEntDepositos
         Me.gbPiernas.Controls.Add(Me.txtPiernasContenido)
         Me.gbPiernas.Controls.Add(Label15)
         Me.gbPiernas.Controls.Add(Me.txtPiernasDescripcion)
-        Me.gbPiernas.Location = New System.Drawing.Point(70, 203)
+        Me.gbPiernas.Location = New System.Drawing.Point(177, 40)
         Me.gbPiernas.Name = "gbPiernas"
         Me.gbPiernas.Size = New System.Drawing.Size(299, 132)
         Me.gbPiernas.TabIndex = 1000000029
@@ -646,61 +657,105 @@ Partial Class frmEntDepositos
         Me.cdCodigo.TabIndex = 1000000030
         Me.cdCodigo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
+        'Panel1
+        '
+        Me.Panel1.Controls.Add(Me.TabControl2)
+        Me.Panel1.Controls.Add(Me.TabControl1)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel1.Location = New System.Drawing.Point(0, 152)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(724, 299)
+        Me.Panel1.TabIndex = 1000000031
+        '
+        'TabControl1
+        '
+        Me.TabControl1.Controls.Add(Me.tpTipos)
+        Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.TabControl1.Location = New System.Drawing.Point(552, 0)
+        Me.TabControl1.Name = "TabControl1"
+        Me.TabControl1.SelectedIndex = 0
+        Me.TabControl1.Size = New System.Drawing.Size(172, 299)
+        Me.TabControl1.TabIndex = 0
+        '
+        'tpTipos
+        '
+        Me.tpTipos.Location = New System.Drawing.Point(4, 22)
+        Me.tpTipos.Name = "tpTipos"
+        Me.tpTipos.Padding = New System.Windows.Forms.Padding(3)
+        Me.tpTipos.Size = New System.Drawing.Size(164, 273)
+        Me.tpTipos.TabIndex = 0
+        Me.tpTipos.Text = "Tipos"
+        Me.tpTipos.UseVisualStyleBackColor = True
+        '
+        'TabControl2
+        '
+        Me.TabControl2.Controls.Add(Me.TabPage2)
+        Me.TabControl2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TabControl2.Location = New System.Drawing.Point(0, 0)
+        Me.TabControl2.Name = "TabControl2"
+        Me.TabControl2.SelectedIndex = 0
+        Me.TabControl2.Size = New System.Drawing.Size(552, 299)
+        Me.TabControl2.TabIndex = 1
+        '
+        'TabPage2
+        '
+        Me.TabPage2.Controls.Add(Me.gbPiernas)
+        Me.TabPage2.Controls.Add(Me.gbTransicuba)
+        Me.TabPage2.Controls.Add(Me.rbTonel)
+        Me.TabPage2.Controls.Add(Me.rbPiernas)
+        Me.TabPage2.Controls.Add(Me.rbTransicuba)
+        Me.TabPage2.Controls.Add(Me.rbBota)
+        Me.TabPage2.Controls.Add(Me.gbBota)
+        Me.TabPage2.Controls.Add(Me.gbTonel)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(544, 273)
+        Me.TabPage2.TabIndex = 0
+        Me.TabPage2.Text = "Clase"
+        Me.TabPage2.UseVisualStyleBackColor = True
+        '
         'frmEntDepositos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(550, 451)
+        Me.ClientSize = New System.Drawing.Size(724, 451)
+        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.cdCodigo)
-        Me.Controls.Add(Me.gbPiernas)
-        Me.Controls.Add(Me.rbPiernas)
         Me.Controls.Add(Label7)
         Me.Controls.Add(ListadoLabel)
         Me.Controls.Add(Me.ListadoCheckBox)
         Me.Controls.Add(MaterialConstruccionIDLabel)
         Me.Controls.Add(Me.MaterialConstruccionIDComboMAM)
-        Me.Controls.Add(Me.gbTonel)
-        Me.Controls.Add(Me.gbBota)
         Me.Controls.Add(Label4)
-        Me.Controls.Add(Me.rbBota)
-        Me.Controls.Add(Me.rbTransicuba)
         Me.Controls.Add(FechaCreacionLabel)
         Me.Controls.Add(Me.butRuta)
         Me.Controls.Add(Me.FechaCreacionDateTimePicker)
         Me.Controls.Add(Label3)
         Me.Controls.Add(Me.DepositoIDCuadroDeTexto)
-        Me.Controls.Add(Me.rbTonel)
         Me.Controls.Add(Me.DoctoUbicacionfisicaCuadroDeTexto)
         Me.Controls.Add(Label2)
         Me.Controls.Add(Me.CapacidadCuadroDeTexto)
-        Me.Controls.Add(Me.gbTransicuba)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frmEntDepositos"
-        Me.Controls.SetChildIndex(Me.gbTransicuba, 0)
         Me.Controls.SetChildIndex(Me.CapacidadCuadroDeTexto, 0)
         Me.Controls.SetChildIndex(Label2, 0)
         Me.Controls.SetChildIndex(Me.DoctoUbicacionfisicaCuadroDeTexto, 0)
-        Me.Controls.SetChildIndex(Me.rbTonel, 0)
         Me.Controls.SetChildIndex(Me.DepositoIDCuadroDeTexto, 0)
         Me.Controls.SetChildIndex(Label3, 0)
         Me.Controls.SetChildIndex(Me.FechaCreacionDateTimePicker, 0)
         Me.Controls.SetChildIndex(Me.butRuta, 0)
         Me.Controls.SetChildIndex(FechaCreacionLabel, 0)
-        Me.Controls.SetChildIndex(Me.rbTransicuba, 0)
-        Me.Controls.SetChildIndex(Me.rbBota, 0)
         Me.Controls.SetChildIndex(Me.txtTodoCorrecto, 0)
         Me.Controls.SetChildIndex(Label4, 0)
-        Me.Controls.SetChildIndex(Me.gbBota, 0)
-        Me.Controls.SetChildIndex(Me.gbTonel, 0)
         Me.Controls.SetChildIndex(Me.MaterialConstruccionIDComboMAM, 0)
         Me.Controls.SetChildIndex(MaterialConstruccionIDLabel, 0)
         Me.Controls.SetChildIndex(Me.ListadoCheckBox, 0)
         Me.Controls.SetChildIndex(ListadoLabel, 0)
         Me.Controls.SetChildIndex(Label7, 0)
-        Me.Controls.SetChildIndex(Me.rbPiernas, 0)
-        Me.Controls.SetChildIndex(Me.gbPiernas, 0)
         Me.Controls.SetChildIndex(Me.cdCodigo, 0)
+        Me.Controls.SetChildIndex(Me.Panel1, 0)
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DtsDepositos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gbBota.ResumeLayout(False)
@@ -711,6 +766,11 @@ Partial Class frmEntDepositos
         Me.gbTonel.PerformLayout()
         Me.gbPiernas.ResumeLayout(False)
         Me.gbPiernas.PerformLayout()
+        Me.Panel1.ResumeLayout(False)
+        Me.TabControl1.ResumeLayout(False)
+        Me.TabControl2.ResumeLayout(False)
+        Me.TabPage2.ResumeLayout(False)
+        Me.TabPage2.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -743,5 +803,10 @@ Partial Class frmEntDepositos
     Private WithEvents txtPiernasContenido As BasesParaCompatibilidad.CuadroDeTexto
     Private WithEvents txtPiernasDescripcion As BasesParaCompatibilidad.CuadroDeTexto
     Private WithEvents cdCodigo As System.Windows.Forms.TextBox
+    Private WithEvents Panel1 As System.Windows.Forms.Panel
+    Private WithEvents TabControl2 As System.Windows.Forms.TabControl
+    Private WithEvents TabPage2 As System.Windows.Forms.TabPage
+    Private WithEvents TabControl1 As System.Windows.Forms.TabControl
+    Private WithEvents tpTipos As System.Windows.Forms.TabPage
 
 End Class

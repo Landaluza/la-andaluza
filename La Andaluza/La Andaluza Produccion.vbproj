@@ -49,7 +49,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>390</ApplicationRevision>
+    <ApplicationRevision>391</ApplicationRevision>
     <ApplicationVersion>2014.7.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -1856,20 +1856,32 @@
     </Compile>
     <Compile Include="Elaboracion\Depositos\new\posiciones\spPosiciones.vb" />
     <Compile Include="Elaboracion\Depositos\spREsumenDepositos.vb" />
-    <Compile Include="Elaboracion\Depositos\tipos\1\DBO_Depositos_TiposDepositos.vb" />
-    <Compile Include="Elaboracion\Depositos\tipos\1\frmDepositosPorTipo.Designer.vb">
+    <Compile Include="Elaboracion\Depositos\tipos\DepositosPorTipo\DBO_Depositos_TiposDepositos.vb" />
+    <Compile Include="Elaboracion\Depositos\tipos\DepositosPorTipo\frmDepositosPorTipo.Designer.vb">
       <DependentUpon>frmDepositosPorTipo.vb</DependentUpon>
     </Compile>
-    <Compile Include="Elaboracion\Depositos\tipos\1\frmDepositosPorTipo.vb">
+    <Compile Include="Elaboracion\Depositos\tipos\DepositosPorTipo\frmDepositosPorTipo.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Elaboracion\Depositos\tipos\1\frmEntDepositosPorTIpo.Designer.vb">
+    <Compile Include="Elaboracion\Depositos\tipos\DepositosPorTipo\frmEntDepositosPorTIpo.Designer.vb">
       <DependentUpon>frmEntDepositosPorTIpo.vb</DependentUpon>
     </Compile>
-    <Compile Include="Elaboracion\Depositos\tipos\1\frmEntDepositosPorTIpo.vb">
+    <Compile Include="Elaboracion\Depositos\tipos\DepositosPorTipo\frmEntDepositosPorTIpo.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Elaboracion\Depositos\tipos\1\spDepositos_TiposDepositos.vb" />
+    <Compile Include="Elaboracion\Depositos\tipos\DepositosPorTipo\spDepositos_TiposDepositos.vb" />
+    <Compile Include="Elaboracion\Depositos\tipos\TiposPorDeposito\frmTiposDEpositoPorDeposito.Designer.vb">
+      <DependentUpon>frmTiposDEpositoPorDeposito.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Elaboracion\Depositos\tipos\TiposPorDeposito\frmTiposDEpositoPorDeposito.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Elaboracion\Depositos\tipos\TiposPorDeposito\frmEntTiposDEpositoPorDEposito.Designer.vb">
+      <DependentUpon>frmEntTiposDEpositoPorDEposito.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Elaboracion\Depositos\tipos\TiposPorDeposito\frmEntTiposDEpositoPorDEposito.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Elaboracion\Depositos\tipos\DBO_TiposDepositos.vb" />
     <Compile Include="Elaboracion\Depositos\tipos\frmEntTiposDepositos.Designer.vb">
       <DependentUpon>frmEntTiposDepositos.vb</DependentUpon>
@@ -5332,11 +5344,17 @@
     <EmbeddedResource Include="Elaboracion\Depositos\new\posiciones\frmPosiciones.resx">
       <DependentUpon>frmPosiciones.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Elaboracion\Depositos\tipos\1\frmDepositosPorTipo.resx">
+    <EmbeddedResource Include="Elaboracion\Depositos\tipos\DepositosPorTipo\frmDepositosPorTipo.resx">
       <DependentUpon>frmDepositosPorTipo.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Elaboracion\Depositos\tipos\1\frmEntDepositosPorTIpo.resx">
+    <EmbeddedResource Include="Elaboracion\Depositos\tipos\DepositosPorTipo\frmEntDepositosPorTIpo.resx">
       <DependentUpon>frmEntDepositosPorTIpo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elaboracion\Depositos\tipos\TiposPorDeposito\frmTiposDEpositoPorDeposito.resx">
+      <DependentUpon>frmTiposDEpositoPorDeposito.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elaboracion\Depositos\tipos\TiposPorDeposito\frmEntTiposDEpositoPorDEposito.resx">
+      <DependentUpon>frmEntTiposDEpositoPorDEposito.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Elaboracion\Depositos\tipos\frmEntTiposDepositos.resx">
       <DependentUpon>frmEntTiposDepositos.vb</DependentUpon>
@@ -6622,8 +6640,6 @@
     <Content Include="Control\TiposProductos\detalle por familia\detallePorFamiliaBatch.sql" />
     <Content Include="Control\TiposProductos\detalle por producto\FamliaProductos_TiposProductosBatch.sql" />
     <Content Include="Control\TiposProductos\Familia\FamiliaProductoBatch.sql" />
-    <Content Include="Elaboracion\Depositos\tipos\1\Depositos_TiposDepositosBatch.sql" />
-    <Content Include="Elaboracion\Depositos\tipos\TiposDepositosBatch.sql" />
     <Content Include="Resources\window_new.ico" />
     <Content Include="Resources\window_new_3.ico" />
     <None Include="Resources\text-x-makefile.png" />
