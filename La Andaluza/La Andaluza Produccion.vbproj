@@ -1000,22 +1000,22 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Control\Lotes\revision\spRevisionLotes.vb" />
-    <Compile Include="Control\TiposProductos\detalle por familia\frmdetallePorFamilia.Designer.vb">
+    <Compile Include="Control\TiposProductos\Familia\detalle por familia\frmdetallePorFamilia.Designer.vb">
       <DependentUpon>frmdetallePorFamilia.vb</DependentUpon>
     </Compile>
-    <Compile Include="Control\TiposProductos\detalle por familia\frmdetallePorFamilia.vb">
+    <Compile Include="Control\TiposProductos\Familia\detalle por familia\frmdetallePorFamilia.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Control\TiposProductos\detalle por producto\frmEntDetallePorProducto.Designer.vb">
+    <Compile Include="Control\TiposProductos\Familia\detalle por producto\frmEntDetallePorProducto.Designer.vb">
       <DependentUpon>frmEntDetallePorProducto.vb</DependentUpon>
     </Compile>
-    <Compile Include="Control\TiposProductos\detalle por producto\frmEntDetallePorProducto.vb">
+    <Compile Include="Control\TiposProductos\Familia\detalle por producto\frmEntDetallePorProducto.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Control\TiposProductos\detalle por producto\frmFamliaProductos_TiposProductos.Designer.vb">
+    <Compile Include="Control\TiposProductos\Familia\detalle por producto\frmFamliaProductos_TiposProductos.Designer.vb">
       <DependentUpon>frmFamliaProductos_TiposProductos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Control\TiposProductos\detalle por producto\frmFamliaProductos_TiposProductos.vb">
+    <Compile Include="Control\TiposProductos\Familia\detalle por producto\frmFamliaProductos_TiposProductos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Control\TiposProductos\Familia\Comun\frmEntDEtallePorFamilia.Designer.vb">
@@ -5242,13 +5242,13 @@
     <EmbeddedResource Include="Control\TiposLotes\frmTiposLotes.resx">
       <DependentUpon>frmTiposLotes.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Control\TiposProductos\detalle por familia\frmdetallePorFamilia.resx">
+    <EmbeddedResource Include="Control\TiposProductos\Familia\detalle por familia\frmdetallePorFamilia.resx">
       <DependentUpon>frmdetallePorFamilia.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Control\TiposProductos\detalle por producto\frmEntDetallePorProducto.resx">
+    <EmbeddedResource Include="Control\TiposProductos\Familia\detalle por producto\frmEntDetallePorProducto.resx">
       <DependentUpon>frmEntDetallePorProducto.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Control\TiposProductos\detalle por producto\frmFamliaProductos_TiposProductos.resx">
+    <EmbeddedResource Include="Control\TiposProductos\Familia\detalle por producto\frmFamliaProductos_TiposProductos.resx">
       <DependentUpon>frmFamliaProductos_TiposProductos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Control\TiposProductos\Familia\Comun\frmEntDEtallePorFamilia.resx">
@@ -6637,8 +6637,8 @@
     <None Include="Bases\ZLibrerias\ReportAdapter.dll" />
     <None Include="Bases\ZLibrerias\BasesParaCompatibilidad.dll" />
     <None Include="Bases\ZLibrerias\InformeDepositos.dll" />
-    <Content Include="Control\TiposProductos\detalle por familia\detallePorFamiliaBatch.sql" />
-    <Content Include="Control\TiposProductos\detalle por producto\FamliaProductos_TiposProductosBatch.sql" />
+    <Content Include="Control\TiposProductos\Familia\detalle por familia\detallePorFamiliaBatch.sql" />
+    <Content Include="Control\TiposProductos\Familia\detalle por producto\FamliaProductos_TiposProductosBatch.sql" />
     <Content Include="Control\TiposProductos\Familia\FamiliaProductoBatch.sql" />
     <Content Include="Resources\window_new.ico" />
     <Content Include="Resources\window_new_3.ico" />
