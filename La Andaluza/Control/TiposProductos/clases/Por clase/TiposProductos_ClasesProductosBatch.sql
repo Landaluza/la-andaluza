@@ -89,7 +89,7 @@ AS
 BEGIN
 SELECT
       [dbo].[TiposProductos_ClasesProductos].[Id] Id
-     ,[dbo].[TiposProductos].[TipoProductoID]
+     ,[dbo].[TiposProductos].Descripcion  Nombre
      ,[dbo].[ClasesProductos].[Id]
 FROM
      [dbo].[TiposProductos_ClasesProductos]
@@ -111,13 +111,37 @@ AS
 BEGIN
 SELECT
       [dbo].[TiposProductos_ClasesProductos].[Id]
-     ,[dbo].[TiposProductos].[TipoProductoID] AS Id_TipoProducto
+     ,[dbo].[TiposProductos].Descripcion AS Nombre
 FROM
      [dbo].[TiposProductos_ClasesProductos]
      INNER JOIN [dbo].[TiposProductos] ON [dbo].[TiposProductos_ClasesProductos].[Id_TipoProducto] = [dbo].[TiposProductos].[TipoProductoID]
      INNER JOIN [dbo].[ClasesProductos] ON [dbo].[TiposProductos_ClasesProductos].[Id_ClaseProducto] = [dbo].[ClasesProductos].[Id]
 WHERE
      [dbo].[TiposProductos_ClasesProductos].[Id_ClaseProducto] = @Id_ClaseProducto
+
+End
+
+GO
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TiposProductos_ClasesProductosSelectDgvByProducto]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[TiposProductos_ClasesProductosSelectDgvByProducto]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[TiposProductos_ClasesProductosSelectDgvByProducto]
+      @Id_TipoProducto int
+AS 
+BEGIN
+SELECT
+      [dbo].[TiposProductos_ClasesProductos].[Id]
+     ,[dbo].[ClasesProductos].Nombre 
+FROM
+     [dbo].[TiposProductos_ClasesProductos]
+     INNER JOIN [dbo].[TiposProductos] ON [dbo].[TiposProductos_ClasesProductos].[Id_TipoProducto] = [dbo].[TiposProductos].[TipoProductoID]
+     INNER JOIN [dbo].[ClasesProductos] ON [dbo].[TiposProductos_ClasesProductos].[Id_ClaseProducto] = [dbo].[ClasesProductos].[Id]
+WHERE
+     [dbo].[TiposProductos_ClasesProductos].[Id_TipoProducto] = @Id_TipoProducto
 
 End
 

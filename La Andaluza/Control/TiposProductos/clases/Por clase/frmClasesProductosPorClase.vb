@@ -15,14 +15,16 @@ Public Class frmClasesProductosPorClase
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
         MyBase.newRegForm = CType(New frmEntClasesProductosPorClase(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR), BasesParaCompatibilidad.DetailedSimpleForm)
         dboTiposProductos_ClasesProductos.Id_ClaseProducto = m_MaestroID
-        newRegForm.SetDataBussinesObject(CType(Me.dboTiposProductos_ClasesProductos, BasesParaCompatibilidad.databussines))
+        newRegForm.SetDataBussinesObject(CType(Me.dboTiposProductos_ClasesProductos, BasesParaCompatibilidad.DataBussines))
+        AddHandler newRegForm.afterSave, AddressOf dgvFill
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
         dboTiposProductos_ClasesProductos = CType(sp, spTiposProductos_ClasesProductos).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer))
         If Not dboTiposProductos_ClasesProductos Is Nothing Then
             MyBase.newRegForm = CType(New frmEntClasesProductosPorClase(BasesParaCompatibilidad.GridSimpleForm.ACCION_MODIFICAR), BasesParaCompatibilidad.DetailedSimpleForm)
-            newRegForm.SetDataBussinesObject(CType(Me.dboTiposProductos_ClasesProductos, BasesParaCompatibilidad.databussines))
+            newRegForm.SetDataBussinesObject(CType(Me.dboTiposProductos_ClasesProductos, BasesParaCompatibilidad.DataBussines))
+            AddHandler newRegForm.afterSave, AddressOf dgvFill
         Else
             MyBase.EventHandeld = True
             Messagebox.show("No se pudo recuperar los datos", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
@@ -37,8 +39,7 @@ Public Class frmClasesProductosPorClase
             With dgvGeneral
                 .DataSource = GeneralBindingSource
                 .Columns("Id").Visible = False
-                .FormatoColumna("TipoProductoID", BasesParaCompatibilidad.TiposColumna.Izquierda, True)
-                .FormatoColumna("Id", BasesParaCompatibilidad.TiposColumna.Izquierda, True)
+                .FormatoColumna("Nombre", BasesParaCompatibilidad.TiposColumna.Izquierda, True)
             End With
         End If
 

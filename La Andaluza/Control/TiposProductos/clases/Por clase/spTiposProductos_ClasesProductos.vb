@@ -11,6 +11,11 @@ Inherits BasesParaCompatibilidad.StoredProcedure
                      "[dbo].[TiposProductos_ClasesProductosSelectDgvBy]")
    End Sub
 
+    Public ReadOnly Property SelectDgvByProducto As String
+        Get
+            Return "[TiposProductos_ClasesProductosSelectDgvByProducto]"
+        End Get
+    End Property
    Public Overloads Function Select_Record(ByVal Id As Integer, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As DBO_TiposProductos_ClasesProductos
        Dim dbo As New DBO_TiposProductos_ClasesProductos
        dbo.searchKey = dbo.item("Id")

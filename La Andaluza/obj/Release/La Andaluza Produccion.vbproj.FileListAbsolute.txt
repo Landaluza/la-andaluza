@@ -1972,3 +1972,5 @@ C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andalu
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEntTiposDEpositoPorDEposito.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmClasesProductos.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEntClasesProductos.resources
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEntClasesProductosPorClase.resources
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmClasesProductosPorClase.resources
