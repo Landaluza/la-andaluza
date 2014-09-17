@@ -6949,7 +6949,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Control\TiposProductos\tipos\" />
     <Folder Include="Produccion\Envasados2\_OLD\" />
     <Folder Include="Produccion\Partes\Causas\causas_fuentes\" />
   </ItemGroup>
