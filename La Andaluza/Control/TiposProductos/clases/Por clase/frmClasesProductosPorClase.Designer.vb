@@ -1,5 +1,5 @@
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmTiposProductos_ClasesProductos
+Partial Class frmClasesProductosPorClase
     Inherits BasesParaCompatibilidad.gridsimpleform
 
     'Form invalida a Dispose para limpiar la lista de componentes.
@@ -32,7 +32,7 @@ Partial Class frmTiposProductos_ClasesProductos
         Me.MinimumSize = New System.Drawing.Size(400, 400)
         Me.Name = "frmTiposProductos_ClasesProductos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Tiposproductos_Clasesproductos
+        Me.Text = "Tiposproductos_Clasesproductos"
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

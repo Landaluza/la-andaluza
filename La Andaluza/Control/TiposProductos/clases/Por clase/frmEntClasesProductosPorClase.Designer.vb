@@ -1,5 +1,5 @@
-<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _ 
-Partial Class frmEntTiposProductos_ClasesProductos
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class frmEntClasesProductosPorClase
     Inherits BasesParaCompatibilidad.DetailedSimpleForm
 
     'Form overrides dispose to clean up the component list.
@@ -41,10 +41,10 @@ Partial Class frmEntTiposProductos_ClasesProductos
         Me.cboTipoProducto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown
         Me.cboTipoProducto.Dock = System.Windows.Forms.DockStyle.Fill
         Me.cboTipoProducto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cboTipoProducto.Name = "cboTipoProducto
+        Me.cboTipoProducto.Name = "cboTipoProducto"
         Me.cboTipoProducto.TabIndex = 0
         Me.cboTipoProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cboTipoProducto.Size = New System.Drawing.Size(200,21)
+        Me.cboTipoProducto.Size = New System.Drawing.Size(200, 21)
         '
         'butVerId_TipoProducto
         '
@@ -53,7 +53,7 @@ Partial Class frmEntTiposProductos_ClasesProductos
         Me.butVerId_TipoProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.butVerId_TipoProducto.Cursor = System.Windows.Forms.Cursors.Hand
         Me.butVerId_TipoProducto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.butVerId_TipoProducto.Name = "butVerId_TipoProducto
+        Me.butVerId_TipoProducto.Name = "butVerId_TipoProducto"
         Me.butVerId_TipoProducto.Image = Global.La_Andaluza.My.Resources.Resources.agenda
         Me.butVerId_TipoProducto.TabStop = False
         Me.butVerId_TipoProducto.Size = New System.Drawing.Size(20, 20)
@@ -65,7 +65,7 @@ Partial Class frmEntTiposProductos_ClasesProductos
         Me.butAddId_TipoProducto.Cursor = System.Windows.Forms.Cursors.Hand
         Me.butAddId_TipoProducto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butAddId_TipoProducto.Image = Global.La_Andaluza.My.Resources.edit_add_2
-        Me.butAddId_TipoProducto.Name = "butAddId_TipoProducto
+        Me.butAddId_TipoProducto.Name = "butAddId_TipoProducto"
         Me.butAddId_TipoProducto.TabStop = False
         Me.butAddId_TipoProducto.Size = New System.Drawing.Size(20, 20)
         '
@@ -77,10 +77,10 @@ Partial Class frmEntTiposProductos_ClasesProductos
         Me.cboClaseProducto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown
         Me.cboClaseProducto.Dock = System.Windows.Forms.DockStyle.Fill
         Me.cboClaseProducto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cboClaseProducto.Name = "cboClaseProducto
+        Me.cboClaseProducto.Name = "cboClaseProducto"
         Me.cboClaseProducto.TabIndex = 1
         Me.cboClaseProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cboClaseProducto.Size = New System.Drawing.Size(200,21)
+        Me.cboClaseProducto.Size = New System.Drawing.Size(200, 21)
         '
         'butVerId_ClaseProducto
         '
@@ -89,7 +89,7 @@ Partial Class frmEntTiposProductos_ClasesProductos
         Me.butVerId_ClaseProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.butVerId_ClaseProducto.Cursor = System.Windows.Forms.Cursors.Hand
         Me.butVerId_ClaseProducto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.butVerId_ClaseProducto.Name = "butVerId_ClaseProducto
+        Me.butVerId_ClaseProducto.Name = "butVerId_ClaseProducto"
         Me.butVerId_ClaseProducto.Image = Global.La_Andaluza.My.Resources.Resources.agenda
         Me.butVerId_ClaseProducto.TabStop = False
         Me.butVerId_ClaseProducto.Size = New System.Drawing.Size(20, 20)
@@ -101,7 +101,7 @@ Partial Class frmEntTiposProductos_ClasesProductos
         Me.butAddId_ClaseProducto.Cursor = System.Windows.Forms.Cursors.Hand
         Me.butAddId_ClaseProducto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.butAddId_ClaseProducto.Image = Global.La_Andaluza.My.Resources.edit_add_2
-        Me.butAddId_ClaseProducto.Name = "butAddId_ClaseProducto
+        Me.butAddId_ClaseProducto.Name = "butAddId_ClaseProducto"
         Me.butAddId_ClaseProducto.TabStop = False
         Me.butAddId_ClaseProducto.Size = New System.Drawing.Size(20, 20)
         '
@@ -109,20 +109,20 @@ Partial Class frmEntTiposProductos_ClasesProductos
         'lblId_TipoProducto
         '
         Me.lblId_TipoProducto.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lblId_TipoProducto.Name = "lblId_TipoProducto
-        Me.lblId_TipoProducto.Text = "Tipoproducto
+        Me.lblId_TipoProducto.Name = "lblId_TipoProducto"
+        Me.lblId_TipoProducto.Text = "Tipoproducto"
         Me.lblId_TipoProducto.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.lblId_TipoProducto.Size = New System.Drawing.Size(99,21)
-        Me.lblId_TipoProducto.Location = New System.Drawing.Point(20,40)
+        Me.lblId_TipoProducto.Size = New System.Drawing.Size(99, 21)
+        Me.lblId_TipoProducto.Location = New System.Drawing.Point(20, 40)
         '
         'lblId_ClaseProducto
         '
         Me.lblId_ClaseProducto.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lblId_ClaseProducto.Name = "lblId_ClaseProducto
-        Me.lblId_ClaseProducto.Text = "Claseproducto
+        Me.lblId_ClaseProducto.Name = "lblId_ClaseProducto"
+        Me.lblId_ClaseProducto.Text = "Claseproducto"
         Me.lblId_ClaseProducto.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.lblId_ClaseProducto.Size = New System.Drawing.Size(99,21)
-        Me.lblId_ClaseProducto.Location = New System.Drawing.Point(20,40)
+        Me.lblId_ClaseProducto.Size = New System.Drawing.Size(99, 21)
+        Me.lblId_ClaseProducto.Location = New System.Drawing.Point(20, 40)
         '
         'tlpMiddle
         '
@@ -159,19 +159,19 @@ Partial Class frmEntTiposProductos_ClasesProductos
         Me.Controls.Add(Me.tlpMiddle)
         Me.ClientSize = New System.Drawing.Size(429, 138)
         Me.MinimumSize = New System.Drawing.Size(429, 138)
-        Me.Name = "frmEntTiposProductos_ClasesProductos
+        Me.Name = "frmEntTiposProductos_ClasesProductos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "TiposProductos_ClasesProductos"
         Me.Controls.SetChildIndex(Me.tlpMiddle, 0)
         Me.tlpMiddle.ResumeLayout(False)
         Me.tlpMiddle.Dock = System.Windows.Forms.DockStyle.None
         Me.tlpMiddle.Autosize = True
-        Me.Size = new Size(429,348)
+        Me.Size = New Size(429, 348)
         Me.tlpMiddle.PerformLayout()
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
-       End Sub
+    End Sub
 
     Private WithEvents cboTipoProducto As System.Windows.Forms.ComboBox
     Private WithEvents butVerId_TipoProducto As System.Windows.Forms.Button
