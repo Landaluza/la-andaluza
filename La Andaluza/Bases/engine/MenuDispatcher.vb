@@ -8,7 +8,6 @@ Public Class MenuDispatcher
     Private frmDepositos As frmDepositos
     Private frmLotesEnologico As frmLotesEnologico
     Private frmMaterialConstruccion As frmMaterialConstruccion
-    Private frmProcesos As frmProcesos    
     Private LisDepPorTipos As LisDepPorTipos
     Private frmUnidadesMedidas As frmUnidadesMedidas
     Private frmTiposFormatosLineas As frmTiposFormatosLineas
@@ -168,11 +167,6 @@ Public Class MenuDispatcher
     Private Sub MaterialConstruccionMantenimientoBBDDToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem917.Click, ToolStripMenuItem746.Click, ToolStripMenuItem233.Click
         frmMaterialConstruccion = New frmMaterialConstruccion
         GUImain.añadirPestaña(frmMaterialConstruccion)
-    End Sub
-
-    Private Sub ProcesosMantenimientoBBDDToolStripMenuItem_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        frmProcesos = New frmProcesos
-        GUImain.añadirPestaña(frmProcesos)
     End Sub
 
     Private Sub ExistenciasPorDepositoToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem920.Click, ToolStripMenuItem749.Click, ToolStripMenuItem236.Click, ToolStripMenuItem19.Click
