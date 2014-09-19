@@ -2,7 +2,7 @@
 <Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectView>ShowAllFiles</ProjectView>
-    <PublishUrlHistory>\\192.168.10.200\datos\Informatica\La Andaluza app\|\\192.168.10.200\datos\Informatica\pruebas\La Andaluza app\|\\192.168.1.200\datos\Informatica\La Andaluza app\</PublishUrlHistory>
+    <PublishUrlHistory>\\192.168.10.200\datos\Informatica\La Andaluza app\|\\192.168.10.200\datos\Informatica\pruebas\La Andaluza app\|\\192.168.10.200\datos\Informatic\La Andaluza app\|\\192.168.1.200\datos\Informatica\La Andaluza app\</PublishUrlHistory>
     <InstallUrlHistory />
     <SupportUrlHistory />
     <UpdateUrlHistory />
