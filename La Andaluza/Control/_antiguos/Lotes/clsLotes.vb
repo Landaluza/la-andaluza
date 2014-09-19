@@ -683,8 +683,8 @@ Public Class clsLotes
 
     Public Function CantidadDeMaceraciones() As Integer
         Return BasesParaCompatibilidad.BD.ConsultaVer("count(*)", _
-                              "Lotes INNER JOIN CompuestoPor ON Lotes.LoteID = CompuestoPor.LoteFinal INNER JOIN Movimientos ON CompuestoPor.MovimientoID = Movimientos.MovimientoID INNER JOIN Procesos ON Movimientos.ProcesoID = Procesos.ProcesoID", _
-                              "Procesos.TipoMovimiento = 'M' and  Lotes.LoteId =" & Convert.ToString(LoteID)).Rows(0).Item(0)
+                              "Lotes INNER JOIN CompuestoPor ON Lotes.LoteID = CompuestoPor.LoteFinal INNER JOIN Movimientos ON CompuestoPor.MovimientoID = Movimientos.MovimientoID INNER JOIN Procesos ON Movimientos.ProcesoID = Procesos.ProcesoID inner join tiposmovimientos on tipomovimientoid = tiposmovimientos.id ", _
+                              "tiposmovimientos.abreviatura = 'M' and  Lotes.LoteId =" & Convert.ToString(LoteID)).Rows(0).Item(0)
     End Function
 #End Region
 End Class
