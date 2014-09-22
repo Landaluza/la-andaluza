@@ -2,7 +2,7 @@
     Private ctlDep As ctlDepositos
     Private OldLib As OldLib
     Private loteID As Integer
-    Public Sub New(ByVal loteid As Integer, ByVal depositoid As Integer)
+    Public Sub New(ByVal loteid As Integer, ByVal depositoid As String)
         InitializeComponent()
 
         Me.loteID = loteid
