@@ -7,10 +7,8 @@ Public Class frmClasesIncidencias
     Public Sub New(Optional ByVal MaestroID As Integer = 0)
         MyBase.New(New spClasesIncidencias, MaestroID)
         InitializeComponent()
-
+        If m_MaestroID = "" Then m_MaestroID = 0
         dboClasesIncidencias = New DBO_ClasesIncidencias
-
-
         MyBase.newRegForm = New frmEntClasesIncidencias(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, sp)
     End Sub
 

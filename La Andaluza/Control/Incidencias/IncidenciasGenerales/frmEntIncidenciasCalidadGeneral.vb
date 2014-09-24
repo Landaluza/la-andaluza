@@ -43,6 +43,7 @@ Public Class frmEntIncidenciasCalidadGeneral
     Overrides Sub SetValores() Implements BasesParaCompatibilidad.Savable.setValores
         If Me.ModoDeApertura = INSERCION Then
             Me.m_DBO_IncidenciasCalidadGeneral = New DBO_IncidenciasCalidadGeneral
+            Engine_LA.FormEnPestaña(New Form, tpTipo)
         Else
             Me.m_DBO_IncidenciasCalidadGeneral = dbo
 
