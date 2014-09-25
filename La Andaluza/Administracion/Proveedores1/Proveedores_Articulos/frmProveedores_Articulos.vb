@@ -25,6 +25,7 @@ Public Class frmProveedores_Articulos
 
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        dboProveedores_Articulos = New DBO_Proveedores_Articulos
         'if m_maestroid <> 0 Then dboProveedores_Articulos.ProveedorID = m_MaestroID
         newRegForm.SetDataBussinesObject(Me.dboProveedores_Articulos)
     End Sub

@@ -19,8 +19,9 @@ Public Class frmArticulos_AlmacenNoConforme_PaletsProducidos
 
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        dboArticulos_AlmacenNoConforme_PaletsProducidos = New DBO_Articulos_AlmacenNoConforme_PaletsProducidos
+
         If m_MaestroID <> 0 Then
-            dboArticulos_AlmacenNoConforme_PaletsProducidos = New DBO_Articulos_AlmacenNoConforme_PaletsProducidos
             dboArticulos_AlmacenNoConforme_PaletsProducidos.Id_Articulos_AlmacenNoConforme = m_MaestroID
         End If
         newRegForm.SetDataBussinesObject(Me.dboArticulos_AlmacenNoConforme_PaletsProducidos)

@@ -31,6 +31,7 @@ Public Class frmGestionesPendientes
     End Sub
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        dboGestionesPendientes = New DBO_GestionesPendientes
         MyBase.newRegForm = CType(New frmEntGestionesPendientes(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, sp), BasesParaCompatibilidad.DetailedSimpleForm)
         dboGestionesPendientes.PendienteID = m_MaestroID
         AddHandler newRegForm.afterSave, AddressOf dgvFill

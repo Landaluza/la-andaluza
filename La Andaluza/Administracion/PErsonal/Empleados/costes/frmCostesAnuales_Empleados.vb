@@ -18,6 +18,7 @@ Public Class frmCostesAnuales_Empleados
 
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        dboCostesAnuales_Empleados = New DBO_CostesAnuales_Empleados
         If m_MaestroID <> 0 Then dboCostesAnuales_Empleados.Id_empleado = m_MaestroID
         newRegForm.SetDataBussinesObject(Me.dboCostesAnuales_Empleados)
     End Sub

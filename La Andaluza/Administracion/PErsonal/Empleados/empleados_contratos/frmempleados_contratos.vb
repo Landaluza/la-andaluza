@@ -19,6 +19,7 @@ Public Class frmempleados_contratos
 
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        dboempleados_contratos = New DBO_empleados_contratos
         If m_MaestroID <> 0 Then dboempleados_contratos.id_empleado = m_MaestroID
         newRegForm.SetDataBussinesObject(Me.dboempleados_contratos)
     End Sub

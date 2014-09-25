@@ -18,6 +18,7 @@ Public Class frmDetallesGestionesPendientes
 
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        dboDetallesGestionesPendientes = New DBO_DetallesGestionesPendientes
         MyBase.newRegForm = CType(New frmEntDetallesGestionesPendientes(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, sp), BasesParaCompatibilidad.DetailedSimpleForm)
         dboDetallesGestionesPendientes.GestionPendienteID = m_MaestroID
         newRegForm.SetDataBussinesObject(CType(Me.dboDetallesGestionesPendientes, BasesParaCompatibilidad.DataBussines))
