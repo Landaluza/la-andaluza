@@ -18,6 +18,7 @@ Public Class frmTiposControlesLotesPlantilla
 
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        dboTiposControlesLotesPlantilla = New DBO_TiposControlesLotesPlantilla
         Dim f As New frmEntTiposControlesLotesPlantilla(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, sp)
         MyBase.newRegForm = CType(f, BasesParaCompatibilidad.DetailedSimpleForm)
         AddHandler newRegForm.afterSave, AddressOf dgvFill

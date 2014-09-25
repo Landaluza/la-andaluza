@@ -12,9 +12,9 @@ Public Class frmRecipientesSalidas
        MyBase.newRegForm = ctype(New frmEntRecipientesSalidas(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, ctype(sp, spRecipientesSalidas)), BasesParaCompatibilidad.DetailedSimpleForm)
    End Sub
 
-   Private Sub Insert_Before() Handles MyBase.BeforeInsert
-       newRegForm.SetDataBussinesObject(ctype(Me.dboRecipientesSalidas, BasesParaCompatibilidad.databussines))
-   End Sub
+    Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        newRegForm.SetDataBussinesObject(CType(Me.dboRecipientesSalidas, BasesParaCompatibilidad.databussines))
+    End Sub
 
    Private Sub modify_Before() Handles MyBase.BeforeModify
        dboRecipientesSalidas =ctype(sp, spRecipientesSalidas).Select_Record(ctype(dgvGeneral.CurrentRow.Cells("Id").Value, integer))

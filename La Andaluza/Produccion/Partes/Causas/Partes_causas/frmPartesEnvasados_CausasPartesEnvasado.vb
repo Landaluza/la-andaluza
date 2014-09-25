@@ -16,6 +16,7 @@ Public Class frmPartesEnvasados_CausasPartesEnvasado
     End Sub
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        dboPartesEnvasados_CausasPartesEnvasado = New DBO_PartesEnvasados_CausasPartesEnvasado
         If m_MaestroID <> 0 Then
             dboPartesEnvasados_CausasPartesEnvasado.Id_ParteEnvasado = m_MaestroID
         End If

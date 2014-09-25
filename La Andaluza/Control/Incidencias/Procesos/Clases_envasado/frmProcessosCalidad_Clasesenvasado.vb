@@ -19,6 +19,7 @@ Public Class frmProcessosCalidad_Clasesenvasado
 
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        dboClasesIncidencias = New DBO_ClasesIncidencias
         If m_MaestroID <> 0 Then dboClasesIncidencias.id_procesoCalidad = m_MaestroID
         newRegForm.SetDataBussinesObject(Me.dboClasesIncidencias)
     End Sub

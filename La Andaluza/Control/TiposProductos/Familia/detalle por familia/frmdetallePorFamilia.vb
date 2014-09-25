@@ -16,7 +16,8 @@ Public Class frmdetallePorFamilia
     End Sub
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
-        MyBase.newRegForm = CType(New frmEntdetallePorFamilia(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR), BasesParaCompatibilidad.DetailedSimpleForm)
+        dbodetallePorFamilia = New DBO_FamliaProductos_TiposProductos
+        MyBase.newRegForm = CType(New frmEntDetallePorFamilia(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR), BasesParaCompatibilidad.DetailedSimpleForm)
         dbodetallePorFamilia.Id_FamiliaProducto = m_MaestroID
         newRegForm.SetDataBussinesObject(CType(Me.dbodetallePorFamilia, BasesParaCompatibilidad.DataBussines))
         AddHandler newRegForm.afterSave, AddressOf dgvFill

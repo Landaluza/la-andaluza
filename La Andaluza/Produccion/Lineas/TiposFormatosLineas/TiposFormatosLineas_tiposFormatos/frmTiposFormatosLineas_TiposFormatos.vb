@@ -25,6 +25,7 @@ Public Class frmTiposFormatosLineas_TiposFormatos
 
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        dboTiposFormatosLineas_TiposFormatos = New DBO_TiposFormatosLineas_TiposFormatos
         If m_MaestroID <> 0 Then dboTiposFormatosLineas_TiposFormatos.TipoFormatoLineaID = m_MaestroID
         newRegForm.SetDataBussinesObject(Me.dboTiposFormatosLineas_TiposFormatos)
     End Sub

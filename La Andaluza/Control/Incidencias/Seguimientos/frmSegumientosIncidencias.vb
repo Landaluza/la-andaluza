@@ -18,8 +18,9 @@ Public Class frmSegumientosIncidencias
 
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        dboSegumientosIncidencias = New DBO_SegumientosIncidencias
+
         If m_MaestroID <> 0 Then
-            dboSegumientosIncidencias = New DBO_SegumientosIncidencias
             dboSegumientosIncidencias.Id_ControlIncidencia = m_MaestroID
         End If
         newRegForm.SetDataBussinesObject(Me.dboSegumientosIncidencias)

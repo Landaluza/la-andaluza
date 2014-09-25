@@ -65,14 +65,15 @@ Public Class frmPaletsProducidos
     End Sub
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
-        If m_maestroid <> 0 Then
-            dboPaletsProducidos = New DBO_PaletsProducidos
+        dboPaletsProducidos = New DBO_PaletsProducidos
+
+        If m_MaestroID <> 0 Then
             dboPaletsProducidos.FormatoID = m_MaestroID
             MyBase.newRegForm = New frmEntPaletsProducidos(Me.linea, Me.TipoFormato, Me.envasado, _
                                                            BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, sp, dboPaletsProducidos)
             AddHandler newRegForm.afterSave, AddressOf dgvFill
         End If
-        newRegForm.SetDataBussinesObject(CType(Me.dboPaletsProducidos, BasesParaCompatibilidad.databussines))
+        newRegForm.SetDataBussinesObject(CType(Me.dboPaletsProducidos, BasesParaCompatibilidad.DataBussines))
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify

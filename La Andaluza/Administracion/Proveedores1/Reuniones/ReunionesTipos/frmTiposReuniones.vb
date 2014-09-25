@@ -20,6 +20,7 @@ Public Class frmTiposReuniones
 
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        dboTiposReuniones = New DBO_TiposReuniones
         If m_MaestroID <> 0 Then dboTiposReuniones.nombre = m_MaestroID
         newRegForm.SetDataBussinesObject(Me.dboTiposReuniones)
     End Sub

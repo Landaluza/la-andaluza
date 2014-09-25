@@ -14,6 +14,7 @@ Public Class frmFrecuenciasTiposControlesLotes
     End Sub
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        dboFrecuenciasTiposControlesLotes = New DBO_FrecuenciasTiposControlesLotes
         newRegForm.SetDataBussinesObject(CType(Me.dboFrecuenciasTiposControlesLotes, BasesParaCompatibilidad.DataBussines))
     End Sub
 

@@ -18,8 +18,9 @@ Public Class frmArticulos_AlmacenNoConforme_seguimiento
 
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        dboArticulos_AlmacenNoConforme_seguimiento = New DBO_Articulos_AlmacenNoConforme_seguimiento
+
         If m_MaestroID <> 0 Then
-            dboArticulos_AlmacenNoConforme_seguimiento = New DBO_Articulos_AlmacenNoConforme_seguimiento
             dboArticulos_AlmacenNoConforme_seguimiento.Id_Articulos_AlmacenNoConforme = m_MaestroID
         End If
         newRegForm.SetDataBussinesObject(Me.dboArticulos_AlmacenNoConforme_seguimiento)

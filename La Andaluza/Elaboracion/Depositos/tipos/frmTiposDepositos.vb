@@ -13,7 +13,7 @@ Public Class frmTiposDepositos
    End Sub
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
-        Me.dboTiposDepositos = New DBO_TiposDepositos    
+        Me.dboTiposDepositos = New DBO_TiposDepositos
         newRegForm.SetDataBussinesObject(CType(Me.dboTiposDepositos, BasesParaCompatibilidad.DataBussines))
     End Sub
 

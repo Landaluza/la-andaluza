@@ -17,6 +17,7 @@ Public Class frmEnvasadosProductos
     End Sub
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        dboEnvasadosProductos = New DBO_EnvasadosProductos
         MyBase.newRegForm = CType(New frmEntEnvasadosProductos(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, sp), BasesParaCompatibilidad.DetailedSimpleForm)
         AddHandler newRegForm.afterSave, AddressOf dgvFill
         dboEnvasadosProductos.EnvasadoID = m_MaestroID

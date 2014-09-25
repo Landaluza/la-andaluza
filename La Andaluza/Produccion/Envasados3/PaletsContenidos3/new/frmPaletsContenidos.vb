@@ -83,8 +83,9 @@ Public Class frmPaletsContenidos
     'End Sub
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        dboPaletsContenidos = New DBO_PaletsContenidos
+
         If m_MaestroID <> 0 Then
-            dboPaletsContenidos = New DBO_PaletsContenidos
             dboPaletsContenidos.PaletProducidoID = m_MaestroID
             dboPaletsContenidos.id_formatoEnvasado = m_maestro2
         End If

@@ -28,8 +28,9 @@ Public Class frmReuniones
 
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
-        If m_maestroid <> 0 Then dboReuniones.Id_proveedor = m_MaestroID
-        Me.dboReuniones.rutaDefecto = m_ruta
+        dboReuniones = New DBO_Reuniones
+        If m_MaestroID <> 0 Then dboReuniones.Id_proveedor = m_MaestroID
+        Me.dboReuniones.RutaDefecto = m_ruta
         newRegForm.SetDataBussinesObject(Me.dboReuniones)
     End Sub
 

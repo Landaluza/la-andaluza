@@ -12,9 +12,9 @@ Public Class frmConceptosGastosIncidencias
        MyBase.newRegForm = ctype(New frmEntConceptosGastosIncidencias(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, ctype(sp, spConceptosGastosIncidencias)), BasesParaCompatibilidad.DetailedSimpleForm)
    End Sub
 
-   Private Sub Insert_Before() Handles MyBase.BeforeInsert
-       newRegForm.SetDataBussinesObject(ctype(Me.dboConceptosGastosIncidencias, BasesParaCompatibilidad.databussines))
-   End Sub
+    Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        newRegForm.SetDataBussinesObject(CType(Me.dboConceptosGastosIncidencias, BasesParaCompatibilidad.databussines))
+    End Sub
 
    Private Sub modify_Before() Handles MyBase.BeforeModify
        dboConceptosGastosIncidencias =ctype(sp, spConceptosGastosIncidencias).Select_Record(ctype(dgvGeneral.CurrentRow.Cells("Id").Value, integer))

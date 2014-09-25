@@ -32,6 +32,7 @@ Public Class frmDetallelIncidencias
     End Sub
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        dboControlIncidencias = New DBO_ControlIncidencias
         newRegForm.SetDataBussinesObject(CType(Me.dboControlIncidencias, BasesParaCompatibilidad.DataBussines))
     End Sub
 

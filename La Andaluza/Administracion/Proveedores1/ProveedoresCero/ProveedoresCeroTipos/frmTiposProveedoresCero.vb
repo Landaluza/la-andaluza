@@ -19,6 +19,7 @@ Public Class frmTiposProveedoresCero
 
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        dboTiposProveedoresCero = New DBO_TiposProveedoresCero
         If m_MaestroID <> 0 Then dboTiposProveedoresCero.Nombre = m_MaestroID
         newRegForm.SetDataBussinesObject(Me.dboTiposProveedoresCero)
     End Sub

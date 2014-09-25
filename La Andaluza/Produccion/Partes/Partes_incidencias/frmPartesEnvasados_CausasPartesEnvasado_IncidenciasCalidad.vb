@@ -18,7 +18,11 @@ Public Class frmPartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad
 
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
-        If m_MaestroID <> 0 Then dboPartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad.Id_ParteEnvasado_causaParteEnvasado = m_MaestroID
+        dboPartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad = New DBO_PartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad
+
+        If m_MaestroID <> 0 Then
+            dboPartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad.Id_ParteEnvasado_causaParteEnvasado = m_MaestroID
+        End If
         newRegForm.SetDataBussinesObject(Me.dboPartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad)
     End Sub
 

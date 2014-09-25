@@ -15,6 +15,7 @@ Public Class frmNoticias_TiposUsuarios
     End Sub
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        dboNoticias_TiposUsuarios = New DBO_Noticias_TiposUsuarios
         If m_MaestroID <> "" Then dboNoticias_TiposUsuarios.Id_noticia = m_MaestroID
         newRegForm.SetDataBussinesObject(CType(Me.dboNoticias_TiposUsuarios, BasesParaCompatibilidad.DataBussines))
     End Sub

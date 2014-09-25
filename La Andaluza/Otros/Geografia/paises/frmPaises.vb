@@ -16,6 +16,7 @@ Public Class frmPaises
     End Sub
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        dboPaises = New DBO_Paises
         If m_MaestroID <> 0 Then dboPaises.Pais = m_MaestroID
         newRegForm.SetDataBussinesObject(Me.dboPaises)
     End Sub

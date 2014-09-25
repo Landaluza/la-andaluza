@@ -12,11 +12,12 @@ Public Class frmCostesPorConcepto
        MyBase.newRegForm = ctype(New frmEntCostesPorConcepto(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, ctype(sp, spCostesPorConcepto)), BasesParaCompatibilidad.DetailedSimpleForm)
    End Sub
 
-   Private Sub Insert_Before() Handles MyBase.BeforeInsert
-           MyBase.newRegForm = ctype(New frmEntCostesPorConcepto(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR), BasesParaCompatibilidad.DetailedSimpleForm)
-           dboCostesPorConcepto.Id_ConceptosGastosIncidencias = m_MaestroID
-       newRegForm.SetDataBussinesObject(ctype(Me.dboCostesPorConcepto, BasesParaCompatibilidad.databussines))
-   End Sub
+    Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        dboCostesPorConcepto = New DBO_CostesPorConcepto
+        MyBase.newRegForm = CType(New frmEntCostesPorConcepto(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR), BasesParaCompatibilidad.DetailedSimpleForm)
+        dboCostesPorConcepto.Id_ConceptosGastosIncidencias = m_MaestroID
+        newRegForm.SetDataBussinesObject(CType(Me.dboCostesPorConcepto, BasesParaCompatibilidad.DataBussines))
+    End Sub
 
    Private Sub modify_Before() Handles MyBase.BeforeModify
        dboCostesPorConcepto =ctype(sp, spCostesPorConcepto).Select_Record(ctype(dgvGeneral.CurrentRow.Cells("Id").Value, integer))

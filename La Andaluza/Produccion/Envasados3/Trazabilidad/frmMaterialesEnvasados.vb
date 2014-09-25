@@ -17,6 +17,7 @@ Public Class frmMaterialesEnvasados
     End Sub
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        dboMaterialesEnvasados = New DBO_MaterialesEnvasados
         If m_MaestroID <> 0 Then dboMaterialesEnvasados.FormatoEnvasadoID = m_MaestroID
         newRegForm.SetDataBussinesObject(Me.dboMaterialesEnvasados)
     End Sub

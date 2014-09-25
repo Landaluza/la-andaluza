@@ -15,7 +15,8 @@ Public Class frmTiposDEpositoPorDeposito
     End Sub
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
-        MyBase.newRegForm = CType(New frmEntTiposDEpositoPorDEposito(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR), BasesParaCompatibilidad.DetailedSimpleForm)
+        dboDepositos_TiposDepositos = New DBO_Depositos_TiposDepositos
+        MyBase.newRegForm = CType(New frmEntTiposDEpositoPorDEposito(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR), BasesParaCompatibilidad.DetailedSimpleForm)
         dboDepositos_TiposDepositos.Id_Deposito = m_MaestroID
         newRegForm.SetDataBussinesObject(CType(Me.dboDepositos_TiposDepositos, BasesParaCompatibilidad.DataBussines))
         AddHandler newRegForm.afterSave, AddressOf dgvFill

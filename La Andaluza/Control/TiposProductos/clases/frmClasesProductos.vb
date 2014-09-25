@@ -12,9 +12,9 @@ Public Class frmClasesProductos
        MyBase.newRegForm = ctype(New frmEntClasesProductos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, ctype(sp, spClasesProductos)), BasesParaCompatibilidad.DetailedSimpleForm)
    End Sub
 
-   Private Sub Insert_Before() Handles MyBase.BeforeInsert
-       newRegForm.SetDataBussinesObject(ctype(Me.dboClasesProductos, BasesParaCompatibilidad.databussines))
-   End Sub
+    Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        newRegForm.SetDataBussinesObject(CType(Me.dboClasesProductos, BasesParaCompatibilidad.databussines))
+    End Sub
 
    Private Sub modify_Before() Handles MyBase.BeforeModify
        dboClasesProductos =ctype(sp, spClasesProductos).Select_Record(ctype(dgvGeneral.CurrentRow.Cells("Id").Value, integer))

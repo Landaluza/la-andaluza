@@ -19,6 +19,7 @@ Public Class frmEmpleados_LineasEnvasado
 
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        dboEmpleados_LineasEnvasado = New DBO_Empleados_LineasEnvasado
         If m_MaestroID <> 0 Then dboEmpleados_LineasEnvasado.Id_LineaEnvasado = m_MaestroID
         newRegForm.SetDataBussinesObject(Me.dboEmpleados_LineasEnvasado)
     End Sub

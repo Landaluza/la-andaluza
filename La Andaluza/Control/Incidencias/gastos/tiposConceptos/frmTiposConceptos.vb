@@ -12,9 +12,9 @@ Public Class frmTiposConceptos
        MyBase.newRegForm = ctype(New frmEntTiposConceptos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, ctype(sp, spTiposConceptos)), BasesParaCompatibilidad.DetailedSimpleForm)
    End Sub
 
-   Private Sub Insert_Before() Handles MyBase.BeforeInsert
-       newRegForm.SetDataBussinesObject(ctype(Me.dboTiposConceptos, BasesParaCompatibilidad.databussines))
-   End Sub
+    Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        newRegForm.SetDataBussinesObject(CType(Me.dboTiposConceptos, BasesParaCompatibilidad.databussines))
+    End Sub
 
    Private Sub modify_Before() Handles MyBase.BeforeModify
        dboTiposConceptos =ctype(sp, spTiposConceptos).Select_Record(ctype(dgvGeneral.CurrentRow.Cells("Id").Value, integer))

@@ -4,7 +4,7 @@ Public Class frmControlesLotes
 
     Private dboControlesLotes As DBO_ControlesLotes
     Public Event insert()
-
+    Private lote As Integer
     Public WriteOnly Property Plantilla As Integer
         Set(value As Integer)
             dboControlesLotes.Id_plantillaControlLote = value
@@ -20,7 +20,7 @@ Public Class frmControlesLotes
         dboControlesLotes = New DBO_ControlesLotes
 
         dboControlesLotes.Id_lote = MaestroID
-
+        lote = MaestroID
         'sp.DataGridViewStoredProcedure= sp.DataGridViewStoredProcedureForFilteredSelect & "'" & Me.m_MaestroID & "', '" & dboControlesLotes.Id_plantillaControlLote & "'"
         MyBase.newRegForm = CType(New frmEntControlesLotes(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, sp), BasesParaCompatibilidad.DetailedSimpleForm)
 
@@ -32,10 +32,12 @@ Public Class frmControlesLotes
     End Sub
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        dboControlesLotes = New DBO_ControlesLotes
         RaiseEvent insert()
 
         MyBase.newRegForm = CType(New frmEntControlesLotes(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, sp), BasesParaCompatibilidad.DetailedSimpleForm)
-        dboControlesLotes.Id_lote = Me.dboControlesLotes.Id_lote
+        'dboControlesLotes.Id_lote = Me.dboControlesLotes.Id_lote
+        dboControlesLotes.Id_lote = lote
         AddHandler newRegForm.afterSave, AddressOf insertado
         newRegForm.SetDataBussinesObject(CType(Me.dboControlesLotes, BasesParaCompatibilidad.DataBussines))
     End Sub

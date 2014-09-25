@@ -18,6 +18,7 @@ Public Class frmMaquinas_Lineas
 
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        dboMaquinas_Lineas = New DBO_Maquinas_Lineas
         If m_MaestroID <> 0 Then dboMaquinas_Lineas.LineaID = m_MaestroID
         newRegForm.SetDataBussinesObject(Me.dboMaquinas_Lineas)
     End Sub

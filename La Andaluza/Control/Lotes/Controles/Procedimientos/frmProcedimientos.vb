@@ -18,6 +18,7 @@ Public Class frmProcedimientos
 
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        dboProcedimientos = New DBO_Procedimientos
         newRegForm.SetDataBussinesObject(CType(Me.dboProcedimientos, BasesParaCompatibilidad.DataBussines))
     End Sub
 

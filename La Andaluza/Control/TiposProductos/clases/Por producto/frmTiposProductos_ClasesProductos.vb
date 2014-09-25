@@ -16,7 +16,8 @@ Public Class frmTiposProductos_ClasesProductos
     End Sub
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
-        MyBase.newRegForm = CType(New frmEntTiposProductos_ClasesProductos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR), BasesParaCompatibilidad.DetailedSimpleForm)
+        dboTiposProductos_ClasesProductos = New DBO_TiposProductos_ClasesProductos
+        MyBase.newRegForm = CType(New frmEntTiposProductos_ClasesProductos(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR), BasesParaCompatibilidad.DetailedSimpleForm)
         dboTiposProductos_ClasesProductos.Id_TipoProducto = m_MaestroID
         newRegForm.SetDataBussinesObject(CType(Me.dboTiposProductos_ClasesProductos, BasesParaCompatibilidad.DataBussines))
         AddHandler newRegForm.afterSave, AddressOf dgvFill

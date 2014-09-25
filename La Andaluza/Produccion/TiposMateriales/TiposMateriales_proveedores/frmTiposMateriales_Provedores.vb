@@ -36,10 +36,16 @@ Public Class frmTiposMateriales_Provedores
     End Sub
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        dboTiposMateriales_Provedores = New DBO_TiposMateriales_Provedores
+
         If Me.way Then
-            If m_MaestroID <> 0 Then dboTiposMateriales_Provedores.id_proveedor = m_MaestroID
+            If m_MaestroID <> 0 Then
+                dboTiposMateriales_Provedores.id_proveedor = m_MaestroID
+            End If
         Else
-            If m_MaestroID <> 0 Then dboTiposMateriales_Provedores.id_TiposMateriales = m_MaestroID
+            If m_MaestroID <> 0 Then
+                dboTiposMateriales_Provedores.id_TiposMateriales = m_MaestroID
+            End If
         End If
 
         newRegForm.SetDataBussinesObject(Me.dboTiposMateriales_Provedores)

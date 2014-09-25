@@ -18,6 +18,7 @@ Public Class frmProveedoresMailsPedidos
 
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
+        dboProveedoresMailsPedidos = New DBO_ProveedoresMailsPedidos
         MyBase.newRegForm = CType(New frmEntProveedoresMailsPedidos(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, sp), BasesParaCompatibilidad.DetailedSimpleForm)
         AddHandler newRegForm.afterSave, AddressOf dgvFill
         dboProveedoresMailsPedidos.Proveedores_ProveedorID = m_MaestroID
