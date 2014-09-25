@@ -413,13 +413,13 @@ Public Class frmPedidosProveedoresMaestros
         oDoc = Nothing
         'Me.Close()
 
-        Try
-            'Eliminamos el archivo temporal
-            IO.File.Delete(Ruta)
-        Catch ex As Exception
-            MessageBox.Show("Error al borrar la imagen temporal. Borrela manualmente en la ruta C:\Temp\LogoLA.bmp. Detalles:" & Environment.NewLine & ex.Message, "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        'Try
+        '    'Eliminamos el archivo temporal
+        '    IO.File.Delete(Ruta)
+        'Catch ex As Exception
+        '    MessageBox.Show("Error al borrar la imagen temporal. Borrela manualmente en la ruta C:\Temp\LogoLA.bmp. Detalles:" & Environment.NewLine & ex.Message, "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error)
 
-        End Try
+        'End Try
 
         frmEspera.Close()
 
