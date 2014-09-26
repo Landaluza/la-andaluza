@@ -142,6 +142,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.PrintForm1 = New Microsoft.VisualBasic.PowerPacks.Printing.PrintForm(Me.components)
         Me.PrintForm2 = New Microsoft.VisualBasic.PowerPacks.Printing.PrintForm(Me.components)
         Me.btnToExcel = New System.Windows.Forms.Button()
+        Me.btnCartaJr = New System.Windows.Forms.Button()
         AlbaranCargaMaestroIDLabel = New System.Windows.Forms.Label()
         AlbaranCargaProMaestroIDLabel = New System.Windows.Forms.Label()
         FechaLabel = New System.Windows.Forms.Label()
@@ -1253,6 +1254,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         'Panel3
         '
+        Me.Panel3.Controls.Add(Me.btnCartaJr)
         Me.Panel3.Controls.Add(Me.Label4)
         Me.Panel3.Controls.Add(Me.butRegistrarPortesSalidaQS)
         Me.Panel3.Controls.Add(Me.Label5)
@@ -1281,6 +1283,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         'butRegistrarPortesSalidaQS
         '
+        Me.butRegistrarPortesSalidaQS.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.butRegistrarPortesSalidaQS.Location = New System.Drawing.Point(181, 94)
         Me.butRegistrarPortesSalidaQS.Name = "butRegistrarPortesSalidaQS"
         Me.butRegistrarPortesSalidaQS.Size = New System.Drawing.Size(129, 29)
@@ -1300,6 +1303,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         'ButEmbotelladoPedido
         '
+        Me.ButEmbotelladoPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButEmbotelladoPedido.Location = New System.Drawing.Point(181, 128)
         Me.ButEmbotelladoPedido.Name = "ButEmbotelladoPedido"
         Me.ButEmbotelladoPedido.Size = New System.Drawing.Size(129, 29)
@@ -1329,6 +1333,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         'butAlbaranProvisional
         '
+        Me.butAlbaranProvisional.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.butAlbaranProvisional.Location = New System.Drawing.Point(181, 24)
         Me.butAlbaranProvisional.Name = "butAlbaranProvisional"
         Me.butAlbaranProvisional.Size = New System.Drawing.Size(129, 29)
@@ -1372,6 +1377,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         'butAlbaranQS
         '
+        Me.butAlbaranQS.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.butAlbaranQS.Location = New System.Drawing.Point(6, 19)
         Me.butAlbaranQS.Name = "butAlbaranQS"
         Me.butAlbaranQS.Size = New System.Drawing.Size(109, 29)
@@ -1381,6 +1387,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         'butMercadonaCanarias
         '
+        Me.butMercadonaCanarias.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.butMercadonaCanarias.Location = New System.Drawing.Point(6, 157)
         Me.butMercadonaCanarias.Name = "butMercadonaCanarias"
         Me.butMercadonaCanarias.Size = New System.Drawing.Size(109, 48)
@@ -1390,6 +1397,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         'butCartaPortes
         '
+        Me.butCartaPortes.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.butCartaPortes.Location = New System.Drawing.Point(6, 122)
         Me.butCartaPortes.Name = "butCartaPortes"
         Me.butCartaPortes.Size = New System.Drawing.Size(109, 29)
@@ -1399,6 +1407,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         'butEntradaJR
         '
+        Me.butEntradaJR.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.butEntradaJR.Location = New System.Drawing.Point(6, 54)
         Me.butEntradaJR.Name = "butEntradaJR"
         Me.butEntradaJR.Size = New System.Drawing.Size(109, 29)
@@ -1408,6 +1417,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         'butJRaMercadona
         '
+        Me.butJRaMercadona.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.butJRaMercadona.Location = New System.Drawing.Point(6, 89)
         Me.butJRaMercadona.Name = "butJRaMercadona"
         Me.butJRaMercadona.Size = New System.Drawing.Size(109, 29)
@@ -1417,9 +1427,10 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         'butLAaJR
         '
+        Me.butLAaJR.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.butLAaJR.Location = New System.Drawing.Point(181, 59)
         Me.butLAaJR.Name = "butLAaJR"
-        Me.butLAaJR.Size = New System.Drawing.Size(129, 29)
+        Me.butLAaJR.Size = New System.Drawing.Size(101, 29)
         Me.butLAaJR.TabIndex = 1000000059
         Me.butLAaJR.Text = "Albaran LA a JR"
         Me.butLAaJR.UseVisualStyleBackColor = True
@@ -1753,6 +1764,16 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.btnToExcel.Text = "Excel"
         Me.btnToExcel.UseVisualStyleBackColor = True
         '
+        'btnCartaJr
+        '
+        Me.btnCartaJr.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCartaJr.Image = Global.La_Andaluza.My.Resources.Resources.page_white_word_16
+        Me.btnCartaJr.Location = New System.Drawing.Point(288, 59)
+        Me.btnCartaJr.Name = "btnCartaJr"
+        Me.btnCartaJr.Size = New System.Drawing.Size(22, 29)
+        Me.btnCartaJr.TabIndex = 1000000066
+        Me.btnCartaJr.UseVisualStyleBackColor = True
+        '
         'frmEntAlbaranesCargaMaestro
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1895,6 +1916,7 @@ Partial Class frmEntAlbaranesCargaMaestro
     Private WithEvents Panel1 As System.Windows.Forms.Panel
     Private WithEvents Panel2 As System.Windows.Forms.Panel
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
+    Private WithEvents btnCartaJr As System.Windows.Forms.Button
     ' Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     'Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     ' Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator

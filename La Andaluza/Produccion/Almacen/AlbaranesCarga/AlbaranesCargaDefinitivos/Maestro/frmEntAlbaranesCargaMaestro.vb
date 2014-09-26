@@ -1249,6 +1249,17 @@ Public Class frmEntAlbaranesCargaMaestro
             Return
         End Try
 
+        cartaPortes()
+
+        Try
+            macrosender.desconectar()
+            macrosender = Nothing
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub cartaPortes()
         Dim cabecera As String
         Dim texto As String
         Dim detalle As String
@@ -1284,16 +1295,8 @@ Public Class frmEntAlbaranesCargaMaestro
 
 
         Dim a As New Carta_de_portes.frmCartaDePortes(cabecera, texto, detalle, pie, pie2)
-        a.ShowDialog()
-
-        Try
-            macrosender.desconectar()
-            macrosender = Nothing
-        Catch ex As Exception
-
-        End Try
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(a)
     End Sub
-
     Private Sub butMercadonaCanarias_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butMercadonaCanarias.Click
         'QS.SalidaMecadonaCanarias(txtRemolque1.Text, txtConductor.Text, txtDNI.Text)
         macrosender = New MacroAdapter.MacroSender
@@ -2270,4 +2273,7 @@ Public Class frmEntAlbaranesCargaMaestro
 
  
 
+    Private Sub btnCartaJr_Click(sender As Object, e As EventArgs) Handles btnCartaJr.Click
+        cartaPortes()
+    End Sub
 End Class
