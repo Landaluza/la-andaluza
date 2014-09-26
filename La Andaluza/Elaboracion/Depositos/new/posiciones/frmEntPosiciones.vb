@@ -88,12 +88,12 @@ Public Class frmEntPosiciones
     Private Sub butAddAlturaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddAlturaID.Click
         Dim DBO_Alturas As New DBO_Alturas
         Dim frmEnt As New frmEntAlturas(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spAlturas, DBO_Alturas)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spAlturas
         s.cargar_Alturas(Me.cboAltura)
     End Sub
 
     Private Sub frmEntPosiciones_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(CType(Me.tlpMiddle, Control), Me)
+        BasesParaCompatibilidad.pantalla.centerIn(CType(Me.tlpMiddle, Control), Me)
     End Sub
 End Class

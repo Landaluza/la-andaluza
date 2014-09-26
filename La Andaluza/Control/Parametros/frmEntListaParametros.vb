@@ -86,7 +86,7 @@ Public Class frmEntListaParametros
 
     Private Sub butVerUnidadMedidaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerUnidadMedidaID.Click
         Dim frmEnt As New frmUnidadesMedidas()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spUnidadesMedidas
         s.cargar_UnidadesMedidas(Me.cboUnidadMedida)
     End Sub
@@ -94,14 +94,14 @@ Public Class frmEntListaParametros
     Private Sub butAddUnidadMedidaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddUnidadMedidaID.Click
         Dim DBO_UnidadesMedidas As New DBO_UnidadesMedidas
         Dim frmEnt As New frmEntUnidadesMedidas(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spUnidadesMedidas, DBO_UnidadesMedidas)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spUnidadesMedidas
         s.cargar_UnidadesMedidas(Me.cboUnidadMedida)
     End Sub
 
     Private Sub butVerid_parametroTipo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerid_parametroTipo.Click
         Dim frmEnt As New frmParametrosTipos()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spParametrosTipos
         s.cargar_ParametrosTipos(Me.cboid_parametroTipo)
     End Sub
@@ -109,7 +109,7 @@ Public Class frmEntListaParametros
     Private Sub butAddid_parametroTipo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddid_parametroTipo.Click
         Dim DBO_ParametrosTipos As New DBO_ParametrosTipos
         Dim frmEnt As New frmEntParametrosTipos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spParametrosTipos, DBO_ParametrosTipos)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spParametrosTipos
         s.cargar_ParametrosTipos(Me.cboid_parametroTipo)
     End Sub

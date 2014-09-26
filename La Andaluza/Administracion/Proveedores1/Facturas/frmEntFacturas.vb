@@ -86,13 +86,13 @@ Public Class frmEntFacturas
 
     Private Sub butVerid_proveedor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerid_proveedor.Click
         Dim frmEnt As New frmProveedores()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddid_proveedor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddid_proveedor.Click
         Dim DBO_Proveedores As New DBO_Proveedores
         Dim frmEnt As New frmEntProveedores(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spProveedores, DBO_Proveedores)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spProveedores
         s.cargar_ComboBox(Me.cboid_proveedor)
     End Sub

@@ -42,7 +42,7 @@ Public Class frmProveedoresTipos
 
         frmEnt = New frmEntProveedoresTipos(m_ProveedorTipo, m_Pos, m_VerID)
         frmEnt.Text = String.Format("{0} {1}", TipoAction, Me.Text)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 
         dgvFill()
     End Sub

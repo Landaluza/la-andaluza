@@ -56,7 +56,7 @@ Public Class frmMaterialesEnvasados2
         Dim dbo_linea As DBO_TiposFormatosLineas = spAux.Select_Record(dbo.TipoFormatoLineaID)
 
         frmEnt = New frmEntMaterialesEnvasados2(Me.formatoId, TipoAction, m_MaterialesEnvasados2, dbo_linea.LineaEnvasadoID, m_Pos, m_VerID)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 
         dgvFill()
 

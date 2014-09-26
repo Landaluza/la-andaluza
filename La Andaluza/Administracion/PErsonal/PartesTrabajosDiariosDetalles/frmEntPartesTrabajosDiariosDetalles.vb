@@ -50,7 +50,7 @@ Public Class frmEntPartesTrabajosDiariosDetalles
 
     Private Sub butVerTareasID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerTareasID.Click
         Using frmEnt As New frmTareas()
-            frmEnt.ShowDialog()
+            BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         End Using
     End Sub
 
@@ -58,7 +58,7 @@ Public Class frmEntPartesTrabajosDiariosDetalles
         Dim DBO_Tareas As New DBO_Tareas
         frmEnt = New frmEntTareas(DBO_Tareas, 1, False)
         frmEnt.Text = "Insertar"
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Me.cboTareasID.mam_DataSource("PartesTrabajosDiariosDetalles_TareasCbo", False)
     End Sub
 

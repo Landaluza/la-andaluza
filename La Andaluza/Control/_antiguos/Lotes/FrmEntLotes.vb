@@ -294,7 +294,7 @@ Public Class FrmEntLotes
     Private Sub cambiar_cantidad()
         Dim frm As New frmCabiarCantidad(Me.LoteID)
         frm.txtCantidad.Text = Me.txtCantidadRestante.Text
-        If frm.ShowDialog() = Windows.Forms.DialogResult.OK Then
+        If BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm) = Windows.Forms.DialogResult.OK Then
             Me.txtCantidadRestante.Text = frm.txtCantidad.Text
         End If
     End Sub
@@ -734,7 +734,7 @@ Public Class FrmEntLotes
     Private Sub butCorredor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butCorredor.Click
         Dim frm As New frmEntCorredores
         frm.Text = "Insertar Corredor"
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         'Dim sp As New spCorredores
         ctlCor.cargar_Corredores(cboCorredor)
         'cboCorredor.DataSource = OldLib.HacerTablasNoObligatorias(ctlCor.devolverCorredores())
@@ -751,7 +751,7 @@ Public Class FrmEntLotes
 
         Dim frm As New frmEntProveedores(INSERCION, sp, DBO_Proveedor)
         'frm.Text = "Insertar Proveedor"
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         cboProveedor.DataSource = OldLib.HacerTablasNoObligatorias(ctlProv.devolverProveedores())
         cboProveedor.ValueMember = "ID"
         cboProveedor.DisplayMember = "Display"
@@ -980,9 +980,9 @@ Public Class FrmEntLotes
 
     'End Sub
 
-   
 
-    Private Sub tsAprobar_click(ByVal sender As System.Object, ByVal e As System.EventArgs)        
+
+    Private Sub tsAprobar_click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim sp As New spElaboraciones
         If Not sp.aprobar_lote_mezcla(LoteID) Then
             messagebox.show("No se pudo realizar la operacion", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -1023,11 +1023,11 @@ Public Class FrmEntLotes
             '                                      txtSulfuroso.Text, _
             '                                      txtDensidad.Text)
 
-            'Frm.ShowDialog()
+            'BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
             'Frm.Dispose()
             Dim Frm As New frmEntplantillasBoletines(txtCodigoLote.Text, True)
 
-            Frm.ShowDialog()
+            BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
             Frm.Dispose()
         Else
             messagebox.show("Boletin no disponible", "", MessageBoxButtons.OK, MessageBoxIcon.Information)

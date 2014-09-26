@@ -99,7 +99,7 @@ Public Class frmEntEnvasadosProductosAnaliticas2
 
     Private Sub butVerParametroID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerParametroID.Click
         'Using frmEnt As New frmListaParametros()
-        '    frmEnt.ShowDialog()
+        '    BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         'End Using
     End Sub
 
@@ -107,14 +107,14 @@ Public Class frmEntEnvasadosProductosAnaliticas2
         'Dim DBO_ListaParametros As New DBO_ListaParametros
         'frmEnt = New frmEntArticulosDocumentosListaParametros(DBO_ListaParametros, 1, False)
         '    frmEnt.Text = "Insertar
-        '    frmEnt.ShowDialog()
+        '    BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         'End Using
         'Me.cboParametroID.mam_DataSource("EnvasadosProductosAnaliticas_ListaParametrosCbo", False)
     End Sub
 
     Private Sub butVerAnalistaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerAnalistaID.Click
         Using frmEnt As New frmEmpleados()
-            frmEnt.ShowDialog()
+            BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         End Using
     End Sub
 

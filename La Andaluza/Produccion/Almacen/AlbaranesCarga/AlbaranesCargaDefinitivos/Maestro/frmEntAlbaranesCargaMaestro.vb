@@ -109,7 +109,7 @@ Public Class frmEntAlbaranesCargaMaestro
     Private Sub NuevoPalet_Click(ByVal sender As Object, ByVal e As System.EventArgs)
         Dim frm As New AgnadirAcarga(m_MaestroProID)
         AddHandler frm.AfterSave, AddressOf RellenarDgv
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
     End Sub
 
     Public Sub CargarDatos(ByVal Pos As Integer,

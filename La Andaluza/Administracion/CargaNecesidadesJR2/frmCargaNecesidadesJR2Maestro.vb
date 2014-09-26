@@ -44,7 +44,7 @@ Public Class frmCargaNecesidadesJR2Maestro
 
         frmEnt = New frmEntCargaNecesidadesJR2Maestro(m_CargaNecesidadesJRMaestro, m_Pos, m_VerID)
         frmEnt.Text = String.Format("{0} {1}", TipoAction, Me.Text)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 
         dgvFill()
     End Sub

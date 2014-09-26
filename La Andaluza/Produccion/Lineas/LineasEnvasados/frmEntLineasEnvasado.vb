@@ -64,6 +64,6 @@ Public Class frmEntLineasEnvasado
     End Sub
 
     Private Sub frmEntLineasEnvasado_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerHorizontalyIn(Me.panTop, Me.SplitContainer1.Panel1)
+        BasesParaCompatibilidad.Pantalla.centerHorizontalyIn(Me.panTop, Me.SplitContainer1.Panel1)
     End Sub
 End Class

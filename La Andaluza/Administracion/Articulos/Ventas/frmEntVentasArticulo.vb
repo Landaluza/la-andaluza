@@ -84,6 +84,6 @@
     End Sub
 
     Private Sub frmEntVentasArticulo_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.Panel2, Me)
+        BasesParaCompatibilidad.Pantalla.centerIn(Me.Panel2, Me)
     End Sub
 End Class

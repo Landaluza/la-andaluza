@@ -149,7 +149,7 @@ Public Class frmEntPendientes
     Private Sub butVerTipoPendiente_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerTipoPendiente.Click
         Dim spt As New spTiposPendientes
         Dim frmEnt As New frmTiposPendientes()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         spt.cargar_TiposPendientes(Me.cboTipoPendiente)
     End Sub
 
@@ -157,7 +157,7 @@ Public Class frmEntPendientes
         Dim DBO_TiposPendientes As New DBO_TiposPendientes
         Dim s As New spTiposPendientes
         Dim frmEnt As New frmEntTiposPendientes(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, s, DBO_TiposPendientes)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 
         s.cargar_TiposPendientes(Me.cboTipoPendiente)
     End Sub
@@ -165,7 +165,7 @@ Public Class frmEntPendientes
     Private Sub butVerProveedor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerProveedor.Click
         Dim frmEnt As New frmProveedores()
         Dim s As New spProveedores
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         s.cargar_Proveedores(Me.cboProveedor)
     End Sub
 
@@ -173,14 +173,14 @@ Public Class frmEntPendientes
         Dim DBO_Proveedores As New DBO_Proveedores
         Dim s As New spProveedores
         Dim frmEnt As New frmEntProveedores(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, s, DBO_Proveedores)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         s.cargar_Proveedores(Me.cboProveedor)
     End Sub
 
     Private Sub butVerResponsableID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerResponsableID.Click
         Dim s As New spEmpleados
         Dim frmEnt As New frmEmpleados()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         s.cargar_Empleados(Me.cboResponsable)
     End Sub
 
@@ -188,11 +188,11 @@ Public Class frmEntPendientes
         Dim DBO_Empleados As New DBO_Empleados
         Dim s As New spEmpleados
         Dim frmEnt As New frmEntEmpleados(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, s, DBO_Empleados)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         s.cargar_Empleados(Me.cboResponsable)
     End Sub
 
     Private Sub frmEntPendientes_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-        BasesParaCompatibilidad.DetailedSimpleForm.centerHorizontalyIn(Me.tlpMiddle, Me)
+        BasesParaCompatibilidad.Pantalla.centerHorizontalyIn(Me.tlpMiddle, Me)
     End Sub
 End Class

@@ -9,7 +9,7 @@ Public Class frmIncidenciasRecuento
         Me.sp = New spIncidenciasRecuento
     End Sub
     Private Sub frmIncidenciasRecuento_Resize(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerHorizontalyIn(Me.Panel3, Me.Panel1)
+        BasesParaCompatibilidad.Pantalla.centerHorizontalyIn(Me.Panel3, Me.Panel1)
     End Sub
 
 

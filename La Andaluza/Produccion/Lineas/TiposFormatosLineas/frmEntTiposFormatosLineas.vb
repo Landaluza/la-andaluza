@@ -71,19 +71,19 @@ Public Class frmEntTiposFormatosLineas
 
     Private Sub butVerLineaEnvasadoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerLineaEnvasadoID.Click
         Dim frmEnt As New frmLineasEnvasado()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddLineaEnvasadoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddLineaEnvasadoID.Click
         Dim DBO_LineasEnvasado As New DBO_LineasEnvasado
         Dim frmEnt As New frmEntLineasEnvasado(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spLineasEnvasado, DBO_LineasEnvasado)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spLineasEnvasado
         s.cargar_LineasEnvasado(Me.cboLineaEnvasado)
     End Sub
 
     Private Sub frmEntTiposFormatosLineas_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.Panel1, Me.SplitContainer1.Panel1)
+        BasesParaCompatibilidad.pantalla.centerIn(Me.Panel1, Me.SplitContainer1.Panel1)
     End Sub
 
 End Class

@@ -52,7 +52,7 @@ Public Class frmVelocidadEnvasados2
         m_VelocidadEnvasados2.FormatoEnvasadoID = Me.formatoId
 
         frmEnt = New frmEntVelocidadEnvasados2(Me.formatoId, TipoAction, m_VelocidadEnvasados2, m_Pos, m_VerID)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 
         dgvFill()
 

@@ -111,13 +111,13 @@ Public Class frmEntTiposProductos
 
     Private Sub butVerMedidaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerMedidaID.Click
         Dim frmEnt As New frmMedidasProductos()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddMedidaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddMedidaID.Click
         Dim DBO_MedidasProductos As New DBO_MedidasProductos
         Dim frmEnt As New frmEntMedidasProductos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spMedidasProductos, DBO_MedidasProductos)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spMedidasProductos
         s.cargar_MedidasProductos(Me.cboMedida)
     End Sub

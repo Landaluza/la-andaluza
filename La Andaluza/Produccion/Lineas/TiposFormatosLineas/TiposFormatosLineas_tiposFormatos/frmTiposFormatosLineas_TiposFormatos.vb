@@ -63,7 +63,7 @@ Public Class frmTiposFormatosLineas_TiposFormatos
     Private Sub modificarEnLote()
         Dim spTiposFormatosLineas_TiposFormatos As New spTiposFormatosLineas_TiposFormatos
         Dim frm As New frmModLoteTiposFormatosLineas_TiposFormatos
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
 
         If frm.retorno = DialogResult.OK Then
             Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)

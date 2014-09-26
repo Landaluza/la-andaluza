@@ -145,7 +145,7 @@ Public Class frmEntControlesContenidoEfectivo2
 
     Private Sub butVerVerificadorID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerVerificadorID.Click
         Using frmEnt As New frmEmpleados()
-            frmEnt.ShowDialog()
+            BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         End Using
     End Sub
 

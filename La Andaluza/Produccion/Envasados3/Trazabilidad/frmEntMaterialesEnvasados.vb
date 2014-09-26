@@ -92,26 +92,26 @@ Public Class frmEntMaterialesEnvasados
 
     Private Sub butVerTipoMaterialID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerTipoMaterialID.Click
         Dim frmEnt As New frmTiposMateriales()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddTipoMaterialID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddTipoMaterialID.Click
         Dim DBO_TiposMateriales As New DBO_TiposMateriales
         Dim frmEnt As New frmEntTiposMateriales(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spTiposMateriales, DBO_TiposMateriales)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTiposMateriales
         s.cargar_TiposMateriales(Me.cboTipoMaterial)
     End Sub
 
     Private Sub butVerProveedorID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerProveedorID.Click
         Dim frmEnt As New frmProveedores()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddProveedorID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddProveedorID.Click
         Dim DBO_Proveedores As New DBO_Proveedores
         Dim frmEnt As New frmEntProveedores(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spProveedores, DBO_Proveedores)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spProveedores
         s.cargar_Proveedores(Me.cboProveedor)
     End Sub

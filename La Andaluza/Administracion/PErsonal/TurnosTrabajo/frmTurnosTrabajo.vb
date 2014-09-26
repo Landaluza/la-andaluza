@@ -42,7 +42,7 @@ Public Class frmTurnosTrabajo
         frmEnt = New frmEntTurnosTrabajo(m_TurnosTrabajo, m_Pos, m_VerID)
         frmEnt.Text = String.Format("{0} {1}", TipoAction, Me.Text)
         AddHandler frmEnt.FormClosed, AddressOf dgvFill
-        'frmEnt.ShowDialog()
+        'BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         GUImain.añadirPestaña(frmEnt)
 
 

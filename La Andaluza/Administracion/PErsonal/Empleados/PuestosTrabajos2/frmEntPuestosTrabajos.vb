@@ -71,7 +71,7 @@ Public Class frmEntPuestosTrabajos
 
     Private Sub butVerId_Departamento_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_Departamento.Click
         Dim frmEnt As New frmDepartamentos()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spDepartamentos
         s.cargar_Departamentos(Me.cboDepartamento)
     End Sub
@@ -79,7 +79,7 @@ Public Class frmEntPuestosTrabajos
     Private Sub butAddId_Departamento_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_Departamento.Click
         Dim DBO_Departamentos As New DBO_Departamentos
         Dim frmEnt As New frmEntDepartamentos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spDepartamentos, DBO_Departamentos)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spDepartamentos
         s.cargar_Departamentos(Me.cboDepartamento)
     End Sub

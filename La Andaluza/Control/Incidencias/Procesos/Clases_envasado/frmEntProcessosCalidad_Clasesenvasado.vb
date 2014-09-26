@@ -65,17 +65,17 @@
 
     Private Sub butVerid_procesoCalidad_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim frmEnt As New frmProcesosCalidad()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
  
 
     Private Sub butAddId_clase_Click(sender As System.Object, e As System.EventArgs) Handles butAddId_clase.Click
         Dim frm As New frmEntClasesIncidencias
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
     End Sub
 
     Private Sub butVerId_clase_Click(sender As System.Object, e As System.EventArgs) Handles butVerId_clase.Click
         Dim frm As New frmClasesIncidencias
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
     End Sub
 End Class

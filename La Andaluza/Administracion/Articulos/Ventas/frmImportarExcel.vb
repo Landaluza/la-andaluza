@@ -139,7 +139,7 @@
     End Sub
 
     Private Sub frmImportarExcel_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.Panel1, Me)
+        BasesParaCompatibilidad.Pantalla.centerIn(Me.Panel1, Me)
     End Sub
 
     Private Sub chbJR2_CheckedChanged(sender As Object, e As EventArgs) Handles chbJR2.CheckedChanged

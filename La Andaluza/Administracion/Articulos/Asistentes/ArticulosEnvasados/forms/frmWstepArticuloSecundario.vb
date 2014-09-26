@@ -68,7 +68,7 @@ Public Class frmWstepArticuloSecundario
     End Property
 
     Private Sub frmWstepArticuloSecundario_Resize(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.panContenidos, Me)
+        BasesParaCompatibilidad.Pantalla.centerIn(Me.panContenidos, Me)
     End Sub
 
     Public Sub establecerValores() Implements BasesParaCompatibilidad.wizardable.EstablecerValores
@@ -225,7 +225,7 @@ Public Class frmWstepArticuloSecundario
 
     Private Sub btnPrimario_Click(sender As System.Object, e As System.EventArgs) Handles btnPrimario.Click
         Dim frm As New frmAsignarArticuloAarticulo(Me.m_DBO_ArticulosEnvasesSecundario.ArticuloID, True, If(Me.modoDeApertura = BasesParaCompatibilidad.DetailedSimpleForm.MODIFICACION, True, False))
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
 
         If frm.id <> 0 Then
             Me.m_DBO_ArticulosEnvasesSecundario.id_articuloPrimario = frm.id

@@ -45,16 +45,16 @@ Public Class frmEntDetallesGestionesPendientes
 
     Private Sub butVerGestionPendienteID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim frmEnt As New frmGestionesPendientes()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddGestionPendienteID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim DBO_GestionesPendientes As New DBO_GestionesPendientes
         Dim frmEnt As New frmEntGestionesPendientes(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spGestionesPendientes, DBO_GestionesPendientes)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub frmEntDetallesGestionesPendientes_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.tlpMiddle, Me)
+        BasesParaCompatibilidad.Pantalla.centerIn(Me.tlpMiddle, Me)
     End Sub
 End Class

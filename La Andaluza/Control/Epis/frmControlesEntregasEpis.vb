@@ -66,7 +66,7 @@ Public Class frmControlesEntregasEpis
 
         Dim frmEnt As New frmEntControlesEntregasEpis(m_ControlesEntregasEpi, m_Pos)
         frmEnt.Text = String.Format("{0} {1}", TipoAction, Me.Text)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         dgvFill() 'GeneralBindingSource. dataSource = dtb.consultar(spSelectDgv)
     End Sub
 

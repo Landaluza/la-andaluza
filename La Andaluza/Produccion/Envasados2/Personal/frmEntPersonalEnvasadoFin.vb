@@ -80,6 +80,6 @@ Public Class frmEntPersonalEnvasadoFin
     End Sub
 
     Private Sub frmEntPersonalEnvasadoFin_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.Panel1, Me)
+        BasesParaCompatibilidad.pantalla.centerIn(Me.Panel1, Me)
     End Sub
 End Class

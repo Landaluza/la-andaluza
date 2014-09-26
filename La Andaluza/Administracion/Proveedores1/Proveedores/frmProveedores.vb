@@ -199,6 +199,6 @@ Public Class frmProveedores
 
     Private Sub InformeProveedores()
         Dim frm As New frmInformeProveedores
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
     End Sub
 End Class

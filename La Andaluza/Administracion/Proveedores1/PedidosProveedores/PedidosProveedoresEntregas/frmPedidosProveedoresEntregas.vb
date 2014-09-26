@@ -70,7 +70,7 @@ Public Class frmPedidosProveedoresEntregas
         'Else
         '    frmEnt.Text = String.Format("Insertar {0}", Titulo)
         'End If
-        'frmEnt.ShowDialog()
+        'BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
 

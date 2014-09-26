@@ -176,13 +176,13 @@ Public Class frmEntIncidencias
 
     Private Sub butVerTipoIncidenciaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerTipoIncidenciaID.Click
         Dim frmEnt As New frmTiposIncidencias()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddTipoIncidenciaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddTipoIncidenciaID.Click
         Dim DBO_TiposIncidencias As New DBO_TiposIncidencias
         Dim frmEnt As New frmEntTiposIncidencias(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, spTiposIncidencias, DBO_TiposIncidencias)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 
         Me.spTiposIncidencias.cargar_TiposIncidencias(Me.cboTipoIncidencia)
     End Sub
@@ -268,9 +268,9 @@ Public Class frmEntIncidencias
     End Sub
 
     Private Sub center()
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.pancontenido, Me.SplitContainer1.Panel1)
+        BasesParaCompatibilidad.pantalla.centerIn(Me.pancontenido, Me.SplitContainer1.Panel1)
         If Not Me.frmIncidenciasCalidad Is Nothing Then
-            BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.frmIncidenciasCalidad, Me.SplitContainer1.Panel2)
+            BasesParaCompatibilidad.Pantalla.centerIn(Me.frmIncidenciasCalidad, Me.SplitContainer1.Panel2)
         End If
 
         Me.CenterToParent()

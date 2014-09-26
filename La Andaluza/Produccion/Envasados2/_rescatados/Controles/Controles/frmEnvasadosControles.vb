@@ -80,7 +80,7 @@ Public Class frmEnvasadosControles
         End Select
 
         frmEnt = New frmEntEnvasadosControles(TipoAction, m_EnvasadoControles, m_DBO_EnvasadoControlLinea, m_FormLinea)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 
 
         dgvFill()

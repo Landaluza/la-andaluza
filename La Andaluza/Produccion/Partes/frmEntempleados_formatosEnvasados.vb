@@ -190,7 +190,7 @@ Public Class frmEntempleados_formatosEnvasados
 
     Private Sub butVerid_empleado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerid_empleado.Click
         Dim frmEnt As New frmEmpleados()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddid_empleado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddid_empleado.Click
@@ -203,14 +203,14 @@ Public Class frmEntempleados_formatosEnvasados
         Dim v_dbo As New DBO_Empleados_LineasEnvasado
         v_dbo.Id_LineaEnvasado = dboFormatoLinea.LineaEnvasadoID
         Dim frm As New frmEntEmpleados_LineasEnvasado(INSERCION, New spEmpleados_LineasEnvasado, v_dbo)
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
 
         Dim s As New spEmpleados
         s.cargar_empleados_por_linea(Me.cboid_empleado, dboFormatoLinea.LineaEnvasadoID)
     End Sub
 
     Private Sub frmEntempleados_formatosEnvasados_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.panGeneral, Me)
+        BasesParaCompatibilidad.pantalla.centerIn(Me.panGeneral, Me)
     End Sub
 
     Private Sub cbFin_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles cbFin.CheckedChanged

@@ -21,8 +21,8 @@
     End Sub
 
     Private Sub frmAutorizacion_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(CType(Me.Panel2, Control), Me)
-        BasesParaCompatibilidad.DetailedSimpleForm.centerHorizontalyIn(CType(Me.Panel1, Control), CType(Me.Panel2, Control))
+        BasesParaCompatibilidad.Pantalla.centerIn(CType(Me.Panel2, Control), Me)
+        BasesParaCompatibilidad.Pantalla.centerHorizontalyIn(CType(Me.Panel1, Control), CType(Me.Panel2, Control))
     End Sub
 
     Private Sub btnCancelar_Click(sender As System.Object, e As System.EventArgs) Handles btnCancelar.Click

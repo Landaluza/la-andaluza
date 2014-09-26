@@ -59,18 +59,18 @@ Public Class frmEntProvincias
 
    Private Sub butVerId_pais_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_pais.Click
        Dim frmEnt As New frmPaises()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spPaises
         s.cargar_ComboBox(cboId_pais)
-   End Sub
+    End Sub
 
-   Private Sub butAddId_pais_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_pais.Click
-       Dim DBO_Paises As New DBO_Paises
+    Private Sub butAddId_pais_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_pais.Click
+        Dim DBO_Paises As New DBO_Paises
         Dim frmEnt As New frmEntPaises(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spPaises, DBO_Paises)
-       frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 
         Dim s As New spPaises
         s.cargar_ComboBox(cboId_pais)
-   End Sub
+    End Sub
 
 End Class

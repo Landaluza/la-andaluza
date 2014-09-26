@@ -95,7 +95,7 @@ Public Class frmEntControlIncidencias_AccionesCorrectivas
 
     Private Sub butVerId_control_incidencia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim frmEnt As New frmControlIncidencias()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddId_control_incidencia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -104,26 +104,26 @@ Public Class frmEntControlIncidencias_AccionesCorrectivas
 
     Private Sub butVerId_AccionCorrectiva_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_AccionCorrectiva.Click
         Dim frmEnt As New frmAccionesCorrectivas()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddId_AccionCorrectiva_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_AccionCorrectiva.Click
         Dim DBO_AccionesCorrectivas As New DBO_AccionesCorrectivas
         Dim frmEnt As New frmEntAccionesCorrectivas(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spAccionesCorrectivas, DBO_AccionesCorrectivas)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spAccionesCorrectivas
         s.cargar_AccionesCorrectivas(Me.cboAccionCorrectiva)
     End Sub
 
     Private Sub butVerid_empleado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerid_empleado.Click
         Dim frmEnt As New frmEmpleados()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddid_empleado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddid_empleado.Click
         Dim DBO_Empleados As New DBO_Empleados
         Dim frmEnt As New frmEntEmpleados(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spEmpleados, DBO_Empleados)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spEmpleados
         s.cargar_Empleados(Me.cboid_empleado)
     End Sub

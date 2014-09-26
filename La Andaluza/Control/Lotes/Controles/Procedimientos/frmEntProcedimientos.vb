@@ -110,6 +110,6 @@ Public Class frmEntProcedimientos
    End Sub
 
    Private Sub frmEntProcedimientos_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-       BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.tlpMiddle, Me)
+        BasesParaCompatibilidad.pantalla.centerIn(Me.tlpMiddle, Me)
    End Sub
 End Class

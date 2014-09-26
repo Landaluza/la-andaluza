@@ -156,6 +156,6 @@
 
     Private Sub tsbEstructura_Click(sender As System.Object, e As System.EventArgs) Handles tsbEstructura.Click
         Dim frm As New frmModCompuestoPorMAM(129)
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
     End Sub
 End Class

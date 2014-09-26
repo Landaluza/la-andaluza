@@ -80,32 +80,32 @@ Public Class frmEntReconocimientosMedicosProtocolos
 
    Private Sub butVerReconocimientoMedicoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerReconocimientoMedicoID.Click
        Dim frmEnt As New frmReconocimientosMedicos()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spReconocimientosMedicos
         s.cargar_ReconocimientosMedicos(Me.cboReconocimientoMedico)
-   End Sub
+    End Sub
 
-   Private Sub butAddReconocimientoMedicoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddReconocimientoMedicoID.Click
-       Dim DBO_ReconocimientosMedicos As New DBO_ReconocimientosMedicos
-       Dim frmEnt As New frmEntReconocimientosMedicos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, new spReconocimientosMedicos,DBO_ReconocimientosMedicos)
-       frmEnt.ShowDialog()
-       dim s as new spReconocimientosMedicos
-       s.cargar_ReconocimientosMedicos(Me.cboReconocimientoMedico)
-   End Sub
+    Private Sub butAddReconocimientoMedicoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddReconocimientoMedicoID.Click
+        Dim DBO_ReconocimientosMedicos As New DBO_ReconocimientosMedicos
+        Dim frmEnt As New frmEntReconocimientosMedicos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spReconocimientosMedicos, DBO_ReconocimientosMedicos)
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+        Dim s As New spReconocimientosMedicos
+        s.cargar_ReconocimientosMedicos(Me.cboReconocimientoMedico)
+    End Sub
 
-   Private Sub butVerProtocoloMedicoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerProtocoloMedicoID.Click
-       Dim frmEnt As New frmProtocolosMedicos()
-        frmEnt.ShowDialog()
+    Private Sub butVerProtocoloMedicoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerProtocoloMedicoID.Click
+        Dim frmEnt As New frmProtocolosMedicos()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spProtocolosMedicos
         s.cargar_ProtocolosMedicos(Me.cboProtocoloMedico)
-   End Sub
+    End Sub
 
-   Private Sub butAddProtocoloMedicoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddProtocoloMedicoID.Click
-       Dim DBO_ProtocolosMedicos As New DBO_ProtocolosMedicos
-       Dim frmEnt As New frmEntProtocolosMedicos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, new spProtocolosMedicos,DBO_ProtocolosMedicos)
-       frmEnt.ShowDialog()
-       dim s as new spProtocolosMedicos
-       s.cargar_ProtocolosMedicos(Me.cboProtocoloMedico)
-   End Sub
+    Private Sub butAddProtocoloMedicoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddProtocoloMedicoID.Click
+        Dim DBO_ProtocolosMedicos As New DBO_ProtocolosMedicos
+        Dim frmEnt As New frmEntProtocolosMedicos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spProtocolosMedicos, DBO_ProtocolosMedicos)
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+        Dim s As New spProtocolosMedicos
+        s.cargar_ProtocolosMedicos(Me.cboProtocoloMedico)
+    End Sub
 
 End Class

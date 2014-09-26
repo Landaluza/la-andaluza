@@ -42,6 +42,6 @@
     End Sub
 
     Private Sub frmEntControlIncidencias_origen_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerVerticalyIn(Me.gbOrigen, Me)
+        BasesParaCompatibilidad.Pantalla.centerVerticalyIn(Me.gbOrigen, Me)
     End Sub
 End Class

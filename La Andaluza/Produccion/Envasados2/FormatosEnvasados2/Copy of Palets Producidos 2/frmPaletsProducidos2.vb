@@ -201,7 +201,7 @@ Public Class frmPaletsProducidos2
 
         If resp = vbYes Then
             frmEnt.padre = Me
-            frmEnt.ShowDialog()
+            BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
             If Not Me.dgvGeneral Is Nothing Then dgvFill()
         End If
     End Sub

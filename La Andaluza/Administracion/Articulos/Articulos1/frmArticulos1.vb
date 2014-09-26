@@ -74,7 +74,8 @@ Public Class frmArticulos1
 
         MyBase.EventHandeld = True
         Dim frm As New frmSelectorAsistente
-        frm.ShowDialog()
+        'BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         dgvFill()
     End Sub
 
@@ -201,7 +202,9 @@ Public Class frmArticulos1
         Dim spArticulo As New spArticulos1
 
         Dim frmTipo As New frmCambiarTipo(Me.dgvGeneral.CurrentRow.Cells("Id").Value)
-        If frmTipo.ShowDialog() = Windows.Forms.DialogResult.OK Then
+        '        If frmTipo.ShowDialog() = Windows.Forms.DialogResult.OK Then
+        If BasesParaCompatibilidad.Pantalla.mostrarDialogo(frmTipo) = Windows.Forms.DialogResult.OK Then
+
             dgvFill()
         End If
         Me.Enabled = True

@@ -116,26 +116,26 @@ Public Class frmEntAguaPotableInformesMensuales
 
     Private Sub butVerCreadorID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerCreadorID.Click
         Dim frmEnt As New frmEmpleados()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddCreadorID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddCreadorID.Click
         Dim DBO_Empleados As New DBO_Empleados
         Dim frmEnt As New frmEntEmpleados(BasesParaCompatibilidad.DetailedSimpleForm.INSERCION, New spEmpleados, New DBO_Empleados)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spEmpleados
         s.cargar_Empleados(Me.cboCreador)
     End Sub
 
     Private Sub butVerVerificadorID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerVerificadorID.Click
         Dim frmEnt As New frmEmpleados()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddVerificadorID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddVerificadorID.Click
 
         Dim frmEnt As New frmEntEmpleados(BasesParaCompatibilidad.DetailedSimpleForm.INSERCION, New spEmpleados, New DBO_Empleados)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spEmpleados
         s.cargar_Empleados(Me.cboVerificador)
     End Sub

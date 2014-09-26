@@ -123,13 +123,12 @@ Public Class frmEntArticulosFichasCondiciones3
         DBO_Proveedor = sp.Select_Record(cboProveedorID.SelectedValue)
 
         frmEntProveedores = New frmEntProveedores(VISION, sp, DBO_Proveedor)
-        frmEntProveedores.ShowDialog()
-
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frmEntProveedores)
     End Sub
 
     Private Sub butAddPagoForma_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddPagoForma.Click
         Using frmEnt As New frmPagosFormas()
-            frmEnt.ShowDialog()
+            BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
             Me.cboFormaPagoID.mam_DataSource("PagosFormasCbo", False)
         End Using
     End Sub
@@ -140,8 +139,7 @@ Public Class frmEntArticulosFichasCondiciones3
         DBO_PagosForma = spPagosFormas.Select_Record(cboFormaPagoID.SelectedValue)
 
         frmfrmEntPagosFormas = New frmEntPagosFormas(DBO_PagosForma, 1, False)
-        frmfrmEntPagosFormas.ShowDialog()
-
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frmfrmEntPagosFormas)
     End Sub
 
     Private Sub butVerPagoPlazo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerPagoPlazo.Click
@@ -150,13 +148,12 @@ Public Class frmEntArticulosFichasCondiciones3
         DBO_PagosPlazo = spPagosPlazos.Select_Record(cboPlazoPagoID.SelectedValue)
 
         frmEntPagosPlazos = New frmEntPagosPlazos(DBO_PagosPlazo, 1, False)
-        frmEntPagosPlazos.ShowDialog()
-
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frmEntPagosPlazos)
     End Sub
 
     Private Sub butAddPagoPlazo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddPagoPlazo.Click
         Using frmEnt As New frmPagosPlazos()
-            frmEnt.ShowDialog()
+            BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
             Me.cboPlazoPagoID.mam_DataSource("PagosPlazosCbo", False)
 
         End Using
@@ -168,13 +165,13 @@ Public Class frmEntArticulosFichasCondiciones3
 
     Private Sub butAddProveedor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddProveedor.Click
         Using frmEnt As New frmProveedores()
-            frmEnt.ShowDialog()
+            BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         End Using
     End Sub
 
     Private Sub butAddUnidad_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddUnidad.Click
         Using frmEnt As New frmMedidasProductos()
-            frmEnt.ShowDialog()
+            BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
             Me.cboUnidadID.mam_DataSource("MedidasProductosSelectCbo", False)
         End Using
     End Sub

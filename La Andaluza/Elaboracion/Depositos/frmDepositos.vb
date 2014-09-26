@@ -124,7 +124,7 @@ Public Class frmDepositos
                                    0, _
                                    False)
             End If
-            FrmEnt.ShowDialog()
+            BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Else
             MessageBox.Show("Seleccionar alguna celda", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End If

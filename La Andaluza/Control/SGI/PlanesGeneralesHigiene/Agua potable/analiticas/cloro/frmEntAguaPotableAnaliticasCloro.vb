@@ -135,39 +135,39 @@ Public Class frmEntAguaPotableAnaliticasCloro
 
     Private Sub butVerPuntoMuestreoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerPuntoMuestreoID.Click
         Dim frmEnt As New frmAguaPotablePuntosMuestreos()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddPuntoMuestreoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddPuntoMuestreoID.Click
         Dim DBO_AguaPotablePuntosMuestreos As New DBO_AguaPotablePuntosMuestreos
         Dim frmEnt As New frmEntAguaPotablePuntosMuestreos(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spAguaPotablePuntosMuestreos, DBO_AguaPotablePuntosMuestreos)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spAguaPotablePuntosMuestreos
         s.cargar_ComboBox(Me.cboPuntoMuestreo)
     End Sub
 
     Private Sub butVerAnalistaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerAnalistaID.Click
         Dim frmEnt As New frmEmpleados()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddAnalistaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddAnalistaID.Click
         Dim DBO_Empleados As New DBO_Empleados
         Dim frmEnt As New frmEntEmpleados(BasesParaCompatibilidad.DetailedSimpleForm.INSERCION, New spEmpleados, New DBO_Empleados)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spEmpleados
         s.cargar_Empleados(Me.cboAnalista)
     End Sub
 
     Private Sub butVerVerificadorID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerVerificadorID.Click
         Dim frmEnt As New frmEmpleados()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddVerificadorID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddVerificadorID.Click
         Dim DBO_Empleados As New DBO_Empleados
         Dim frmEnt As New frmEntEmpleados(BasesParaCompatibilidad.DetailedSimpleForm.INSERCION, New spEmpleados, New DBO_Empleados)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spEmpleados
         s.cargar_Empleados(Me.cboVerificador)
     End Sub

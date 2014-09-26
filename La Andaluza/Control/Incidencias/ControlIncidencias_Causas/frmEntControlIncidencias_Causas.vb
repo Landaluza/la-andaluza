@@ -81,20 +81,20 @@ Public Class frmEntControlIncidencias_Causas
 
     Private Sub butVerId_causa_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_causa.Click
         Dim frmEnt As New frmCausas()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddId_causa_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_causa.Click
         Dim DBO_Causas As New DBO_Causas
         Dim frmEnt As New frmEntCausas(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spCausas, DBO_Causas)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spCausas
         s.cargar_Causas(Me.cbocausa)
     End Sub
 
     Private Sub butVerId_control_incidencia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim frmEnt As New frmControlIncidencias()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddId_control_incidencia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -103,13 +103,13 @@ Public Class frmEntControlIncidencias_Causas
 
     Private Sub butVerId_empleado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_empleado.Click
         Dim frmEnt As New frmEmpleados()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddId_empleado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_empleado.Click
         Dim DBO_Empleados As New DBO_Empleados
         Dim frmEnt As New frmEntEmpleados(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spEmpleados, DBO_Empleados)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spEmpleados
         s.cargar_Empleados(Me.cboempleado)
     End Sub

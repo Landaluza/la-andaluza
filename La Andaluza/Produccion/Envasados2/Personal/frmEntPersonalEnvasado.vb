@@ -117,7 +117,7 @@ Public Class frmEntPersonalEnvasado
 
 
     Private Sub PersonalEnLinea_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.Panel1, Me)
+        BasesParaCompatibilidad.pantalla.centerIn(Me.Panel1, Me)
     End Sub
 
     Private Sub PersonalEnLinea_refresh() Handles Me.formato_changed

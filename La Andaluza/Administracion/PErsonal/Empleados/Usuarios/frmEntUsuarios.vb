@@ -88,13 +88,13 @@ Public Class frmEntUsuarios
 
     Private Sub butVerTipoUsuarioID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerTipoUsuarioID.Click
         Dim frmEnt As New frmTiposUsuarios()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddTipoUsuarioID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddTipoUsuarioID.Click
         Dim DBO_TiposUsuarios As New DBO_TiposUsuarios
         Dim frmEnt As New frmEntTiposUsuarios(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spTiposUsuarios, DBO_TiposUsuarios)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTiposUsuarios
         s.cargar_TiposUsuarios(Me.cboTipoUsuario)
     End Sub

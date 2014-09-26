@@ -60,7 +60,7 @@ Public Class frmSeleccionMonodosis
     End Sub
 
     Private Sub frmSeleccionMonodosis_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerHorizontalyIn(Me.Panel4, Me.Panel3)
+        BasesParaCompatibilidad.Pantalla.centerHorizontalyIn(Me.Panel4, Me.Panel3)
     End Sub
 
     Private Sub btnAceptar_Click(sender As System.Object, e As System.EventArgs) Handles btnAceptar.Click
@@ -77,7 +77,7 @@ Public Class frmSeleccionMonodosis
         Me.DataGridView1.Rows(0).Selected = True
         Me.DataGridView1.Focus()
         Me.txtCantidad.Focus()
-        BasesParaCompatibilidad.DetailedSimpleForm.centerHorizontalyIn(Me.Panel4, Me.Panel3)
+        BasesParaCompatibilidad.Pantalla.centerHorizontalyIn(Me.Panel4, Me.Panel3)
     End Sub
 
     Private Sub frmSeleccionMonodosis_KeyDown(sender As System.Object, e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown

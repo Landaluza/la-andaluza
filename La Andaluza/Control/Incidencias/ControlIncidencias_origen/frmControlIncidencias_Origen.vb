@@ -38,7 +38,7 @@ Public Class frmControlIncidencias_Origen
 
     Private Sub btnAñadir_Click(sender As System.Object, e As System.EventArgs) Handles btnAñadir.Click
         Dim frm As New frmEntControlIncidencias_origen(Me.m_maestroid)
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         dgvFill()
     End Sub
 

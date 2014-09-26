@@ -29,7 +29,7 @@ Public Class frmBotasTapones
         Dim FrmEnt As New frmEntBotasTapones
         FrmEnt.Text = "Insertar Botas Tapones"
         FrmEnt.CargarDatos(0, 0, "")
-        FrmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         ctlBot.mostrarTodosBotasTapones(dtsBot)
         GeneralBindingSource.Position = 1
         GeneralBindingSource.Position = 0
@@ -43,7 +43,7 @@ Public Class frmBotasTapones
             FrmEnt.CargarDatos(Posicion, _
                                 (dgvGeneral.Rows(Posicion).Cells(0).Value), _
                                 Convert.ToString(dgvGeneral.Rows(Posicion).Cells(1).Value))
-            FrmEnt.ShowDialog()
+            BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
             ctlBot.mostrarTodosBotasTapones(dtsBot)
             GeneralBindingSource.Position = 1
             GeneralBindingSource.Position = Posicion
@@ -60,7 +60,7 @@ Public Class frmBotasTapones
             FrmEnt.CargarDatos(Posicion, _
                         (dgvGeneral.Rows(Posicion).Cells(0).Value), _
                       Convert.ToString(dgvGeneral.Rows(Posicion).Cells(1).Value))
-            FrmEnt.ShowDialog()
+            BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Else
             messageBox.show("Seleccionar alguna celda", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End If

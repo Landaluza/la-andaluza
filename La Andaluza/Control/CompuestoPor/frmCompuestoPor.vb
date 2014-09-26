@@ -42,7 +42,7 @@ Public Class frmCompuestoPor
 
         frmEnt = New frmEntCompuestoPor(m_DBO_CompuestoPor)
         frmEnt.Text = String.Format("{0} {1}", TipoAction, Me.Text)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 
         dgvFill()
     End Sub

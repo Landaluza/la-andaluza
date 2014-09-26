@@ -126,13 +126,13 @@ Public Class frmEntTiposControlesLotesPlantilla
 
     Private Sub butVerId_TipoControl_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_TipoControl.Click
         Dim frmEnt As New frmTiposControlesLotes()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddId_TipoControl_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_TipoControl.Click
         Dim DBO_TiposControlesLotes As New DBO_TiposControlesLotes
         Dim frmEnt As New frmEntTiposControlesLotes(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spTiposControlesLotes, DBO_TiposControlesLotes)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTiposControlesLotes
         s.cargar_TiposControlesLotes(Me.cboTipoControl)
     End Sub
@@ -145,7 +145,7 @@ Public Class frmEntTiposControlesLotesPlantilla
     Private Sub butAddId_TipoLote_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_TipoLote.Click
         Dim DBO_TiposLotes As New DBO_TiposLotes
         Dim frmEnt As New frmEntTiposLotes(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spTiposLotes, DBO_TiposLotes)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTiposLotes
         s.cargar_TiposLotes(Me.cboTipoLote)
     End Sub
@@ -158,7 +158,7 @@ Public Class frmEntTiposControlesLotesPlantilla
     Private Sub butAddId_TipoProducto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_TipoProducto.Click
         Dim DBO_TiposProductos As New DBO_TiposProductos
         Dim frmEnt As New frmEntTiposProductos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spTiposProductos, DBO_TiposProductos)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTiposProductos
         s.cargar_ComboBox(Me.cboTipoProducto)
     End Sub
@@ -171,7 +171,7 @@ Public Class frmEntTiposControlesLotesPlantilla
     Private Sub butAddId_frecuencia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_frecuencia.Click
         Dim DBO_FrecuenciasTiposControlesLotes As New DBO_FrecuenciasTiposControlesLotes
         Dim frmEnt As New frmEntFrecuenciasTiposControlesLotes(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spFrecuenciasTiposControlesLotes, DBO_FrecuenciasTiposControlesLotes)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spFrecuenciasTiposControlesLotes
         s.cargar_FrecuenciasTiposControlesLotes(Me.cbofrecuencia)
     End Sub
@@ -184,13 +184,13 @@ Public Class frmEntTiposControlesLotesPlantilla
     Private Sub butAddId_procedimiento_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_procedimiento.Click
         Dim DBO_Procedimientos As New DBO_Procedimientos
         Dim frmEnt As New frmEntProcedimientos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spProcedimientos, DBO_Procedimientos)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spProcedimientos
         s.cargar_Procedimientos(Me.cboprocedimiento)
     End Sub
 
     Private Sub frmEntTiposControlesLotesPlantilla_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.tlpMiddle, Me)
+        BasesParaCompatibilidad.pantalla.centerIn(Me.tlpMiddle, Me)
     End Sub
 
     Private Sub btnBorrarProducto_Click(sender As System.Object, e As System.EventArgs) Handles btnBorrarProducto.Click
@@ -204,7 +204,7 @@ Public Class frmEntTiposControlesLotesPlantilla
     Private Sub extenderPlantilla()
         Dim frm As New frmExtenderPlantillaControlLote(Me.m_DBO_TiposControlesLotesPlantilla.ID)
         AddHandler frm.afterSave, AddressOf guardado
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
 
     End Sub
 

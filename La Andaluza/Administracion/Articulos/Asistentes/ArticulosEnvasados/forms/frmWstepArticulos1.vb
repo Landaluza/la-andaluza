@@ -132,7 +132,7 @@
     End Property
 
     Private Sub frmWstepArticulos1_Resize(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.panContenidos, Me)
+        BasesParaCompatibilidad.Pantalla.centerIn(Me.panContenidos, Me)
     End Sub
 
     Public Sub establecerValores() Implements  BasesParaCompatibilidad.wizardable.EstablecerValores

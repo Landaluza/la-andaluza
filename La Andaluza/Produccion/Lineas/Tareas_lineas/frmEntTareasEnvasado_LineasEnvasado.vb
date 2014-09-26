@@ -69,26 +69,26 @@ Public Class frmEntTareasEnvasado_LineasEnvasado
 
     Private Sub butVerId_TareaEnvasado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_TareaEnvasado.Click
         Dim frmEnt As New frmTareasEnvasado()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddId_TareaEnvasado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_TareaEnvasado.Click
         Dim DBO_TareasEnvasado As New DBO_TareasEnvasado
         Dim frmEnt As New frmEntTareasEnvasado(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spTareasEnvasado, DBO_TareasEnvasado)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTareasEnvasado
         s.cargar_TareasEnvasado(Me.cboTareaEnvasado)
     End Sub
 
     Private Sub butVerId_LineaEnvasado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim frmEnt As New frmLineasEnvasado()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddId_LineaEnvasado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim DBO_LineasEnvasado As New DBO_LineasEnvasado
         Dim frmEnt As New frmEntLineasEnvasado(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spLineasEnvasado, DBO_LineasEnvasado)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spLineasEnvasado
         s.cargar_LineasEnvasado(Me.cboLineaEnvasado)
     End Sub

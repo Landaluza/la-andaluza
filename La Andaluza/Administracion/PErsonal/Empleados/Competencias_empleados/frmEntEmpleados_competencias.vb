@@ -75,26 +75,26 @@ Public Class frmEntEmpleados_competencias
 
     Private Sub butVerid_empleado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim frmEnt As New frmEmpleados()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddid_empleado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim DBO_Empleados As New DBO_Empleados
         Dim frmEnt As New frmEntEmpleados(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spEmpleados, DBO_Empleados)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spEmpleados
         s.cargar_Empleados(Me.cboid_empleado)
     End Sub
 
     Private Sub butVerid_personalCompetencia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerid_personalCompetencia.Click
         Dim frmEnt As New frmPersonalCompetencias()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddid_personalCompetencia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddid_personalCompetencia.Click
         Dim DBO_PersonalCompetencias As New DBO_PersonalCompetencias
         Dim frmEnt As New frmEntPersonalCompetencias(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spPersonalCompetencias, DBO_PersonalCompetencias)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spPersonalCompetencias
         s.cargar_PersonalCompetencias(Me.cboid_personalCompetencia)
     End Sub

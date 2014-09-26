@@ -107,52 +107,52 @@ Public Class frmEntTiposIncidencias
 
     Private Sub butVerMaquinaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim frmEnt As New frmMaquinas()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddMaquinaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim DBO_Maquinas As New DBO_Maquinas
         Dim frmEnt As New frmEntMaquinas(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spMaquinas, DBO_Maquinas)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spMaquinas
         s.cargar_Maquinas(Me.cboMaquina)
     End Sub
 
     Private Sub butVerClaseIncidenciaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerClaseIncidenciaID.Click
         Dim frmEnt As New frmClasesIncidencias()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddClaseIncidenciaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddClaseIncidenciaID.Click
         Dim DBO_ClasesIncidencias As New DBO_ClasesIncidencias
         Dim frmEnt As New frmEntClasesIncidencias(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spClasesIncidencias, DBO_ClasesIncidencias)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spClasesIncidencias
         s.cargar_ClasesIncidencias(Me.cboClaseIncidencia)
     End Sub
 
     Private Sub butVerCategoriaIncidenciaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerCategoriaIncidenciaID.Click
         Dim frmEnt As New frmCategoriaIncidencias()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddCategoriaIncidenciaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddCategoriaIncidenciaID.Click
         Dim DBO_CategoriaIncidencias As New DBO_CategoriaIncidencias
         Dim frmEnt As New frmEntCategoriaIncidencias(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spCategoriaIncidencias, DBO_CategoriaIncidencias)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spCategoriaIncidencias
         s.cargar_CategoriaIncidencias(Me.cboCategoriaIncidencia)
     End Sub
 
     Private Sub butVerId_IncidenciaCalidadGeneral_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim frmEnt As New frmIncidenciasCalidadGeneral()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddId_IncidenciaCalidadGeneral_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim DBO_IncidenciasCalidadGeneral As New DBO_IncidenciasCalidadGeneral
         Dim frmEnt As New frmEntIncidenciasCalidadGeneral(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spIncidenciasCalidadGeneral, DBO_IncidenciasCalidadGeneral)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spIncidenciasCalidadGeneral
         s.cargar_IncidenciasCalidadGeneral(Me.cboIncidenciaCalidadGeneral)
     End Sub

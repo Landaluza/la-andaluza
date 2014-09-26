@@ -17,7 +17,7 @@
         dboPoblacion.Id_provincia = id_provincia
 
         Dim frm As New frmEntPoblaciones(BasesParaCompatibilidad.DetailedSimpleForm.VISION, New spPoblaciones, dboPoblacion)
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
 
         Try
             sp_poblaciones.cargar_ComboBox(combo, id_provincia)

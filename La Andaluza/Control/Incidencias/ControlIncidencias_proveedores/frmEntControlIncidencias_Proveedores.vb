@@ -59,25 +59,25 @@ Public Class frmEntControlIncidencias_Proveedores
 
     Private Sub butVerId_control_incidencias_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim frmEnt As New frmControlIncidencias()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
-   
 
-   Private Sub butVerid_proveedor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerid_proveedor.Click
-       Dim frmEnt As New frmProveedores()
-       frmEnt.ShowDialog()
-   End Sub
 
-   Private Sub butAddid_proveedor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddid_proveedor.Click
-       Dim DBO_Proveedores As New DBO_Proveedores
-       Dim frmEnt As New frmEntProveedores(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, new spProveedores,DBO_Proveedores)
-       frmEnt.ShowDialog()
-       dim s as new spProveedores
-       s.cargar_Proveedores(Me.cboid_proveedor)
-   End Sub
+    Private Sub butVerid_proveedor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerid_proveedor.Click
+        Dim frmEnt As New frmProveedores()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+    End Sub
+
+    Private Sub butAddid_proveedor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddid_proveedor.Click
+        Dim DBO_Proveedores As New DBO_Proveedores
+        Dim frmEnt As New frmEntProveedores(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spProveedores, DBO_Proveedores)
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+        Dim s As New spProveedores
+        s.cargar_Proveedores(Me.cboid_proveedor)
+    End Sub
 
     Private Sub frmEntControlIncidencias_Proveedores_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Panel1, Me)
+        BasesParaCompatibilidad.pantalla.centerIn(Panel1, Me)
     End Sub
 End Class

@@ -65,12 +65,12 @@ Public Class frmEntArticulosLoteados
     Private Sub butAddid_tipoLoteado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddid_tipoLoteado.Click
         Dim DBO_TiposLoteados As New DBO_TiposLoteados
         Dim frmEnt As New frmEntTiposLoteados(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spTiposLoteados, DBO_TiposLoteados)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTiposLoteados
         s.cargar_TiposLoteados(Me.cboid_tipoLoteado)
     End Sub
 
     Private Sub frmEntArticulosLoteados_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(CType(Me.tlpMiddle, Control), Me)
+        BasesParaCompatibilidad.pantalla.centerIn(CType(Me.tlpMiddle, Control), Me)
     End Sub
 End Class

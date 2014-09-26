@@ -71,18 +71,18 @@
 
     Private Sub butAddId_CausaParteEnvasado_Click(sender As System.Object, e As System.EventArgs) Handles butAddId_CausaParteEnvasado.Click
         Dim frm As New frmEntCausasPartesEnvasado(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spCausasPartesEnvasado, New DBO_CausasPartesEnvasado)
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         SetValores()
     End Sub
 
     Private Sub butVerId_CausaParteEnvasado_Click(sender As System.Object, e As System.EventArgs) Handles butVerId_CausaParteEnvasado.Click
         Dim frm As New frmCausasPartesEnvasado
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         SetValores()
     End Sub
 
     Private Sub frmEntPartesEnvasadosCausasIns_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.PanContenido, Me.SplitContainer1.Panel1)
+        BasesParaCompatibilidad.pantalla.centerIn(Me.PanContenido, Me.SplitContainer1.Panel1)
     End Sub
 
  

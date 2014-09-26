@@ -45,7 +45,7 @@ Public Class frmControlesPresionLlenadora2
         End If
 
         frmEnt = New frmEntControlesPresionLlenadora2(TipoAction, m_ControlePresionLlenadora1, m_Pos, m_VerID)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 
         dgvFill()
 

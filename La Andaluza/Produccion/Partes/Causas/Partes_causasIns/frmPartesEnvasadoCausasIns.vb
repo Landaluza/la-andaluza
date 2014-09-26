@@ -15,7 +15,7 @@
 
     Private Sub tsNuevo_Click(sender As System.Object, e As System.EventArgs) Handles tsNuevo.Click
         Dim frm As New frmEntPartesEnvasadosCausasIns()
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
 
         Dim dbo As DBO_PartesEnvasados_CausasPartesEnvasado = frm.DBO
 

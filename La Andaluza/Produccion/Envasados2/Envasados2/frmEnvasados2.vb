@@ -57,7 +57,7 @@ Public Class frmEnvasados2
             End If
         End If
 
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         FormatoCalendario()
     End Sub
 
@@ -109,8 +109,8 @@ Public Class frmEnvasados2
     End Sub
 
     Private Sub frmEnvasados2_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerHorizontalyIn(Me.Panconversor, Me.PanDBelow)
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.MonthCalendar, Me)
+        BasesParaCompatibilidad.Pantalla.centerHorizontalyIn(Me.Panconversor, Me.PanDBelow)
+        BasesParaCompatibilidad.pantalla.centerIn(Me.MonthCalendar, Me)
     End Sub
 
     Private Sub frmEnvasados2_shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown

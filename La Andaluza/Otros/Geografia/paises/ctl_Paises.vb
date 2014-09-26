@@ -13,7 +13,7 @@
 
     Public Sub Añadir_pais_para_combo(ByRef combo As ComboBox)
         Dim frm As New frmEntPaises
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
 
         Me.sp_paises.cargar_ComboBox(combo)
     End Sub

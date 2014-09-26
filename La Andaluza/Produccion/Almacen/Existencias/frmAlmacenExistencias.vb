@@ -424,6 +424,6 @@ Public Class frmAlmacenExistencias
         m_dbo = spPaletsProducidos2.Select_RecordBySSCC(Me.dgvPalet.CurrentRow.Cells("SCC").Value)
         Dim f_dbo As DBO_FormatosEnvasados = spFormato.Select_Record(m_dbo.FormatoID)
         Dim frm As New frmEntPaletsProducidos2(True)
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
     End Sub
 End Class

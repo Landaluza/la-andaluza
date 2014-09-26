@@ -45,7 +45,7 @@ Public Class frmEspecificaciones
         Dim FrmEnt As New frmEntEspecificaciones
         FrmEnt.Text = "Insertar Especificacion"
         FrmEnt.CargarDatos(0, dgvGeneral, 0, "", "", Today, "", "")
-        FrmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         ctlEsp.mostrarTodasEspecificaciones(dtsEsp)
         GeneralBindingSource.Position = 1
         GeneralBindingSource.Position = 0
@@ -60,7 +60,7 @@ Public Class frmEspecificaciones
                                dgvGeneral.Rows(Posicion).Cells(1).Value, dgvGeneral.Rows(Posicion).Cells(2).Value, _
                                dgvGeneral.Rows(Posicion).Cells(3).Value, dgvGeneral.Rows(Posicion).Cells(4).Value, _
                                dgvGeneral.Rows(Posicion).Cells(5).Value, dgvGeneral.Rows(Posicion).Cells("LegislacionID").Value)
-            FrmEnt.ShowDialog()
+            BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
             ctlEsp.mostrarTodasEspecificaciones(dtsEsp)
             GeneralBindingSource.Position = 1
             GeneralBindingSource.Position = Posicion

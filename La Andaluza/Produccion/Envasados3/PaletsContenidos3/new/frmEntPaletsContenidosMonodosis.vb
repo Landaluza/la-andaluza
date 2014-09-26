@@ -251,7 +251,7 @@ Public Class frmEntPaletsContenidosMonodosis
     End Sub
 
     Private Sub frmEntPaletsContenidosMonodosis_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.Panel1, Me.SplitMermas.Panel1)
+        BasesParaCompatibilidad.pantalla.centerIn(Me.Panel1, Me.SplitMermas.Panel1)
     End Sub
 
     Private Sub txtCantidadCajas_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtCantidadCajas.TextChanged

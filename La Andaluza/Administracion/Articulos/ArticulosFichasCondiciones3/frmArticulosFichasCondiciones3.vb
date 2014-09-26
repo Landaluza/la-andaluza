@@ -76,7 +76,7 @@ Public Class frmArticulosFichasCondiciones3
 
         frmEnt = New frmEntArticulosFichasCondiciones3(m_ArticulosFichasCondiciones3, m_Pos, m_VerID)
         frmEnt.Text = String.Format("{0} {1}", TipoAction, Me.Text)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frmEnt)
 
         dgvFill()
 

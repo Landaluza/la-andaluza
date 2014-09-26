@@ -631,7 +631,7 @@ Public Class MenuDispatcher
 
     Private Sub InformeResumenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles InformeResumenToolStripMenuItem.Click, InformeResumenToolStripMenuItem2.Click, InformeResumenToolStripMenuItem1.Click
         Dim frm As New InformeResumenVinagre.SelectorFecha(BasesParaCompatibilidad.Config.connectionString)
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
     End Sub
 
     Private Sub ResumenDiarioToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ResumenDiarioToolStripMenuItem.Click, ToolStripMenuItem9.Click, ToolStripMenuItem26.Click

@@ -107,7 +107,7 @@ Public Class frmModGranelesCompuestoPor
     Private Sub btnaddfase_Click(sender As System.Object, e As System.EventArgs) Handles btnaddfase.Click
         Dim d As DBO_ArticulosGraneles = spArticulosGraneles.Select_RecordByArticuloID(Me.m_dbo.ArticuloPrincipal)
         Dim frm As New frmelaboraciones_fases(d.GranelID)
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
 
         Dim aux As New spelaboraciones_fases
         aux.cargar_elaboraciones_fases(Me.cboFase, d.GranelID)

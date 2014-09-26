@@ -126,7 +126,7 @@ Public Class FrmInicio
             If dbo_usuarios.email IsNot String.Empty Then
 
                 Dim frm As New BasesParaCompatibilidad.frmEntrada("Introduzca su dirección de correo", "La dirección debe coincidir con la que introdujo para su usuario")
-                frm.ShowDialog()
+                BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
 
                 If frm.Result = dbo_usuarios.email Then
                     dbo_usuarios.cryptedPassword = s.ToString

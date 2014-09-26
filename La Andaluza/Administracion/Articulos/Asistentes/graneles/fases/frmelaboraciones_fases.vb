@@ -21,13 +21,13 @@ Public Class frmelaboraciones_fases
 
     Private Sub Insertar()
         Dim frm As New frmEntelaboraciones_fases(BasesParaCompatibilidad.DetailedSimpleForm.INSERCION, Me.idGranel)
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         dgvFill()
     End Sub
 
     Private Sub modificar()
         Dim frm As New frmEntelaboraciones_fases(BasesParaCompatibilidad.DetailedSimpleForm.MODIFICACION, Me.idGranel, Me.dgvGrilla.CurrentRow.Cells("id").Value)
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         dgvFill()
     End Sub
 

@@ -91,13 +91,13 @@ Public Class frmEntTiposFormatosLineas_TiposFormatos
 
     Private Sub butVerTipoFormatoLineaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim frmEnt As New frmTiposFormatosLineas()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddTipoFormatoLineaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim DBO_TiposFormatosLineas As New DBO_TiposFormatosLineas
         Dim frmEnt As New frmEntTiposFormatosLineas(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spTiposFormatosLineas, DBO_TiposFormatosLineas)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTiposFormatosLineas
         s.cargar_TiposFormatosLineas(Me.cboTipoFormatoLinea)
     End Sub

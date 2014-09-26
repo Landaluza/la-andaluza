@@ -25,7 +25,7 @@
     '            End If
 
     Private Sub frmConfiguracionUsuario_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.Panel2, Me)
+        BasesParaCompatibilidad.Pantalla.centerIn(Me.Panel2, Me)
     End Sub
 
     Private Sub btnAceptar_Click(sender As System.Object, e As System.EventArgs) Handles btnAceptar.Click

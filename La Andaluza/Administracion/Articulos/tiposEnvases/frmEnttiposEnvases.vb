@@ -58,6 +58,6 @@ Public Class frmEnttiposEnvases
     End Sub
 
     Private Sub frmEnttiposEnvases_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(CType(Me.tlpMiddle, Control), Me)
+        BasesParaCompatibilidad.Pantalla.centerIn(CType(Me.tlpMiddle, Control), Me)
     End Sub
 End Class

@@ -74,22 +74,22 @@ Public Class frmEntReconocimientosMedicosSolicitudesEmpleados
 
    Private Sub butVerReconocimientoMedicoSolicitudID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerReconocimientoMedicoSolicitudID.Click
        Dim frmEnt As New frmReconocimientosMedicosSolicitudes()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spReconocimientosMedicosSolicitudes
         s.cargar_ReconocimientosMedicosSolicitudes(Me.cboReconocimientoMedicoSolicitud)
-   End Sub
+    End Sub
 
-   Private Sub butAddReconocimientoMedicoSolicitudID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddReconocimientoMedicoSolicitudID.Click
-       Dim DBO_ReconocimientosMedicosSolicitudes As New DBO_ReconocimientosMedicosSolicitudes
-       Dim frmEnt As New frmEntReconocimientosMedicosSolicitudes(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, new spReconocimientosMedicosSolicitudes,DBO_ReconocimientosMedicosSolicitudes)
-       frmEnt.ShowDialog()
-       dim s as new spReconocimientosMedicosSolicitudes
-       s.cargar_ReconocimientosMedicosSolicitudes(Me.cboReconocimientoMedicoSolicitud)
-   End Sub
+    Private Sub butAddReconocimientoMedicoSolicitudID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddReconocimientoMedicoSolicitudID.Click
+        Dim DBO_ReconocimientosMedicosSolicitudes As New DBO_ReconocimientosMedicosSolicitudes
+        Dim frmEnt As New frmEntReconocimientosMedicosSolicitudes(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spReconocimientosMedicosSolicitudes, DBO_ReconocimientosMedicosSolicitudes)
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+        Dim s As New spReconocimientosMedicosSolicitudes
+        s.cargar_ReconocimientosMedicosSolicitudes(Me.cboReconocimientoMedicoSolicitud)
+    End Sub
 
     Private Sub butVerEmpleadoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim frmEnt As New frmEmpleados()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
   

@@ -85,26 +85,26 @@ Public Class frmEntSegumientosIncidencias
 
     Private Sub butVerId_tipoSeguimiento_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_tipoSeguimiento.Click
         Dim frmEnt As New frmTiposSeguimientos()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddId_tipoSeguimiento_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_tipoSeguimiento.Click
         Dim DBO_TiposSeguimientos As New DBO_TiposSeguimientos
         Dim frmEnt As New frmEntTiposSeguimientos(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spTiposSeguimientos, DBO_TiposSeguimientos)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTiposSeguimientos
         s.cargar_TiposSeguimientos(Me.cbotipoSeguimiento)
     End Sub
 
     Private Sub butVerResponsable_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerResponsable.Click
         Dim frmEnt As New frmEmpleados()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddResponsable_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddResponsable.Click
         Dim DBO_Empleados As New DBO_Empleados
         Dim frmEnt As New frmEntEmpleados(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spEmpleados, DBO_Empleados)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spEmpleados
         s.cargar_Empleados(Me.cboResponsable)
     End Sub

@@ -18,7 +18,7 @@ Public Class frmWstepDatosGenerales
     End Sub
 
     Private Sub frmWstepDatosGenerales_Resize(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.panContenido, Me)
+        BasesParaCompatibilidad.Pantalla.centerIn(Me.panContenido, Me)
     End Sub
 
 
@@ -161,7 +161,7 @@ Public Class frmWstepDatosGenerales
             Dim cadPalet As String
             cadPalet = Convert.ToString(cboCaja.SelectedItem(2)) & " x " & cboCaja.SelectedItem(3).ToString
             Me.lNombre.Text = cboProducto.Text & " " & cadPalet & " " & cboMarca.Text & " (" & cboPaletTipo.Text & ")"
-            BasesParaCompatibilidad.DetailedSimpleForm.centerHorizontalyIn(lNombre, panContenido)
+            BasesParaCompatibilidad.Pantalla.centerHorizontalyIn(lNombre, panContenido)
         Catch ex As Exception
 
         End Try
@@ -173,7 +173,7 @@ Public Class frmWstepDatosGenerales
 
     Private Sub btnMarca_Click(sender As System.Object, e As System.EventArgs) Handles btnMarca.Click
         Dim frm As New frmmarcas
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         Dim s As New spmarcas
         s.cargar_marcas(cboMarca)
     End Sub
@@ -192,19 +192,19 @@ Public Class frmWstepDatosGenerales
 
     Private Sub btnAddProducto_Click(sender As System.Object, e As System.EventArgs) Handles btnAddProducto.Click
         Dim frm As New frmEntTiposProductos()
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         Me.cboProducto.mam_DataSource("TiposProductosSelectCbo", False)
     End Sub
 
     Private Sub btnAddPalet_Click(sender As System.Object, e As System.EventArgs) Handles btnAddPalet.Click
         Dim frm As New frmPaletsTipos()
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         Me.cboPaletTipo.mam_DataSource("PaletsTiposCbo", False)
     End Sub
 
     Private Sub btnAddCaja_Click(sender As System.Object, e As System.EventArgs) Handles btnAddCaja.Click
         Dim frm As New frmTiposCajas
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         Me.cboCaja.mam_DataSource("TiposcajasCbo", False)
     End Sub
 End Class

@@ -13,20 +13,20 @@ Public Class frmSelectorAsistente
         Select Case Me.cboArticulo.SelectedValue
             Case Is = 1 'Materias primas
                 Dim frm As New frmAsistenteMateriasPrimas
-                frm.ShowDialog()
+                BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
 
             Case Is = 4 'Graneles
                 Dim frm As New frmAsistenteGraneles
-                frm.ShowDialog()
+                BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
 
             Case Is = 6 'Ingredientes
                 Dim frm As New frmAsistenteIngredientes
-                frm.ShowDialog()
+                BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
 
 
             Case Is = 57 'IngredientesIDI
                 Dim frm As New frmAsistenteIngredientes(True)
-                frm.ShowDialog()
+                BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
 
 
                 'Case Is = 7 'Plantas
@@ -53,19 +53,19 @@ Public Class frmSelectorAsistente
 
             Case Is = 8
                 Dim frm As New frmAsistenteMonodosis(Me.cboArticulo.SelectedValue)
-                frm.ShowDialog()
+                BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
 
             Case Is = 9 'Envases secundarios (cajas)
                 Dim frm As New frmAsistenteArticulosEnvasados()
-                frm.ShowDialog()
+                BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
 
             Case Is = 10 'Envases terciarios (palets)
                 Dim frm As New frmAsistenteArticulosEnvasados()
-                frm.ShowDialog()
+                BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
 
                 'Case Is = 26 'Etiquetas
                 '    Dim frm As New frmAsistenteEtiquetas()
-                '    frm.ShowDialog()
+                '    BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
                 '    '''Dim m_TablaAux As New DBO_ArticulosIngredientes
                 '    '''m_TablaAux = spArticulosIngredientes.Select_RecordByArticuloID(m_DBO_Articulos1.ArticuloID)
                 '    ''m_FormAux = New frmArtEtiquetasInicial
@@ -73,7 +73,7 @@ Public Class frmSelectorAsistente
                 '    ''formEtiquetas = m_FormAux
             Case Else
                 Dim frm As New frmAsistenteArticuloSimple(Me.cboArticulo.SelectedValue)
-                frm.ShowDialog()
+                BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
                 'Case Is = 8 'Envases primarios (botellas o botes)
                 'Case Is = 11 'Repuestos
                 'Case Is = 12 'Laboratorio

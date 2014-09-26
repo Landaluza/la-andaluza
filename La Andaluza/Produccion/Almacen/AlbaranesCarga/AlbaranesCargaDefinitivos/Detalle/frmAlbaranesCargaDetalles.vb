@@ -46,7 +46,7 @@ Public Class frmAlbaranesCargaDetalles
         Dim FrmEnt As New frmEntAlbaranesCargaDetalles
         FrmEnt.Text = ACCION_INSERTAR & " AlbaranesCargaDetalles"
         FrmEnt.CargarDatos(0, 0, 0, 0, 0, "", 0, "", "", "", "", "", "", "")
-        FrmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         ctlAlb.mostrarTodosAlbaranesCargaDetalles(dtsAlb)
         GeneralBindingSource.Position = 1
         GeneralBindingSource.Position = 0
@@ -71,7 +71,7 @@ Public Class frmAlbaranesCargaDetalles
                                dgvGeneral.Rows(Posicion).Cells(10).Value, _
                                dgvGeneral.Rows(Posicion).Cells(11).Value, _
                                dgvGeneral.Rows(Posicion).Cells(12).Value)
-            FrmEnt.ShowDialog()
+            BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
             ctlAlb.mostrarTodosAlbaranesCargaDetalles(dtsAlb)
             GeneralBindingSource.Position = 1
             GeneralBindingSource.Position = Posicion
@@ -99,7 +99,7 @@ Public Class frmAlbaranesCargaDetalles
                                dgvGeneral.Rows(Posicion).Cells(10).Value, _
                                dgvGeneral.Rows(Posicion).Cells(11).Value, _
                                dgvGeneral.Rows(Posicion).Cells(12).Value)
-            FrmEnt.ShowDialog()
+            BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Else
             MessageBox.Show("Seleccionar alguna celda", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End If

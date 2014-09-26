@@ -55,7 +55,7 @@ Public Class frmEntTiposMateriales
     End Sub
 
     Private Sub frmEntTiposMateriales_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerHorizontalyIn(Me.Panel1, Me.SplitContainer1.Panel1)
+        BasesParaCompatibilidad.Pantalla.centerHorizontalyIn(Me.Panel1, Me.SplitContainer1.Panel1)
     End Sub
 
 End Class

@@ -60,7 +60,8 @@ Public Class frmTrazabilidad
                 form = New FrmEntLotes
                 form.Text = dgvCompuestoPor.Rows(e.RowIndex).Cells("codigolote").Value.ToString & ", Modificar Lote trazabilidad"
                 form.CargarDatos(aux, dgvCompuestoPor.Rows(e.RowIndex).Cells("loteid").Value, 0, 0, ConEnologicos)
-                form.ShowDialog()
+
+                BasesParaCompatibilidad.Pantalla.mostrarDialogo(form)
             End If
         Catch ex As Exception
 
@@ -74,7 +75,8 @@ Public Class frmTrazabilidad
                 form = New FrmEntLotes
                 form.Text = dgvComponenteDe.Rows(e.RowIndex).Cells("codigolote").Value.ToString & ", Modificar Lote trazabilidad"
                 form.CargarDatos(aux, dgvComponenteDe.Rows(e.RowIndex).Cells("loteid").Value, 0, 0, ConEnologicos)
-                form.ShowDialog()
+
+                BasesParaCompatibilidad.Pantalla.mostrarDialogo(form)
             End If
         Catch ex As Exception
 
@@ -129,7 +131,7 @@ Public Class frmTrazabilidad
     Private Sub ModificarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ModificarCompuestoToolStripMenuItem.Click
         If Not dgvCompuestoPor.CurrentRow Is Nothing Then
             Dim frm As New BasesParaCompatibilidad.frmEntrada("Nueva cantidad", "Introduce la nueva cantidad para este movimiento", dgvCompuestoPor.CurrentRow.Cells("cantidad").Value.ToString)
-            If frm.ShowDialog() = Windows.Forms.DialogResult.OK Then
+            If BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm) = Windows.Forms.DialogResult.OK Then
                 If actualizarTrazabilidad(frm.Result, dgvCompuestoPor.CurrentRow.Cells("movimientoid").Value.ToString) Then
                     Me.BackgroundWorker1.RunWorkerAsync()
                 End If

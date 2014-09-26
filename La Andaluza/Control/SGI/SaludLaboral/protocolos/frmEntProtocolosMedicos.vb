@@ -90,13 +90,13 @@ Public Class frmEntProtocolosMedicos
 
     Private Sub butVerMedico_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerMedico.Click
         Dim frmEnt As New frmMedicos()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddMedico_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddMedico.Click
         Dim DBO_Medicos As New DBO_Medicos
         Dim frmEnt As New frmEntMedicos(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spMedicos, DBO_Medicos)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spMedicos
         s.cargar_Medicos(Me.cboMedico)
     End Sub

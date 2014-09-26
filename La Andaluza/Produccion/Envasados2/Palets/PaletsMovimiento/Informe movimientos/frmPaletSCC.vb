@@ -344,7 +344,7 @@ Public Class frmPaletSCC
 
                         Dim frm As New frmEntPaletsProducidos2(m_f.ID, True)
                         frm.Text = "Modificar palet producido"
-                        frm.ShowDialog()
+                        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
                     End If
                 Else
                     If Me.dgvMovimientos.CurrentRow.Cells("TipoMovimiento").Value = "Expedir" Then
@@ -382,7 +382,7 @@ Public Class frmPaletSCC
 
                     Dim frm As New frmEntPaletsProducidos2(m_f.ID, True)
                     frm.Text = "Modificar palet producido"
-                    frm.ShowDialog()
+                    BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
                     buscar()
 
                 End If
@@ -402,14 +402,14 @@ Public Class frmPaletSCC
                 End If
 
                 Dim frm As New frmModMovimientoPalet(dbo)
-                frm.ShowDialog()
+                BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
                 buscar()
                 'If d.EntrePalets Then
                 '    messagebox.show("No se puede modificar un movimiento entre palets")
                 'Else
 
                 '    Dim frm As New frmModMovimientoPalet(dbo)
-                '    frm.ShowDialog()
+                '    BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
                 '    buscar()
 
                 'End If

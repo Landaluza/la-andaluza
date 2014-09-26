@@ -75,7 +75,7 @@ Public Class frmEntCausasPartesEnvasado
 
     Private Sub butVerid_CausaParteTipo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerid_CausaParteTipo.Click
         Dim frmEnt As New frmCausasPartesEnvasadoTipos()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spCausasPartesEnvasadoTipos
         s.cargar_CausasPartesEnvasadoTipos(Me.cboid_CausaParteTipo)
     End Sub
@@ -83,7 +83,7 @@ Public Class frmEntCausasPartesEnvasado
     Private Sub butAddid_CausaParteTipo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddid_CausaParteTipo.Click
         Dim DBO_CausasPartesEnvasadoTipos As New DBO_CausasPartesEnvasadoTipos
         Dim frmEnt As New frmEntCausasPartesEnvasadoTipos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spCausasPartesEnvasadoTipos, DBO_CausasPartesEnvasadoTipos)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spCausasPartesEnvasadoTipos
         s.cargar_CausasPartesEnvasadoTipos(Me.cboid_CausaParteTipo)
     End Sub

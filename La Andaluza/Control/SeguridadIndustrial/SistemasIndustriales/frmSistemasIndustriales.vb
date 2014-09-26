@@ -70,7 +70,7 @@ Public Class frmSistemasIndustriales
 
         Dim frmEnt As New frmEntSistemasIndustriales(m_SistemasIndustriale, m_Pos)
         frmEnt.Text = String.Format("{0} {1}", TipoAction, Me.Text)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         dgvFill() 'GeneralBindingSource. dataSource = dtb.Consultar(spSelectDgv)
     End Sub
 

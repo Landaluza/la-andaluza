@@ -109,6 +109,6 @@ Public Class frmWstepMateriasPrimas
     End Function
 
     Private Sub frmWstepMateriasPrimas_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.PanContenidos, Me)
+        BasesParaCompatibilidad.Pantalla.centerIn(Me.PanContenidos, Me)
     End Sub
 End Class

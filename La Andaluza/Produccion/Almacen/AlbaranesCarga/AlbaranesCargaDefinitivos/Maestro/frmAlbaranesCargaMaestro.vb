@@ -61,7 +61,7 @@ Public Class frmAlbaranesCargaMaestro
         Dim FrmEnt As New frmEntAlbaranesCargaMaestro()
         FrmEnt.Text = ACCION_INSERTAR & " AlbaranesCargaMaestro"
         FrmEnt.CargarDatos(0, 0, 0, Today, 0, 0, 0, 0, 0, 0, 0, "", "", "", 0, 0, DateTime.Now.TimeOfDay, DateTime.Now.TimeOfDay, "", "", "", "")
-        FrmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         dgvFill()
     End Sub
 
@@ -93,7 +93,7 @@ Public Class frmAlbaranesCargaMaestro
                        dgvGeneral.CurrentRow.Cells(18).Value, _
                        dgvGeneral.CurrentRow.Cells(19).Value, _
                        dgvGeneral.CurrentRow.Cells(20).Value)
-            FrmEnt.ShowDialog()
+            BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
             dgvFill()
         Else
             MessageBox.Show("no hay celda seleccionada", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
@@ -127,7 +127,7 @@ Public Class frmAlbaranesCargaMaestro
                        dgvGeneral.Rows(Posicion).Cells(18).Value, _
                        dgvGeneral.Rows(Posicion).Cells(19).Value, _
                        dgvGeneral.Rows(Posicion).Cells(20).Value)
-            FrmEnt.ShowDialog()
+            BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Else
             MessageBox.Show("No hay celda seleccionada", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If

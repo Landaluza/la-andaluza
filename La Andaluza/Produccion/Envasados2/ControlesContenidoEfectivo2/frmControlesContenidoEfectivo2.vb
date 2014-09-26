@@ -44,7 +44,7 @@ Public Class frmControlesContenidoEfectivo2
         End If
 
         frmEnt = New frmEntControlesContenidoEfectivo2(TipoAction, m_ControleContenidoEfectivo, m_Pos, m_VerID)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 
         dgvFill()
     End Sub

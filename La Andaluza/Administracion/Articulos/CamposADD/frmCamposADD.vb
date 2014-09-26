@@ -42,7 +42,7 @@ Public Class frmCamposADD
 
         Dim frmEnt As New frmEntCamposADD(m_CampoADD, m_Pos, m_VerID)
         frmEnt.Text = String.Format("{0} {1}", TipoAction, Me.Text)
-        'frmEnt.ShowDialog()
+        'BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         AddHandler frmEnt.FormClosed, AddressOf dgvFill
         GUImain.añadirPestaña(frmEnt)
 

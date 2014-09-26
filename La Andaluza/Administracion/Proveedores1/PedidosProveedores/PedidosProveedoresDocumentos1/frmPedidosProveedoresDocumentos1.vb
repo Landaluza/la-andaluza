@@ -70,7 +70,7 @@ Public Class frmPedidosProveedoresDocumentos1
 
         frmEnt = New frmEntPedidosProveedoresDocumentos1(m_PedidosProveedoresDocumentos1, m_Pos, m_VerID)
         frmEnt.Text = String.Format("{0} {1}", TipoAction, Me.Text)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 
         dgvFill()
     End Sub

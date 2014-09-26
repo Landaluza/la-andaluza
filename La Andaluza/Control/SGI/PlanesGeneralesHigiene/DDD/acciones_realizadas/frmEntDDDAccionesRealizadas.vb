@@ -140,52 +140,52 @@ Public Class frmEntDDDAccionesRealizadas
 
     Private Sub butVerDDDPlanID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerDDDPlanID.Click
         Dim frmEnt As New frmDDDPlanes()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddDDDPlanID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddDDDPlanID.Click
         Dim DBO_DDDPlanes As New DBO_DDDPlanes
         Dim frmEnt As New frmEntDDDPlanes(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spDDDPlanes, DBO_DDDPlanes)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spDDDPlanes
         s.cargar_DDDPlanes(Me.cboDDDPlan)
     End Sub
 
     Private Sub butVerDDDAccionID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerDDDAccionID.Click
         Dim frmEnt As New frmDDDAcciones()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddDDDAccionID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddDDDAccionID.Click
         Dim DBO_DDDAcciones As New DBO_DDDAcciones
         Dim frmEnt As New frmEntDDDAcciones(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spDDDAcciones, DBO_DDDAcciones)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spDDDAcciones
         s.cargar_DDDAcciones(Me.cboDDDAccion)
     End Sub
 
     Private Sub butVerPersonaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerPersonaID.Click
         Dim frmEnt As New frmDDDPersonasAutorizadas()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddPersonaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddPersonaID.Click
         Dim DBO_DDDPersonasAutorizadas As New DBO_DDDPersonasAutorizadas
         Dim frmEnt As New frmEntDDDPersonasAutorizadas(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spDDDPersonasAutorizadas, DBO_DDDPersonasAutorizadas)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spDDDPersonasAutorizadas
         s.cargar_DDDPersonasAutorizadas(Me.cboPersona)
     End Sub
 
     Private Sub butVerProductoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerProductoID.Click
         Dim frmEnt As New frmDDDProductos()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddProductoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddProductoID.Click
         Dim DBO_DDDProductos As New DBO_DDDProductos
         Dim frmEnt As New frmEntDDDProductos(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spDDDProductos, DBO_DDDProductos)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spDDDProductos
         s.cargar_DDDProductos(Me.cboProducto)
     End Sub

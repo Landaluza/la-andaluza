@@ -29,7 +29,7 @@
             Dim sp As New spempleados_formatosEnvasados
             Dim dbo As DBO_empleados_formatosEnvasados = sp.Select_Record(Convert.ToInt32(Me.dgvOcupados.CurrentRow.Cells("Id").Value))
             Dim frm As New frmEntempleados_formatosEnvasados(BasesParaCompatibilidad.GridSimpleForm.ACCION_MODIFICAR, New spempleados_formatosEnvasados, dbo)
-            frm.ShowDialog()
+            BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
             cargar()
         Catch ex As Exception
 

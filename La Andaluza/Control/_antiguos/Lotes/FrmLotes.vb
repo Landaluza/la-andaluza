@@ -106,7 +106,7 @@ Public Class FrmLotesEnologicos
         Dim FrmEnt As New FrmEntLotes
         FrmEnt.Text = "Insertar Lote"
         FrmEnt.CargarDatos(0, 0, 0, 0, False)
-        FrmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim TipLot As Integer = cboTipoLoteID.SelectedValue
 
         'If MessageBox.Show("¿Recargar la tabla?", "Refrescar", MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
@@ -131,7 +131,7 @@ Public Class FrmLotesEnologicos
                            Convert.ToInt32(cboTipoLoteID.SelectedValue), _
                            Convert.ToInt32(cboTipoProducto.SelectedValue), _
                            chbConEnologicos.Checked)
-            Frm.ShowDialog()
+            BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
 
             If MessageBox.Show("¿Recargar la tabla?", "Refrescar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
                 toolStripRefresh100_Click(Nothing, Nothing)
@@ -150,7 +150,7 @@ Public Class FrmLotesEnologicos
             Dim FrmEnt As New FrmEntLotes
             FrmEnt.Text = "Ver Lote"
             FrmEnt.CargarDatos(Posicion, dgvGeneral.Rows(Posicion).Cells(0).Value, cboTipoLoteID.SelectedValue, cboTipoProducto.SelectedValue, chbConEnologicos.Checked)
-            FrmEnt.ShowDialog()
+            BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Else
             MessageBox.Show("Seleccionar alguna celda", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End If
@@ -231,7 +231,7 @@ Public Class FrmLotesEnologicos
 
         If Not Me.dgvGeneral.CurrentRow.Cells("DepositoID").Value Is Nothing Then
             Dim frm As New frmCambiarDesposito(Me.dgvGeneral.CurrentRow.Cells("LoteID").Value, Me.dgvGeneral.CurrentRow.Cells("DepositoID").Value)
-            If frm.ShowDialog() = Windows.Forms.DialogResult.OK Then
+            If BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm) = Windows.Forms.DialogResult.OK Then
                 toolStripRefresh100_Click(Nothing, Nothing)
             End If
         End If

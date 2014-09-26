@@ -44,7 +44,7 @@ Public Class frmPedidosClientesDetalles2
         frmEnt = New frmEntPedidosClientesDetalles2(m_PedidosClientesDetalles2, m_Pos, m_VerID, mercadona)
         frmEnt.Text = String.Format("{0} {1}", TipoAction, Me.Text)
 
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 
         dgvFill()
     End Sub

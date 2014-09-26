@@ -94,15 +94,15 @@ Public Class frmEntDDDPersonasAutorizadas
 
    Private Sub butVerProveedorID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerProveedorID.Click
        Dim frmEnt As New frmProveedores()
-       frmEnt.ShowDialog()
-   End Sub
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+    End Sub
 
-   Private Sub butAddProveedorID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddProveedorID.Click
-       Dim DBO_Proveedores As New DBO_Proveedores
-       Dim frmEnt As New frmEntProveedores(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, new spProveedores,DBO_Proveedores)
-       frmEnt.ShowDialog()
-       dim s as new spProveedores
+    Private Sub butAddProveedorID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddProveedorID.Click
+        Dim DBO_Proveedores As New DBO_Proveedores
+        Dim frmEnt As New frmEntProveedores(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spProveedores, DBO_Proveedores)
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+        Dim s As New spProveedores
         s.cargar_ComboBox(Me.cboProveedor)
-   End Sub
+    End Sub
 
 End Class

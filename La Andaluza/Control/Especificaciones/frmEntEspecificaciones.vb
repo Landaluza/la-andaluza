@@ -341,8 +341,8 @@ Public Class frmEntEspecificaciones
             End If
 
             If (lError.Text <> "") Then
-                BasesParaCompatibilidad.DetailedSimpleForm.centerHorizontalyIn(Panel3, Panel1)
-                BasesParaCompatibilidad.DetailedSimpleForm.centerHorizontalyIn(lError, Panel3)
+                BasesParaCompatibilidad.Pantalla.centerHorizontalyIn(Panel3, Panel1)
+                BasesParaCompatibilidad.Pantalla.centerHorizontalyIn(lError, Panel3)
                 Panel3.Visible = True
                 lError.Visible = True
                 Me.Timer1.Enabled = True
@@ -352,7 +352,7 @@ Public Class frmEntEspecificaciones
     End Sub
 
     Private Sub frmEntEspecificaciones_Resize(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerHorizontalyIn(Panel2, Panel1)
+        BasesParaCompatibilidad.Pantalla.centerHorizontalyIn(Panel2, Panel1)
     End Sub
 
     Private Sub cboLegislacion_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cboLegislacion.SelectedValueChanged

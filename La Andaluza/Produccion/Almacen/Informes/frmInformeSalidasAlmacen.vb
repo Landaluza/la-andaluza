@@ -18,7 +18,7 @@ Public Class frmInformeSalidasAlmacen
     End Sub
 
     Private Sub frmInformeSalidasAlmacen_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerHorizontalyIn(Me.panFiltros, Me.Panel1)
+        BasesParaCompatibilidad.Pantalla.centerHorizontalyIn(Me.panFiltros, Me.Panel1)
     End Sub
 
     Private Sub btnBuscar_Click(sender As System.Object, e As System.EventArgs) Handles btnBuscar.Click

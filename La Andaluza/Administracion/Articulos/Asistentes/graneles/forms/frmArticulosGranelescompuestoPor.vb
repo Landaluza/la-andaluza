@@ -47,7 +47,7 @@ Public Class frmArticulosGranelescompuestoPor
 
     Private Sub nuevo()
         Dim frm As New frmModGranelesCompuestoPor(Me.articuloId)
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         DgvFill()
         RaiseEvent actualizarDatos()
     End Sub
@@ -75,7 +75,7 @@ Public Class frmArticulosGranelescompuestoPor
     Private Sub modificar()
         If Not Me.DataGridView1.CurrentRow Is Nothing Then
             Dim frm As New frmModGranelesCompuestoPor(Me.articuloId, DataGridView1.CurrentRow.Cells("articuloid").Value, DataGridView1.CurrentRow.Cells("id_fase").Value)
-            frm.ShowDialog()
+            BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
             DgvFill()
         End If
     End Sub

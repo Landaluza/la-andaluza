@@ -105,7 +105,7 @@
 
         Engine_LA.FormEnPestaña(Me.forms.Item(actualstep), PanCentral)
         Me.lTitle.Text = Me.titles.Item(actualstep)
-        BasesParaCompatibilidad.DetailedSimpleForm.centerHorizontalyIn(Me.lTitle, Me.panTitle)
+        BasesParaCompatibilidad.Pantalla.centerHorizontalyIn(Me.lTitle, Me.panTitle)
         Me.Text = title & " paso " & actualstep & " de " & Me.forms.Count
 
         Me.forms.Item(actualstep).EstablecerValores()
@@ -168,6 +168,6 @@
     End Sub
 
     Private Sub wizard_Resize(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerHorizontalyIn(Me.lTitle, Me.panTitle)
+        BasesParaCompatibilidad.Pantalla.centerHorizontalyIn(Me.lTitle, Me.panTitle)
     End Sub
 End Class

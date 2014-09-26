@@ -107,25 +107,25 @@ Public Class frmEntReuniones
 
     Private Sub butVerId_proveedor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim frmEnt As New frmProveedores()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddId_proveedor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_proveedor.Click
         Dim DBO_Proveedores As New DBO_Proveedores
         Dim frmEnt As New frmEntProveedores(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spProveedores, DBO_Proveedores)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Me.cboId_proveedor.mam_DataSource("Proveedores1Cbo", False)
     End Sub
 
     Private Sub butVerId_TipoReunion_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim frmEnt As New frmTiposReuniones()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddId_TipoReunion_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_TipoReunion.Click
         Dim DBO_TiposReuniones As New DBO_TiposReuniones
         Dim frmEnt As New frmEntTiposReuniones(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spTiposReuniones, DBO_TiposReuniones)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Me.cboId_TipoReunion.mam_DataSource("TiposReunionesCbo", False)
     End Sub
 

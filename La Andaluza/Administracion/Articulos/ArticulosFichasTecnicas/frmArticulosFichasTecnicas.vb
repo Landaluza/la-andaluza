@@ -82,7 +82,7 @@ Public Class frmArticulosFichasTecnicas
 
         frmEnt = New frmEntArticulosFichasTecnicas(m_ArticulosFichasTecnica, m_Pos, m_VerID)
         frmEnt.Text = String.Format("{0} {1}", TipoAction, Me.Text)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 
         dgvFill()
     End Sub

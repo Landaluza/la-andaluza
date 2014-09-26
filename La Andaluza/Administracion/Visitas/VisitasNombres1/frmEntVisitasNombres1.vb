@@ -72,7 +72,7 @@ Public Class frmEntVisitasNombres1
 
     Private Sub butVerVisitaTipoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerVisitaTipoID.Click
         Using frmEnt As New frmVisitasTipos()
-            frmEnt.ShowDialog()
+            BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         End Using
     End Sub
 
@@ -80,7 +80,7 @@ Public Class frmEntVisitasNombres1
         Dim DBO_VisitasTipos As New DBO_VisitasTipos
         frmEnt = New frmEntVisitasTipos(DBO_VisitasTipos, 1, False)
         frmEnt.Text = "Insertar"
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Me.cboVisitaTipoID.mam_DataSource("VisitasNombres1_VisitasTiposCbo", False)
     End Sub
 

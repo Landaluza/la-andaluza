@@ -101,7 +101,7 @@ Public Class frmEntVisitasRegistros
 
     Private Sub butVerVisitaNombreID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerVisitaNombreID.Click
         Using frmEnt As New frmVisitasNombres1()
-            frmEnt.ShowDialog()
+            BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         End Using
         Me.cboVisitaNombreID.mam_DataSource("VisitasRegistros_VisitasNombresCbo", False)
     End Sub
@@ -110,13 +110,14 @@ Public Class frmEntVisitasRegistros
         Dim DBO_VisitasNombres1 As New DBO_VisitasNombres1
         frmEntArticulosDocumentosVisitasNombres1 = New frmEntVisitasNombres1(DBO_VisitasNombres1, 1)
         frmEntArticulosDocumentosVisitasNombres1.Text = "Insertar"
-        frmEntArticulosDocumentosVisitasNombres1.ShowDialog()
+        'frmEntArticulosDocumentosVisitasNombres1.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frmEntArticulosDocumentosVisitasNombres1)
         Me.cboVisitaNombreID.mam_DataSource("VisitasRegistros_VisitasNombresCbo", False)
     End Sub
 
     Private Sub butVerVisitaMotivoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerVisitaMotivoID.Click
         frmVisitasMotivos = New frmVisitasMotivos()
-        frmVisitasMotivos.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frmVisitasMotivos)
         Me.cboVisitaMotivoID.mam_DataSource("VisitasRegistros_VisitasMotivosCbo", False)
     End Sub
 
@@ -124,8 +125,7 @@ Public Class frmEntVisitasRegistros
         Dim DBO_VisitasMotivos As New DBO_VisitasMotivos
         frmEntArticulosDocumentosVisitasMotivos = New frmEntVisitasMotivos(DBO_VisitasMotivos, 1, False)
         frmEntArticulosDocumentosVisitasMotivos.Text = "Insertar"
-        frmEntArticulosDocumentosVisitasMotivos.ShowDialog()
-
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frmEntArticulosDocumentosVisitasMotivos)
         Me.cboVisitaMotivoID.mam_DataSource("VisitasRegistros_VisitasMotivosCbo", False)
     End Sub
 

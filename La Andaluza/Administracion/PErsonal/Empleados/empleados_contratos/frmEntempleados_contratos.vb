@@ -125,26 +125,26 @@ Public Class frmEntempleados_contratos
 
     Private Sub butVerid_tipoContrato_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerid_tipoContrato.Click
         Dim frmEnt As New frmTipos_contratos()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddid_tipoContrato_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddid_tipoContrato.Click
         Dim DBO_Tipos_contratos As New DBO_Tipos_contratos
         Dim frmEnt As New frmEntTipos_contratos(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spTipos_contratos, DBO_Tipos_contratos)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTipos_contratos
         s.cargar_Tipos_contratos(Me.cboid_tipoContrato)
     End Sub
 
     Private Sub butVerid_puestoTrabajo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerid_puestoTrabajo.Click
         Dim frmEnt As New frmPuestosTrabajos()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddid_puestoTrabajo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddid_puestoTrabajo.Click
         Dim DBO_PuestosTrabajos As New DBO_PuestosTrabajos
         Dim frmEnt As New frmEntPuestosTrabajos(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spPuestosTrabajos, DBO_PuestosTrabajos)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spPuestosTrabajos
         s.cargar_PuestosTrabajos(Me.cboid_puestoTrabajo)
     End Sub

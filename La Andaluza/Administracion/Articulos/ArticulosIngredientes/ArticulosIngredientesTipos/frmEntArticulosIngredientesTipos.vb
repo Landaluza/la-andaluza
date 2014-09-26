@@ -44,6 +44,6 @@ Public Class frmEntArticulosIngredientesTipos
    End Sub
 
     Private Sub frmEntArticulosIngredientesTipos_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(panContenidos, Me)
+        BasesParaCompatibilidad.Pantalla.centerIn(panContenidos, Me)
     End Sub
 End Class

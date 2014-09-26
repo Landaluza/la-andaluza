@@ -86,12 +86,12 @@ Public Class frmEntAlturas
     Private Sub butAddPiernaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddPiernaID.Click
         Dim DBO_Piernas As New DBO_Piernas
         Dim frmEnt As New frmEntPiernas(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spPiernas, DBO_Piernas)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spPiernas
         s.cargar_Piernas(Me.cboPierna)
     End Sub
 
     Private Sub frmEntAlturas_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(CType(Me.tlpMiddle, Control), Me)
+        BasesParaCompatibilidad.pantalla.centerIn(CType(Me.tlpMiddle, Control), Me)
     End Sub
 End Class

@@ -79,15 +79,15 @@ Public Class frmEntAguaPotablePuntosMuestreos
 
    Private Sub butVerResponsableID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerResponsableID.Click
        Dim frmEnt As New frmEmpleados()
-       frmEnt.ShowDialog()
-   End Sub
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+    End Sub
 
-   Private Sub butAddResponsableID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddResponsableID.Click
-       Dim DBO_Empleados As New DBO_Empleados
+    Private Sub butAddResponsableID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddResponsableID.Click
+        Dim DBO_Empleados As New DBO_Empleados
         Dim frmEnt As New frmEntEmpleados(BasesParaCompatibilidad.DetailedSimpleForm.INSERCION, New spEmpleados, New DBO_Empleados)
-       frmEnt.ShowDialog()
-       dim s as new spEmpleados
-       s.cargar_empleados(Me.cboResponsable)
-   End Sub
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+        Dim s As New spEmpleados
+        s.cargar_empleados(Me.cboResponsable)
+    End Sub
 
 End Class

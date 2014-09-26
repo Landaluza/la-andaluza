@@ -53,13 +53,13 @@ Public Class frmEntNoticias_TiposUsuarios
 
     Private Sub butVerId_tipoUsuario_Click(sender As System.Object, e As System.EventArgs) Handles butVerId_tipoUsuario.Click
         Dim frm As New frmTiposUsuarios
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         spTiposUsuarios.cargar_TiposUsuarios(Me.cbotipoUsuario)
     End Sub
 
     Private Sub butAddId_tipoUsuario_Click(sender As System.Object, e As System.EventArgs) Handles butAddId_tipoUsuario.Click
         Dim frm As New frmEntTiposUsuarios
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         spTiposUsuarios.cargar_TiposUsuarios(Me.cbotipoUsuario)
     End Sub
 End Class

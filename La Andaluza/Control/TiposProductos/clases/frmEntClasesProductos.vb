@@ -78,6 +78,6 @@ Public Class frmEntClasesProductos
     End Sub
 
     Private Sub frmEntClasesProductos_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(CType(Me.tlpMiddle, Control), Me)
+        BasesParaCompatibilidad.pantalla.centerIn(CType(Me.tlpMiddle, Control), Me)
     End Sub
 End Class

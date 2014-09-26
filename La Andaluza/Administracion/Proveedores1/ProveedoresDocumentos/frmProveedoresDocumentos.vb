@@ -50,7 +50,7 @@ Public Class frmProveedoresDocumentos
 
         Using frmEnt
             frmEnt.Text = String.Format("{0} {1}", TipoAction, Me.Text)
-            frmEnt.ShowDialog()
+            BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         End Using
 
         dgvFill()

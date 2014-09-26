@@ -76,13 +76,13 @@ Public Class frmEntClasesIncidencias
 
     Private Sub butVerid_procesoCalidad_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim frmEnt As New frmProcesosCalidad()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddid_procesoCalidad_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim DBO_ProcesosCalidad As New DBO_ProcesosCalidad
         Dim frmEnt As New frmEntProcesosCalidad(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spProcesosCalidad, DBO_ProcesosCalidad)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spProcesosCalidad
         s.cargar_ProcesosCalidad(Me.cboid_procesoCalidad)
     End Sub

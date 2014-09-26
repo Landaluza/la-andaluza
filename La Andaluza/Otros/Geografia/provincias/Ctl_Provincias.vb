@@ -17,7 +17,7 @@
         dboProvincia.Id_pais = id_pais
 
         Dim frm As New frmEntProvincias(BasesParaCompatibilidad.DetailedSimpleForm.VISION, New spProvincias, dboProvincia)
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         Try
             Me.sp_provincias.cargar_ComboBox(comboProvincias, id_pais)
         Catch ex As Exception

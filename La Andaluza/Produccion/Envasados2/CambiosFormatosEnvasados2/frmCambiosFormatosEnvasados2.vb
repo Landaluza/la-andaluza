@@ -51,7 +51,7 @@ Public Class frmCambiosFormatosEnvasados2
         m_CambiosFormatosEnvasados2.FormatoEnvasadoAID = m_FormatoEnvasadoID
 
         frmEnt = New frmEntCambiosFormatosEnvasados2(TipoAction, m_CambiosFormatosEnvasados2, m_Pos, m_VerID, Me.m_FormatoEnvasadoID)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 
         dgvFill()
 

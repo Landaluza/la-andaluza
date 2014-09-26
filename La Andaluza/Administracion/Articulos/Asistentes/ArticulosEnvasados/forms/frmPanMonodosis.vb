@@ -109,7 +109,7 @@
     End Function
 
     Private Sub frmPanMonodosis_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.Pancontenidos, Me)
+        BasesParaCompatibilidad.Pantalla.centerIn(Me.Pancontenidos, Me)
     End Sub
 
     Private Sub cboformato_SelectedValueChanged(sender As System.Object, e As System.EventArgs) Handles cboformato.SelectedValueChanged
@@ -133,14 +133,14 @@
 
     Private Sub btnverMarcas_Click(sender As System.Object, e As System.EventArgs) Handles btnverMarcas.Click
         Dim frm As New frmmarcas
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         Dim sp As New spmarcas
         sp.cargar_marcas(Me.cboMarca)
     End Sub
 
     Private Sub btnaddMarcas_Click(sender As System.Object, e As System.EventArgs) Handles btnaddMarcas.Click
         Dim frm As New frmEntmarcas
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         Dim sp As New spmarcas
         sp.cargar_marcas(Me.cboMarca)
     End Sub

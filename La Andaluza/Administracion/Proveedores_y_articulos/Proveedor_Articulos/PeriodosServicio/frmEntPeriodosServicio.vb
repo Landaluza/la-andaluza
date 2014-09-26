@@ -91,12 +91,12 @@ Public Class frmEntPeriodosServicio
     Private Sub butAddMotivoCeseServicioID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddMotivoCeseServicioID.Click
         Dim DBO_MotivosCeseServicio As New DBO_MotivosCeseServicio
         Dim frmEnt As New frmEntMotivosCeseServicio(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spMotivosCeseServicio, DBO_MotivosCeseServicio)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spMotivosCeseServicio
         s.cargar_MotivosCeseServicio(Me.cboMotivoCeseServicio)
     End Sub
 
     Private Sub frmEntPeriodosServicio_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(CType(Me.tlpMiddle, Control), Me)
+        BasesParaCompatibilidad.Pantalla.centerIn(CType(Me.tlpMiddle, Control), Me)
     End Sub
 End Class

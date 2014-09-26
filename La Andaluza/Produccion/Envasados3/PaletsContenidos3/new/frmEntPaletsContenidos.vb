@@ -153,7 +153,7 @@ Public Class frmEntPaletsContenidos
 
 
     Private Sub frmEntPaletsContenidos_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.Panel1, Me)
+        BasesParaCompatibilidad.pantalla.centerIn(Me.Panel1, Me)
         'If Me.ModoDeApertura = frmPaletsProducidos.COMPLETAR Then
         '    Me.Text.Replace("Ver ", "")
         '    Me.butGuardar.Visible = True

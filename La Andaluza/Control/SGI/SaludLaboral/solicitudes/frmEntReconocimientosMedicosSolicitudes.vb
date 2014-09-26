@@ -89,7 +89,7 @@ Public Class frmEntReconocimientosMedicosSolicitudes
 
     Private Sub butVerReconocimientoMedicoTipoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerReconocimientoMedicoTipoID.Click
         Dim frmEnt As New frmReconocimientosMedicosTipos()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spReconocimientosMedicosTipos
         s.cargar_ReconocimientosMedicosTipos(Me.cboReconocimientoMedicoTipo)
     End Sub
@@ -97,14 +97,14 @@ Public Class frmEntReconocimientosMedicosSolicitudes
     Private Sub butAddReconocimientoMedicoTipoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddReconocimientoMedicoTipoID.Click
         Dim DBO_ReconocimientosMedicosTipos As New DBO_ReconocimientosMedicosTipos
         Dim frmEnt As New frmEntReconocimientosMedicosTipos(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spReconocimientosMedicosTipos, DBO_ReconocimientosMedicosTipos)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spReconocimientosMedicosTipos
         s.cargar_ReconocimientosMedicosTipos(Me.cboReconocimientoMedicoTipo)
     End Sub
 
     Private Sub butVerProveedorID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerProveedorID.Click
         Dim frmEnt As New frmProveedores()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s2 As New spProveedores
         s2.cargar_ComboBox(Me.cboProveedor)
     End Sub
@@ -112,7 +112,7 @@ Public Class frmEntReconocimientosMedicosSolicitudes
     Private Sub butAddProveedorID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddProveedorID.Click
         Dim DBO_Proveedores As New DBO_Proveedores
         Dim frmEnt As New frmEntProveedores(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spProveedores, DBO_Proveedores)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s2 As New spProveedores
         s2.cargar_ComboBox(Me.cboProveedor)
     End Sub

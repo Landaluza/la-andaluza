@@ -133,7 +133,7 @@ Public Class frmEntTiposCajas
     Private Sub butAddTipoBotellaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddTipoBotellaID.Click
         Dim DBO_TiposBotellas As New DBO_TiposBotellas
         Dim frmEnt As New frmEntTiposBotellas(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spTiposBotellas, DBO_TiposBotellas)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTiposBotellas
         s.cargar_TiposBotellas(Me.cboTipoBotella)
     End Sub
@@ -146,7 +146,7 @@ Public Class frmEntTiposCajas
     Private Sub butAddid_MovimentoEncajado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddid_MovimentoEncajado.Click
         Dim DBO_PaletsMovimientosTipos As New DBO_PaletsMovimientosTipos
         Dim frmEnt As New frmEntPaletsMovimientosTipos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spPaletsMovimientosTipos, DBO_PaletsMovimientosTipos)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spPaletsMovimientosTipos
         s.cargar_PaletsMovimientosTipos(Me.cboid_MovimentoEncajado)
     End Sub
@@ -159,12 +159,12 @@ Public Class frmEntTiposCajas
     Private Sub butAddid_tipoEnvase_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddid_tipoEnvase.Click
         Dim DBO_tiposEnvases As New DBO_tiposEnvases
         Dim frmEnt As New frmEnttiposEnvases(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New sptiposEnvases, DBO_tiposEnvases)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New sptiposEnvases
         s.cargar_tiposEnvases(Me.cboid_tipoEnvase)
     End Sub
 
     Private Sub frmEntTiposCajas_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(CType(Me.tlpMiddle, Control), Me)
+        BasesParaCompatibilidad.Pantalla.centerIn(CType(Me.tlpMiddle, Control), Me)
     End Sub
 End Class

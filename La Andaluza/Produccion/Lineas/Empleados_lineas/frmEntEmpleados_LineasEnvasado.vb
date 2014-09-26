@@ -70,26 +70,26 @@ Public Class frmEntEmpleados_LineasEnvasado
 
     Private Sub butVerId_Empleado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim frmEnt As New frmEmpleados()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddId_Empleado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim DBO_Empleados As New DBO_Empleados
         Dim frmEnt As New frmEntEmpleados(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spEmpleados, DBO_Empleados)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spEmpleados
         s.cargar_Empleados(Me.cboEmpleado)
     End Sub
 
     Private Sub butVerId_LineaEnvasado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim frmEnt As New frmLineasEnvasado()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddId_LineaEnvasado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim DBO_LineasEnvasado As New DBO_LineasEnvasado
         Dim frmEnt As New frmEntLineasEnvasado(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spLineasEnvasado, DBO_LineasEnvasado)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spLineasEnvasado
         s.cargar_LineasEnvasado(Me.cboLineaEnvasado)
     End Sub

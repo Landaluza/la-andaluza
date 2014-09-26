@@ -87,9 +87,9 @@ Public Class frmIncidenciasEnvasadosAsignables
     End Sub
 
     Private Sub frmIncidenciasEnvasadosAsignables_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.ToolStrip1, Me.PanBotonera)
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.titulo1, Me.PanTitulo)
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.titulo2, Me.panTitulo2)
+        BasesParaCompatibilidad.pantalla.centerIn(Me.ToolStrip1, Me.PanBotonera)
+        BasesParaCompatibilidad.pantalla.centerIn(Me.titulo1, Me.PanTitulo)
+        BasesParaCompatibilidad.pantalla.centerIn(Me.titulo2, Me.panTitulo2)
     End Sub
 
 

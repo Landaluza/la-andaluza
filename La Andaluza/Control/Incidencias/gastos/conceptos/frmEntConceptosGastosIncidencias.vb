@@ -101,7 +101,7 @@ Public Class frmEntConceptosGastosIncidencias
     Private Sub butAddId_tiposConceptos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_tiposConceptos.Click
         Dim DBO_TiposConceptos As New DBO_TiposConceptos
         Dim frmEnt As New frmEntTiposConceptos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spTiposConceptos, DBO_TiposConceptos)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTiposConceptos
         s.cargar_TiposConceptos(Me.cbotiposConceptos)
     End Sub
@@ -114,12 +114,12 @@ Public Class frmEntConceptosGastosIncidencias
     Private Sub butAddId_medidaProducto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_medidaProducto.Click
         Dim DBO_MedidasProductos As New DBO_MedidasProductos
         Dim frmEnt As New frmEntMedidasProductos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spMedidasProductos, DBO_MedidasProductos)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spMedidasProductos
         s.cargar_MedidasProductos(Me.cbomedidaProducto)
     End Sub
 
     Private Sub frmEntConceptosGastosIncidencias_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(CType(Me.tlpMiddle, Control), Me)
+        BasesParaCompatibilidad.pantalla.centerIn(CType(Me.tlpMiddle, Control), Me)
     End Sub
 End Class

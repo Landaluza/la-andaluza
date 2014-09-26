@@ -142,7 +142,7 @@ Public Class frmEntPedidosProveedoresMaestros
 
         frmEnt = New frmEntPedidosProveedoresDetalles(DBO_PedidoProveedorDetalle, m_Pos)
         frmEnt.Text = String.Format("{0} {1}", TipoAction, Me.Text)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 
         RellenarDgvNivel1()
     End Sub
@@ -223,8 +223,7 @@ Public Class frmEntPedidosProveedoresMaestros
 
         frmEntPedidosProveedoresEntregas = New frmEntPedidosProveedoresEntregas(DBO_PedidoProveedorEntrega, m_Pos)
         frmEntPedidosProveedoresEntregas.Text = String.Format("{0} {1}", TipoAction, Me.Text)
-        frmEntPedidosProveedoresEntregas.ShowDialog()
-
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frmEntPedidosProveedoresEntregas)
         RellenarDgvNivel1()
     End Sub
 

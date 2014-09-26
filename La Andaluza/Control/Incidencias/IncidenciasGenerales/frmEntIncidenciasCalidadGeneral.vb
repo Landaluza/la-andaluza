@@ -147,44 +147,44 @@ Public Class frmEntIncidenciasCalidadGeneral
 
     Private Sub butVerId_empleado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_empleado.Click
         Dim frmEnt As New frmEmpleados()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddId_empleado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_empleado.Click
         Dim DBO_Empleados As New DBO_Empleados
         Dim frmEnt As New frmEntEmpleados(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spEmpleados, DBO_Empleados)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spEmpleados
         s.cargar_Empleados(Me.cboempleado)
     End Sub
 
     Private Sub butVerId_ArticuloTipo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_ArticuloTipo.Click
         Dim frmEnt As New frmArticulosTipos()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddId_ArticuloTipo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_ArticuloTipo.Click
         Dim DBO_ArticulosTipos As New DBO_ArticulosTipos
         Dim frmEnt As New frmEntArticulosTipos(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spArticulosTipos, DBO_ArticulosTipos)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spArticulosTipos
         s.cargar_ArticulosTipos(Me.cboArticuloTipo)
     End Sub
 
     Private Sub butVerId_procesoCalidad_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_procesoCalidad.Click
         Dim frmEnt As New frmProcesosCalidad()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddId_procesoCalidad_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_procesoCalidad.Click
         Dim DBO_ProcesosCalidad As New DBO_ProcesosCalidad
         Dim frmEnt As New frmEntProcesosCalidad(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spProcesosCalidad, DBO_ProcesosCalidad)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spProcesosCalidad
         s.cargar_ProcesosCalidad(Me.cboprocesoCalidad)
     End Sub
 
     Private Sub frmEntIncidenciasCalidadGeneral_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.Panel1, Me.SplitContainer1.Panel1)
+        BasesParaCompatibilidad.pantalla.centerIn(Me.Panel1, Me.SplitContainer1.Panel1)
     End Sub
 End Class

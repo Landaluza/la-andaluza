@@ -101,7 +101,7 @@ Public Class frmEntTiposBotellas
     Private Sub butAddid_tipoEnvase_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddid_tipoEnvase.Click
         Dim DBO_tiposEnvases As New DBO_tiposEnvases
         Dim frmEnt As New frmEnttiposEnvases(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New sptiposEnvases, DBO_tiposEnvases)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New sptiposEnvases
         s.cargar_tiposEnvases(Me.cboid_tipoEnvase)
     End Sub
@@ -114,12 +114,12 @@ Public Class frmEntTiposBotellas
     Private Sub butAddid_medidaProducto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddid_medidaProducto.Click
         Dim DBO_MedidasProductos As New DBO_MedidasProductos
         Dim frmEnt As New frmEntMedidasProductos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spMedidasProductos, DBO_MedidasProductos)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spMedidasProductos
         s.cargar_MedidasProductos(Me.cboid_medidaProducto)
     End Sub
 
     Private Sub frmEntTiposBotellas_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(CType(Me.tlpMiddle, Control), Me)
+        BasesParaCompatibilidad.Pantalla.centerIn(CType(Me.tlpMiddle, Control), Me)
     End Sub
 End Class

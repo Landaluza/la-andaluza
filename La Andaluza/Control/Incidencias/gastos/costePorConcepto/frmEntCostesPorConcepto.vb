@@ -81,12 +81,12 @@ Public Class frmEntCostesPorConcepto
    Private Sub butAddId_ConceptosGastosIncidencias_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_ConceptosGastosIncidencias.Click
        Dim DBO_ConceptosGastosIncidencias As New DBO_ConceptosGastosIncidencias
        Dim frmEnt As New frmEntConceptosGastosIncidencias(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, new spConceptosGastosIncidencias,DBO_ConceptosGastosIncidencias)
-       frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
        dim s as new spConceptosGastosIncidencias
        s.cargar_ConceptosGastosIncidencias(Me.cboConceptosGastosIncidencias)
    End Sub
 
    Private Sub frmEntCostesPorConcepto_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-       BasesParaCompatibilidad.DetailedSimpleForm.centerIn(ctype(Me.tlpMiddle, Control), Me)
+        BasesParaCompatibilidad.pantalla.centerIn(CType(Me.tlpMiddle, Control), Me)
    End Sub
 End Class

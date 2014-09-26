@@ -49,7 +49,7 @@ Public Class frmWstepArticuloTerciario
     End Property
 
     Private Sub frmWstepArticuloTerciario_Resize(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.panContenidos, Me)
+        BasesParaCompatibilidad.Pantalla.centerIn(Me.panContenidos, Me)
     End Sub
 
     Public Sub establecerValores() Implements BasesParaCompatibilidad.wizardable.EstablecerValores
@@ -207,7 +207,7 @@ Public Class frmWstepArticuloTerciario
 
     Private Sub btnSecundario_Click(sender As System.Object, e As System.EventArgs) Handles Button3.Click
         Dim frm As New frmAsignarArticuloAarticulo(Me.m_DBO_ArticulosEnvasesTerciarios1.ArticuloID)
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         If frm.id <> 0 Then
             Me.m_DBO_ArticulosEnvasesTerciarios1.id_ArticuloEnvaseSecundario = frm.id
             Me.txtSecundario.Text = frm.descripcion
@@ -236,21 +236,21 @@ Public Class frmWstepArticuloTerciario
 
     Private Sub btnverMarcas_Click(sender As System.Object, e As System.EventArgs) Handles Button2.Click
         Dim frm As New frmmarcas
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         Dim sp As New spmarcas
         sp.cargar_marcas(Me.cboMarca)
     End Sub
 
     Private Sub btnaddMarcas_Click(sender As System.Object, e As System.EventArgs) Handles Button1.Click
         Dim frm As New frmEntmarcas
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         Dim sp As New spmarcas
         sp.cargar_marcas(Me.cboMarca)
     End Sub
 
     Private Sub btnAdCabecera_Click(sender As System.Object, e As System.EventArgs) Handles butAdCabecera.Click
         Dim frm As New frmEntcabecerasEtiquetas
-        If frm.ShowDialog() = Windows.Forms.DialogResult.OK Then
+        If BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm) = Windows.Forms.DialogResult.OK Then
             Try
                 Dim spcabecera As New spcabecerasEtiquetas
                 spcabecera.cargar_cabecerasEtiquetas(Me.cboCabeceraEtiqueta)
@@ -261,7 +261,7 @@ Public Class frmWstepArticuloTerciario
 
     Private Sub butverCAbecera_Click(sender As System.Object, e As System.EventArgs) Handles butverCAbecera.Click
         Dim frm As New frmcabecerasEtiquetas
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
 
     End Sub
 End Class

@@ -58,7 +58,7 @@ Public Class frmRevisionLotes
                        Convert.ToInt32(Me.dgvGeneral.CurrentRow.Cells("TipoLoteId").Value), _
                        Convert.ToInt32(Me.dgvGeneral.CurrentRow.Cells("TipoProductoId").Value), _
                        False)
-        Frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         ' dboRevisionLotes = CType(sp, spRevisionLotes).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer))
         'If Not dboRevisionLotes Is Nothing Then
         '    newRegForm.SetDataBussinesObject(ctype(Me.dboRevisionLotes,BasesParaCompatibilidad.databussines))

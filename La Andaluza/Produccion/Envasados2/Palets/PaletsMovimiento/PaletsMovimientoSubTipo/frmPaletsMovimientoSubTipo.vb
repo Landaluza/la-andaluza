@@ -78,7 +78,7 @@ Public Class frmPaletsMovimientoSubTipo
         Else
             frmEnt.Text = String.Format("Insertar {0}", Me.Text)
         End If
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
 

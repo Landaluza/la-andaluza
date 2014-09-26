@@ -67,23 +67,23 @@ Public Class frmEntTiposProductos_ClasesProductos
     Private Sub butAddId_TipoProducto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim DBO_TiposProductos As New DBO_TiposProductos
         Dim frmEnt As New frmEntTiposProductos(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spTiposProductos, DBO_TiposProductos)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
-   Private Sub butVerId_ClaseProducto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_ClaseProducto.Click
-       Dim frmEnt As New frmClasesProductos()
-       guiMain.añadirPestaña(frmEnt)
-   End Sub
+    Private Sub butVerId_ClaseProducto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_ClaseProducto.Click
+        Dim frmEnt As New frmClasesProductos()
+        guiMain.añadirPestaña(frmEnt)
+    End Sub
 
-   Private Sub butAddId_ClaseProducto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_ClaseProducto.Click
-       Dim DBO_ClasesProductos As New DBO_ClasesProductos
-       Dim frmEnt As New frmEntClasesProductos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, new spClasesProductos,DBO_ClasesProductos)
-       frmEnt.ShowDialog()
-       dim s as new spClasesProductos
-       s.cargar_ClasesProductos(Me.cboClaseProducto)
-   End Sub
+    Private Sub butAddId_ClaseProducto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_ClaseProducto.Click
+        Dim DBO_ClasesProductos As New DBO_ClasesProductos
+        Dim frmEnt As New frmEntClasesProductos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spClasesProductos, DBO_ClasesProductos)
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+        Dim s As New spClasesProductos
+        s.cargar_ClasesProductos(Me.cboClaseProducto)
+    End Sub
 
    Private Sub frmEntTiposProductos_ClasesProductos_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-       BasesParaCompatibilidad.DetailedSimpleForm.centerIn(ctype(Me.tlpMiddle, Control), Me)
+        BasesParaCompatibilidad.pantalla.centerIn(CType(Me.tlpMiddle, Control), Me)
    End Sub
 End Class

@@ -75,18 +75,18 @@ Public Class frmEntPoblaciones
 
    Private Sub butVerId_provincia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_provincia.Click
        Dim frmEnt As New frmProvincias()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spProvincias
         s.cargar_ComboBox(cboId_provincia, s.Select_Record(Me.cboId_provincia.SelectedValue).Id_pais)
-   End Sub
+    End Sub
 
-   Private Sub butAddId_provincia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_provincia.Click
-       Dim DBO_Provincias As New DBO_Provincias
+    Private Sub butAddId_provincia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_provincia.Click
+        Dim DBO_Provincias As New DBO_Provincias
         Dim frmEnt As New frmEntProvincias(frmProvincias.ACCION_INSERTAR, New spProvincias, DBO_Provincias)
-       frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spProvincias
 
         s.cargar_ComboBox(cboId_provincia, s.Select_Record(Me.cboId_provincia.SelectedValue).Id_pais)
-   End Sub
+    End Sub
 
 End Class

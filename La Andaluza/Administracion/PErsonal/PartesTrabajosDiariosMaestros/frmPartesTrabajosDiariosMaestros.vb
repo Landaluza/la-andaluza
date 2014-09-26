@@ -41,7 +41,7 @@ Public Class frmPartesTrabajosDiariosMaestros
 
         frmEnt = New frmEntPartesTrabajosDiariosMaestros(m_DBO_ParteTrabajoDiarioMaestro)
         frmEnt.Text = String.Format("{0} {1}", TipoAction, Me.Text)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 
 
         dgvFill()

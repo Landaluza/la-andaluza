@@ -64,12 +64,12 @@ Public Class frmEntTiposDEpositoPorDEposito
     Private Sub butAddId_TipoDeposito_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_TipoDeposito.Click
         Dim DBO_TiposDepositos As New DBO_TiposDepositos
         Dim frmEnt As New frmEntTiposDepositos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spTiposDepositos, DBO_TiposDepositos)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTiposDepositos
         s.cargar_TiposDepositos(Me.cboTipoDeposito)
     End Sub
 
     Private Sub frmEntDepositos_TiposDepositos_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(CType(Me.tlpMiddle, Control), Me)
+        BasesParaCompatibilidad.pantalla.centerIn(CType(Me.tlpMiddle, Control), Me)
     End Sub
 End Class

@@ -96,14 +96,14 @@ Public Class frmFormatosEnvasados2
                 Dim result As DialogResult = DialogResult.OK
                 If spAux.hay_empleados_pendientes(Me.m_Envasado.EnvasadoID, Me.linea) Then
                     Dim frm As New frmEntPersonalEnvasadoFinArticulo(Me.m_Envasado.EnvasadoID, Me.linea)
-                    frm.ShowDialog()
+                    BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
                     result = frm.resultado
                 End If
                 If result = DialogResult.OK Then
                     If spAux.hay_empleados_pendientes_dias_anteriores(Me.linea) Then
                         Dim env As Integer = spAux.recuperar_envasado_empleados_pendientes_dias_anteriores(Me.linea)
                         Dim frm As New frmEntPersonalEnvasadoFinArticulo(env, Me.linea)
-                        frm.ShowDialog()
+                        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
                         result = frm.resultado
                     End If
 
@@ -112,7 +112,7 @@ Public Class frmFormatosEnvasados2
                         m_FormatoEnvasado.TipoFormatoLineaID = Me.linea
                         Dim FrmEnt As New frmEntFormatosEnvasados2(TipoAction, Me.linea)
 
-                        FrmEnt.ShowDialog()
+                        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
                     End If
                 End If
             End If
@@ -126,7 +126,7 @@ Public Class frmFormatosEnvasados2
 
                 Dim FrmEnt As New frmEntFormatosEnvasados2(TipoAction, CantidadEnvasada, m_FormatoEnvasado, Me.linea)
 
-                FrmEnt.ShowDialog()
+                BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
             Catch ex As Exception
                 MessageBox.Show("Asegurese de seleccionar una fila.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             End Try

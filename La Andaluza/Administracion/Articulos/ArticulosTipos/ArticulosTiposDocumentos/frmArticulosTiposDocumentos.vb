@@ -58,7 +58,7 @@ Public Class frmArticulosTiposDocumentos
 
         frmEnt = New frmEntArticulosTiposDocumentos(m_ArticuloTipoDocumento, m_Pos, m_VerID)
         frmEnt.Text = String.Format("{0} {1}", TipoAction, Me.Text)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 
         dgvFill()
     End Sub

@@ -37,7 +37,7 @@ Public Class frmWstepGraneles
         EstablecerValores()
     End Sub
     Private Sub frmWstepGraneles_Resize(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(PanContenidos, Me)
+        BasesParaCompatibilidad.Pantalla.centerIn(PanContenidos, Me)
     End Sub
 
 
@@ -215,7 +215,7 @@ Public Class frmWstepGraneles
 
     Private Sub butaddTProducto_Click(sender As System.Object, e As System.EventArgs) Handles butaddTProducto.Click
         Dim frm As New frmTiposProductos
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         spTiposProductos.cargar_ComboBox(Me.cboTipoProducto)
     End Sub
 End Class

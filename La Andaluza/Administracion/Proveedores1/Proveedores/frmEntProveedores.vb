@@ -344,7 +344,7 @@ Public Class frmEntProveedores
     End Function
 
     Private Sub SplitContainer1_Panel2_Resize(sender As System.Object, e As System.EventArgs) Handles SplitContainer1.Panel2.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerHorizontalyIn(Me.gbProveedorCero, SplitContainer1.Panel2)
+        BasesParaCompatibilidad.Pantalla.centerHorizontalyIn(Me.gbProveedorCero, SplitContainer1.Panel2)
     End Sub
 
     Private Sub cbPais_SelectedValueChanged(sender As System.Object, e As System.EventArgs) Handles cbPais.SelectedValueChanged
@@ -414,7 +414,7 @@ Public Class frmEntProveedores
 
     Private Sub btnTipoProveedorCeroAdd_Click(sender As System.Object, e As System.EventArgs) Handles btnTipoProveedorCeroAdd.Click
         Dim frm As New frmEntTiposProveedoresCero(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spTiposProveedoresCero, New DBO_TiposProveedoresCero)
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         sptiposProveedoresCero.cargar_ComboBox(Me.cboTipoProveedorCero)
     End Sub
 
@@ -463,7 +463,7 @@ Public Class frmEntProveedores
         End If
 
         Dim frm As New frmEntPoblaciones(BasesParaCompatibilidad.DetailedSimpleForm.VISION, New spPoblaciones, dboPoblacion)
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
 
         Try
             Me.spPoblaciones.cargar_ComboBox(Me.cbPoblacion, Me.cbProvincia2.SelectedValue)
@@ -477,7 +477,7 @@ Public Class frmEntProveedores
 
     Private Sub btnAddPais_Click(sender As System.Object, e As System.EventArgs) Handles btnAddPais.Click, btnAddPais2.Click
         Dim frm As New frmEntPaises
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         spPaises.cargar_ComboBox(Me.cbPais)
         spPaises.cargar_ComboBox(Me.cbPais2)
     End Sub
@@ -491,7 +491,7 @@ Public Class frmEntProveedores
         End If
 
         Dim frm As New frmEntProvincias(BasesParaCompatibilidad.DetailedSimpleForm.VISION, New spProvincias, dboProvincia)
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         Try
             Me.spProvincias.cargar_ComboBox(cbProvincia, Me.cbPais.SelectedValue)
         Catch ex As Exception

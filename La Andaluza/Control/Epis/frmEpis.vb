@@ -72,7 +72,7 @@ Public Class frmEpis
 
         Dim frmEnt As New frmEntEpis(m_Epi, m_Pos)
         frmEnt.Text = String.Format("{0} {1}", TipoAction, Me.Text)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         dgvFill() ' GeneralBindingSource. dataSource = dtb.consultar(spSelectDgv)
     End Sub
 

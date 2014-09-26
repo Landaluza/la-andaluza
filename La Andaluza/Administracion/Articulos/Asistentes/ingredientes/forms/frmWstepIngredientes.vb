@@ -274,12 +274,12 @@ Public Class frmWstepIngredientes
     Private Sub btnAddTipo_Click(sender As System.Object, e As System.EventArgs) Handles btnAddTipo.Click
         frmEnt = New frmEntArticulosIngredientesTipos(New DBO_ArticulosIngredientesTipos, 0, False, Me.m_IDI)
         frmEnt.Text = String.Format("{0} {1}", BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, If(Me.m_IDI, "ArticulosIngredientesIDITipo", "ArticulosIngredientesTipo"))
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         cargartipos()
     End Sub
 
     Private Sub frmWstepIngredientes_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.Panel1, Me)
+        BasesParaCompatibilidad.Pantalla.centerIn(Me.Panel1, Me)
     End Sub
 
     Private Sub cbCreartipoProducto_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles cbCreartipoProducto.CheckedChanged
@@ -299,7 +299,7 @@ Public Class frmWstepIngredientes
 
     Private Sub btnAddTProducto_Click(sender As System.Object, e As System.EventArgs) Handles btnAddTProducto.Click
         Dim frm As New frmTiposProductos
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         spTiposProductos.cargar_ComboBox(Me.cboTipoProducto)
     End Sub
 End Class

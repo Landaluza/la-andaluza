@@ -49,6 +49,6 @@ Public Class frmEntGestionesPendientes
     End Sub
 
     Private Sub frmEntGestionesPendientes_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.tlpMiddle, Me)
+        BasesParaCompatibilidad.Pantalla.centerIn(Me.tlpMiddle, Me)
     End Sub
 End Class

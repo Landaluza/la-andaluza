@@ -109,64 +109,64 @@ Public Class frmEntTiposControlesLotesPlantilla2
    Private Sub butAddId_TipoControl_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_TipoControl.Click
        Dim DBO_TiposControlesLotes As New DBO_TiposControlesLotes
        Dim frmEnt As New frmEntTiposControlesLotes(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, new spTiposControlesLotes,DBO_TiposControlesLotes)
-       frmEnt.ShowDialog()
-       dim s as new spTiposControlesLotes
-       s.cargar_TiposControlesLotes(Me.cboTipoControl)
-   End Sub
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+        Dim s As New spTiposControlesLotes
+        s.cargar_TiposControlesLotes(Me.cboTipoControl)
+    End Sub
 
-   Private Sub butVerId_TipoLote_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_TipoLote.Click
-       Dim frmEnt As New frmTiposLotes()
-       guiMain.añadirPestaña(frmEnt)
-   End Sub
+    Private Sub butVerId_TipoLote_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_TipoLote.Click
+        Dim frmEnt As New frmTiposLotes()
+        guiMain.añadirPestaña(frmEnt)
+    End Sub
 
-   Private Sub butAddId_TipoLote_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_TipoLote.Click
-       Dim DBO_TiposLotes As New DBO_TiposLotes
-       Dim frmEnt As New frmEntTiposLotes(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, new spTiposLotes,DBO_TiposLotes)
-       frmEnt.ShowDialog()
-       dim s as new spTiposLotes
-       s.cargar_TiposLotes(Me.cboTipoLote)
-   End Sub
+    Private Sub butAddId_TipoLote_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_TipoLote.Click
+        Dim DBO_TiposLotes As New DBO_TiposLotes
+        Dim frmEnt As New frmEntTiposLotes(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spTiposLotes, DBO_TiposLotes)
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+        Dim s As New spTiposLotes
+        s.cargar_TiposLotes(Me.cboTipoLote)
+    End Sub
 
-   Private Sub butVerId_TipoProducto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_TipoProducto.Click
-       Dim frmEnt As New frmTiposProductos()
-       guiMain.añadirPestaña(frmEnt)
-   End Sub
+    Private Sub butVerId_TipoProducto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_TipoProducto.Click
+        Dim frmEnt As New frmTiposProductos()
+        guiMain.añadirPestaña(frmEnt)
+    End Sub
 
-   Private Sub butAddId_TipoProducto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_TipoProducto.Click
-       Dim DBO_TiposProductos As New DBO_TiposProductos
-       Dim frmEnt As New frmEntTiposProductos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, new spTiposProductos,DBO_TiposProductos)
-       frmEnt.ShowDialog()
-       dim s as new spTiposProductos
+    Private Sub butAddId_TipoProducto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_TipoProducto.Click
+        Dim DBO_TiposProductos As New DBO_TiposProductos
+        Dim frmEnt As New frmEntTiposProductos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spTiposProductos, DBO_TiposProductos)
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+        Dim s As New spTiposProductos
         s.cargar_ComboBox(Me.cboTipoProducto)
-   End Sub
+    End Sub
 
-   Private Sub butVerId_frecuencia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_frecuencia.Click
-       Dim frmEnt As New frmFrecuenciasTiposControlesLotes()
-       guiMain.añadirPestaña(frmEnt)
-   End Sub
+    Private Sub butVerId_frecuencia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_frecuencia.Click
+        Dim frmEnt As New frmFrecuenciasTiposControlesLotes()
+        guiMain.añadirPestaña(frmEnt)
+    End Sub
 
-   Private Sub butAddId_frecuencia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_frecuencia.Click
-       Dim DBO_FrecuenciasTiposControlesLotes As New DBO_FrecuenciasTiposControlesLotes
-       Dim frmEnt As New frmEntFrecuenciasTiposControlesLotes(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, new spFrecuenciasTiposControlesLotes,DBO_FrecuenciasTiposControlesLotes)
-       frmEnt.ShowDialog()
-       dim s as new spFrecuenciasTiposControlesLotes
-       s.cargar_FrecuenciasTiposControlesLotes(Me.cbofrecuencia)
-   End Sub
+    Private Sub butAddId_frecuencia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_frecuencia.Click
+        Dim DBO_FrecuenciasTiposControlesLotes As New DBO_FrecuenciasTiposControlesLotes
+        Dim frmEnt As New frmEntFrecuenciasTiposControlesLotes(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spFrecuenciasTiposControlesLotes, DBO_FrecuenciasTiposControlesLotes)
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+        Dim s As New spFrecuenciasTiposControlesLotes
+        s.cargar_FrecuenciasTiposControlesLotes(Me.cbofrecuencia)
+    End Sub
 
-   Private Sub butVerId_procedimiento_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_procedimiento.Click
-       Dim frmEnt As New frmProcedimientos()
-       guiMain.añadirPestaña(frmEnt)
-   End Sub
+    Private Sub butVerId_procedimiento_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_procedimiento.Click
+        Dim frmEnt As New frmProcedimientos()
+        guiMain.añadirPestaña(frmEnt)
+    End Sub
 
-   Private Sub butAddId_procedimiento_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_procedimiento.Click
-       Dim DBO_Procedimientos As New DBO_Procedimientos
-       Dim frmEnt As New frmEntProcedimientos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, new spProcedimientos,DBO_Procedimientos)
-       frmEnt.ShowDialog()
-       dim s as new spProcedimientos
-       s.cargar_Procedimientos(Me.cboprocedimiento)
-   End Sub
+    Private Sub butAddId_procedimiento_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_procedimiento.Click
+        Dim DBO_Procedimientos As New DBO_Procedimientos
+        Dim frmEnt As New frmEntProcedimientos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spProcedimientos, DBO_Procedimientos)
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+        Dim s As New spProcedimientos
+        s.cargar_Procedimientos(Me.cboprocedimiento)
+    End Sub
 
    Private Sub frmEntTiposControlesLotesPlantilla2_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(CType(Me.tlpMiddle, Control), Me)
+        BasesParaCompatibilidad.pantalla.centerIn(CType(Me.tlpMiddle, Control), Me)
    End Sub
 End Class

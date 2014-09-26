@@ -51,7 +51,7 @@ Public Class frmEntPartesTrabajosDiariosMaestros
     End Sub
     Private Sub butVerEmpleadoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerEmpleadoID.Click
         Dim frmEnt As New frmEmpleados()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
     Private Sub frmEntPartesTrabajosDiariosMaestros_KeyDown(sender As System.Object, e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown
         Me.frHijo.gestionarEventosDeTeclado(e)

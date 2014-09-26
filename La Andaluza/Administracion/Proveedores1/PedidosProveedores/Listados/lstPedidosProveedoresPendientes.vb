@@ -12,7 +12,7 @@ Public Class lstPedidosProveedoresPendientes
 
     Public Sub GenerarListado()
         Dim frm As New frmElegirOrdenListadoPedidos
-        If frm.ShowDialog() = DialogResult.OK Then
+        If BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm) = DialogResult.OK Then
             Me.orden = frm.Seleccion
             Me.fecha = frm.Fecha
             Me.proveedor = frm.Proveedor

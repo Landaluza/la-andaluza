@@ -91,7 +91,7 @@ Public Class frmPanDoypack
     End Function
 
     Private Sub frmPanDoypack_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.Pancontenidos, Me)
+        BasesParaCompatibilidad.Pantalla.centerIn(Me.Pancontenidos, Me)
     End Sub
 
     Private Sub tsadd_Click(sender As System.Object, e As System.EventArgs) Handles tsadd.Click
@@ -141,7 +141,7 @@ Public Class frmPanDoypack
 
     Private Sub añadir()
         Dim frm As New frmSeleccionMonodosis()
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
 
         Me.dbo.Cantidad = frm.monodosis.Cantidad
         dbo.MonodosisID = frm.monodosis.MonodosisID
@@ -211,7 +211,7 @@ Public Class frmPanDoypack
 
     Private Sub modificar()
         Dim frm As New BasesParaCompatibilidad.frmEntrada("Nueva cantidad de la monodosis", "Cantidad")
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         'spdoypack.modify()
         If frm.Result <> String.Empty Then
             Dim dbo As Dbo_DoyPack = spdoypack.selectRecordById(Me.DataGridView1.CurrentRow.Cells("id").Value)
@@ -285,14 +285,14 @@ Public Class frmPanDoypack
 
     Private Sub btnverMarcas_Click(sender As System.Object, e As System.EventArgs) Handles btnverMarcas.Click
         Dim frm As New frmmarcas
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         Dim sp As New spmarcas
         sp.cargar_marcas(Me.cboMarca)
     End Sub
 
     Private Sub btnaddMarcas_Click(sender As System.Object, e As System.EventArgs) Handles btnaddMarcas.Click
         Dim frm As New frmEntmarcas
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         Dim sp As New spmarcas
         sp.cargar_marcas(Me.cboMarca)
     End Sub

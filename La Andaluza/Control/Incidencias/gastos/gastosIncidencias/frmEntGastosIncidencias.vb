@@ -197,64 +197,64 @@ Public Class frmEntGastosIncidencias
     Private Sub butAddId_controlIncidencia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim DBO_ControlIncidencias As New DBO_ControlIncidencias
         Dim frmEnt As New frmEntControlIncidencias(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spControlIncidencias, DBO_ControlIncidencias)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 
     End Sub
 
     Private Sub butVerId_concepto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_concepto.Click
         Dim frmEnt As New frmConceptosGastosIncidencias()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddId_concepto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_concepto.Click
         Dim DBO_ConceptosGastosIncidencias As New DBO_ConceptosGastosIncidencias
         Dim frmEnt As New frmEntConceptosGastosIncidencias(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spConceptosGastosIncidencias, DBO_ConceptosGastosIncidencias)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spConceptosGastosIncidencias
         s.cargar_ConceptosGastosIncidencias(Me.cboconcepto)
     End Sub
 
     Private Sub butVerId_costeConcepto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim frmEnt As New frmCostesPorConcepto()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddId_costeConcepto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_costeConcepto.Click
         Dim DBO_CostesPorConcepto As New DBO_CostesPorConcepto
         Dim frmEnt As New frmEntCostesPorConcepto(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spCostesPorConcepto, DBO_CostesPorConcepto)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spCostesPorConcepto
         s.cargar_CostesPorConcepto(Me.cbocosteConcepto, Convert.ToInt32(Me.cboconcepto.SelectedValue))
     End Sub
 
     Private Sub butVerId_proveedor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_proveedor.Click
         Dim frmEnt As New frmProveedores()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddId_proveedor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_proveedor.Click
         Dim DBO_Proveedores As New DBO_Proveedores
         Dim frmEnt As New frmEntProveedores(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spProveedores, DBO_Proveedores)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spProveedores
         s.cargar_Proveedores(Me.cboproveedor)
     End Sub
 
     Private Sub butVerId_empleado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_empleado.Click
         Dim frmEnt As New frmEmpleados()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddId_empleado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_empleado.Click
         Dim DBO_Empleados As New DBO_Empleados
         Dim frmEnt As New frmEntEmpleados(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spEmpleados, DBO_Empleados)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spEmpleados
         s.cargar_Empleados(Me.cboempleado)
     End Sub
 
     Private Sub frmEntGastosIncidencias_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(CType(Me.tlpMiddle, Control), Me)
+        BasesParaCompatibilidad.pantalla.centerIn(CType(Me.tlpMiddle, Control), Me)
     End Sub
 
 
@@ -281,6 +281,6 @@ Public Class frmEntGastosIncidencias
 
     Private Sub btnVerCosteConvepto_Click(sender As Object, e As EventArgs) Handles btnVerCosteConvepto.Click
         Dim frm As New frmCostesPorConcepto
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
     End Sub
 End Class

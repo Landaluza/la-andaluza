@@ -69,12 +69,12 @@ Public Class frmEntDetallePorProducto
     Private Sub butAddId_FamiliaProducto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_FamiliaProducto.Click
         Dim DBO_FamiliaProducto As New DBO_FamiliaProducto
         Dim frmEnt As New frmEntFamiliaProducto(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spFamiliaProducto, DBO_FamiliaProducto)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spFamiliaProducto
         s.cargar_FamiliaProducto(Me.cboFamiliaProducto)
     End Sub
 
     Private Sub frmEntFamliaProductos_TiposProductos_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(CType(Me.tlpMiddle, Control), Me)
+        BasesParaCompatibilidad.pantalla.centerIn(CType(Me.tlpMiddle, Control), Me)
     End Sub
 End Class

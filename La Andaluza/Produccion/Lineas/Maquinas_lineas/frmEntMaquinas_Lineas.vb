@@ -71,26 +71,26 @@ Public Class frmEntMaquinas_Lineas
 
     Private Sub butVerMaquinaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerMaquinaID.Click
         Dim frmEnt As New frmMaquinas()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddMaquinaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddMaquinaID.Click
         Dim DBO_Maquinas As New DBO_Maquinas
         Dim frmEnt As New frmEntMaquinas(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spMaquinas, DBO_Maquinas)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spMaquinas
         s.cargar_Maquinas(Me.cboMaquina)
     End Sub
 
     Private Sub butVerLineaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim frmEnt As New frmLineasEnvasado()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddLineaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim DBO_LineasEnvasado As New DBO_LineasEnvasado
         Dim frmEnt As New frmEntLineasEnvasado(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spLineasEnvasado, DBO_LineasEnvasado)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spLineasEnvasado
         s.cargar_LineasEnvasado(Me.cboLinea)
     End Sub

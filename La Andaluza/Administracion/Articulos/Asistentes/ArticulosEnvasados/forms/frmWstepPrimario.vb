@@ -30,7 +30,7 @@
     End Sub
 
     Private Sub frmWstepPrimario_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.panContenidos, Me)
+        BasesParaCompatibilidad.Pantalla.centerIn(Me.panContenidos, Me)
     End Sub
 
     Private Sub rbmonodosis_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles rbmonodosis.CheckedChanged, rbNinguno.CheckedChanged, rbDoypack.CheckedChanged

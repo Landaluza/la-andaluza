@@ -42,7 +42,7 @@ Public Class frmArticulosFichasPaletizados1
 
         frmEnt = New frmEntArticulosFichasPaletizados1(m_ArticulosFichasPaletizados1, m_Pos, m_VerID)
         frmEnt.Text = String.Format("{0} {1}", TipoAction, Me.Text)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 
 
         dgvFill()

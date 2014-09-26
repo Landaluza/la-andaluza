@@ -79,13 +79,13 @@ Public Class frmEntAguaPotableConsumos
 
     Private Sub butVerid_factura_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerid_factura.Click
         Dim frmEnt As New frmFacturas()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddid_factura_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddid_factura.Click
         Dim DBO_Facturas As New DBO_Facturas
         Dim frmEnt As New frmEntFacturas(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spFacturas, DBO_Facturas)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spFacturas
         s.cargar_Facturas(Me.cboid_factura)
     End Sub

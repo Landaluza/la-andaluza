@@ -130,12 +130,12 @@ Public Class frmEntEnvasadosProductos
     Private Sub butAddProductoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddProductoID.Click
         Dim DBO_TiposProductos As New DBO_TiposProductos
         Dim frmEnt As New frmEntTiposProductos(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spTiposProductos, DBO_TiposProductos)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTiposProductos
         s.cargar_ComboBox(Me.cboProducto)
     End Sub
 
     Private Sub frmEntEnvasadosProductos_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(CType(Me.tlpMiddle, Control), Me.SplitContainer1.Panel2)
+        BasesParaCompatibilidad.pantalla.centerIn(CType(Me.tlpMiddle, Control), Me.SplitContainer1.Panel2)
     End Sub
 End Class

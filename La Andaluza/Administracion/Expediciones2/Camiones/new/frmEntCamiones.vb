@@ -120,7 +120,7 @@ Public Class frmEntCamiones
     Private Sub butAddAgenciaTransporteID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddAgenciaTransporteID.Click
         Dim DBO_AgenciasTransportes As New DBO_AgenciasTransportes
         Dim frmEnt As New frmEntAgenciasTransportes(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spAgenciasTransportes, DBO_AgenciasTransportes)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spAgenciasTransportes
         s.cargar_AgenciasTransportes(Me.cboAgenciaTransporte)
     End Sub
@@ -133,7 +133,7 @@ Public Class frmEntCamiones
     Private Sub butAddConductorHabitualID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddConductorHabitualID.Click
         Dim DBO_Conductores As New DBO_Conductores
         Dim frmEnt As New frmEntConductores(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spConductores, DBO_Conductores)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spConductores
         s.cargar_Conductores(Me.cboConductorHabitual)
     End Sub
@@ -146,12 +146,12 @@ Public Class frmEntCamiones
     Private Sub butAddCamionTipoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddCamionTipoID.Click
         Dim DBO_CamionesTipos As New DBO_CamionesTipos
         Dim frmEnt As New frmEntCamionesTipos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spCamionesTipos, DBO_CamionesTipos)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spCamionesTipos
         s.cargar_CamionesTipos(Me.cboCamionTipo)
     End Sub
 
     Private Sub frmEntCamiones_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(CType(Me.tlpMiddle, Control), Me)
+        BasesParaCompatibilidad.Pantalla.centerIn(CType(Me.tlpMiddle, Control), Me)
     End Sub
 End Class

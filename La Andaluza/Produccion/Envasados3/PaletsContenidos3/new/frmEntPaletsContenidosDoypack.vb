@@ -258,7 +258,7 @@ Public Class frmEntPaletsContenidosDoypack
 
 
     Private Sub frmEntPaletsContenidosDoypack_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.Panel1, Me.SplitDoypack.Panel1)
+        BasesParaCompatibilidad.pantalla.centerIn(Me.Panel1, Me.SplitDoypack.Panel1)
     End Sub
 
     Private Sub txtCantidadCajas_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtCantidadCajas.TextChanged

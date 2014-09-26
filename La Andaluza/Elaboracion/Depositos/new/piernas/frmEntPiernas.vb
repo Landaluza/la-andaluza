@@ -87,12 +87,12 @@ Public Class frmEntPiernas
     Private Sub butAddNaveID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddNaveID.Click
         Dim DBO_Naves As New DBO_Naves
         Dim frmEnt As New frmEntNaves(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spNaves, DBO_Naves)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spNaves
         s.cargar_Naves(Me.cboNave)
     End Sub
 
     Private Sub frmEntPiernas_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(CType(Me.tlpMiddle, Control), Me)
+        BasesParaCompatibilidad.pantalla.centerIn(CType(Me.tlpMiddle, Control), Me)
     End Sub
 End Class

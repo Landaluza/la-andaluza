@@ -104,18 +104,18 @@ Public Class frmEntTiposControlesLotes
 
    Private Sub butVerId_procedimiento_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_procedimiento.Click
        Dim frmEnt As New frmProcedimientos()
-       frmEnt.ShowDialog()
-   End Sub
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+    End Sub
 
-   Private Sub butAddId_procedimiento_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_procedimiento.Click
-       Dim DBO_Procedimientos As New DBO_Procedimientos
-       Dim frmEnt As New frmEntProcedimientos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, new spProcedimientos,DBO_Procedimientos)
-       frmEnt.ShowDialog()
-       dim s as new spProcedimientos
-       s.cargar_Procedimientos(Me.cboprocedimiento)
-   End Sub
+    Private Sub butAddId_procedimiento_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_procedimiento.Click
+        Dim DBO_Procedimientos As New DBO_Procedimientos
+        Dim frmEnt As New frmEntProcedimientos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spProcedimientos, DBO_Procedimientos)
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+        Dim s As New spProcedimientos
+        s.cargar_Procedimientos(Me.cboprocedimiento)
+    End Sub
 
    Private Sub frmEntTiposControlesLotes_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-       BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.tlpMiddle, Me)
+        BasesParaCompatibilidad.pantalla.centerIn(Me.tlpMiddle, Me)
    End Sub
 End Class

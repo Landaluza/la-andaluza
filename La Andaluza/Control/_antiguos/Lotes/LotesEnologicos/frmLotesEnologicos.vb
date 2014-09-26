@@ -123,7 +123,7 @@ Public Class frmLotesEnologico
             Else
                 FrmEnt.CargarDatos(0, 0, "", Today, 0, 0, 0, 0, "", "")
             End If
-            FrmEnt.ShowDialog()
+            BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Else
             MessageBox.Show("Seleccionar alguna celda", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End If

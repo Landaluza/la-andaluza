@@ -59,23 +59,23 @@ Public Class frmEntControlIncidencias_Clientes
 
     Private Sub butVerId_control_incidencias_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim frmEnt As New frmControlIncidencias()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
-   Private Sub butVerId_cliente_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_cliente.Click
-       Dim frmEnt As New frmClientes()
-       frmEnt.ShowDialog()
-   End Sub
+    Private Sub butVerId_cliente_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_cliente.Click
+        Dim frmEnt As New frmClientes()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+    End Sub
 
-   Private Sub butAddId_cliente_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_cliente.Click
-       Dim DBO_Clientes As New DBO_Clientes
+    Private Sub butAddId_cliente_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_cliente.Click
+        Dim DBO_Clientes As New DBO_Clientes
         Dim frmEnt As New frmEntClientes(0, 0)
-       frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spClientes2
-       s.cargar_Clientes(Me.cbocliente)
-   End Sub
+        s.cargar_Clientes(Me.cbocliente)
+    End Sub
 
     Private Sub frmEntControlIncidencias_Clientes_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Panel1, Me)
+        BasesParaCompatibilidad.pantalla.centerIn(Panel1, Me)
     End Sub
 End Class

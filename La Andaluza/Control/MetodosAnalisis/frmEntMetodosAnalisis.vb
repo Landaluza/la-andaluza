@@ -81,6 +81,6 @@ Public Class frmEntMetodosAnalisis
    End Sub
 
    Private Sub frmEntMetodosAnalisis_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-       BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.tlpMiddle, Me)
+        BasesParaCompatibilidad.pantalla.centerIn(Me.tlpMiddle, Me)
    End Sub
 End Class

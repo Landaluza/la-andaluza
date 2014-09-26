@@ -42,7 +42,7 @@ Public Class frmVisitasNombres1
 
         frmEnt = New frmEntVisitasNombres1(m_VisitaNombre1, If(m_VisitaNombre1.VisitaTipoID.HasValue, m_VisitaNombre1.VisitaTipoID, -1))
         frmEnt.Text = String.Format("{0} {1}", TipoAction, Me.Text)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 
         dgvFill()
     End Sub

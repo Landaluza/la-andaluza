@@ -71,47 +71,47 @@ Public Class frmEntProtocolosMedicosPuestosTrabajos
 
    Private Sub butVerPuestoTrabajoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerPuestoTrabajoID.Click
        Dim frmEnt As New frmPuestosTrabajos()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spPuestosTrabajos
         s.cargar_PuestosTrabajos(Me.cboPuestoTrabajo)
-   End Sub
+    End Sub
 
-   Private Sub butAddPuestoTrabajoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddPuestoTrabajoID.Click
+    Private Sub butAddPuestoTrabajoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddPuestoTrabajoID.Click
         'Dim DBO_PuestosTrabajos As New DBO_PuestosTrabajos
         'Dim frmEnt As New frmEntPuestosTrabajos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, new spPuestosTrabajos,DBO_PuestosTrabajos)
-        'frmEnt.ShowDialog()
+        'BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         'dim s as new spPuestosTrabajos
         's.cargar_PuestosTrabajos(Me.cboPuestoTrabajo)
-   End Sub
+    End Sub
 
-   Private Sub butVerProtocoloMedicoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerProtocoloMedicoID.Click
-       Dim frmEnt As New frmProtocolosMedicos()
-        frmEnt.ShowDialog()
+    Private Sub butVerProtocoloMedicoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerProtocoloMedicoID.Click
+        Dim frmEnt As New frmProtocolosMedicos()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spProtocolosMedicos
         s.cargar_ProtocolosMedicos(Me.cboProtocoloMedico)
-   End Sub
+    End Sub
 
-   Private Sub butAddProtocoloMedicoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddProtocoloMedicoID.Click
-       Dim DBO_ProtocolosMedicos As New DBO_ProtocolosMedicos
-       Dim frmEnt As New frmEntProtocolosMedicos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, new spProtocolosMedicos,DBO_ProtocolosMedicos)
-       frmEnt.ShowDialog()
-       dim s as new spProtocolosMedicos
-       s.cargar_ProtocolosMedicos(Me.cboProtocoloMedico)
-   End Sub
+    Private Sub butAddProtocoloMedicoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddProtocoloMedicoID.Click
+        Dim DBO_ProtocolosMedicos As New DBO_ProtocolosMedicos
+        Dim frmEnt As New frmEntProtocolosMedicos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spProtocolosMedicos, DBO_ProtocolosMedicos)
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+        Dim s As New spProtocolosMedicos
+        s.cargar_ProtocolosMedicos(Me.cboProtocoloMedico)
+    End Sub
 
-   Private Sub butVerProgramaActividadPreventivaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerProgramaActividadPreventivaID.Click
-       Dim frmEnt As New frmProgramasActividadesPreventivas()
-        frmEnt.ShowDialog()
+    Private Sub butVerProgramaActividadPreventivaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerProgramaActividadPreventivaID.Click
+        Dim frmEnt As New frmProgramasActividadesPreventivas()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spProgramasActividadesPreventivas
         s.cargar_ProgramasActividadesPreventivas(Me.cboProgramaActividadPreventiva)
-   End Sub
+    End Sub
 
-   Private Sub butAddProgramaActividadPreventivaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddProgramaActividadPreventivaID.Click
-       Dim DBO_ProgramasActividadesPreventivas As New DBO_ProgramasActividadesPreventivas
-       Dim frmEnt As New frmEntProgramasActividadesPreventivas(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, new spProgramasActividadesPreventivas,DBO_ProgramasActividadesPreventivas)
-       frmEnt.ShowDialog()
-       dim s as new spProgramasActividadesPreventivas
-       s.cargar_ProgramasActividadesPreventivas(Me.cboProgramaActividadPreventiva)
-   End Sub
+    Private Sub butAddProgramaActividadPreventivaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddProgramaActividadPreventivaID.Click
+        Dim DBO_ProgramasActividadesPreventivas As New DBO_ProgramasActividadesPreventivas
+        Dim frmEnt As New frmEntProgramasActividadesPreventivas(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spProgramasActividadesPreventivas, DBO_ProgramasActividadesPreventivas)
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+        Dim s As New spProgramasActividadesPreventivas
+        s.cargar_ProgramasActividadesPreventivas(Me.cboProgramaActividadPreventiva)
+    End Sub
 
 End Class

@@ -68,16 +68,16 @@ Public Class frmEntPartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad
 
    Private Sub butVerId_Incidencia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_Incidencia.Click
        Dim frmEnt As New frmIncidencias()
-       frmEnt.ShowDialog()
-   End Sub
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+    End Sub
 
-   Private Sub butAddId_Incidencia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_Incidencia.Click
-       Dim DBO_Incidencias As New DBO_Incidencias
+    Private Sub butAddId_Incidencia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_Incidencia.Click
+        Dim DBO_Incidencias As New DBO_Incidencias
         Dim frmEnt As New frmEntIncidencias(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spIncidencias, DBO_Incidencias)
-       frmEnt.ShowDialog()
-       dim s as new spIncidencias
-       s.cargar_Incidencias(Me.cboIncidencia)
-   End Sub
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+        Dim s As New spIncidencias
+        s.cargar_Incidencias(Me.cboIncidencia)
+    End Sub
 
    
 

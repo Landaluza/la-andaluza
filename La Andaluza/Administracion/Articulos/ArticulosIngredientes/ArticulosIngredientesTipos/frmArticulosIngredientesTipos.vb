@@ -47,7 +47,7 @@ Public Class frmArticulosIngredientesTipos
         frmEnt = New frmEntArticulosIngredientesTipos(m_ArticuloIngredienteTipo, m_Pos, m_VerID)
         frmEnt.Text = String.Format("{0} {1}", TipoAction, Me.Text)
         AddHandler frmEnt.FormClosed, AddressOf dgvFill
-        'frmEnt.ShowDialog()
+        'BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         GUImain.añadirPestaña(frmEnt)
 
         'dgvFill()

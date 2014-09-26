@@ -50,7 +50,7 @@ Public Class frmControlesCalidadEnvasados2
         End If
 
         frmEnt = New frmEntControlesCalidadEnvasados2(TipoAction, m_ControleCalidadEnvasado2, m_Pos, m_VerID)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 
         dgvFill()
 

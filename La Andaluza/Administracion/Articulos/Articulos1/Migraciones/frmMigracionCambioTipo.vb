@@ -45,8 +45,8 @@ Public Class frmMigracionCambioTipo
     End Sub
 
     Private Sub frmMigracionEntreArticulos_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerHorizontalyIn(Me.lIntruccion, Me.Panel3)
-        BasesParaCompatibilidad.DetailedSimpleForm.centerHorizontalyIn(Me.Panel4, Me.Panel2)
+        BasesParaCompatibilidad.Pantalla.centerHorizontalyIn(Me.lIntruccion, Me.Panel3)
+        BasesParaCompatibilidad.Pantalla.centerHorizontalyIn(Me.Panel4, Me.Panel2)
     End Sub
 
     Private Sub frmMigracionEntreArticulos_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load

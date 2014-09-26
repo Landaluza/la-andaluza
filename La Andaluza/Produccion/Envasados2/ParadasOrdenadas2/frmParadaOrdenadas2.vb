@@ -50,7 +50,7 @@ Public Class frmParadaOrdenadas2
         m_ParadaOrdenadas2.FormatoEnvasadoID = Me.formatoId
 
         frmEnt = New frmEntParadaOrdenadas2(Me.formatoId, TipoAction, m_ParadaOrdenadas2, m_Pos, m_VerID)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 
 
         dgvFill()

@@ -97,26 +97,26 @@ Public Class frmEntArticulos_AlmacenNoConforme
 
     Private Sub butVerId_TipoAccion_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_TipoAccion.Click
         Dim frmEnt As New frmTiposAcciones()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddId_TipoAccion_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_TipoAccion.Click
         Dim DBO_TiposAcciones As New DBO_TiposAcciones
         Dim frmEnt As New frmEntTiposAcciones(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spTiposAcciones, DBO_TiposAcciones)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTiposAcciones
         s.cargar_TiposAcciones(Me.cboTipoAccion)
     End Sub
 
     Private Sub butVerid_MedidaProducto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerid_MedidaProducto.Click
         Dim frmEnt As New frmMedidasProductos()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddid_MedidaProducto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddid_MedidaProducto.Click
         'Dim DBO_MedidasProductos As New DBO_MedidasProductos
         'Dim frmEnt As New frmEntMedidasProductos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, new spMedidasProductos,DBO_MedidasProductos)
-        'frmEnt.ShowDialog()
+        'BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         'dim s as new spMedidasProductos
         's.cargar_MedidasProductos(Me.cboid_MedidaProducto)
     End Sub

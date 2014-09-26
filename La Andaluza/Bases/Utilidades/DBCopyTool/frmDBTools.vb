@@ -248,7 +248,7 @@ Public Class frmDBTools
         'sNewServer = Interaction.InputBox("Servername/Server-IP?", "Add server", "", this.Location.X + 50, this.Location.Y + 50);
         'AddServer(sNewServer);           
         Dim frm As New frmAddServer()
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
 
         If frm.DialogResult = DialogResult.OK Then
             If lbServers.Items.Contains(frm.Servername) Then

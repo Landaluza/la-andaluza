@@ -103,7 +103,7 @@ Public Class frmEnvasadosProductosArticulos_NO_USAR
             'Pasar la fecha y la cantidad para poder hacer el movimiento de envasado.
             frmEnt = New frmEntEnvasadosProductosArticulos(TipoAction, m_DBO_EnvasadoProductoArticulo, m_Producto, m_CantidadEnvasada, m_TotalCantidadAsignada)
             'frmEnt.Text = String.Format("{0} {1}", TipoAction, Titulo)
-            frmEnt.ShowDialog()
+            BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 
 
             dgvFill()

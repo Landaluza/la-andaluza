@@ -107,11 +107,11 @@ Public Class frmEntPedidosClientesNecesidades
         Dim DBO_Clientes As New DBO_Clientes
         Dim spClientes As New spClientes
         Dim frmEnt As New frmEntClientes(0, 0)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         spClientes.cargar_Clientes(Me.cboCliente)
     End Sub
 
     Private Sub frmEntPedidosClientesNecesidades_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(CType(Me.tlpMiddle, Control), Me)
+        BasesParaCompatibilidad.Pantalla.centerIn(CType(Me.tlpMiddle, Control), Me)
     End Sub
 End Class

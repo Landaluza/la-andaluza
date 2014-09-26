@@ -163,7 +163,7 @@ Public Class frmPaletsMovimientoEntrePalets
 
     Private Sub butAddMovimientoTipo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddMovimientoTipo.Click
         Using frmEnt As New frmPaletsMovimientosTipos()
-            frmEnt.ShowDialog()
+            BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         End Using
         cboMovimientoTipo.mam_DataSource("PaletsMovimientosTipos1Cbo", False)
     End Sub

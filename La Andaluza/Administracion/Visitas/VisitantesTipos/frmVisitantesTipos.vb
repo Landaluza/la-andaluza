@@ -32,7 +32,7 @@ Public Class frmVisitantesTipos
 
         frmEnt = New frmEntVisitantesTipos(m_VisitanteTipo)
         frmEnt.Text = String.Format("{0} {1}", TipoAction, Me.Text)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 
 
         dgvFill()

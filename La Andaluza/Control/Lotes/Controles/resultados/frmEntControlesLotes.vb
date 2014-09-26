@@ -125,7 +125,7 @@ Public Class frmEntControlesLotes
     Private Sub butAddId_empleado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_empleado.Click
         Dim DBO_Empleados As New DBO_Empleados
         Dim frmEnt As New frmEntEmpleados(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spEmpleados, DBO_Empleados)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spEmpleados
         s.cargar_Empleados(Me.cboempleado)
     End Sub
@@ -137,12 +137,12 @@ Public Class frmEntControlesLotes
 
     Private Sub butAddId_controlIncidencia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_controlIncidencia.Click
         Dim frm As New frmSeleccionIncidencia
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         Me.txtControlIncidencia.Text = frm.Id
     End Sub
 
     Private Sub frmEntControlesLotes_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.tlpMiddle, Me)
+        BasesParaCompatibilidad.pantalla.centerIn(Me.tlpMiddle, Me)
     End Sub
 
     Private Sub btnLimpiarIncidencia_Click(sender As System.Object, e As System.EventArgs) Handles btnLimpiarIncidencia.Click

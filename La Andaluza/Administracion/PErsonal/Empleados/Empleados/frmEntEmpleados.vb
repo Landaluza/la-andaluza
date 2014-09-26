@@ -243,13 +243,13 @@ Public Class frmEntEmpleados
     End Sub
 
     Private Sub frmEntEmpleados_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.Panel1, Me.SplitContainer1.Panel1)
+        BasesParaCompatibilidad.Pantalla.centerIn(Me.Panel1, Me.SplitContainer1.Panel1)
     End Sub
 
 
     Private Sub butAddid_usuario_Click(sender As System.Object, e As System.EventArgs) Handles butAddid_usuario.Click
         Dim frm As New frmEntUsuarios(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spUsuarios, New DBO_Usuarios)
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         Dim spu As New spUsuarios
         spu.cargar_Usuarios(Me.cboid_usuario)
     End Sub
@@ -262,12 +262,12 @@ Public Class frmEntEmpleados
         End If
     End Sub
 
-    Private Sub btnModUsuario_Click(sender As Object, e As EventArgs) Handles btnModUsuario.Click        
+    Private Sub btnModUsuario_Click(sender As Object, e As EventArgs) Handles btnModUsuario.Click
         If Not Me.cboid_usuario.SelectedValue Is Nothing Then
             Dim spusuarios As New spUsuarios
             Dim dbousuarios As DBO_Usuarios = spusuarios.Select_Record(Me.cboid_usuario.SelectedValue)
             Dim frm As New frmEntUsuarios(BasesParaCompatibilidad.gridsimpleform.ACCION_MODIFICAR, spusuarios, dbousuarios)
-            frm.ShowDialog()
+            BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
             Dim spu As New spUsuarios
             spu.cargar_Usuarios(Me.cboid_usuario)
         End If

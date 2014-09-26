@@ -32,14 +32,16 @@ Public Class frmArticulos1CompuestoPor
 
     Private Sub butNuevo_Click(sender As System.Object, e As System.EventArgs) Handles butNuevo.Click
         Dim frm As New frmModCompuestoPor(Me.articuloId)
-        frm.ShowDialog()
+        'BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         DgvFill()
         RaiseEvent actualizarDatos()
     End Sub
 
     Private Sub butModificar_Click(sender As System.Object, e As System.EventArgs) Handles butModificar.Click
         Dim frm As New frmModCompuestoPor(Me.articuloId, DataGridView1.CurrentRow.Cells("articuloid").Value)
-        frm.ShowDialog()
+        'BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         DgvFill()
     End Sub
 

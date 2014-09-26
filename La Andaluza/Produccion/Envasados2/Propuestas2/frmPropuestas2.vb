@@ -39,7 +39,7 @@ Public Class frmPropuestas2
         End If
 
         frmEnt = New frmEntPropuestas2(TipoAction, Me.formatoId)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 
         dgvFill()
 

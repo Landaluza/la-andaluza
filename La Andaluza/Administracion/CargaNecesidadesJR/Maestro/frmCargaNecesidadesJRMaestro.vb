@@ -32,7 +32,7 @@ Public Class frmCargaNecesidadesJRMaestro
     Overrides Sub Insertar()
         Dim frmEnt As New frmEntCargaNecesidadesJRMaestro
         frmEnt.Text = "Insertar CargaNecesidadesJRMaestro"
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         ' dgvFill()
         GeneralBindingSource.DataSource = dtb.Consultar("exec SelectCargaNecesidadesMaestroALL")
         GeneralBindingSource.MoveLast()
@@ -43,14 +43,14 @@ Public Class frmCargaNecesidadesJRMaestro
         Dim currentRow As DataGridViewRow = dgvGeneral.SelectedRows(0)
         Dim frmEnt As New frmEntCargaNecesidadesJRMaestro(currentRow)
         frmEnt.Text = "Modificar CargaNecesidadesJRMaestro"
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Overrides Sub Ver()
         Dim Posicion As Integer = GeneralBindingSource.Position
         Dim frmEnt As New frmEntCargaNecesidadesJRMaestro(GeneralBindingSource.DataSource, Posicion)
         frmEnt.Text = "Ver CargaNecesidadesJRMaestro"
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Overrides Sub Eliminar()

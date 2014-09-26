@@ -148,7 +148,7 @@ Public Class frmEntPedidosProveedoresDetalles
 
         frmEnt = New frmEntPedidosProveedoresEntregas(DBO_PedidoProveedorEntrega, m_Pos)
         frmEnt.Text = String.Format("{0} {1}", TipoAction, Me.Text)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         RellenarDgvNivel1()
     End Sub
 
@@ -197,7 +197,7 @@ Public Class frmEntPedidosProveedoresDetalles
 
     Private Sub btnAddUnidad_Click(sender As Object, e As EventArgs) Handles btnAddUnidad.Click
         Dim frmEnt As New frmEntMedidasProductos(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spMedidasProductos, New DBO_MedidasProductos)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spMedidasProductos
         s.cargar_MedidasProductos(Me.cboUnidades)
     End Sub

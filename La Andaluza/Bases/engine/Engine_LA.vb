@@ -172,7 +172,7 @@
         Dim frmReporteErrores As New frmReporteErrores(img)
 
         If external Then
-            frmReporteErrores.ShowDialog()
+            BasesParaCompatibilidad.Pantalla.mostrarDialogo(frmReporteErrores)
         Else
             añadirPestañaAutonoma(frmReporteErrores)
         End If

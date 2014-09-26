@@ -31,6 +31,6 @@
 
     Private Sub btnAnaliticasCloro_Click(sender As Object, e As EventArgs) Handles btnAnaliticasCloro.Click
         Dim frm As New frmGenerarAnaliticasCloro
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
     End Sub
 End Class

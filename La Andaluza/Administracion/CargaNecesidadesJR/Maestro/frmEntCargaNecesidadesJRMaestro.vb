@@ -102,7 +102,7 @@ Public Class frmEntCargaNecesidadesJRMaestro
     Private Sub tsInsertar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsInsertar.Click
         Dim FrmEnt As New frmEntCargaNecesidadesJRDetalles(m_MaestroID)
         FrmEnt.Text = "Insertar"
-        FrmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         FrmEnt.Dispose()
         dgv.DataSource = BasesParaCompatibilidad.BD.ConsultaProcedAlmacenado("SelectCargaNecesidadesDetallesByMaestroID", m_MaestroID)
         dgv.MoveLast()
@@ -112,7 +112,7 @@ Public Class frmEntCargaNecesidadesJRMaestro
         Dim currentRow As DataGridViewRow = dgv.CurrentRow
         Dim frmEnt As New frmEntCargaNecesidadesJRDetalles(currentRow)
         frmEnt.Text = "Modificar"
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         frmEnt.Dispose()
     End Sub
 

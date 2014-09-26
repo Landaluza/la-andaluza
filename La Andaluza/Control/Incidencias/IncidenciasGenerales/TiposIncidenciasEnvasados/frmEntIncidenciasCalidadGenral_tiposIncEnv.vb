@@ -65,16 +65,16 @@
 
     Private Sub butVerMaquinaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim frmEnt As New frmMaquinas()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butVerId_tipo_Click(sender As System.Object, e As System.EventArgs) Handles butVerId_tipo.Click
         Dim frm As New frmTiposIncidencias
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
     End Sub
 
     Private Sub butAddId_tipo_Click(sender As System.Object, e As System.EventArgs) Handles butAddId_tipo.Click
         Dim frm As New frmEntTiposIncidencias
-        frm.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
     End Sub
 End Class

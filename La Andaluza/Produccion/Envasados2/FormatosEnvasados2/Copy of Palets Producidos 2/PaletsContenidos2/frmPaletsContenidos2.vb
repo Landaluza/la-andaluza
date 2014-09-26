@@ -302,7 +302,7 @@ Public Class frmPaletsContenidos2
 
         frmEnt.padre = Me.padre
         frmEnt.contenidos = Me.dgvGeneral.Rows.Count
-        Dim result As DialogResult = frmEnt.ShowDialog()
+        Dim result As DialogResult = BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 
         If frmEnt.ModoDeApertura = frmEntPaletsContenidos2.COMPLETAR Then
             padre.SetValores()

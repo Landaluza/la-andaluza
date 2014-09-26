@@ -134,7 +134,7 @@ Public Class frmEntControlIncidencias
             Me.SplitContainer1.Panel2Collapsed = True
         End If
 
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.PanGeneral, Me.SplitContainer1.Panel1)
+        BasesParaCompatibilidad.pantalla.centerIn(Me.PanGeneral, Me.SplitContainer1.Panel1)
         Me.CenterToParent()
     End Sub
 
@@ -214,71 +214,71 @@ Public Class frmEntControlIncidencias
 
     Private Sub butVerId_procesoCalidad_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_procesoCalidad.Click
         Dim frmEnt As New frmProcesosCalidad()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddId_procesoCalidad_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_procesoCalidad.Click
         Dim DBO_ProcesosCalidad As New DBO_ProcesosCalidad
         Dim frmEnt As New frmEntProcesosCalidad(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spProcesosCalidad, DBO_ProcesosCalidad)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spProcesosCalidad
         s.cargar_ProcesosCalidad(Me.cboprocesoCalidad)
     End Sub
 
     Private Sub butVerId_incidenciaCalidadGeneral_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_incidenciaCalidadGeneral.Click
         Dim frmEnt As New frmIncidenciasCalidadGeneral()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddId_incidenciaCalidadGeneral_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_incidenciaCalidadGeneral.Click
         Dim DBO_IncidenciasCalidadGeneral As New DBO_IncidenciasCalidadGeneral
         Dim frmEnt As New frmEntIncidenciasCalidadGeneral(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spIncidenciasCalidadGeneral, DBO_IncidenciasCalidadGeneral)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spIncidenciasCalidadGeneral
         s.cargar_IncidenciasCalidadGeneral(Me.cboincidenciaCalidadGeneral)
     End Sub
 
     Private Sub butVerid_empleado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerid_empleado.Click
         Dim frmEnt As New frmEmpleados()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddid_empleado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddid_empleado.Click
         Dim DBO_Empleados As New DBO_Empleados
         Dim frmEnt As New frmEntEmpleados(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spEmpleados, DBO_Empleados)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spEmpleados
         s.cargar_Empleados(Me.cboid_empleado)
     End Sub
 
     Private Sub butVerId_PuntosGravedad_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_PuntosGravedad.Click
         Dim frmEnt As New frmTiposGravedadesIncidencias()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddId_PuntosGravedad_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_PuntosGravedad.Click
         Dim DBO_TiposGravedadesIncidencias As New DBO_TiposGravedadesIncidencias
         Dim frmEnt As New frmEntTiposGravedadesIncidencias(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spTiposGravedadesIncidencias, DBO_TiposGravedadesIncidencias)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTiposGravedadesIncidencias
         s.cargar_TiposGravedadesIncidencias(Me.cboPuntosGravedad)
     End Sub
 
     Private Sub butVerId_PuntosFrecuencia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_PuntosFrecuencia.Click
         Dim frmEnt As New frmTiposFrecuenciasIncidencias()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
     End Sub
 
     Private Sub butAddId_PuntosFrecuencia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_PuntosFrecuencia.Click
         Dim DBO_TiposFrecuenciasIncidencias As New DBO_TiposFrecuenciasIncidencias
         Dim frmEnt As New frmEntTiposFrecuenciasIncidencias(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spTiposFrecuenciasIncidencias, DBO_TiposFrecuenciasIncidencias)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTiposFrecuenciasIncidencias
         s.cargar_TiposFrecuenciasIncidencias(Me.cboPuntosFrecuencia)
     End Sub
 
     Private Sub frmEntControlIncidencias_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.PanGeneral, Me.SplitContainer1.Panel1)
+        BasesParaCompatibilidad.pantalla.centerIn(Me.PanGeneral, Me.SplitContainer1.Panel1)
     End Sub
 
     Private Sub dtpFecha_ValueChanged(sender As System.Object, e As System.EventArgs) Handles dtpFecha.ValueChanged
@@ -345,7 +345,7 @@ Public Class frmEntControlIncidencias
 
     Private Sub btnVerEstados_Click(sender As System.Object, e As System.EventArgs) Handles btnVerEstados.Click
         Dim frmEnt As New frmEstadosControlesIncidencias()
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spEstadosControlesIncidencias
         s.cargar_estados(Me.cboEstado)
     End Sub
@@ -353,7 +353,7 @@ Public Class frmEntControlIncidencias
     Private Sub btnAddEstados_Click(sender As System.Object, e As System.EventArgs) Handles btnAddEstados.Click
         Dim DBO_EstadosControlesIncidencias As New DBO_EstadosControlesIncidencias
         Dim frmEnt As New frmEntEstadosControlesIncidencias(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spEstadosControlesIncidencias, DBO_EstadosControlesIncidencias)
-        frmEnt.ShowDialog()
+        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spEstadosControlesIncidencias
         s.cargar_estados(Me.cboEstado)
     End Sub
