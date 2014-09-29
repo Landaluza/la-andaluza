@@ -57,7 +57,8 @@ Public Class frmEnvasados2
             End If
         End If
 
-        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+        'BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+        frmEnt.ShowDialog()
         FormatoCalendario()
     End Sub
 
