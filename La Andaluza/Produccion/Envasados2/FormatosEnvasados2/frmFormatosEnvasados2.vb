@@ -185,6 +185,17 @@ Public Class frmFormatosEnvasados2
 
     End Sub
 
+    'Public Overrides Sub imprimir()
+    '    AppActivate("Google Chrome")
+    '    AppActivate(Application.ProductName)
+    '    AppActivate("Google Chrome")
+    '    AppActivate(Application.ProductName)
+    '    AppActivate("Google Chrome")
+    '    AppActivate(Application.ProductName)
+    '    AppActivate("Google Chrome")
+    '    AppActivate(Application.ProductName)
+
+    'End Sub
     Public Overrides Sub Imprimir()
         Dim cs As New BasesParaCompatibilidad.Consola
 
@@ -199,6 +210,7 @@ Public Class frmFormatosEnvasados2
             Dim Cantidad As Integer
             Dim CantidadCorrecta As String
             Dim EnvasadosAConfirmar As Integer = 0
+            Dim primaryWindow As String = Application.ProductName
 
             AppActivate(App)
             My.Computer.Clipboard.Clear()
@@ -219,7 +231,7 @@ Public Class frmFormatosEnvasados2
             cs.Teclea("{TAB}")
 
             'Dim Respuesta As MsgBoxResult
-            'AppActivate("LA")
+            'AppActivate(primaryWindow)
             'Respuesta = MsgBox(" Continuamos con la macro? ", _
             '                   MsgBoxStyle.DefaultButton2 Or MsgBoxStyle.YesNo, _
             '                   " Continuar ")
@@ -259,7 +271,7 @@ Public Class frmFormatosEnvasados2
                 End If
 
                 Dim Respuesta As MsgBoxResult
-                AppActivate("LA")
+                AppActivate(primaryWindow)
                 Respuesta = MsgBox(" ¿Existe estructura para " & m_Row.Cells("Articulos_envasados").Value.ToString & "?", _
                                     MsgBoxStyle.DefaultButton2 Or MsgBoxStyle.YesNo, _
                                     " Estructura ")
@@ -272,7 +284,7 @@ Public Class frmFormatosEnvasados2
                 End If
 
                 Dim Respuesta2 As MsgBoxResult
-                AppActivate("LA")
+                AppActivate(primaryWindow)
                 Respuesta2 = MsgBox(" ¿Es la cantidad correcta " & Cantidad & "?", _
                                 MsgBoxStyle.DefaultButton2 Or MsgBoxStyle.YesNo, _
                                 " Cantidad ")
@@ -330,7 +342,7 @@ Public Class frmFormatosEnvasados2
             cs.Teclea("~") 'Teclado normal
 
             'CambioPantalla()
-            'AppActivate("LA")
+            'AppActivate(primaryWindow)
             'MsgBox("Macro terminada")
             AppActivate(App)
             'HAY QUE PONER LA MISMA CANTIDAD QUE APARECE PARA PODER VALIDARLO
@@ -339,166 +351,9 @@ Public Class frmFormatosEnvasados2
         End Try
     End Sub
 
-    'Public Overrides Sub Imprimir()
-    '    'dgvFill()
-    '    Dim cs As New Consola
-    '    Dim fechaQS As New fechaQS
-
-    '    Dim App As String
-    '    'Para puebas con Notepad
-    '    'Dim App As String = "Nuevo Documento"
-    '    Dim Fecha As String
-    '    Dim AlmacenEntrada As String
-    '    Dim AlmacenSalida As String
-    '    Dim Operario As String
-    '    Dim Cantidad As Integer
-    '    Dim CantidadCorrecta As String
-    '    Dim EnvasadosAConfirmar As Integer
-
-    '    Try
-    '        App = Config.QS_Sesion
-    '        AlmacenEntrada = "10"
-    '        AlmacenSalida = "10"
-    '        Operario = "1"
-    '        EnvasadosAConfirmar = 0
 
 
-    '        AppActivate(App)
-    '        My.Computer.Clipboard.Clear()
-
-    '        cs.Espera(300)
-    '        'Enviar las pulsaciones de teclas a la aplicación
-    '        cs.Teclea("15")
-    '        cs.Teclea("42")
-    '        cs.Teclea("44")
-    '        cs.Teclea("~") 'Enter normal ALT +126
-    '        cs.CambioPantalla()
-
-    '        'A fabricar el: INDICAR LA FECHA
-    '        Fecha = fechaQS.mam_FechaQS(m_Envasado.Fecha)
-    '        cs.Teclea(Fecha)
-    '        cs.Teclea("{TAB}")
-
-    '        'Dim Respuesta As DialogResult
-    '        'AppActivate(Config.Version_seriada)  'AppActivate("LA ")
-    '        'Respuesta = messagebox.show(" Continuamos con la macro? ", _
-    '        '                   "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-    '        '                   " Continuar ")
-
-    '        'If Respuesta = DialogResult.Yes Then
-    '        '    AppActivate(App)
-    '        'Else
-
-    '        'End If
-
-
-    '        'Almacen de entrada productos
-    '        cs.Teclea(AlmacenEntrada)
-    '        cs.Teclea("{TAB}")
-
-    '        'Almacen de salida materias primas
-    '        cs.Teclea(AlmacenSalida)
-    '        cs.Teclea("{TAB}")
-    '        cs.Teclea("~") 'Teclado normal
-
-    '        'Para empezar a insertar articulos
-    '        cs.Teclea("{F6}")
-
-    '        For Each m_Row As DataGridViewRow In dgvGeneral.Rows
-    '            AppActivate(App)
-    '            cs.Espera(500)
-    '            cs.Teclea(Convert.ToString(m_Row.Cells("CodigoQS").Value))
-    '            'messagebox.show("Confirma codigo articulo")
-    '            cs.Teclea("~") 'Teclado normal
-    '            EnvasadosAConfirmar += 1
-
-    '            If Convert.ToString(m_Row.Cells("Descripcion").Value).Contains("Monodosis") Then
-    '                'messagebox.show("Monodosis")
-    '                Cantidad = m_Row.Cells("Cajas").Value / 1000
-    '            Else
-    '                Cantidad = m_Row.Cells("Cajas").Value
-    '            End If
-
-    '            Dim Respuesta As DialogResult
-    '            AppActivate(Config.Version_seriada)  'AppActivate("LA ")
-
-    '            Respuesta = MessageBox.Show(" ¿Existe estructura para " & Convert.ToString(m_Row.Cells("Articulos_envasados").Value) & "?", _
-    '                                "Estructura", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-
-    '            AppActivate(App)
-    '            If Respuesta = DialogResult.Yes Then
-
-    '            Else
-    '                cs.Teclea("{F12}")
-    '            End If
-
-    '            Dim Respuesta2 As DialogResult
-    '            AppActivate(Config.Version_seriada)  'AppActivate("LA ")
-    '            Respuesta2 = MessageBox.Show(" ¿Es la cantidad correcta " & Cantidad & "?", _
-    '                            "Cantidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-
-    '            If Respuesta2 = DialogResult.Yes Then
-    '                cs.Espera(500)
-    '                AppActivate(App)
-    '                cs.Teclea(Cantidad)
-    '            Else
-    '                CantidadCorrecta = InputBox("Numero de cajas", "CantidadCorrecta")
-    '                AppActivate(App)
-    '                cs.Teclea(CantidadCorrecta)
-    '            End If
-
-    '            cs.Teclea("{TAB}")
-    '            cs.Teclea("~") 'Teclado normal
-    '            cs.Teclea("~") 'Teclado normal
-    '        Next
-
-    '        cs.Espera(500)
-
-    '        'Para acabar de meter articulos
-    '        cs.Teclea("{F12}")
-
-    '        'PONER UN 1 DELANTE DE CADA LINEA
-    '        Dim Contador As Integer = 0
-    '        For Contador = 0 To EnvasadosAConfirmar + 1
-    '            cs.Teclea("1")
-    '            Contador += 1
-    '        Next
-    '        MessageBox.Show("Comprobar que todas las lineas tienen el 1", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-
-    '        'Pulsar F20 para grabar:
-    '        cs.Teclea("+({F8})")
-
-    '        cs.Teclea("~") 'Teclado normal
-    '        cs.Teclea("~") 'Teclado normal
-
-    '        cs.Espera(5000)
-
-    '        'SEGUNDO PASO
-    '        'Enviar las pulsaciones de teclas a la aplicación
-    '        'Teclea("15")
-    '        'Teclea("42")
-    '        cs.Teclea("45")
-    '        cs.Teclea("~") 'Enter normal ALT +126
-
-    '        'A fabricar el: INDICAR LA FECHA
-    '        cs.Teclea(Fecha)
-    '        cs.Teclea("{TAB}")
-
-    '        'Operario:
-    '        cs.Teclea(Operario)
-    '        cs.Teclea("{TAB}")
-    '        cs.Teclea("~") 'Teclado normal
-
-    '        'CambioPantalla()
-    '        'AppActivate(Config.Version_seriada)  'AppActivate("LA ")
-    '        'messagebox.show("Macro terminada")
-    '        AppActivate(App)
-    '        'HAY QUE PONER LA MISMA CANTIDAD QUE APARECE PARA PODER VALIDARLO
-    '    Catch ex As Exception
-    '        MessageBox.Show("Error al Imprimir. " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-    '    End Try
-    'End Sub
-
+    
 
 
 
