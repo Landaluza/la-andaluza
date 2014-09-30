@@ -36,6 +36,7 @@
     Public Shared Sub Cargar_Ajustes_Predeterminados()
         ruta_servidor = "\\192.168.10.200\datos\informatica\La Andaluza app\"
 
+        BasesParaCompatibilidad.Config.activeScreen = 0
         BasesParaCompatibilidad.Config.Server = BasesParaCompatibilidad.DataBase.SERVIDOR
         BasesParaCompatibilidad.DataBase.buildConnectionString(BasesParaCompatibilidad.Config.Server)
         Config.MailReportPass = "Administracion2008"
