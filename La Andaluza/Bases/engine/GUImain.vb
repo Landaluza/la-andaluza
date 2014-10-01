@@ -389,6 +389,26 @@ Public Class GUImain
         AddHandler err.Click, AddressOf reportBug
         Me.cmsNotificaciones.Items.Add(err)
 
+        Dim scr As New BasesParaCompatibilidad.Pantalla
+        If scr.isMultiScreen Then
+            Dim Monitor As New ToolStripMenuItem
+            Monitor.Text = "Monitor"
+            Monitor.Name = "tsMonitor"
+            Me.cmsNotificaciones.Items.Add(Monitor)
+
+            Dim Monitor1 As New ToolStripMenuItem
+            Monitor1.Text = "Monitor 1"
+            Monitor1.Name = "tsMonitor1"
+            AddHandler Monitor1.Click, AddressOf monitor1click
+            Monitor.DropDownItems.Add(Monitor1)
+
+            Dim Monitor2 As New ToolStripMenuItem
+            Monitor2.Text = "Monitor 2"
+            Monitor2.Name = "tsMonitor2"
+            AddHandler Monitor2.Click, AddressOf monitor2click
+            Monitor.DropDownItems.Add(Monitor2)
+        End If
+
         Dim salir As New ToolStripMenuItem
         salir.Text = "Salir"
         salir.Name = "tssalir"
@@ -397,6 +417,12 @@ Public Class GUImain
         Me.cmsNotificaciones.Items.Add(salir)
     End Sub
 
+    Private Sub monitor1click(sender As Object, e As EventArgs)
+        BasesParaCompatibilidad.Config.activeScreen = 0
+    End Sub
+    Private Sub monitor2click(sender As Object, e As EventArgs)
+        BasesParaCompatibilidad.Config.activeScreen = 1
+    End Sub
     Protected Sub salir()
         Application.Exit()
     End Sub
