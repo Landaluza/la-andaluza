@@ -764,4 +764,10 @@ Public Class MenuDispatcher
         Dim frm As New frmAccesoRemoto(New SessionLinea2)
         GUImain.añadirPestaña(frm)
     End Sub
+
+    Private Sub REsumenMensualDelAñoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles REsumenMensualDelAñoToolStripMenuItem.Click, ResumenMensualDelAñoToolStripMenuItem2.Click, ResumenMensualDelAñoToolStripMenuItem1.Click
+        Dim frm As New Envasados_entre_fechas.frmEnvasadosMensuales(BasesParaCompatibilidad.Config.connectionString)
+        frm.Text = "Resumen por mes"
+        GUImain.añadirPestaña(frm)
+    End Sub
 End Class
