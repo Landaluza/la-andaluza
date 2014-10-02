@@ -331,7 +331,7 @@ Partial Class GUImain
         Me.TabControl2.Location = New System.Drawing.Point(0, 0)
         Me.TabControl2.Name = "TabControl2"
         Me.TabControl2.SelectedIndex = 0
-        Me.TabControl2.Size = New System.Drawing.Size(72, 81)
+        Me.TabControl2.Size = New System.Drawing.Size(96, 100)
         Me.TabControl2.TabIndex = 0
         '
         'TabPage1
@@ -339,7 +339,7 @@ Partial Class GUImain
         Me.TabPage1.Controls.Add(Me.Panel9)
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Size = New System.Drawing.Size(64, 55)
+        Me.TabPage1.Size = New System.Drawing.Size(88, 74)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Arrastra aquí   x"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -352,7 +352,7 @@ Partial Class GUImain
         Me.Panel9.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel9.Location = New System.Drawing.Point(0, 0)
         Me.Panel9.Name = "Panel9"
-        Me.Panel9.Size = New System.Drawing.Size(64, 55)
+        Me.Panel9.Size = New System.Drawing.Size(88, 74)
         Me.Panel9.TabIndex = 0
         '
         'Label26

@@ -49,7 +49,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>432</ApplicationRevision>
+    <ApplicationRevision>434</ApplicationRevision>
     <ApplicationVersion>2014.7.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -924,6 +924,7 @@
     <Compile Include="Administracion\Visitas\frmVisitasMain.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Bases\Conf\UserOptions.vb" />
     <Compile Include="Control\Incidencias\frmSeleccionDosFechas.Designer.vb">
       <DependentUpon>frmSeleccionDosFechas.vb</DependentUpon>
     </Compile>
@@ -6673,8 +6674,8 @@
     <None Include="Bases\ZLibrerias\ReportAdapter.dll" />
     <None Include="Bases\ZLibrerias\InformeDepositos.dll" />
     <None Include="Bases\ZLibrerias\MacroAdapter.dll" />
-    <None Include="Bases\ZLibrerias\Envasados entre fechas.dll" />
     <None Include="Bases\ZLibrerias\BasesParaCompatibilidad.dll" />
+    <None Include="Bases\ZLibrerias\Envasados entre fechas.dll" />
     <Content Include="Resources\window_new.ico" />
     <Content Include="Resources\window_new_3.ico" />
     <None Include="Resources\text-x-makefile.png" />

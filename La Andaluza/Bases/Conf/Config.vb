@@ -36,7 +36,7 @@
     Public Shared Sub Cargar_Ajustes_Predeterminados()
         ruta_servidor = "\\192.168.10.200\datos\informatica\La Andaluza app\"
 
-        BasesParaCompatibilidad.Config.activeScreen = 0
+
         BasesParaCompatibilidad.Config.Server = BasesParaCompatibilidad.DataBase.SERVIDOR
         BasesParaCompatibilidad.DataBase.buildConnectionString(BasesParaCompatibilidad.Config.Server)
         Config.MailReportPass = "Administracion2008"
@@ -64,6 +64,8 @@
             Case Else
                 Config.ServerName = "Otro"
         End Select
+
+        Config.load()
     End Sub
 
     Public Shared ReadOnly Property Version_seriada As String
@@ -393,5 +395,29 @@
             Case Else
                 Config.versionApp = "LA " & Convert.ToString(My.Application.Info.Version).Substring(0, 7) '& " -- " & String.Format("Version {0}", NumeroVersion())
         End Select
+    End Sub
+
+    Public Shared Sub save()
+        Dim options As New UserOptions
+        Dim fil As New BasesParaCompatibilidad.File
+
+        options.Screen = BasesParaCompatibilidad.Config.activeScreen
+        Try
+            fil.saveObject(options, Environment.SpecialFolder.MyDocuments & "options.opt")
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Public Shared Sub load()
+        Dim fil As New BasesParaCompatibilidad.File
+        Dim opt As UserOptions
+
+        Try
+            opt = fil.loadObject(Environment.SpecialFolder.MyDocuments & "options.opt")
+            BasesParaCompatibilidad.Config.activeScreen = opt.Screen
+        Catch ex As Exception
+            BasesParaCompatibilidad.Config.activeScreen = 0
+        End Try
     End Sub
 End Class
