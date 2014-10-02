@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="La Andaluza.exe" version="2014.7.1.432" publicKeyToken="0000000000000000" language="es-ES" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="La Andaluza.exe" version="2014.7.1.435" publicKeyToken="0000000000000000" language="es-ES" processorArchitecture="msil" type="win32" />
   <description asmv2:iconFile="Resources\LogoBandejaLa2.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
@@ -105,7 +105,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>71Ec449xui4aDzrz9VgydEuYmiSq9PcWLDq7ehJNyqc=</dsig:DigestValue>
+        <dsig:DigestValue>Urc45K17g5xNNYfA7V2MEMq+trpQQdf5zRnbA7u1+ws=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -129,7 +129,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>NPrBniPPtwjHkHBWYfXCC96UDxyLn3unibi7YNFyEGU=</dsig:DigestValue>
+        <dsig:DigestValue>J/j/GPurUPJf+CQyLieGb7z1lhrvak7GQAOuZyZTGCQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -182,14 +182,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Envasados entre fechas.dll" size="249856">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Envasados entre fechas.dll" size="254976">
       <assemblyIdentity name="Envasados entre fechas" version="14.7.25.1" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>9jlKv9RZIeZUnErzm8MV+lYDjRqMVTMi/fzx8uLcO6Q=</dsig:DigestValue>
+        <dsig:DigestValue>JcdBGfNZndDXvLT9ExGTxvks6Z11wRK6g9O7+8M+fuk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -218,14 +218,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Incidencias entre fechas.dll" size="98816">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Incidencias entre fechas.dll" size="95744">
       <assemblyIdentity name="Incidencias entre fechas" version="14.7.25.1" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>bSpq2z55PlCMW9FeqAG8yrP/GfITRaQQhR77c2X8AYE=</dsig:DigestValue>
+        <dsig:DigestValue>L9jOSqZYFxfFiadeh9DsIfVdK04M5ZW58KueN3zhz/Y=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -321,7 +321,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>UsCcebt5nSr9B79q9JXAKyOr+gfM81hYGHIn80Hya6E=</dsig:DigestValue>
+        <dsig:DigestValue>k3zj7HK6uwDkDujgE3JlrK0wPXdtwJKI8p32kvB+x64=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -333,7 +333,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>EgWy2P/TpekWZ2OKi60PVxoVUY8J7uLK82JaLitRj4w=</dsig:DigestValue>
+        <dsig:DigestValue>KFvrnLYVP9z++n7A+xXVoCH9M8sQ7Dv4YLSIIIJ4wU0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -469,6 +469,15 @@
       </hash>
     </dependentAssembly>
   </dependency>
+  <file name="Bases\ZLibrerias\BasesParaCompatibilidad.dll" size="1929728">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>J/j/GPurUPJf+CQyLieGb7z1lhrvak7GQAOuZyZTGCQ=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="Bases\ZLibrerias\twaincontrolxtrial.exe" size="901096">
     <hash>
       <dsig:Transforms>
