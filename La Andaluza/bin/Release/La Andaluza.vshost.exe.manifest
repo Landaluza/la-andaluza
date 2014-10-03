@@ -105,7 +105,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Urc45K17g5xNNYfA7V2MEMq+trpQQdf5zRnbA7u1+ws=</dsig:DigestValue>
+        <dsig:DigestValue>fMsAl9TqTbjLM9yyH/GSipaFpQKyEZODjU5P51xRuh8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -129,7 +129,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>J/j/GPurUPJf+CQyLieGb7z1lhrvak7GQAOuZyZTGCQ=</dsig:DigestValue>
+        <dsig:DigestValue>ppWhdJmaG7E4SQGgDkVUrdTgbZcjNmoV6wxDacjTPRc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -321,7 +321,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>k3zj7HK6uwDkDujgE3JlrK0wPXdtwJKI8p32kvB+x64=</dsig:DigestValue>
+        <dsig:DigestValue>srBZkeY3fc1awZF67m99k1lC0GH9/OaXT/dQdwVRpO8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -333,7 +333,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>KFvrnLYVP9z++n7A+xXVoCH9M8sQ7Dv4YLSIIIJ4wU0=</dsig:DigestValue>
+        <dsig:DigestValue>z3mnXPSS2wSZNijQ3FUd4FChkoOy4YP2sYE+RMTCtL0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -469,15 +469,6 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="Bases\ZLibrerias\BasesParaCompatibilidad.dll" size="1929728">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>J/j/GPurUPJf+CQyLieGb7z1lhrvak7GQAOuZyZTGCQ=</dsig:DigestValue>
-    </hash>
-  </file>
   <file name="Bases\ZLibrerias\twaincontrolxtrial.exe" size="901096">
     <hash>
       <dsig:Transforms>
