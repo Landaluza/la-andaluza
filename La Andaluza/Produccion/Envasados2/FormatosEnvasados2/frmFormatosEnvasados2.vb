@@ -210,7 +210,7 @@ Public Class frmFormatosEnvasados2
             Dim Cantidad As Integer
             Dim CantidadCorrecta As String
             Dim EnvasadosAConfirmar As Integer = 0
-            Dim primaryWindow As String = Application.ProductName
+            'Dim primaryWindow As String = "LA"'Application.ProductName
 
             AppActivate(App)
             My.Computer.Clipboard.Clear()
@@ -271,7 +271,8 @@ Public Class frmFormatosEnvasados2
                 End If
 
                 Dim Respuesta As MsgBoxResult
-                AppActivate(primaryWindow)
+                'AppActivate(primaryWindow)
+                Me.BringToFront()
                 Respuesta = MsgBox(" ¿Existe estructura para " & m_Row.Cells("Articulos_envasados").Value.ToString & "?", _
                                     MsgBoxStyle.DefaultButton2 Or MsgBoxStyle.YesNo, _
                                     " Estructura ")
@@ -284,7 +285,8 @@ Public Class frmFormatosEnvasados2
                 End If
 
                 Dim Respuesta2 As MsgBoxResult
-                AppActivate(primaryWindow)
+                'AppActivate(primaryWindow)
+                Me.BringToFront()
                 Respuesta2 = MsgBox(" ¿Es la cantidad correcta " & Cantidad & "?", _
                                 MsgBoxStyle.DefaultButton2 Or MsgBoxStyle.YesNo, _
                                 " Cantidad ")
