@@ -102,6 +102,20 @@ Public Class frmEtiqueta0
     Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handles btnImprimir.Click
         lean14_TextChanged(Nothing, Nothing)
         Me.panBotones.Visible = False
+        Try
+            Dim scc As String = Me.lscc.Text
+            Dim pc As String = My.Computer.Name
+            Dim usuario As String = Environment.UserName
+            Dim strHostName As String = System.Net.Dns.GetHostName()
+            Dim ip As String = System.Net.Dns.GetHostEntry(strHostName).AddressList(0).ToString()
+            Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+
+            dtb.ConsultaAlteraciones("insert into tempInfo(scc, pc, ip, usuario) values('" & scc & "', '" & pc & "', '" & ip & "', '" & usuario & "')")
+            
+
+        Catch ex As Exception
+
+        End Try
         EtiquetadoraPalets.printPanel(Me.Panel1)
         EtiquetadoraPalets.printPanel(Me.Panel1)
         ' Me.panBotones.Visible = False
