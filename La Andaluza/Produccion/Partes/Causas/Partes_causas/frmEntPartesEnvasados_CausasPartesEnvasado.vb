@@ -76,13 +76,13 @@ Public Class frmEntPartesEnvasados_CausasPartesEnvasado
 
     Private Sub butVerId_CausaParteEnvasado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_CausaParteEnvasado.Click
         Dim frmEnt As New frmCausasPartesEnvasado()
-        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+        basesparacompatibilidad.Pantalla.mostrarDialogo(frmEnt)
     End Sub
 
     Private Sub butAddId_CausaParteEnvasado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_CausaParteEnvasado.Click
         Dim DBO_CausasPartesEnvasado As New DBO_CausasPartesEnvasado
         Dim frmEnt As New frmEntCausasPartesEnvasado(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spCausasPartesEnvasado, DBO_CausasPartesEnvasado)
-        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+        basesparacompatibilidad.Pantalla.mostrarDialogo(frmEnt)
         Dim s As New spCausasPartesEnvasado
         s.cargar_CausasPartesEnvasado(Me.cboCausaParteEnvasado)
     End Sub
