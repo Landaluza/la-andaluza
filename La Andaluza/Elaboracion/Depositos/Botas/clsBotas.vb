@@ -88,14 +88,23 @@ Public Class clsBotas
     End Function
 
     Public Function Eliminar() As Integer
-
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
 
         Try
-            If (BasesParaCompatibilidad.BD.ConsultaEliminar("Botas", "BotaID = " & Convert.ToString(BotaID)) = 0) Then
+            dtb.PrepararConsulta("delete from Botas where BotaID = @id")
+            dtb.AñadirParametroConsulta("@id", BotaID)
+            If dtb.Consultar(True) Then
+                Return 1
+            Else
                 MessageBox.Show("no se puede eliminar Bota, se encuentra en uso", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Return 0
             End If
-            BotaID = 0
-            Return 1
+
+            'If (BasesParaCompatibilidad.BD.ConsultaEliminar("Botas", "BotaID = " & Convert.ToString(BotaID)) = 0) Then
+            '    MessageBox.Show("no se puede eliminar Bota, se encuentra en uso", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            'End If
+            'BotaID = 0
+            'Return 1
         Catch ex As Exception
             Return 0
         End Try

@@ -301,11 +301,20 @@ Public Class clsDepositos
     End Function
 
     Public Function Eliminar() As Integer
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
         Try
-            If BasesParaCompatibilidad.BD.ConsultaEliminar("Depositos", "DepositoID = " & Convert.ToString(DepositoID)) = 0 Then
+            dtb.PrepararConsulta("delete from Depositos where DepositoID = @id")
+            dtb.AñadirParametroConsulta("@id", DepositoID)
+            If dtb.Consultar(True) Then
+                Return 1
+            Else
                 MessageBox.Show("no se puede eliminar Deposito, se encuentra en uso", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Return 0
             End If
-            Return 1
+            'If BasesParaCompatibilidad.BD.ConsultaEliminar("Depositos", "DepositoID = " & Convert.ToString(DepositoID)) = 0 Then
+            '    MessageBox.Show("no se puede eliminar Deposito, se encuentra en uso", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            'End If
+            'Return 1
         Catch ex As Exception
             Return 0
         End Try

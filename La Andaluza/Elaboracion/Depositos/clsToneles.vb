@@ -84,12 +84,25 @@ Public Class clsToneles
     End Function
 
     Public Function Eliminar() As Integer
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+
         Try
-            If (BasesParaCompatibilidad.BD.ConsultaEliminar("Toneles", "TonelID = " & Convert.ToString(TonelID)) = 0) Then
+
+            dtb.PrepararConsulta("delete from Toneles where TonelID = @id")
+            dtb.AñadirParametroConsulta("@id", TonelID)
+            If dtb.Consultar(True) Then
+                Return 1
+            Else
                 MessageBox.Show("no se puede eliminar Tonel, se encuentra en uso", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+
+                Return 0
             End If
-            TonelID = 0
-            Return 1
+
+            'If (BasesParaCompatibilidad.BD.ConsultaEliminar("Toneles", "TonelID = " & Convert.ToString(TonelID)) = 0) Then
+            '    MessageBox.Show("no se puede eliminar Tonel, se encuentra en uso", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            'End If
+            'TonelID = 0
+            'Return 1
         Catch ex As Exception
             Return 0
         End Try

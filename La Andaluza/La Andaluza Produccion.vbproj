@@ -1757,9 +1757,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Elaboracion\Depositos\BotasPosiciones\clsAlturas.vb" />
-    <Compile Include="Elaboracion\Depositos\BotasPosiciones\clsNaves.vb" />
     <Compile Include="Elaboracion\Depositos\BotasPosiciones\clsPiernas.vb" />
-    <Compile Include="Elaboracion\Depositos\BotasPosiciones\clsPosiciones.vb" />
     <Compile Include="Elaboracion\Depositos\BotasPosiciones\ctlBotasPosiciones.vb" />
     <Compile Include="Elaboracion\Depositos\BotasTapones\clsBotasTapones.vb" />
     <Compile Include="Elaboracion\Depositos\BotasTapones\ctlBotasTapones.vb" />

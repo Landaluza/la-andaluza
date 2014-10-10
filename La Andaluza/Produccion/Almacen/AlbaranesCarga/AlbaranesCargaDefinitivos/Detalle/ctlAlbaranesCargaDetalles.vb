@@ -72,7 +72,7 @@ Public Class ctlAlbaranesCargaDetalles
         End If
     End Sub
 
-    Public Sub EliminarAlbaranCargaDetalle()
-        clsAlb.Eliminar()
-    End Sub
+    Public Function EliminarAlbaranCargaDetalle() As Boolean
+        Return clsAlb.Eliminar()
+    End Function
 End Class

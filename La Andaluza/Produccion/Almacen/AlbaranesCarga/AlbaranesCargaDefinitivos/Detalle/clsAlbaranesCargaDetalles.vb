@@ -201,15 +201,22 @@ Public Class clsAlbaranesCargaDetalles
         End Try
     End Function
 
-    Public Function Eliminar() As Integer
+    Public Function Eliminar() As Boolean
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+
         'Dim dtb As BasesParaCompatibilidad.DataBase 
         Try
-            If (BasesParaCompatibilidad.BD.ConsultaEliminar("AlbaranesCargaDetalles", "AlbaranCargaDetalleID = " & Convert.ToString(AlbaranCargaDetalleID)) = 0) Then
-                MessageBox.Show("no se puede eliminar AlbaranCargaDetalle, se encuentra en uso", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            End If
-            Return 1
+            dtb.PrepararConsulta("delete from AlbaranesCargaDetalles where AlbaranCargaDetalleID = @id")
+            dtb.AñadirParametroConsulta("@id", AlbaranCargaDetalleID)
+            Return dtb.Consultar(True)
+            'If (BasesParaCompatibilidad.BD.ConsultaEliminar("AlbaranesCargaDetalles", "AlbaranCargaDetalleID = " & Convert.ToString(AlbaranCargaDetalleID)) = 0) Then
+            '    MessageBox.Show("no se puede eliminar AlbaranCargaDetalle, se encuentra en uso", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            'End If
+            'Return 1
         Catch ex As Exception
-            Return 0
+            MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            'Return 0
+            Return False
         End Try
     End Function
 
