@@ -73,7 +73,7 @@ Public Class frmPaletsContenidos2
     End Sub
 
     Protected Overrides Sub cargar_datos()
-        dataSource = dtb.Consultar(spSelectDgv)
+        dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 
     Protected Overrides Sub BindDataSource()
@@ -128,7 +128,7 @@ Public Class frmPaletsContenidos2
 
 
     Protected Overrides Sub dgvFill()
-        dataSource = dtb.Consultar(spSelectDgv)
+        dataSource = dtb.Consultar(spSelectDgv, True)
 
         If Not dataSource Is Nothing Then
 
@@ -282,7 +282,11 @@ Public Class frmPaletsContenidos2
                 padre.m_DBO_PaletProducido = spPaletsProducidos2.Select_Record(padre.dgvIncompletos.CurrentRow.Cells("PaletProducidoID").Value)
                 frmEnt.CambiarMensaje(padre.m_DBO_PaletProducido.SCC, padre.dgvIncompletos.CurrentRow.Cells("Cajas").Value)
 
-                Dim HoraInicioAux As Object = dtb.Consultar("exec PaletsProducidos2GetUltimaHoraProduccionPorLinea2 " & padre.m_DBO_Envasado.LineaID & ", " & padre.m_DBO_Envasado.EnvasadoID).Rows(0).Item(0)
+                dtb.PrepararConsulta("PaletsProducidos2GetUltimaHoraProduccionPorLinea2 @lin, @env")
+                dtb.AñadirParametroConsulta(" 2env", padre.m_DBO_Envasado.EnvasadoID)
+                dtb.AñadirParametroConsulta("@lin", padre.m_DBO_Envasado.LineaID)
+                Dim HoraInicioAux As Object = dtb.Consultar().Rows(0).Item(0)
+                'Dim HoraInicioAux As Object = dtb.Consultar("exec PaletsProducidos2GetUltimaHoraProduccionPorLinea2 " & padre.m_DBO_Envasado.LineaID & ", " & padre.m_DBO_Envasado.EnvasadoID).Rows(0).Item(0)
                 Dim cajasAux As Integer = (padre.dgvIncompletos.CurrentRow.Cells("Cajas").Value)
 
                 padre.SetValores()

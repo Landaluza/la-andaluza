@@ -55,7 +55,9 @@ Public Class frmArticulosIngredientesTipos
 
 
     Protected Overrides Sub cargar_datos()
-        dataSource = dtb.Consultar(spSelectDgv, True)
+        dtb.PrepararConsulta(spSelectDgv)
+        dataSource = dtb.Consultar()
+        '        dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
     Protected Overrides Sub BindDataSource()
         If Not dataSource Is Nothing Then

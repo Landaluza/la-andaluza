@@ -202,6 +202,7 @@ Public Class clsAlbaranesCargaDetalles
     End Function
 
     Public Function Eliminar() As Integer
+        'Dim dtb As BasesParaCompatibilidad.DataBase 
         Try
             If (BasesParaCompatibilidad.BD.ConsultaEliminar("AlbaranesCargaDetalles", "AlbaranCargaDetalleID = " & Convert.ToString(AlbaranCargaDetalleID)) = 0) Then
                 MessageBox.Show("no se puede eliminar AlbaranCargaDetalle, se encuentra en uso", "", MessageBoxButtons.OK, MessageBoxIcon.Error)

@@ -121,7 +121,7 @@ Public Class frmWstepGraneles
 
         Dim spArticulos1 As New spArticulos1
         Dim cb As System.Windows.Forms.CheckBox
-        Dim dt As DataTable = dtb.Consultar("ArticulosCertificadosTiposSelectDgv")
+        Dim dt As DataTable = dtb.Consultar("ArticulosCertificadosTiposSelectDgv", True)
 
         For Each row As System.Data.DataRow In dt.Rows
             cb = New System.Windows.Forms.CheckBox

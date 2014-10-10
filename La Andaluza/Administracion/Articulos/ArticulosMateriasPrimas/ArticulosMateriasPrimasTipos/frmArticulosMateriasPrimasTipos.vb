@@ -52,11 +52,13 @@ Public Class frmArticulosMateriasPrimasTipos
     End Sub
 
     Protected Overrides Sub cargar_datos()
-        dataSource = dtb.Consultar(spSelectDgv, True)
+        dtb.PrepararConsulta(spSelectDgv)
+        dataSource = dtb.Consultar
+        'dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
     Protected Overrides Sub BindDataSource()
 
-        If Not dtb.Consultar(spSelectDgv, True) Is Nothing Then
+        If Not dataSource Is Nothing Then
             GeneralBindingSource.DataSource = dataSource
             'GeneralBindingSource. dataSource = dtb.consultar(spSelectDgv)
 

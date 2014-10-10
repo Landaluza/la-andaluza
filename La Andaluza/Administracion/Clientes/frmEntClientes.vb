@@ -17,7 +17,7 @@ Public Class frmEntClientes
 
     Private Sub frmEntClientes_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         If Me.Text.Substring(0, 3) = "Ver" Then
-            m_Tabla = dtb.consultar("ClientesSelectAll")
+            m_Tabla = dtb.Consultar("ClientesSelectAll", True)
             GeneralBindingSource.DataSource = m_Tabla
             GeneralBindingSource.Position = m_Pos
         End If

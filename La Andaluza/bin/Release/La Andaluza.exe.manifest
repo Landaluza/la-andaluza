@@ -129,7 +129,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>T7dm0y68q9sbNdWcJYoIAFT5BUH//+s5YPKjn1DmX5E=</dsig:DigestValue>
+        <dsig:DigestValue>06LY4mEXfOsq8hWm2sSkraVDA3YFitLLsmrDflFOAPU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -326,14 +326,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="La Andaluza.exe" size="10279936">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="La Andaluza.exe" size="10280448">
       <assemblyIdentity name="La Andaluza" version="2014.2.1.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>hm+Vwk8s5t4q+s9eyKjXxOcP0N9w9qWM/dzicfQK0ss=</dsig:DigestValue>
+        <dsig:DigestValue>3+3rxzb3M4di7h9TgjyRvrJgLp9FDQIIOQB5SMG4aSU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -469,6 +469,15 @@
       </hash>
     </dependentAssembly>
   </dependency>
+  <file name="Bases\ZLibrerias\BasesParaCompatibilidad.dll" size="1929728">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>06LY4mEXfOsq8hWm2sSkraVDA3YFitLLsmrDflFOAPU=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="Bases\ZLibrerias\twaincontrolxtrial.exe" size="901096">
     <hash>
       <dsig:Transforms>

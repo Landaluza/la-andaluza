@@ -10,7 +10,9 @@ Public Class frmCargaNecesidadesJRMaestro
         InitializeComponent()
     End Sub
     Protected Overrides Sub cargar_datos()
-        dataSource = dtb.Consultar("SelectCargaNecesidadesMaestroByServido", True)
+        dtb.PrepararConsulta("SelectCargaNecesidadesMaestroByServido")
+        dataSource = dtb.Consultar
+        'dataSource = dtb.Consultar("SelectCargaNecesidadesMaestroByServido", True)
     End Sub
 
     Protected Overrides Sub BindDataSource()

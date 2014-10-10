@@ -71,19 +71,6 @@ Public Class clsObservaciones
         End Try
     End Function
 
-    Public Function Eliminar() As Integer
-
-
-
-        Try
-            If (BasesParaCompatibilidad.BD.ConsultaEliminar("ListaObservaciones", "ObservacionID = " & ObservacionID) = 0) Then
-                messagebox.show("no se puede eliminar este Observacion, se encuentra en uso", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            End If
-            Return 1
-        Catch ex As Exception
-            Return 0
-        End Try
-    End Function
 
 #End Region
 End Class

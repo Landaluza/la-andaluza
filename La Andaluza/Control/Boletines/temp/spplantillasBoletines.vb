@@ -183,6 +183,6 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Function
 
     Public Function SeleccionarTodos() As DataTable
-        Return dtb.Consultar("SelectAllBoletinesPlantillas")
+        Return dtb.Consultar("SelectAllBoletinesPlantillas", True)
     End Function
 End Class

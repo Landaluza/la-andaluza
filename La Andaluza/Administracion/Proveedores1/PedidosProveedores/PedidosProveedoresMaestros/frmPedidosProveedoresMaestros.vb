@@ -156,7 +156,7 @@ Public Class frmPedidosProveedoresMaestros
         Dim tb As System.Data.DataTable
         Try
             spSelectDgv = "PedidosProveedoresDetallesSelectByMaestroIDDgv '" & dgvGeneral.CurrentRow.Cells("PedidoProveedorMaestroID").Value & "'"
-            tb = dtb.Consultar(spSelectDgv)
+            tb = dtb.Consultar(spSelectDgv, True)
         Catch ex As Exception
             MessageBox.Show("Error al recuperar datos para el informe. Detalles:" & Environment.NewLine & ex.Message, "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error)
             frmEspera.Close()
@@ -455,7 +455,7 @@ Public Class frmPedidosProveedoresMaestros
             spSelectDgv = "PedidosProveedoresMaestrosSelectDgvByEstado"
         End If
 
-        dataSource = dtb.Consultar(spSelectDgv)
+        dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 
     Protected Overrides Sub BindDataSource()

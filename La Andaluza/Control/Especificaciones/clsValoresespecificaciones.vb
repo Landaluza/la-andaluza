@@ -189,65 +189,87 @@ Public Class clsValoresespecificaciones
     End Function
 
 
-    Public Function Modificar() As Integer
-
-        Try
-            BasesParaCompatibilidad.BD.ConsultaModificar("ValoresEspecificaciones", _
+    Public Function Modificar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.PrepararConsulta("update ValoresEspecificaciones set " & _
                                  "Obligatoriedad = '" & Obligatoriedad.ToString & _
                                  "', Minimo = " & Minimo.ToString.Replace(","c, "."c) & _
                                  ", Maximo = " & Maximo.ToString.Replace(","c, "."c) & _
                                  ",Periodicidad = " & Convert.ToString(Periodicidad) & _
                                  ",desviacionMaximo = " & Desviacion_maximo.ToString.Replace(","c, "."c) & _
                                  ",desviacionMinimo = " & Desviacion_minimo.ToString.Replace(","c, "."c) & _
-                                 ",MetodoAnalisisID=" & MetodoAnalisisID.ToString, _
-                                 "ParametroID = " & ParametroID.ToString & " and EspecificacionID = " & EspecificacionID.ToString)
+                                 ",MetodoAnalisisID=" & MetodoAnalisisID.ToString & _
+                                 " where ParametroID = " & ParametroID.ToString & " and EspecificacionID = " & EspecificacionID.ToString)
+        Return dtb.Consultar(True)
+
+        'Try
+        '    BasesParaCompatibilidad.BD.ConsultaModificar("ValoresEspecificaciones", _
+        '                         "Obligatoriedad = '" & Obligatoriedad.ToString & _
+        '                         "', Minimo = " & Minimo.ToString.Replace(","c, "."c) & _
+        '                         ", Maximo = " & Maximo.ToString.Replace(","c, "."c) & _
+        '                         ",Periodicidad = " & Convert.ToString(Periodicidad) & _
+        '                         ",desviacionMaximo = " & Desviacion_maximo.ToString.Replace(","c, "."c) & _
+        '                         ",desviacionMinimo = " & Desviacion_minimo.ToString.Replace(","c, "."c) & _
+        '                         ",MetodoAnalisisID=" & MetodoAnalisisID.ToString, _
+        '                         "ParametroID = " & ParametroID.ToString & " and EspecificacionID = " & EspecificacionID.ToString)
 
 
-            Return 1
-        Catch ex As Exception
-            messageBox.show(ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return 0
-        End Try
+        '    Return 1
+        'Catch ex As Exception
+        '    MessageBox.Show(ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '    Return 0
+        'End Try
     End Function
 
-    Public Function Insertar() As Integer
-
-        Try
-            BasesParaCompatibilidad.BD.ConsultaInsertarConcampos("(ParametroID, EspecificacionID, Obligatoriedad, Minimo, Maximo, Periodicidad, MetodoAnalisisID, desviacionMaximo, desviacionMinimo, FechaModificacion, UsuarioModificacion)", _
+    Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.PrepararConsulta("insert into ValoresEspecificaciones(ParametroID, EspecificacionID, Obligatoriedad, Minimo, Maximo, Periodicidad, MetodoAnalisisID, desviacionMaximo, desviacionMinimo) values(" & _
                                          ParametroID.ToString & "," & EspecificacionID.ToString & ",'" & Obligatoriedad.ToString & "'," & _
                                          Minimo.ToString.Replace(","c, "."c) & "," & Maximo.ToString.Replace(","c, "."c) & "," & _
                                          Convert.ToString(Periodicidad) & "," & MetodoAnalisisID.ToString & "," & _
-                                         Desviacion_maximo.ToString.Replace(","c, "."c) & "," & Desviacion_minimo.ToString.Replace(","c, "."c), _
-                                         "ValoresEspecificaciones")
+                                         Desviacion_maximo.ToString.Replace(","c, "."c) & "," & Desviacion_minimo.ToString.Replace(","c, "."c) & ")")
+
+        Return dtb.Consultar(True)
+        'Try
+        '    BasesParaCompatibilidad.BD.ConsultaInsertarConcampos("(ParametroID, EspecificacionID, Obligatoriedad, Minimo, Maximo, Periodicidad, MetodoAnalisisID, desviacionMaximo, desviacionMinimo, FechaModificacion, UsuarioModificacion)", _
+        '                                 ParametroID.ToString & "," & EspecificacionID.ToString & ",'" & Obligatoriedad.ToString & "'," & _
+        '                                 Minimo.ToString.Replace(","c, "."c) & "," & Maximo.ToString.Replace(","c, "."c) & "," & _
+        '                                 Convert.ToString(Periodicidad) & "," & MetodoAnalisisID.ToString & "," & _
+        '                                 Desviacion_maximo.ToString.Replace(","c, "."c) & "," & Desviacion_minimo.ToString.Replace(","c, "."c), _
+        '                                 "ValoresEspecificaciones")
 
 
-            Return 1
-        Catch ex As Exception
-            messageBox.show(ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return 0
-        End Try
+        '    Return 1
+        'Catch ex As Exception
+        '    MessageBox.Show(ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '    Return 0
+        'End Try
     End Function
 
-    Public Function Eliminar() As Integer
-
-        Try
-            BasesParaCompatibilidad.BD.ConsultaEliminar("ValoresEspecificaciones", "ParametroID = " & ParametroID.ToString & " and EspecificacionID = " & EspecificacionID.ToString)
-            Return 1
-        Catch ex As Exception
-            messageBox.show(ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return 0
-        End Try
+    Public Function Eliminar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.PrepararConsulta("delete from ValoresEspecificaciones where ParametroID= @par and EspecificacionID= @esp")
+        dtb.AñadirParametroConsulta("@par", ParametroID)
+        dtb.AñadirParametroConsulta("@esp", EspecificacionID)
+        Return dtb.Consultar(True)
+        'Try
+        '    BasesParaCompatibilidad.BD.ConsultaEliminar("ValoresEspecificaciones", "ParametroID = " & ParametroID.ToString & " and EspecificacionID = " & EspecificacionID.ToString)
+        '    Return 1
+        'Catch ex As Exception
+        '    MessageBox.Show(ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '    Return 0
+        'End Try
     End Function
 
-    Public Function EliminarPorEspecificacion() As Integer
+    Public Function EliminarPorEspecificacion(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
 
-        Try
-            BasesParaCompatibilidad.BD.ConsultaEliminar("ValoresEspecificaciones", "EspecificacionID = " & EspecificacionID.ToString)
-            Return 1
-        Catch ex As Exception
-            messageBox.show(ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return 0
-        End Try
+        dtb.PrepararConsulta("delete from ValoresEspecificaciones where EspecificacionID= @id")
+        dtb.AñadirParametroConsulta("@id", EspecificacionID)
+        Return dtb.Consultar(True)
+        'Try
+        '    BasesParaCompatibilidad.BD.ConsultaEliminar("ValoresEspecificaciones", "EspecificacionID = " & EspecificacionID.ToString)
+        '    Return 1
+        'Catch ex As Exception
+        '    MessageBox.Show(ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '    Return 0
+        'End Try
     End Function
 
 #End Region

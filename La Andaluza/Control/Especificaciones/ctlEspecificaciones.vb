@@ -119,7 +119,7 @@ Public Class ctlEspecificaciones
         Return clsEsp.devolverTodo()
     End Function
 
-    Public Function GuardarEspecificacion(ByVal Descripcion As String, ByVal qs As String, ByVal fecha As Date, ByVal lote As Integer, ByVal formato As Integer, ByVal LegislacionID As Integer) As Integer
+    Public Function GuardarEspecificacion(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal Descripcion As String, ByVal qs As String, ByVal fecha As Date, ByVal lote As Integer, ByVal formato As Integer, ByVal LegislacionID As Integer) As Boolean
         clsEsp._Descripcion = Descripcion
         clsEsp._CodigoQS = qs
         clsEsp._FechaRevisado = fecha
@@ -128,20 +128,22 @@ Public Class ctlEspecificaciones
         clsEsp._LegislacionID = LegislacionID
 
         If clsEsp._EspecificacionID > 0 Then
-            Return clsEsp.Modificar()
+            Return clsEsp.Modificar(dtb)
         Else
-            Return clsEsp.Insertar()
+            Return clsEsp.Insertar(dtb)
         End If
     End Function
 
-    Public Sub EliminarEspecificacion()
+    Public Function EliminarEspecificacion(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         clsValEsp._EspecificacionID = clsEsp._EspecificacionID
-        clsValEsp.EliminarPorEspecificacion()
+        If clsValEsp.EliminarPorEspecificacion(dtb) Then
 
-        clsEsp.Eliminar()
-    End Sub
+            Return clsEsp.Eliminar(dtb)
+        End If
+        Return False
+    End Function
 
-    Public Sub guardarValoresEspecificaciones(ByVal ParametroId As Integer, ByVal obligatoriedad As Boolean, ByVal minimo As Double, ByVal maximo As Double, ByVal periodicidad As Double, ByVal MetodoAnalisisID As Integer, ByVal desviacionMax As Double, ByVal desviacionMin As Double)
+    Public Function guardarValoresEspecificaciones(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal ParametroId As Integer, ByVal obligatoriedad As Boolean, ByVal minimo As Double, ByVal maximo As Double, ByVal periodicidad As Double, ByVal MetodoAnalisisID As Integer, ByVal desviacionMax As Double, ByVal desviacionMin As Double) As Boolean
         clsValEsp._EspecificacionID = clsEsp._EspecificacionID
         clsValEsp._ParametroID = ParametroId
         clsValEsp._Obligatoriedad = obligatoriedad
@@ -154,15 +156,17 @@ Public Class ctlEspecificaciones
 
         If clsValEsp.existe() Then
             If (obligatoriedad = True Or minimo > 0 Or maximo > 0 Or periodicidad > 0 Or MetodoAnalisisID > 0 Or desviacionMax > 0 Or desviacionMin > 0) Then
-                clsValEsp.Modificar()
+                Return clsValEsp.Modificar(dtb)
             Else
-                clsValEsp.Eliminar()
+                Return clsValEsp.Eliminar(dtb)
             End If
         Else
             If (obligatoriedad = True Or minimo > 0 Or maximo > 0 Or periodicidad > 0 Or MetodoAnalisisID > 0 Or desviacionMax > 0 Or desviacionMin > 0) Then
-                clsValEsp.Insertar()
+                Return clsValEsp.Insertar(dtb)
+            Else
+                Return False
             End If
         End If
-    End Sub
+    End Function
 
 End Class

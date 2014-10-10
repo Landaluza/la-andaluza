@@ -304,16 +304,26 @@ Return 0
 End Try
 End Function
 
-Public Function Eliminar() As Integer
-Try
-            If (BasesParaCompatibilidad.BD.ConsultaEliminar("AlbaranesCargaMaestro", "AlbaranCargaMaestroID = " & Convert.ToString(AlbaranCargaMaestroID)) = 0) Then
+    Public Function Eliminar() As Integer
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        Try
+            dtb.PrepararConsulta("delete from AlbaranesCargaMaestro where AlbaranCargaMaestroID = @id")
+            dtb.AñadirParametroConsulta("@id", Convert.ToString(AlbaranCargaMaestroID))
+            If dtb.Consultar(True) Then
+                Return 1
+            Else
                 MessageBox.Show("no se puede eliminar AlbaranCargaMaestro, se encuentra en uso", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+                Return 0
             End If
-Return 1
-Catch ex As Exception
- Return 0
-End Try
-End Function
+            'If (BasesParaCompatibilidad.BD.ConsultaEliminar("AlbaranesCargaMaestro", "AlbaranCargaMaestroID = " & Convert.ToString(AlbaranCargaMaestroID)) = 0) Then
+            '    MessageBox.Show("no se puede eliminar AlbaranCargaMaestro, se encuentra en uso", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            'End If
+            'Return 1
+        Catch ex As Exception
+            Return 0
+        End Try
+    End Function
 
 #End Region
 end class

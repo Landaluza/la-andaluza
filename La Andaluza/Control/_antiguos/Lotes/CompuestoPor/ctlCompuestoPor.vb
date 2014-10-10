@@ -46,7 +46,5 @@ Public Class ctlCompuestoPor
         Return clsCom.DevolverPorMovimiento()
     End Function
 
-    Public Function EliminarCompuestoPor() As Boolean
-        Return clsCom.Eliminar()
-    End Function
+ 
 End Class

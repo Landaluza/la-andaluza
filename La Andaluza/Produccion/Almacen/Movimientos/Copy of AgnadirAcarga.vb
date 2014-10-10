@@ -47,7 +47,7 @@
                     Dim Linea As String = "PaletsProducidosSelectArticuloCodigoQSBySCC " & txtSCC.Text
 
                     'ctlAlbDet.SetAlbaranCargaProviDetalleID(0)
-                    Tabla = dtb.Consultar(Linea)
+                    Tabla = dtb.Consultar(Linea, True)
 
 
 

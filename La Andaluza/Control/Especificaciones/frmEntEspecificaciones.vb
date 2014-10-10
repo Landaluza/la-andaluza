@@ -27,25 +27,33 @@ Public Class frmEntEspecificaciones
             'If dgvEspecificaciones.RowCount > 0 Then
             '    dgvEspecificaciones.CurrentCell = dgvEspecificaciones.Rows(0).Cells(1)
             'End If
+            Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+            dtb.EmpezarTransaccion()
 
             Try
-                ctlEsp.GuardarEspecificacion(txtDescripcion.Text, txtCodigoQS.Text, dtpFechaRevisado.Value, cboTipoLote.SelectedValue, cboTipoProducto.SelectedValue, cboLegislacion.SelectedValue)
+                If Not ctlEsp.GuardarEspecificacion(dtb, txtDescripcion.Text, txtCodigoQS.Text, dtpFechaRevisado.Value, cboTipoLote.SelectedValue, cboTipoProducto.SelectedValue, cboLegislacion.SelectedValue) Then
+                    Throw New Exception("Error 1 al guardar")
+                End If
                 i = 0
                 While i < dgvEspecificaciones.RowCount
                     'ctlEsp.guardarValoresEspecificaciones(dgvEspecificaciones.Rows(i).Cells(0).Value, dgvEspecificaciones.Rows(i).Cells(2).Value, dgvEspecificaciones.Rows(i).Cells(3).Value, dgvEspecificaciones.Rows(i).Cells(4).Value, dgvEspecificaciones.Rows(i).Cells(5).Value, dgvEspecificaciones.Rows(i).Cells(7).Value, dgvEspecificaciones.Rows(i).Cells(8).Value, dgvEspecificaciones.Rows(i).Cells(9).Value)
-                    ctlEsp.guardarValoresEspecificaciones(dgvEspecificaciones.Rows(i).Cells("ParametroID").Value, _
+                    If Not ctlEsp.guardarValoresEspecificaciones(dtb, dgvEspecificaciones.Rows(i).Cells("ParametroID").Value, _
                                                          dgvEspecificaciones.Rows(i).Cells("Obligatoriedad").Value, _
                                                          dgvEspecificaciones.Rows(i).Cells("Minimo").Value, _
                                                          dgvEspecificaciones.Rows(i).Cells("Maximo").Value, _
                                                          dgvEspecificaciones.Rows(i).Cells("Periodicidad").Value, _
                                                          dgvEspecificaciones.Rows(i).Cells(7).Value, _
                                                          If(Convert.IsDBNull(dgvEspecificaciones.Rows(i).Cells("DesviacionMaxima").Value), Nothing, dgvEspecificaciones.Rows(i).Cells("DesviacionMaxima").Value), _
-                                                         If(Convert.IsDBNull(dgvEspecificaciones.Rows(i).Cells("DesviacionMinima").Value), Nothing, dgvEspecificaciones.Rows(i).Cells("DesviacionMinima").Value))
+                                                         If(Convert.IsDBNull(dgvEspecificaciones.Rows(i).Cells("DesviacionMinima").Value), Nothing, dgvEspecificaciones.Rows(i).Cells("DesviacionMinima").Value)) Then
+                        Throw New Exception("Error al guardar 2")
+                    End If
                     i = i + 1
                 End While
                 dtsValEsp.AcceptChanges()
+                dtb.TerminarTransaccion()
                 Me.Close()
             Catch ex As Exception
+                dtb.CancelarTransaccion()
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         End If

@@ -221,7 +221,7 @@ Public Class frmPaletsProducidos2
                 dtb.AñadirParametroConsulta("@estado", Me.cboEstado.SelectedValue)
                 dataSource = dtb.Consultar()
             Else
-                dataSource = dtb.Consultar(spSelectDgv)
+                dataSource = dtb.Consultar(spSelectDgv, True)
             End If
         End If
         'End Sub

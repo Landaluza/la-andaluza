@@ -19,7 +19,7 @@ Public Class PaletNoAlmacenNoTerminado
     End Sub
 
     Protected Overrides Sub cargar_datos()
-        dataSource = dtb.Consultar("PaletsContenidosNoAlmacenNoTerminado ")
+        dataSource = dtb.Consultar("PaletsContenidosNoAlmacenNoTerminado ", True)
     End Sub
 
     Protected Overrides Sub BindDataSource()

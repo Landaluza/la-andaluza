@@ -84,7 +84,15 @@ Public Class frmEspecificaciones
             response = MessageBox.Show(" ¿Realmente desea eliminar este registro? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If response = DialogResult.Yes Then
                 ctlEsp.setEspecificacionID(dgvGeneral.Rows(Posicion).Cells(0).Value)
-                ctlEsp.EliminarEspecificacion()
+                Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+                dtb.EmpezarTransaccion()
+                Try
+                    ctlEsp.EliminarEspecificacion(dtb)
+                    dtb.TerminarTransaccion()
+                Catch ex As Exception
+                    dtb.CancelarTransaccion()
+                    MessageBox.Show("Error " & ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End Try
 
                 ctlEsp.mostrarTodasEspecificaciones(dtsEsp)
                 If Posicion >= 0 Then

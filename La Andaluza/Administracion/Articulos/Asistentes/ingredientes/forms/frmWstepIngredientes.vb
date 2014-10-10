@@ -134,7 +134,7 @@ Public Class frmWstepIngredientes
 
         Dim spArticulos1 As New spArticulos1
         Dim cb As System.Windows.Forms.CheckBox
-        Dim dt As DataTable = dtb.Consultar("ArticulosCertificadosTiposSelectDgv")
+        Dim dt As DataTable = dtb.Consultar("ArticulosCertificadosTiposSelectDgv", True)
 
         If Not Me.m_IDI Then
             spTiposProductos.cargar_ComboBox(Me.cboTipoProducto)

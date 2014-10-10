@@ -107,8 +107,10 @@ Class spMonodosis
     End Function
 
     Public Function selectDgv() As DataTable
-        Dim dbt As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Return dbt.Consultar("MonodosisSelectDetallado", True)
+        Dim dbt As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.PrepararConsulta("MonodosisSelectDetallado")
+        Return dtb.Consultar
+        'Return dbt.Consultar("MonodosisSelectDetallado", True)
     End Function
 
     Function esMonodosis(ByVal p1 As Integer, Optional dtb as BasesParaCompatibilidad.Database = Nothing) As Boolean

@@ -16,11 +16,10 @@ Public Class frmEntCamposADD
     End Sub
 
     Private Sub frmEntCamposADD_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
         'Me.cboArticuloTipoID.mam_DataSource("CamposADD_ArticulosTiposCbo"), False)
         'Me.cboSolicitanteID.mam_DataSource("EmpleadosSelectCbo"), False)
-        Me.cboArticuloTipoID.mam_DataSource(dtb.Consultar("CamposADD_ArticulosTiposCbo", True), False)
-        Me.cboSolicitanteID.mam_DataSource(dtb.Consultar("EmpleadosSelectCbo", True), False)
+        Me.cboArticuloTipoID.mam_DataSource("CamposADD_ArticulosTiposCbo", False)
+        Me.cboSolicitanteID.mam_DataSource("EmpleadosSelectCbo", False)
 
         SetValores(m_DBO_CamposADD.ID, False)
     End Sub

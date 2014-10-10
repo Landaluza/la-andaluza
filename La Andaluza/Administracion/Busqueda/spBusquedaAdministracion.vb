@@ -20,7 +20,9 @@
 
         query = query & ") as x order by x.nombre"
 
-        Return dtb.Consultar(query, False)
+        dtb.PrepararConsulta(query)
+        Return dtb.Consultar
+        'Return dtb.Consultar(query, False)
     End Function
 
 End Class

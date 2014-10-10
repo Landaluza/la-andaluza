@@ -9,7 +9,7 @@ Public Class frmSistemasIndustriales
         spSelectDgv = "SistemasIndustrialesSelectDgv"
     End Sub
     Protected Overrides Sub cargar_datos()
-        dataSource = dtb.Consultar(spSelectDgv)
+        dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 
     Protected Overrides Sub dgvFill()

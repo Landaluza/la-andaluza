@@ -98,18 +98,6 @@ Public Class clsCompuestoPor
         End Try
     End Function
 
-    Public Function Eliminar() As Boolean
-
-        Try
-            If BasesParaCompatibilidad.BD.ConsultaEliminar("CompuestoPor", "LoteFinal = " & Convert.ToString(LoteFinal) & " and LotePartida =" & Convert.ToString(LotePartida)) = 0 Then
-                MessageBox.Show("no se puede eliminar Lot, se encuentra en uso", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                Return False
-            End If
-            Return True
-        Catch ex As Exception
-            Return False
-        End Try
-    End Function
 
 #End Region
 End Class

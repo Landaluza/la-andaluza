@@ -113,17 +113,6 @@ Public Class clsAnaliticasExternas
         End Try
     End Function
 
-    Public Function Eliminar() As Integer
-        Try
-
-            If BasesParaCompatibilidad.BD.ConsultaEliminar("AnaliticasExternas", "AnaliticaExternaID = " & Convert.ToString(AnaliticaExternaID)) = 0 Then
-                MessageBox.Show("no se puede eliminar AnaliticaExterna, se encuentra en uso", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            End If
-            Return 1
-        Catch ex As Exception
-            Return 0
-        End Try
-    End Function
 
     Public Function EliminarPorAnalitica() As Boolean
         Try

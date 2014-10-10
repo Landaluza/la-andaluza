@@ -130,57 +130,80 @@ Public Class clsEspecificaciones
 
     End Function
 
-    Public Function Modificar() As Integer
-        Try
-            BasesParaCompatibilidad.BD.ConsultaModificar("Especificaciones", _
-                                                            "CodigoQS = '" & CodigoQS.ToString & _
+    Public Function Modificar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.PrepararConsulta("update Especificaciones set " & _
+                             "CodigoQS = '" & CodigoQS.ToString & _
                                                             "',Descripcion= '" & Descripcion & _
                                                             "', FechaRevisado = '" & BasesParaCompatibilidad.Calendar.ArmarFecha(FechaRevisado) & _
                                                             "', TipoLoteID = " & TipoLoteID.ToString & _
                                                             ",TipoProductoID = " & TipoProductoID.ToString & _
-                                                            ",LegislacionID = " & LegislacionID.ToString, _
-                                                            "EspecificacionID = " & EspecificacionID.ToString)
+                                                            ",LegislacionID = " & LegislacionID.ToString & _
+                                                            " where EspecificacionID = " & EspecificacionID.ToString)
+        Return dtb.Consultar(True)
+        'Try
+        '    BasesParaCompatibilidad.BD.ConsultaModificar("Especificaciones", _
+        '                                                    "CodigoQS = '" & CodigoQS.ToString & _
+        '                                                    "',Descripcion= '" & Descripcion & _
+        '                                                    "', FechaRevisado = '" & BasesParaCompatibilidad.Calendar.ArmarFecha(FechaRevisado) & _
+        '                                                    "', TipoLoteID = " & TipoLoteID.ToString & _
+        '                                                    ",TipoProductoID = " & TipoProductoID.ToString & _
+        '                                                    ",LegislacionID = " & LegislacionID.ToString, _
+        '                                                    "EspecificacionID = " & EspecificacionID.ToString)
 
 
-            Return 1
-        Catch ex As Exception
-            Return 0
-        End Try
+        '    Return 1
+        'Catch ex As Exception
+        '    Return 0
+        'End Try
     End Function
 
 
 
-    Public Function Insertar() As Integer
-        Try
-            BasesParaCompatibilidad.BD.ConsultaInsertarSinDatosUsuario("'" & Descripcion & _
+    Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.PrepararConsulta("insert into Especificaciones '" & Descripcion & _
                                                            "','" & CodigoQS.ToString & _
                                                            "','" & BasesParaCompatibilidad.Calendar.ArmarFecha(FechaRevisado) & _
                                                            "'," & TipoLoteID.ToString & _
                                                            "," & TipoProductoID.ToString & _
                                                            ",'" & BasesParaCompatibilidad.Calendar.ArmarFecha(DateTime.Now) & _
                                                            "'," & BasesParaCompatibilidad.Config.User & _
-                                                           ", " & LegislacionID, _
-                                                           "Especificaciones")
+                                                           ", " & LegislacionID)
+        Return dtb.Consultar(True)
+
+        'Try
+        '    BasesParaCompatibilidad.BD.ConsultaInsertarSinDatosUsuario("'" & Descripcion & _
+        '                                                   "','" & CodigoQS.ToString & _
+        '                                                   "','" & BasesParaCompatibilidad.Calendar.ArmarFecha(FechaRevisado) & _
+        '                                                   "'," & TipoLoteID.ToString & _
+        '                                                   "," & TipoProductoID.ToString & _
+        '                                                   ",'" & BasesParaCompatibilidad.Calendar.ArmarFecha(DateTime.Now) & _
+        '                                                   "'," & BasesParaCompatibilidad.Config.User & _
+        '                                                   ", " & LegislacionID, _
+        '                                                   "Especificaciones")
 
 
-            EspecificacionID = BasesParaCompatibilidad.BD.ConsultaVer("max(EspecificacionID)", "Especificaciones").Rows(0).Item(0)
-            Return EspecificacionID
-        Catch ex As Exception
-            Return 0
-        End Try
+        '    EspecificacionID = BasesParaCompatibilidad.BD.ConsultaVer("max(EspecificacionID)", "Especificaciones").Rows(0).Item(0)
+        '    Return EspecificacionID
+        'Catch ex As Exception
+        '    Return 0
+        'End Try
     End Function
 
-    Public Function Eliminar() As Integer
+    Public Function Eliminar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
+        dtb.PrepararConsulta("delete from Especificaciones where EspecificacionID= @id")
+        dtb.AñadirParametroConsulta("@id", EspecificacionID)
 
-        ' hay q hacer q se recorran el orden de los posteriores
-        Try
-            If (BasesParaCompatibilidad.BD.ConsultaEliminar("Especificaciones", "EspecificacionID = " & EspecificacionID.ToString) = 0) Then
-                messageBox.show("no se puede eliminar esa especificacion, se encuentra en uso", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            End If
-            Return 1
-        Catch ex As Exception
-            Return 0
-        End Try
+        Return dtb.Consultar(True)
+        'Try
+
+
+        'If (BasesParaCompatibilidad.BD.ConsultaEliminar("Especificaciones", "EspecificacionID = " & EspecificacionID.ToString) = 0) Then
+        '    MessageBox.Show("no se puede eliminar esa especificacion, se encuentra en uso", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+        'End If
+        'Return 1
+        'Catch ex As Exception
+        '    Return 0
+        'End Try
     End Function
 
 #End Region

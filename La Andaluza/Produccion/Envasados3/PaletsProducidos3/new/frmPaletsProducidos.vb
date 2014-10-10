@@ -88,7 +88,7 @@ Public Class frmPaletsProducidos
     End Sub
 
     Protected Overrides Sub cargar_datos()
-        dataSource = dtb.consultar(Me.sp.DataGridViewStoredProcedure)
+        dataSource = dtb.Consultar(Me.sp.DataGridViewStoredProcedure, True)
 
         datasourceIncompletos = CType(Me.sp, spPaletsProducidos).devolver_palets_incompletos_por_TipoFormato(Me.TipoFormato)
     End Sub

@@ -52,8 +52,4 @@ Public Class ctlCargaNecesidadesJRMaestro
             clsCar.Modificar()
         End If
     End Sub
-
-    Public Sub EliminarCargaNecesidadesJRMaestro()
-        clsCar.Eliminar()
-    End Sub
 End Class

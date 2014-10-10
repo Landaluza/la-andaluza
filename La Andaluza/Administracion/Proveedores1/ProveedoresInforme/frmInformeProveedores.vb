@@ -12,7 +12,7 @@ Public Class frmInformeProveedores
     End Sub
 
     Private Sub dgvfill()
-        Dim dt As DataTable = dtb.Consultar("ProveedoresInformeSelectDgv")
+        Dim dt As DataTable = dtb.Consultar("ProveedoresInformeSelectDgv", True)
 
         If Not dt Is Nothing Then
             With dgvProveedores

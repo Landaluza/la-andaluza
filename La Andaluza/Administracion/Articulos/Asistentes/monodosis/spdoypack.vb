@@ -118,7 +118,7 @@ Class spdoypack
         Dim selectProcedure As String = "[dbo].[doypackSelectBy]"
 
         Try
-            Dim dt As DataTable = dtb.Consultar(selectProcedure & " " & p1 & ", " & p2)
+            Dim dt As DataTable = dtb.Consultar(selectProcedure & " " & p1 & ", " & p2, True)
             For Each row As DataRow In dt.Rows
                 Dbo_DoyPack = New Dbo_DoyPack
                 Dbo_DoyPack.ArticuloPrimarioID = p1

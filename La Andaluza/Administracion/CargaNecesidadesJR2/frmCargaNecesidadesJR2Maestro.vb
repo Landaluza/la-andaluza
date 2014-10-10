@@ -51,7 +51,9 @@ Public Class frmCargaNecesidadesJR2Maestro
 
 
     Protected Overrides Sub cargar_datos()
-        dataSource = dtb.Consultar(spSelectDgv, True)
+        dtb.PrepararConsulta(spSelectDgv)
+        dataSource = dtb.Consultar
+        'dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 
     Protected Overrides Sub BindDataSource()

@@ -69,7 +69,7 @@ Public Class frmEnvasados2
         MonthCalendar.BoldedDates = Nothing
 
         Dim i As Integer = 0
-        Dim dtfechas As DataTable = dtb.Consultar(spSelectDgv)
+        Dim dtfechas As DataTable = dtb.Consultar(spSelectDgv, True)
 
         While i < dtfechas.Rows.Count 'And Convert.ToDateTime(dtfechas.Rows(i).Item("Fecha")) <= Now.Date
             Fechas.Add(Convert.ToDateTime(dtfechas.Rows(i).Item("Fecha")))

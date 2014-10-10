@@ -53,18 +53,25 @@
             Dim m_ter_aux As DBO_ArticulosEnvasesTerciarios = spArticulosEnvasesTerciarios1.Select_RecordByArticuloID(id, dtb.Transaccion)
             If Not IsDBNull(m_ter_aux.id_ArticuloEnvaseSecundario) Then
                 If m_ter_aux.id_ArticuloEnvaseSecundario <> 0 Then
-                    Return dtb.Consultar("select articuloId, descripcionLA from articulos1 where articulos1.articuloID not in(select isnull(articulosenvasessecundarios.articuloID,0) from articulosenvasessecundarios)", False)
+                    dtb.PrepararConsulta("select articuloId, descripcionLA from articulos1 where articulos1.articuloID not in(select isnull(articulosenvasessecundarios.articuloID,0) from articulosenvasessecundarios)")
+                    Return dtb.Consultar
+                    'Return dtb.Consultar("select articuloId, descripcionLA from articulos1 where articulos1.articuloID not in(select isnull(articulosenvasessecundarios.articuloID,0) from articulosenvasessecundarios)", False)
                 End If
             Else
-                Return dtb.Consultar("select articuloId, descripcionLA from articulos1 where articulos1.articuloID not in(select isnull(articulosenvasessecundarios.articuloID,0) from articulosenvasessecundarios)", False)
+                dtb.PrepararConsulta("select articuloId, descripcionLA from articulos1 where articulos1.articuloID not in(select isnull(articulosenvasessecundarios.articuloID,0) from articulosenvasessecundarios)")
+                Return dtb.Consultar()
+                'Return dtb.Consultar("select articuloId, descripcionLA from articulos1 where articulos1.articuloID not in(select isnull(articulosenvasessecundarios.articuloID,0) from articulosenvasessecundarios)", False)
             End If
         Else
             If m_aux.ArticuloTpoID = 4 Then 'Graneles
-                Return dtb.Consultar("select articuloId, descripcionLA from articulos1 where articuloTpoId = 6", False)
+                dtb.PrepararConsulta("select articuloId, descripcionLA from articulos1 where articuloTpoId = 6")
+                Return dtb.Consultar
+                'Return dtb.Consultar("select articuloId, descripcionLA from articulos1 where articuloTpoId = 6", False)
             End If
         End If
-
-        Return dtb.Consultar("select articuloId, descripcionLA from articulos1", False)
+        dtb.PrepararConsulta("select articuloId, descripcionLA from articulos1")
+        Return dtb.Consultar
+        'Return dtb.Consultar("select articuloId, descripcionLA from articulos1", False)
     End Function
 
     Public Function CargarCombo1(ByVal id As Integer) As DataTable

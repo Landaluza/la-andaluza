@@ -47,7 +47,7 @@ Public Class frmPagosPlazos
     End Sub
 
     Protected Overrides Sub cargar_datos()
-        dataSource = dtb.Consultar(spSelectDgv)
+        dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
     Protected Overrides Sub dgvFill()
         If Not dataSource Is Nothing Then

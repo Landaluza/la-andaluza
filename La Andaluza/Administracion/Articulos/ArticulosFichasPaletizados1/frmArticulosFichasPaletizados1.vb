@@ -49,7 +49,7 @@ Public Class frmArticulosFichasPaletizados1
     End Sub
 
     Protected Overrides Sub cargar_datos()
-        dataSource = dtb.Consultar(spSelectDgv)
+        dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 
     Protected Overrides Sub BindDataSource()

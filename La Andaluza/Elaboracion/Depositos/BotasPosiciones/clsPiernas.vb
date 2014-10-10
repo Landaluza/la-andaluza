@@ -88,17 +88,6 @@ Public Class clsPiernas
         End Try
     End Function
 
-    Public Function Eliminar() As Integer
-
-        Try
-            If (BasesParaCompatibilidad.BD.ConsultaEliminar("Piernas", "PiernaID = " & Convert.ToString(PiernaID)) = 0) Then
-                MessageBox.Show("no se puede eliminar Pierna, se encuentra en uso", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            End If
-            Return 1
-        Catch ex As Exception
-            Return 0
-        End Try
-    End Function
 
 #End Region
 End Class
