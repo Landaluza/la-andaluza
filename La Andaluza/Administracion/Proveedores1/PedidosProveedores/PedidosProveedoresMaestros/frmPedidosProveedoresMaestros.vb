@@ -255,7 +255,7 @@ Public Class frmPedidosProveedoresMaestros
             oPara1 = oDoc.Content.Paragraphs.Add
             oPara1.Format.SpaceAfter = oWord.PixelsToPoints(24)
 
-            oTablaTituloAnalitica = oDoc.Tables.Add(oDoc.Bookmarks.Item("\endofdoc").Range, 10, 5)
+            oTablaTituloAnalitica = oDoc.Tables.Add(oDoc.Bookmarks.Item("\endofdoc").Range, tb.Rows.Count + 2, 5)
             With oTablaTituloAnalitica
                 .Borders.InsideLineStyle = Microsoft.Office.Interop.Word.WdLineStyle.wdLineStyleDouble
                 .Borders.OutsideLineStyle = Microsoft.Office.Interop.Word.WdLineStyle.wdLineStyleDouble
