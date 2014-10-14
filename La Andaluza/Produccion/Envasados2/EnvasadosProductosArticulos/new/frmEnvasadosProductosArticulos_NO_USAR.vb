@@ -121,7 +121,7 @@ Public Class frmEnvasadosProductosArticulos_NO_USAR
             GeneralBindingSource.DataSource = dataSource
 
             'If keepReg Then Me.dgvGrilla.guardarColumnaSeleccionada()
-            GeneralBindingSource.DataSource = dtb.Consultar(spSelectDgv)
+            GeneralBindingSource.DataSource = dtb.Consultar(spSelectDgv, True)
 
 
             With dgvGrilla

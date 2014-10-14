@@ -167,8 +167,10 @@ Public Class frmEntPedidosProveedoresMaestros
     End Sub
 
     Private Sub RellenarDgvNivel1()
-        Dim spSelectDgv As String = "PedidosProveedoresDetallesSelectByMaestroIDDgv '" & DBO_PedidoProveedor.PedidoProveedorMaestroID & "'"
-        bdsNivel1.DataSource = dtb.Consultar(spSelectDgv)
+        dtb.PrepararConsulta("PedidosProveedoresDetallesSelectByMaestroIDDgv @id")
+        dtb.AñadirParametroConsulta("@id", DBO_PedidoProveedor.PedidoProveedorMaestroID)
+        ' Dim spSelectDgv As String = "PedidosProveedoresDetallesSelectByMaestroIDDgv '" & DBO_PedidoProveedor.PedidoProveedorMaestroID & "'"
+        bdsNivel1.DataSource = dtb.Consultar()
         bdnNivel1.BindingSource = bdsNivel1
         With dgvNivel1
             .DataSource = bdsNivel1
@@ -229,7 +231,7 @@ Public Class frmEntPedidosProveedoresMaestros
 
     Private Sub RellenarDgvNivel2()
         Dim spSelectDgvEntregas As String = "PedidosProveedoresEntregasSelectByDetalleIDDgv '" & dgvNivel1.CurrentRow.Cells("PedidoProveedorDetalleID").Value & "'"
-        bdsNivel2.DataSource = dtb.Consultar(spSelectDgvEntregas)
+        bdsNivel2.DataSource = dtb.Consultar(spSelectDgvEntregas, True)
         bdnNivel2.BindingSource = bdsNivel2
         With dgvNivel2
             .DataSource = bdsNivel2

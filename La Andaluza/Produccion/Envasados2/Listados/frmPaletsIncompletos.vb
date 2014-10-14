@@ -24,7 +24,7 @@ Public Class frmPaletsIncompletos
         butSalir.Visible = True
         butImprimir.Visible = True
 
-        GeneralBindingSource.DataSource = dtb.Consultar(spSelectDgv)
+        GeneralBindingSource.DataSource = dtb.Consultar(spSelectDgv, True)
         With dgvPalet
             .Width = 605
             .DataSource = GeneralBindingSource

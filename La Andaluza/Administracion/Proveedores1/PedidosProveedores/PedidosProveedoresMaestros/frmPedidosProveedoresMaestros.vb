@@ -427,7 +427,7 @@ Public Class frmPedidosProveedoresMaestros
 
     Private Sub CopiarPedido()
         CType(sp, spPedidosProveedoresMaestros).CopyPedidosProveedores(dgvGeneral.CurrentRow.Cells("PedidoProveedorMaestroID").Value)
-        GeneralBindingSource.DataSource = dtb.Consultar(spSelectDgv)
+        GeneralBindingSource.DataSource = dtb.Consultar(spSelectDgv, True)
         GeneralBindingSource.MoveLast()
         Modificar()
     End Sub

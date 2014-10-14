@@ -142,12 +142,16 @@ Public Class clsAnaliticas
     End Function
 
     Public Function Eliminar() As Boolean
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
         Try
-            If BasesParaCompatibilidad.BD.ConsultaEliminar("Analiticas", "AnaliticaID = " & AnaliticaID) = 0 Then
-                MessageBox.Show("no se puede eliminar este Analitica, se encuentra en uso", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                Return False
-            End If
-            Return True
+            dtb.PrepararConsulta("delete from Analiticas where AnaliticaID = @id")
+            dtb.AñadirParametroConsulta("@id", AnaliticaID)
+            Return dtb.Consultar(True)
+            'If BasesParaCompatibilidad.BD.ConsultaEliminar("Analiticas", "AnaliticaID = " & AnaliticaID) = 0 Then
+            '    MessageBox.Show("no se puede eliminar este Analitica, se encuentra en uso", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            '    Return False
+            'End If
+            'Return True
         Catch ex As Exception
             Return False
         End Try

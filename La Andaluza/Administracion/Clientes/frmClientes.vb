@@ -33,7 +33,7 @@ Public Class frmClientes
 
     Overrides Sub Modificar()
         Action(ACCION_MODIFICAR)
-        GeneralBindingSource.DataSource = dtb.Consultar(spSelectDgv)
+        GeneralBindingSource.DataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 
     Overrides Sub Ver()

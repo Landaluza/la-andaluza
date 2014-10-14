@@ -37,13 +37,13 @@ Public Class frmPaletsMovimientoSubTipo
 
     Overrides Sub Insertar()
         Action(ACCION_INSERTAR)
-        GeneralBindingSource.DataSource = dtb.Consultar(spSelectDgv)
+        GeneralBindingSource.DataSource = dtb.Consultar(spSelectDgv, True)
 
     End Sub
 
     Overrides Sub Modificar()
         Action(ACCION_MODIFICAR)
-        GeneralBindingSource.DataSource = dtb.Consultar(spSelectDgv)
+        GeneralBindingSource.DataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 
     Overrides Sub Ver()
@@ -56,7 +56,7 @@ Public Class frmPaletsMovimientoSubTipo
                           "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If response = DialogResult.Yes Then
             CType(sp, spPaletsMovimientoSubTipo).DeletePaletsMovimientoSubTipo(dgvGeneral.CurrentRow.Cells("ID").Value)
-            GeneralBindingSource.DataSource = dtb.Consultar(spSelectDgv)
+            GeneralBindingSource.DataSource = dtb.Consultar(spSelectDgv, True)
         End If
     End Sub
 

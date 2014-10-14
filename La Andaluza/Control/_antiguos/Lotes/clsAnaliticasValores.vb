@@ -76,18 +76,34 @@ Public Class clsAnaliticasValores
     End Function
 
     Public Function Eliminar() As Integer
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+
         Try
-            BasesParaCompatibilidad.BD.ConsultaEliminar("AnaliticasValores", "AnaliticaID = " & Convert.ToString(AnaliticaID) & " and ParametroID = " & Convert.ToString(ParametroID))
-            Return 1
+            dtb.PrepararConsulta("delete from AnaliticasValores where AnaliticaID = @ana and ParametroID = @par")
+            dtb.AñadirParametroConsulta("@ana", AnaliticaID)
+            dtb.AñadirParametroConsulta("@par", ParametroID)
+
+            If dtb.Consultar(True) Then
+                Return 1
+            Else
+                Return 0
+            End If
+            'BasesParaCompatibilidad.BD.ConsultaEliminar("AnaliticasValores", "AnaliticaID = " & Convert.ToString(AnaliticaID) & " and ParametroID = " & Convert.ToString(ParametroID))
+            'Return 1
         Catch ex As Exception
             Return 0
         End Try
     End Function
 
     Public Function EliminarPorAnalitica() As Boolean
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+
         Try
-            If BasesParaCompatibilidad.BD.ConsultaEliminar("AnaliticasValores", "AnaliticaID = " & Convert.ToString(AnaliticaID)) = 0 Then Return False
-            Return True
+            dtb.PrepararConsulta("delete from AnaliticasValores where AnaliticaID = @id")
+            dtb.AñadirParametroConsulta("@id", AnaliticaID)
+            Return dtb.Consultar(True)
+            'If BasesParaCompatibilidad.BD.ConsultaEliminar("AnaliticasValores", "AnaliticaID = " & Convert.ToString(AnaliticaID)) = 0 Then Return False
+            'Return True
         Catch ex As Exception
             Return False
         End Try

@@ -115,10 +115,14 @@ Public Class clsAnaliticasExternas
 
 
     Public Function EliminarPorAnalitica() As Boolean
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
         Try
-            If BasesParaCompatibilidad.BD.ConsultaEliminar("AnaliticasExternas", "AnaliticaID = " & Convert.ToString(AnaliticaID)) = 0 Then Return False
+            dtb.PrepararConsulta("delete from AnaliticasExternas where AnaliticaID = @id")
+            dtb.AñadirParametroConsulta("@id", AnaliticaID)
+            Return dtb.Consultar(True)
+            'If BasesParaCompatibilidad.BD.ConsultaEliminar("AnaliticasExternas", "AnaliticaID = " & Convert.ToString(AnaliticaID)) = 0 Then Return False
 
-            Return True
+            'Return True
         Catch ex As Exception
             Return False
         End Try
