@@ -29,7 +29,7 @@ Inherits BasesParaCompatibilidad.StoredProcedure
 
     Function recuperarEnvasadoDiario() As Integer
         Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Return dtb.Consultar("exec envasados_comprobar_envasado_diario", False).Rows(0).Item(0)
+        Return dtb.Consultar("envasados_comprobar_envasado_diario", True).Rows(0).Item(0)
     End Function
 
 End Class

@@ -60,10 +60,9 @@ Class spDoypack2
     Public Function selectRecordById(ByVal p1 As Integer) As Dbo_DoyPack
 
         Dim Dbo_DoyPack As New Dbo_DoyPack
-        Dim selectProcedure As String = "exec doypackSelectById"
 
         Try
-            Dim dt As DataTable = dtb.Consultar(selectProcedure & " " & p1, True)
+            Dim dt As DataTable = dtb.Consultar("doypackSelectById " & p1, True)
             Dbo_DoyPack.ArticuloPrimarioID = dt.Rows(0).Item(0)
             Dbo_DoyPack.ID = p1
             Dbo_DoyPack.Cantidad = dt.Rows(0).Item(1)

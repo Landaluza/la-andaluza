@@ -49,7 +49,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>446</ApplicationRevision>
+    <ApplicationRevision>449</ApplicationRevision>
     <ApplicationVersion>2014.7.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -376,7 +376,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Administracion\Articulos\ArticulosStocks\MinMax\spArticulosMinMax.vb" />
-    <Compile Include="Administracion\Articulos\Asistentes\monodosis\Copy of spdoypack.vb" />
     <Compile Include="Administracion\Articulos\cabecerasEtiquetas\DBO_cabecerasEtiquetas.vb" />
     <Compile Include="Administracion\Articulos\cabecerasEtiquetas\frmcabecerasEtiquetas.Designer.vb">
       <DependentUpon>frmcabecerasEtiquetas.vb</DependentUpon>

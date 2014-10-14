@@ -36,7 +36,7 @@ Public Class frmPaletSCC
     Private Sub buscar()
         Dim m_EnAlmacen As Boolean = False
         Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Dim dt As DataTable = dtb.Consultar("exec PaletsProducidosSCCSelect " & txtSCC.Text, False)
+        Dim dt As DataTable = dtb.Consultar("PaletsProducidosSCCSelect " & txtSCC.Text, True)
 
         If Not dt Is Nothing Then
             If dt.Rows.Count = 0 Then

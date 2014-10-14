@@ -50,7 +50,7 @@ Inherits BasesParaCompatibilidad.StoredProcedure
 
     Function devolver_articulos_por_envasado_y_linea(ByVal envasado As Integer, ByVal Linea_Envasado As Integer) As Object
         Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Return dtb.Consultar("exec FormatosEnvasados_articulos_por_envasado_y_linea " & envasado & ", " & Linea_Envasado, False)
+        Return dtb.Consultar("FormatosEnvasados_articulos_por_envasado_y_linea " & envasado & ", " & Linea_Envasado, True)
     End Function
 
     Function seleccionar_ultimo_id(ByRef trans As SqlClient.SqlTransaction, ByRef con As SqlClient.SqlConnection) As Object
@@ -61,7 +61,7 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     Public Function buscar_por_envasado_articulo_formato(ByVal envasado As Integer, ByVal tipoformato As Integer, ByVal encajado As Integer, _
                                                          ByRef trans As SqlClient.SqlTransaction, ByRef con As SqlClient.SqlConnection) As Integer
         Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server, con, trans)
-        Return Convert.ToInt32(dtb.Consultar("exec FormatosEnvasados_comprobar_por_articulo_envasado_y_linea " & encajado & ", " & tipoformato & ", " & envasado, False).Rows(0).Item(0))
+        Return Convert.ToInt32(dtb.Consultar("FormatosEnvasados_comprobar_por_articulo_envasado_y_linea " & encajado & ", " & tipoformato & ", " & envasado, True).Rows(0).Item(0))
     End Function
 
     Function select_ultimo_palet_por_linea(ByVal linea As Integer) As DataTable

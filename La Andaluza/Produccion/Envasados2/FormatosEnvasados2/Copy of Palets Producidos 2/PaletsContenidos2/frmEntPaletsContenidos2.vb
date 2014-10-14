@@ -330,7 +330,7 @@ Public Class frmEntPaletsContenidos2
                 spPaletsProducidos2.CompletarPaletContenido(m_DBO_PaletProducido)
                 m_DBO_PaletsContenidos2.NroCajasCompletar = m_DBO_PaletProducido.NroCajasCompletar
 
-                dtb.PrepararConsulta("execPaletsProducidos2GetUltimaHoraProduccionPorLinea2 @flinea, @envasado")
+                dtb.PrepararConsulta("PaletsProducidos2GetUltimaHoraProduccionPorLinea2 @flinea, @envasado")
                 dtb.AñadirParametroConsulta("@flinea", aux.TipoFormatoLineaID)
                 dtb.AñadirParametroConsulta("@envasado", m_DBO_Envasado.EnvasadoID)
                 Dim HoraInicioAux As Object = dtb.Consultar().Rows(0).Item(0)

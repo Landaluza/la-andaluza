@@ -86,7 +86,7 @@ Public Class spEmpleados
 
     Public Function devolver_Empleados_Envasados_Situacion_Actual() As DataTable
         Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Return dtb.Consultar("exec EmpleadosEnvasados_SituacionEnLinea", False)
+        Return dtb.Consultar("EmpleadosEnvasados_SituacionEnLinea", True)
     End Function
 
     Public Sub cargar_empleados_envasados(ByRef cbo As ComboBox)
@@ -95,24 +95,24 @@ Public Class spEmpleados
 
     Function devolver_Empleados_Envasados() As DataTable
         Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Return dtb.Consultar("exec EmpleadosEnvasados", False)
+        Return dtb.Consultar("EmpleadosEnvasados", True)
     End Function
 
     Function devolver_Empleados_Envasados_libres() As DataTable
         Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Return dtb.Consultar("exec EmpleadosEnvasadosSinOcupacion", False)
+        Return dtb.Consultar("EmpleadosEnvasadosSinOcupacion", True)
     End Function
 
     Sub cargar_Empleados_Envasados_libres(ByRef cbo As ComboBox)
-        cbo.mam_DataSource("exec EmpleadosEnvasadosSinOcupacion", False)
+        cbo.mam_DataSource("EmpleadosEnvasadosSinOcupacion", True)
     End Sub
 
     Public Sub cargar_empleados_por_perfil(ByRef cbo As ComboBox, ByVal tipoUsuario As Integer)
-        cbo.mam_DataSource("EmpleadosPorTipoUsuario " & tipoUsuario, False)
+        cbo.mam_DataSource("EmpleadosPorTipoUsuario " & tipoUsuario, True)
     End Sub
 
     Public Sub cargar_empleados_por_perfil(ByRef cbo As ComboBox, ByVal tipoUsuario As Integer, ByVal tipoUsuario2 As Integer)
-        cbo.mam_DataSource("EmpleadosPorTipoUsuario2 " & tipoUsuario & ", " & tipoUsuario2, False)
+        cbo.mam_DataSource("EmpleadosPorTipoUsuario2 " & tipoUsuario & ", " & tipoUsuario2, True)
     End Sub
 
     Public Function devolver_linea_envasado_por_empleado(ByVal id_empleado As Integer) As Integer
@@ -141,6 +141,6 @@ Public Class spEmpleados
 
     Function devolver_empleados_con_turnos_sin_fin() As DataTable
         Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
-        Return dtb.Consultar("exec EmpleadosEnvasados_TurnosSinFinalizar", False)
+        Return dtb.Consultar("EmpleadosEnvasados_TurnosSinFinalizar", True)
     End Function
 End Class

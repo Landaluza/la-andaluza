@@ -178,7 +178,7 @@ Class spPaletsContenidos2
     Public Sub GetCajasPalet(ByVal PaletProducidoID As Integer, ByRef CapacidadBotellasCajas As Integer, ByRef CajasPalet As Integer)
         Try
             'Dim tabla As DataTable = DataTableFill("PaletsContenidos2CapacidadCajaDePaletProducido " & PaletProducidoID)
-            Dim tabla As DataTable = dtb.Consultar("exec PaletsContenidos2CapacidadCajaDePaletProducido " & Convert.ToString(PaletProducidoID), True)
+            Dim tabla As DataTable = dtb.Consultar("PaletsContenidos2CapacidadCajaDePaletProducido " & Convert.ToString(PaletProducidoID), True)
 
             CapacidadBotellasCajas = Convert.ToInt32(tabla.Rows(0).Item(0))
             CajasPalet = Convert.ToInt32(tabla.Rows(0).Item(1))

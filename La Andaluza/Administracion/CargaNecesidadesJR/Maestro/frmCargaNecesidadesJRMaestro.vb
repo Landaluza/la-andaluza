@@ -36,7 +36,7 @@ Public Class frmCargaNecesidadesJRMaestro
         frmEnt.Text = "Insertar CargaNecesidadesJRMaestro"
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         ' dgvFill()
-        GeneralBindingSource.DataSource = dtb.Consultar("exec SelectCargaNecesidadesMaestroALL")
+        GeneralBindingSource.DataSource = dtb.Consultar("SelectCargaNecesidadesMaestroALL", True)
         GeneralBindingSource.MoveLast()
         HabilitarBotones()
     End Sub
@@ -61,7 +61,7 @@ Public Class frmCargaNecesidadesJRMaestro
                           "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If response = DialogResult.Yes Then
             CType(sp, spCargasNecesidades).spDeleteCargaNecesidadesJRMaestro(dgvGeneral.CurrentRow.Cells("MaestroID").Value)
-            GeneralBindingSource.DataSource = dtb.Consultar("exec SelectCargaNecesidadesMaestroALL")
+            GeneralBindingSource.DataSource = dtb.Consultar("SelectCargaNecesidadesMaestroALL", True)
         End If
         HabilitarBotones()
     End Sub
@@ -86,7 +86,7 @@ Public Class frmCargaNecesidadesJRMaestro
 
 
     Public Overrides Sub Refrescar()
-        GeneralBindingSource.DataSource = dtb.Consultar("exec SelectCargaNecesidadesMaestroALL")
+        GeneralBindingSource.DataSource = dtb.Consultar("SelectCargaNecesidadesMaestroALL", True)
         HabilitarBotones()
         With dgvGeneral
             .DataSource = GeneralBindingSource
