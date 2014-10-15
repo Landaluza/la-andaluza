@@ -66,7 +66,7 @@ Public Class frmEntAlbaranesCargaMaestro
             Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
             With dgvAlbaranesProvi
                 .Width = 500
-                .DataSource = dtb.Consultar("SelectAlbaranCargaProMaestroByReserva1")
+                .DataSource = dtb.Consultar("SelectAlbaranCargaProMaestroByReserva1", True)
                 .Columns("AlbaranCargaProMaestroID").Visible = False
                 .Columns("Cargador").Visible = False
                 .FormatoColumna("Num", BasesParaCompatibilidad.TiposColumna.Derecha, 60, 0)

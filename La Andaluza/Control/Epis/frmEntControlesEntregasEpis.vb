@@ -21,7 +21,7 @@ Public Class frmEntControlesEntregasEpis
         CboEmpleados.mam_DataSource("EmpleadosSelectCbo", False)
 
         If Me.Text.Substring(0, 3) = "Ver" Then
-            GeneralBindingSource.DataSource = dtb.Consultar("ControlesEntregasEpisSelectAll")
+            GeneralBindingSource.DataSource = dtb.Consultar("ControlesEntregasEpisSelectAll", True)
             GeneralBindingSource.Position = m_Pos
         End If
 

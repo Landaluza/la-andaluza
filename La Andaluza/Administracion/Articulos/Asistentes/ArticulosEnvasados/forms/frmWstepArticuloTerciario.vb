@@ -149,9 +149,9 @@ Public Class frmWstepArticuloTerciario
                     dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server, BasesParaCompatibilidad.BD.Cnx, BasesParaCompatibilidad.BD.transaction)
                 End If
                 Dim spf As New spArticulosEnvasadosHistoricos
-                If Me.m_DBO_ArticulosEnvasesTerciarios1.ArticuloID = Nothing Then Me.m_DBO_ArticulosEnvasesTerciarios1.ArticuloID = dtb.Consultar("select max(articuloid) from articulos1", False).Rows(0).Item(0)
+                If Me.m_DBO_ArticulosEnvasesTerciarios1.ArticuloID = Nothing Then Me.m_DBO_ArticulosEnvasesTerciarios1.ArticuloID = dtb.Consultar("select max(articuloid) from articulos1", True).Rows(0).Item(0)
                 If Me.m_DBO_ArticulosEnvasesTerciarios1.SccEtiquetaID = 0 Or Me.m_DBO_ArticulosEnvasesTerciarios1.SccEtiquetaID = Nothing Then Me.m_DBO_ArticulosEnvasesTerciarios1.SccEtiquetaID = spf.seleccionar_ultimo_registro(dtb)
-                If Me.m_DBO_ArticulosEnvasesTerciarios1.id_ArticuloEnvaseSecundario = Nothing Then Me.m_DBO_ArticulosEnvasesTerciarios1.id_ArticuloEnvaseSecundario = dtb.Consultar("select max(Envasesecundarioid) from articulosenvasesSecundarios", False).Rows(0).Item(0)
+                If Me.m_DBO_ArticulosEnvasesTerciarios1.id_ArticuloEnvaseSecundario = Nothing Then Me.m_DBO_ArticulosEnvasesTerciarios1.id_ArticuloEnvaseSecundario = dtb.Consultar("select max(Envasesecundarioid) from articulosenvasesSecundarios", True).Rows(0).Item(0)
             End If
 
             Return spArticulosEnvasesTerciarios.Grabar(m_DBO_ArticulosEnvasesTerciarios1, BasesParaCompatibilidad.BD.transaction)

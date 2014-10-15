@@ -110,7 +110,6 @@ Class spMonodosis
         Dim dbt As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
         dtb.PrepararConsulta("MonodosisSelectDetallado")
         Return dtb.Consultar
-        'Return dbt.Consultar("MonodosisSelectDetallado", True)
     End Function
 
     Function esMonodosis(ByVal p1 As Integer, Optional dtb as BasesParaCompatibilidad.Database = Nothing) As Boolean

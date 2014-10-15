@@ -18,7 +18,7 @@ Public Class frmGenerarAnaliticasCloro
         cboVerificador.mam_DataSource("EmpleadosSelectCbo", False)
 
         With dgv
-            .DataSource = dtb.Consultar("AguaPotablePuntosMuestreosSelectDgv")
+            .DataSource = dtb.Consultar("AguaPotablePuntosMuestreosSelectDgv", True)
             .Columns("Id").Visible = False
             .FormatoColumna("Referencia", BasesParaCompatibilidad.TiposColumna.Izquierda, 80)
             .FormatoColumna("Descripcion", BasesParaCompatibilidad.TiposColumna.Izquierda, True)

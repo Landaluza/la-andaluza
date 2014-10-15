@@ -21,9 +21,9 @@ Public Class frmAsignarArticuloAarticulo
         Dim dt As DataTable
 
         If Me.AsignarSecundario Then
-            dt = dtb.Consultar("select descripcionLa, articulos1.articuloid, envasesecundarioID from articulos1, articulosenvasessecundarios where articulosenvasessecundarios.articuloid = articulos1.articuloID and articulotpoid = 9 ", False)
+            dt = dtb.Consultar("select descripcionLa, articulos1.articuloid, envasesecundarioID from articulos1, articulosenvasessecundarios where articulosenvasessecundarios.articuloid = articulos1.articuloID and articulotpoid = 9 ", True)
         Else
-            dt = dtb.Consultar("select descripcionLa, articulos1.articuloid from articulos1 where articulotpoid = 8 ", False)
+            dt = dtb.Consultar("select descripcionLa, articulos1.articuloid from articulos1 where articulotpoid = 8 ", True)
         End If
 
         If Not dt Is Nothing Then

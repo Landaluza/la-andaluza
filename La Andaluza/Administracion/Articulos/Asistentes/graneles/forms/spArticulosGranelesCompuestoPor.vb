@@ -67,9 +67,7 @@
                                 "where articuloTpoId = 6 and id_tipoProducto is not null " & _
                                 "and articulos1.articuloid = articulosIngredientes.articuloId order by descripcionLA")
         Return dtb.Consultar
-        'Return dtb.Consultar("select articulos1.articuloId, descripcionLA, isnull(id_unidadMedida,0) from articulos1, articulosIngredientes " & _
-        '                        "where articuloTpoId = 6 and id_tipoProducto is not null " & _
-        '                        "and articulos1.articuloid = articulosIngredientes.articuloId order by descripcionLA", False)
+     
     End Function
 
     Function Insertar(p1 As DBO_articulosGranelesCompuestoPor) As Boolean

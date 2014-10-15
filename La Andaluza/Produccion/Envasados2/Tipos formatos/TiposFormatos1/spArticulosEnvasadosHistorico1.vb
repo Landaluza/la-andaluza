@@ -320,15 +320,15 @@ Public Class spArticulosEnvasadosHistorico1
     End Function
 
     Public Sub cargarComboBox(ByRef combo As ComboBox)
-        combo.mam_DataSource(dtb.Consultar("TiposFormatosCbo"), False)
+        combo.mam_DataSource(dtb.Consultar("TiposFormatosCbo", True), False)
     End Sub
 
     Public Sub cargarComboBoxTodos(ByRef combo As ComboBox)
-        combo.mam_DataSource(dtb.Consultar("TiposFormatosCboAll"), False)
+        combo.mam_DataSource(dtb.Consultar("TiposFormatosCboAll", True), False)
     End Sub
 
     Public Sub cargarComboBoxTodosSinLinea(ByRef combo As ComboBox)
-        combo.mam_DataSource(dtb.Consultar("TiposFormatosCboAllSinLinea"), False)
+        combo.mam_DataSource(dtb.Consultar("TiposFormatosCboAllSinLinea", True), False)
     End Sub
 
     Public Function migrar(ByVal dbo_tf_conservar As DBO_ArticulosEnvasadosHistorico, ByVal dbo_tf_borrar As DBO_ArticulosEnvasadosHistorico) As Boolean

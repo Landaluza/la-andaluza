@@ -22,9 +22,9 @@ Public Class frmLisAlbaranesCarga
 
 
     Private Sub frmLisAlbaranesCarga_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        cboReferencia.mam_DataSource(dtb.Consultar("TiposFormatosSelectCbo1"), True, "Todas")
-        cboClientes.mam_DataSource(dtb.Consultar("ClientesCbo"), True, "Todos")
-        cboLugaresEntrega.mam_DataSource(dtb.Consultar("LugaresEntregasCbo"), True, "Todos")
+        cboReferencia.mam_DataSource(dtb.Consultar("TiposFormatosSelectCbo1", True), True, "Todas")
+        cboClientes.mam_DataSource(dtb.Consultar("ClientesCbo", True), True, "Todos")
+        cboLugaresEntrega.mam_DataSource(dtb.Consultar("LugaresEntregasCbo", True), True, "Todos")
     End Sub
 
     Private Sub btnPorDias_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPorDias.Click

@@ -12,7 +12,6 @@ Public Class frmCargaNecesidadesJRMaestro
     Protected Overrides Sub cargar_datos()
         dtb.PrepararConsulta("SelectCargaNecesidadesMaestroByServido")
         dataSource = dtb.Consultar
-        'dataSource = dtb.Consultar("SelectCargaNecesidadesMaestroByServido", True)
     End Sub
 
     Protected Overrides Sub BindDataSource()

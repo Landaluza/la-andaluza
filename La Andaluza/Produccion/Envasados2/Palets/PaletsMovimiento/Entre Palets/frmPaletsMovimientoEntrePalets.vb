@@ -535,7 +535,7 @@ Public Class frmPaletsMovimientoEntrePalets
         Try
             If cboMovimientoTipo.SelectedIndex = 0 Then
             Else
-                Me.cboMovimientoSubTipo.mam_DataSource(dtb.Consultar("PaletsMovimientoSubTipoByTipo " & cboMovimientoTipo.SelectedValue), False)
+                Me.cboMovimientoSubTipo.mam_DataSource(dtb.Consultar("PaletsMovimientoSubTipoByTipo " & cboMovimientoTipo.SelectedValue, True), False)
                 cboMovimientoSubTipo.Refresh()
                 Dim sp As New spPaletsMovimientosTipos
                 DBO_PaletsMovimientoTipo = sp.Select_Record(Me.cboMovimientoTipo.SelectedValue)

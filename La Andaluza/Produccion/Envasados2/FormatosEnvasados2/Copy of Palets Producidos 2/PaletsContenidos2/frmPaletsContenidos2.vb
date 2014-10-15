@@ -283,7 +283,7 @@ Public Class frmPaletsContenidos2
                 frmEnt.CambiarMensaje(padre.m_DBO_PaletProducido.SCC, padre.dgvIncompletos.CurrentRow.Cells("Cajas").Value)
 
                 dtb.PrepararConsulta("PaletsProducidos2GetUltimaHoraProduccionPorLinea2 @lin, @env")
-                dtb.AñadirParametroConsulta(" 2env", padre.m_DBO_Envasado.EnvasadoID)
+                dtb.AñadirParametroConsulta("@env", padre.m_DBO_Envasado.EnvasadoID)
                 dtb.AñadirParametroConsulta("@lin", padre.m_DBO_Envasado.LineaID)
                 Dim HoraInicioAux As Object = dtb.Consultar().Rows(0).Item(0)
                 'Dim HoraInicioAux As Object = dtb.Consultar("exec PaletsProducidos2GetUltimaHoraProduccionPorLinea2 " & padre.m_DBO_Envasado.LineaID & ", " & padre.m_DBO_Envasado.EnvasadoID).Rows(0).Item(0)

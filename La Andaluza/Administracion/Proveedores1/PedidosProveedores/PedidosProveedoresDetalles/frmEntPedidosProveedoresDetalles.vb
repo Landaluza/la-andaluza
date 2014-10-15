@@ -31,7 +31,7 @@ Public Class frmEntPedidosProveedoresDetalles
         'cboUnidades.mam_DataSource("MedidasProductosSelectCbo", False)
 
         If Me.Text.Substring(0, 3) = "Ver" Then
-            GeneralBindingSource.DataSource = dtb.Consultar("PedidosProveedoresDetallesSelectAll")
+            GeneralBindingSource.DataSource = dtb.Consultar("PedidosProveedoresDetallesSelectAll", True)
             GeneralBindingSource.Position = m_Pos
         End If
 

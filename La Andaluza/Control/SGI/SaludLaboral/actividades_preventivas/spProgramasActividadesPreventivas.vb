@@ -29,7 +29,7 @@ Inherits BasesParaCompatibilidad.StoredProcedure
    End Function
 
     Sub cargar_ProgramasActividadesPreventivas(ByRef comboBox As ComboBox)
-        comboBox.mam_DataSource(dtb.Consultar("[ProgramasActividadesPreventivasSelectCbo]"), False)
+        comboBox.mam_DataSource(dtb.Consultar("[ProgramasActividadesPreventivasSelectCbo]", True), False)
     End Sub
 
 End Class

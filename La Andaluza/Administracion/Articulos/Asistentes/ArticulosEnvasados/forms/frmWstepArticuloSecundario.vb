@@ -121,7 +121,7 @@ Public Class frmWstepArticuloSecundario
             If Me.Enabled Then
                 Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server, BasesParaCompatibilidad.BD.Cnx, BasesParaCompatibilidad.BD.transaction)
                 'Dim m_DBO_TiposFormatos1 As New DBO_ArticulosEnvasadosHistorico
-                If Me.m_DBO_ArticulosEnvasesSecundario.ID = Nothing Then Me.m_DBO_ArticulosEnvasesSecundario.ArticuloID = dtb.Consultar("select max(articuloID) from Articulos1", False).Rows(0).Item(0)
+                If Me.m_DBO_ArticulosEnvasesSecundario.ID = Nothing Then Me.m_DBO_ArticulosEnvasesSecundario.ArticuloID = dtb.Consultar("select max(articuloID) from Articulos1", True).Rows(0).Item(0)
                 'If Me.m_DBO_TiposFormatos1.TipoFormatoID = Nothing Then
                 '    Dim spt As New spArticulosEnvasadosHistoricos
                 '    Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server, BasesParaCompatibilidad.BD.Cnx, BasesParaCompatibilidad.BD.transaction)
