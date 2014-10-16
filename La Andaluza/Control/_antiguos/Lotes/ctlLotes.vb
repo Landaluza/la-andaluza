@@ -7,6 +7,7 @@ Public Class ctlLotes
     Private clsMueObs As New clsMuestrasObservaciones
     Private clsAna As New clsAnaliticas
     Private clsAnaExt As New clsAnaliticasExternas
+    Private dtb As BasesParaCompatibilidad.DataBase
 
     Public Sub New()
         clsLot = New clsLotes
@@ -17,6 +18,7 @@ Public Class ctlLotes
         clsMueObs = New clsMuestrasObservaciones
         clsAna = New clsAnaliticas
         clsAnaExt = New clsAnaliticasExternas
+        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
     End Sub
 
     Public Function CantidadDeMaceraciones() As Integer
@@ -83,14 +85,14 @@ Public Class ctlLotes
         End While
     End Sub
 
-    Public Sub GuardarLoteEnologico(ByVal Descripcion As String, _
+    Public Function GuardarLoteEnologico(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal Descripcion As String, _
                                     ByVal Fecha As DateTime, _
                                     ByVal CantidadRestante As Double, _
                                     ByVal TipoLoteID As Integer, _
                                     ByVal TipoProductoID As Integer, _
                                     ByVal ProveedorID As Integer, _
                                     ByVal CodigoLote As String, _
-                                    ByVal LoteProveedor As String)
+                                    ByVal LoteProveedor As String) As Boolean
 
         clsLot.Limpiar()
         clsLot._Descripcion = Descripcion
@@ -101,12 +103,18 @@ Public Class ctlLotes
         clsLot._ProveedorID = ProveedorID
         clsLot._CodigoLote = CodigoLote
         clsLot._LoteProveedor = LoteProveedor
+
+
         If clsLot._LoteID = 0 Then
-            clsLot.Insertar()
+            If clsLot.Insertar(dtb) = 0 Then
+                Return False
+            Else
+                Return True
+            End If
         Else
-            clsLot.ModificarLoteEnologico()
+            Return clsLot.ModificarLoteEnologico(dtb)
         End If
-    End Sub
+    End Function
 
 
     '---------------------------------------------------MOVIMIENTOS----------------------------------------------------------
@@ -213,17 +221,17 @@ Public Class ctlLotes
         txt.validarTextBox()
     End Sub
 
-    Public Function NuevaAnalitica(ByVal Nombre As String, ByVal LoteID As Integer, ByVal AnalistaID As Integer, ByVal CatadorID As Integer) As Integer
+    Public Function NuevaAnalitica(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal Nombre As String, ByVal LoteID As Integer, ByVal AnalistaID As Integer, ByVal CatadorID As Integer) As Integer
         clsAna._LoteID = LoteID
         clsAna._Nombre = Nombre
         clsAna._AnalistaID = AnalistaID
         clsAna._CatadorID = CatadorID
-        Return clsAna.Insertar()
+        Return clsAna.Insertar(dtb)
     End Function
 
-    Function mostrarTodasAnaliticasPorMuestra(ByVal LoteID As Integer) As DataTable
+    Function mostrarTodasAnaliticasPorMuestra(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal LoteID As Integer) As DataTable
         clsAna._LoteID = LoteID
-        Return clsAna.DevolverPorMuestra()
+        Return clsAna.DevolverPorMuestra(dtb)
     End Function
 
     Public Sub CargarAnalitica(ByVal AnaliticaID As Integer, ByRef analista As Integer, ByRef catador As Integer)
@@ -497,7 +505,7 @@ Public Class ctlLotes
 
         clsEsp._EspecificacionID = EspecificacionID
         Dim tabla As New DataTable
-        tabla = clsEsp.devolverPorEspecificacion()
+        tabla = clsEsp.devolverPorEspecificacion(dtb)
         Dim i As Integer
 
         Dim NombreParametro As String
@@ -883,52 +891,73 @@ Public Class ctlLotes
         End While
     End Sub
 
-    Private Sub guardarObservacionesLotes(ByVal txtobservacion As BasesParaCompatibilidad.CuadroDeTextoMuestra)
+    Private Function guardarObservacionesLotes(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal txtobservacion As BasesParaCompatibilidad.CuadroDeTextoMuestra) As Boolean
         If txtobservacion.Modificado Then
             clsMueObs._ObservacionID = txtobservacion.ParametroID
 
             If txtobservacion.Text.Trim = "" Then
-                clsMueObs.Eliminar()
+                If Not clsMueObs.Eliminar(dtb) Then
+                    Throw New Exception("Error al eliminar las observaciones")
+                End If
             Else
                 clsMueObs._Descripcion = txtobservacion.Text
                 If clsMueObs.existe Then
-                    clsMueObs.Modificar()
+                    If Not clsMueObs.Modificar(dtb) Then
+                        Throw New Exception("Error al modificar las observaciones")
+                    End If
                 Else
-                    clsMueObs.Insertar()
+                    If Not clsMueObs.Insertar(dtb) Then
+                        Throw New Exception("Error al insertar las observacionbes")
+                    End If
                 End If
             End If
         End If
-    End Sub
 
-    Private Sub guardarValoresLotes(ByVal txtParametro As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByVal Requerido As Boolean)
+        Return True
+    End Function
+
+    Private Function guardarValoresLotes(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal txtParametro As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByVal Requerido As Boolean) As Boolean
         If txtParametro.Modificado Then
             clsAnaVal._ParametroID = txtParametro.ParametroID
 
 
             If txtParametro.Text.Trim = "" Or txtParametro.Text = "0" Then
-                clsAnaVal.Eliminar()
+                If Not clsAnaVal.Eliminar(dtb) Then
+                    Throw New Exception("Error al borrar valores anteriores de analiticas")
+                End If
             Else
                 clsAnaVal._Valor = txtParametro.Text
                 If clsAnaVal.existe Then
-                    clsAnaVal.Modificar()
+                    If Not clsAnaVal.Modificar(dtb) Then
+                        Throw New Exception("Erro al nmodificar valores de analiticas")
+                    End If
                 Else
-                    clsAnaVal.Insertar()
+                    If Not clsAnaVal.Insertar(dtb) Then
+                        Throw New Exception("Error al guardar nuevos valores de analiticas")
+                    End If
                 End If
             End If
         End If
+
         clsAnaReq._ParametroID = txtParametro.ParametroID
         If clsAnaReq.existe Then
             If Not Requerido Then
-                clsAnaReq.Eliminar()
+                If Not clsAnaReq.Eliminar(dtb) Then
+                    Throw New Exception("Error al eliminear las analiticas requeridas")
+                End If
             End If
         Else
             If Requerido Then
-                clsAnaReq.Insertar()
+                If Not clsAnaReq.Insertar(dtb) Then
+                    Throw New Exception("Error al guardar los nuevos valores de las analiticas requeridas")
+                End If
             End If
         End If
-    End Sub
 
-    Public Sub GuardarAnaliticaExterna(ByVal AnaliticaID As Integer, ByVal AnaliticaExternaID As Integer, ByVal RutaAnalisis As String, ByVal FechaAnaliticaExterna As Date, ByVal ProveedorID As Integer)
+        Return True
+    End Function
+
+    Public Function GuardarAnaliticaExterna(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal AnaliticaID As Integer, ByVal AnaliticaExternaID As Integer, ByVal RutaAnalisis As String, ByVal FechaAnaliticaExterna As Date, ByVal ProveedorID As Integer) As Boolean
         clsAnaExt._AnaliticaExternaID = AnaliticaExternaID
         clsAnaExt._AnaliticaID = AnaliticaID
         clsAnaExt._RutaAnalisis = RutaAnalisis
@@ -936,13 +965,17 @@ Public Class ctlLotes
         clsAnaExt._ProveedorID = ProveedorID
 
         If AnaliticaExternaID = 0 Then
-            clsAnaExt.Insertar()
+            If clsAnaExt.Insertar(dtb) = 0 Then
+                Return False
+            Else
+                Return True
+            End If
         Else
-            clsAnaExt.Modificar()
+            Return clsAnaExt.Modificar(dtb)
         End If
-    End Sub
+    End Function
 
-    Public Sub GuardarLote(ByRef LoteID As Integer, ByVal ref As Integer, ByVal AnalistaID As Integer, ByVal CantidadRestante As Double, ByVal CatadorID As Integer, ByVal CodigoLote As String, ByVal TipoLote As Integer, ByVal TipoProducto As Integer, ByVal SinEspecificacion As Boolean, ByVal Descripcion As String, ByVal fecha As Date, _
+    Public Function GuardarLote(ByRef dtb As BasesParaCompatibilidad.DataBase, ByRef LoteID As Integer, ByVal ref As Integer, ByVal AnalistaID As Integer, ByVal CantidadRestante As Double, ByVal CatadorID As Integer, ByVal CodigoLote As String, ByVal TipoLote As Integer, ByVal TipoProducto As Integer, ByVal SinEspecificacion As Boolean, ByVal Descripcion As String, ByVal fecha As Date, _
     ByVal Especificacion As Integer, ByVal Observacion As String, ByVal Botellas As String, ByVal Cantidad As Integer, ByVal Medida As Integer, ByVal Corredor As Integer, ByVal Proveedor As Integer, ByVal analiticaID As Integer, _
     ByVal txtAcidez As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByVal Acidez As Boolean, ByVal txtAlcohol As BasesParaCompatibilidad.CuadroDeTextoMuestra, _
     ByVal Alcohol As Boolean, ByVal txtExtracto As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByVal Extracto As Boolean, ByVal txtExtractoGrado As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByVal txtCenizas As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByVal Cenizas As Boolean, _
@@ -958,7 +991,7 @@ Public Class ctlLotes
     ByVal txtHongos As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByVal Hongos As Boolean, ByVal txtXilenium As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByVal Xilenium As Boolean, ByVal txtAnguilulas As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByVal Anguilulas As Boolean, _
     ByVal txtOlfato As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByVal Olfato As Boolean, ByVal txtSabor As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByVal Sabor As Boolean, ByVal txtVista As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByVal Vista As Boolean, _
     ByVal txtEstableFrio As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByVal EstableFrio As Boolean, ByVal txtEstableCalor As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByVal EstableCalor As Boolean, ByVal txtEstableProteinas As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByVal EstableProteinas As Boolean, _
-    ByVal txtObservacionesOlfato As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByVal txtObservacionesSabor As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByVal txtObservacionesVista As BasesParaCompatibilidad.CuadroDeTextoMuestra)
+    ByVal txtObservacionesOlfato As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByVal txtObservacionesSabor As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByVal txtObservacionesVista As BasesParaCompatibilidad.CuadroDeTextoMuestra) As Boolean
 
 
 
@@ -996,11 +1029,13 @@ Public Class ctlLotes
         clsLot._LoteConjuntoCompraID = 0
 
         If LoteID = 0 Then
-            LoteID = clsLot.Insertar()
+            LoteID = clsLot.Insertar(dtb)
+            If LoteID = 0 Then
+                Return False
+            End If
         Else
-            If Not clsLot.Modificar() Then
-                messagebox.show("no guardo cambios", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                Return
+            If Not clsLot.Modificar(dtb) Then                
+                Return False
             End If
         End If
 
@@ -1010,12 +1045,17 @@ Public Class ctlLotes
             clsAna._CatadorID = CatadorID
             clsAna._Nombre = "La Andaluza"
 
-            analiticaID = clsAna.Insertar()
+            analiticaID = clsAna.Insertar(dtb)
+            If analiticaID = 0 Then
+                Throw New Exception("Error al guardar la analitica")
+            End If
         Else
             clsAna._LoteID = LoteID
             clsAna._AnalistaID = AnalistaID
             clsAna._CatadorID = CatadorID
-            clsAna.Modificar()
+            If Not clsAna.Modificar(dtb) Then
+                Throw New Exception("Error al guardar la analitica")
+            End If
         End If
 
 
@@ -1025,101 +1065,113 @@ Public Class ctlLotes
         clsMueObs._AnaliticaID = analiticaID
 
         '----------------- PARAMETROS LEGALES ----------------
-        guardarValoresLotes(txtAcidez, Acidez)
-        guardarValoresLotes(txtAlcohol, Alcohol)
-        guardarValoresLotes(txtExtracto, Extracto)
-        guardarValoresLotes(txtExtractoGrado, False)
-        guardarValoresLotes(txtCenizas, Cenizas)
-        guardarValoresLotes(txtMetanol, Metanol)
-        guardarValoresLotes(txtHg, Hg)
-        guardarValoresLotes(txtAs, As_)
-        guardarValoresLotes(txtPb, Pb)
-        guardarValoresLotes(txtSulfatos, Sulfatos)
-        guardarValoresLotes(txtCloruros, Cloruros)
-        guardarValoresLotes(txtSulfuroso, Sulfuroso)
-        guardarValoresLotes(txtC14, C14)
+        guardarValoresLotes(dtb, txtAcidez, Acidez)
+        guardarValoresLotes(dtb, txtAlcohol, Alcohol)
+        guardarValoresLotes(dtb, txtExtracto, Extracto)
+        guardarValoresLotes(dtb, txtExtractoGrado, False)
+        guardarValoresLotes(dtb, txtCenizas, Cenizas)
+        guardarValoresLotes(dtb, txtMetanol, Metanol)
+        guardarValoresLotes(dtb, txtHg, Hg)
+        guardarValoresLotes(dtb, txtAs, As_)
+        guardarValoresLotes(dtb, txtPb, Pb)
+        guardarValoresLotes(dtb, txtSulfatos, Sulfatos)
+        guardarValoresLotes(dtb, txtCloruros, Cloruros)
+        guardarValoresLotes(dtb, txtSulfuroso, Sulfuroso)
+        guardarValoresLotes(dtb, txtC14, C14)
 
         '----------------- CONTROL ANALITICO ----------------
-        guardarValoresLotes(txtAcetato, Acetato)
-        guardarValoresLotes(txtDensidad, Densidad)
-        guardarValoresLotes(txtTurbidez, Turbidez)
-        guardarValoresLotes(txtIC, IC)
-        guardarValoresLotes(txtPh, Ph)
-        guardarValoresLotes(txtColor, Color)
-        'guardarValoresLotes(txtMedidaColor, False)
-        guardarValoresLotes(txtFe, Fe)
-        guardarValoresLotes(txtCu, Cu)
-        guardarValoresLotes(txtZn, Zn)
-        guardarValoresLotes(txtAcetoina, Acetoina)
-        guardarValoresLotes(txtPardeamiento, Pardeamiento)
-        guardarValoresLotes(txtNitrogeno, Nitrogeno)
-        guardarValoresLotes(txtPolifenoles, Polifenoles)
-        guardarValoresLotes(txtAcidezFija, AcidezFija)
-        guardarValoresLotes(txtAcidezVolatil, AcidezVolatil)
-        guardarValoresLotes(txtAzucarTotal, AzucarTotal)
-        guardarValoresLotes(txtBaume, Baume)
-        guardarValoresLotes(txtBrix, Brix)
-        guardarValoresLotes(txtSorbitol, Sorbitol)
+        guardarValoresLotes(dtb, txtAcetato, Acetato)
+        guardarValoresLotes(dtb, txtDensidad, Densidad)
+        guardarValoresLotes(dtb, txtTurbidez, Turbidez)
+        guardarValoresLotes(dtb, txtIC, IC)
+        guardarValoresLotes(dtb, txtPh, Ph)
+        guardarValoresLotes(dtb, txtColor, Color)
+        'guardarValoresLotes(dtb,txtMedidaColor, False)
+        guardarValoresLotes(dtb, txtFe, Fe)
+        guardarValoresLotes(dtb, txtCu, Cu)
+        guardarValoresLotes(dtb, txtZn, Zn)
+        guardarValoresLotes(dtb, txtAcetoina, Acetoina)
+        guardarValoresLotes(dtb, txtPardeamiento, Pardeamiento)
+        guardarValoresLotes(dtb, txtNitrogeno, Nitrogeno)
+        guardarValoresLotes(dtb, txtPolifenoles, Polifenoles)
+        guardarValoresLotes(dtb, txtAcidezFija, AcidezFija)
+        guardarValoresLotes(dtb, txtAcidezVolatil, AcidezVolatil)
+        guardarValoresLotes(dtb, txtAzucarTotal, AzucarTotal)
+        guardarValoresLotes(dtb, txtBaume, Baume)
+        guardarValoresLotes(dtb, txtBrix, Brix)
+        guardarValoresLotes(dtb, txtSorbitol, Sorbitol)
 
         '----------------- CONTROL MICROBIOLOGICO ----------------
-        guardarValoresLotes(txtRecuentoTotal, RecuentoTotal)
-        guardarValoresLotes(txtBacterias, Bacterias)
-        guardarValoresLotes(txtLevaduras, Levaduras)
-        guardarValoresLotes(txtHongos, Hongos)
-        guardarValoresLotes(txtXilenium, Xilenium)
-        guardarValoresLotes(txtAnguilulas, Anguilulas)
+        guardarValoresLotes(dtb, txtRecuentoTotal, RecuentoTotal)
+        guardarValoresLotes(dtb, txtBacterias, Bacterias)
+        guardarValoresLotes(dtb, txtLevaduras, Levaduras)
+        guardarValoresLotes(dtb, txtHongos, Hongos)
+        guardarValoresLotes(dtb, txtXilenium, Xilenium)
+        guardarValoresLotes(dtb, txtAnguilulas, Anguilulas)
 
         '----------------- CATA Y CONTROL ESTABILIDAD ----------------
-        guardarValoresLotes(txtOlfato, Olfato)
-        guardarValoresLotes(txtSabor, Sabor)
-        guardarValoresLotes(txtVista, Vista)
-        guardarValoresLotes(txtEstableFrio, EstableFrio)
-        guardarValoresLotes(txtEstableCalor, EstableCalor)
-        guardarValoresLotes(txtEstableProteinas, EstableProteinas)
+        guardarValoresLotes(dtb, txtOlfato, Olfato)
+        guardarValoresLotes(dtb, txtSabor, Sabor)
+        guardarValoresLotes(dtb, txtVista, Vista)
+        guardarValoresLotes(dtb, txtEstableFrio, EstableFrio)
+        guardarValoresLotes(dtb, txtEstableCalor, EstableCalor)
+        guardarValoresLotes(dtb, txtEstableProteinas, EstableProteinas)
 
         '----------------- OBSERVACIONES ----------------       
-        guardarObservacionesLotes(txtMedidaColor)
-        guardarObservacionesLotes(txtObservacionesOlfato)
-        guardarObservacionesLotes(txtObservacionesSabor)
-        guardarObservacionesLotes(txtObservacionesVista)
+        guardarObservacionesLotes(dtb, txtMedidaColor)
+        guardarObservacionesLotes(dtb, txtObservacionesOlfato)
+        guardarObservacionesLotes(dtb, txtObservacionesSabor)
+        guardarObservacionesLotes(dtb, txtObservacionesVista)
 
-    End Sub
+        Return True
+    End Function
 
     Public Function EliminarLote(ByVal ID As Integer) As Boolean
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.EmpezarTransaccion()
+        Try
 
+     
         clsAna._LoteID = ID
 
-        Dim tabla As DataTable = clsAna.DevolverPorMuestra()
+            Dim tabla As DataTable = clsAna.DevolverPorMuestra(dtb)
         Dim i As Integer
         While i < tabla.Rows.Count
             'eliminar analitica Valores
             clsAnaVal._AnaliticaID = tabla.Rows(i).Item(0)
-            If Not clsAnaVal.EliminarPorAnalitica() Then Return False
+                If Not clsAnaVal.EliminarPorAnalitica(dtb) Then Throw New Exception("Error al eliminar valores")
 
             'eliminar analitica Requerimientos
             clsAnaReq._AnaliticaID = tabla.Rows(i).Item(0)
-            If Not clsAnaReq.EliminarPorAnalitica() Then Return False
+                If Not clsAnaReq.EliminarPorAnalitica(dtb) Then Throw New Exception("Error al eliminar requeriientos")
 
             'eliminar analitica Muestra Observacion
             clsMueObs._AnaliticaID = tabla.Rows(i).Item(0)
-            If Not clsMueObs.EliminarPorAnalitica() Then Return False
+                If Not clsMueObs.EliminarPorAnalitica(dtb) Then Throw New Exception("Error al eliminar observaciones de muestra")
 
             'eliminar analitica externa
             clsAnaExt._AnaliticaID = tabla.Rows(i).Item(0)
-            If Not clsAnaExt.EliminarPorAnalitica() Then Return False
+                If Not clsAnaExt.EliminarPorAnalitica(dtb) Then Throw New Exception("Error al eliminar analitica externa")
 
             'eliminar analitica
             clsAna._AnaliticaID = tabla.Rows(i).Item(0)
-            If Not clsAna.Eliminar() Then Return False
+                If Not clsAna.Eliminar(dtb) Then Throw New Exception("Erro al eliminar analitica")
             i = i + 1
 
         End While
 
         'eliminar muestra
         clsLot._LoteID = ID
-        If Not clsLot.Eliminar() Then Return False
+            If Not clsLot.Eliminar(dtb) Then Throw New Exception("Erro al eliminar lote")
 
-        Return True
+            dtb.TerminarTransaccion()
+            Return True
+
+        Catch ex As Exception
+            dtb.CancelarTransaccion()
+            MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
     End Function
 
 

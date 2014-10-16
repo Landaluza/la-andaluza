@@ -85,4 +85,8 @@ Public Class frmSeleccionMonodosis
             terminar()
         End If
     End Sub
+
+    Private Sub DataGridView1_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellDoubleClick
+        terminar()
+    End Sub
 End Class

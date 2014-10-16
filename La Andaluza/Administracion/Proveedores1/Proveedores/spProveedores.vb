@@ -83,7 +83,8 @@ Inherits BasesParaCompatibilidad.StoredProcedure
 
 
     Public Function devolverProveedores() As DataTable
-        Return BasesParaCompatibilidad.BD.ConsultaVer("*", "Proveedores")
+        dtb.PrepararConsulta("select * from proveedores")
+        Return dtb.Consultar
 
     End Function
 

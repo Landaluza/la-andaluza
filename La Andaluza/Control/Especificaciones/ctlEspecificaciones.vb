@@ -1,21 +1,24 @@
 Public Class ctlEspecificaciones
 
-    Dim clsEsp As New clsEspecificaciones
-    Dim clsValEsp As New clsValoresespecificaciones
+    Private clsEsp As clsEspecificaciones
+    Private clsValEsp As clsValoresespecificaciones
+    Private dtb As BasesParaCompatibilidad.DataBase
 
+    Public Sub New()
+        clsEsp = New clsEspecificaciones
+        clsValEsp = New clsValoresespecificaciones
+        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+    End Sub
     Public Sub setEspecificacionID(ByVal EspecificacionID As Integer)
         clsEsp._EspecificacionID = EspecificacionID
     End Sub
 
-    Public Function getEspecificacionID() As Integer
-        Return clsEsp._EspecificacionID
-    End Function
 
     Sub mostrarTodosValoresEspecificaciones(ByRef dtsValEsp As dtsEspecificaciones.ValoresEspecificacionesDataTable)
         Dim tabla As New DataTable
 
         clsValEsp._EspecificacionID = clsEsp._EspecificacionID
-        tabla = clsValEsp.devolver()
+        tabla = clsValEsp.devolver(dtb)
 
         Dim i As Integer
         Dim regPar As dtsEspecificaciones.ValoresEspecificacionesRow

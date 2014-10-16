@@ -137,9 +137,9 @@ Public Class clsValoresespecificaciones
 #End Region
 
 #Region "Metodos"
-    Public Function devolver() As DataTable
+    Public Function devolver(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
 
-        Return BasesParaCompatibilidad.BD.ConsultaVer("ListaParametros.ParametroID, " & _
+        dtb.PrepararConsulta(" select ListaParametros.ParametroID, " & _
                                 "ListaParametros.Nombre, " & _
                                 "C1.Obligatoriedad, " & _
                                 "isnull(C1.Minimo, legislacionProductos_listaParametros.minimo) as minimo, " & _
@@ -150,8 +150,8 @@ Public Class clsValoresespecificaciones
                                 "C1.desviacionMaximo, " & _
                                 "C1.desviacionminimo, " & _
                                 "legislacionProductos_listaParametros.maximo as maximoLegislacion, " & _
-                                "legislacionProductos_listaParametros.minimo as minimoLegislacion ", _
-                                "	MetodosAnalisis RIGHT JOIN (SELECT " & _
+                                "legislacionProductos_listaParametros.minimo as minimoLegislacion " & _
+                                " from	MetodosAnalisis RIGHT JOIN (SELECT " & _
                                                                     "ValoresEspecificaciones.ParametroID AS ParametroIDen, " & _
                                                                     "ValoresEspecificaciones.Obligatoriedad, " & _
                                                                     "ValoresEspecificaciones.Minimo, " & _
@@ -176,11 +176,14 @@ Public Class clsValoresespecificaciones
                                  "on ListaParametros.parametroId = legislacionProductos_listaParametros.Id_parametro " & _
                                  "Where (id_legislacion =  " & LegislacionID.ToString & "or id_legislacion is null)")
         '"MetodosAnalisis RIGHT JOIN (SELECT     ValoresEspecificaciones.ParametroID AS ParametroIDen, ValoresEspecificaciones.Obligatoriedad, ValoresEspecificaciones.Minimo, ValoresEspecificaciones.Maximo, ValoresEspecificaciones.Periodicidad, ValoresEspecificaciones.MetodoAnalisisID,ValoresEspecificaciones.desviacionMaximo, ValoresEspecificaciones.desviacionMinimo  FROM Especificaciones INNER JOIN ValoresEspecificaciones ON Especificaciones.EspecificacionID = ValoresEspecificaciones.EspecificacionID INNER JOIN ListaParametros AS ListaParametros_1 ON ValoresEspecificaciones.ParametroID = ListaParametros_1.ParametroID  WHERE (Especificaciones.EspecificacionID = " & EspecificacionID.ToString & ")) AS c1 ON MetodosAnalisis.MetodoAnalisisID = c1.MetodoAnalisisID RIGHT OUTER JOIN ListaParametros INNER JOIN UnidadesMedidas ON ListaParametros.UnidadMedidaID = UnidadesMedidas.UnidadMedidaID ON c1.ParametroIDen = ListaParametros.ParametroID")
+
+        Return dtb.Consultar
     End Function
 
-    Public Function devolverPorEspecificacion() As DataTable
+    Public Function devolverPorEspecificacion(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
 
-        Return BasesParaCompatibilidad.BD.ConsultaVer("ListaParametros.ParametroID, ListaParametros.Nombre, t1.Minimo, t1.Maximo, t1.Obligatoriedad", "ListaParametros left join (SELECT ValoresEspecificaciones.ParametroID, ValoresEspecificaciones.Obligatoriedad, ValoresEspecificaciones.Minimo, ValoresEspecificaciones.Maximo, ValoresEspecificaciones.MetodoAnalisisID FROM ListaParametros INNER JOIN ValoresEspecificaciones ON ListaParametros.ParametroID = ValoresEspecificaciones.ParametroID INNER JOIN Especificaciones ON ValoresEspecificaciones.EspecificacionID = Especificaciones.EspecificacionID WHERE (Especificaciones.EspecificacionID = " & EspecificacionID.ToString & ")) As t1 on ListaParametros.ParametroID = t1.ParametroID")
+        dtb.PrepararConsulta("select ListaParametros.ParametroID, ListaParametros.Nombre, t1.Minimo, t1.Maximo, t1.Obligatoriedad from ListaParametros left join (SELECT ValoresEspecificaciones.ParametroID, ValoresEspecificaciones.Obligatoriedad, ValoresEspecificaciones.Minimo, ValoresEspecificaciones.Maximo, ValoresEspecificaciones.MetodoAnalisisID FROM ListaParametros INNER JOIN ValoresEspecificaciones ON ListaParametros.ParametroID = ValoresEspecificaciones.ParametroID INNER JOIN Especificaciones ON ValoresEspecificaciones.EspecificacionID = Especificaciones.EspecificacionID WHERE (Especificaciones.EspecificacionID = " & EspecificacionID.ToString & ")) As t1 on ListaParametros.ParametroID = t1.ParametroID")
+        Return dtb.Consultar
 
     End Function
 

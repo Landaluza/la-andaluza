@@ -44,6 +44,7 @@ Partial Class frmPanDoypack
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.btnaddMarcas = New System.Windows.Forms.Button()
         Me.btnverMarcas = New System.Windows.Forms.Button()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.Pancontenidos.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
@@ -54,7 +55,7 @@ Partial Class frmPanDoypack
         '
         Me.Pancontenidos.Controls.Add(Me.DataGridView1)
         Me.Pancontenidos.Controls.Add(Me.ToolStrip1)
-        Me.Pancontenidos.Location = New System.Drawing.Point(12, 43)
+        Me.Pancontenidos.Location = New System.Drawing.Point(12, 77)
         Me.Pancontenidos.Name = "Pancontenidos"
         Me.Pancontenidos.Size = New System.Drawing.Size(531, 246)
         Me.Pancontenidos.TabIndex = 1
@@ -261,7 +262,7 @@ Partial Class frmPanDoypack
         Me.Panel1.Controls.Add(Me.cboCaja)
         Me.Panel1.Controls.Add(Me.Label4)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel1.Location = New System.Drawing.Point(0, 293)
+        Me.Panel1.Location = New System.Drawing.Point(0, 346)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(555, 155)
@@ -291,11 +292,22 @@ Partial Class frmPanDoypack
         Me.btnverMarcas.TabIndex = 65
         Me.btnverMarcas.UseVisualStyleBackColor = True
         '
+        'Label7
+        '
+        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Location = New System.Drawing.Point(79, 39)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(464, 35)
+        Me.Label7.TabIndex = 14
+        Me.Label7.Text = "Si desmarca la casilla seleccione en el terciario el formato que se creara ahora," & _
+    " si ya creo el terciario seleccione el mismo formato que creo"
+        '
         'frmPanDoypack
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(555, 448)
+        Me.ClientSize = New System.Drawing.Size(555, 501)
+        Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.cbEnvasado)
         Me.Controls.Add(Me.cboFormato)
@@ -336,4 +348,5 @@ Partial Class frmPanDoypack
     Private WithEvents tsadd As System.Windows.Forms.ToolStripButton
     Private WithEvents tsmod As System.Windows.Forms.ToolStripButton
     Private WithEvents tsdel As System.Windows.Forms.ToolStripButton
+    Private WithEvents Label7 As System.Windows.Forms.Label
 End Class

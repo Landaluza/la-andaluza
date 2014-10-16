@@ -44,7 +44,8 @@ Class spPedidosProveedoresMaestros
 
     Public Function InsertPedidosProveedoresMaestros(ByVal dbo_PedidosProveedoresMaestros As DBO_PedidosProveedoresMaestros) As Boolean
         'Encontrar el numero mayor
-        dbo_PedidosProveedoresMaestros.Numero = (BasesParaCompatibilidad.BD.ConsultaVer("max(Numero)", "PedidosProveedoresMaestros").Rows(0).Item(0)) + 1
+        dtb.PrepararConsulta("select max(Numero) from PedidosProveedoresMaestros")
+        dbo_PedidosProveedoresMaestros.Numero = dtb.Consultar().Rows(0).Item(0) + 1
         BasesParaCompatibilidad.BD.Conectar()
         Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
         Dim insertProcedure As String = "[dbo].[PedidosProveedoresMaestrosInsert]"

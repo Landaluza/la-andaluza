@@ -92,7 +92,8 @@ Public Class frmPedidosProveedoresMaestros
 
         If TipoAction = ACCION_INSERTAR Then
             'Asignar las propiedades del objeto creado cuyos valores se obtengan en este Form.
-            DBO_PedidoProveedor.Numero = (BasesParaCompatibilidad.BD.ConsultaVer("max(Numero)", "PedidosProveedoresMaestros").Rows(0).Item(0)) + 1
+            Me.dtb.PrepararConsulta("select max(Numero) from PedidosProveedoresMaestros")
+            DBO_PedidoProveedor.Numero = Me.dtb.Consultar.Rows(0).Item(0) + 1
             DBO_PedidoProveedor.EstadoID = 1 'Solicitado
         Else
             DBO_PedidoProveedor = CType(sp, spPedidosProveedoresMaestros).Select_Record(GeneralBindingSource(m_Pos).Item("PedidoProveedorMaestroID"))

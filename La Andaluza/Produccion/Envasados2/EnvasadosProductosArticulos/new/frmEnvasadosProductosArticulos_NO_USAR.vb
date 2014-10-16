@@ -180,13 +180,15 @@ Public Class frmEnvasadosProductosArticulos_NO_USAR
                    "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
         If Respuesta = DialogResult.Yes Then
-            BasesParaCompatibilidad.BD.EmpezarTransaccion()
+            dtb.EmpezarTransaccion()
+            BasesParaCompatibilidad.BD.Cnx = dtb.Conexion
+            BasesParaCompatibilidad.transaction = dtb.Transaccion
 
             Try
                 Dim calendar As New BasesParaCompatibilidad.Calendar
 
                 For Each row As DataGridViewRow In dgvGrilla.Rows
-                    m_DBO_LoteTerminado = spLotes1.Select_Record(row.Cells("LoteID").Value, BasesParaCompatibilidad.BD.transaction) 'dgvGrilla.CurrentRow.Cells("LoteID").Value, BasesParaCompatibilidad.BD.transaction)
+                    m_DBO_LoteTerminado = spLotes1.Select_Record(row.Cells("LoteID").Value, dtb.Transaccion) 'dgvGrilla.CurrentRow.Cells("LoteID").Value, BasesParaCompatibilidad.BD.transaction)
 
                     'Grabar movimiento
                     Dim m_DBO_Movimientos1 As New DBO_Movimientos1
@@ -200,7 +202,7 @@ Public Class frmEnvasadosProductosArticulos_NO_USAR
                     m_DBO_Movimientos1.FiltroID = vbNull
                     m_DBO_Movimientos1.Suma = 1
                     m_DBO_Movimientos1.NuevoLote = 1 'Si generamos nuevo Lote.
-                    guardado = guardado And spMovimientos1.GrabarMovimientos1(m_DBO_Movimientos1, BasesParaCompatibilidad.BD.transaction)
+                    guardado = guardado And spMovimientos1.GrabarMovimientos1(m_DBO_Movimientos1, dtb.Transaccion)
 
                     'Crear Lote envasado para que luego podamos sumar sumar todos los componentes del Lote terminado y asi saber la cantidad inicial preparada.
                     m_DBO_LoteEnvasado.Descripcion = "L-" & calendar.DevuelveFechaJuliana(m_DBO_Envasado.Fecha) 'RECUPERAR JULIANO
@@ -227,38 +229,40 @@ Public Class frmEnvasadosProductosArticulos_NO_USAR
                     Else
                         mes = m_DBO_Envasado.Fecha.Month
                     End If
-                    m_DBO_LoteEnvasado.CodigoLote = m_DBO_Envasado.Fecha.Year & mes & dia & spTiposProductos.Select_Record(m_Producto, BasesParaCompatibilidad.BD.transaction).Abreviatura & "Env"
+                    m_DBO_LoteEnvasado.CodigoLote = m_DBO_Envasado.Fecha.Year & mes & dia & spTiposProductos.Select_Record(m_Producto, dtb.Transaccion).Abreviatura & "Env"
                     m_DBO_LoteEnvasado.CodigoLote = spLotes1.devolverproximocodigoLote(m_DBO_LoteEnvasado.CodigoLote, BasesParaCompatibilidad.BD.transaction)
 
                     m_DBO_LoteEnvasado.Revisar = False
-                    guardado = guardado And spLotes1.GrabarLotes1(m_DBO_LoteEnvasado, BasesParaCompatibilidad.BD.transaction)
+                    guardado = guardado And spLotes1.GrabarLotes1(m_DBO_LoteEnvasado, dtb.Transaccion)
 
                     'Guardar Lote creado en tabla CompuestoPor asignado al Lote envasado creado
 
                     ' El LoteID del ultimo lote creado 
-                    m_DBO_CompuestoPor.LoteFinal = BasesParaCompatibilidad.BD.ConsultaVer("max(LoteID)", "Lotes").Rows(0).Item(0)
+                    dtb.PrepararConsulta("select max(LoteID) from Lotes")
+                    m_DBO_CompuestoPor.LoteFinal = dtb.Consultar.Rows(0).Item(0)
                     m_DBO_CompuestoPor.LotePartida = row.Cells("LoteID").Value
                     'Comprobar que necesitamos el MovimientoID para poder borrar, editar, etc.
-                    m_DBO_CompuestoPor.MovimientoID = BasesParaCompatibilidad.BD.ConsultaVer("max(MovimientoID)", "Movimientos").Rows(0).Item(0)
+                    dtb.PrepararConsulta("select max(MovimientoID) from Movimientos")
+                    m_DBO_CompuestoPor.MovimientoID = dtb.Consultar().Rows(0).Item(0)
                     m_DBO_CompuestoPor.Cantidad = row.Cells("Cantidad").Value
-                    guardado = guardado And spCompuestoPor.CompuestoPorInsert(m_DBO_CompuestoPor, BasesParaCompatibilidad.BD.transaction)
+                    guardado = guardado And spCompuestoPor.CompuestoPorInsert(m_DBO_CompuestoPor, dtb.Transaccion)
 
 
                     'Descontar los litros del lote terminado
                     Dim m_CantidadRestante As Integer = System.Convert.ToInt32(m_DBO_LoteTerminado.CantidadRestante) - row.Cells("Cantidad").Value
 
-                    guardado = guardado And spLotes1.Lotes1UpdateCantidadRestante(m_DBO_LoteTerminado.LoteID, m_CantidadRestante, BasesParaCompatibilidad.BD.transaction)
+                    guardado = guardado And spLotes1.Lotes1UpdateCantidadRestante(m_DBO_LoteTerminado.LoteID, m_CantidadRestante, dtb.Transaccion)
 
                     If Not row.Cells("Merma").Value Is Nothing And row.Cells("Merma").Value <> 0 Then ''añadir al mdbo el campo merma, que es el que se guardara en el frment
                         Dim spFormato As New spFormatosEnvasados
-                        Dim m_dbo_FormatosEnvasados As DBO_FormatosEnvasados = spFormato.Select_Record(row.Cells("FormatoEnvasadoID").Value, BasesParaCompatibilidad.BD.transaction)
-                        Dim m_dbo_Envasado As DBO_Envasados2 = spEnvasados2.Select_Record(m_dbo_FormatosEnvasados.EnvasadoID, BasesParaCompatibilidad.BD.transaction)
+                        Dim m_dbo_FormatosEnvasados As DBO_FormatosEnvasados = spFormato.Select_Record(row.Cells("FormatoEnvasadoID").Value, dtb.Transaccion)
+                        Dim m_dbo_Envasado As DBO_Envasados2 = spEnvasados2.Select_Record(m_dbo_FormatosEnvasados.EnvasadoID, dtb.Transaccion)
 
                         m_dbo_diferencias.CantidadRestante = row.Cells("Merma").Value
                         m_dbo_diferencias.CodigoLote = row.Cells("Lote").Value
                         m_dbo_diferencias.Fecha = m_dbo_Envasado.Fecha.Date 'New Date(m_dbo_Envasado.Fecha.Year, m_dbo_Envasado.Fecha.Month, m_dbo_Envasado.Fecha.Day).Date  'm_dbo_Envasado.Fecha
                         m_dbo_diferencias.LoteID = row.Cells("LoteID").Value 'le pasamos un valor tipo para recuperar datos en la insercion                                
-                        guardado = guardado And spLotes1.GuardarLoteDiferencias(Me.m_dbo_diferencias, BasesParaCompatibilidad.BD.transaction)
+                        guardado = guardado And spLotes1.GuardarLoteDiferencias(Me.m_dbo_diferencias, dtb)
                     End If
 
                     contador += 1
@@ -266,18 +270,18 @@ Public Class frmEnvasadosProductosArticulos_NO_USAR
 
 
                 If guardado Then
-                    BasesParaCompatibilidad.BD.TerminarTransaccion()
+                    dtb.TerminarTransaccion()
                     butGenerarTrasiegos.Visible = False
                     Me.butGuardar.Enabled = False
                     Me.lTrasiegos.Visible = True
                 Else
-                    BasesParaCompatibilidad.BD.CancelarTransaccion()
+                    dtb.CancelarTransaccion()
                     MessageBox.Show("No se pudieron generar los movimientos, vuelva a intentarlo", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
 
             Catch ex As Exception
+                dtb.CancelarTransaccion()
                 MessageBox.Show(ex.Message, "Error al generar trasiegos", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                BasesParaCompatibilidad.BD.CancelarTransaccion()
             End Try
         End If
 

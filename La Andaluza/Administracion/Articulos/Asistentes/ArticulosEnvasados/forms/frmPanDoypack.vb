@@ -71,12 +71,23 @@ Public Class frmPanDoypack
         Else
             Dim retorno As Boolean = True
             Dim aux As Dbo_DoyPack
-            Dim formato As Integer = Me.cboFormato.SelectedValue
+            Dim formato As Integer
+
+            If cbEnvasado.Checked Then
+                formato = Me.cboFormato.SelectedValue
+            Else
+                formato = spdoypack.crear_formato("")
+            End If
+            Dim articulo As Integer = spdoypack.UltimoArticuloInsertado
 
             For i As Integer = 1 To Me.monodosis.Count
                 aux = Me.monodosis.Item(i)
-                aux.ArticuloPrimarioID = spdoypack.UltimoArticuloInsertado
+                aux.ArticuloPrimarioID = articulo
                 aux.TipoFormatoID = formato
+                aux.MarcaId = cboMarca.SelectedValue
+                aux.ProductoId = cboProducto.SelectedValue
+                aux.CajaId = cboCaja.SelectedValue
+
                 retorno = retorno And spdoypack.add(aux)
 
                 retorno = retorno And spdoypack.InsertarCompuestoPor(aux.ArticuloPrimarioID, aux.MonodosisID, aux.Cantidad)
@@ -142,12 +153,13 @@ Public Class frmPanDoypack
     Private Sub añadir()
         Dim frm As New frmSeleccionMonodosis()
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
-
-        Me.dbo.Cantidad = frm.monodosis.Cantidad
-        dbo.MonodosisID = frm.monodosis.MonodosisID
+        dbo = New Dbo_DoyPack
+        
 
         If Not dbo Is Nothing Then
             dbo.ArticuloPrimarioID = Me.id
+            Me.dbo.Cantidad = frm.monodosis.Cantidad
+            dbo.MonodosisID = frm.monodosis.MonodosisID
 
             If Me.mododeapertura = BasesParaCompatibilidad.DetailedSimpleForm.INSERCION Then
                 If Not esDuplicado(dbo.MonodosisID) Then

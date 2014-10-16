@@ -14,6 +14,15 @@ Class spdoypack
         Return If(IsDBNull(dt.Rows(0).Item(0)), Nothing, dt.Rows(0).Item(0))
     End Function
 
+    Public Function crear_formato(ByVal nombre As String) As Integer
+        Dim s As String = "INSERT INTO [dbo].[TiposFormatos] (codigoqs, [Descripcion], separadores, cajaspalet, tipocajaid) " & _
+        " VALUES (1, '" & nombre & "', 1, 1, 1)"
+        If dtb.ConsultaAlteraciones(s) Then
+            Return dtb.Consultar("select max(tipoformatoid) from tiposformatos", True).Rows(0).Item(0)
+        Else
+            Return 0
+        End If
+    End Function
     Public Function MarcaPorArticulo(ByVal p1 As Integer) As Integer
         dtb.PrepararConsulta("select id_marca from doypack where id_articuloPrimario = @id")
         dtb.AñadirParametroConsulta("@id", p1)

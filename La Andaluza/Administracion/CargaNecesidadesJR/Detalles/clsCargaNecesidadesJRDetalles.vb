@@ -1,6 +1,5 @@
 Public Class clsCargaNecesidadesJRDetalles
 
-#Region "Atributos"
     Private CargaNecesidadesJRDetalleID As Integer
     Private CargaNecesidadesJRMaestroID As Integer
     Private ArticuloID As Integer
@@ -10,7 +9,7 @@ Public Class clsCargaNecesidadesJRDetalles
     Private Reserva1 As String
     Private Reserva2 As String
     Private Reserva3 As String
-#End Region
+
 
 #Region "Propiedades"
     Public Property _CargaNecesidadesJRDetalleID() As Integer
@@ -107,9 +106,9 @@ Public Class clsCargaNecesidadesJRDetalles
 
 #Region "Metodos"
 
-    Public Function Devolver() As DataTable
-
-        Return BasesParaCompatibilidad.BD.ConsultaVer("CargaNecesidadesJRDetalles.CargaNecesidadesJRDetalleID,CargaNecesidadesJRDetalles.CargaNecesidadesJRMaestroID,CargaNecesidadesJRDetalles.ArticuloID,CargaNecesidadesJRDetalles.Carga,CargaNecesidadesJRDetalles.Stock,CargaNecesidadesJRDetalles.Observaciones,CargaNecesidadesJRDetalles.Reserva1,CargaNecesidadesJRDetalles.Reserva2,CargaNecesidadesJRDetalles.Reserva3", "CargaNecesidadesJRDetalles")
+    Public Function Devolver(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
+        dtb.PrepararConsulta("select CargaNecesidadesJRDetalles.CargaNecesidadesJRDetalleID,CargaNecesidadesJRDetalles.CargaNecesidadesJRMaestroID,CargaNecesidadesJRDetalles.ArticuloID,CargaNecesidadesJRDetalles.Carga,CargaNecesidadesJRDetalles.Stock,CargaNecesidadesJRDetalles.Observaciones,CargaNecesidadesJRDetalles.Reserva1,CargaNecesidadesJRDetalles.Reserva2,CargaNecesidadesJRDetalles.Reserva3 from CargaNecesidadesJRDetalles")
+        Return dtb.Consultar
     End Function
 
     Public Function Modificar() As Integer
@@ -125,25 +124,6 @@ Public Class clsCargaNecesidadesJRDetalles
                        "Reserva3='" & Reserva3 & "'", _
                        "CargaNecesidadesJRDetalleID=" & Convert.ToString(CargaNecesidadesJRDetalleID))
             Return 1
-        Catch ex As Exception
-            Return 0
-        End Try
-    End Function
-
-    Public Function Insertar() As Integer
-        Try
-            BasesParaCompatibilidad.BD.ConsultaInsertar( _
-                       "" & Convert.ToString(CargaNecesidadesJRMaestroID) & "," & _
-                       "" & Convert.ToString(ArticuloID) & "," & _
-                       "" & Convert.ToString(Carga) & "," & _
-                       "" & Convert.ToString(Stock) & "," & _
-                       "'" & Observaciones & "'," & _
-                       "'" & Reserva1 & "'," & _
-                       "'" & Reserva2 & "'," & _
-                       "'" & Reserva3 & "'", _
-                       "CargaNecesidadesJRDetalles")
-            CargaNecesidadesJRDetalleID = BasesParaCompatibilidad.BD.ConsultaVer("max(CargaNecesidadesJRDetalleID)", "CargaNecesidadesJRDetalles").Rows(0).Item(0)
-            Return CargaNecesidadesJRDetalleID
         Catch ex As Exception
             Return 0
         End Try

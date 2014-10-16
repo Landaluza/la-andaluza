@@ -1,5 +1,5 @@
 Public Class ctlAlbaranesCargaProviDetalles
-    Public Function GuardarAlbaranCargaProviDetalle( _
+    Public Function GuardarAlbaranCargaProviDetalle(ByRef dtb As BasesParaCompatibilidad.DataBase, _
                ByVal AlbaranCargaProviMaestroID As Integer, _
                ByVal SCC As Integer, _
                ByVal CodigoQS As Integer, _
@@ -15,12 +15,12 @@ Public Class ctlAlbaranesCargaProviDetalles
                ByVal LoteAlternativo As String) As Integer
 
         Dim AlbaranCargaProviDetalleID As Integer
-        
+
         If Lote.Contains(",") Then
             Dim axu As String() = Lote.Replace("Multilote:", "").Split(",")
             Lote = axu(1)
         End If
-       
+
         Try
             If BasesParaCompatibilidad.BD.ConsultaInsertarConcampos( _
                 "([AlbaranCargaProviMaestroID],[SCC] ,[CodigoQS] ,[AticuloDescripcion] ,[Cajas] ,[UnidadMedidaID] ,[Lote],[TipoPaletID] ,[Observaciones] ,[Reserva1] ,[Reserva2] ,[Reserva3], LoteAlternativo, FechaModificacion, UsuarioModificacion)", _
@@ -39,7 +39,8 @@ Public Class ctlAlbaranesCargaProviDetalles
                        "'" & LoteAlternativo & "'", _
                        "AlbaranesCargaProviDetalles") = 1 Then
 
-                AlbaranCargaProviDetalleID = (BasesParaCompatibilidad.BD.ConsultaVer("max(AlbaranCargaProviDetalleID)", "AlbaranesCargaProviDetalles").Rows(0).Item(0))
+                dtb.PrepararConsulta("select max(AlbaranCargaProviDetalleID) from AlbaranesCargaProviDetalles")
+                AlbaranCargaProviDetalleID = dtb.Consultar().Rows(0).Item(0)
                 Return AlbaranCargaProviDetalleID
             Else
                 Return 0

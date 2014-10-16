@@ -110,40 +110,42 @@ Public Class clsAnaliticas
         Return BasesParaCompatibilidad.BD.ConsultaVer("*", "Analiticas", "AnaliticaID > 0")
     End Function
 
-    Public Function DevolverPorMuestra() As DataTable
-        Return BasesParaCompatibilidad.BD.ConsultaVer("AnaliticaID, Nombre", "Analiticas", "LoteID = " & Convert.ToString(LoteID))
+    Public Function DevolverPorMuestra(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
+
+        dtb.PrepararConsulta("select AnaliticaID, Nombre from Analiticas where LoteID = @id")
+        dtb.AñadirParametroConsulta("@id", LoteID)
+
+        Return dtb.Consultar
     End Function
 
-    Public Function Modificar() As Integer
+    Public Function Modificar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
 
-        Try
-            BasesParaCompatibilidad.BD.ConsultaModificar("Analiticas", _
+        Return dtb.ConsultaAlteraciones("update Analiticas set " & _
                                                            "LoteID = " & Convert.ToString(LoteID) & "," & _
                                                            "AnalistaID = " & Convert.ToString(AnalistaID) & "," & _
-                                                           "CatadorID = " & Convert.ToString(CatadorID), _
-                                                           "AnaliticaID = " & Convert.ToString(AnaliticaID))
+                                                           "CatadorID = " & Convert.ToString(CatadorID) & _
+                                                           "  where AnaliticaID = " & Convert.ToString(AnaliticaID))
 
 
-            Return 1
-        Catch ex As Exception
-            Return 0
-        End Try
 
     End Function
 
-    Public Function Insertar() As Integer
-        Try
-            BasesParaCompatibilidad.BD.ConsultaInsertar("'" & Nombre & "'," & Convert.ToString(LoteID) & "," & Convert.ToString(AnalistaID) & "," & Convert.ToString(CatadorID), "Analiticas")
-            Return BasesParaCompatibilidad.BD.ConsultaVer("max(AnaliticaID)", "Analiticas", "AnaliticaID>0").Rows(0).Item(0)
-
-        Catch ex As Exception
+    Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
+        If Not dtb.ConsultaAlteraciones("insert into Analiticas values('" & Nombre & "'," & Convert.ToString(LoteID) & _
+                                  "," & Convert.ToString(AnalistaID) & _
+                                  "," & Convert.ToString(CatadorID) & _
+                                  ",'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Today & " " & TimeOfDay) & "'," & BasesParaCompatibilidad.Config.User.ToString & ")") Then
             Return 0
-        End Try
+        End If
+
+        dtb.PrepararConsulta("select max(AnaliticaID) from Analiticas where AnaliticaID>0")
+        Return dtb.Consultar().Rows(0).Item(0)
+
+
     End Function
 
-    Public Function Eliminar() As Boolean
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
-        Try
+    Public Function Eliminar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+     
             dtb.PrepararConsulta("delete from Analiticas where AnaliticaID = @id")
             dtb.AñadirParametroConsulta("@id", AnaliticaID)
             Return dtb.Consultar(True)
@@ -152,9 +154,7 @@ Public Class clsAnaliticas
             '    Return False
             'End If
             'Return True
-        Catch ex As Exception
-            Return False
-        End Try
+       
     End Function
 #End Region
 End Class

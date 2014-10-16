@@ -83,6 +83,9 @@ Public Class frmEntLotesEnologicos
 
     Overrides Sub Guardar()
         Dim strCantidadRestante As String = ""
+        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb.EmpezarTransaccion()
+
         Try
             If cbMedidas.Text <> Medida Then
                 If cbMedidas.Text = "Litros" Then
@@ -94,18 +97,23 @@ Public Class frmEntLotesEnologicos
                 strCantidadRestante = CantidadRestanteCuadroDeTexto.Text
             End If
 
-            ctlLot.GuardarLoteEnologico(DescripcionCuadroDeTexto.Text, _
+            If Not ctlLot.GuardarLoteEnologico(dtb, DescripcionCuadroDeTexto.Text, _
                                         dtpFecha.Value, _
                                         strCantidadRestante, _
                                         TipoLoteIDComboMAM.SelectedValue, _
                                         TipoProductoIDComboMAM.SelectedValue, _
                                         ProveedorIDCombo.SelectedValue, _
                                         CodigoLoteCuadroDeTexto.Text, _
-                                        txtLoteProveedor.Text)
+                                        txtLoteProveedor.Text) Then
+                Throw New Exception("Error guardando enologico")
+            End If
 
+
+            dtb.TerminarTransaccion()
             Me.Close()
 
         Catch ex As Exception
+            dtb.CancelarTransaccion()
             MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub

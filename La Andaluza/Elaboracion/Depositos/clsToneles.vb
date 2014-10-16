@@ -40,11 +40,7 @@ Public Class clsToneles
 #End Region
 
 #Region "Metodos"
-    Public Function Devolver() As DataTable
 
-        Return BasesParaCompatibilidad.BD.ConsultaVer("Toneles.TonelID,Toneles.Descripcion, ContenidoHabitual", "Toneles")
-
-    End Function
 
     Public Sub Cargar()
 

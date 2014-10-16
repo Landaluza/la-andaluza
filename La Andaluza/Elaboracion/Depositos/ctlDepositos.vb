@@ -3,9 +3,7 @@ Public Class ctlDepositos
 
     Dim clsDep As New clsDepositos
 
-    Public Function GetDepositoID() As Integer
-        Return clsDep._DepositoID
-    End Function
+
 
     Public Sub SetDepositoID(ByVal ID As Integer)
         clsDep._DepositoID = ID
@@ -19,29 +17,9 @@ Public Class ctlDepositos
         cbo.mam_DataSource(clsDep.devolverDepositosporCodigo(), False)
     End Sub
 
-    Public Function devolverDepositos1() As DataTable
-        Return clsDep.Devolver()
-    End Function
-
-    Public Function devolverDepositosFinales() As DataTable
-        Return clsDep.devolverDepositosFinales()
-    End Function
-
-    Public Function devolverDepositosVacios() As DataTable
-        Return clsDep.devolverDepositosVacios()
-    End Function
-
-    Public Function devolverDepositosPartidas() As DataTable
-        Return clsDep.devolverDepositosPartidas()
-    End Function
-
     Public Sub CargarDepositos()
         clsDep.Cargar()
     End Sub
-
-    Public Function devolverCapacidadDeposito() As Integer
-        Return clsDep._Capacidad
-    End Function
 
     Public Sub DevolverDatosDepositos(ByRef capacidad As String, ByRef DoctoUbicacionFisica As String)
         capacidad = clsDep._Capacidad
@@ -184,14 +162,6 @@ Public Class ctlDepositos
         Return clsBot._BotaID
     End Function
 
-    Public Sub SetBotaID(ByVal ID As Integer)
-        clsBot._BotaID = ID
-    End Sub
-
-    Public Function devolverBotas() As DataTable
-        Return clsBot.Devolver()
-    End Function
-
     Public Sub CargarBota()
         clsBot.Cargar()
     End Sub
@@ -222,14 +192,6 @@ Public Class ctlDepositos
 
     Public Function GetTonelID() As Integer
         Return clsTon._TonelID
-    End Function
-
-    Public Sub SetTonelID(ByVal ID As Integer)
-        clsTon._TonelID = ID
-    End Sub
-
-    Public Function devolverToneles() As DataTable
-        Return clsTon.Devolver()
     End Function
 
     Public Sub CargarTonel()
@@ -263,14 +225,6 @@ Public Class ctlDepositos
         Return clsBotPie._BotaPiernaID
     End Function
 
-    Public Sub SetBotasPiernaID(ByVal ID As Integer)
-        clsBotPie._BotaPiernaID = ID
-    End Sub
-
-    Public Function devolverBotasPiernas() As DataTable
-        Return clsBotPie.Devolver()
-    End Function
-
     Public Sub CargarBotaPierna()
         clsBotPie.Cargar()
     End Sub
@@ -301,25 +255,11 @@ Public Class ctlDepositos
         Return clsTra._TransicubaID
     End Function
 
-    Public Sub SetTransicubaID(ByVal ID As Integer)
-        clsTra._TransicubaID = ID
-    End Sub
-
-    Public Function devolverTransicubas() As DataTable
-        Return clsTra.Devolver()
-    End Function
-
-    Public Function devolverTransicubasActivas() As DataTable
-        Return clsDep.devolverTransicubasActivas()
-    End Function
 
     Public Sub CargarTransicuba()
         clsTra.Cargar()
     End Sub
 
-    Public Function darDeBajaTransicuba() As Integer
-        Return clsTra.darDeBajaTransicuba()
-    End Function
 
     Public Sub DevolverDatosTransicuba(ByRef Descripcion As String, ByRef estado As Boolean)
         Descripcion = clsTra._Descripcion

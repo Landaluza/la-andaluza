@@ -32,6 +32,10 @@ Public Class spArticulosEnvasadosHistoricos
         cbo.mam_DataSource("TiposFormatosCbo", False)
     End Sub
 
+    'Public Sub usar_con_precaucion(ByRef cbo As ComboBox)
+    '    cbo.mam_DataSource("select tipoformatoid, descripcion from tiposformatos order by descripcion", False)
+    'End Sub
+
     Public Sub cargar_TiposFormatos_por_palet(ByRef cbo As ComboBox, ByVal palet As Integer)
         cbo.mam_DataSource("TiposFormatosCboPorPalet " & palet, False)
     End Sub

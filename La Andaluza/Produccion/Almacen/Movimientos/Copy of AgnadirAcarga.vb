@@ -41,7 +41,7 @@
 
 
                 BasesParaCompatibilidad.BD.EmpezarTransaccion()
-
+                Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server, BasesParaCompatibilidad.BD.Cnx, BasesParaCompatibilidad.BD.transaction)
                 Try
 
                     Dim Linea As String = "PaletsProducidosSelectArticuloCodigoQSBySCC " & txtSCC.Text
@@ -55,7 +55,7 @@
                     'Para que no sume el peso del palet
                     txtPesoPalet.Text = "0"
                     ' hay que añadir el tipo de palet
-                    If ctlAlbDet.GuardarAlbaranCargaProviDetalle(Me.codigoMaestro, _
+                    If ctlAlbDet.GuardarAlbaranCargaProviDetalle(dtb, Me.codigoMaestro, _
                                                               txtSCC.Text, _
                                                               Tabla.Rows(0).Item("CodigoQS"), _
                                                               txtDescripcion.Text, _
@@ -76,7 +76,7 @@
                         Me.Close()
                     Else
                         BasesParaCompatibilidad.BD.CancelarTransaccion()
-                        messagebox.show("No se pudo completar la operación. Vuelva a intentarlo en unos segundos", "Atención", MessageBoxButtons.OK , MessageBoxIcon.Exclamation )
+                        MessageBox.Show("No se pudo completar la operación. Vuelva a intentarlo en unos segundos", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     End If
                 Catch ex As Exception
                     BasesParaCompatibilidad.BD.CancelarTransaccion()

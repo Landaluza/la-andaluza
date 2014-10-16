@@ -42,11 +42,13 @@ Public Class FrmEntLotes
     Private frmControlesPorLote As frmControlesPorLote
     Private spElaboraciones As spElaboraciones
     Private frmTRazabilidad As frmTrazabilidad
+    Private dtb As BasesParaCompatibilidad.DataBase
 
     Public Sub New()
 
         InitializeComponent()
 
+        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
         Me.dtsMue = New dtsLotes.LotesDataTable
         Me.dtsCompuestoPor = New dtsLotesComponentes.LotesComponentesDataTable
         Me.dtsComponenteDe = New dtsLotesComponentes.LotesComponentesDataTable
@@ -300,10 +302,12 @@ Public Class FrmEntLotes
     End Sub
 
     Overrides Sub Guardar()
+        dtb.EmpezarTransaccion()
+
         Try
             If Me.Text.Substring(0, 8) = "Insertar" Then
                 LoteID = 0
-                ctlLot.GuardarLote(LoteID, If(txtReferencia.Text = "" Or IsDBNull(txtReferencia.Text), 0, Convert.ToInt32(txtReferencia.Text)), cboAnalista.SelectedValue, If(txtCantidadRestante.Text = "" Or IsDBNull(txtCantidadRestante.Text), 0, Convert.ToInt32(txtCantidadRestante.Text)), cboCatador.SelectedValue, txtCodigoLote.Text, cboTipoLote.SelectedValue, cboTipoProducto.SelectedValue, chbSinEspecificacion.Checked, txtDescripcion.Text, dtpFecha.Value, _
+                If Not ctlLot.GuardarLote(dtb, LoteID, If(txtReferencia.Text = "" Or IsDBNull(txtReferencia.Text), 0, Convert.ToInt32(txtReferencia.Text)), cboAnalista.SelectedValue, If(txtCantidadRestante.Text = "" Or IsDBNull(txtCantidadRestante.Text), 0, Convert.ToInt32(txtCantidadRestante.Text)), cboCatador.SelectedValue, txtCodigoLote.Text, cboTipoLote.SelectedValue, cboTipoProducto.SelectedValue, chbSinEspecificacion.Checked, txtDescripcion.Text, dtpFecha.Value, _
                  If(chbSinEspecificacion.Checked, Nothing, cboEspecificacion.SelectedValue), txtObservacion.Text, txtBotellas.Text, cboCantidad.SelectedValue, cboMedidas.SelectedValue, cboCorredor.SelectedValue, _
                  cboProveedor.SelectedValue, cboAnaliticas.SelectedValue, _
                  txtAcidez, chbAcidez.Checked, txtAlcohol1, chbAlcohol.Checked, txtExtracto, chbExtracto.Checked, txtExtractoNro, txtCenizas, chbCenizas.Checked, txtMetanol, _
@@ -313,12 +317,17 @@ Public Class FrmEntLotes
                  txtAcidezVolatil, chbAcidezVolatil.Checked, txtAzucarTotal, chbAzucarTotal.Checked, txtBaume, chbBaume.Checked, txtBrix, chbBrix.Checked, txtSorbitol, chbSorbitol.Checked, _
                  txtRecuentoTotal, chbRecuentoTotal.Checked, txtBacterias, chbBacterias.Checked, txtLevaduras, chbLevaduras.Checked, txtHongos, chbHongos.Checked, txtXilenium, chbXilenium.Checked, txtAnguilulas, chbAnguilulas.Checked, _
                  txtOlfato, chbOlfato.Checked, txtSabor, chbSabor.Checked, txtVista, chbVista.Checked, txtEstableFrio, chbEstableFrio.Checked, txtEstableCalor, chbEstableCalor.Checked, txtEstableProteinas, chbEstableProteinas.Checked, _
-                 txtObservacionesOlfato, txtObservacionesSabor, txtObservacionesVista)
+                 txtObservacionesOlfato, txtObservacionesSabor, txtObservacionesVista) Then
+
+                    Throw New Exception("No se pudo guardar el lote")
+                End If
+
+                dtb.TerminarTransaccion()
                 Me.Close()
 
 
             ElseIf Me.Text.Substring(0, 9) = "Modificar" Then
-                ctlLot.GuardarLote(LoteID, If(txtReferencia.Text = "" Or IsDBNull(txtReferencia.Text), 0, Convert.ToInt32(txtReferencia.Text)), cboAnalista.SelectedValue, txtCantidadRestante.Text, cboCatador.SelectedValue, txtCodigoLote.Text, cboTipoLote.SelectedValue, cboTipoProducto.SelectedValue, chbSinEspecificacion.Checked, txtDescripcion.Text, dtpFecha.Value, _
+                If Not ctlLot.GuardarLote(dtb, LoteID, If(txtReferencia.Text = "" Or IsDBNull(txtReferencia.Text), 0, Convert.ToInt32(txtReferencia.Text)), cboAnalista.SelectedValue, txtCantidadRestante.Text, cboCatador.SelectedValue, txtCodigoLote.Text, cboTipoLote.SelectedValue, cboTipoProducto.SelectedValue, chbSinEspecificacion.Checked, txtDescripcion.Text, dtpFecha.Value, _
                 If(chbSinEspecificacion.Checked, Nothing, cboEspecificacion.SelectedValue), txtObservacion.Text, txtBotellas.Text, cboCantidad.SelectedValue, cboMedidas.SelectedValue, cboCorredor.SelectedValue, _
                 cboProveedor.SelectedValue, cboAnaliticas.SelectedValue, _
                 txtAcidez, chbAcidez.Checked, txtAlcohol1, chbAlcohol.Checked, txtExtracto, chbExtracto.Checked, txtExtractoNro, txtCenizas, chbCenizas.Checked, txtMetanol, _
@@ -328,20 +337,28 @@ Public Class FrmEntLotes
                 txtAcidezVolatil, chbAcidezVolatil.Checked, txtAzucarTotal, chbAzucarTotal.Checked, txtBaume, chbBaume.Checked, txtBrix, chbBrix.Checked, txtSorbitol, chbSorbitol.Checked, _
                 txtRecuentoTotal, chbRecuentoTotal.Checked, txtBacterias, chbBacterias.Checked, txtLevaduras, chbLevaduras.Checked, txtHongos, chbHongos.Checked, txtXilenium, chbXilenium.Checked, txtAnguilulas, chbAnguilulas.Checked, _
                 txtOlfato, chbOlfato.Checked, txtSabor, chbSabor.Checked, txtVista, chbVista.Checked, txtEstableFrio, chbEstableFrio.Checked, txtEstableCalor, chbEstableCalor.Checked, txtEstableProteinas, chbEstableProteinas.Checked, _
-                txtObservacionesOlfato, txtObservacionesSabor, txtObservacionesVista)
+                txtObservacionesOlfato, txtObservacionesSabor, txtObservacionesVista) Then
+
+                    Throw New Exception("No se pudo guardar el lote")
+                End If
 
                 If cboAnaliticas.Items.Count = 0 Then
-                    cboAnaliticas.DataSource = OldLib.HacerTablasObligatorias(ctlLot.mostrarTodasAnaliticasPorMuestra(LoteID))
+                    cboAnaliticas.DataSource = OldLib.HacerTablasObligatorias(ctlLot.mostrarTodasAnaliticasPorMuestra(dtb, LoteID))
                 Else
                     If cboAnaliticas.Text <> "La Andaluza" Then
-                        ctlLot.GuardarAnaliticaExterna(cboAnaliticas.SelectedValue, AnaliticaExternaID, txtRutaAnalisis.Text, dtpFechaAnaliticaExterna.Value, cboProveedoresLabExternos.SelectedValue)
+                        If Not ctlLot.GuardarAnaliticaExterna(dtb, cboAnaliticas.SelectedValue, AnaliticaExternaID, txtRutaAnalisis.Text, dtpFechaAnaliticaExterna.Value, cboProveedoresLabExternos.SelectedValue) Then
+                            Throw New Exception("Error al guardar la analitica externa")
+                        End If
                         cboAnaliticas.Enabled = True
                     End If
                 End If
+
+                dtb.TerminarTransaccion()
                 'Me.Close()
             End If
         Catch ex As Exception
-            messagebox.show("Error al guardar. Detalles: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            dtb.CancelarTransaccion()
+            MessageBox.Show("Error al guardar. Detalles: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -461,7 +478,7 @@ Public Class FrmEntLotes
                     Bandera_SinEspecificacion = chbSinEspecificacion.Checked
                     If Me.Text.Substring(0, 3) = "Ver" Then
                         ModificarBindingNavigator()
-                        Dim tabla As DataTable = ctlLot.mostrarTodasAnaliticasPorMuestra(txtLoteID.Text)
+                        Dim tabla As DataTable = ctlLot.mostrarTodasAnaliticasPorMuestra(dtb, txtLoteID.Text)
                         If tabla.Rows.Count > 1 Then
                             cboAnaliticas.Enabled = True
                         Else
@@ -544,20 +561,34 @@ Public Class FrmEntLotes
 
     Private Sub butanaliticaExterna_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAnaliticaExterna.Click
         Dim sRespuesta As String
+
         sRespuesta = InputBox("Nombre de la nueva Analitica Externa : ", "Nueva Analitica Externa", , 500, 500)
         If sRespuesta <> vbNullString Then
             If sRespuesta.ToUpper <> "LA ANDALUZA" Then
-                'nueva analitica
-                AnaliticaID = ctlLot.NuevaAnalitica(sRespuesta, LoteID, cboAnalista.SelectedValue, cboCatador.SelectedValue)
-                If AnaliticaID <> 0 Then
-                    'llevar al combobox
-                    cboAnaliticas.DataSource = OldLib.HacerTablasObligatorias(ctlLot.mostrarTodasAnaliticasPorMuestra(LoteID))
-                    cboAnaliticas.Text = sRespuesta
-                    'cboAnaliticas.
-                    VerParametrosAnaliticaExterna(True)
-                End If
+
+                dtb.EmpezarTransaccion()
+
+                Try
+                    'nueva analitica
+                    AnaliticaID = ctlLot.NuevaAnalitica(dtb, sRespuesta, LoteID, cboAnalista.SelectedValue, cboCatador.SelectedValue)
+                    If AnaliticaID <> 0 Then
+                        'llevar al combobox
+                        cboAnaliticas.DataSource = OldLib.HacerTablasObligatorias(ctlLot.mostrarTodasAnaliticasPorMuestra(dtb, LoteID))
+                        cboAnaliticas.Text = sRespuesta
+                        'cboAnaliticas.
+                        VerParametrosAnaliticaExterna(True)
+                    Else
+                        Throw New Exception("Error al guardar la analitica")
+                    End If
+
+                    dtb.TerminarTransaccion()
+                Catch ex As Exception
+                    dtb.CancelarTransaccion()
+                    MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End Try
+
             Else
-                messagebox.show("Es necesario dar un nombre para la nueva Analitica diferente a ´La Andaluza´", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                MessageBox.Show("Es necesario dar un nombre para la nueva Analitica diferente a ´La Andaluza´", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             End If
         Else
             messagebox.show("Es necesario dar un nombre para la nueva Analitica Externa", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
@@ -643,7 +674,7 @@ Public Class FrmEntLotes
                     gbAnalitica.Visible = True
                     Me.Height = 965
                     Me.Location = New Point(100, 100)
-                    cboAnaliticas.DataSource = OldLib.HacerTablasObligatorias(ctlLot.mostrarTodasAnaliticasPorMuestra(LoteID))
+                    cboAnaliticas.DataSource = OldLib.HacerTablasObligatorias(ctlLot.mostrarTodasAnaliticasPorMuestra(Me.dtb, LoteID))
                 End If
             End If
         Catch ex As Exception
@@ -923,7 +954,7 @@ Public Class FrmEntLotes
     End Sub
 
     Private Sub txtLoteID_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtLoteID.TextChanged
-        Dim tabla As DataTable = ctlLot.mostrarTodasAnaliticasPorMuestra(txtLoteID.Text)
+        Dim tabla As DataTable = ctlLot.mostrarTodasAnaliticasPorMuestra(dtb, txtLoteID.Text)
         cboAnaliticas.DataSource = OldLib.HacerTablasObligatorias(tabla)
         cboAnaliticas.ValueMember = "ID"
         cboAnaliticas.DisplayMember = "Display"

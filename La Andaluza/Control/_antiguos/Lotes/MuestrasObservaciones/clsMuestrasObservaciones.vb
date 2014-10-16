@@ -44,15 +44,11 @@ Public Class clsMuestrasObservaciones
         Return BasesParaCompatibilidad.BD.ConsultaVer("Count(*)", "MuestrasObservaciones", "AnaliticaID = " & Convert.ToString(AnaliticaID) & " and ObservacionID = " & Convert.ToString(ObservacionID)).Rows(0).Item(0) > 0
     End Function
 
-    Public Function Insertar() As Integer
+    Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
 
-        BasesParaCompatibilidad.BD.ConsultaInsertar(Convert.ToString(AnaliticaID) & "," & Convert.ToString(ObservacionID) & ",'" & Descripcion & "'", "MuestrasObservaciones")
-        Try
+        Return dtb.ConsultaAlteraciones("Insert into MuestrasObservaciones values(" & Convert.ToString(AnaliticaID) & "," & Convert.ToString(ObservacionID) & ",'" & Descripcion & "'" & _
+                                         ",'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Today & " " & TimeOfDay) & "'," & BasesParaCompatibilidad.Config.User.ToString & ")")
 
-            Return 1
-        Catch ex As Exception
-            Return 0
-        End Try
     End Function
 
 
@@ -66,46 +62,24 @@ Public Class clsMuestrasObservaciones
     End Function
 
 
-    Public Function Modificar() As Integer
-        Try
-            BasesParaCompatibilidad.BD.ConsultaModificar("MuestrasObservaciones", _
-                                                           "Descripcion = '" & Descripcion & "'", _
-                                                           "AnaliticaID = " & Convert.ToString(AnaliticaID) & _
-                                                           " and ObservacionID = " & Convert.ToString(ObservacionID))
-
-
-            Return 1
-        Catch ex As Exception
-            Return 0
-        End Try
-
+    Public Function Modificar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        Return dtb.ConsultaAlteraciones("update MuestrasObservaciones set " & _
+                                                       "Descripcion = '" & Descripcion & "'" & _
+                                                       " where AnaliticaID = " & Convert.ToString(AnaliticaID) & _
+                                                       " and ObservacionID = " & Convert.ToString(ObservacionID))
     End Function
 
 
-    Public Function Eliminar() As Integer
-        Dim bdt As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
-        Try
-            bdt.PrepararConsulta("delete from MuestrasObservaciones where AnaliticaID= @id and ObservacionID= @obs")
-            bdt.AñadirParametroConsulta("@id", AnaliticaID)
-            bdt.AñadirParametroConsulta("@obs", ObservacionID)
-            If bdt.Consultar(True) Then
-                'BasesParaCompatibilidad.BD.ConsultaEliminar("MuestrasObservaciones", "AnaliticaID = " & Convert.ToString(AnaliticaID) & " and ObservacionID = " & Convert.ToString(ObservacionID))
+    Public Function Eliminar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.PrepararConsulta("delete from MuestrasObservaciones where AnaliticaID= @id and ObservacionID= @obs")
+        dtb.AñadirParametroConsulta("@id", AnaliticaID)
+        dtb.AñadirParametroConsulta("@obs", ObservacionID)
+        Return dtb.Consultar(True)
 
-
-                Return 1
-            Else
-                Return 0
-            End If
-        Catch ex As Exception
-            Return 0
-        End Try
     End Function
 
-    Public Function EliminarPorAnalitica() As Boolean
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
-        
-
-        Try
+    Public Function EliminarPorAnalitica(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+    
             dtb.PrepararConsulta("delete from MuestrasObservaciones where AnaliticaID = @id")
             dtb.AñadirParametroConsulta("@id", AnaliticaID)
             Return dtb.Consultar(True)
@@ -114,9 +88,7 @@ Public Class clsMuestrasObservaciones
 
 
             'Return True
-        Catch ex As Exception
-            Return False
-        End Try
+
     End Function
 
 #End Region

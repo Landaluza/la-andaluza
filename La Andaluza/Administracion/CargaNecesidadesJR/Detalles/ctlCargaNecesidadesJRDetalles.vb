@@ -1,5 +1,10 @@
 Public Class ctlCargaNecesidadesJRDetalles
-    Dim clsCar As New clsCargaNecesidadesJRDetalles
+    Private clsCar As clsCargaNecesidadesJRDetalles
+    Private dtb As BasesParaCompatibilidad.DataBase
+    Public Sub New()
+        clsCar = New clsCargaNecesidadesJRDetalles
+        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+    End Sub
 
     Public Function GetCargaNecesidadesJRDetalleID() As Integer
         Return clsCar._CargaNecesidadesJRDetalleID
@@ -9,13 +14,10 @@ Public Class ctlCargaNecesidadesJRDetalles
         clsCar._CargaNecesidadesJRDetalleID = ID
     End Sub
 
-    Public Function devolverCargaNecesidadesJRDetalles() As DataTable
-        Return clsCar.Devolver()
-    End Function
 
     Public Sub mostrarTodosCargaNecesidadesJRDetalles(ByRef dts As dtsCargaNecesidadesJRDetalles.CargaNecesidadesJRDetallesDataTable)
         Dim tabla As New DataTable
-        tabla = clsCar.Devolver()
+        tabla = clsCar.Devolver(dtb)
         Dim i As Integer
         dts.Clear()
         Dim reg As dtsCargaNecesidadesJRDetalles.CargaNecesidadesJRDetallesRow
@@ -36,29 +38,7 @@ Public Class ctlCargaNecesidadesJRDetalles
         End While
     End Sub
 
-    Public Sub GuardarCargaNecesidadesJRDetalle( _
-               ByVal CargaNecesidadesJRMaestroID As Integer, _
-               ByVal ArticuloID As Integer, _
-               ByVal Carga As Integer, _
-               ByVal Stock As Integer, _
-               ByVal Observaciones As String, _
-               ByVal Reserva1 As String, _
-               ByVal Reserva2 As String, _
-               ByVal Reserva3 As String)
-        clsCar._CargaNecesidadesJRMaestroID = CargaNecesidadesJRMaestroID
-        clsCar._ArticuloID = ArticuloID
-        clsCar._Carga = Carga
-        clsCar._Stock = Stock
-        clsCar._Observaciones = Observaciones
-        clsCar._Reserva1 = Reserva1
-        clsCar._Reserva2 = Reserva2
-        clsCar._Reserva3 = Reserva3
-        If clsCar._CargaNecesidadesJRDetalleID = 0 Then
-            clsCar.Insertar()
-        Else
-            clsCar.Modificar()
-        End If
-    End Sub
+ 
 
     Public Sub EliminarCargaNecesidadesJRDetalle()
         clsCar.Eliminar()

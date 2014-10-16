@@ -62,11 +62,7 @@ Public Class clsAnaliticasExternas
 #End Region
 
 #Region "Metodos"
-    Public Function Devolver() As DataTable
-
-        Return BasesParaCompatibilidad.BD.ConsultaVer("*", "AnaliticasExternas")
-
-    End Function
+ 
 
     Public Sub cargar()
         Try
@@ -83,49 +79,45 @@ Public Class clsAnaliticasExternas
         End Try
     End Sub
 
-    Public Function Modificar() As Integer
-        Try
-            BasesParaCompatibilidad.BD.ConsultaModificar("AnaliticasExternas", _
+    Public Function Modificar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        Return dtb.ConsultaAlteraciones("update AnaliticasExternas set" & _
             "RutaAnalisis='" & RutaAnalisis & "'," & _
             "Fecha='" & BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha) & "'," & _
             "ProveedorID='" & Convert.ToString(ProveedorID) & "'," & _
-            "AnaliticaID='" & Convert.ToString(AnaliticaID) & "'", _
-            "AnaliticaExternaID=" & Convert.ToString(AnaliticaExternaID))
+            "AnaliticaID='" & Convert.ToString(AnaliticaID) & "'" & _
+            " where AnaliticaExternaID=" & Convert.ToString(AnaliticaExternaID))
 
 
-            Return 1
-        Catch ex As Exception
-            Return 0
-        End Try
+
     End Function
 
-    Public Function Insertar() As Integer
-        Try
-            BasesParaCompatibilidad.BD.ConsultaInsertar("'" & RutaAnalisis & "'," & _
-            "'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha) & "'," & _
-            If(ProveedorID = Nothing, "null", "'" & Convert.ToString(ProveedorID) & "'") & "," & _
-            "'" & Convert.ToString(AnaliticaID) & "'", _
-            "AnaliticasExternas")
-            AnaliticaExternaID = BasesParaCompatibilidad.BD.ConsultaVer("max(AnaliticaExternaID)", "AnaliticasExternas").Rows(0).Item(0)
-            Return AnaliticaExternaID
-        Catch ex As Exception
-            Return 0
-        End Try
+    Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
+        If Not dtb.ConsultaAlteraciones("insert into AnaliticasExternas values('" & RutaAnalisis & "'," & _
+                        "'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha) & "'," & _
+                        If(ProveedorID = Nothing, "null", "'" & Convert.ToString(ProveedorID) & "'") & "," & _
+                        "'" & Convert.ToString(AnaliticaID) & "'" & _
+                        ",'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Today & " " & TimeOfDay) & "'," & BasesParaCompatibilidad.Config.User.ToString & ")") Then
+
+            AnaliticaExternaID = 0
+        Else
+            dtb.PrepararConsulta("select max(AnaliticaExternaID) from AnaliticasExternas")
+            AnaliticaExternaID = dtb.Consultar().Rows(0).Item(0)
+        End If
+        
+        Return AnaliticaExternaID
+
     End Function
 
 
-    Public Function EliminarPorAnalitica() As Boolean
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
-        Try
+    Public Function EliminarPorAnalitica(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+       
             dtb.PrepararConsulta("delete from AnaliticasExternas where AnaliticaID = @id")
             dtb.AñadirParametroConsulta("@id", AnaliticaID)
             Return dtb.Consultar(True)
             'If BasesParaCompatibilidad.BD.ConsultaEliminar("AnaliticasExternas", "AnaliticaID = " & Convert.ToString(AnaliticaID)) = 0 Then Return False
 
             'Return True
-        Catch ex As Exception
-            Return False
-        End Try
+     
     End Function
 
 #End Region

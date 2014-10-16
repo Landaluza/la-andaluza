@@ -347,7 +347,7 @@ Class spLotes1
         Return codigo
     End Function
 
-    Public Function GuardarLoteDiferencias(ByVal m_dbo As DBO_Lotes1, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As Boolean
+    Public Function GuardarLoteDiferencias(ByVal m_dbo As DBO_Lotes1, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Dim retorno As Boolean = True
         Dim loteProcedencia As Integer = m_dbo.LoteID
         Dim deposito As Integer
@@ -357,19 +357,21 @@ Class spLotes1
         Dim cantidad As String = m_dbo.CantidadRestante
         Dim m_compuestoPor As New DBO_CompuestoPor
         Dim m_movimiento As New DBO_Movimientos1
-        Dim m_lote As DBO_Lotes1 = Me.Select_Record(m_dbo.LoteID, BasesParaCompatibilidad.BD.transaction)
+        Dim m_lote As DBO_Lotes1 = Me.Select_Record(m_dbo.LoteID, dtb.Transaccion)
 
 
         m_dbo.CodigoLote = GenerarCodigoDiferencias(m_dbo.Fecha, m_dbo.CodigoLote.Substring(8, 3))
 
-        If existeLote(m_dbo.CodigoLote, trans) Then
+        If existeLote(m_dbo.CodigoLote, dtb.Transaccion) Then
             'seleccionar registro lote
             'update cantidad = cantidad+nuevacantidad
-            Dim tabla As DataTable = BasesParaCompatibilidad.BD.ConsultaVer("LoteID, cantidadRestante", "Lotes", "codigoLote='" & m_dbo.CodigoLote & "'")
+            dtb.PrepararConsulta("select LoteID, cantidadRestante from Lotes where codigoLote= @cod")
+            dtb.AñadirParametroConsulta("@cod", m_dbo.CodigoLote)
+            Dim tabla As DataTable = dtb.Consultar
             Dim cantidadOriginal As Integer = tabla.Rows(0).Item(1)
             m_dbo.LoteID = tabla.Rows(0).Item(0)
 
-            Me.Lotes1UpdateCantidadRestante(m_dbo.LoteID, cantidadOriginal + Convert.ToInt32(cantidad), BasesParaCompatibilidad.BD.transaction)
+            Me.Lotes1UpdateCantidadRestante(m_dbo.LoteID, cantidadOriginal + Convert.ToInt32(cantidad), dtb.Transaccion)
 
         Else
             'insertar lote
@@ -381,9 +383,10 @@ Class spLotes1
             m_dbo.UsuarioModificacion = BasesParaCompatibilidad.Config.User
             m_dbo.FechaModificacion = Today.Date
 
-            retorno = retorno And Me.Lotes1Insert(m_dbo, trans)
+            retorno = retorno And Me.Lotes1Insert(m_dbo, dtb.Transaccion)
             'm_dbo = spLotes1.Select_Record(codigoLote, trans)
-            m_dbo.LoteID = BasesParaCompatibilidad.BD.ConsultaVer("max(LoteID)", "Lotes").Rows(0).Item(0)
+            dtb.PrepararConsulta("select max(LoteID) from Lotes")
+            m_dbo.LoteID = dtb.Consultar().Rows(0).Item(0)
 
 
 
@@ -398,17 +401,18 @@ Class spLotes1
         m_movimiento.UsuarioModificacion = BasesParaCompatibilidad.Config.User
         m_movimiento.FechaModificacion = Today.Date
 
-        retorno = retorno And spMovimientos1.Movimientos1Insert(m_movimiento, trans)
+        retorno = retorno And spMovimientos1.Movimientos1Insert(m_movimiento, dtb.Transaccion)
 
         m_compuestoPor.Cantidad = cantidad
         m_compuestoPor.LotePartida = loteProcedencia
         m_compuestoPor.LoteFinal = m_dbo.LoteID
-        m_compuestoPor.MovimientoID = BasesParaCompatibilidad.BD.ConsultaVer("max(MovimientoID)", "Movimientos").Rows(0).Item(0)
+        dtb.PrepararConsulta("select max(MovimientoID) from Movimientos")
+        m_compuestoPor.MovimientoID = dtb.Consultar().Rows(0).Item(0)
         m_compuestoPor.UsuarioModificacion = BasesParaCompatibilidad.Config.User
         m_compuestoPor.FechaModificacion = Today.Date
-        retorno = retorno And spCompuestoPor.CompuestoPorInsert(m_compuestoPor, trans)
+        retorno = retorno And spCompuestoPor.CompuestoPorInsert(m_compuestoPor, dtb.Transaccion)
 
-        Me.Lotes1UpdateCantidadRestante(loteProcedencia, 0, BasesParaCompatibilidad.BD.transaction)
+        Me.Lotes1UpdateCantidadRestante(loteProcedencia, 0, dtb.Transaccion)
         Return retorno
     End Function
 

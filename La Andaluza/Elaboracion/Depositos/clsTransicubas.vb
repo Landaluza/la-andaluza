@@ -40,11 +40,7 @@ Public Class clsTransicubas
 #End Region
 
 #Region "Metodos"
-    Public Function Devolver() As DataTable
-
-        Return BasesParaCompatibilidad.BD.ConsultaVer("Transicubas.TransicubaID,Transicubas.Descripcion,Transicubas.Estado", "Transicubas")
-
-    End Function
+  
 
     Public Sub Cargar()
         Try

@@ -40,11 +40,6 @@ Public Class clsBotasPiernas
 #End Region
 
 #Region "Metodos"
-    Public Function Devolver() As DataTable
-
-        Return BasesParaCompatibilidad.BD.ConsultaVer("BotasPiernas.BotaPiernaID,BotasPiernas.Descripcion, ContenidoHabitual", "BotasPiernas")
-
-    End Function
 
     Public Sub Cargar()
 

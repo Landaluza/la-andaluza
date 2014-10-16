@@ -49,7 +49,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>463</ApplicationRevision>
+    <ApplicationRevision>464</ApplicationRevision>
     <ApplicationVersion>2014.7.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -923,6 +923,7 @@
     <Compile Include="Administracion\Visitas\frmVisitasMain.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Bases\Conf\BD.vb" />
     <Compile Include="Bases\Conf\UserOptions.vb" />
     <Compile Include="Control\Incidencias\frmSeleccionDosFechas.Designer.vb">
       <DependentUpon>frmSeleccionDosFechas.vb</DependentUpon>
@@ -1755,8 +1756,6 @@
     <Compile Include="Control\TiposProductos\frmTiposProductos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Elaboracion\Depositos\BotasPosiciones\clsAlturas.vb" />
-    <Compile Include="Elaboracion\Depositos\BotasPosiciones\clsPiernas.vb" />
     <Compile Include="Elaboracion\Depositos\BotasPosiciones\ctlBotasPosiciones.vb" />
     <Compile Include="Elaboracion\Depositos\BotasTapones\clsBotasTapones.vb" />
     <Compile Include="Elaboracion\Depositos\BotasTapones\ctlBotasTapones.vb" />
@@ -2052,16 +2051,6 @@
     <Compile Include="Control\_antiguos\Lotes\clsAnaliticasRequerimientos.vb" />
     <Compile Include="Control\_antiguos\Lotes\clsAnaliticasValores.vb" />
     <Compile Include="Control\_antiguos\Lotes\clsLotes.vb" />
-    <Compile Include="Control\_antiguos\Lotes\CompuestoPor\clsCompuestoPor.vb" />
-    <Compile Include="Control\_antiguos\Lotes\CompuestoPor\ctlCompuestoPor.vb" />
-    <Compile Include="Control\_antiguos\Lotes\CompuestoPor\dtsCompuestoPor.vb">
-      <DependentUpon>dtsCompuestoPor.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Control\_antiguos\Lotes\CompuestoPor\dtsCompuestoPor1.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dtsCompuestoPor.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Control\_antiguos\Lotes\ctlLotes.vb" />
     <Compile Include="Control\_antiguos\Lotes\dtsLotes.vb">
       <DependentUpon>dtsLotes.xsd</DependentUpon>
@@ -4580,9 +4569,7 @@
     </Compile>
     <Compile Include="Control\SeguridadIndustrial\SistemasIndustriales\spSistemasIndustriales.vb" />
     <Compile Include="Administracion\CargaNecesidadesJR\Detalles\clsCargaNecesidadesJRDetalles.vb" />
-    <Compile Include="Administracion\CargaNecesidadesJR\Maestro\clsCargaNecesidadesJRMaestro.vb" />
     <Compile Include="Administracion\CargaNecesidadesJR\Detalles\ctlCargaNecesidadesJRDetalles.vb" />
-    <Compile Include="Administracion\CargaNecesidadesJR\Maestro\ctlCargaNecesidadesJRMaestro.vb" />
     <Compile Include="Administracion\CargaNecesidadesJR\Detalles\dtsCargaNecesidadesJRDetalles.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -6515,17 +6502,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Control\_antiguos\Lotes\CompuestoPor\dtsCompuestoPor.xsc">
-      <DependentUpon>dtsCompuestoPor.xsd</DependentUpon>
-    </None>
-    <None Include="Control\_antiguos\Lotes\CompuestoPor\dtsCompuestoPor.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>dtsCompuestoPor1.Designer.vb</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Control\_antiguos\Lotes\CompuestoPor\dtsCompuestoPor.xss">
-      <DependentUpon>dtsCompuestoPor.xsd</DependentUpon>
-    </None>
     <None Include="Control\_antiguos\Lotes\dtsLotes.xsc">
       <DependentUpon>dtsLotes.xsd</DependentUpon>
     </None>
@@ -6672,7 +6648,7 @@
     <None Include="Bases\ZLibrerias\Incidencias entre fechas.dll" />
     <None Include="Bases\ZLibrerias\InformesCalidad.dll" />
     <None Include="Bases\ZLibrerias\Envasados entre fechas.dll" />
-    <None Include="Bases\ZLibrerias\BasesParaCompatibilidad.dll" />
+    <Content Include="Bases\ZLibrerias\BasesParaCompatibilidad.dll" />
     <Content Include="Resources\window_new.ico" />
     <Content Include="Resources\window_new_3.ico" />
     <None Include="Resources\text-x-makefile.png" />
@@ -6928,82 +6904,82 @@
   <ItemGroup>
     <PublishFile Include="Microsoft.ReportViewer.Common">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="Microsoft.ReportViewer.DataVisualization">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="Microsoft.ReportViewer.ProcessingObjectModel">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="Microsoft.ReportViewer.WinForms">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="Microsoft.SqlServer.Types">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="Microsoft.Vbe.Interop">
       <Visible>False</Visible>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="office">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="stdole">
       <Visible>False</Visible>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
   </ItemGroup>
