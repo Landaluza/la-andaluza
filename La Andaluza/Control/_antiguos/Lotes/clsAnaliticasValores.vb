@@ -41,12 +41,12 @@ Public Class clsAnaliticasValores
 #Region "Metodos"
 
     Public Function existe() As Boolean
-        Return BasesParaCompatibilidad.BD.ConsultaVer("Count(*)", "AnaliticasValores", "AnaliticaID = " & Convert.ToString(AnaliticaID) & " and ParametroID = " & Convert.ToString(ParametroID)).Rows(0).Item(0) > 0
+        Return Deprecated.ConsultaVer("Count(*)", "AnaliticasValores", "AnaliticaID = " & Convert.ToString(AnaliticaID) & " and ParametroID = " & Convert.ToString(ParametroID)).Rows(0).Item(0) > 0
     End Function
 
     Public Function cargar() As String
         Try
-            Return BasesParaCompatibilidad.BD.ConsultaVer("Valor", "AnaliticasValores", "AnaliticaID = " & Convert.ToString(AnaliticaID) & " and ParametroID = " & Convert.ToString(ParametroID)).Rows(0).Item(0)
+            Return Deprecated.ConsultaVer("Valor", "AnaliticasValores", "AnaliticaID = " & Convert.ToString(AnaliticaID) & " and ParametroID = " & Convert.ToString(ParametroID)).Rows(0).Item(0)
         Catch ex As Exception
             Return ""
         End Try

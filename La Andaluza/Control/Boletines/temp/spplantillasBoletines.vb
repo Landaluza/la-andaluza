@@ -44,7 +44,7 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         Try
             If m_dbo.id = Nothing Then
                 retorno = retorno And MyBase.InsertProcedure(m_dbo, BasesParaCompatibilidad.BD.transaction)
-                m_dbo.id = BasesParaCompatibilidad.BD.ConsultaVer("top 1 id", "PlantillasBoletines", String.Empty, "id desc").Rows(0).Item(0) 'BasesParaCompatibilidad.BD.ConsultaVer("IDENT_CURRENT('plantillasboletines')", String.Empty).Rows(0).Item(0) '("max(id)", "PlantillasBoletines").Rows(0).Item(0) + 1            
+                m_dbo.id = Deprecated.ConsultaVer("top 1 id", "PlantillasBoletines", String.Empty, "id desc").Rows(0).Item(0) 'Deprecated.ConsultaVer("IDENT_CURRENT('plantillasboletines')", String.Empty).Rows(0).Item(0) '("max(id)", "PlantillasBoletines").Rows(0).Item(0) + 1            
             Else
                 retorno = retorno And MyBase.UpdateProcedure(m_dbo, BasesParaCompatibilidad.BD.transaction)
                 retorno = retorno And deleteParameters(m_dbo, BasesParaCompatibilidad.BD.transaction)

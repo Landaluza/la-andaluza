@@ -188,7 +188,7 @@ Public Class clsValoresespecificaciones
     End Function
 
     Public Function existe() As Boolean
-        Return CInt(BasesParaCompatibilidad.BD.ConsultaVer("Count(*)", "ValoresEspecificaciones", "ParametroID = " & ParametroID.ToString & " and EspecificacionID = " & EspecificacionID.ToString).Rows(0).Item(0)) > 0
+        Return CInt(Deprecated.ConsultaVer("Count(*)", "ValoresEspecificaciones", "ParametroID = " & ParametroID.ToString & " and EspecificacionID = " & EspecificacionID.ToString).Rows(0).Item(0)) > 0
     End Function
 
 
@@ -205,7 +205,7 @@ Public Class clsValoresespecificaciones
         Return dtb.Consultar(True)
 
         'Try
-        '    BasesParaCompatibilidad.BD.ConsultaModificar("ValoresEspecificaciones", _
+        '    Deprecated.ConsultaModificar("ValoresEspecificaciones", _
         '                         "Obligatoriedad = '" & Obligatoriedad.ToString & _
         '                         "', Minimo = " & Minimo.ToString.Replace(","c, "."c) & _
         '                         ", Maximo = " & Maximo.ToString.Replace(","c, "."c) & _
@@ -232,7 +232,7 @@ Public Class clsValoresespecificaciones
 
         Return dtb.Consultar(True)
         'Try
-        '    BasesParaCompatibilidad.BD.ConsultaInsertarConcampos("(ParametroID, EspecificacionID, Obligatoriedad, Minimo, Maximo, Periodicidad, MetodoAnalisisID, desviacionMaximo, desviacionMinimo, FechaModificacion, UsuarioModificacion)", _
+        '    Deprecated.ConsultaInsertarConcampos("(ParametroID, EspecificacionID, Obligatoriedad, Minimo, Maximo, Periodicidad, MetodoAnalisisID, desviacionMaximo, desviacionMinimo, FechaModificacion, UsuarioModificacion)", _
         '                                 ParametroID.ToString & "," & EspecificacionID.ToString & ",'" & Obligatoriedad.ToString & "'," & _
         '                                 Minimo.ToString.Replace(","c, "."c) & "," & Maximo.ToString.Replace(","c, "."c) & "," & _
         '                                 Convert.ToString(Periodicidad) & "," & MetodoAnalisisID.ToString & "," & _

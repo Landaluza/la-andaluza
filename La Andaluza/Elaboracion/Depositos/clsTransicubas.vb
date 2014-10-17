@@ -45,7 +45,7 @@ Public Class clsTransicubas
     Public Sub Cargar()
         Try
             Dim tabla As New DataTable
-            tabla = BasesParaCompatibilidad.BD.ConsultaVer("Transicubas.Descripcion,Transicubas.Estado", "Transicubas", "TransicubaID=" & Convert.ToString(TransicubaID))
+            tabla = Deprecated.ConsultaVer("Transicubas.Descripcion,Transicubas.Estado", "Transicubas", "TransicubaID=" & Convert.ToString(TransicubaID))
 
             If Convert.IsDBNull(tabla.Rows(0).Item(0)) Then
                 Descripcion = ""
@@ -62,7 +62,7 @@ Public Class clsTransicubas
 
     Public Function darDeBajaTransicuba() As Integer
         Try
-            If BasesParaCompatibilidad.BD.ConsultaModificar("Transicubas", _
+            If Deprecated.ConsultaModificar("Transicubas", _
                        "Estado='False'", _
                        "TransicubaID=" & Convert.ToString(TransicubaID)) = 0 Then
                 Return 0
@@ -75,7 +75,7 @@ Public Class clsTransicubas
     End Function
     Public Function Modificar() As Integer
         Try
-            BasesParaCompatibilidad.BD.ConsultaModificar("Transicubas", _
+            Deprecated.ConsultaModificar("Transicubas", _
                        "Descripcion='" & Descripcion & "'," & _
                        "Estado='" & Estado & "'", _
                        "TransicubaID=" & Convert.ToString(TransicubaID))
@@ -89,14 +89,14 @@ Public Class clsTransicubas
 
     Public Function Insertar() As Integer
         Try
-            BasesParaCompatibilidad.BD.ConsultaInsertar( _
+            Deprecated.ConsultaInsertar( _
                        "'" & Descripcion & "'," & _
                        "'" & Estado & "'", _
                        "Transicubas")
 
 
 
-            TransicubaID = BasesParaCompatibilidad.BD.ConsultaVer("max(TransicubaID)", "Transicubas").Rows(0).Item(0)
+            TransicubaID = Deprecated.ConsultaVer("max(TransicubaID)", "Transicubas").Rows(0).Item(0)
             Return TransicubaID
         Catch ex As Exception
             Return 0

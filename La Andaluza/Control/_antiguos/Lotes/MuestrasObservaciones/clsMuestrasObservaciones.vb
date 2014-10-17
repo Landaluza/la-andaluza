@@ -41,7 +41,7 @@ Public Class clsMuestrasObservaciones
 
 
     Public Function existe() As Boolean
-        Return BasesParaCompatibilidad.BD.ConsultaVer("Count(*)", "MuestrasObservaciones", "AnaliticaID = " & Convert.ToString(AnaliticaID) & " and ObservacionID = " & Convert.ToString(ObservacionID)).Rows(0).Item(0) > 0
+        Return Deprecated.ConsultaVer("Count(*)", "MuestrasObservaciones", "AnaliticaID = " & Convert.ToString(AnaliticaID) & " and ObservacionID = " & Convert.ToString(ObservacionID)).Rows(0).Item(0) > 0
     End Function
 
     Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
@@ -55,7 +55,7 @@ Public Class clsMuestrasObservaciones
     Public Function cargar() As String
 
         Try
-            Return BasesParaCompatibilidad.BD.ConsultaVer("Descripcion", "MuestrasObservaciones", "AnaliticaID = " & Convert.ToString(AnaliticaID) & " and ObservacionID = " & Convert.ToString(ObservacionID)).Rows(0).Item(0)
+            Return Deprecated.ConsultaVer("Descripcion", "MuestrasObservaciones", "AnaliticaID = " & Convert.ToString(AnaliticaID) & " and ObservacionID = " & Convert.ToString(ObservacionID)).Rows(0).Item(0)
         Catch ex As Exception
             Return ""
         End Try

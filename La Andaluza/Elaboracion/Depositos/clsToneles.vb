@@ -45,7 +45,7 @@ Public Class clsToneles
     Public Sub Cargar()
 
         Dim tabla As New DataTable
-        tabla = BasesParaCompatibilidad.BD.ConsultaVer("Toneles.Descripcion, ContenidoHabitual", "Toneles", "TonelID=" & TonelID)
+        tabla = Deprecated.ConsultaVer("Toneles.Descripcion, ContenidoHabitual", "Toneles", "TonelID=" & TonelID)
         Try
             Descripcion = tabla.Rows(0).Item(0)
             ContenidoHabitual = tabla.Rows(0).Item(1)
@@ -57,7 +57,7 @@ Public Class clsToneles
 
     Public Function Modificar() As Integer
         Try
-            BasesParaCompatibilidad.BD.ConsultaModificar("Toneles", _
+            Deprecated.ConsultaModificar("Toneles", _
                                "Descripcion='" & Descripcion & "', ContenidoHabitual='" & ContenidoHabitual & "'", _
                                "TonelID=" & Convert.ToString(TonelID))
             Return 1
@@ -69,10 +69,10 @@ Public Class clsToneles
     Public Function Insertar() As Integer
 
         Try
-            BasesParaCompatibilidad.BD.ConsultaInsertar( _
+            Deprecated.ConsultaInsertar( _
                               "'" & Descripcion & "','" & ContenidoHabitual & "'", _
                               "Toneles")
-            TonelID = BasesParaCompatibilidad.BD.ConsultaVer("max(TonelID)", "Toneles").Rows(0).Item(0)
+            TonelID = Deprecated.ConsultaVer("max(TonelID)", "Toneles").Rows(0).Item(0)
             Return TonelID
         Catch ex As Exception
             Return 0

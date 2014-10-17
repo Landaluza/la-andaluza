@@ -42,13 +42,13 @@ Public Class clsBotas
 #Region "Metodos"
     Public Function Devolver() As DataTable
 
-        Return BasesParaCompatibilidad.BD.ConsultaVer("Botas.BotaID,Botas.FechaLlegada,BotasTapones.Descripcion As BotasTapones,Posiciones.Descripcion As Posiciones", "Botas LEFT JOIN BotasTapones On Botas.BotaTaponID = BotasTapones.BotaTaponID LEFT JOIN Posiciones On Botas.PosicionID = Posiciones.PosicionID")
+        Return Deprecated.ConsultaVer("Botas.BotaID,Botas.FechaLlegada,BotasTapones.Descripcion As BotasTapones,Posiciones.Descripcion As Posiciones", "Botas LEFT JOIN BotasTapones On Botas.BotaTaponID = BotasTapones.BotaTaponID LEFT JOIN Posiciones On Botas.PosicionID = Posiciones.PosicionID")
     End Function
 
     Public Sub Cargar()
 
         Dim tabla As New DataTable
-        tabla = BasesParaCompatibilidad.BD.ConsultaVer("BotaTaponID,PosicionID", "Botas", "BotaID=" & Convert.ToString(BotaID))
+        tabla = Deprecated.ConsultaVer("BotaTaponID,PosicionID", "Botas", "BotaID=" & Convert.ToString(BotaID))
         Try
             BotaTaponID = tabla.Rows(0).Item(0)
             PosicionID = tabla.Rows(0).Item(1)
@@ -62,7 +62,7 @@ Public Class clsBotas
 
 
         Try
-            BasesParaCompatibilidad.BD.ConsultaModificar("Botas", _
+            Deprecated.ConsultaModificar("Botas", _
                               "BotaTaponID=" & Convert.ToString(BotaTaponID) & "," & _
                               "PosicionID=" & Convert.ToString(PosicionID) & "", _
                               "BotaID=" & Convert.ToString(BotaID))
@@ -76,11 +76,11 @@ Public Class clsBotas
 
 
         Try
-            BasesParaCompatibilidad.BD.ConsultaInsertar( _
+            Deprecated.ConsultaInsertar( _
                              "" & Convert.ToString(BotaTaponID) & "," & _
                              "" & Convert.ToString(PosicionID) & "", _
                              "Botas")
-            BotaID = BasesParaCompatibilidad.BD.ConsultaVer("max(BotaID)", "Botas").Rows(0).Item(0)
+            BotaID = Deprecated.ConsultaVer("max(BotaID)", "Botas").Rows(0).Item(0)
             Return BotaID
         Catch ex As Exception
             Return 0

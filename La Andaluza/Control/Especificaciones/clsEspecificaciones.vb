@@ -97,7 +97,7 @@ Public Class clsEspecificaciones
 
     Function devolverIDtipoProducto() As Integer
         Try
-            Return BasesParaCompatibilidad.BD.ConsultaVer("TipoProductoID", "Especificaciones", "EspecificacionID = " & EspecificacionID.ToString).Rows(0).Item(0)
+            Return Deprecated.ConsultaVer("TipoProductoID", "Especificaciones", "EspecificacionID = " & EspecificacionID.ToString).Rows(0).Item(0)
         Catch ex As Exception
             Return 0
         End Try
@@ -105,7 +105,7 @@ Public Class clsEspecificaciones
 
     Public Function devolver() As DataTable
 
-        Return BasesParaCompatibilidad.BD.ConsultaVer("Especificaciones.EspecificacionID, Especificaciones.Descripcion, Especificaciones.CodigoQS, Especificaciones.FechaRevisado, TiposLotes.Descripcion, TiposProductos.Descripcion AS FormatoGranel, Especificaciones.LegislacionID", _
+        Return Deprecated.ConsultaVer("Especificaciones.EspecificacionID, Especificaciones.Descripcion, Especificaciones.CodigoQS, Especificaciones.FechaRevisado, TiposLotes.Descripcion, TiposProductos.Descripcion AS FormatoGranel, Especificaciones.LegislacionID", _
         "Especificaciones INNER JOIN TiposLotes ON Especificaciones.TipoLoteID = TiposLotes.TipoLoteID LEFT OUTER JOIN TiposProductos ON Especificaciones.TipoProductoID = TiposProductos.TipoProductoID", _
         "(Especificaciones.EspecificacionID > 0)")
 
@@ -114,7 +114,7 @@ Public Class clsEspecificaciones
     Public Function devolverPorLote() As DataTable
 
 
-        Return BasesParaCompatibilidad.BD.ConsultaVer("Especificaciones.EspecificacionID, Especificaciones.Descripcion", _
+        Return Deprecated.ConsultaVer("Especificaciones.EspecificacionID, Especificaciones.Descripcion", _
         "Especificaciones", _
         "Especificaciones.TipoLoteID = " & TipoLoteID.ToString & " and Especificaciones.TipoProductoID =" & TipoProductoID.ToString)
 
@@ -124,7 +124,7 @@ Public Class clsEspecificaciones
     Public Function devolverTodo() As DataTable
 
 
-        Return BasesParaCompatibilidad.BD.ConsultaVer("Especificaciones.EspecificacionID, Especificaciones.Descripcion", _
+        Return Deprecated.ConsultaVer("Especificaciones.EspecificacionID, Especificaciones.Descripcion", _
         "Especificaciones", _
         "EspecificacionID > 0 order by Descripcion")
 
@@ -141,7 +141,7 @@ Public Class clsEspecificaciones
                                                             " where EspecificacionID = " & EspecificacionID.ToString)
         Return dtb.Consultar(True)
         'Try
-        '    BasesParaCompatibilidad.BD.ConsultaModificar("Especificaciones", _
+        '    Deprecated.ConsultaModificar("Especificaciones", _
         '                                                    "CodigoQS = '" & CodigoQS.ToString & _
         '                                                    "',Descripcion= '" & Descripcion & _
         '                                                    "', FechaRevisado = '" & BasesParaCompatibilidad.Calendar.ArmarFecha(FechaRevisado) & _
@@ -171,7 +171,7 @@ Public Class clsEspecificaciones
         Return dtb.Consultar(True)
 
         'Try
-        '    BasesParaCompatibilidad.BD.ConsultaInsertarSinDatosUsuario("'" & Descripcion & _
+        '    Deprecated.ConsultaInsertarSinDatosUsuario("'" & Descripcion & _
         '                                                   "','" & CodigoQS.ToString & _
         '                                                   "','" & BasesParaCompatibilidad.Calendar.ArmarFecha(FechaRevisado) & _
         '                                                   "'," & TipoLoteID.ToString & _
@@ -182,7 +182,7 @@ Public Class clsEspecificaciones
         '                                                   "Especificaciones")
 
 
-        '    EspecificacionID = BasesParaCompatibilidad.BD.ConsultaVer("max(EspecificacionID)", "Especificaciones").Rows(0).Item(0)
+        '    EspecificacionID = Deprecated.ConsultaVer("max(EspecificacionID)", "Especificaciones").Rows(0).Item(0)
         '    Return EspecificacionID
         'Catch ex As Exception
         '    Return 0

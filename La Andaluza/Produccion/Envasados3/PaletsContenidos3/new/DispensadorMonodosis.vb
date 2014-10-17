@@ -156,7 +156,7 @@ Public Class DispensadorMonodosis
     '            textNotificar = textNotificar & "Scc: " & m_palet.SCC & ", cajas: " & dbo_movimiento.Cajas & Environment.NewLine()
     '            linea = "Diferencia automatizada. Scc: " & m_palet.SCC & ", cajas:" & dbo_movimiento.Cajas & " , fecha: " & fecha & ""
 
-    '            BasesParaCompatibilidad.BD.ConsultaInsertarSinDatosUsuario("'" & linea & "', 9, 0", "notificaciones(texto, id_tipousuario, leido)")
+    '            Deprecated.ConsultaInsertarSinDatosUsuario("'" & linea & "', 9, 0", "notificaciones(texto, id_tipousuario, leido)")
     '        Else
     '            'Dim frmNoConforme As New frmEncajadoNoConforme
     '            'frmNoConforme.ShowDialog()
@@ -190,7 +190,7 @@ Public Class DispensadorMonodosis
     '            '    textNotificar = textNotificar & "Scc: " & m_palet.SCC & ", cajas: " & dbo_movimiento.Cajas & Environment.NewLine()
     '            '    linea = "No conforme automatizado. Scc: " & m_palet.SCC & ", cajas:" & dbo_movimiento.Cajas & " , fecha: " & fecha & ""
 
-    '            '    BasesParaCompatibilidad.BD.ConsultaInsertarSinDatosUsuario("'" & linea & "', 9, 0", "notificaciones(texto, id_tipousuario, leido)")
+    '            '    Deprecated.ConsultaInsertarSinDatosUsuario("'" & linea & "', 9, 0", "notificaciones(texto, id_tipousuario, leido)")
 
     '            'End If
     '        End If
@@ -258,7 +258,7 @@ Public Class DispensadorMonodosis
     '    '
     '    'dbo_MovimientoDB.Add(dbo_movimiento)
     '    Dim fecha As String = datetime.now.Day & "/" & datetime.now.Month & "/" & datetime.now.Year
-    '    BasesParaCompatibilidad.BD.ConsultaInsertarSinDatosUsuario("'Envasado de " & m_PaletProducidoOrigen.FormatoDescripcion & " el " & fecha & ". SCC origen: " & m_PaletProducidoOrigen.SCC & "SCC destino:" & m_PaletProducidoDestino.SCC & "', 9, 0", "notificaciones(texto, id_tipousuario, leido)")
+    '    Deprecated.ConsultaInsertarSinDatosUsuario("'Envasado de " & m_PaletProducidoOrigen.FormatoDescripcion & " el " & fecha & ". SCC origen: " & m_PaletProducidoOrigen.SCC & "SCC destino:" & m_PaletProducidoDestino.SCC & "', 9, 0", "notificaciones(texto, id_tipousuario, leido)")
     '    Dim mail As New Mail.Mail1And1(True, "Envasado de " & m_PaletProducidoOrigen.FormatoDescripcion, "Envasado de " & m_PaletProducidoOrigen.FormatoDescripcion & " el " & datetime.now.ToString & "." & Environment.NewLine() & "SCC origen: " & m_PaletProducidoOrigen.SCC & ", cajas de origen: " & dbo_movimiento.Cajas & "; SCC destino:" & m_PaletProducidoDestino.SCC & ", Cajas encajadas: " & cajasInicioMail, String.Empty, _
     '                                                                                Config.MailReportAddress, Config.MailReportPass, "control@landaluza.es", _
     '                                                                                String.Empty, String.Empty, Config.MailClientHost, False)
@@ -381,7 +381,7 @@ Public Class DispensadorMonodosis
     '    '
     '    'dbo_MovimientoDB.Add(dbo_movimiento)
     '    Dim fecha As String = DateTime.Now.Day & "/" & DateTime.Now.Month & "/" & DateTime.Now.Year
-    '    BasesParaCompatibilidad.BD.ConsultaInsertarSinDatosUsuario("'Envasado de " & m_PaletProducidoOrigen.FormatoDescripcion & " el " & fecha & ". SCC origen: " & m_PaletProducidoOrigen.SCC & "SCC destino:" & m_PaletProducidoDestino.SCC & "', 9, 0", "notificaciones(texto, id_tipousuario, leido)")
+    '    Deprecated.ConsultaInsertarSinDatosUsuario("'Envasado de " & m_PaletProducidoOrigen.FormatoDescripcion & " el " & fecha & ". SCC origen: " & m_PaletProducidoOrigen.SCC & "SCC destino:" & m_PaletProducidoDestino.SCC & "', 9, 0", "notificaciones(texto, id_tipousuario, leido)")
     '    Dim mail As New Mail.Mail1And1(True, "Envasado de " & m_PaletProducidoOrigen.FormatoDescripcion, "Envasado de " & m_PaletProducidoOrigen.FormatoDescripcion & " el " & DateTime.Now.ToString & "." & Environment.NewLine() & "SCC origen: " & m_PaletProducidoOrigen.SCC & ", cajas de origen: " & dbo_movimiento.Cajas & "; SCC destino:" & m_PaletProducidoDestino.SCC & ", Cajas encajadas: " & cajasInicioMail, String.Empty, _
     '                                                                                Config.MailReportAddress, Config.MailReportPass, "control@landaluza.es", _
     '                                                                                String.Empty, String.Empty, Config.MailClientHost, False)
@@ -513,7 +513,7 @@ Public Class DispensadorMonodosis
             textNotificar = textNotificar & "Scc: " & m_palet.SCC & ", cajas: " & dbo_movimiento.Cajas & Environment.NewLine()
             linea = "No conformidad automatizada. Scc: " & m_palet.SCC & ", cajas:" & dbo_movimiento.Cajas & " , fecha: " & fecha & ""
 
-            BasesParaCompatibilidad.BD.ConsultaInsertarSinDatosUsuario("'" & linea & "', 9, 0", "notificaciones(texto, id_tipousuario, leido)")
+            Deprecated.ConsultaInsertarSinDatosUsuario("'" & linea & "', 9, 0", "notificaciones(texto, id_tipousuario, leido)")
         End If
 
         If textNotificar <> "" Then
@@ -569,7 +569,7 @@ Public Class DispensadorMonodosis
                 textNotificar = textNotificar & "Scc: " & m_palet.SCC & ", cajas: " & dbo_movimiento.Cajas & Environment.NewLine
                 linea = "Diferencia automatizada. Scc: " & m_palet.SCC & ", cajas:" & dbo_movimiento.Cajas & " , fecha: " & fecha & ""
 
-                BasesParaCompatibilidad.BD.ConsultaInsertarSinDatosUsuario("'" & linea & "', 9, 0", "notificaciones(texto, id_tipousuario, leido)")
+                Deprecated.ConsultaInsertarSinDatosUsuario("'" & linea & "', 9, 0", "notificaciones(texto, id_tipousuario, leido)")
             Else
                 'Dim frmNoConforme As New frmEncajadoNoConforme
                 'frmNoConforme.ShowDialog()
@@ -603,7 +603,7 @@ Public Class DispensadorMonodosis
                 '    textNotificar = textNotificar & "Scc: " & m_palet.SCC & ", cajas: " & dbo_movimiento.Cajas & Environment.NewLine
                 '    linea = "No conforme automatizado. Scc: " & m_palet.SCC & ", cajas:" & dbo_movimiento.Cajas & " , fecha: " & fecha & ""
 
-                '    BasesParaCompatibilidad.BD.ConsultaInsertarSinDatosUsuario("'" & linea & "', 9, 0", "notificaciones(texto, id_tipousuario, leido)")
+                '    Deprecated.ConsultaInsertarSinDatosUsuario("'" & linea & "', 9, 0", "notificaciones(texto, id_tipousuario, leido)")
 
                 'End If
             End If
@@ -666,7 +666,7 @@ Public Class DispensadorMonodosis
         '
         'dbo_MovimientoDB.Add(dbo_movimiento)
         Dim fecha As String = Now.Date.Day & "/" & Now.Date.Month & "/" & Now.Date.Year
-        BasesParaCompatibilidad.BD.ConsultaInsertarSinDatosUsuario("'Envasado de " & m_PaletProducidoOrigen.FormatoDescripcion & " el " & fecha & ". SCC origen: " & m_PaletProducidoOrigen.SCC & "SCC destino:" & m_PaletProducidoDestino.SCC & "', 9, 0", "notificaciones(texto, id_tipousuario, leido)")
+        Deprecated.ConsultaInsertarSinDatosUsuario("'Envasado de " & m_PaletProducidoOrigen.FormatoDescripcion & " el " & fecha & ". SCC origen: " & m_PaletProducidoOrigen.SCC & "SCC destino:" & m_PaletProducidoDestino.SCC & "', 9, 0", "notificaciones(texto, id_tipousuario, leido)")
         Try
             Dim mail As New Mail.Mail1And1(True, "Envasado de " & m_PaletProducidoOrigen.FormatoDescripcion, "Envasado de " & m_PaletProducidoOrigen.FormatoDescripcion & " el " & Convert.ToString(DateTime.Today.Date) & "." & Environment.NewLine & "SCC origen: " & m_PaletProducidoOrigen.SCC & ", cajas de origen: " & dbo_movimiento.Cajas & "; SCC destino:" & m_PaletProducidoDestino.SCC & ", Cajas encajadas: " & cajasInicioMail, String.Empty, _
                                                                                    Config.MailReportAddress, Config.MailReportPass, "control@landaluza.es", _
@@ -674,7 +674,7 @@ Public Class DispensadorMonodosis
         Catch ex As Exception
             MessageBox.Show("No se pudo notificar a cotnrol de este movimiento. Por favor, notifiquelo telefonicamente.", "Error de notificacion", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End Try
-       
+
     End Sub
 
     Private Sub ComprobarCantidadesEncajado(ByRef padre As frmEntPaletsProducidos2, _

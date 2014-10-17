@@ -418,7 +418,7 @@ Class spLotes1
 
 
     Public Function existeLote(ByVal lote As String, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As Boolean
-        Dim tabla As DataTable = BasesParaCompatibilidad.BD.ConsultaVer("count(*)", "Lotes", "codigoLote='" & lote & "'")
+        Dim tabla As DataTable = Deprecated.ConsultaVer("count(*)", "Lotes", "codigoLote='" & lote & "'")
         Return If(tabla.Rows(0).Item(0) > 0, True, False)
         'If trans Is Nothing Then BasesParaCompatibilidad.BD.Conectar()
         'Dim cuenta As Integer

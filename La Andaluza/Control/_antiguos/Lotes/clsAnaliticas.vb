@@ -80,7 +80,7 @@ Public Class clsAnaliticas
 #Region "Metodos"
     Public Sub cargar()
         Try
-            Dim tab As DataTable = BasesParaCompatibilidad.BD.ConsultaVer("AnalistaID,CatadorID", "Analiticas", "AnaliticaID = " & Convert.ToString(AnaliticaID))
+            Dim tab As DataTable = Deprecated.ConsultaVer("AnalistaID,CatadorID", "Analiticas", "AnaliticaID = " & Convert.ToString(AnaliticaID))
             If IsDBNull(tab.Rows(0).Item(0)) Then
                 _AnalistaID = 0
             Else
@@ -99,7 +99,7 @@ Public Class clsAnaliticas
 
     Function verAnalitica() As Integer
         Try
-            AnaliticaID = BasesParaCompatibilidad.BD.ConsultaVer("AnaliticaID", "Analiticas", "Nombre = '" & Nombre & "'").Rows(0).Item(0)
+            AnaliticaID = Deprecated.ConsultaVer("AnaliticaID", "Analiticas", "Nombre = '" & Nombre & "'").Rows(0).Item(0)
             Return AnaliticaID
         Catch ex As Exception
             Return 0
@@ -107,7 +107,7 @@ Public Class clsAnaliticas
     End Function
 
     Public Function Devolver() As DataTable
-        Return BasesParaCompatibilidad.BD.ConsultaVer("*", "Analiticas", "AnaliticaID > 0")
+        Return Deprecated.ConsultaVer("*", "Analiticas", "AnaliticaID > 0")
     End Function
 
     Public Function DevolverPorMuestra(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable

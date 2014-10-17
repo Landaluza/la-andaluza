@@ -44,7 +44,7 @@ Public Class clsBotasPiernas
     Public Sub Cargar()
 
         Dim tabla As New DataTable
-        tabla = BasesParaCompatibilidad.BD.ConsultaVer("BotasPiernas.Descripcion, ContenidoHabitual", "BotasPiernas", "BotaPiernaID=" & BotaPiernaID)
+        tabla = Deprecated.ConsultaVer("BotasPiernas.Descripcion, ContenidoHabitual", "BotasPiernas", "BotaPiernaID=" & BotaPiernaID)
         Try
             Descripcion = tabla.Rows(0).Item(0)
             ContenidoHabitual = tabla.Rows(0).Item(1)
@@ -56,7 +56,7 @@ Public Class clsBotasPiernas
 
     Public Function Modificar() As Integer
         Try
-            BasesParaCompatibilidad.BD.ConsultaModificar("BotasPiernas", _
+            Deprecated.ConsultaModificar("BotasPiernas", _
                                "Descripcion='" & Descripcion & "', ContenidoHabitual='" & ContenidoHabitual & "'", _
                                "BotaPiernaID=" & Convert.ToString(BotaPiernaID))
             Return 1
@@ -68,10 +68,10 @@ Public Class clsBotasPiernas
     Public Function Insertar() As Integer
 
         Try
-            BasesParaCompatibilidad.BD.ConsultaInsertar( _
+            Deprecated.ConsultaInsertar( _
                               "'" & Descripcion & "','" & ContenidoHabitual & "'", _
                               "BotasPiernas")
-            BotaPiernaID = BasesParaCompatibilidad.BD.ConsultaVer("max(BotaPiernaID)", "BotasPiernas").Rows(0).Item(0)
+            BotaPiernaID = Deprecated.ConsultaVer("max(BotaPiernaID)", "BotasPiernas").Rows(0).Item(0)
             Return BotaPiernaID
         Catch ex As Exception
             Return 0

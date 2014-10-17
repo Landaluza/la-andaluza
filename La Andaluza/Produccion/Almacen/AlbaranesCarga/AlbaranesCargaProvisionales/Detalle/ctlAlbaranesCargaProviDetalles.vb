@@ -22,7 +22,7 @@ Public Class ctlAlbaranesCargaProviDetalles
         End If
 
         Try
-            If BasesParaCompatibilidad.BD.ConsultaInsertarConcampos( _
+            If Deprecated.ConsultaInsertarConcampos( _
                 "([AlbaranCargaProviMaestroID],[SCC] ,[CodigoQS] ,[AticuloDescripcion] ,[Cajas] ,[UnidadMedidaID] ,[Lote],[TipoPaletID] ,[Observaciones] ,[Reserva1] ,[Reserva2] ,[Reserva3], LoteAlternativo, FechaModificacion, UsuarioModificacion)", _
                        "" & Convert.ToString(AlbaranCargaProviMaestroID) & "," & _
                        "" & Convert.ToString(SCC) & "," & _

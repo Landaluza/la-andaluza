@@ -47,7 +47,7 @@ Public Class frmEntCargaNecesidadesJRMaestro
 
         If Me.Text.Substring(0, 3) = "Mod" Or Me.Text.Substring(0, 3) = "Ver" Then
             With dgv
-                .DataSource = BasesParaCompatibilidad.BD.ConsultaProcedAlmacenado("SelectCargaNecesidadesDetallesByMaestroID", CargaNecesidadesJRMaestroIDCuadroDeTexto.Text)
+                .DataSource = Deprecated.ConsultaProcedAlmacenado("SelectCargaNecesidadesDetallesByMaestroID", CargaNecesidadesJRMaestroIDCuadroDeTexto.Text)
                 .Columns("DetalleID").Visible = False
                 .Columns("MaestroID").Visible = False
                 .FormatoColumna("Descripcion", "Articulo", BasesParaCompatibilidad.TiposColumna.Izquierda, 450, 2)
@@ -104,7 +104,7 @@ Public Class frmEntCargaNecesidadesJRMaestro
         FrmEnt.Text = "Insertar"
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         FrmEnt.Dispose()
-        dgv.DataSource = BasesParaCompatibilidad.BD.ConsultaProcedAlmacenado("SelectCargaNecesidadesDetallesByMaestroID", m_MaestroID)
+        dgv.DataSource = Deprecated.ConsultaProcedAlmacenado("SelectCargaNecesidadesDetallesByMaestroID", m_MaestroID)
         dgv.MoveLast()
     End Sub
 
@@ -125,7 +125,7 @@ Public Class frmEntCargaNecesidadesJRMaestro
                           "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If response = DialogResult.Yes Then
             Me.sp.spDeleteCargaNecesidadesJRDetalle((DetalleID))
-            dgv.DataSource = BasesParaCompatibilidad.BD.ConsultaProcedAlmacenado("SelectCargaNecesidadesDetallesByMaestroID", m_MaestroID)
+            dgv.DataSource = Deprecated.ConsultaProcedAlmacenado("SelectCargaNecesidadesDetallesByMaestroID", m_MaestroID)
         End If
     End Sub
 

@@ -240,12 +240,12 @@ public class clsAlbaranesCargaMaestro
 #Region "Metodos"
 
 Public Function Devolver() As DataTable
-        Return BasesParaCompatibilidad.BD.ConsultaVer("AlbaranesCargaMaestro.AlbaranCargaMaestroID,AlbaranesCargaMaestro.AlbaranCargaProMaestroID,AlbaranesCargaMaestro.Fecha,AlbaranesCargaMaestro.ClienteID,AlbaranesCargaMaestro.SerieQSID,AlbaranesCargaMaestro.NumeroQS,AlbaranesCargaMaestro.AlmacenSalidaQSID,AlbaranesCargaMaestro.AgenciaID,AlbaranesCargaMaestro.PorteFormaPagoID,AlbaranesCargaMaestro.PorteImporte,AlbaranesCargaMaestro.Matricula,AlbaranesCargaMaestro.Conductor,AlbaranesCargaMaestro.ConductorDNI,AlbaranesCargaMaestro.ResponsableCargaID,AlbaranesCargaMaestro.ResponsableAdministracionID,AlbaranesCargaMaestro.HoraLlegada,AlbaranesCargaMaestro.HoraSalida,AlbaranesCargaMaestro.Observaciones,AlbaranesCargaMaestro.Reserva1,AlbaranesCargaMaestro.Reserva2,AlbaranesCargaMaestro.Reserva3", "AlbaranesCargaMaestro")
+        Return Deprecated.ConsultaVer("AlbaranesCargaMaestro.AlbaranCargaMaestroID,AlbaranesCargaMaestro.AlbaranCargaProMaestroID,AlbaranesCargaMaestro.Fecha,AlbaranesCargaMaestro.ClienteID,AlbaranesCargaMaestro.SerieQSID,AlbaranesCargaMaestro.NumeroQS,AlbaranesCargaMaestro.AlmacenSalidaQSID,AlbaranesCargaMaestro.AgenciaID,AlbaranesCargaMaestro.PorteFormaPagoID,AlbaranesCargaMaestro.PorteImporte,AlbaranesCargaMaestro.Matricula,AlbaranesCargaMaestro.Conductor,AlbaranesCargaMaestro.ConductorDNI,AlbaranesCargaMaestro.ResponsableCargaID,AlbaranesCargaMaestro.ResponsableAdministracionID,AlbaranesCargaMaestro.HoraLlegada,AlbaranesCargaMaestro.HoraSalida,AlbaranesCargaMaestro.Observaciones,AlbaranesCargaMaestro.Reserva1,AlbaranesCargaMaestro.Reserva2,AlbaranesCargaMaestro.Reserva3", "AlbaranesCargaMaestro")
     End Function
 
-Public Function Modificar() As Integer
-        Try            
-            BasesParaCompatibilidad.BD.ConsultaModificar("AlbaranesCargaMaestro", _
+    Public Function Modificar() As Integer
+        Try
+            Deprecated.ConsultaModificar("AlbaranesCargaMaestro", _
                        "AlbaranCargaProMaestroID=" & Convert.ToString(AlbaranCargaProMaestroID) & "," & _
                        "Fecha='" & BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha) & "'," & _
                        "ClienteID=" & Convert.ToString(ClienteID) & "," & _
@@ -268,14 +268,14 @@ Public Function Modificar() As Integer
                        "Reserva3='" & Reserva3 & "'", _
                        "AlbaranCargaMaestroID=" & Convert.ToString(AlbaranCargaMaestroID))
             Return 1
-        Catch ex As Exception            
+        Catch ex As Exception
             Return 0
         End Try
-End Function
+    End Function
 
-Public Function Insertar() As Integer
-Try
-            BasesParaCompatibilidad.BD.ConsultaInsertar( _
+    Public Function Insertar() As Integer
+        Try
+            Deprecated.ConsultaInsertar( _
                        "" & Convert.ToString(AlbaranCargaProMaestroID) & "," & _
                        "'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha) & "'," & _
                        "" & Convert.ToString(ClienteID) & "," & _
@@ -297,12 +297,12 @@ Try
                        "'" & Reserva2 & "'," & _
                        "'" & Reserva3 & "'", _
                        "AlbaranesCargaMaestro")
-AlbaranCargaMaestroID = BasesParaCompatibilidad.BD.ConsultaVer("max(AlbaranCargaMaestroID)","AlbaranesCargaMaestro").Rows(0).Item(0)
-Return AlbaranCargaMaestroID
- Catch ex As Exception
-Return 0
-End Try
-End Function
+            AlbaranCargaMaestroID = Deprecated.ConsultaVer("max(AlbaranCargaMaestroID)", "AlbaranesCargaMaestro").Rows(0).Item(0)
+            Return AlbaranCargaMaestroID
+        Catch ex As Exception
+            Return 0
+        End Try
+    End Function
 
     Public Function Eliminar() As Integer
         Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)

@@ -112,7 +112,7 @@ Public Class frmOrdenCarga
         Dim spCargasNecesidades As New spCargasNecesidades
         Dim UltimasNecesidadesID As Integer = spCargasNecesidades.spMaxCargaNecesidadesMaestro
         With dgvNecesidadesJR
-            .DataSource = BasesParaCompatibilidad.BD.ConsultaProcedAlmacenado("SelectCargaNecDetByMaestroIdTotal", UltimasNecesidadesID)
+            .DataSource = Deprecated.ConsultaProcedAlmacenado("SelectCargaNecDetByMaestroIdTotal", UltimasNecesidadesID)
             .FormatoColumna("Descripcion", BasesParaCompatibilidad.TiposColumna.Izquierda, 235, 0)
             .FormatoColumna("Carga", BasesParaCompatibilidad.TiposColumna.Miles, , 1)
             .FormatoColumna("Stock", BasesParaCompatibilidad.TiposColumna.Miles, , 2)

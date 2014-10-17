@@ -378,7 +378,7 @@ Public Class clsLotes
 
     Public Sub devolverReferencia()
         Try
-            Referencia = Convert.ToInt32(BasesParaCompatibilidad.BD.ConsultaVer("max(referencia)", "Lotes").Rows(0).Item(0))
+            Referencia = Convert.ToInt32(Deprecated.ConsultaVer("max(referencia)", "Lotes").Rows(0).Item(0))
             Referencia = Referencia + 1
         Catch ex As Exception
             Referencia = 1
@@ -389,7 +389,7 @@ Public Class clsLotes
 
     Public Function devolverTodosEnologicos(ByVal top100 As Boolean, Optional ByVal id As Integer = Nothing) As DataTable
         If id = Nothing Then
-            Return BasesParaCompatibilidad.BD.ConsultaVer(top100, _
+            Return Deprecated.ConsultaVer(top100, _
                                   "Lotes.LoteID, Lotes.Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante , Lotes.Observacion, " & _
                                   "Lotes.LoteProveedor, Lotes.Botellas, Lotes.CantidadID, Lotes.MedidaID, Corredores.Nombre AS Corredor, " & _
                                   "TiposLotes.Descripcion AS TipoLote, TiposProductos.Descripcion AS TipoProducto, Proveedores.Nombre AS Proveedor, " & _
@@ -398,7 +398,7 @@ Public Class clsLotes
                                   "Lotes LEFT OUTER JOIN Depositos ON Lotes.DepositoID = Depositos.DepositoID LEFT OUTER JOIN Depositos as DepPrev ON Lotes.DepositoPrevioID = DepPrev.DepositoID LEFT OUTER JOIN TiposProductos ON Lotes.TipoProductoID = TiposProductos.TipoProductoID LEFT OUTER JOIN Especificaciones ON TiposProductos.TipoProductoID = Especificaciones.TipoProductoID AND Lotes.EspecificacionID = Especificaciones.EspecificacionID LEFT OUTER JOIN TiposLotes ON Lotes.TipoLoteID = TiposLotes.TipoLoteID LEFT OUTER JOIN Corredores ON Lotes.CorredorID = Corredores.CorredorID LEFT OUTER JOIN Proveedores ON Lotes.ProveedorID = Proveedores.ProveedorID ", _
                                   "TiposProductos.Enologico = 'True'" & " order by Lotes.Fecha desc")
         Else
-            Return BasesParaCompatibilidad.BD.ConsultaVer(top100, "Lotes.LoteID, Lotes.Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante,  Lotes.Observacion, Lotes.LoteProveedor, Lotes.Botellas, Lotes.CantidadID, Lotes.MedidaID, Corredores.Nombre AS Corredor, TiposLotes.Descripcion AS TipoLote, TiposProductos.Descripcion AS TipoProducto, Proveedores.Nombre AS Proveedor, Lotes.LoteConjuntoCompraID, Especificaciones.Descripcion AS Especificacion, Lotes.CodigoLote, Depositos.Codigo, lotes.referencia, DepPrev.Codigo,Lotes.RecipienteSalidaID", _
+            Return Deprecated.ConsultaVer(top100, "Lotes.LoteID, Lotes.Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante,  Lotes.Observacion, Lotes.LoteProveedor, Lotes.Botellas, Lotes.CantidadID, Lotes.MedidaID, Corredores.Nombre AS Corredor, TiposLotes.Descripcion AS TipoLote, TiposProductos.Descripcion AS TipoProducto, Proveedores.Nombre AS Proveedor, Lotes.LoteConjuntoCompraID, Especificaciones.Descripcion AS Especificacion, Lotes.CodigoLote, Depositos.Codigo, lotes.referencia, DepPrev.Codigo,Lotes.RecipienteSalidaID", _
                                               "Lotes LEFT OUTER JOIN Depositos ON Lotes.DepositoID = Depositos.DepositoID LEFT OUTER JOIN Depositos as DepPrev ON Lotes.DepositoPrevioID = DepPrev.DepositoID LEFT OUTER JOIN TiposProductos ON Lotes.TipoProductoID = TiposProductos.TipoProductoID LEFT OUTER JOIN Especificaciones ON TiposProductos.TipoProductoID = Especificaciones.TipoProductoID AND Lotes.EspecificacionID = Especificaciones.EspecificacionID LEFT OUTER JOIN TiposLotes ON Lotes.TipoLoteID = TiposLotes.TipoLoteID LEFT OUTER JOIN Corredores ON Lotes.CorredorID = Corredores.CorredorID LEFT OUTER JOIN Proveedores ON Lotes.ProveedorID = Proveedores.ProveedorID ", _
                                               "TiposProductos.Enologico = 'True'" & " and lotes.loteid = " & id & "order by Lotes.Fecha desc")
         End If
@@ -406,12 +406,12 @@ Public Class clsLotes
 
     Public Function devolverTodosEnologicos2(ByVal top100 As Boolean, Optional ByVal id As Integer = Nothing) As DataTable
         If id = Nothing Then
-            Return BasesParaCompatibilidad.BD.ConsultaVer(top100, _
+            Return Deprecated.ConsultaVer(top100, _
                                   "Lotes.LoteID, isnull(Lotes.Descripcion, '') Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante , isnull( Lotes.Observacion, '') Observacion, isnull(Lotes.CantidadID, 0) CantidadID, Lotes.CodigoLote, isnull(Depositos.Codigo,'-')  DepositoID, isnull(lotes.referencia, 0) referencia", _
                                   " Lotes LEFT OUTER JOIN Depositos ON Lotes.DepositoID = Depositos.DepositoID LEFT OUTER JOIN TiposProductos ON Lotes.TipoProductoID = TiposProductos.TipoProductoID  ", _
                                   "TiposProductos.Enologico = 'True'" & " order by Lotes.Fecha desc, referencia desc")
         Else
-            Return BasesParaCompatibilidad.BD.ConsultaVer(top100, "Lotes.LoteID, isnull(Lotes.Descripcion, '') Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante , isnull( Lotes.Observacion, '') Observacion, isnull(Lotes.CantidadID, 0) CantidadID, Lotes.CodigoLote, isnull(Depositos.Codigo,'-')  DepositoID, isnull(lotes.referencia, 0) referencia", _
+            Return Deprecated.ConsultaVer(top100, "Lotes.LoteID, isnull(Lotes.Descripcion, '') Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante , isnull( Lotes.Observacion, '') Observacion, isnull(Lotes.CantidadID, 0) CantidadID, Lotes.CodigoLote, isnull(Depositos.Codigo,'-')  DepositoID, isnull(lotes.referencia, 0) referencia", _
                                              " Lotes LEFT OUTER JOIN Depositos ON Lotes.DepositoID = Depositos.DepositoID LEFT OUTER JOIN TiposProductos ON Lotes.TipoProductoID = TiposProductos.TipoProductoID  ", _
                                               "TiposProductos.Enologico = 'True'" & " and lotes.loteid = " & id & "order by Lotes.Fecha desc, referencia desc")
         End If
@@ -419,11 +419,11 @@ Public Class clsLotes
 
     Public Function devolverTodosNoEnologicos2(ByVal top100 As Boolean, Optional ByVal id As Integer = Nothing) As DataTable
         If id = Nothing Then
-            Return BasesParaCompatibilidad.BD.ConsultaVer(top100, "Lotes.LoteID, isnull(Lotes.Descripcion, '') Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante , isnull( Lotes.Observacion, '') Observacion, isnull(Lotes.CantidadID, 0) CantidadID, Lotes.CodigoLote, isnull(Depositos.Codigo,'-')  DepositoID, isnull(lotes.referencia, 0) referencia", _
+            Return Deprecated.ConsultaVer(top100, "Lotes.LoteID, isnull(Lotes.Descripcion, '') Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante , isnull( Lotes.Observacion, '') Observacion, isnull(Lotes.CantidadID, 0) CantidadID, Lotes.CodigoLote, isnull(Depositos.Codigo,'-')  DepositoID, isnull(lotes.referencia, 0) referencia", _
                                   " Lotes LEFT OUTER JOIN Depositos ON Lotes.DepositoID = Depositos.DepositoID LEFT OUTER JOIN TiposProductos ON Lotes.TipoProductoID = TiposProductos.TipoProductoID  ", _
                                   "TiposProductos.Enologico = 'False'" & " order by Lotes.Fecha desc, referencia desc")
         Else
-            Return BasesParaCompatibilidad.BD.ConsultaVer(top100, "Lotes.LoteID, isnull(Lotes.Descripcion, '') Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante , isnull( Lotes.Observacion, '') Observacion, isnull(Lotes.CantidadID, 0) CantidadID, Lotes.CodigoLote, isnull(Depositos.Codigo,'-')  DepositoID, isnull(lotes.referencia, 0) referencia", _
+            Return Deprecated.ConsultaVer(top100, "Lotes.LoteID, isnull(Lotes.Descripcion, '') Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante , isnull( Lotes.Observacion, '') Observacion, isnull(Lotes.CantidadID, 0) CantidadID, Lotes.CodigoLote, isnull(Depositos.Codigo,'-')  DepositoID, isnull(lotes.referencia, 0) referencia", _
                                  " Lotes LEFT OUTER JOIN Depositos ON Lotes.DepositoID = Depositos.DepositoID LEFT OUTER JOIN TiposProductos ON Lotes.TipoProductoID = TiposProductos.TipoProductoID  ", _
                                   "TiposProductos.Enologico = 'False' and lotes.loteid = " & id & " order by Lotes.Fecha desc, referencia desc")
         End If
@@ -431,11 +431,11 @@ Public Class clsLotes
 
     Public Function devolverPorTipoLoteID2(ByVal top100 As Boolean, Optional ByVal id As Integer = Nothing) As DataTable
         If id = Nothing Then
-            Return BasesParaCompatibilidad.BD.ConsultaVer(top100, "Lotes.LoteID, isnull(Lotes.Descripcion, '') Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante , isnull( Lotes.Observacion, '') Observacion, isnull(Lotes.CantidadID, 0) CantidadID, Lotes.CodigoLote, isnull(Depositos.Codigo,'-')  DepositoID, isnull(lotes.referencia, 0) referencia", _
+            Return Deprecated.ConsultaVer(top100, "Lotes.LoteID, isnull(Lotes.Descripcion, '') Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante , isnull( Lotes.Observacion, '') Observacion, isnull(Lotes.CantidadID, 0) CantidadID, Lotes.CodigoLote, isnull(Depositos.Codigo,'-')  DepositoID, isnull(lotes.referencia, 0) referencia", _
                                   " Lotes LEFT OUTER JOIN Depositos ON Lotes.DepositoID = Depositos.DepositoID LEFT OUTER JOIN TiposProductos ON Lotes.TipoProductoID = TiposProductos.TipoProductoID  ", _
                                   "Lotes.TipoLoteID = " & Convert.ToString(TipoLoteID) & " order by Lotes.Fecha desc, referencia desc")
         Else
-            Return BasesParaCompatibilidad.BD.ConsultaVer(top100, "Lotes.LoteID, isnull(Lotes.Descripcion, '') Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante , isnull( Lotes.Observacion, '') Observacion, isnull(Lotes.CantidadID, 0) CantidadID, Lotes.CodigoLote, isnull(Depositos.Codigo,'-')  DepositoID, isnull(lotes.referencia, 0) referencia", _
+            Return Deprecated.ConsultaVer(top100, "Lotes.LoteID, isnull(Lotes.Descripcion, '') Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante , isnull( Lotes.Observacion, '') Observacion, isnull(Lotes.CantidadID, 0) CantidadID, Lotes.CodigoLote, isnull(Depositos.Codigo,'-')  DepositoID, isnull(lotes.referencia, 0) referencia", _
                                  " Lotes LEFT OUTER JOIN Depositos ON Lotes.DepositoID = Depositos.DepositoID LEFT OUTER JOIN TiposProductos ON Lotes.TipoProductoID = TiposProductos.TipoProductoID  ", _
                                   "Lotes.TipoLoteID = " & Convert.ToString(TipoLoteID) & " and lotes.loteid = " & id & "order by Lotes.Fecha desc, referencia desc")
         End If
@@ -443,11 +443,11 @@ Public Class clsLotes
 
     Public Function devolverPorTipoProductoID2(Optional ByVal top100 As Boolean = False, Optional ByVal id As Integer = Nothing) As DataTable
         If id = Nothing Then
-            Return BasesParaCompatibilidad.BD.ConsultaVer(top100, "Lotes.LoteID, isnull(Lotes.Descripcion, '') Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante , isnull( Lotes.Observacion, '') Observacion, isnull(Lotes.CantidadID, 0) CantidadID, Lotes.CodigoLote, isnull(Depositos.Codigo,'-')  DepositoID, isnull(lotes.referencia, 0) referencia", _
+            Return Deprecated.ConsultaVer(top100, "Lotes.LoteID, isnull(Lotes.Descripcion, '') Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante , isnull( Lotes.Observacion, '') Observacion, isnull(Lotes.CantidadID, 0) CantidadID, Lotes.CodigoLote, isnull(Depositos.Codigo,'-')  DepositoID, isnull(lotes.referencia, 0) referencia", _
                                   " Lotes LEFT OUTER JOIN Depositos ON Lotes.DepositoID = Depositos.DepositoID LEFT OUTER JOIN TiposProductos ON Lotes.TipoProductoID = TiposProductos.TipoProductoID  ", _
                                   "Lotes.TipoProductoID = " & Convert.ToString(TipoProductoID) & " order by lotes.fecha desc, referencia desc")
         Else
-            Return BasesParaCompatibilidad.BD.ConsultaVer(top100, "Lotes.LoteID, isnull(Lotes.Descripcion, '') Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante , isnull( Lotes.Observacion, '') Observacion, isnull(Lotes.CantidadID, 0) CantidadID, Lotes.CodigoLote, isnull(Depositos.Codigo,'-')  DepositoID, isnull(lotes.referencia, 0) referencia", _
+            Return Deprecated.ConsultaVer(top100, "Lotes.LoteID, isnull(Lotes.Descripcion, '') Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante , isnull( Lotes.Observacion, '') Observacion, isnull(Lotes.CantidadID, 0) CantidadID, Lotes.CodigoLote, isnull(Depositos.Codigo,'-')  DepositoID, isnull(lotes.referencia, 0) referencia", _
                                  " Lotes LEFT OUTER JOIN Depositos ON Lotes.DepositoID = Depositos.DepositoID LEFT OUTER JOIN TiposProductos ON Lotes.TipoProductoID = TiposProductos.TipoProductoID  ", _
                                   "Lotes.TipoProductoID = " & Convert.ToString(TipoProductoID) & " and lotes.loteid = " & id & " order by lotes.fecha desc, referencia desc")
         End If
@@ -455,11 +455,11 @@ Public Class clsLotes
 
     Public Function devolverPorTipoProductoIDyTipoLoteID2(ByVal top100 As Boolean, Optional ByVal id As Integer = Nothing) As DataTable
         If id = Nothing Then
-            Return BasesParaCompatibilidad.BD.ConsultaVer(top100, "Lotes.LoteID, isnull(Lotes.Descripcion, '') Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante , isnull( Lotes.Observacion, '') Observacion, isnull(Lotes.CantidadID, 0) CantidadID, Lotes.CodigoLote, isnull(Depositos.Codigo,'-')  DepositoID, isnull(lotes.referencia, 0) referencia", _
+            Return Deprecated.ConsultaVer(top100, "Lotes.LoteID, isnull(Lotes.Descripcion, '') Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante , isnull( Lotes.Observacion, '') Observacion, isnull(Lotes.CantidadID, 0) CantidadID, Lotes.CodigoLote, isnull(Depositos.Codigo,'-')  DepositoID, isnull(lotes.referencia, 0) referencia", _
                                  " Lotes LEFT OUTER JOIN Depositos ON Lotes.DepositoID = Depositos.DepositoID LEFT OUTER JOIN TiposProductos ON Lotes.TipoProductoID = TiposProductos.TipoProductoID  ", _
                                   "Lotes.TipoProductoID = " & Convert.ToString(TipoProductoID) & " and Lotes.TipoLoteID = " & TipoLoteID.ToString & " order by Lotes.Fecha desc, referencia desc")
         Else
-            Return BasesParaCompatibilidad.BD.ConsultaVer(top100, "Lotes.LoteID, isnull(Lotes.Descripcion, '') Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante , isnull( Lotes.Observacion, '') Observacion, isnull(Lotes.CantidadID, 0) CantidadID, Lotes.CodigoLote, isnull(Depositos.Codigo,'-')  DepositoID, isnull(lotes.referencia, 0) referencia", _
+            Return Deprecated.ConsultaVer(top100, "Lotes.LoteID, isnull(Lotes.Descripcion, '') Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante , isnull( Lotes.Observacion, '') Observacion, isnull(Lotes.CantidadID, 0) CantidadID, Lotes.CodigoLote, isnull(Depositos.Codigo,'-')  DepositoID, isnull(lotes.referencia, 0) referencia", _
                                  " Lotes LEFT OUTER JOIN Depositos ON Lotes.DepositoID = Depositos.DepositoID LEFT OUTER JOIN TiposProductos ON Lotes.TipoProductoID = TiposProductos.TipoProductoID  ", _
                                   "Lotes.TipoProductoID = " & Convert.ToString(TipoProductoID) & " and Lotes.TipoLoteID = " & TipoLoteID.ToString & " and lotes.loteid = " & id & " order by Lotes.Fecha desc, referencia desc")
         End If
@@ -467,11 +467,11 @@ Public Class clsLotes
 
     Public Function devolverTodosNoEnologicos(ByVal top100 As Boolean, Optional ByVal id As Integer = Nothing) As DataTable
         If id = Nothing Then
-            Return BasesParaCompatibilidad.BD.ConsultaVer(top100, "Lotes.LoteID, Lotes.Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante, Lotes.Observacion, Lotes.LoteProveedor, Lotes.Botellas, Lotes.CantidadID, Lotes.MedidaID, Corredores.Nombre AS Corredor, TiposLotes.Descripcion AS TipoLote, TiposProductos.Descripcion AS TipoProducto, Proveedores.Nombre AS Proveedor, Lotes.LoteConjuntoCompraID, Especificaciones.Descripcion AS Especificacion, Lotes.CodigoLote, Depositos.Codigo, lotes.referencia, DepPrev.Codigo,Lotes.RecipienteSalidaID", _
+            Return Deprecated.ConsultaVer(top100, "Lotes.LoteID, Lotes.Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante, Lotes.Observacion, Lotes.LoteProveedor, Lotes.Botellas, Lotes.CantidadID, Lotes.MedidaID, Corredores.Nombre AS Corredor, TiposLotes.Descripcion AS TipoLote, TiposProductos.Descripcion AS TipoProducto, Proveedores.Nombre AS Proveedor, Lotes.LoteConjuntoCompraID, Especificaciones.Descripcion AS Especificacion, Lotes.CodigoLote, Depositos.Codigo, lotes.referencia, DepPrev.Codigo,Lotes.RecipienteSalidaID", _
                                   "Lotes LEFT OUTER JOIN Depositos ON Lotes.DepositoID = Depositos.DepositoID LEFT OUTER JOIN Depositos as DepPrev ON Lotes.DepositoPrevioID = DepPrev.DepositoID LEFT OUTER JOIN TiposProductos ON Lotes.TipoProductoID = TiposProductos.TipoProductoID LEFT OUTER JOIN Especificaciones ON TiposProductos.TipoProductoID = Especificaciones.TipoProductoID AND Lotes.EspecificacionID = Especificaciones.EspecificacionID LEFT OUTER JOIN TiposLotes ON Lotes.TipoLoteID = TiposLotes.TipoLoteID LEFT OUTER JOIN Corredores ON Lotes.CorredorID = Corredores.CorredorID LEFT OUTER JOIN Proveedores ON Lotes.ProveedorID = Proveedores.ProveedorID ", _
                                   "TiposProductos.Enologico = 'False'" & " order by Lotes.Fecha desc")
         Else
-            Return BasesParaCompatibilidad.BD.ConsultaVer(top100, "Lotes.LoteID, Lotes.Descripcion, Lotes.Fecha,  case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante,  Lotes.Observacion, Lotes.LoteProveedor, Lotes.Botellas, Lotes.CantidadID, Lotes.MedidaID, Corredores.Nombre AS Corredor, TiposLotes.Descripcion AS TipoLote, TiposProductos.Descripcion AS TipoProducto, Proveedores.Nombre AS Proveedor, Lotes.LoteConjuntoCompraID, Especificaciones.Descripcion AS Especificacion,  Lotes.CodigoLote, Depositos.Codigo, lotes.referencia, DepPrev.Codigo,Lotes.RecipienteSalidaID", _
+            Return Deprecated.ConsultaVer(top100, "Lotes.LoteID, Lotes.Descripcion, Lotes.Fecha,  case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante,  Lotes.Observacion, Lotes.LoteProveedor, Lotes.Botellas, Lotes.CantidadID, Lotes.MedidaID, Corredores.Nombre AS Corredor, TiposLotes.Descripcion AS TipoLote, TiposProductos.Descripcion AS TipoProducto, Proveedores.Nombre AS Proveedor, Lotes.LoteConjuntoCompraID, Especificaciones.Descripcion AS Especificacion,  Lotes.CodigoLote, Depositos.Codigo, lotes.referencia, DepPrev.Codigo,Lotes.RecipienteSalidaID", _
                                   "Lotes LEFT OUTER JOIN Depositos ON Lotes.DepositoID = Depositos.DepositoID LEFT OUTER JOIN Depositos as DepPrev ON Lotes.DepositoPrevioID = DepPrev.DepositoID LEFT OUTER JOIN TiposProductos ON Lotes.TipoProductoID = TiposProductos.TipoProductoID LEFT OUTER JOIN Especificaciones ON TiposProductos.TipoProductoID = Especificaciones.TipoProductoID AND Lotes.EspecificacionID = Especificaciones.EspecificacionID LEFT OUTER JOIN TiposLotes ON Lotes.TipoLoteID = TiposLotes.TipoLoteID LEFT OUTER JOIN Corredores ON Lotes.CorredorID = Corredores.CorredorID LEFT OUTER JOIN Proveedores ON Lotes.ProveedorID = Proveedores.ProveedorID ", _
                                   "TiposProductos.Enologico = 'False' and lotes.loteid = " & id & " order by Lotes.Fecha desc")
         End If
@@ -479,11 +479,11 @@ Public Class clsLotes
 
     Public Function devolverPorTipoLoteID(ByVal top100 As Boolean, Optional ByVal id As Integer = Nothing) As DataTable
         If id = Nothing Then
-            Return BasesParaCompatibilidad.BD.ConsultaVer(top100, "Lotes.LoteID, Lotes.Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante,  Lotes.Observacion, Lotes.LoteProveedor, Lotes.Botellas, Lotes.CantidadID, Lotes.MedidaID, Corredores.Nombre AS Corredor, TiposLotes.Descripcion AS TipoLote, TiposProductos.Descripcion AS TipoProducto, Proveedores.Nombre AS Proveedor, Lotes.LoteConjuntoCompraID, Especificaciones.Descripcion AS Especificacion,  Lotes.CodigoLote, Depositos.Codigo, lotes.referencia, DepPrev.Codigo,Lotes.RecipienteSalidaID", _
+            Return Deprecated.ConsultaVer(top100, "Lotes.LoteID, Lotes.Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante,  Lotes.Observacion, Lotes.LoteProveedor, Lotes.Botellas, Lotes.CantidadID, Lotes.MedidaID, Corredores.Nombre AS Corredor, TiposLotes.Descripcion AS TipoLote, TiposProductos.Descripcion AS TipoProducto, Proveedores.Nombre AS Proveedor, Lotes.LoteConjuntoCompraID, Especificaciones.Descripcion AS Especificacion,  Lotes.CodigoLote, Depositos.Codigo, lotes.referencia, DepPrev.Codigo,Lotes.RecipienteSalidaID", _
                                   "Lotes LEFT OUTER JOIN Depositos ON Lotes.DepositoID = Depositos.DepositoID LEFT OUTER JOIN Depositos as DepPrev ON Lotes.DepositoPrevioID = DepPrev.DepositoID LEFT OUTER JOIN TiposProductos ON Lotes.TipoProductoID = TiposProductos.TipoProductoID LEFT OUTER JOIN Especificaciones ON TiposProductos.TipoProductoID = Especificaciones.TipoProductoID AND Lotes.EspecificacionID = Especificaciones.EspecificacionID LEFT OUTER JOIN TiposLotes ON Lotes.TipoLoteID = TiposLotes.TipoLoteID LEFT OUTER JOIN Corredores ON Lotes.CorredorID = Corredores.CorredorID LEFT OUTER JOIN Proveedores ON Lotes.ProveedorID = Proveedores.ProveedorID", _
                                   "Lotes.TipoLoteID = " & Convert.ToString(TipoLoteID) & " order by Lotes.Fecha desc")
         Else
-            Return BasesParaCompatibilidad.BD.ConsultaVer(top100, "Lotes.LoteID, Lotes.Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante,  Lotes.Observacion, Lotes.LoteProveedor, Lotes.Botellas, Lotes.CantidadID, Lotes.MedidaID, Corredores.Nombre AS Corredor, TiposLotes.Descripcion AS TipoLote, TiposProductos.Descripcion AS TipoProducto, Proveedores.Nombre AS Proveedor, Lotes.LoteConjuntoCompraID, Especificaciones.Descripcion AS Especificacion,  Lotes.CodigoLote, Depositos.Codigo, lotes.referencia, DepPrev.Codigo,Lotes.RecipienteSalidaID", _
+            Return Deprecated.ConsultaVer(top100, "Lotes.LoteID, Lotes.Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante,  Lotes.Observacion, Lotes.LoteProveedor, Lotes.Botellas, Lotes.CantidadID, Lotes.MedidaID, Corredores.Nombre AS Corredor, TiposLotes.Descripcion AS TipoLote, TiposProductos.Descripcion AS TipoProducto, Proveedores.Nombre AS Proveedor, Lotes.LoteConjuntoCompraID, Especificaciones.Descripcion AS Especificacion,  Lotes.CodigoLote, Depositos.Codigo, lotes.referencia, DepPrev.Codigo,Lotes.RecipienteSalidaID", _
                                   "Lotes LEFT OUTER JOIN Depositos ON Lotes.DepositoID = Depositos.DepositoID LEFT OUTER JOIN Depositos as DepPrev ON Lotes.DepositoPrevioID = DepPrev.DepositoID LEFT OUTER JOIN TiposProductos ON Lotes.TipoProductoID = TiposProductos.TipoProductoID LEFT OUTER JOIN Especificaciones ON TiposProductos.TipoProductoID = Especificaciones.TipoProductoID AND Lotes.EspecificacionID = Especificaciones.EspecificacionID LEFT OUTER JOIN TiposLotes ON Lotes.TipoLoteID = TiposLotes.TipoLoteID LEFT OUTER JOIN Corredores ON Lotes.CorredorID = Corredores.CorredorID LEFT OUTER JOIN Proveedores ON Lotes.ProveedorID = Proveedores.ProveedorID", _
                                   "Lotes.TipoLoteID = " & Convert.ToString(TipoLoteID) & " and lotes.loteid = " & id & "order by Lotes.Fecha desc")
         End If
@@ -492,11 +492,11 @@ Public Class clsLotes
 
     Public Function devolverPorTipoProductoID(Optional ByVal top100 As Boolean = False, Optional ByVal id As Integer = Nothing) As DataTable
         If id = Nothing Then
-            Return BasesParaCompatibilidad.BD.ConsultaVer(top100, "Lotes.LoteID, Lotes.Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante,  Lotes.Observacion, Lotes.LoteProveedor, Lotes.Botellas, Lotes.CantidadID, Lotes.MedidaID, Corredores.Nombre AS Corredor, TiposLotes.Descripcion AS TipoLote, TiposProductos.Descripcion AS TipoProducto, Proveedores.Nombre AS Proveedor, Lotes.LoteConjuntoCompraID, Especificaciones.Descripcion AS Especificacion,  Lotes.CodigoLote, Depositos.Codigo, lotes.referencia, DepPrev.Codigo,Lotes.RecipienteSalidaID", _
+            Return Deprecated.ConsultaVer(top100, "Lotes.LoteID, Lotes.Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante,  Lotes.Observacion, Lotes.LoteProveedor, Lotes.Botellas, Lotes.CantidadID, Lotes.MedidaID, Corredores.Nombre AS Corredor, TiposLotes.Descripcion AS TipoLote, TiposProductos.Descripcion AS TipoProducto, Proveedores.Nombre AS Proveedor, Lotes.LoteConjuntoCompraID, Especificaciones.Descripcion AS Especificacion,  Lotes.CodigoLote, Depositos.Codigo, lotes.referencia, DepPrev.Codigo,Lotes.RecipienteSalidaID", _
                                   "Lotes LEFT OUTER JOIN Depositos ON Lotes.DepositoID = Depositos.DepositoID LEFT OUTER JOIN Depositos as DepPrev ON Lotes.DepositoPrevioID = DepPrev.DepositoID LEFT OUTER JOIN TiposProductos ON Lotes.TipoProductoID = TiposProductos.TipoProductoID LEFT OUTER JOIN Especificaciones ON TiposProductos.TipoProductoID = Especificaciones.TipoProductoID AND Lotes.EspecificacionID = Especificaciones.EspecificacionID LEFT OUTER JOIN TiposLotes ON Lotes.TipoLoteID = TiposLotes.TipoLoteID LEFT OUTER JOIN Corredores ON Lotes.CorredorID = Corredores.CorredorID LEFT OUTER JOIN Proveedores ON Lotes.ProveedorID = Proveedores.ProveedorID", _
                                   "Lotes.TipoProductoID = " & Convert.ToString(TipoProductoID) & " order by lotes.fecha desc")
         Else
-            Return BasesParaCompatibilidad.BD.ConsultaVer(top100, "Lotes.LoteID, Lotes.Descripcion, Lotes.Fecha,case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante,  Lotes.Observacion, Lotes.LoteProveedor, Lotes.Botellas, Lotes.CantidadID, Lotes.MedidaID, Corredores.Nombre AS Corredor, TiposLotes.Descripcion AS TipoLote, TiposProductos.Descripcion AS TipoProducto, Proveedores.Nombre AS Proveedor, Lotes.LoteConjuntoCompraID, Especificaciones.Descripcion AS Especificacion,  Lotes.CodigoLote, Depositos.Codigo, lotes.referencia, DepPrev.Codigo,Lotes.RecipienteSalidaID", _
+            Return Deprecated.ConsultaVer(top100, "Lotes.LoteID, Lotes.Descripcion, Lotes.Fecha,case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante,  Lotes.Observacion, Lotes.LoteProveedor, Lotes.Botellas, Lotes.CantidadID, Lotes.MedidaID, Corredores.Nombre AS Corredor, TiposLotes.Descripcion AS TipoLote, TiposProductos.Descripcion AS TipoProducto, Proveedores.Nombre AS Proveedor, Lotes.LoteConjuntoCompraID, Especificaciones.Descripcion AS Especificacion,  Lotes.CodigoLote, Depositos.Codigo, lotes.referencia, DepPrev.Codigo,Lotes.RecipienteSalidaID", _
                                   "Lotes LEFT OUTER JOIN Depositos ON Lotes.DepositoID = Depositos.DepositoID LEFT OUTER JOIN Depositos as DepPrev ON Lotes.DepositoPrevioID = DepPrev.DepositoID LEFT OUTER JOIN TiposProductos ON Lotes.TipoProductoID = TiposProductos.TipoProductoID LEFT OUTER JOIN Especificaciones ON TiposProductos.TipoProductoID = Especificaciones.TipoProductoID AND Lotes.EspecificacionID = Especificaciones.EspecificacionID LEFT OUTER JOIN TiposLotes ON Lotes.TipoLoteID = TiposLotes.TipoLoteID LEFT OUTER JOIN Corredores ON Lotes.CorredorID = Corredores.CorredorID LEFT OUTER JOIN Proveedores ON Lotes.ProveedorID = Proveedores.ProveedorID", _
                                   "Lotes.TipoProductoID = " & Convert.ToString(TipoProductoID) & " and lotes.loteid = " & id & " order by lotes.fecha desc")
         End If
@@ -504,11 +504,11 @@ Public Class clsLotes
 
     Public Function devolverPorTipoProductoIDyTipoLoteID(ByVal top100 As Boolean, Optional ByVal id As Integer = Nothing) As DataTable
         If id = Nothing Then
-            Return BasesParaCompatibilidad.BD.ConsultaVer(top100, "Lotes.LoteID, Lotes.Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante,  Lotes.Observacion, Lotes.LoteProveedor, Lotes.Botellas, Lotes.CantidadID, Lotes.MedidaID, Corredores.Nombre AS Corredor, TiposLotes.Descripcion AS TipoLote, TiposProductos.Descripcion AS TipoProducto, Proveedores.Nombre AS Proveedor, Lotes.LoteConjuntoCompraID, Especificaciones.Descripcion AS Especificacion,  Lotes.CodigoLote, Depositos.Codigo, lotes.referencia, DepPrev.Codigo,Lotes.RecipienteSalidaID", _
+            Return Deprecated.ConsultaVer(top100, "Lotes.LoteID, Lotes.Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante,  Lotes.Observacion, Lotes.LoteProveedor, Lotes.Botellas, Lotes.CantidadID, Lotes.MedidaID, Corredores.Nombre AS Corredor, TiposLotes.Descripcion AS TipoLote, TiposProductos.Descripcion AS TipoProducto, Proveedores.Nombre AS Proveedor, Lotes.LoteConjuntoCompraID, Especificaciones.Descripcion AS Especificacion,  Lotes.CodigoLote, Depositos.Codigo, lotes.referencia, DepPrev.Codigo,Lotes.RecipienteSalidaID", _
                                   "Lotes LEFT OUTER JOIN Depositos ON Lotes.DepositoID = Depositos.DepositoID LEFT OUTER JOIN Depositos as DepPrev ON Lotes.DepositoPrevioID = DepPrev.DepositoID LEFT OUTER JOIN TiposProductos ON Lotes.TipoProductoID = TiposProductos.TipoProductoID LEFT OUTER JOIN Especificaciones ON TiposProductos.TipoProductoID = Especificaciones.TipoProductoID AND Lotes.EspecificacionID = Especificaciones.EspecificacionID LEFT OUTER JOIN TiposLotes ON Lotes.TipoLoteID = TiposLotes.TipoLoteID LEFT OUTER JOIN Corredores ON Lotes.CorredorID = Corredores.CorredorID LEFT OUTER JOIN Proveedores ON Lotes.ProveedorID = Proveedores.ProveedorID", _
                                   "Lotes.TipoProductoID = " & Convert.ToString(TipoProductoID) & " and Lotes.TipoLoteID = " & TipoLoteID.ToString & " order by Lotes.Fecha desc")
         Else
-            Return BasesParaCompatibilidad.BD.ConsultaVer(top100, "Lotes.LoteID, Lotes.Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante,  Lotes.Observacion, Lotes.LoteProveedor, Lotes.Botellas, Lotes.CantidadID, Lotes.MedidaID, Corredores.Nombre AS Corredor, TiposLotes.Descripcion AS TipoLote, TiposProductos.Descripcion AS TipoProducto, Proveedores.Nombre AS Proveedor, Lotes.LoteConjuntoCompraID, Especificaciones.Descripcion AS Especificacion,  Lotes.CodigoLote, Depositos.Codigo, lotes.referencia, DepPrev.Codigo,Lotes.RecipienteSalidaID", _
+            Return Deprecated.ConsultaVer(top100, "Lotes.LoteID, Lotes.Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante,  Lotes.Observacion, Lotes.LoteProveedor, Lotes.Botellas, Lotes.CantidadID, Lotes.MedidaID, Corredores.Nombre AS Corredor, TiposLotes.Descripcion AS TipoLote, TiposProductos.Descripcion AS TipoProducto, Proveedores.Nombre AS Proveedor, Lotes.LoteConjuntoCompraID, Especificaciones.Descripcion AS Especificacion,  Lotes.CodigoLote, Depositos.Codigo, lotes.referencia, DepPrev.Codigo,Lotes.RecipienteSalidaID", _
                                   "Lotes LEFT OUTER JOIN Depositos ON Lotes.DepositoID = Depositos.DepositoID LEFT OUTER JOIN Depositos as DepPrev ON Lotes.DepositoPrevioID = DepPrev.DepositoID LEFT OUTER JOIN TiposProductos ON Lotes.TipoProductoID = TiposProductos.TipoProductoID LEFT OUTER JOIN Especificaciones ON TiposProductos.TipoProductoID = Especificaciones.TipoProductoID AND Lotes.EspecificacionID = Especificaciones.EspecificacionID LEFT OUTER JOIN TiposLotes ON Lotes.TipoLoteID = TiposLotes.TipoLoteID LEFT OUTER JOIN Corredores ON Lotes.CorredorID = Corredores.CorredorID LEFT OUTER JOIN Proveedores ON Lotes.ProveedorID = Proveedores.ProveedorID", _
                                   "Lotes.TipoProductoID = " & Convert.ToString(TipoProductoID) & " and Lotes.TipoLoteID = " & TipoLoteID.ToString & " and lotes.loteid = " & id & " order by Lotes.Fecha desc")
         End If
@@ -533,8 +533,8 @@ Public Class clsLotes
                                  "CodigoLote = '" & CodigoLote & "'," & _
                                  "LoteConjuntoCompraID = " & LoteConjuntoCompraID & ", DepositoID=" & DepositoID & _
                                  " where LoteID = " & Convert.ToString(LoteID))
-            '"CantidadRestante = '" & Convert.ToString(CantidadRestante) & "'," & _
-    
+        '"CantidadRestante = '" & Convert.ToString(CantidadRestante) & "'," & _
+
     End Function
 
     Public Function Modificar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
@@ -569,7 +569,7 @@ Public Class clsLotes
     Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Try
             If Botellas <> "null" Then
-                'BasesParaCompatibilidad.BD.ConsultaInsertar(Referencia & ",'" & Descripcion & "'," & _
+                'Deprecated.ConsultaInsertar(Referencia & ",'" & Descripcion & "'," & _
                 '                    "'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha) & "'," & _
                 '                    "'" & Convert.ToString(CantidadRestante) & "'," & _
                 '                    "'" & Observacion & "'," & _
@@ -606,7 +606,7 @@ Public Class clsLotes
                     Throw New Exception("No se pudo insertar el lote")
                 End If
             Else
-                'BasesParaCompatibilidad.BD.ConsultaInsertar(Referencia & ",'" & Descripcion & "'," & _
+                'Deprecated.ConsultaInsertar(Referencia & ",'" & Descripcion & "'," & _
                 '                    "'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha) & "'," & _
                 '                    "'" & Convert.ToString(CantidadRestante) & "'," & _
                 '                    "'" & Observacion & "'," & _
@@ -652,40 +652,40 @@ Public Class clsLotes
     End Function
 
     Public Function Eliminar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
-   
-            dtb.PrepararConsulta("delete from Lotes where LoteID = @id")
-            dtb.AñadirParametroConsulta("@id", LoteID)
-            Return dtb.Consultar(True)
-            'If BasesParaCompatibilidad.BD.ConsultaEliminar("Lotes", "LoteID = " & LoteID) = 0 Then
-            '    MessageBox.Show("No se puede eliminar este Lote, se encuentra en uso", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            '    Return False
-            'End If
-            'Return True
-     
+
+        dtb.PrepararConsulta("delete from Lotes where LoteID = @id")
+        dtb.AñadirParametroConsulta("@id", LoteID)
+        Return dtb.Consultar(True)
+        'If BasesParaCompatibilidad.BD.ConsultaEliminar("Lotes", "LoteID = " & LoteID) = 0 Then
+        '    MessageBox.Show("No se puede eliminar este Lote, se encuentra en uso", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+        '    Return False
+        'End If
+        'Return True
+
     End Function
 
 
 
     Public Function DevolverLotesComponentes() As DataTable
-        Return BasesParaCompatibilidad.BD.ConsultaVer("LotePartida.LoteID, LotePartida.CodigoLote, CompuestoPor.Cantidad, Movimientos.Observaciones", _
+        Return Deprecated.ConsultaVer("LotePartida.LoteID, LotePartida.CodigoLote, CompuestoPor.Cantidad, Movimientos.Observaciones", _
                               "Lotes AS LotePartida INNER JOIN CompuestoPor ON LotePartida.LoteID = CompuestoPor.LotePartida INNER JOIN Movimientos ON CompuestoPor.MovimientoID = Movimientos.MovimientoID", _
                               "CompuestoPor.LoteFinal = " & Convert.ToString(LoteID))
     End Function
 
     Public Function DevolverLotesQueCompone() As DataTable
-        Return BasesParaCompatibilidad.BD.ConsultaVer("Lotes.LoteID, Lotes.CodigoLote, CompuestoPor.Cantidad, Movimientos.Observaciones", _
+        Return Deprecated.ConsultaVer("Lotes.LoteID, Lotes.CodigoLote, CompuestoPor.Cantidad, Movimientos.Observaciones", _
                               "CompuestoPor INNER JOIN Movimientos ON CompuestoPor.MovimientoID = Movimientos.MovimientoID INNER JOIN Lotes ON CompuestoPor.LoteFinal = Lotes.LoteID", _
                               "CompuestoPor.LotePartida=" & Convert.ToString(LoteID))
     End Function
 
     Public Function DevolverLotesTrazabilidad(ByVal Lote As Integer) As DataTable
-        Return BasesParaCompatibilidad.BD.ConsultaVer("Lotes.CodigoLote AS ComponeA, Lotes_Partida.LoteID, Lotes_Partida.CodigoLote, Movimientos.Fecha, Procesos.Descripcion AS Proceso, CompuestoPor.Cantidad, Proveedores.Nombre", _
+        Return Deprecated.ConsultaVer("Lotes.CodigoLote AS ComponeA, Lotes_Partida.LoteID, Lotes_Partida.CodigoLote, Movimientos.Fecha, Procesos.Descripcion AS Proceso, CompuestoPor.Cantidad, Proveedores.Nombre", _
                               "Lotes INNER JOIN CompuestoPor ON Lotes.LoteID = CompuestoPor.LoteFinal LEFT JOIN Movimientos ON CompuestoPor.MovimientoID = Movimientos.MovimientoID LEFT JOIN Lotes AS Lotes_Partida ON CompuestoPor.LotePartida = Lotes_Partida.LoteID LEFT JOIN Procesos ON Movimientos.ProcesoID = Procesos.ProcesoID LEFT JOIN Proveedores ON Lotes_Partida.ProveedorID = Proveedores.ProveedorID", _
                               "Lotes.LoteID =" & Lote)
     End Function
 
     Public Function DevolverMuestrasAnaliticas() As DataTable
-        Return BasesParaCompatibilidad.BD.ConsultaVer("Analiticas.AnaliticaID, Lotes.Referencia", _
+        Return Deprecated.ConsultaVer("Analiticas.AnaliticaID, Lotes.Referencia", _
                               "Lotes inner JOIN Analiticas ON Lotes.LoteID = Analiticas.LoteID", _
                               "Analiticas.Nombre= 'La Andaluza'  and referencia is not null and referencia <> 0 order by Lotes.Referencia")
     End Function
@@ -714,11 +714,11 @@ Public Class clsLotes
 
         strWHERE = "(TiposProductos.Enologico = 'True') AND (TiposLotes.Abreviatura = 'Eco')"
 
-        Return BasesParaCompatibilidad.BD.ConsultaVer(strSELECT, strFROM, strWHERE)
+        Return Deprecated.ConsultaVer(strSELECT, strFROM, strWHERE)
     End Function
 
     Public Function CantidadDeMaceraciones() As Integer
-        Return BasesParaCompatibilidad.BD.ConsultaVer("count(*)", _
+        Return Deprecated.ConsultaVer("count(*)", _
                               "Lotes INNER JOIN CompuestoPor ON Lotes.LoteID = CompuestoPor.LoteFinal INNER JOIN Movimientos ON CompuestoPor.MovimientoID = Movimientos.MovimientoID INNER JOIN Procesos ON Movimientos.ProcesoID = Procesos.ProcesoID inner join tiposmovimientos on tipomovimientoid = tiposmovimientos.id ", _
                               "tiposmovimientos.abreviatura = 'M' and  Lotes.LoteId =" & Convert.ToString(LoteID)).Rows(0).Item(0)
     End Function

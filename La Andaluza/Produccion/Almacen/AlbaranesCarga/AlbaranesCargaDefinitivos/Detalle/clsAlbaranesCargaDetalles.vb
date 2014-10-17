@@ -153,12 +153,12 @@ Public Class clsAlbaranesCargaDetalles
 #Region "Metodos"
 
     Public Function Devolver() As DataTable
-        Return BasesParaCompatibilidad.BD.ConsultaVer("AlbaranesCargaDetalles.AlbaranCargaDetalleID,AlbaranesCargaDetalles.AlbaranCargaMaestroID,AlbaranesCargaDetalles.Scc,AlbaranesCargaDetalles.CodigoQS,AlbaranesCargaDetalles.AticuloDescripcion,AlbaranesCargaDetalles.Cajas,AlbaranesCargaDetalles.UnidadMedida,AlbaranesCargaDetalles.Lote,AlbaranesCargaDetalles.TipoPalet,AlbaranesCargaDetalles.Observaciones,AlbaranesCargaDetalles.Reserva1,AlbaranesCargaDetalles.Reserva2,AlbaranesCargaDetalles.Reserva3", "AlbaranesCargaDetalles")
+        Return Deprecated.ConsultaVer("AlbaranesCargaDetalles.AlbaranCargaDetalleID,AlbaranesCargaDetalles.AlbaranCargaMaestroID,AlbaranesCargaDetalles.Scc,AlbaranesCargaDetalles.CodigoQS,AlbaranesCargaDetalles.AticuloDescripcion,AlbaranesCargaDetalles.Cajas,AlbaranesCargaDetalles.UnidadMedida,AlbaranesCargaDetalles.Lote,AlbaranesCargaDetalles.TipoPalet,AlbaranesCargaDetalles.Observaciones,AlbaranesCargaDetalles.Reserva1,AlbaranesCargaDetalles.Reserva2,AlbaranesCargaDetalles.Reserva3", "AlbaranesCargaDetalles")
     End Function
 
     Public Function Modificar() As Integer
         Try
-            BasesParaCompatibilidad.BD.ConsultaModificar("AlbaranesCargaDetalles", _
+            Deprecated.ConsultaModificar("AlbaranesCargaDetalles", _
                        "AlbaranCargaMaestroID=" & Convert.ToString(AlbaranCargaMaestroID) & "," & _
                        "Scc=" & Convert.ToString(Scc) & "," & _
                        "CodigoQS=" & Convert.ToString(CodigoQS) & "," & _
@@ -180,7 +180,7 @@ Public Class clsAlbaranesCargaDetalles
 
     Public Function Insertar() As Integer
         Try
-            BasesParaCompatibilidad.BD.ConsultaInsertar( _
+            Deprecated.ConsultaInsertar( _
                        "" & Convert.ToString(AlbaranCargaMaestroID) & "," & _
                        "" & Convert.ToString(Scc) & "," & _
                        "" & Convert.ToString(CodigoQS) & "," & _
@@ -194,7 +194,7 @@ Public Class clsAlbaranesCargaDetalles
                        "'" & Reserva2 & "'," & _
                        "'" & Reserva3 & "'", _
                        "AlbaranesCargaDetalles")
-            AlbaranCargaDetalleID = BasesParaCompatibilidad.BD.ConsultaVer("max(AlbaranCargaDetalleID)", "AlbaranesCargaDetalles").Rows(0).Item(0)
+            AlbaranCargaDetalleID = Deprecated.ConsultaVer("max(AlbaranCargaDetalleID)", "AlbaranesCargaDetalles").Rows(0).Item(0)
             Return AlbaranCargaDetalleID
         Catch ex As Exception
             Return 0

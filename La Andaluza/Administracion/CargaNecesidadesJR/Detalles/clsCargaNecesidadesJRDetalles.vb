@@ -113,7 +113,7 @@ Public Class clsCargaNecesidadesJRDetalles
 
     Public Function Modificar() As Integer
         Try
-            BasesParaCompatibilidad.BD.ConsultaModificar("CargaNecesidadesJRDetalles", _
+            Deprecated.ConsultaModificar("CargaNecesidadesJRDetalles", _
                        "CargaNecesidadesJRMaestroID=" & Convert.ToString(CargaNecesidadesJRMaestroID) & "," & _
                        "ArticuloID=" & Convert.ToString(ArticuloID) & "," & _
                        "Carga=" & Convert.ToString(Carga) & "," & _

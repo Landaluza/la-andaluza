@@ -33,7 +33,7 @@ Public Class clsAnaliticasRequerimientos
 
     Public Function existe() As Boolean
 
-        Return Convert.ToBoolean(BasesParaCompatibilidad.BD.ConsultaVer("Count(*)", "AnaliticasRequerimientos", "AnaliticaID = " & Convert.ToString(AnaliticaID) & " and ParametroID = " & Convert.ToString(ParametroID)).Rows(0).Item(0) > 0)
+        Return Convert.ToBoolean(Deprecated.ConsultaVer("Count(*)", "AnaliticasRequerimientos", "AnaliticaID = " & Convert.ToString(AnaliticaID) & " and ParametroID = " & Convert.ToString(ParametroID)).Rows(0).Item(0) > 0)
 
     End Function
 

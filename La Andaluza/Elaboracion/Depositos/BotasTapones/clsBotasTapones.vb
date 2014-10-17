@@ -32,20 +32,20 @@ Public Class clsBotasTapones
 
     Public Function devolverBotasTaponesPorDescripcion() As DataTable
 
-        Return BasesParaCompatibilidad.BD.ConsultaVer("BotaTaponID,Descripcion", "BotasTapones", "BotaTaponID > 0 order by Descripcion")
+        Return Deprecated.ConsultaVer("BotaTaponID,Descripcion", "BotasTapones", "BotaTaponID > 0 order by Descripcion")
 
     End Function
 
     Public Function Devolver() As DataTable
 
-        Return BasesParaCompatibilidad.BD.ConsultaVer("BotasTapones.BotaTaponID,BotasTapones.Descripcion", "BotasTapones")
+        Return Deprecated.ConsultaVer("BotasTapones.BotaTaponID,BotasTapones.Descripcion", "BotasTapones")
 
     End Function
 
     Public Function Modificar() As Integer
 
         Try
-            BasesParaCompatibilidad.BD.ConsultaModificar("BotasTapones", _
+            Deprecated.ConsultaModificar("BotasTapones", _
                                "Descripcion='" & Descripcion & "'", _
                                "BotaTaponID=" & Convert.ToString(BotaTaponID))
             Return 1
@@ -56,10 +56,10 @@ Public Class clsBotasTapones
 
     Public Function Insertar() As Integer
         Try
-            BasesParaCompatibilidad.BD.ConsultaInsertar( _
+            Deprecated.ConsultaInsertar( _
                               "'" & Descripcion & "'", _
                               "BotasTapones")
-            BotaTaponID = BasesParaCompatibilidad.BD.ConsultaVer("max(BotaTaponID)", "BotasTapones").Rows(0).Item(0)
+            BotaTaponID = Deprecated.ConsultaVer("max(BotaTaponID)", "BotasTapones").Rows(0).Item(0)
             Return BotaTaponID
         Catch ex As Exception
             Return 0

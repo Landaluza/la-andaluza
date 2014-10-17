@@ -66,7 +66,7 @@ Public Class clsAnaliticasExternas
 
     Public Sub cargar()
         Try
-            Dim tab As DataTable = BasesParaCompatibilidad.BD.ConsultaVer("*", "AnaliticasExternas", "AnaliticaID = " & Convert.ToString(AnaliticaID))
+            Dim tab As DataTable = Deprecated.ConsultaVer("*", "AnaliticasExternas", "AnaliticaID = " & Convert.ToString(AnaliticaID))
             AnaliticaExternaID = tab.Rows(0).Item(0)
             RutaAnalisis = tab.Rows(0).Item(1)
             Fecha = tab.Rows(0).Item(2)

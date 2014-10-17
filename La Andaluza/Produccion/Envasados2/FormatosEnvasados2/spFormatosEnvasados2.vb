@@ -292,10 +292,10 @@ Class spFormatosEnvasados2
     End Function
 
     Public Function devolverFormatosPorEnvasadosReport(envasadoid As Integer) As DataTable
-        Return BasesParaCompatibilidad.BD.ConsultaProcedAlmacenado("devolverFormatosPorEnvasadosReport", Convert.ToString(envasadoid))
+        Return Deprecated.ConsultaProcedAlmacenado("devolverFormatosPorEnvasadosReport", Convert.ToString(envasadoid))
     End Function
 
     Public Function devolverProductosPorEnvasadosReport(envasadoid As Integer) As DataTable
-        Return BasesParaCompatibilidad.BD.ConsultaProcedAlmacenado("devolverProductosPorEnvasadosReport", Convert.ToString(envasadoid))
+        Return Deprecated.ConsultaProcedAlmacenado("devolverProductosPorEnvasadosReport", Convert.ToString(envasadoid))
     End Function
 End Class

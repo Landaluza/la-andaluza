@@ -31,7 +31,7 @@ Public Class clsObservaciones
 
     Function verObservacion() As Integer
         Try
-            ObservacionID = BasesParaCompatibilidad.BD.ConsultaVer("ObservacionID", "ListaObservaciones", "Descripcion = '" & Descripcion & "'").Rows(0).Item(0)
+            ObservacionID = Deprecated.ConsultaVer("ObservacionID", "ListaObservaciones", "Descripcion = '" & Descripcion & "'").Rows(0).Item(0)
             Return ObservacionID
         Catch ex As Exception
             Return 0
@@ -40,14 +40,14 @@ Public Class clsObservaciones
 
     Public Function devolver() As DataTable
 
-        Return BasesParaCompatibilidad.BD.ConsultaVer("*", "ListaObservaciones", "ObservacionID > 0")
+        Return Deprecated.ConsultaVer("*", "ListaObservaciones", "ObservacionID > 0")
 
     End Function
 
     Public Function Modificar() As Integer
 
         Try
-            BasesParaCompatibilidad.BD.ConsultaModificar("ListaObservaciones", _
+            Deprecated.ConsultaModificar("ListaObservaciones", _
                                                            "Descripcion = '" & Descripcion & "'", _
                                                            "ObservacionID = " & Convert.ToString(ObservacionID))
 
@@ -62,7 +62,7 @@ Public Class clsObservaciones
     Public Function Insertar() As Integer
 
         Try
-            BasesParaCompatibilidad.BD.ConsultaInsertar("'" & Descripcion & "'", "ListaObservaciones")
+            Deprecated.ConsultaInsertar("'" & Descripcion & "'", "ListaObservaciones")
 
 
             Return 1

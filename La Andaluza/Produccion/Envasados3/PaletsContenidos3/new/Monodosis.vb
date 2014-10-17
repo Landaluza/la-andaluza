@@ -45,7 +45,7 @@ Public Class Monodosis
         spPMovimientos.Add(dbo_movimiento)
 
         Dim fecha As String = DateTime.Now.Day & "/" & DateTime.Now.Month & "/" & DateTime.Now.Year
-        'BasesParaCompatibilidad.BD.ConsultaInsertarSinDatosUsuario("'Envasado de " & descripcion & " el " & fecha & ". SCC origen: " & m_PaletProducidoOrigen.SCC & "SCC destino:" & m_PaletProducidoDestino.SCC & "', 9, 0", "notificaciones(texto, id_tipousuario, leido)")
+        'Deprecated.ConsultaInsertarSinDatosUsuario("'Envasado de " & descripcion & " el " & fecha & ". SCC origen: " & m_PaletProducidoOrigen.SCC & "SCC destino:" & m_PaletProducidoDestino.SCC & "', 9, 0", "notificaciones(texto, id_tipousuario, leido)")
         'Dim mail As New Mail.Mail1And1(True, "Envasado de " & descripcion, "Envasado de " & descripcion & " el " & datetime.now.ToString & "." & Environment.NewLine() & "SCC origen: " & m_PaletProducidoOrigen.SCC & ", cajas de origen: " & dbo_movimiento.Cajas & "; SCC destino:" & m_PaletProducidoDestino.SCC & ", Cajas encajadas: " & cajasInicioMail, String.Empty, _
         '                                                                            Config.MailReportAddress, Config.MailReportPass, "control@landaluza.es", _
         '                                                                            String.Empty, String.Empty, Config.MailClientHost, False)
@@ -145,7 +145,7 @@ Public Class Monodosis
     '            textNotificar = textNotificar & "Scc: " & m_palet.SCC & ", cajas: " & dbo_movimiento.Cajas & Environment.NewLine()
     '            linea = "Diferencia automatizada. Scc: " & m_palet.SCC & ", cajas:" & dbo_movimiento.Cajas & " , fecha: " & fecha & ""
 
-    '            BasesParaCompatibilidad.BD.ConsultaInsertarSinDatosUsuario("'" & linea & "', 4, 0", "notificaciones(texto, id_tipousuario, leido)")
+    '            Deprecated.ConsultaInsertarSinDatosUsuario("'" & linea & "', 4, 0", "notificaciones(texto, id_tipousuario, leido)")
     '        Else
     '            'Dim frmNoConforme As New frmEncajadoNoConforme
     '            'frmNoConforme.ShowDialog()
@@ -179,7 +179,7 @@ Public Class Monodosis
     '            '    textNotificar = textNotificar & "Scc: " & m_palet.SCC & ", cajas: " & dbo_movimiento.Cajas & Environment.NewLine()
     '            '    linea = "No conforme automatizado. Scc: " & m_palet.SCC & ", cajas:" & dbo_movimiento.Cajas & " , fecha: " & fecha & ""
 
-    '            '    BasesParaCompatibilidad.BD.ConsultaInsertarSinDatosUsuario("'" & linea & "', 4, 0", "notificaciones(texto, id_tipousuario, leido)")
+    '            '    Deprecated.ConsultaInsertarSinDatosUsuario("'" & linea & "', 4, 0", "notificaciones(texto, id_tipousuario, leido)")
 
     '            'End If
     '        End If
@@ -241,7 +241,7 @@ Public Class Monodosis
             textNotificar = textNotificar & "Scc: " & m_palet.SCC & ", cajas: " & dbo_movimiento.Cajas & Environment.NewLine()
             linea = "Diferencia automatizada. Scc: " & m_palet.SCC & ", cajas:" & dbo_movimiento.Cajas & " , fecha: " & fecha & ""
 
-            BasesParaCompatibilidad.BD.ConsultaInsertarSinDatosUsuario("'" & linea & "', 9, 0", "notificaciones(texto, id_tipousuario, leido)")
+            Deprecated.ConsultaInsertarSinDatosUsuario("'" & linea & "', 9, 0", "notificaciones(texto, id_tipousuario, leido)")
         End If
 
         If textNotificar <> "" Then
@@ -325,7 +325,7 @@ Public Class Monodosis
             textNotificar = textNotificar & "Scc: " & m_palet.SCC & ", cajas: " & dbo_movimiento.Cajas & Environment.NewLine()
             linea = "No conformidad automatizada. Scc: " & m_palet.SCC & ", cajas:" & dbo_movimiento.Cajas & " , fecha: " & fecha & ""
 
-            BasesParaCompatibilidad.BD.ConsultaInsertarSinDatosUsuario("'" & linea & "', 9, 0", "notificaciones(texto, id_tipousuario, leido)")
+            Deprecated.ConsultaInsertarSinDatosUsuario("'" & linea & "', 9, 0", "notificaciones(texto, id_tipousuario, leido)")
         End If
 
         If textNotificar <> "" Then
