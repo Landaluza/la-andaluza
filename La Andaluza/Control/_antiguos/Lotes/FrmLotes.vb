@@ -66,7 +66,7 @@ Public Class FrmLotesEnologicos
     End Sub
 
     Protected Overrides Sub cargar_datos()
-        dataSource = ctlMue.mostrarTodosLotesPorTipoLoteoProducto(Me.tipolote, Me.tipoproduto, Me.conenologico, top100)
+        dataSource = ctlMue.mostrarTodosLotesPorTipoLoteoProducto(dtb, Me.tipolote, Me.tipoproduto, Me.conenologico, top100)
     End Sub
 
     Protected Overrides Sub BindDataSource()

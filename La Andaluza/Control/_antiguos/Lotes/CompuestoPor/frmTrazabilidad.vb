@@ -55,7 +55,7 @@ Public Class frmTrazabilidad
 
     Private Sub dgvCompuestoPor_CellMouseDoubleClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles dgvCompuestoPor.CellMouseDoubleClick
         Try
-            Dim aux As Integer = ctlLot.mostrarPosicionPAraTrazabilidadLotes(dgvCompuestoPor.Rows(e.RowIndex).Cells("loteid").Value, ConEnologicos)
+            Dim aux As Integer = ctlLot.mostrarPosicionPAraTrazabilidadLotes(dtb, dgvCompuestoPor.Rows(e.RowIndex).Cells("loteid").Value, ConEnologicos)
             If aux <> 0 Then
                 form = New FrmEntLotes
                 form.Text = dgvCompuestoPor.Rows(e.RowIndex).Cells("codigolote").Value.ToString & ", Modificar Lote trazabilidad"
@@ -70,7 +70,7 @@ Public Class frmTrazabilidad
 
     Private Sub dgvComponenteDe_CellDoubleClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvComponenteDe.CellDoubleClick
         Try
-            Dim aux As Integer = ctlLot.mostrarPosicionPAraTrazabilidadLotes(dgvComponenteDe.Rows(e.RowIndex).Cells("loteid").Value, ConEnologicos)
+            Dim aux As Integer = ctlLot.mostrarPosicionPAraTrazabilidadLotes(dtb, dgvComponenteDe.Rows(e.RowIndex).Cells("loteid").Value, ConEnologicos)
             If aux <> 0 Then
                 form = New FrmEntLotes
                 form.Text = dgvComponenteDe.Rows(e.RowIndex).Cells("codigolote").Value.ToString & ", Modificar Lote trazabilidad"

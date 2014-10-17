@@ -64,9 +64,11 @@ Public Class clsAnaliticasExternas
 #Region "Metodos"
  
 
-    Public Sub cargar()
+    Public Sub cargar(ByRef dtb As BasesParaCompatibilidad.DataBase)
+        dtb.PrepararConsulta("select * from AnaliticasExternas where AnaliticaID =  @id")
+        dtb.AñadirParametroConsulta("@id", AnaliticaID)
         Try
-            Dim tab As DataTable = Deprecated.ConsultaVer("*", "AnaliticasExternas", "AnaliticaID = " & Convert.ToString(AnaliticaID))
+            Dim tab As DataTable = dtb.Consultar
             AnaliticaExternaID = tab.Rows(0).Item(0)
             RutaAnalisis = tab.Rows(0).Item(1)
             Fecha = tab.Rows(0).Item(2)

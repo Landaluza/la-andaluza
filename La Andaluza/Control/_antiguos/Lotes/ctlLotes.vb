@@ -7,7 +7,6 @@ Public Class ctlLotes
     Private clsMueObs As New clsMuestrasObservaciones
     Private clsAna As New clsAnaliticas
     Private clsAnaExt As New clsAnaliticasExternas
-    Private dtb As BasesParaCompatibilidad.DataBase
 
     Public Sub New()
         clsLot = New clsLotes
@@ -18,7 +17,6 @@ Public Class ctlLotes
         clsMueObs = New clsMuestrasObservaciones
         clsAna = New clsAnaliticas
         clsAnaExt = New clsAnaliticasExternas
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
     End Sub
 
     Public Function CantidadDeMaceraciones() As Integer
@@ -234,36 +232,36 @@ Public Class ctlLotes
         Return clsAna.DevolverPorMuestra(dtb)
     End Function
 
-    Public Sub CargarAnalitica(ByVal AnaliticaID As Integer, ByRef analista As Integer, ByRef catador As Integer)
+    Public Sub CargarAnalitica(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal AnaliticaID As Integer, ByRef analista As Integer, ByRef catador As Integer)
         clsAna._AnaliticaID = AnaliticaID
-        clsAna.cargar()
+        clsAna.cargar(dtb)
         analista = clsAna._AnalistaID
         catador = clsAna._CatadorID
     End Sub
 
-    Public Function CargarAnaliticaExterna(ByVal AnaliticaID As Integer, ByRef RutaAnalisis As String, ByRef FechaAnaliticaExterna As Date, ByRef ProveedorID As Integer) As Integer
+    Public Function CargarAnaliticaExterna(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal AnaliticaID As Integer, ByRef RutaAnalisis As String, ByRef FechaAnaliticaExterna As Date, ByRef ProveedorID As Integer) As Integer
         clsAnaExt._AnaliticaID = AnaliticaID
-        clsAnaExt.cargar()
+        clsAnaExt.cargar(dtb)
         RutaAnalisis = clsAnaExt._RutaAnalisis
         FechaAnaliticaExterna = clsAnaExt._Fecha
         ProveedorID = clsAnaExt._ProveedorID
         Return clsAnaExt._AnaliticaExternaID
     End Function
 
-    Sub MostrarObservacionesAnalitica(ByRef txtobservacion As BasesParaCompatibilidad.CuadroDeTextoMuestra)
+    Sub MostrarObservacionesAnalitica(ByRef dtb As BasesParaCompatibilidad.DataBase, ByRef txtobservacion As BasesParaCompatibilidad.CuadroDeTextoMuestra)
         If MostrarAnaliticas Then
             txtobservacion.Modificado = True
         End If
         clsMueObs._ObservacionID = txtobservacion.ParametroID
-        txtobservacion.Text = clsMueObs.cargar()
+        txtobservacion.Text = clsMueObs.cargar(dtb)
     End Sub
 
-    Private Sub MostrarValoresAnalitica(ByRef txtParametro As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef Requerido As Boolean)
+    Private Sub MostrarValoresAnalitica(ByRef dtb As BasesParaCompatibilidad.DataBase, ByRef txtParametro As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef Requerido As Boolean)
         If MostrarAnaliticas Then
             txtParametro.Modificado = True
         End If
         clsAnaVal._ParametroID = txtParametro.ParametroID
-        txtParametro.Text = clsAnaVal.cargar()
+        txtParametro.Text = clsAnaVal.cargar(dtb)
 
         clsAnaReq._ParametroID = txtParametro.ParametroID
         If clsAnaReq.existe Then
@@ -273,7 +271,7 @@ Public Class ctlLotes
         End If
     End Sub
 
-    Public Function mostrarPosicionPAraTrazabilidadLotes(ByVal LoteID As Integer, ByRef enologicos As Boolean) As Integer
+    Public Function mostrarPosicionPAraTrazabilidadLotes(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal LoteID As Integer, ByRef enologicos As Boolean) As Integer
         Dim tabla As New DataTable
 
         'Este procedimiento esta mal
@@ -289,7 +287,7 @@ Public Class ctlLotes
         'End If
 
         'If enologicos  Then
-        tabla = clsLot.devolverTodosNoEnologicos(False)
+        tabla = clsLot.devolverTodosNoEnologicos(dtb, False)
         'Else
         'tabla = clsLot.devolverTodosNoEnologicos()
         'End If
@@ -305,7 +303,7 @@ Public Class ctlLotes
     End Function
 
     Private MostrarAnaliticas As Boolean
-    Public Sub MostrarParametrosAnalitica(ByVal analiticaID As Integer, _
+    Public Sub MostrarParametrosAnalitica(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal analiticaID As Integer, _
     ByRef txtAcidez As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef Acidez As Boolean, ByRef txtAlcohol As BasesParaCompatibilidad.CuadroDeTextoMuestra, _
     ByRef Alcohol As Boolean, ByRef txtExtracto As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef Extracto As Boolean, ByRef txtExtractoGrado As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef txtCenizas As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef Cenizas As Boolean, _
     ByRef txtMetanol As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef Metanol As String, ByRef txtHg As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef Hg As String, ByRef txtAs As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef As_ As Boolean, _
@@ -328,70 +326,70 @@ Public Class ctlLotes
         clsMueObs._AnaliticaID = analiticaID
 
         '----------------- PARAMETROS LEGALES ----------------
-        MostrarValoresAnalitica(txtAcidez, Acidez)
-        MostrarValoresAnalitica(txtAlcohol, Alcohol)
-        MostrarValoresAnalitica(txtExtracto, Extracto)
-        MostrarValoresAnalitica(txtExtractoGrado, False)
-        MostrarValoresAnalitica(txtCenizas, Cenizas)
-        MostrarValoresAnalitica(txtMetanol, Metanol)
-        MostrarValoresAnalitica(txtHg, Hg)
-        MostrarValoresAnalitica(txtAs, As_)
-        MostrarValoresAnalitica(txtPb, Pb)
-        MostrarValoresAnalitica(txtSulfatos, Sulfatos)
-        MostrarValoresAnalitica(txtCloruros, Cloruros)
-        MostrarValoresAnalitica(txtSulfuroso, Sulfuroso)
-        MostrarValoresAnalitica(txtC14, C14)
+        MostrarValoresAnalitica(dtb, txtAcidez, Acidez)
+        MostrarValoresAnalitica(dtb, txtAlcohol, Alcohol)
+        MostrarValoresAnalitica(dtb, txtExtracto, Extracto)
+        MostrarValoresAnalitica(dtb, txtExtractoGrado, False)
+        MostrarValoresAnalitica(dtb, txtCenizas, Cenizas)
+        MostrarValoresAnalitica(dtb, txtMetanol, Metanol)
+        MostrarValoresAnalitica(dtb, txtHg, Hg)
+        MostrarValoresAnalitica(dtb, txtAs, As_)
+        MostrarValoresAnalitica(dtb, txtPb, Pb)
+        MostrarValoresAnalitica(dtb, txtSulfatos, Sulfatos)
+        MostrarValoresAnalitica(dtb, txtCloruros, Cloruros)
+        MostrarValoresAnalitica(dtb, txtSulfuroso, Sulfuroso)
+        MostrarValoresAnalitica(dtb, txtC14, C14)
 
         '----------------- CONTROL ANALITICO ----------------
-        MostrarValoresAnalitica(txtAcetato, Acetato)
-        MostrarValoresAnalitica(txtDensidad, Densidad)
-        MostrarValoresAnalitica(txtTurbidez, Turbidez)
-        MostrarValoresAnalitica(txtIC, IC)
-        MostrarValoresAnalitica(txtPh, Ph)
-        MostrarValoresAnalitica(txtColor, Color)
-        'MostrarValoresAnalitica(txtMedidaColor, False)
-        MostrarValoresAnalitica(txtFe, Fe)
-        MostrarValoresAnalitica(txtCu, Cu)
-        MostrarValoresAnalitica(txtZn, Zn)
-        MostrarValoresAnalitica(txtAcetoina, Acetoina)
-        MostrarValoresAnalitica(txtPardeamiento, Pardeamiento)
-        MostrarValoresAnalitica(txtNitrogeno, Nitrogeno)
-        MostrarValoresAnalitica(txtPolifenoles, Polifenoles)
-        MostrarValoresAnalitica(txtAcidezFija, AcidezFija)
-        MostrarValoresAnalitica(txtAcidezVolatil, AcidezVolatil)
-        MostrarValoresAnalitica(txtAzucarTotal, AzucarTotal)
-        MostrarValoresAnalitica(txtBaume, Baume)
-        MostrarValoresAnalitica(txtBrix, Brix)
-        MostrarValoresAnalitica(txtSorbitol, Sorbitol)
+        MostrarValoresAnalitica(dtb, txtAcetato, Acetato)
+        MostrarValoresAnalitica(dtb, txtDensidad, Densidad)
+        MostrarValoresAnalitica(dtb, txtTurbidez, Turbidez)
+        MostrarValoresAnalitica(dtb, txtIC, IC)
+        MostrarValoresAnalitica(dtb, txtPh, Ph)
+        MostrarValoresAnalitica(dtb, txtColor, Color)
+        'MostrarValoresAnalitica(dtb, txtMedidaColor, False)
+        MostrarValoresAnalitica(dtb, txtFe, Fe)
+        MostrarValoresAnalitica(dtb, txtCu, Cu)
+        MostrarValoresAnalitica(dtb, txtZn, Zn)
+        MostrarValoresAnalitica(dtb, txtAcetoina, Acetoina)
+        MostrarValoresAnalitica(dtb, txtPardeamiento, Pardeamiento)
+        MostrarValoresAnalitica(dtb, txtNitrogeno, Nitrogeno)
+        MostrarValoresAnalitica(dtb, txtPolifenoles, Polifenoles)
+        MostrarValoresAnalitica(dtb, txtAcidezFija, AcidezFija)
+        MostrarValoresAnalitica(dtb, txtAcidezVolatil, AcidezVolatil)
+        MostrarValoresAnalitica(dtb, txtAzucarTotal, AzucarTotal)
+        MostrarValoresAnalitica(dtb, txtBaume, Baume)
+        MostrarValoresAnalitica(dtb, txtBrix, Brix)
+        MostrarValoresAnalitica(dtb, txtSorbitol, Sorbitol)
 
         '----------------- CONTROL MICROBIOLOGICO ----------------
-        MostrarValoresAnalitica(txtRecuentoTotal, RecuentoTotal)
-        MostrarValoresAnalitica(txtBacterias, Bacterias)
-        MostrarValoresAnalitica(txtLevaduras, Levaduras)
-        MostrarValoresAnalitica(txtHongos, Hongos)
-        MostrarValoresAnalitica(txtXilenium, Xilenium)
-        MostrarValoresAnalitica(txtAnguilulas, Anguilulas)
+        MostrarValoresAnalitica(dtb, txtRecuentoTotal, RecuentoTotal)
+        MostrarValoresAnalitica(dtb, txtBacterias, Bacterias)
+        MostrarValoresAnalitica(dtb, txtLevaduras, Levaduras)
+        MostrarValoresAnalitica(dtb, txtHongos, Hongos)
+        MostrarValoresAnalitica(dtb, txtXilenium, Xilenium)
+        MostrarValoresAnalitica(dtb, txtAnguilulas, Anguilulas)
 
         '----------------- CATA Y CONTROL ESTABILIDAD ----------------
-        MostrarValoresAnalitica(txtOlfato, Olfato)
-        MostrarValoresAnalitica(txtSabor, Sabor)
-        MostrarValoresAnalitica(txtVista, Vista)
-        MostrarValoresAnalitica(txtEstableFrio, EstableFrio)
-        MostrarValoresAnalitica(txtEstableCalor, EstableCalor)
-        MostrarValoresAnalitica(txtEstableProteinas, EstableProteinas)
+        MostrarValoresAnalitica(dtb, txtOlfato, Olfato)
+        MostrarValoresAnalitica(dtb, txtSabor, Sabor)
+        MostrarValoresAnalitica(dtb, txtVista, Vista)
+        MostrarValoresAnalitica(dtb, txtEstableFrio, EstableFrio)
+        MostrarValoresAnalitica(dtb, txtEstableCalor, EstableCalor)
+        MostrarValoresAnalitica(dtb, txtEstableProteinas, EstableProteinas)
 
         '----------------- OBSERVACIONES ----------------       
-        MostrarObservacionesAnalitica(txtMedidaColor)
-        MostrarObservacionesAnalitica(txtObservacionesOlfato)
-        MostrarObservacionesAnalitica(txtObservacionesSabor)
-        MostrarObservacionesAnalitica(txtObservacionesVista)
+        MostrarObservacionesAnalitica(dtb, txtMedidaColor)
+        MostrarObservacionesAnalitica(dtb, txtObservacionesOlfato)
+        MostrarObservacionesAnalitica(dtb, txtObservacionesSabor)
+        MostrarObservacionesAnalitica(dtb, txtObservacionesVista)
 
 
     End Sub
 
-    Sub CargarObservacionesID(ByRef txtMedidaColor As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef txtObservacionesOlfato As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef txtObservacionesSabor As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef txtObservacionesVista As BasesParaCompatibilidad.CuadroDeTextoMuestra)
+    Sub CargarObservacionesID(ByRef dtb As BasesParaCompatibilidad.DataBase, ByRef txtMedidaColor As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef txtObservacionesOlfato As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef txtObservacionesSabor As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef txtObservacionesVista As BasesParaCompatibilidad.CuadroDeTextoMuestra)
         Dim tabla As New DataTable
-        tabla = clsObs.devolver()
+        tabla = clsObs.devolver(dtb)
         Dim i As Integer
         Dim Contador As Integer = 7
         Dim NombreObservacion As String
@@ -424,13 +422,13 @@ Public Class ctlLotes
 
         Dim faltan As String = Olfato & Sabor & Vista & MedidaColor
         If faltan.Trim <> "" Then
-            messagebox.show("Faltan algunas observaciones por favor revisar la tabla Observaciones, son los sgtes: " & faltan, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            MessageBox.Show("Faltan algunas observaciones por favor revisar la tabla Observaciones, son los sgtes: " & faltan, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End If
 
 
     End Sub
 
-    Public Sub cargarParametrosMuestra(ByVal EspecificacionID As Integer, ByRef txtAcidez As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef chbAcidez As CheckBox, ByRef txtAlcohol As BasesParaCompatibilidad.CuadroDeTextoMuestra, _
+    Public Sub cargarParametrosMuestra(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal EspecificacionID As Integer, ByRef txtAcidez As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef chbAcidez As CheckBox, ByRef txtAlcohol As BasesParaCompatibilidad.CuadroDeTextoMuestra, _
     ByRef chbAlcohol As CheckBox, ByRef txtExtracto As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef chbExtracto As CheckBox, ByRef txtExtractoGrador As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef txtCenizas As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef chbCenizas As CheckBox, _
     ByRef txtMetanol As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef chbMetanol As CheckBox, ByRef txtHg As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef chbHg As CheckBox, ByRef txtAs As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef chbAs As CheckBox, _
     ByRef txtPb As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef chbPb As CheckBox, ByRef txtSulfatos As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef chbSulfatos As CheckBox, ByRef txtCloruros As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByRef chbCloruros As CheckBox, _
@@ -731,50 +729,50 @@ Public Class ctlLotes
 
         Dim faltan As String = Acidez & Alcohol & Extracto & ExtractoGrado & Cenizas & Metanol & Hg & AS_ & Pb & Sulfatos & Cloruros & Sulfuroso & C14 & Acetato & Densidad & Turbidez & IC & Ph & Color & Fe & Cu & Zn & Acetoina & Pardeamiento & Nitrogeno & Polifenoles & AcidezFija & AcidezVolatil & AzucarTotal & Baume & Brix & Sorbitol & RecuentoTotal & Bacterias & Levaduras & Hongos & Xilenium & Anguilulas & Olfato & Sabor & Vista & EstableFrio & EstableCalor & EstableProteinas
         If faltan.Trim <> "" Then
-            messagebox.show("Faltan algunos parametros porfavor revisar la tabla Parametros, son los sgtes: " & faltan, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            MessageBox.Show("Faltan algunos parametros porfavor revisar la tabla Parametros, son los sgtes: " & faltan, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End If
     End Sub
 
    
-    Public Function mostrarTodosLotesPorTipoLoteoProducto(ByVal TipoLoteId As Integer, ByVal tipoProductoID As Integer, ByVal enologicos As Boolean, ByVal top100 As Boolean, Optional ByVal id As Integer = Nothing) As DataTable
+    Public Function mostrarTodosLotesPorTipoLoteoProducto(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal TipoLoteId As Integer, ByVal tipoProductoID As Integer, ByVal enologicos As Boolean, ByVal top100 As Boolean, Optional ByVal id As Integer = Nothing) As DataTable
         Dim tabla As New DataTable
         clsLot._TipoLoteID = TipoLoteId
         clsLot._TipoProductoID = tipoProductoID
 
         If TipoLoteId = 0 And tipoProductoID = 0 Then
             If enologicos Then
-                tabla = clsLot.devolverTodosEnologicos2(top100, id)
+                tabla = clsLot.devolverTodosEnologicos2(dtb, top100, id)
             Else
-                tabla = clsLot.devolverTodosNoEnologicos2(top100, id)
+                tabla = clsLot.devolverTodosNoEnologicos2(dtb, top100, id)
             End If
         ElseIf TipoLoteId > 0 And tipoProductoID = 0 Then
-            tabla = clsLot.devolverPorTipoLoteID2(top100, id)
+            tabla = clsLot.devolverPorTipoLoteID2(dtb, top100, id)
         ElseIf TipoLoteId = 0 And tipoProductoID > 0 Then
-            tabla = clsLot.devolverPorTipoProductoID2(top100, id)
+            tabla = clsLot.devolverPorTipoProductoID2(dtb, top100, id)
         Else
-            tabla = clsLot.devolverPorTipoProductoIDyTipoLoteID2(top100, id)
+            tabla = clsLot.devolverPorTipoProductoIDyTipoLoteID2(dtb, top100, id)
         End If
 
         Return tabla
     End Function
 
-    Public Sub mostrarTodosLotesPorTipoLoteoProducto(ByVal TipoLoteId As Integer, ByVal tipoProductoID As Integer, ByRef dtsMue As dtsLotes.LotesDataTable, ByVal enologicos As Boolean, ByVal top100 As Boolean, Optional ByVal id As Integer = Nothing)
+    Public Sub mostrarTodosLotesPorTipoLoteoProducto(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal TipoLoteId As Integer, ByVal tipoProductoID As Integer, ByRef dtsMue As dtsLotes.LotesDataTable, ByVal enologicos As Boolean, ByVal top100 As Boolean, Optional ByVal id As Integer = Nothing)
         Dim tabla As New DataTable
         clsLot._TipoLoteID = TipoLoteId
         clsLot._TipoProductoID = tipoProductoID
 
         If TipoLoteId = 0 And tipoProductoID = 0 Then
             If enologicos Then
-                tabla = clsLot.devolverTodosEnologicos(top100, id)
+                tabla = clsLot.devolverTodosEnologicos(dtb, top100, id)
             Else
-                tabla = clsLot.devolverTodosNoEnologicos(top100, id)
+                tabla = clsLot.devolverTodosNoEnologicos(dtb, top100, id)
             End If
         ElseIf TipoLoteId > 0 And tipoProductoID = 0 Then
-            tabla = clsLot.devolverPorTipoLoteID(top100, id)
+            tabla = clsLot.devolverPorTipoLoteID(dtb, top100, id)
         ElseIf TipoLoteId = 0 And tipoProductoID > 0 Then
-            tabla = clsLot.devolverPorTipoProductoID(top100, id)
+            tabla = clsLot.devolverPorTipoProductoID(dtb, top100, id)
         Else
-            tabla = clsLot.devolverPorTipoProductoIDyTipoLoteID(top100, id)
+            tabla = clsLot.devolverPorTipoProductoIDyTipoLoteID(dtb, top100, id)
         End If
 
 

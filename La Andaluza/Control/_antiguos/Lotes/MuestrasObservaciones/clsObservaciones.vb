@@ -38,9 +38,9 @@ Public Class clsObservaciones
         End Try
     End Function
 
-    Public Function devolver() As DataTable
-
-        Return Deprecated.ConsultaVer("*", "ListaObservaciones", "ObservacionID > 0")
+    Public Function devolver(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
+        dtb.PrepararConsulta("select * from ListaObservaciones where ObservacionID > 0")
+        Return dtb.Consultar()
 
     End Function
 

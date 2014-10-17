@@ -44,9 +44,12 @@ Public Class clsAnaliticasValores
         Return Deprecated.ConsultaVer("Count(*)", "AnaliticasValores", "AnaliticaID = " & Convert.ToString(AnaliticaID) & " and ParametroID = " & Convert.ToString(ParametroID)).Rows(0).Item(0) > 0
     End Function
 
-    Public Function cargar() As String
+    Public Function cargar(ByRef dtb As BasesParaCompatibilidad.DataBase) As String
+        dtb.PrepararConsulta("select Valor from AnaliticasValores where AnaliticaID = @id and ParametroID = @par")
+        dtb.AñadirParametroConsulta("@id", AnaliticaID)
+        dtb.AñadirParametroConsulta("@par", ParametroID)
         Try
-            Return Deprecated.ConsultaVer("Valor", "AnaliticasValores", "AnaliticaID = " & Convert.ToString(AnaliticaID) & " and ParametroID = " & Convert.ToString(ParametroID)).Rows(0).Item(0)
+            Return dtb.Consultar().Rows(0).Item(0)
         Catch ex As Exception
             Return ""
         End Try

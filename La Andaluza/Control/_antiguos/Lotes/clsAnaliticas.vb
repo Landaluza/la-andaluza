@@ -78,9 +78,11 @@ Public Class clsAnaliticas
 #End Region
 
 #Region "Metodos"
-    Public Sub cargar()
+    Public Sub cargar(ByRef dtb As BasesParaCompatibilidad.DataBase)
+        dtb.PrepararConsulta("select AnalistaID,CatadorID from Analiticas where AnaliticaID = @id")
+        dtb.AñadirParametroConsulta("@id", AnaliticaID)
         Try
-            Dim tab As DataTable = Deprecated.ConsultaVer("AnalistaID,CatadorID", "Analiticas", "AnaliticaID = " & Convert.ToString(AnaliticaID))
+            Dim tab As DataTable = dtb.Consultar
             If IsDBNull(tab.Rows(0).Item(0)) Then
                 _AnalistaID = 0
             Else

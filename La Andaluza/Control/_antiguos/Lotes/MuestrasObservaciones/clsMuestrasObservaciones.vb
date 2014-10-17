@@ -52,10 +52,12 @@ Public Class clsMuestrasObservaciones
     End Function
 
 
-    Public Function cargar() As String
-
+    Public Function cargar(ByRef dtb As BasesParaCompatibilidad.DataBase) As String
+        dtb.PrepararConsulta("select Descripcion from MuestrasObservaciones where AnaliticaID = @an and ObservacionID = @ob")
+        dtb.AñadirParametroConsulta("@an", AnaliticaID)
+        dtb.AñadirParametroConsulta("@ob", ObservacionID)
         Try
-            Return Deprecated.ConsultaVer("Descripcion", "MuestrasObservaciones", "AnaliticaID = " & Convert.ToString(AnaliticaID) & " and ObservacionID = " & Convert.ToString(ObservacionID)).Rows(0).Item(0)
+            Return dtb.Consultar().Rows(0).Item(0)
         Catch ex As Exception
             Return ""
         End Try

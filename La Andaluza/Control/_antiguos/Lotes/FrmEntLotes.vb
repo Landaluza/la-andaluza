@@ -190,7 +190,7 @@ Public Class FrmEntLotes
         'Me.bdnGeneral.Items.Add(New ToolStripControlHost(Me.butInfoTrazabilidad))        
 
 
-        ctlLot.cargarParametrosMuestra(1, txtAcidez, chbAcidez, txtAlcohol1, chbAlcohol, txtExtracto, chbExtracto, txtExtractoNro, txtCenizas, chbCenizas, txtMetanol, _
+        ctlLot.cargarParametrosMuestra(dtb, 1, txtAcidez, chbAcidez, txtAlcohol1, chbAlcohol, txtExtracto, chbExtracto, txtExtractoNro, txtCenizas, chbCenizas, txtMetanol, _
                                                                 chbMetanol, txtHg, chbHg, txtAs, chbAs, txtPb, chbPb, txtSulfatos, chbSulfatos, txtCloruros, chbCloruros, txtSulfuroso, chbSulfuroso, txtC14, chbC14, _
                                                                 txtAcetato, chbAcetato, txtDensidad, chbDensidad, txtTurbidez, chbTurbidez, txtIC, chbIC, txtPh, chbPh, txtColor, chbColor, txtFe, chbFe, _
                                                                 txtCu, chbCu, txtZn, chbZn, txtAcetoina, chbAcetoina, txtPardeamiento, chbPardeamiento, txtNitrogeno, chbNitrogeno, txtPolifenoles, chbPolifenoles, txtAcidezFija, chbAcidezFija, _
@@ -200,7 +200,7 @@ Public Class FrmEntLotes
 
 
         ModificarBindingNavigator()
-        CargarObservacionesID()
+        CargarObservacionesID(dtb)
         dtpFecha.Value = Today
         dtpFechaAnaliticaExterna.Value = Today
 
@@ -211,7 +211,7 @@ Public Class FrmEntLotes
         '  End If
 
         If (Me.Text.Substring(0, 8) <> "Insertar") Then
-            ctlLot.mostrarTodosLotesPorTipoLoteoProducto(TipoLoteID, TipoProductoID, dtsMue, ConEnologicos, False, LoteID)
+            ctlLot.mostrarTodosLotesPorTipoLoteoProducto(dtb, TipoLoteID, TipoProductoID, dtsMue, ConEnologicos, False, LoteID)
             GeneralBindingSource.DataSource = dtsMue
 
             GeneralBindingSource.Position = Posicion
@@ -228,7 +228,7 @@ Public Class FrmEntLotes
             tsTrazabilidad.Visible = False
 
         Else
-            ctlLot.cargarParametrosMuestra(if(chbSinEspecificacion.Checked, Nothing, cboEspecificacion.SelectedValue), txtAcidez, chbAcidez, txtAlcohol1, chbAlcohol, txtExtracto, chbExtracto, txtExtractoNro, txtCenizas, chbCenizas, txtMetanol, _
+            ctlLot.cargarParametrosMuestra(dtb, If(chbSinEspecificacion.Checked, Nothing, cboEspecificacion.SelectedValue), txtAcidez, chbAcidez, txtAlcohol1, chbAlcohol, txtExtracto, chbExtracto, txtExtractoNro, txtCenizas, chbCenizas, txtMetanol, _
                                                                                                             chbMetanol, txtHg, chbHg, txtAs, chbAs, txtPb, chbPb, txtSulfatos, chbSulfatos, txtCloruros, chbCloruros, txtSulfuroso, chbSulfuroso, txtC14, chbC14, _
                                                                                                             txtAcetato, chbAcetato, txtDensidad, chbDensidad, txtTurbidez, chbTurbidez, txtIC, chbIC, txtPh, chbPh, txtColor, chbColor, txtFe, chbFe, _
                                                                                                             txtCu, chbCu, txtZn, chbZn, txtAcetoina, chbAcetoina, txtPardeamiento, chbPardeamiento, txtNitrogeno, chbNitrogeno, txtPolifenoles, chbPolifenoles, txtAcidezFija, chbAcidezFija, _
@@ -236,7 +236,7 @@ Public Class FrmEntLotes
                                                                                                             txtRecuentoTotal, chbRecuentoTotal, txtBacterias, chbBacterias, txtLevaduras, chbLevaduras, txtHongos, chbHongos, txtXilenium, chbXilenium, txtAnguilulas, chbAnguilulas, _
                                                                                                             txtOlfato, chbOlfato, txtSabor, chbSabor, txtVista, chbVista, txtEstableFrio, chbEstableFrio, txtEstableCalor, chbEstableCalor, txtEstableProteinas, chbEstableProteinas)
 
-            ctlLot.MostrarParametrosAnalitica(cboAnaliticas.SelectedValue, txtAcidez, chbAcidez.Checked, txtAlcohol1, chbAlcohol.Checked, txtExtracto, chbExtracto.Checked, txtExtractoNro, txtCenizas, chbCenizas.Checked, txtMetanol, _
+            ctlLot.MostrarParametrosAnalitica(dtb, cboAnaliticas.SelectedValue, txtAcidez, chbAcidez.Checked, txtAlcohol1, chbAlcohol.Checked, txtExtracto, chbExtracto.Checked, txtExtractoNro, txtCenizas, chbCenizas.Checked, txtMetanol, _
                     chbMetanol.Checked, txtHg, chbHg.Checked, txtAs, chbAs.Checked, txtPb, chbPb.Checked, txtSulfatos, chbSulfatos.Checked, txtCloruros, chbCloruros.Checked, txtSulfuroso, chbSulfuroso.Checked, txtC14, chbC14.Checked, _
                     txtAcetato, chbAcetato.Checked, txtDensidad, chbDensidad.Checked, txtTurbidez, chbTurbidez.Checked, txtIC, chbIC.Checked, txtPh, chbPh.Checked, txtColor, chbColor.Checked, txtMedidaColor, txtFe, chbFe.Checked, _
                     txtCu, chbCu.Checked, txtZn, chbZn.Checked, txtAcetoina, chbAcetoina.Checked, txtPardeamiento, chbPardeamiento.Checked, txtNitrogeno, chbNitrogeno.Checked, txtPolifenoles, chbPolifenoles.Checked, txtAcidezFija, chbAcidezFija.Checked, _
@@ -305,6 +305,10 @@ Public Class FrmEntLotes
         dtb.EmpezarTransaccion()
 
         Try
+            If Not Me.comprobarDatos(dtb) Then
+                Throw New Exception("Los valores han cambiado desde que se abrio el formulario, cierrelo y vuelva a hacer sus cambios")
+            End If
+
             If Me.Text.Substring(0, 8) = "Insertar" Then
                 LoteID = 0
                 If Not ctlLot.GuardarLote(dtb, LoteID, If(txtReferencia.Text = "" Or IsDBNull(txtReferencia.Text), 0, Convert.ToInt32(txtReferencia.Text)), cboAnalista.SelectedValue, If(txtCantidadRestante.Text = "" Or IsDBNull(txtCantidadRestante.Text), 0, Convert.ToInt32(txtCantidadRestante.Text)), cboCatador.SelectedValue, txtCodigoLote.Text, cboTipoLote.SelectedValue, cboTipoProducto.SelectedValue, chbSinEspecificacion.Checked, txtDescripcion.Text, dtpFecha.Value, _
@@ -343,17 +347,20 @@ Public Class FrmEntLotes
                 End If
 
                 If cboAnaliticas.Items.Count = 0 Then
+                    dtb.TerminarTransaccion()
                     cboAnaliticas.DataSource = OldLib.HacerTablasObligatorias(ctlLot.mostrarTodasAnaliticasPorMuestra(dtb, LoteID))
                 Else
                     If cboAnaliticas.Text <> "La Andaluza" Then
                         If Not ctlLot.GuardarAnaliticaExterna(dtb, cboAnaliticas.SelectedValue, AnaliticaExternaID, txtRutaAnalisis.Text, dtpFechaAnaliticaExterna.Value, cboProveedoresLabExternos.SelectedValue) Then
                             Throw New Exception("Error al guardar la analitica externa")
                         End If
+
                         cboAnaliticas.Enabled = True
                     End If
+
+                    dtb.TerminarTransaccion()
                 End If
 
-                dtb.TerminarTransaccion()
                 'Me.Close()
             End If
         Catch ex As Exception
@@ -361,6 +368,10 @@ Public Class FrmEntLotes
             MessageBox.Show("Error al guardar. Detalles: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
+    Public Function comprobarDatos(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        Return True
+    End Function
 
     Private Function HacerTablaEspecificacion(ByVal tb As DataTable) As DataTable
         ' crear nueva tabla
@@ -457,7 +468,7 @@ Public Class FrmEntLotes
                         If aux = -1 Then
                             aux = 0
                         End If
-                        ctlLot.cargarParametrosMuestra(aux, txtAcidez, chbAcidez, txtAlcohol1, chbAlcohol, txtExtracto, chbExtracto, txtExtractoNro, txtCenizas, chbCenizas, txtMetanol, _
+                        ctlLot.cargarParametrosMuestra(dtb, aux, txtAcidez, chbAcidez, txtAlcohol1, chbAlcohol, txtExtracto, chbExtracto, txtExtractoNro, txtCenizas, chbCenizas, txtMetanol, _
                                                                  chbMetanol, txtHg, chbHg, txtAs, chbAs, txtPb, chbPb, txtSulfatos, chbSulfatos, txtCloruros, chbCloruros, txtSulfuroso, chbSulfuroso, txtC14, chbC14, _
                                                                  txtAcetato, chbAcetato, txtDensidad, chbDensidad, txtTurbidez, chbTurbidez, txtIC, chbIC, txtPh, chbPh, txtColor, chbColor, txtFe, chbFe, _
                                                                  txtCu, chbCu, txtZn, chbZn, txtAcetoina, chbAcetoina, txtPardeamiento, chbPardeamiento, txtNitrogeno, chbNitrogeno, txtPolifenoles, chbPolifenoles, txtAcidezFija, chbAcidezFija, _
@@ -466,7 +477,7 @@ Public Class FrmEntLotes
                                                                  txtOlfato, chbOlfato, txtSabor, chbSabor, txtVista, chbVista, txtEstableFrio, chbEstableFrio, txtEstableCalor, chbEstableCalor, txtEstableProteinas, chbEstableProteinas)
 
                     Else
-                        ctlLot.cargarParametrosMuestra(0, txtAcidez, chbAcidez, txtAlcohol1, chbAlcohol, txtExtracto, chbExtracto, txtExtractoNro, txtCenizas, chbCenizas, txtMetanol, _
+                        ctlLot.cargarParametrosMuestra(dtb, 0, txtAcidez, chbAcidez, txtAlcohol1, chbAlcohol, txtExtracto, chbExtracto, txtExtractoNro, txtCenizas, chbCenizas, txtMetanol, _
                                                                                         chbMetanol, txtHg, chbHg, txtAs, chbAs, txtPb, chbPb, txtSulfatos, chbSulfatos, txtCloruros, chbCloruros, txtSulfuroso, chbSulfuroso, txtC14, chbC14, _
                                                                                         txtAcetato, chbAcetato, txtDensidad, chbDensidad, txtTurbidez, chbTurbidez, txtIC, chbIC, txtPh, chbPh, txtColor, chbColor, txtFe, chbFe, _
                                                                                         txtCu, chbCu, txtZn, chbZn, txtAcetoina, chbAcetoina, txtPardeamiento, chbPardeamiento, txtNitrogeno, chbNitrogeno, txtPolifenoles, chbPolifenoles, txtAcidezFija, chbAcidezFija, _
@@ -595,8 +606,8 @@ Public Class FrmEntLotes
         End If
     End Sub
 
-    Sub CargarObservacionesID()
-        ctlLot.CargarObservacionesID(txtMedidaColor, txtObservacionesOlfato, txtObservacionesSabor, txtObservacionesVista)
+    Sub CargarObservacionesID(ByRef dtb As BasesParaCompatibilidad.DataBase)
+        ctlLot.CargarObservacionesID(dtb, txtMedidaColor, txtObservacionesOlfato, txtObservacionesSabor, txtObservacionesVista)
     End Sub
 
     Private Sub butRuta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butRuta.Click
@@ -612,17 +623,17 @@ Public Class FrmEntLotes
         Try
             AnaliticaID = cboAnaliticas.SelectedValue
             If cboAnaliticas.Text <> "" And AnaliticaID <> 0 Then
-                ctlLot.CargarAnalitica(AnaliticaID, cboAnalista.SelectedValue, cboCatador.SelectedValue)
+                ctlLot.CargarAnalitica(dtb, AnaliticaID, cboAnalista.SelectedValue, cboCatador.SelectedValue)
             End If
             If cboAnaliticas.Text <> "La Andaluza" And cboAnaliticas.Text <> "" Then
                 Try
                     Dim aaa As Integer = cboAnaliticas.SelectedValue
                     aaa = cboProveedoresLabExternos.SelectedValue
-                    AnaliticaExternaID = ctlLot.CargarAnaliticaExterna(cboAnaliticas.SelectedValue, txtRutaAnalisis.Text, dtpFechaAnaliticaExterna.Value, cboProveedoresLabExternos.SelectedValue)
+                    AnaliticaExternaID = ctlLot.CargarAnaliticaExterna(dtb, cboAnaliticas.SelectedValue, txtRutaAnalisis.Text, dtpFechaAnaliticaExterna.Value, cboProveedoresLabExternos.SelectedValue)
                     VerParametrosAnaliticaExterna(True)
                     Bandera_EntroCon = 0
                     If cboAnaliticas.SelectedValue > 0 And cboAnaliticas.Text <> "" Then
-                        ctlLot.MostrarParametrosAnalitica(cboAnaliticas.SelectedValue, txtAcidez, chbAcidez.Checked, txtAlcohol1, chbAlcohol.Checked, txtExtracto, chbExtracto.Checked, txtExtractoNro, txtCenizas, chbCenizas.Checked, txtMetanol, _
+                        ctlLot.MostrarParametrosAnalitica(dtb, cboAnaliticas.SelectedValue, txtAcidez, chbAcidez.Checked, txtAlcohol1, chbAlcohol.Checked, txtExtracto, chbExtracto.Checked, txtExtractoNro, txtCenizas, chbCenizas.Checked, txtMetanol, _
                          chbMetanol.Checked, txtHg, chbHg.Checked, txtAs, chbAs.Checked, txtPb, chbPb.Checked, txtSulfatos, chbSulfatos.Checked, txtCloruros, chbCloruros.Checked, txtSulfuroso, chbSulfuroso.Checked, txtC14, chbC14.Checked, _
                          txtAcetato, chbAcetato.Checked, txtDensidad, chbDensidad.Checked, txtTurbidez, chbTurbidez.Checked, txtIC, chbIC.Checked, txtPh, chbPh.Checked, txtColor, chbColor.Checked, txtMedidaColor, txtFe, chbFe.Checked, _
                          txtCu, chbCu.Checked, txtZn, chbZn.Checked, txtAcetoina, chbAcetoina.Checked, txtPardeamiento, chbPardeamiento.Checked, txtNitrogeno, chbNitrogeno.Checked, txtPolifenoles, chbPolifenoles.Checked, txtAcidezFija, chbAcidezFija.Checked, _
@@ -631,7 +642,7 @@ Public Class FrmEntLotes
                          txtOlfato, chbOlfato.Checked, txtSabor, chbSabor.Checked, txtVista, chbVista.Checked, txtEstableFrio, chbEstableFrio.Checked, txtEstableCalor, chbEstableCalor.Checked, txtEstableProteinas, chbEstableProteinas.Checked, _
                          txtObservacionesOlfato, txtObservacionesSabor, txtObservacionesVista, False)
                     End If
-                    ctlLot.cargarParametrosMuestra(0, txtAcidez, chbAcidez, txtAlcohol1, chbAlcohol, txtExtracto, chbExtracto, txtExtractoNro, txtCenizas, chbCenizas, txtMetanol, _
+                    ctlLot.cargarParametrosMuestra(dtb, 0, txtAcidez, chbAcidez, txtAlcohol1, chbAlcohol, txtExtracto, chbExtracto, txtExtractoNro, txtCenizas, chbCenizas, txtMetanol, _
                                                                                            chbMetanol, txtHg, chbHg, txtAs, chbAs, txtPb, chbPb, txtSulfatos, chbSulfatos, txtCloruros, chbCloruros, txtSulfuroso, chbSulfuroso, txtC14, chbC14, _
                                                                                            txtAcetato, chbAcetato, txtDensidad, chbDensidad, txtTurbidez, chbTurbidez, txtIC, chbIC, txtPh, chbPh, txtColor, chbColor, txtFe, chbFe, _
                                                                                            txtCu, chbCu, txtZn, chbZn, txtAcetoina, chbAcetoina, txtPardeamiento, chbPardeamiento, txtNitrogeno, chbNitrogeno, txtPolifenoles, chbPolifenoles, txtAcidezFija, chbAcidezFija, _
@@ -645,7 +656,7 @@ Public Class FrmEntLotes
                 VerParametrosAnaliticaExterna(False)
                 If cboAnaliticas.SelectedValue > 0 And cboAnaliticas.Text <> "" Then
 
-                    ctlLot.MostrarParametrosAnalitica(cboAnaliticas.SelectedValue, txtAcidez, chbAcidez.Checked, txtAlcohol1, chbAlcohol.Checked, txtExtracto, chbExtracto.Checked, txtExtractoNro, txtCenizas, chbCenizas.Checked, txtMetanol, _
+                    ctlLot.MostrarParametrosAnalitica(dtb, cboAnaliticas.SelectedValue, txtAcidez, chbAcidez.Checked, txtAlcohol1, chbAlcohol.Checked, txtExtracto, chbExtracto.Checked, txtExtractoNro, txtCenizas, chbCenizas.Checked, txtMetanol, _
                      chbMetanol.Checked, txtHg, chbHg.Checked, txtAs, chbAs.Checked, txtPb, chbPb.Checked, txtSulfatos, chbSulfatos.Checked, txtCloruros, chbCloruros.Checked, txtSulfuroso, chbSulfuroso.Checked, txtC14, chbC14.Checked, _
                      txtAcetato, chbAcetato.Checked, txtDensidad, chbDensidad.Checked, txtTurbidez, chbTurbidez.Checked, txtIC, chbIC.Checked, txtPh, chbPh.Checked, txtColor, chbColor.Checked, txtMedidaColor, txtFe, chbFe.Checked, _
                      txtCu, chbCu.Checked, txtZn, chbZn.Checked, txtAcetoina, chbAcetoina.Checked, txtPardeamiento, chbPardeamiento.Checked, txtNitrogeno, chbNitrogeno.Checked, txtPolifenoles, chbPolifenoles.Checked, txtAcidezFija, chbAcidezFija.Checked, _
@@ -1162,7 +1173,7 @@ Public Class FrmEntLotes
             Dim aux As Integer
             aux = cboMuestras.SelectedValue
             If aux > 0 Then
-                ctlLot.MostrarParametrosAnalitica(aux, txtAcidez, chbAcidez.Checked, txtAlcohol1, chbAlcohol.Checked, txtExtracto, chbExtracto.Checked, txtExtractoNro, txtCenizas, chbCenizas.Checked, txtMetanol, _
+                ctlLot.MostrarParametrosAnalitica(dtb, aux, txtAcidez, chbAcidez.Checked, txtAlcohol1, chbAlcohol.Checked, txtExtracto, chbExtracto.Checked, txtExtractoNro, txtCenizas, chbCenizas.Checked, txtMetanol, _
                          chbMetanol.Checked, txtHg, chbHg.Checked, txtAs, chbAs.Checked, txtPb, chbPb.Checked, txtSulfatos, chbSulfatos.Checked, txtCloruros, chbCloruros.Checked, txtSulfuroso, chbSulfuroso.Checked, txtC14, chbC14.Checked, _
                          txtAcetato, chbAcetato.Checked, txtDensidad, chbDensidad.Checked, txtTurbidez, chbTurbidez.Checked, txtIC, chbIC.Checked, txtPh, chbPh.Checked, txtColor, chbColor.Checked, txtMedidaColor, txtFe, chbFe.Checked, _
                          txtCu, chbCu.Checked, txtZn, chbZn.Checked, txtAcetoina, chbAcetoina.Checked, txtPardeamiento, chbPardeamiento.Checked, txtNitrogeno, chbNitrogeno.Checked, txtPolifenoles, chbPolifenoles.Checked, txtAcidezFija, chbAcidezFija.Checked, _

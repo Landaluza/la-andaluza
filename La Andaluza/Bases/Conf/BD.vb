@@ -42,14 +42,14 @@ Public Module BD
             Return BasesParaCompatibilidad.BD.RealizarConsulta(linea)
         End Function
 
-        Public Function ConsultaVer(ByVal top100 As Boolean, ByVal datos As String, ByVal tabla As String, ByVal restriccion As String) As DataTable
-            If top100 Then
-                Linea = "select top 100 " + datos + " from " + tabla + " where " + restriccion
-            Else
-                Linea = "select " + datos + " from " + tabla + " where " + restriccion
-            End If
-            Return BasesParaCompatibilidad.BD.RealizarConsulta(linea)
-        End Function
+        'Public Function ConsultaVer(ByVal top100 As Boolean, ByVal datos As String, ByVal tabla As String, ByVal restriccion As String) As DataTable
+        '    If top100 Then
+        '        Linea = "select top 100 " + datos + " from " + tabla + " where " + restriccion
+        '    Else
+        '        Linea = "select " + datos + " from " + tabla + " where " + restriccion
+        '    End If
+        '    Return BasesParaCompatibilidad.BD.RealizarConsulta(linea)
+        'End Function
 
         Public Function ConsultaVer(ByVal datos As String, ByVal tabla As String) As DataTable
             Linea = "select " + datos + If(tabla <> "", " from " + tabla, "")
