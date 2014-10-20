@@ -374,11 +374,11 @@ Public Class frmEntplantillasBoletines
         'recuperar los parametros y almacenarlos en un dbo o coleccion
         If Me.GetValores Then
             Try
-                If spBoletin.GrabarBoletin(dbo) Then
+                If spBoletin.GrabarBoletin(dtb, dbo) Then
                     RaiseEvent afterSave(Me, Nothing)
                     Me.Close()
                 Else
-                    messagebox.show("No se pudo guardar el registro. Asegurese de tener conexion a la red.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    MessageBox.Show("No se pudo guardar el registro. Asegurese de tener conexion a la red.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
             Catch ex As Exception
                 messagebox.show("No se pudo guardar el registro. Detalles:" & Environment.NewLine & Environment.NewLine, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -408,7 +408,7 @@ Public Class frmEntplantillasBoletines
 
     Private Sub butGuardar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
         If GetValores() Then
-            If spBoletin.GrabarBoletin(Me.m_boletin) Then
+            If spBoletin.GrabarBoletin(dtb, Me.m_boletin) Then
                 If Not Me.padre Is Nothing Then Me.padre.habilitarFormulario()
                 Me.Close()
             End If

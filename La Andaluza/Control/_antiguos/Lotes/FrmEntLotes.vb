@@ -44,11 +44,16 @@ Public Class FrmEntLotes
     Private frmTRazabilidad As frmTrazabilidad
     Private dtb As BasesParaCompatibilidad.DataBase
 
+    Private dbo As DBO_Lotes1
+    Private sp As spLotes1
+
+
     Public Sub New()
 
         InitializeComponent()
 
         dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        sp = New spLotes1
         Me.dtsMue = New dtsLotes.LotesDataTable
         Me.dtsCompuestoPor = New dtsLotesComponentes.LotesComponentesDataTable
         Me.dtsComponenteDe = New dtsLotesComponentes.LotesComponentesDataTable
@@ -290,6 +295,9 @@ Public Class FrmEntLotes
                 tsrepetir.TextAlign = ContentAlignment.MiddleRight
                 AddHandler tsrepetir.Click, AddressOf tsrepetir_click
             End If
+
+
+            dbo = Me.sp.Select_Record(LoteID)
         End If
     End Sub
 
@@ -302,12 +310,15 @@ Public Class FrmEntLotes
     End Sub
 
     Overrides Sub Guardar()
+        If Not Me.comprobarDatos(dtb) Then
+            MessageBox.Show("Los valores han cambiado desde que se abrio el formulario, cierrelo y vuelva a hacer sus cambios", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End If
+
         dtb.EmpezarTransaccion()
 
         Try
-            If Not Me.comprobarDatos(dtb) Then
-                Throw New Exception("Los valores han cambiado desde que se abrio el formulario, cierrelo y vuelva a hacer sus cambios")
-            End If
+
 
             If Me.Text.Substring(0, 8) = "Insertar" Then
                 LoteID = 0
@@ -361,6 +372,7 @@ Public Class FrmEntLotes
                     dtb.TerminarTransaccion()
                 End If
 
+                dbo = sp.Select_Record(LoteID)
                 'Me.Close()
             End If
         Catch ex As Exception
@@ -370,6 +382,10 @@ Public Class FrmEntLotes
     End Sub
 
     Public Function comprobarDatos(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        If Not LoteID = 0 Then
+            Return sp.comprobar(dtb, dbo)
+        End If
+
         Return True
     End Function
 

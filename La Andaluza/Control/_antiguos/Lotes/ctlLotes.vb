@@ -217,6 +217,21 @@ Public Class ctlLotes
         chb.Enabled = True
         txt.Obligatorio = False
         txt.validarTextBox()
+        AddHandler txt.TextChanged, AddressOf guardarvalor
+    End Sub
+
+    Private Sub guardarvalor(sender As Object, e As EventArgs)
+        Try
+            Dim txt As BasesParaCompatibilidad.CuadroDeTextoMuestra = CType(sender, BasesParaCompatibilidad.CuadroDeTextoMuestra)
+            Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+
+            If txt.Tag = 1 Then
+                guardarObservacionesLotes(dtb, txt)
+            Else
+                guardarValoresLotes(dtb, txt, True)
+            End If
+        Catch ex As Exception
+        End Try
     End Sub
 
     Public Function NuevaAnalitica(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal Nombre As String, ByVal LoteID As Integer, ByVal AnalistaID As Integer, ByVal CatadorID As Integer) As Integer
@@ -264,7 +279,7 @@ Public Class ctlLotes
         txtParametro.Text = clsAnaVal.cargar(dtb)
 
         clsAnaReq._ParametroID = txtParametro.ParametroID
-        If clsAnaReq.existe Then
+        If clsAnaReq.existe(dtb) Then
             Requerido = True
         Else
             Requerido = False
@@ -733,7 +748,7 @@ Public Class ctlLotes
         End If
     End Sub
 
-   
+
     Public Function mostrarTodosLotesPorTipoLoteoProducto(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal TipoLoteId As Integer, ByVal tipoProductoID As Integer, ByVal enologicos As Boolean, ByVal top100 As Boolean, Optional ByVal id As Integer = Nothing) As DataTable
         Dim tabla As New DataTable
         clsLot._TipoLoteID = TipoLoteId
@@ -938,7 +953,7 @@ Public Class ctlLotes
         End If
 
         clsAnaReq._ParametroID = txtParametro.ParametroID
-        If clsAnaReq.existe Then
+        If clsAnaReq.existe(dtb) Then
             If Not Requerido Then
                 If Not clsAnaReq.Eliminar(dtb) Then
                     Throw New Exception("Error al eliminear las analiticas requeridas")
@@ -1032,7 +1047,7 @@ Public Class ctlLotes
                 Return False
             End If
         Else
-            If Not clsLot.Modificar(dtb) Then                
+            If Not clsLot.Modificar(dtb) Then
                 Return False
             End If
         End If
@@ -1129,37 +1144,37 @@ Public Class ctlLotes
         dtb.EmpezarTransaccion()
         Try
 
-     
-        clsAna._LoteID = ID
+
+            clsAna._LoteID = ID
 
             Dim tabla As DataTable = clsAna.DevolverPorMuestra(dtb)
-        Dim i As Integer
-        While i < tabla.Rows.Count
-            'eliminar analitica Valores
-            clsAnaVal._AnaliticaID = tabla.Rows(i).Item(0)
+            Dim i As Integer
+            While i < tabla.Rows.Count
+                'eliminar analitica Valores
+                clsAnaVal._AnaliticaID = tabla.Rows(i).Item(0)
                 If Not clsAnaVal.EliminarPorAnalitica(dtb) Then Throw New Exception("Error al eliminar valores")
 
-            'eliminar analitica Requerimientos
-            clsAnaReq._AnaliticaID = tabla.Rows(i).Item(0)
+                'eliminar analitica Requerimientos
+                clsAnaReq._AnaliticaID = tabla.Rows(i).Item(0)
                 If Not clsAnaReq.EliminarPorAnalitica(dtb) Then Throw New Exception("Error al eliminar requeriientos")
 
-            'eliminar analitica Muestra Observacion
-            clsMueObs._AnaliticaID = tabla.Rows(i).Item(0)
+                'eliminar analitica Muestra Observacion
+                clsMueObs._AnaliticaID = tabla.Rows(i).Item(0)
                 If Not clsMueObs.EliminarPorAnalitica(dtb) Then Throw New Exception("Error al eliminar observaciones de muestra")
 
-            'eliminar analitica externa
-            clsAnaExt._AnaliticaID = tabla.Rows(i).Item(0)
+                'eliminar analitica externa
+                clsAnaExt._AnaliticaID = tabla.Rows(i).Item(0)
                 If Not clsAnaExt.EliminarPorAnalitica(dtb) Then Throw New Exception("Error al eliminar analitica externa")
 
-            'eliminar analitica
-            clsAna._AnaliticaID = tabla.Rows(i).Item(0)
+                'eliminar analitica
+                clsAna._AnaliticaID = tabla.Rows(i).Item(0)
                 If Not clsAna.Eliminar(dtb) Then Throw New Exception("Erro al eliminar analitica")
-            i = i + 1
+                i = i + 1
 
-        End While
+            End While
 
-        'eliminar muestra
-        clsLot._LoteID = ID
+            'eliminar muestra
+            clsLot._LoteID = ID
             If Not clsLot.Eliminar(dtb) Then Throw New Exception("Erro al eliminar lote")
 
             dtb.TerminarTransaccion()

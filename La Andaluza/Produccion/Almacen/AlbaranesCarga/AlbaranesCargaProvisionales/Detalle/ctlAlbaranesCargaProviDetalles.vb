@@ -21,9 +21,7 @@ Public Class ctlAlbaranesCargaProviDetalles
             Lote = axu(1)
         End If
 
-        Try
-            If Deprecated.ConsultaInsertarConcampos( _
-                "([AlbaranCargaProviMaestroID],[SCC] ,[CodigoQS] ,[AticuloDescripcion] ,[Cajas] ,[UnidadMedidaID] ,[Lote],[TipoPaletID] ,[Observaciones] ,[Reserva1] ,[Reserva2] ,[Reserva3], LoteAlternativo, FechaModificacion, UsuarioModificacion)", _
+            If dtb.ConsultaAlteraciones("insert into AlbaranesCargaProviDetalles([AlbaranCargaProviMaestroID],[SCC] ,[CodigoQS] ,[AticuloDescripcion] ,[Cajas] ,[UnidadMedidaID] ,[Lote],[TipoPaletID] ,[Observaciones] ,[Reserva1] ,[Reserva2] ,[Reserva3], LoteAlternativo, FechaModificacion, UsuarioModificacion) values(" & _
                        "" & Convert.ToString(AlbaranCargaProviMaestroID) & "," & _
                        "" & Convert.ToString(SCC) & "," & _
                        "" & Convert.ToString(CodigoQS) & "," & _
@@ -36,8 +34,7 @@ Public Class ctlAlbaranesCargaProviDetalles
                        "'" & Reserva1 & "'," & _
                        "'" & Reserva2 & "'," & _
                        "'" & Reserva3 & "'," & _
-                       "'" & LoteAlternativo & "'", _
-                       "AlbaranesCargaProviDetalles") = 1 Then
+                       "'" & LoteAlternativo & "')") Then
 
                 dtb.PrepararConsulta("select max(AlbaranCargaProviDetalleID) from AlbaranesCargaProviDetalles")
                 AlbaranCargaProviDetalleID = dtb.Consultar().Rows(0).Item(0)
@@ -45,9 +42,7 @@ Public Class ctlAlbaranesCargaProviDetalles
             Else
                 Return 0
             End If
-        Catch ex As Exception
-            Return 0
-        End Try
+     
 
     End Function
 

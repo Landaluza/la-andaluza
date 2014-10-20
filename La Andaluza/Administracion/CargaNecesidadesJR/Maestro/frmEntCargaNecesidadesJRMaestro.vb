@@ -7,17 +7,22 @@ Public Class frmEntCargaNecesidadesJRMaestro
     Private m_MaestroID As Integer = 1 'Lo hago = 1 solamente para que no de error al llamar a Update
     Private m_Tabla As DataTable
     Private m_Posicion As Integer
-    Dim YaGuardado As Boolean = False
+    Private YaGuardado As Boolean = False
     Private sp As New spCargasNecesidades
+    Private dtb As BasesParaCompatibilidad.DataBase
 
     Public Sub New() 'Insertar
         InitializeComponent()
+        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+
         Me.FechaDateTimePicker.activarFoco()
         Me.HoraDateTimePicker.activarFoco()
     End Sub
 
     Public Sub New(ByVal currentRow As DataGridViewRow) 'Modificar
         InitializeComponent()
+        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+
         m_currentRow = currentRow
         Me.FechaDateTimePicker.activarFoco()
         Me.HoraDateTimePicker.activarFoco()
@@ -25,6 +30,8 @@ Public Class frmEntCargaNecesidadesJRMaestro
 
     Public Sub New(ByVal Tabla As DataTable, ByVal Posicion As Integer) 'Ver
         InitializeComponent()
+        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+
         m_Tabla = Tabla
         m_Posicion = Posicion
         Me.FechaDateTimePicker.activarFoco()
@@ -47,7 +54,9 @@ Public Class frmEntCargaNecesidadesJRMaestro
 
         If Me.Text.Substring(0, 3) = "Mod" Or Me.Text.Substring(0, 3) = "Ver" Then
             With dgv
-                .DataSource = Deprecated.ConsultaProcedAlmacenado("SelectCargaNecesidadesDetallesByMaestroID", CargaNecesidadesJRMaestroIDCuadroDeTexto.Text)
+                dtb.PrepararConsulta("SelectCargaNecesidadesDetallesByMaestroID @id")
+                dtb.AñadirParametroConsulta("@id", CargaNecesidadesJRMaestroIDCuadroDeTexto.Text)
+                .DataSource = dtb.Consultar()
                 .Columns("DetalleID").Visible = False
                 .Columns("MaestroID").Visible = False
                 .FormatoColumna("Descripcion", "Articulo", BasesParaCompatibilidad.TiposColumna.Izquierda, 450, 2)
@@ -104,7 +113,9 @@ Public Class frmEntCargaNecesidadesJRMaestro
         FrmEnt.Text = "Insertar"
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         FrmEnt.Dispose()
-        dgv.DataSource = Deprecated.ConsultaProcedAlmacenado("SelectCargaNecesidadesDetallesByMaestroID", m_MaestroID)
+        dtb.PrepararConsulta("SelectCargaNecesidadesDetallesByMaestroID @id")
+        dtb.AñadirParametroConsulta("@id", m_MaestroID)
+        dgv.DataSource = dtb.Consultar
         dgv.MoveLast()
     End Sub
 
@@ -125,7 +136,9 @@ Public Class frmEntCargaNecesidadesJRMaestro
                           "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If response = DialogResult.Yes Then
             Me.sp.spDeleteCargaNecesidadesJRDetalle((DetalleID))
-            dgv.DataSource = Deprecated.ConsultaProcedAlmacenado("SelectCargaNecesidadesDetallesByMaestroID", m_MaestroID)
+            dtb.PrepararConsulta("SelectCargaNecesidadesDetallesByMaestroID @id")
+            dtb.AñadirParametroConsulta("@id", m_MaestroID)
+            dgv.DataSource = dtb.Consultar
         End If
     End Sub
 

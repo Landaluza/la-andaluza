@@ -31,10 +31,10 @@ Public Class clsAnaliticasRequerimientos
 #Region "Propiedades"
 
 
-    Public Function existe() As Boolean
+    Public Function existe(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.PrepararConsulta("select Count(*) from AnaliticasRequerimientos where AnaliticaID = " & Convert.ToString(AnaliticaID) & " and ParametroID = " & Convert.ToString(ParametroID))
 
-        Return Convert.ToBoolean(Deprecated.ConsultaVer("Count(*)", "AnaliticasRequerimientos", "AnaliticaID = " & Convert.ToString(AnaliticaID) & " and ParametroID = " & Convert.ToString(ParametroID)).Rows(0).Item(0) > 0)
-
+        Return Convert.ToBoolean(dtb.Consultar().Rows(0).Item(0) > 0)
     End Function
 
 

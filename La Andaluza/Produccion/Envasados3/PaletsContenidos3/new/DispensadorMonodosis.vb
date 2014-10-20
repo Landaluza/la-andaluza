@@ -448,92 +448,92 @@ Public Class DispensadorMonodosis
 
     'End Sub
 
-    Public Function moverNC(ByVal scc As Integer, ByVal cantidad As Integer, ByRef trans As SqlClient.SqlTransaction) As Boolean
-        Dim textNotificar As String = ""
-        Dim fecha As String = DateTime.Now.Day & "/" & DateTime.Now.Month & "/" & DateTime.Now.Year
-        Dim linea As String
-        Dim spPalet As New spPaletsProducidos
-        Dim m_palet As DBO_PaletsProducidos = spPalet.Select_RecordBySSCC(scc, trans)
-        Dim spFormatosEnvasados As New spFormatosEnvasados
-        Dim dboFormato As DBO_FormatosEnvasados = spFormatosEnvasados.Select_Record(m_palet.FormatoID, trans)
-        Dim dbo_movimiento As New Dbo_PaletsMovimiento
-        Dim dbo_MovimientoDB As New spPaletsMovimiento
-        Dim paletNC As Integer = spPalet.No_conforme_por_formato(dboFormato.TipoFormatoEnvasadoID, trans)
+    'Public Function moverNC(ByVal scc As Integer, ByVal cantidad As Integer, ByRef trans As SqlClient.SqlTransaction) As Boolean
+    '    Dim textNotificar As String = ""
+    '    Dim fecha As String = DateTime.Now.Day & "/" & DateTime.Now.Month & "/" & DateTime.Now.Year
+    '    Dim linea As String
+    '    Dim spPalet As New spPaletsProducidos
+    '    Dim m_palet As DBO_PaletsProducidos = spPalet.Select_RecordBySSCC(scc, trans)
+    '    Dim spFormatosEnvasados As New spFormatosEnvasados
+    '    Dim dboFormato As DBO_FormatosEnvasados = spFormatosEnvasados.Select_Record(m_palet.FormatoID, trans)
+    '    Dim dbo_movimiento As New Dbo_PaletsMovimiento
+    '    Dim dbo_MovimientoDB As New spPaletsMovimiento
+    '    Dim paletNC As Integer = spPalet.No_conforme_por_formato(dboFormato.TipoFormatoEnvasadoID, trans)
 
-        If m_palet.Id_Estado <> 3 Then
-            dbo_movimiento.Tipo = 18
-            dbo_movimiento.Tipo_IsDBNull = False
-            dbo_movimiento.PaletID_IsDBNull = False
-            dbo_movimiento.Cajas = cantidad
-            dbo_movimiento.Fecha = DateTime.Now
-            dbo_movimiento.Comentarios = "no conformidad automatizada"
-            dbo_movimiento.Comentarios_IsDBNull = False
-            dbo_movimiento.AutorizadoPor = Nothing
-            dbo_movimiento.AutorizadoPor_IsDBNull = True
-            dbo_movimiento.Receptor = Nothing
-            dbo_movimiento.Receptor_IsDBNull = True
-            dbo_movimiento.Inicial_IsDBNull = True
-            dbo_movimiento.Motivo = ""
-            dbo_movimiento.Motivo_IsDBNull = False
-            dbo_movimiento.Solicitante = Nothing
-            dbo_movimiento.Solicitante_IsDBNull = True
-            dbo_movimiento.Cliente = Nothing
-            dbo_movimiento.Cliente_IsDBNull = True
-            'dbo_movimiento.Tipo = 5
+    '    If m_palet.Id_Estado <> 3 Then
+    '        dbo_movimiento.Tipo = 18
+    '        dbo_movimiento.Tipo_IsDBNull = False
+    '        dbo_movimiento.PaletID_IsDBNull = False
+    '        dbo_movimiento.Cajas = cantidad
+    '        dbo_movimiento.Fecha = DateTime.Now
+    '        dbo_movimiento.Comentarios = "no conformidad automatizada"
+    '        dbo_movimiento.Comentarios_IsDBNull = False
+    '        dbo_movimiento.AutorizadoPor = Nothing
+    '        dbo_movimiento.AutorizadoPor_IsDBNull = True
+    '        dbo_movimiento.Receptor = Nothing
+    '        dbo_movimiento.Receptor_IsDBNull = True
+    '        dbo_movimiento.Inicial_IsDBNull = True
+    '        dbo_movimiento.Motivo = ""
+    '        dbo_movimiento.Motivo_IsDBNull = False
+    '        dbo_movimiento.Solicitante = Nothing
+    '        dbo_movimiento.Solicitante_IsDBNull = True
+    '        dbo_movimiento.Cliente = Nothing
+    '        dbo_movimiento.Cliente_IsDBNull = True
+    '        'dbo_movimiento.Tipo = 5
 
-            dbo_movimiento.PaletID = m_palet.ID
-            dbo_MovimientoDB.Add(dbo_movimiento)
-
-
-            'movimiento al nc
-
-            dbo_movimiento.Tipo = 18
-            dbo_movimiento.Tipo_IsDBNull = False
-            dbo_movimiento.PaletID_IsDBNull = False
-            dbo_movimiento.Cajas = -1 * cantidad
-            dbo_movimiento.Fecha = DateTime.Now
-            dbo_movimiento.Comentarios = "no conformidad automatizada"
-            dbo_movimiento.Comentarios_IsDBNull = False
-            dbo_movimiento.AutorizadoPor = Nothing
-            dbo_movimiento.AutorizadoPor_IsDBNull = True
-            dbo_movimiento.Receptor = Nothing
-            dbo_movimiento.Receptor_IsDBNull = True
-            dbo_movimiento.Inicial_IsDBNull = True
-            dbo_movimiento.Motivo = ""
-            dbo_movimiento.Motivo_IsDBNull = False
-            dbo_movimiento.Solicitante = Nothing
-            dbo_movimiento.Solicitante_IsDBNull = True
-            dbo_movimiento.Cliente = Nothing
-            dbo_movimiento.Cliente_IsDBNull = True
-            'dbo_movimiento.Tipo = 5
-
-            dbo_movimiento.PaletID = paletNC
-            dbo_MovimientoDB.Add(dbo_movimiento)
-
-            textNotificar = textNotificar & "Scc: " & m_palet.SCC & ", cajas: " & dbo_movimiento.Cajas & Environment.NewLine()
-            linea = "No conformidad automatizada. Scc: " & m_palet.SCC & ", cajas:" & dbo_movimiento.Cajas & " , fecha: " & fecha & ""
-
-            Deprecated.ConsultaInsertarSinDatosUsuario("'" & linea & "', 9, 0", "notificaciones(texto, id_tipousuario, leido)")
-        End If
-
-        If textNotificar <> "" Then
-            textNotificar = "Lista de matriculas afectadas por no conformidades automaticas: " & Environment.NewLine() & textNotificar
-            Dim mail As New Mail.Mail1And1(True, "No conformidades automatizadas. Fecha: " & DateTime.Now.ToString, textNotificar, String.Empty, _
-                                                                                      Config.MailReportAddress, Config.MailReportPass, "control@landaluza.es", _
-                                                                                      String.Empty, String.Empty, Config.MailClientHost, False)
-        End If
+    '        dbo_movimiento.PaletID = m_palet.ID
+    '        dbo_MovimientoDB.Add(dbo_movimiento)
 
 
-        Return True
-    End Function
+    '        'movimiento al nc
 
-    Public Sub realizarDiferencia(ByRef cbo As ComboBox)
+    '        dbo_movimiento.Tipo = 18
+    '        dbo_movimiento.Tipo_IsDBNull = False
+    '        dbo_movimiento.PaletID_IsDBNull = False
+    '        dbo_movimiento.Cajas = -1 * cantidad
+    '        dbo_movimiento.Fecha = DateTime.Now
+    '        dbo_movimiento.Comentarios = "no conformidad automatizada"
+    '        dbo_movimiento.Comentarios_IsDBNull = False
+    '        dbo_movimiento.AutorizadoPor = Nothing
+    '        dbo_movimiento.AutorizadoPor_IsDBNull = True
+    '        dbo_movimiento.Receptor = Nothing
+    '        dbo_movimiento.Receptor_IsDBNull = True
+    '        dbo_movimiento.Inicial_IsDBNull = True
+    '        dbo_movimiento.Motivo = ""
+    '        dbo_movimiento.Motivo_IsDBNull = False
+    '        dbo_movimiento.Solicitante = Nothing
+    '        dbo_movimiento.Solicitante_IsDBNull = True
+    '        dbo_movimiento.Cliente = Nothing
+    '        dbo_movimiento.Cliente_IsDBNull = True
+    '        'dbo_movimiento.Tipo = 5
+
+    '        dbo_movimiento.PaletID = paletNC
+    '        dbo_MovimientoDB.Add(dbo_movimiento)
+
+    '        textNotificar = textNotificar & "Scc: " & m_palet.SCC & ", cajas: " & dbo_movimiento.Cajas & Environment.NewLine()
+    '        linea = "No conformidad automatizada. Scc: " & m_palet.SCC & ", cajas:" & dbo_movimiento.Cajas & " , fecha: " & fecha & ""
+
+    '        Deprecated.ConsultaInsertarSinDatosUsuario("'" & linea & "', 9, 0", "notificaciones(texto, id_tipousuario, leido)")
+    '    End If
+
+    '    If textNotificar <> "" Then
+    '        textNotificar = "Lista de matriculas afectadas por no conformidades automaticas: " & Environment.NewLine() & textNotificar
+    '        Dim mail As New Mail.Mail1And1(True, "No conformidades automatizadas. Fecha: " & DateTime.Now.ToString, textNotificar, String.Empty, _
+    '                                                                                  Config.MailReportAddress, Config.MailReportPass, "control@landaluza.es", _
+    '                                                                                  String.Empty, String.Empty, Config.MailClientHost, False)
+    '    End If
+
+
+    '    Return True
+    'End Function
+
+    Public Sub realizarDiferencia(ByRef dtb As BasesParaCompatibilidad.DataBase, ByRef cbo As ComboBox)
         Dim cont As Integer
         Dim textNotificar As String = ""
         Dim fecha As String = Now.Date.Day & "/" & Now.Date.Month & "/" & Now.Date.Year
         Dim linea As String
         Dim spPaletsProducidos2 As New spPaletsProducidos2
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+
 
         For cont = 0 To cbo.SelectedIndex - 1
             Dim m_palet As DBO_PaletsProducidos2 = spPaletsProducidos2.Select_RecordBySSCCSinMachacar(cbo.Items(cont)(1), BasesParaCompatibilidad.BD.transaction)
@@ -569,7 +569,8 @@ Public Class DispensadorMonodosis
                 textNotificar = textNotificar & "Scc: " & m_palet.SCC & ", cajas: " & dbo_movimiento.Cajas & Environment.NewLine
                 linea = "Diferencia automatizada. Scc: " & m_palet.SCC & ", cajas:" & dbo_movimiento.Cajas & " , fecha: " & fecha & ""
 
-                Deprecated.ConsultaInsertarSinDatosUsuario("'" & linea & "', 9, 0", "notificaciones(texto, id_tipousuario, leido)")
+                dtb.PrepararConsulta("insert into notificaciones(texto, id_tipousuario, leido) values('" & linea & "', 9, 0)")
+                dtb.Consultar(True)
             Else
                 'Dim frmNoConforme As New frmEncajadoNoConforme
                 'frmNoConforme.ShowDialog()
@@ -620,7 +621,7 @@ Public Class DispensadorMonodosis
 
     End Sub
 
-    Public Sub añadirMovimientoEncajado(ByRef padre As frmEntPaletsProducidos2, ByRef cbo As ComboBox, _
+    Public Sub añadirMovimientoEncajado(ByRef dtb As BasesParaCompatibilidad.DataBase, ByRef padre As frmEntPaletsProducidos2, ByRef cbo As ComboBox, _
                                        ByVal cantidadCajas As Integer, ByRef m_DBO_PaletsContenidos2 As DBO_PaletsContenidos2, _
                                        ByRef spPMovimientos As spPaletsMovimiento, ByRef dbomovimiento As Dbo_PaletsMovimiento, _
                                        ByRef m_DBO_FormatoEnvasado As DBO_FormatosEnvasados, Optional ByVal Doypack As Boolean = False)
@@ -633,7 +634,6 @@ Public Class DispensadorMonodosis
         Dim dbo_MovimientoDB As New spPaletsMovimiento
         Dim fuente As String = ""
         Dim spPaletsProducidos2 As New spPaletsProducidos2
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
 
         dbo_movimiento.Fecha = Now.Date
         dbo_movimiento.Cajas = cantidadCajas
@@ -666,7 +666,8 @@ Public Class DispensadorMonodosis
         '
         'dbo_MovimientoDB.Add(dbo_movimiento)
         Dim fecha As String = Now.Date.Day & "/" & Now.Date.Month & "/" & Now.Date.Year
-        Deprecated.ConsultaInsertarSinDatosUsuario("'Envasado de " & m_PaletProducidoOrigen.FormatoDescripcion & " el " & fecha & ". SCC origen: " & m_PaletProducidoOrigen.SCC & "SCC destino:" & m_PaletProducidoDestino.SCC & "', 9, 0", "notificaciones(texto, id_tipousuario, leido)")
+        dtb.PrepararConsulta("insert into notificaciones(texto, id_tipousuario, leido) values('Envasado de " & m_PaletProducidoOrigen.FormatoDescripcion & " el " & fecha & ". SCC origen: " & m_PaletProducidoOrigen.SCC & "SCC destino:" & m_PaletProducidoDestino.SCC & "', 9, 0)")
+        dtb.Consultar(True)
         Try
             Dim mail As New Mail.Mail1And1(True, "Envasado de " & m_PaletProducidoOrigen.FormatoDescripcion, "Envasado de " & m_PaletProducidoOrigen.FormatoDescripcion & " el " & Convert.ToString(DateTime.Today.Date) & "." & Environment.NewLine & "SCC origen: " & m_PaletProducidoOrigen.SCC & ", cajas de origen: " & dbo_movimiento.Cajas & "; SCC destino:" & m_PaletProducidoDestino.SCC & ", Cajas encajadas: " & cajasInicioMail, String.Empty, _
                                                                                    Config.MailReportAddress, Config.MailReportPass, "control@landaluza.es", _

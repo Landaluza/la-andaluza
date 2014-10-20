@@ -58,6 +58,7 @@ Public Class frmEntPaletsContenidos2
 
             Dim modoAntesDeCambios As Integer
             BasesParaCompatibilidad.BD.EmpezarTransaccion()
+            Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server, BasesParaCompatibilidad.BD.Cnx, BasesParaCompatibilidad.BD.transaction)
 
             If Not padre Is Nothing Then
                 modoAntesDeCambios = padre.ModoDeApertura
@@ -85,7 +86,7 @@ Public Class frmEntPaletsContenidos2
 
             'realzia los movimientso de las monodosis
             If Me.cboMonodosis.Visible And Me.m_DBO_PaletsContenidos2.CantidadCajas <> 0 Then
-                monodosis.añadirMovimientoEncajado(Me.padre, Me.cboMonodosis, Me.txtCantidadCajas.Text, _
+                monodosis.añadirMovimientoEncajado(dtb, Me.padre, Me.cboMonodosis, Me.txtCantidadCajas.Text, _
                                                    Me.m_DBO_PaletsContenidos2, Me.spPMovimientos, Me.dbo_movimiento, _
                                                    Me.m_DBO_FormatoEnvasado)
 
@@ -100,7 +101,7 @@ Public Class frmEntPaletsContenidos2
                 If indice > 0 Then
                     Dim resp As DialogResult = MessageBox.Show("El palet desde el que se envasa no es el mas antiguo, ¿se han quedado sin cantidad los anteriores?", "Atencion", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                     If resp = DialogResult.Yes Then
-                        monodosis.realizarDiferencia(Me.cboMonodosis)
+                        monodosis.realizarDiferencia(dtb, Me.cboMonodosis)
                     End If
                 End If
             Else
@@ -109,7 +110,7 @@ Public Class frmEntPaletsContenidos2
                         If TypeOf p Is Panel Then
                             For Each c As Object In p.Controls
                                 If TypeOf c Is ComboBox Then
-                                    monodosis.añadirMovimientoEncajado(Me.padre, c, Me.txtCantidadCajas.Text, _
+                                    monodosis.añadirMovimientoEncajado(dtb, Me.padre, c, Me.txtCantidadCajas.Text, _
                                                                        Me.m_DBO_PaletsContenidos2, Me.spPMovimientos, _
                                                                        Me.dbo_movimiento, Me.m_DBO_FormatoEnvasado, True)
 
@@ -134,7 +135,7 @@ Public Class frmEntPaletsContenidos2
 
                                         Dim resp As DialogResult = MessageBox.Show("El palet desde el que se envasa no es el mas antiguo, ¿se han quedado sin cantidad los anteriores?", nombre, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                                         If resp = DialogResult.Yes Then
-                                            monodosis.realizarDiferencia(c)
+                                            monodosis.realizarDiferencia(dtb, c)
                                         End If
                                     End If
                                 End If

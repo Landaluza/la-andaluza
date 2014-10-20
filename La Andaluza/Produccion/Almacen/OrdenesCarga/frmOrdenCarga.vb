@@ -9,9 +9,12 @@ Public Class frmOrdenCarga
     Private PaletsSeleccionados As Integer = 0
     Private O_Item As ListViewItem
     Private TotalCajasAlmacen As Integer
+    Private dtb As BasesParaCompatibilidad.DataBase
 
     Public Sub New()
         InitializeComponent()
+        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+
         Palets = spPaletsProducidos.SelectPaletsProducidosBySccAndReferencia
         PaletsProducidosSumReferencia = spPaletsProducidos.SelectPaletsProducidosSumReferencia
 
@@ -112,6 +115,8 @@ Public Class frmOrdenCarga
         Dim spCargasNecesidades As New spCargasNecesidades
         Dim UltimasNecesidadesID As Integer = spCargasNecesidades.spMaxCargaNecesidadesMaestro
         With dgvNecesidadesJR
+            dtb.prepararconsulta("SelectCargaNecDetByMaestroIdTotal @id")
+            dtb.añadirparam()
             .DataSource = Deprecated.ConsultaProcedAlmacenado("SelectCargaNecDetByMaestroIdTotal", UltimasNecesidadesID)
             .FormatoColumna("Descripcion", BasesParaCompatibilidad.TiposColumna.Izquierda, 235, 0)
             .FormatoColumna("Carga", BasesParaCompatibilidad.TiposColumna.Miles, , 1)

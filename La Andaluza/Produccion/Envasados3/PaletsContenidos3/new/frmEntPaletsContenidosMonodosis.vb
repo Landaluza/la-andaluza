@@ -148,6 +148,8 @@ Public Class frmEntPaletsContenidosMonodosis
     Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
         If Me.GetValores Then
             BasesParaCompatibilidad.BD.EmpezarTransaccion()
+            Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server, BasesParaCompatibilidad.BD.Cnx, BasesParaCompatibilidad.BD.transaction)
+
             Try
                 If sp.Grabar(dbo, BasesParaCompatibilidad.BD.transaction) Then
                     evitarCerrarSinGuardar = False
@@ -177,7 +179,7 @@ Public Class frmEntPaletsContenidosMonodosis
                     For Each row As DataGridViewRow In Me.dgvMermas.Rows
                         If Not row.Cells("Mover").Value Is Nothing Then
                             If CInt(row.Cells("Mover").Value) > 0 Then
-                                monodosis.moverNC(row.Cells("SCC").Value, row.Cells("Mover").Value, BasesParaCompatibilidad.BD.transaction)
+                                monodosis.moverNC(dtb, row.Cells("SCC").Value, row.Cells("Mover").Value, BasesParaCompatibilidad.BD.transaction)
                             End If
                         End If
 
@@ -194,7 +196,7 @@ Public Class frmEntPaletsContenidosMonodosis
                 End If
             Catch ex As Exception
                 BasesParaCompatibilidad.BD.CancelarTransaccion()
-                messageBox.show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                MessageBox.Show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             End Try
         End If
     End Sub

@@ -241,7 +241,8 @@ Public Class Monodosis
             textNotificar = textNotificar & "Scc: " & m_palet.SCC & ", cajas: " & dbo_movimiento.Cajas & Environment.NewLine()
             linea = "Diferencia automatizada. Scc: " & m_palet.SCC & ", cajas:" & dbo_movimiento.Cajas & " , fecha: " & fecha & ""
 
-            Deprecated.ConsultaInsertarSinDatosUsuario("'" & linea & "', 9, 0", "notificaciones(texto, id_tipousuario, leido)")
+            dtb.PrepararConsulta("insert into notificaciones(texto, id_tipousuario, leido) values('" & linea & "', 9, 0)")
+            dtb.Consultar(True)
         End If
 
         If textNotificar <> "" Then
@@ -255,7 +256,7 @@ Public Class Monodosis
         Return True
     End Function
 
-    Public Function moverNC(ByVal scc As Integer, ByVal cantidad As Integer, ByRef trans As SqlClient.SqlTransaction) As Boolean
+    Public Function moverNC(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal scc As Integer, ByVal cantidad As Integer, ByRef trans As SqlClient.SqlTransaction) As Boolean
         Dim textNotificar As String = ""
         Dim fecha As String = DateTime.Now.Day & "/" & DateTime.Now.Month & "/" & DateTime.Now.Year
         Dim linea As String
@@ -325,7 +326,8 @@ Public Class Monodosis
             textNotificar = textNotificar & "Scc: " & m_palet.SCC & ", cajas: " & dbo_movimiento.Cajas & Environment.NewLine()
             linea = "No conformidad automatizada. Scc: " & m_palet.SCC & ", cajas:" & dbo_movimiento.Cajas & " , fecha: " & fecha & ""
 
-            Deprecated.ConsultaInsertarSinDatosUsuario("'" & linea & "', 9, 0", "notificaciones(texto, id_tipousuario, leido)")
+            dtb.prepararConsulta("insert into notificaciones(texto, id_tipousuario, leido) values('" & linea & "', 9, 0)")
+            dtb.consultar(True)
         End If
 
         If textNotificar <> "" Then

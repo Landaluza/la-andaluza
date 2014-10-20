@@ -465,5 +465,34 @@ Class spLotes1
         Return dtb.ConsultaAlteraciones("update lotes set cantidadrestante = " & p2 & " where loteID =" & loteId)
     End Function
 
+    Public Function comprobar(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal dbo As DBO_Lotes1) As Boolean
+        Dim dbo_actual As DBO_Lotes1 = Me.Select_Record(dbo.LoteID, dtb.Transaccion)
 
+
+        If dbo_actual.LoteID <> dbo.LoteID Then Return False
+        If dbo_actual.Referencia <> dbo.Referencia Then Return False
+        If dbo_actual.Descripcion <> dbo.Descripcion Then Return False
+        If dbo_actual.Fecha <> dbo.Fecha Then Return False
+        If dbo_actual.CantidadRestante <> dbo.CantidadRestante Then Return False
+        If dbo_actual.Observacion <> dbo.Observacion Then Return False
+        If dbo_actual.LoteProveedor <> dbo.LoteProveedor Then Return False
+        If dbo_actual.Botellas <> dbo.Botellas Then Return False
+        If dbo_actual.CantidadID <> dbo.CantidadID Then Return False
+        If dbo_actual.MedidaID <> dbo.MedidaID Then Return False
+        If dbo_actual.EspecificacionID <> dbo.EspecificacionID Then Return False
+        If dbo_actual.TipoLoteID <> dbo.TipoLoteID Then Return False
+        If dbo_actual.TipoProductoID <> dbo.TipoProductoID Then Return False
+        If dbo_actual.CorredorID <> dbo.CorredorID Then Return False
+        If dbo_actual.ProveedorID <> dbo.ProveedorID Then Return False
+        If dbo_actual.LoteConjuntoCompraID <> dbo.LoteConjuntoCompraID Then Return False
+        If dbo_actual.CodigoLote <> dbo.CodigoLote Then Return False
+        If dbo_actual.DepositoID <> dbo.DepositoID Then Return False
+        If dbo_actual.DepositoPrevioID <> dbo.DepositoPrevioID Then Return False
+        If dbo_actual.Revisar <> dbo.Revisar Then Return False
+        If dbo_actual.RecipienteSalidaID <> dbo.RecipienteSalidaID Then Return False
+
+
+        Return True
+
+    End Function
 End Class

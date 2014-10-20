@@ -38,13 +38,17 @@ Inherits BasesParaCompatibilidad.StoredProcedure
        cbo.mam_DataSource("plantillasBoletinesSelectCbo", False)
    End Sub
 
-    Public Function GrabarBoletin(ByVal m_dbo As DBO_plantillasBoletines, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As Boolean
+    Public Function GrabarBoletin(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal m_dbo As DBO_plantillasBoletines, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As Boolean
         Dim retorno As Boolean = True
-        If trans Is Nothing Then BasesParaCompatibilidad.BD.EmpezarTransaccion()
+        If trans Is Nothing Then
+            BasesParaCompatibilidad.BD.EmpezarTransaccion()
+            dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server, BasesParaCompatibilidad.BD.Cnx, BasesParaCompatibilidad.BD.transaction)
+        End If
         Try
             If m_dbo.id = Nothing Then
                 retorno = retorno And MyBase.InsertProcedure(m_dbo, BasesParaCompatibilidad.BD.transaction)
-                m_dbo.id = Deprecated.ConsultaVer("top 1 id", "PlantillasBoletines", String.Empty, "id desc").Rows(0).Item(0) 'Deprecated.ConsultaVer("IDENT_CURRENT('plantillasboletines')", String.Empty).Rows(0).Item(0) '("max(id)", "PlantillasBoletines").Rows(0).Item(0) + 1            
+                dtb.PrepararConsulta("select top 1 id from PlantillasBoletines order by id desc")
+                m_dbo.id = dtb.Consultar().Rows(0).Item(0) 'Deprecated.ConsultaVer("IDENT_CURRENT('plantillasboletines')", String.Empty).Rows(0).Item(0) '("max(id)", "PlantillasBoletines").Rows(0).Item(0) + 1            
             Else
                 retorno = retorno And MyBase.UpdateProcedure(m_dbo, BasesParaCompatibilidad.BD.transaction)
                 retorno = retorno And deleteParameters(m_dbo, BasesParaCompatibilidad.BD.transaction)
@@ -60,7 +64,7 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         Catch ex As Exception
             If trans Is Nothing Then BasesParaCompatibilidad.BD.CancelarTransaccion()
             retorno = False
-            messagebox.show("No se pudo guardar. Detalles: " & Environment.NewLine & Environment.NewLine & ex.Message, "Error al guardar", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("No se pudo guardar. Detalles: " & Environment.NewLine & Environment.NewLine & ex.Message, "Error al guardar", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
         Return retorno

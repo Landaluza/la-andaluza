@@ -291,11 +291,11 @@ Class spFormatosEnvasados2
                              "and lineaEnvasadoID = order by horaFin desc", False).Rows(0).Item(0)
     End Function
 
-    Public Function devolverFormatosPorEnvasadosReport(envasadoid As Integer) As DataTable
-        Return Deprecated.ConsultaProcedAlmacenado("devolverFormatosPorEnvasadosReport", Convert.ToString(envasadoid))
-    End Function
+    'Public Function devolverFormatosPorEnvasadosReport(envasadoid As Integer) As DataTable
+    '    Return Deprecated.ConsultaProcedAlmacenado("devolverFormatosPorEnvasadosReport", Convert.ToString(envasadoid))
+    'End Function
 
-    Public Function devolverProductosPorEnvasadosReport(envasadoid As Integer) As DataTable
-        Return Deprecated.ConsultaProcedAlmacenado("devolverProductosPorEnvasadosReport", Convert.ToString(envasadoid))
-    End Function
+    'Public Function devolverProductosPorEnvasadosReport(envasadoid As Integer) As DataTable
+    '    Return Deprecated.ConsultaProcedAlmacenado("devolverProductosPorEnvasadosReport", Convert.ToString(envasadoid))
+    'End Function
 End Class

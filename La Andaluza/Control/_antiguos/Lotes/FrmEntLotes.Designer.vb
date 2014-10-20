@@ -2400,6 +2400,7 @@ Partial Class FrmEntLotes
         Me.txtMedidaColor.ParametroID = 0
         Me.txtMedidaColor.Size = New System.Drawing.Size(72, 20)
         Me.txtMedidaColor.TabIndex = 13
+        Me.txtMedidaColor.Tag = "1"
         Me.txtMedidaColor.ValorMaximo = 0.0R
         Me.txtMedidaColor.ValorMinimo = 0.0R
         '
@@ -3153,6 +3154,7 @@ Partial Class FrmEntLotes
         Me.txtObservacionesVista.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.txtObservacionesVista.Size = New System.Drawing.Size(182, 60)
         Me.txtObservacionesVista.TabIndex = 21
+        Me.txtObservacionesVista.Tag = "1"
         Me.txtObservacionesVista.ValorMaximo = 0.0R
         Me.txtObservacionesVista.ValorMinimo = 0.0R
         '
@@ -3179,6 +3181,7 @@ Partial Class FrmEntLotes
         Me.txtObservacionesSabor.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.txtObservacionesSabor.Size = New System.Drawing.Size(182, 55)
         Me.txtObservacionesSabor.TabIndex = 15
+        Me.txtObservacionesSabor.Tag = "1"
         Me.txtObservacionesSabor.ValorMaximo = 0.0R
         Me.txtObservacionesSabor.ValorMinimo = 0.0R
         '
@@ -3205,6 +3208,7 @@ Partial Class FrmEntLotes
         Me.txtObservacionesOlfato.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.txtObservacionesOlfato.Size = New System.Drawing.Size(182, 52)
         Me.txtObservacionesOlfato.TabIndex = 7
+        Me.txtObservacionesOlfato.Tag = "1"
         Me.txtObservacionesOlfato.ValorMaximo = 0.0R
         Me.txtObservacionesOlfato.ValorMinimo = 0.0R
         '
@@ -4227,7 +4231,6 @@ Partial Class FrmEntLotes
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.MaximizeBox = True
-        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "FrmEntLotes"
         Me.Controls.SetChildIndex(Me.txtLoteID, 0)
         Me.Controls.SetChildIndex(Me.butInfoTrazabilidad, 0)
