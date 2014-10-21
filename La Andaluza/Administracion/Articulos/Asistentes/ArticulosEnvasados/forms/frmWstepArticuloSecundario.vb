@@ -1,6 +1,6 @@
 ﻿Imports BasesParaCompatibilidad.ComboBoxExtension
 Public Class frmWstepArticuloSecundario
-    Implements BasesParaCompatibilidad.wizardable
+    Implements wizardable
     Private m_DBO_ArticulosEnvasesSecundario As DBO_ArticulosEnvasesSecundarios
     Private m_DBO_TiposFormatos1 As New DBO_ArticulosEnvasadosHistorico
     Private no_crear As Boolean
@@ -71,7 +71,7 @@ Public Class frmWstepArticuloSecundario
         BasesParaCompatibilidad.Pantalla.centerIn(Me.panContenidos, Me)
     End Sub
 
-    Public Sub establecerValores() Implements BasesParaCompatibilidad.wizardable.EstablecerValores
+    Public Sub establecerValores() Implements wizardable.EstablecerValores
         Me.cboCajaID.mam_DataSource("ArticulosEnvasesSecundarios_TiposCajasCbo", False)
         Dim spArticulos1 As New spArticulos1
 
@@ -105,11 +105,11 @@ Public Class frmWstepArticuloSecundario
         End If
     End Sub
 
-    Public Function recuperarValor(ByVal nombre As String) As Object Implements BasesParaCompatibilidad.wizardable.recuperarValor
+    Public Function recuperarValor(ByVal nombre As String) As Object Implements wizardable.recuperarValor
         Return Nothing
     End Function
 
-    Public Function grabarDatos() As Boolean Implements BasesParaCompatibilidad.wizardable.grabarDatos
+    Public Function grabarDatos(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean Implements wizardable.grabarDatos
 
 
 
@@ -119,7 +119,7 @@ Public Class frmWstepArticuloSecundario
             End If
 
             If Me.Enabled Then
-                Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server, BasesParaCompatibilidad.BD.Cnx, BasesParaCompatibilidad.BD.transaction)
+
                 'Dim m_DBO_TiposFormatos1 As New DBO_ArticulosEnvasadosHistorico
                 If Me.m_DBO_ArticulosEnvasesSecundario.ID = Nothing Then Me.m_DBO_ArticulosEnvasesSecundario.ArticuloID = dtb.Consultar("select max(articuloID) from Articulos1", True).Rows(0).Item(0)
                 'If Me.m_DBO_TiposFormatos1.TipoFormatoID = Nothing Then
@@ -171,7 +171,7 @@ Public Class frmWstepArticuloSecundario
 
     End Function
 
-    Public Function comprobarCampos() As Boolean Implements BasesParaCompatibilidad.wizardable.comprobarCampos
+    Public Function comprobarCampos() As Boolean Implements wizardable.comprobarCampos
         Dim errores As String = ""
 
         If Me.Enabled Then

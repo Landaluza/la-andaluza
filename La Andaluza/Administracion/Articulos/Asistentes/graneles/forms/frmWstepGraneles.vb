@@ -1,6 +1,6 @@
 ﻿Imports BasesParaCompatibilidad.ComboBoxExtension
 Public Class frmWstepGraneles
-    Implements BasesParaCompatibilidad.wizardable
+    Implements wizardable
 
     Private m_DBO_ArticuloGranel As DBO_ArticulosGraneles
     Private m_DBO_TiposProductos As DBO_TiposProductos
@@ -41,7 +41,7 @@ Public Class frmWstepGraneles
     End Sub
 
 
-    Public Function comprobarCampos() As Boolean Implements BasesParaCompatibilidad.wizardable.comprobarCampos
+    Public Function comprobarCampos() As Boolean Implements wizardable.comprobarCampos
         Dim errores As String = ""
 
         If cboGranelTipoID.SelectedValue Is Nothing Then
@@ -114,7 +114,7 @@ Public Class frmWstepGraneles
         End If
     End Function
 
-    Public Sub EstablecerValores() Implements BasesParaCompatibilidad.wizardable.EstablecerValores
+    Public Sub EstablecerValores() Implements wizardable.EstablecerValores
         Me.cboGranelTipoID.mam_DataSource("ArticulosGraneles_ArticulosGranelesTiposCbo", False)
         spTiposProductos.cargar_ComboBox(Me.cboTipoProducto)
         spTiposProductos.cargar_MedidasProductos(Me.cbMedidas)
@@ -155,7 +155,7 @@ Public Class frmWstepGraneles
         End If
     End Sub
 
-    Public Function grabarDatos() As Boolean Implements BasesParaCompatibilidad.wizardable.grabarDatos
+    Public Function grabarDatos(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean Implements wizardable.grabarDatos
         If Me.m_DBO_ArticuloGranel.ArticuloID Is Nothing Then Me.m_DBO_ArticuloGranel.ArticuloID = dtb.Consultar("select max(articuloID) from Articulos1", False).Rows(0).Item(0)
 
         If Me.cbCreartipoProducto.Checked Then
@@ -194,7 +194,7 @@ Public Class frmWstepGraneles
         End If
     End Function
 
-    Public Function recuperarValor(ByVal nombre As String) As Object Implements BasesParaCompatibilidad.wizardable.recuperarValor
+    Public Function recuperarValor(ByVal nombre As String) As Object Implements wizardable.recuperarValor
         Return Nothing
     End Function
 

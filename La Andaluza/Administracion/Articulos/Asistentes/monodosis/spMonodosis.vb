@@ -96,11 +96,18 @@ Class spMonodosis
         Return DBO_monodosis
     End Function
 
-    Function limpiarDatos(id As Integer) As Boolean
+    Function limpiarDatos(ByRef dtb As BasesParaCompatibilidad.DataBase, id As Integer) As Boolean
         Try
-            BasesParaCompatibilidad.BD.realizarConsultaAlteraciones("delete from monodosis where id_articuloprimario= " & id)
-            BasesParaCompatibilidad.BD.realizarConsultaAlteraciones("delete from doypack where id_articuloprimario= " & id)
-            Return True
+            dtb.PrepararConsulta("delete from monodosis where id_articuloprimario= @id")
+            dtb.AñadirParametroConsulta("@id", id)
+
+            If Not dtb.Consultar(True) Then
+                Return False
+            End If
+
+            dtb.PrepararConsulta("delete from doypack where id_articuloprimario= @id")
+            dtb.AñadirParametroConsulta("@id", id)
+            Return dtb.Consultar(True)
         Catch ex As Exception
             Return False
         End Try

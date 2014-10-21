@@ -925,6 +925,7 @@
     </Compile>
     <Compile Include="Bases\Conf\BD.vb" />
     <Compile Include="Bases\Conf\UserOptions.vb" />
+    <Compile Include="Bases\Form\wizardable.vb" />
     <Compile Include="Control\Incidencias\frmSeleccionDosFechas.Designer.vb">
       <DependentUpon>frmSeleccionDosFechas.vb</DependentUpon>
     </Compile>
@@ -6639,7 +6640,7 @@
     <None Include="Bases\ZLibrerias\Incidencias entre fechas.dll" />
     <None Include="Bases\ZLibrerias\InformesCalidad.dll" />
     <None Include="Bases\ZLibrerias\Envasados entre fechas.dll" />
-    <Content Include="Bases\ZLibrerias\BasesParaCompatibilidad.dll" />
+    <None Include="Bases\ZLibrerias\BasesParaCompatibilidad.dll" />
     <Content Include="Resources\window_new.ico" />
     <Content Include="Resources\window_new_3.ico" />
     <None Include="Resources\text-x-makefile.png" />

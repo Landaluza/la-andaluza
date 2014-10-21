@@ -1,6 +1,6 @@
 ﻿Imports BasesParaCompatibilidad.ComboBoxExtension
 Public Class frmWstepIngredientes
-    Implements BasesParaCompatibilidad.wizardable
+    Implements wizardable
 
     Private m_IDI As Boolean
     Private m_DBO_ArticuloIngrediente As DBO_ArticulosIngredientes
@@ -58,7 +58,7 @@ Public Class frmWstepIngredientes
         Me.panNuevoTipoProducto.Visible = False
         EstablecerValores()
     End Sub
-    Public Function comprobarCampos() As Boolean Implements BasesParaCompatibilidad.wizardable.comprobarCampos
+    Public Function comprobarCampos() As Boolean Implements wizardable.comprobarCampos
         Dim errores As String = ""
 
         If cboIngredienteTipoID.SelectedValue Is Nothing Then
@@ -128,7 +128,7 @@ Public Class frmWstepIngredientes
         End If
     End Function
 
-    Public Sub EstablecerValores() Implements BasesParaCompatibilidad.wizardable.EstablecerValores
+    Public Sub EstablecerValores() Implements wizardable.EstablecerValores
 
         cargartipos()
 
@@ -175,7 +175,7 @@ Public Class frmWstepIngredientes
         End If
     End Sub
 
-    Public Function grabarDatos() As Boolean Implements BasesParaCompatibilidad.wizardable.grabarDatos
+    Public Function grabarDatos(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean Implements wizardable.grabarDatos
         If Me.m_IDI Then
             Return GuardarIngredienteIDI()
         Else
@@ -183,7 +183,7 @@ Public Class frmWstepIngredientes
         End If
     End Function
 
-    Public Function recuperarValor(nombre As String) As Object Implements BasesParaCompatibilidad.wizardable.recuperarValor
+    Public Function recuperarValor(nombre As String) As Object Implements wizardable.recuperarValor
         Return Nothing
     End Function
 

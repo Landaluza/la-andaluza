@@ -1,5 +1,5 @@
 ﻿Public Class frmPanMonodosis
-    Implements BasesParaCompatibilidad.wizardable
+    Implements wizardable
 
     Private dbo As DBO_Monodosis
     Private mododeapertura As Byte
@@ -36,7 +36,7 @@
         End If
     End Sub
 
-    Public Function comprobarCampos() As Boolean Implements BasesParaCompatibilidad.wizardable.comprobarCampos
+    Public Function comprobarCampos() As Boolean Implements wizardable.comprobarCampos
 
         Me.dbo.MarcaId = Me.cboMarca.SelectedValue
         Me.dbo.Palet_NO_Conforme_ID = Me.cboSccNC.SelectedValue
@@ -54,7 +54,7 @@
         Return True
     End Function
 
-    Public Sub EstablecerValores() Implements BasesParaCompatibilidad.wizardable.EstablecerValores
+    Public Sub EstablecerValores() Implements wizardable.EstablecerValores
 
         Try
             If Me.mododeapertura = BasesParaCompatibilidad.DetailedSimpleForm.MODIFICACION Then
@@ -72,7 +72,7 @@
 
     End Sub
 
-    Public Function grabarDatos() As Boolean Implements BasesParaCompatibilidad.wizardable.grabarDatos
+    Public Function grabarDatos(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean Implements wizardable.grabarDatos
         If Me.mododeapertura = BasesParaCompatibilidad.DetailedSimpleForm.INSERCION Then
             If Me.asistente Then
                 Me.dbo.ArticuloId = dtb.Consultar("select max(articuloid) from articulos1", True).Rows(0).Item(0)
@@ -93,7 +93,6 @@
                 Dim spTiposFormatos1 As New spArticulosEnvasadosHistorico1
                 If Not spTiposFormatos1.GrabarTiposFormatos1Sintransaccion(m_DBO_TiposFormatos1, BasesParaCompatibilidad.BD.transaction) Then Return False
                 Dim spt As New spArticulosEnvasadosHistoricos
-                Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server, BasesParaCompatibilidad.BD.Cnx, BasesParaCompatibilidad.BD.transaction)
                 Dim m_formato As Integer = spt.seleccionar_ultimo_registro(dtb)
                 dbo.TipoFormatoId = m_formato
             End If
@@ -104,7 +103,7 @@
         End If
     End Function
 
-    Public Function recuperarValor(nombre As String) As Object Implements BasesParaCompatibilidad.wizardable.recuperarValor
+    Public Function recuperarValor(nombre As String) As Object Implements wizardable.recuperarValor
         Return Nothing
     End Function
 

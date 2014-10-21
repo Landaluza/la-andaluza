@@ -23,7 +23,9 @@
         Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
 
         Try
-            Return dtb.ConsultaAlteraciones("delete from notificaciones where id = " & id)             
+            dtb.PrepararConsulta("delete from notificaciones where id = @id")
+            dtb.AñadirParametroConsulta("@id", id)
+            Return dtb.Consultar(True)
         Catch ex As Exception
             Return False
         End Try

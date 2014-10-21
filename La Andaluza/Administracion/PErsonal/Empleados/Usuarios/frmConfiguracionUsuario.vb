@@ -8,7 +8,7 @@
     '                strInput = InputBox("Parece que la base de datos aun no contiene su correo." & Environment.NewLine & "Por favor, introduzca su direccion de correo interno (@andaluza.es):")
 
     '                If strInput <> "" Then
-    '                    BasesParaCompatibilidad.BD.realizarConsultaAlteraciones("update usuarios set email = '" & strInput & "' where usuarioID = " & clsUsu._UsuarioID)
+    '                    deprecated.realizarConsultaAlteraciones("update usuarios set email = '" & strInput & "' where usuarioID = " & clsUsu._UsuarioID)
     '                End If
     '            Else
     '                dt = RealizarConsulta("Select pass from usuarios where usuarioid = " & clsUsu._UsuarioID)
@@ -19,7 +19,7 @@
     '                                        Environment.NewLine & "(Deje el campo en blanco si no la recuerda ahora mismo)")
 
     '                    If strInput <> "" Then
-    '                        BasesParaCompatibilidad.BD.realizarConsultaAlteraciones("update usuarios set pass = '" & strInput & "' where usuarioID = " & clsUsu._UsuarioID)
+    '                        deprecated.realizarConsultaAlteraciones("update usuarios set pass = '" & strInput & "' where usuarioID = " & clsUsu._UsuarioID)
     '                    End If
     '                End If
     '            End If

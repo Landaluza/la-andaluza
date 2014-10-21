@@ -16,8 +16,11 @@ Class spdoypack
 
     Public Function crear_formato(ByVal nombre As String) As Integer
         Dim s As String = "INSERT INTO [dbo].[TiposFormatos] (codigoqs, [Descripcion], separadores, cajaspalet, tipocajaid) " & _
-        " VALUES (1, '" & nombre & "', 1, 1, 1)"
-        If dtb.ConsultaAlteraciones(s) Then
+        " VALUES (1, @nom , 1, 1, 1)"
+        dtb.PrepararConsulta(s)
+        dtb.AñadirParametroConsulta("@nom", nombre)
+
+        If dtb.Consultar(True) Then
             Return dtb.Consultar("select max(tipoformatoid) from tiposformatos", True).Rows(0).Item(0)
         Else
             Return 0
@@ -161,7 +164,7 @@ Class spdoypack
 
     Public Function actualizarFormatoPorArticulo(ByVal p1 As Integer, ByVal formato As Integer, ByVal id_marca As Integer, ByVal id_caja As Integer, id_NC As Integer, id_producto As Integer, ean As String) As Boolean
 
-        Return BasesParaCompatibilidad.BD.realizarConsultaAlteraciones("update doypack set id_tipoFormato = " & formato & ", id_marca=" & id_marca & ", id_tipocaja =" & id_caja & ", id_tipoproducto=" & id_producto & ", id_paletProducidoNoConforme=" & If(id_NC = 0, "null", Convert.ToString(id_NC)) & ",ean13= " & If(ean = "0" Or ean = String.Empty, "null", "'" & ean & "'") & " where id_articuloPrimario = " & p1)
+        Return Deprecated.realizarConsultaAlteraciones("update doypack set id_tipoFormato = " & formato & ", id_marca=" & id_marca & ", id_tipocaja =" & id_caja & ", id_tipoproducto=" & id_producto & ", id_paletProducidoNoConforme=" & If(id_NC = 0, "null", Convert.ToString(id_NC)) & ",ean13= " & If(ean = "0" Or ean = String.Empty, "null", "'" & ean & "'") & " where id_articuloPrimario = " & p1)
     End Function
 
     Public Function esDoypack(ByVal p1 As Integer, Optional dtb as BasesParaCompatibilidad.Database = Nothing) As Boolean
@@ -294,7 +297,11 @@ Class spdoypack
         Try
             Dim m_aux As DBO_Articulos1 = spArticulos1.Select_Record(p1, dtb.Transaccion)
 
-            retorno = retorno And dtb.ConsultaAlteraciones("insert into articulos1_articulos1_compuestoPor(id_articulo, id_articuloCompuestoPor, cantidad) values(" & p1 & " ," & p2 & " ," & p3 & ")")
+            dtb.PrepararConsulta("insert into articulos1_articulos1_compuestoPor(id_articulo, id_articuloCompuestoPor, cantidad) values( @p1, @p2, @p3)")
+            dtb.AñadirParametroConsulta("@p1", p1)
+            dtb.AñadirParametroConsulta("@p2", p2)
+            dtb.AñadirParametroConsulta("@p3", p3)
+            retorno = retorno And dtb.Consultar(True)
 
             Return retorno
         Catch ex As Exception

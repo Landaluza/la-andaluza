@@ -22,15 +22,24 @@
             If m_art_aux.ArticuloTpoID = 10 Then
                 m_art_aux = spArticulos1.Select_Record(id2, dtb.Transaccion)
                 If m_art_aux.ArticuloTpoID = 9 Then
-                    retorno = retorno And dtb.ConsultaAlteraciones("update articulosenvasesterciarios set id_articuloenvasesecundario=null where articuloID=" & id)
+                    dtb.PrepararConsulta("update articulosenvasesterciarios set id_articuloenvasesecundario=null where articuloID= @id")
+                    dtb.AñadirParametroConsulta("@id", id)
+                    retorno = retorno And dtb.Consultar(True)
                 End If
+
             ElseIf m_art_aux.ArticuloTpoID = 9 Then
-                retorno = retorno And dtb.ConsultaAlteraciones("update articulosenvasessecundarios set id_articuloPrimario=null where articuloID=" & id)
+                dtb.PrepararConsulta("update articulosenvasessecundarios set id_articuloPrimario=null where articuloID= @id")
+                dtb.AñadirParametroConsulta("@id", id)
+                retorno = retorno And dtb.Consultar(True)
+
             ElseIf spdoypack.esDoypack(m_art_aux.ID, dtb) Then
                 retorno = retorno And spdoypack.deleteBy(id, id2, dtb)
             End If
 
-            retorno = retorno And dtb.ConsultaAlteraciones("delete from articulos1_articulos1_compuestoPor where id_articulo=" & id & " and id_articuloCompuestopor = " & id2)
+            dtb.PrepararConsulta("delete from articulos1_articulos1_compuestoPor where id_articulo= @id and id_articuloCompuestopor = @com")
+            dtb.AñadirParametroConsulta("@id", id)
+            dtb.AñadirParametroConsulta("@com", id2)
+            retorno = retorno And dtb.Consultar(True)
 
             If retorno Then
                 dtb.TerminarTransaccion()
@@ -88,14 +97,26 @@
                 If m_aux.ArticuloTpoID = 9 Then
                     Dim spArticulosEnvasesSecundarios As New spArticulosEnvasesSecundarios
                     Dim m_sec_aux As DBO_ArticulosEnvasesSecundarios = spArticulosEnvasesSecundarios.Select_RecordByArticuloID(p2, dtb.Transaccion)
-                    retorno = retorno And dtb.ConsultaAlteraciones("update articulosenvasesterciarios set id_articuloenvasesecundario =" & m_sec_aux.ID & " where articuloid =" & p1)
+                    dtb.PrepararConsulta("update articulosenvasesterciarios set id_articuloenvasesecundario = @sec where articuloid = @art")
+                    dtb.AñadirParametroConsulta("@sec", m_sec_aux.ID)
+                    dtb.AñadirParametroConsulta("@art", p1)
+                    retorno = retorno And dtb.Consultar(True)
                 End If
             End If
 
-            retorno = retorno And dtb.ConsultaAlteraciones("insert into articulos1_articulos1_compuestoPor(id_articulo, id_articuloCompuestoPor, cantidad) values(" & p1 & " ," & p2 & " ," & Convert.ToString(p3).Replace(",", ".") & ")")
+            dtb.PrepararConsulta("insert into articulos1_articulos1_compuestoPor(id_articulo, id_articuloCompuestoPor, cantidad) values( @art, @com, @can )")
+            dtb.AñadirParametroConsulta("@art", p1)
+            dtb.AñadirParametroConsulta("@com", p2)
+            dtb.AñadirParametroConsulta("@can", Convert.ToString(p3).Replace(",", "."))
+            retorno = retorno And dtb.Consultar(True)
 
             If formato <> Nothing Then
-                retorno = retorno And dtb.ConsultaAlteraciones("insert into doypack(id_articuloPrimario, id_monodosis, id_tipoformato,cantidad) values(" & p1 & " ," & p2 & " ," & formato & " ," & Convert.ToString(p3).Replace(",", ".") & ")")
+                dtb.PrepararConsulta("insert into doypack(id_articuloPrimario, id_monodosis, id_tipoformato,cantidad) values( @art, @mon, @for, @can )")
+                dtb.AñadirParametroConsulta("@art", p1)
+                dtb.AñadirParametroConsulta("@mon", p2)
+                dtb.AñadirParametroConsulta("@for", formato)
+                dtb.AñadirParametroConsulta("@can", Convert.ToString(p3).Replace(",", "."))
+                retorno = retorno And dtb.Consultar(True)
             End If
 
             If retorno Then
@@ -116,8 +137,17 @@
         dtb.EmpezarTransaccion()
 
         Try
-            retorno = retorno And dtb.ConsultaAlteraciones("update articulos1_articulos1_compuestoPor set cantidad=" & Convert.ToString(p3).Replace(",", ".") & " where id_articulo=" & p1 & " and id_articuloCompuestoPor=" & p2)
-            retorno = retorno And dtb.ConsultaAlteraciones("update doypack set cantidad = " & Convert.ToString(p3).Replace(",", ".") & " where id_articuloPrimario = " & p1 & " and id_monodosis = " & p2)
+            dtb.PrepararConsulta("update articulos1_articulos1_compuestoPor set cantidad= @cantidad where id_articulo= @art and id_articuloCompuestoPor= @id")
+            dtb.AñadirParametroConsulta("@cantidad", Convert.ToString(p3).Replace(",", "."))
+            dtb.AñadirParametroConsulta("@art", p1)
+            dtb.AñadirParametroConsulta("@id", p2)
+            retorno = retorno And dtb.Consultar(True)
+
+            dtb.PrepararConsulta("update doypack set cantidad = @can where id_articuloPrimario = @art and id_monodosis = @id")
+            dtb.AñadirParametroConsulta("@can", Convert.ToString(p3).Replace(",", "."))
+            dtb.AñadirParametroConsulta("@art", p1)
+            dtb.AñadirParametroConsulta("@id", p2)
+            retorno = retorno And dtb.Consultar(True)
 
             If retorno Then
                 dtb.TerminarTransaccion()

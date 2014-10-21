@@ -367,7 +367,7 @@ Public Class frmNoConformes
 
             Dim resp As DialogResult = MessageBox.Show("¿Seguro que desea marcar el palet como 'no conforme'?", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
             If resp = DialogResult.OK Then
-                BasesParaCompatibilidad.BD.realizarConsultaAlteraciones("update paletsproducidos set id_estado=1 where scc = " & Me.dgvPalet.CurrentRow.Cells("SCC").Value)
+                deprecated.realizarConsultaAlteraciones("update paletsproducidos set id_estado=1 where scc = " & Me.dgvPalet.CurrentRow.Cells("SCC").Value)
                 tsPalets.PerformClick()
             End If
          

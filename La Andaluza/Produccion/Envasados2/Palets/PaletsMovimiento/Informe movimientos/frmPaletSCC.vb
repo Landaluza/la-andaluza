@@ -289,7 +289,7 @@ Public Class frmPaletSCC
                 If resp = DialogResult.OK Then
                     Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
                     dtb.ConsultaAlteraciones("update paletsproducidos set enAlmacen=1 where scc = " & Me.txtSCC.Text)
-                    'BasesParaCompatibilidad.BD.realizarConsultaAlteraciones("update paletsproducidos set enAlmacen=1 where scc = " & Me.txtSCC.Text)
+                    'deprecated.realizarConsultaAlteraciones("update paletsproducidos set enAlmacen=1 where scc = " & Me.txtSCC.Text)
                     Me.buscar()
                 End If
             End If
@@ -303,9 +303,9 @@ Public Class frmPaletSCC
                     If IsNumeric(Me.txtSCC.Text) Then
                         Dim resp As DialogResult = MessageBox.Show("¿Seguro que desea marcar el palet como 'conforme'?", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
                         If resp = DialogResult.OK Then
-                            Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+                            Dim dtb As New BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
                             dtb.ConsultaAlteraciones("update paletsproducidos set id_estado=1 where scc = " & Me.txtSCC.Text)
-                            'BasesParaCompatibilidad.BD.realizarConsultaAlteraciones("update paletsproducidos set id_estado=1 where scc = " & Me.txtSCC.Text)
+                            'deprecated.realizarConsultaAlteraciones("update paletsproducidos set id_estado=1 where scc = " & Me.txtSCC.Text)
                             Me.buscar()
                         End If
                     End If
@@ -315,9 +315,9 @@ Public Class frmPaletSCC
                     If IsNumeric(Me.txtSCC.Text) Then
                         Dim resp As DialogResult = MessageBox.Show("¿Seguro que desea marcar el palet como 'no conforme'?", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
                         If resp = DialogResult.OK Then
-                            Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+                            Dim dtb As New BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
                             dtb.ConsultaAlteraciones("update paletsproducidos set id_estado=3 where scc = " & Me.txtSCC.Text)
-                            'BasesParaCompatibilidad.BD.realizarConsultaAlteraciones("update paletsproducidos set id_estado=3 where scc = " & Me.txtSCC.Text)
+                            'deprecated.realizarConsultaAlteraciones("update paletsproducidos set id_estado=3 where scc = " & Me.txtSCC.Text)
                             Me.buscar()
                         End If
                     End If

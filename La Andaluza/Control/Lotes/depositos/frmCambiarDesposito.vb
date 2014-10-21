@@ -35,6 +35,10 @@
         Else
             dep = cboDeposito.SelectedValue.ToString
         End If
-        Return dtb.ConsultaAlteraciones("update lotes set depositoid =" & dep & " where loteid =" & Me.loteID)
+
+        dtb.PrepararConsulta("update lotes set depositoid = @dep where loteid = @lot")
+        dtb.AñadirParametroConsulta("@dep", dep)
+        dtb.AñadirParametroConsulta("@lot", Me.loteID)
+        Return dtb.Consultar(True)
     End Function
 End Class

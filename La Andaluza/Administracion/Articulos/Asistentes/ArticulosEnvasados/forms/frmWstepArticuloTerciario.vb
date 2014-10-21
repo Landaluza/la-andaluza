@@ -1,6 +1,6 @@
 ﻿Imports BasesParaCompatibilidad.ComboBoxExtension
 Public Class frmWstepArticuloTerciario
-    Implements BasesParaCompatibilidad.wizardable
+    Implements wizardable
     Private m_DBO_ArticulosEnvasesTerciarios1 As DBO_ArticulosEnvasesTerciarios
     Private spArticulosEnvasesTerciarios As spArticulosEnvasesTerciarios
     Private mododeApertura As Integer
@@ -52,7 +52,7 @@ Public Class frmWstepArticuloTerciario
         BasesParaCompatibilidad.Pantalla.centerIn(Me.panContenidos, Me)
     End Sub
 
-    Public Sub establecerValores() Implements BasesParaCompatibilidad.wizardable.EstablecerValores
+    Public Sub establecerValores() Implements wizardable.EstablecerValores
         Dim spArticulos1 As New spArticulos1
 
         Try
@@ -115,11 +115,11 @@ Public Class frmWstepArticuloTerciario
         End If
     End Sub
 
-    Public Function recuperarValor(ByVal nombre As String) As Object Implements BasesParaCompatibilidad.wizardable.recuperarValor
+    Public Function recuperarValor(ByVal nombre As String) As Object Implements wizardable.recuperarValor
         Return New Object
     End Function
 
-    Public Function grabarDatos() As Boolean Implements BasesParaCompatibilidad.wizardable.grabarDatos
+    Public Function grabarDatos(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean Implements wizardable.grabarDatos
         'If Me.m_DBO_ArticulosEnvasesTerciarios1.PaletTipoID Is Nothing Then
         '    Return False
         'Else
@@ -142,12 +142,6 @@ Public Class frmWstepArticuloTerciario
             Dim spArticulosEnvasesTerciarios As New spArticulosEnvasesTerciarios
 
             If Me.mododeApertura = BasesParaCompatibilidad.DetailedSimpleForm.INSERCION Then
-                Dim dtb As BasesParaCompatibilidad.DataBase
-                If BasesParaCompatibilidad.BD.transaction Is Nothing Then
-                    dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
-                Else
-                    dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server, BasesParaCompatibilidad.BD.Cnx, BasesParaCompatibilidad.BD.transaction)
-                End If
                 Dim spf As New spArticulosEnvasadosHistoricos
                 If Me.m_DBO_ArticulosEnvasesTerciarios1.ArticuloID = Nothing Then Me.m_DBO_ArticulosEnvasesTerciarios1.ArticuloID = dtb.Consultar("select max(articuloid) from articulos1", True).Rows(0).Item(0)
                 If Me.m_DBO_ArticulosEnvasesTerciarios1.SccEtiquetaID = 0 Or Me.m_DBO_ArticulosEnvasesTerciarios1.SccEtiquetaID = Nothing Then Me.m_DBO_ArticulosEnvasesTerciarios1.SccEtiquetaID = spf.seleccionar_ultimo_registro(dtb)
@@ -158,7 +152,7 @@ Public Class frmWstepArticuloTerciario
         End If
     End Function
 
-    Public Function comprobarCampos() As Boolean Implements BasesParaCompatibilidad.wizardable.comprobarCampos
+    Public Function comprobarCampos() As Boolean Implements wizardable.comprobarCampos
         Dim errores As String = ""
 
         m_DBO_ArticulosEnvasesTerciarios1.Cajas = If(txtCajas.Text = "", 0, System.Convert.ToInt32(txtCajas.Text))

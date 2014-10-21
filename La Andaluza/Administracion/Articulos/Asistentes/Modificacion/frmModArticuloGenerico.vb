@@ -103,10 +103,10 @@
 
         If comprobado Then
             BasesParaCompatibilidad.BD.EmpezarTransaccion()
-
+            Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server, BasesParaCompatibilidad.BD.Cnx, BasesParaCompatibilidad.BD.transaction)
 
             If Not Me.slGeneral_detalles.Panel2Collapsed Then
-                retorno = retorno And Me.frmGeneral.grabarDatos
+                retorno = retorno And Me.frmGeneral.grabarDatos(dtb)
 
                 retorno = retorno And Me.frmDetalle.grabarDatos()
 
@@ -121,7 +121,7 @@
 
             Else
 
-                If Me.frmGeneral.grabarDatos() Then
+                If Me.frmGeneral.grabarDatos(dtb) Then
                     BasesParaCompatibilidad.BD.TerminarTransaccion()
                     RaiseEvent afterSave()
                     Me.Close()

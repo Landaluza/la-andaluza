@@ -158,7 +158,7 @@ Public Class frmProveedores
                     .ShowNewFolderButton = True
 
                     If .ShowDialog = DialogResult.OK Then
-                        If BasesParaCompatibilidad.BD.realizarConsultaAlteraciones("update proveedores set ruta='" & .SelectedPath & "' where proveedorID=" & Me.dgvGeneral.CurrentRow.Cells("ProveedorID").Value) Then
+                        If deprecated.realizarConsultaAlteraciones("update proveedores set ruta='" & .SelectedPath & "' where proveedorID=" & Me.dgvGeneral.CurrentRow.Cells("ProveedorID").Value) Then
                             Me.dgvFill()
                         Else
                             messagebox.show("no se pudo actualizar el registro", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)

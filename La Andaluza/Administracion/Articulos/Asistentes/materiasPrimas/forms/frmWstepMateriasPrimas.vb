@@ -1,6 +1,6 @@
 ﻿Imports BasesParaCompatibilidad.ComboBoxExtension
 Public Class frmWstepMateriasPrimas
-    Implements BasesParaCompatibilidad.wizardable
+    Implements wizardable
     Dim m_DBO_MateriaPrima As DBO_ArticulosMateriasPrimas
     Private spArticulos_ArticulosCertificadosTipos As spArticulos_ArticulosCertificadosTipos
     Private spArticulosMateriasPrimas As spArticulosMateriasPrimas
@@ -24,7 +24,7 @@ Public Class frmWstepMateriasPrimas
         EstablecerValores()
     End Sub
 
-    Public Function comprobarCampos() As Boolean Implements BasesParaCompatibilidad.wizardable.comprobarCampos
+    Public Function comprobarCampos() As Boolean Implements wizardable.comprobarCampos
         Dim errores As String = ""
 
         If Me.cboMateriaPrimaTipoID.SelectedValue Is Nothing Then
@@ -44,7 +44,7 @@ Public Class frmWstepMateriasPrimas
         End If
     End Function
 
-    Public Sub EstablecerValores() Implements BasesParaCompatibilidad.wizardable.EstablecerValores
+    Public Sub EstablecerValores() Implements wizardable.EstablecerValores
         Me.cboMateriaPrimaTipoID.mam_DataSource("ArticulosMateriasPrimas_ArticulosMateriasPrimasTiposCbo", False)
 
         Dim spArticulos1 As New spArticulos1
@@ -76,7 +76,7 @@ Public Class frmWstepMateriasPrimas
         End If
     End Sub
 
-    Public Function grabarDatos() As Boolean Implements BasesParaCompatibilidad.wizardable.grabarDatos
+    Public Function grabarDatos(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean Implements wizardable.grabarDatos
         If Me.m_DBO_MateriaPrima.ArticuloID Is Nothing Then Me.m_DBO_MateriaPrima.ArticuloID = dtb.Consultar("select max(articuloID) from Articulos1", False).Rows(0).Item(0)
 
         If spArticulosMateriasPrimas.GrabarArticulosMateriasPrimasSinTransaccion(m_DBO_MateriaPrima, BasesParaCompatibilidad.BD.transaction) Then
@@ -104,7 +104,7 @@ Public Class frmWstepMateriasPrimas
         End If
     End Function
 
-    Public Function recuperarValor(nombre As String) As Object Implements BasesParaCompatibilidad.wizardable.recuperarValor
+    Public Function recuperarValor(nombre As String) As Object Implements wizardable.recuperarValor
         Return Nothing
     End Function
 

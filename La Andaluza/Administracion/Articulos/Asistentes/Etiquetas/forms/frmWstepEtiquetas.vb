@@ -1,9 +1,9 @@
 ﻿Imports BasesParaCompatibilidad.ComboBoxExtension
 Public Class frmWstepEtiquetas
-    Implements BasesParaCompatibilidad.wizardable
+    Implements wizardable
 
 
-    Public Function comprobarCampos() As Boolean Implements BasesParaCompatibilidad.wizardable.comprobarCampos
+    Public Function comprobarCampos() As Boolean Implements wizardable.comprobarCampos
         'Dim errores As String = ""
 
         'If Me.cboMateriaPrimaTipoID.SelectedValue is Nothing Then
@@ -24,15 +24,15 @@ Public Class frmWstepEtiquetas
         Return False
     End Function
 
-    Public Sub EstablecerValores() Implements BasesParaCompatibilidad.wizardable.EstablecerValores
+    Public Sub EstablecerValores() Implements wizardable.EstablecerValores
         Me.cboEtiquetaTipo.mam_DataSource("ArticulosEtiquetasTiposCbo", False)
     End Sub
 
-    Public Function grabarDatos() As Boolean Implements BasesParaCompatibilidad.wizardable.grabarDatos
+    Public Function grabarDatos(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean Implements wizardable.grabarDatos
         Return False
     End Function
 
-    Public Function recuperarValor(nombre As String) As Object Implements BasesParaCompatibilidad.wizardable.recuperarValor
+    Public Function recuperarValor(nombre As String) As Object Implements wizardable.recuperarValor
         Return Nothing
     End Function
 End Class

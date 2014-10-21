@@ -1,6 +1,6 @@
 ﻿Imports BasesParaCompatibilidad.DataGridViewExtension
 Public Class frmPanDoypack
-    Implements BasesParaCompatibilidad.wizardable
+    Implements wizardable
 
     Private id As Integer
     Private mododeapertura As Byte
@@ -36,7 +36,7 @@ Public Class frmPanDoypack
         EstablecerValores()
     End Sub
 
-    Public Function comprobarCampos() As Boolean Implements BasesParaCompatibilidad.wizardable.comprobarCampos
+    Public Function comprobarCampos() As Boolean Implements wizardable.comprobarCampos
         If Me.DataGridView1.Rows.Count = 0 Then
             Return False
         End If
@@ -52,7 +52,7 @@ Public Class frmPanDoypack
         Me.dbo.TipoFormatoID = Me.cboFormato.SelectedValue
         Me.dbo.Palet_NO_Conforme_ID = Me.cboSccNC.SelectedValue
     End Sub
-    Public Sub EstablecerValores() Implements BasesParaCompatibilidad.wizardable.EstablecerValores
+    Public Sub EstablecerValores() Implements wizardable.EstablecerValores
         dgvFill()
 
         If Me.mododeapertura = BasesParaCompatibilidad.DetailedSimpleForm.MODIFICACION Then
@@ -65,7 +65,7 @@ Public Class frmPanDoypack
         End If
     End Sub
 
-    Public Function grabarDatos() As Boolean Implements BasesParaCompatibilidad.wizardable.grabarDatos
+    Public Function grabarDatos(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean Implements wizardable.grabarDatos
         If Me.mododeapertura = BasesParaCompatibilidad.DetailedSimpleForm.MODIFICACION Then
             Return spdoypack.actualizarFormatoPorArticulo(Me.id, Me.cboFormato.SelectedValue, Me.cboMarca.SelectedValue, Me.cboCaja.SelectedValue, Me.cboSccNC.SelectedValue, Me.cboProducto.SelectedValue, Me.txtEan.Text)
         Else
@@ -97,7 +97,7 @@ Public Class frmPanDoypack
         End If
     End Function
 
-    Public Function recuperarValor(nombre As String) As Object Implements BasesParaCompatibilidad.wizardable.recuperarValor
+    Public Function recuperarValor(nombre As String) As Object Implements wizardable.recuperarValor
         Return Nothing
     End Function
 

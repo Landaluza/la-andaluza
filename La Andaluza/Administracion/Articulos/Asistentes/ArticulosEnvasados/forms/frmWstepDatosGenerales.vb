@@ -1,6 +1,6 @@
 ﻿Imports BasesParaCompatibilidad.ComboBoxExtension
 Public Class frmWstepDatosGenerales
-    Implements BasesParaCompatibilidad.wizardable
+    Implements wizardable
     Public Const TIPO_PALET As String = "tipoPalet"
     Public Const FORMATO As String = "tipoFormato"
     Public Const MARCA As String = "marca"
@@ -45,7 +45,7 @@ Public Class frmWstepDatosGenerales
     End Sub
 
 
-    Public Sub establecerValores() Implements BasesParaCompatibilidad.wizardable.EstablecerValores
+    Public Sub establecerValores() Implements wizardable.EstablecerValores
         Me.cboLinea.mam_DataSource("LineasEnvasadoSelectCbo", False)
         'Me.cboMarca.mam_DataSource("MarcasCbo", False)
         Dim s As New spmarcas
@@ -57,7 +57,7 @@ Public Class frmWstepDatosGenerales
         Me.cboCaja.mam_DataSource("TiposcajasCbo", False)
     End Sub
 
-    Public Function recuperarValor(ByVal nombre As String) As Object Implements BasesParaCompatibilidad.wizardable.recuperarValor
+    Public Function recuperarValor(ByVal nombre As String) As Object Implements wizardable.recuperarValor
         Select Case (nombre)
             Case MARCA
                 Return Me.cboMarca.SelectedValue
@@ -84,7 +84,7 @@ Public Class frmWstepDatosGenerales
         End Select
     End Function
 
-    Public Function grabarDatos() As Boolean Implements BasesParaCompatibilidad.wizardable.grabarDatos
+    Public Function grabarDatos(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean Implements wizardable.grabarDatos
         Dim retorno As Boolean = True
 
         If Me.rbNoExisteFormato.Checked Then
@@ -102,7 +102,6 @@ Public Class frmWstepDatosGenerales
             Dim spTiposFormatos1 As New spArticulosEnvasadosHistorico1
             If Not spTiposFormatos1.GrabarTiposFormatos1Sintransaccion(m_DBO_TiposFormatos1, BasesParaCompatibilidad.BD.transaction) Then Return False
             Dim spt As New spArticulosEnvasadosHistoricos
-            Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server, BasesParaCompatibilidad.BD.Cnx, BasesParaCompatibilidad.BD.transaction)
             Dim m_formato As Integer = spt.seleccionar_ultimo_registro(dtb)
 
             'Dim ctlTipForLin_TipFor As New ctlTiposFormatosLineas_TiposFormatos
@@ -138,7 +137,7 @@ Public Class frmWstepDatosGenerales
         End If
     End Function
 
-    Public Function comprobarCampos() As Boolean Implements BasesParaCompatibilidad.wizardable.comprobarCampos
+    Public Function comprobarCampos() As Boolean Implements wizardable.comprobarCampos
         If Me.rbNoExisteFormato.Checked Then
             If Me.txtVelocidad.Text = String.Empty Then
                 txtVelocidad.Focus()

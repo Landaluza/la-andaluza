@@ -1,5 +1,5 @@
 ﻿Public Class frmWstepArticulos1
-    Implements  BasesParaCompatibilidad.wizardable
+    Implements wizardable
     Private m_DBO_Articulos1 As DBO_Articulos1
     Private no_crear As Boolean
 
@@ -17,7 +17,7 @@
 
     Public Property Datos As DBO_Articulos1
         Set(value As DBO_Articulos1)
-            Me.m_DBO_Articulos1.Activo = value.Activo            
+            Me.m_DBO_Articulos1.Activo = value.Activo
             Me.m_DBO_Articulos1.CodigoLA = value.CodigoLA
             Me.m_DBO_Articulos1.CodigoQS = value.CodigoQS
             Me.m_DBO_Articulos1.CodigoTARIC = value.CodigoTARIC
@@ -135,7 +135,7 @@
         BasesParaCompatibilidad.Pantalla.centerIn(Me.panContenidos, Me)
     End Sub
 
-    Public Sub establecerValores() Implements  BasesParaCompatibilidad.wizardable.EstablecerValores
+    Public Sub establecerValores() Implements wizardable.EstablecerValores
         If Me.m_DBO_Articulos1.ID <> Nothing Then
             Me.txtCodigoLA.Text = m_DBO_Articulos1.CodigoLA
             Me.txtCodigoQS.Text = m_DBO_Articulos1.CodigoQS
@@ -150,11 +150,11 @@
         End If
     End Sub
 
-    Public Function recuperarValor(ByVal nombre As String) As Object Implements  BasesParaCompatibilidad.wizardable.recuperarValor
+    Public Function recuperarValor(ByVal nombre As String) As Object Implements wizardable.recuperarValor
         Return Nothing
     End Function
 
-    Public Function grabarDatos() As Boolean Implements  BasesParaCompatibilidad.wizardable.grabarDatos
+    Public Function grabarDatos(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean Implements wizardable.grabarDatos
         Dim spArticulos1 As New spArticulos1
         If Me.m_DBO_Articulos1.ArticuloTpoID = Nothing Then
             Return False
@@ -167,7 +167,7 @@
         End If
     End Function
 
-    Public Function comprobarCampos() As Boolean Implements  BasesParaCompatibilidad.wizardable.comprobarCampos
+    Public Function comprobarCampos() As Boolean Implements wizardable.comprobarCampos
 
         Dim errores As String = ""
         Dim respuesta As Boolean = True

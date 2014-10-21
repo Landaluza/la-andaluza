@@ -2201,7 +2201,7 @@ Public Class frmEntAlbaranesCargaMaestro
 
     Private Sub MarcarComoMultiloteToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles MarcarComoMultiloteToolStripMenuItem.Click
         Try
-            BasesParaCompatibilidad.BD.realizarConsultaAlteraciones("update paletsproducidos set multilote=1 where scc = " & Me.dgvPalet.CurrentRow.Cells("SCC").Value)
+            deprecated.realizarConsultaAlteraciones("update paletsproducidos set multilote=1 where scc = " & Me.dgvPalet.CurrentRow.Cells("SCC").Value)
             RellenarDgv()
         Catch ex As Exception
             messagebox.show("Error al realizar la operacion. Detalles: " & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -2210,7 +2210,7 @@ Public Class frmEntAlbaranesCargaMaestro
 
     Private Sub MarcarComoNoMultiloteToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles MarcarComoNoMultiloteToolStripMenuItem.Click
         Try
-            BasesParaCompatibilidad.BD.realizarConsultaAlteraciones("update paletsproducidos set multilote=1 where scc = " & Me.dgvPalet.CurrentRow.Cells("SCC").Value)
+            deprecated.realizarConsultaAlteraciones("update paletsproducidos set multilote=1 where scc = " & Me.dgvPalet.CurrentRow.Cells("SCC").Value)
             RellenarDgv()
         Catch ex As Exception
             messagebox.show("Error al realizar la operacion. Detalles: " & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -2222,7 +2222,7 @@ Public Class frmEntAlbaranesCargaMaestro
             Dim lote As String = InputBox("Introduce el nuevo lote")
             If lote <> "" Then
                 If IsNumeric(lote) Then
-                    BasesParaCompatibilidad.BD.realizarConsultaAlteraciones("update AlbaranesCargaProviDetalles set loteAlternativo=" & lote & " where  CodigoQS=" & Me.dgvAcumulados.CurrentRow.Cells("CodigoQS").Value & " and AlbaranCargaProviMaestroID = " & Me.dgvAcumulados.CurrentRow.Cells("AlbaranCargaProviMaestroID").Value)
+                    deprecated.realizarConsultaAlteraciones("update AlbaranesCargaProviDetalles set loteAlternativo=" & lote & " where  CodigoQS=" & Me.dgvAcumulados.CurrentRow.Cells("CodigoQS").Value & " and AlbaranCargaProviMaestroID = " & Me.dgvAcumulados.CurrentRow.Cells("AlbaranCargaProviMaestroID").Value)
                     RellenarDgv()
                 End If
             End If
@@ -2236,7 +2236,7 @@ Public Class frmEntAlbaranesCargaMaestro
             Dim lote As String = InputBox("Introduce el nuevo lote")
             If lote <> "" Then
                 If IsNumeric(lote) Then
-                    BasesParaCompatibilidad.BD.realizarConsultaAlteraciones("update AlbaranesCargaProviDetalles set loteAlternativo=" & lote & " where  AlbaranCargaProviDetalleID = " & Me.dgvPalet.CurrentRow.Cells("AlbaranCargaProviDetalleID").Value)
+                    deprecated.realizarConsultaAlteraciones("update AlbaranesCargaProviDetalles set loteAlternativo=" & lote & " where  AlbaranCargaProviDetalleID = " & Me.dgvPalet.CurrentRow.Cells("AlbaranCargaProviDetalleID").Value)
                     RellenarDgv()
                 End If
             End If
@@ -2247,7 +2247,7 @@ Public Class frmEntAlbaranesCargaMaestro
 
     Private Sub ReiniciarLoteToolStripMenuItem1_Click(sender As System.Object, e As System.EventArgs) Handles ReiniciarLoteToolStripMenuItem1.Click
         Try
-            BasesParaCompatibilidad.BD.realizarConsultaAlteraciones("update AlbaranesCargaProviDetalles set loteAlternativo=null where  AlbaranCargaProviDetalleID = " & Me.dgvPalet.CurrentRow.Cells("AlbaranCargaProviDetalleID").Value)
+            deprecated.realizarConsultaAlteraciones("update AlbaranesCargaProviDetalles set loteAlternativo=null where  AlbaranCargaProviDetalleID = " & Me.dgvPalet.CurrentRow.Cells("AlbaranCargaProviDetalleID").Value)
             RellenarDgv()
         Catch ex As Exception
             messagebox.show("Error al realizar la operacion. Detalles: " & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -2256,7 +2256,7 @@ Public Class frmEntAlbaranesCargaMaestro
 
     Private Sub ReiniciarLoteToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ReiniciarLoteToolStripMenuItem.Click
         Try
-            BasesParaCompatibilidad.BD.realizarConsultaAlteraciones("update AlbaranesCargaProviDetalles set loteAlternativo=null where  CodigoQS=" & Me.dgvAcumulados.CurrentRow.Cells("CodigoQS").Value & " and AlbaranCargaProviMaestroID = " & Me.dgvAcumulados.CurrentRow.Cells("AlbaranCargaProviMaestroID").Value)
+            deprecated.realizarConsultaAlteraciones("update AlbaranesCargaProviDetalles set loteAlternativo=null where  CodigoQS=" & Me.dgvAcumulados.CurrentRow.Cells("CodigoQS").Value & " and AlbaranCargaProviMaestroID = " & Me.dgvAcumulados.CurrentRow.Cells("AlbaranCargaProviMaestroID").Value)
             RellenarDgv()
         Catch ex As Exception
             messagebox.show("Error al realizar la operacion. Detalles: " & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)

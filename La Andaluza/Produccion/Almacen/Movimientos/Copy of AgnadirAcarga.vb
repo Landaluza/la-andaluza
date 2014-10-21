@@ -257,7 +257,7 @@
                             Dim resp As DialogResult = MessageBox.Show("Este palet no se encuentra en el almacen. ¿Desea marcalo como 'en almacen' y continuar?" & Environment.NewLine & _
                                                               "(Pulse 'No' si la información es correcta y no esta en almacen)", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                             If resp = DialogResult.Yes Then
-                                BasesParaCompatibilidad.BD.realizarConsultaAlteraciones("update paletsproducidos set enalmacen=1 where scc = " & txtSCCEscaneado.Text)
+                                deprecated.realizarConsultaAlteraciones("update paletsproducidos set enalmacen=1 where scc = " & txtSCCEscaneado.Text)
                                 rellenarForm()
                             Else
                                 btnOK.Enabled = False
@@ -287,7 +287,7 @@
         'Para evitar se escanee por error en este campo
         If txtSCC.Text.Length > 6 Then
             txtSCC.Text = txtSCCEscaneado.Text.Substring(15, 5)
-            e.Cancel = True        
+            e.Cancel = True
         End If
     End Sub
 
@@ -307,12 +307,12 @@
     End Sub
 
     Private Sub btnNoMultilote_Click(sender As System.Object, e As System.EventArgs) Handles btnNoMultilote.Click
-        BasesParaCompatibilidad.BD.realizarConsultaAlteraciones("update paletsproducidos set multilote = 0 where scc = " & txtSCCEscaneado.Text)
+        deprecated.realizarConsultaAlteraciones("update paletsproducidos set multilote = 0 where scc = " & txtSCCEscaneado.Text)
         rellenarForm()
     End Sub
 
     Private Sub btnMultilote_Click(sender As System.Object, e As System.EventArgs) Handles btnMultilote.Click
-        BasesParaCompatibilidad.BD.realizarConsultaAlteraciones("update paletsproducidos set multilote = 1 where scc = " & txtSCCEscaneado.Text)
+        deprecated.realizarConsultaAlteraciones("update paletsproducidos set multilote = 1 where scc = " & txtSCCEscaneado.Text)
         rellenarForm()
     End Sub
 

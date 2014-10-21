@@ -17,12 +17,18 @@ Public Class frmCambiarTipo
         Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
         dtb.EmpezarTransaccion()
         Try
-            If Not dtb.ConsultaAlteraciones("exec DeleteArticulos1Detalles " & cboTipo.SelectedValue.ToString) Then
+            dtb.PrepararConsulta("DeleteArticulos1Detalles @tipo")
+            dtb.AñadirParametroConsulta("@tipo", cboTipo.SelectedValue.ToString)
+            If Not dtb.Consultar(True) Then
                 dtb.CancelarTransaccion()
                 MessageBox.Show("No se pudo completar la operación. Error borrando detalles del articulo.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 Me.DialogResult = Windows.Forms.DialogResult.Cancel
             Else
-                If Not dtb.ConsultaAlteraciones("update articulos1 set ArticuloTpoID=" & cboTipo.SelectedValue.ToString & " where articuloid=" & id.ToString) Then
+                dtb.PrepararConsulta("update articulos1 set ArticuloTpoID= @tipo where articuloid= @art")
+                dtb.AñadirParametroConsulta("@tipo", cboTipo.SelectedValue.ToString)
+                dtb.AñadirParametroConsulta("@art", id)
+
+                If Not dtb.Consultar(True) Then
                     dtb.CancelarTransaccion()
                     MessageBox.Show("No se pudo completar la operación", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     Me.DialogResult = Windows.Forms.DialogResult.Cancel

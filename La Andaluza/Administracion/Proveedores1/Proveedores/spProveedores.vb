@@ -48,7 +48,7 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Sub
 
     Sub MarcarInactivo(ByVal proveedorID As Integer)
-        BasesParaCompatibilidad.BD.realizarConsultaAlteraciones("update proveedores set activo = 0 where proveedorID=" & proveedorID)
+        deprecated.realizarConsultaAlteraciones("update proveedores set activo = 0 where proveedorID=" & proveedorID)
     End Sub
 
     Sub cargar_Proveedores(ByRef comboBox As ComboBox)
