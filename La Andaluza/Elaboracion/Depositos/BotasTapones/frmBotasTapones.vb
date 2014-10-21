@@ -12,7 +12,7 @@ Public Class frmBotasTapones
     End Sub
 
     Protected Overrides Sub cargar_datos()
-        ctlBot.mostrarTodosBotasTapones(dtsBot)
+        ctlBot.mostrarTodosBotasTapones(dtb, dtsBot)
     End Sub
     Protected Overrides Sub BindDataSource()
 
@@ -30,7 +30,7 @@ Public Class frmBotasTapones
         FrmEnt.Text = "Insertar Botas Tapones"
         FrmEnt.CargarDatos(0, 0, "")
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
-        ctlBot.mostrarTodosBotasTapones(dtsBot)
+        ctlBot.mostrarTodosBotasTapones(dtb, dtsBot)
         GeneralBindingSource.Position = 1
         GeneralBindingSource.Position = 0
     End Sub
@@ -44,7 +44,7 @@ Public Class frmBotasTapones
                                 (dgvGeneral.Rows(Posicion).Cells(0).Value), _
                                 Convert.ToString(dgvGeneral.Rows(Posicion).Cells(1).Value))
             BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
-            ctlBot.mostrarTodosBotasTapones(dtsBot)
+            ctlBot.mostrarTodosBotasTapones(dtb, dtsBot)
             GeneralBindingSource.Position = 1
             GeneralBindingSource.Position = Posicion
         Else
@@ -74,7 +74,7 @@ Public Class frmBotasTapones
             If response = DialogResult.Yes Then
                 ctlBot.SetBotaTaponID((dgvGeneral.Rows(Posicion).Cells(0).Value))
                 ctlBot.EliminarBotaTapon()
-                ctlBot.mostrarTodosBotasTapones(dtsBot)
+                ctlBot.mostrarTodosBotasTapones(dtb, dtsBot)
                 If Posicion > 0 Then
                     GeneralBindingSource.Position = Posicion - 1
                 Else

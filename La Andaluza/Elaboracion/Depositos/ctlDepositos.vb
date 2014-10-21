@@ -30,13 +30,13 @@ Public Class ctlDepositos
         clsBotPie._BotaPiernaID = clsDep._BotaPiernaID
     End Sub
 
-    Public Sub LimpiarDeposito()
+    Public Sub LimpiarDeposito(ByRef dtb As BasesParaCompatibilidad.DataBase)
         If clsDep._DepositoID > 0 Then
             clsDep._TonelID = 0
             clsDep._TransicubaID = 0
             clsDep._BotaID = 0
             clsDep._BotaPiernaID = 0
-            clsDep.Limpiar()
+            clsDep.Limpiar(dtb)
         End If
     End Sub
 
@@ -111,7 +111,7 @@ Public Class ctlDepositos
         End While
     End Sub
 
-    Public Sub GuardarDeposito(ByVal Codigo As String, ByVal FechaCreacion As Date, ByVal Capacidad As String, _
+    Public Sub GuardarDeposito(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal Codigo As String, ByVal FechaCreacion As Date, ByVal Capacidad As String, _
                ByVal DoctoUbicacionFisica As String, ByVal materialConstruccion As Integer, ByVal listado As Boolean)
         clsDep._Codigo = Codigo
         clsDep._Capacidad = Capacidad
@@ -126,30 +126,30 @@ Public Class ctlDepositos
         clsDep._MaterialConstruccionID = materialConstruccion
         clsDep._Listado = listado
         If clsDep._DepositoID = 0 Then
-            clsDep.Insertar()
+            clsDep.Insertar(dtb)
         Else
-            clsDep.Modificar()
+            clsDep.Modificar(dtb)
         End If
     End Sub
 
-    Public Sub EliminarDeposito()
+    Public Sub EliminarDeposito(ByRef dtb As BasesParaCompatibilidad.DataBase)
         clsDep.Cargar()
 
         If clsDep._BotaID > 0 Then
             clsBot._BotaID = clsDep._BotaID
-            LimpiarDeposito()
+            LimpiarDeposito(dtb)
             EliminarBota()
         ElseIf clsDep._TonelID > 0 Then
             clsTon._TonelID = clsDep._TonelID
-            LimpiarDeposito()
+            LimpiarDeposito(dtb)
             EliminarTonel()
         ElseIf clsDep._BotaPiernaID > 0 Then
             clsBotPie._BotaPiernaID = clsDep._BotaPiernaID
-            LimpiarDeposito()
+            LimpiarDeposito(dtb)
             EliminarBotaPierna()
         ElseIf clsDep._TransicubaID > 0 Then
             clsTra._TransicubaID = clsDep._TransicubaID
-            LimpiarDeposito()
+            LimpiarDeposito(dtb)
             EliminarTransicuba()
         End If
         clsDep.Eliminar()
@@ -162,8 +162,8 @@ Public Class ctlDepositos
         Return clsBot._BotaID
     End Function
 
-    Public Sub CargarBota()
-        clsBot.Cargar()
+    Public Sub CargarBota(ByRef dtb As BasesParaCompatibilidad.DataBase)
+        clsBot.Cargar(dtb)
     End Sub
 
     Public Sub DevolverDatosBota(ByRef BotaTaponID As Integer, ByRef PosicionID As Integer)
@@ -171,15 +171,15 @@ Public Class ctlDepositos
         PosicionID = clsBot._PosicionID
     End Sub
 
-    Public Sub GuardarBota( _
+    Public Sub GuardarBota(ByRef dtb As BasesParaCompatibilidad.DataBase, _
                ByVal BotaTaponID As Integer, _
                ByVal PosicionID As Integer)
         clsBot._BotaTaponID = BotaTaponID
         clsBot._PosicionID = PosicionID
         If clsBot._BotaID = 0 Then
-            clsBot.Insertar()
+            clsBot.Insertar(dtb)
         Else
-            clsBot.Modificar()
+            clsBot.Modificar(dtb)
         End If
     End Sub
 
@@ -203,14 +203,14 @@ Public Class ctlDepositos
         contHab = clsTon._ContenidoHabitual
     End Sub
 
-    Public Sub GuardarTonel( _
+    Public Sub GuardarTonel(ByRef dtb As BasesParaCompatibilidad.DataBase, _
                ByVal Descripcion As String, ByVal ContenidoHabitual As String)
         clsTon._Descripcion = Descripcion
         clsTon._ContenidoHabitual = ContenidoHabitual
         If clsTon._TonelID = 0 Then
-            clsTon.Insertar()
+            clsTon.Insertar(dtb)
         Else
-            clsTon.Modificar()
+            clsTon.Modificar(dtb)
         End If
     End Sub
 
@@ -234,13 +234,13 @@ Public Class ctlDepositos
         contHab = clsBotPie._ContenidoHabitual
     End Sub
 
-    Public Sub GuardarBotaPierna(ByVal Descripcion As String, ByVal ContenidoHabitual As String)
+    Public Sub GuardarBotaPierna(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal Descripcion As String, ByVal ContenidoHabitual As String)
         clsBotPie._Descripcion = Descripcion
         clsBotPie._ContenidoHabitual = ContenidoHabitual
         If clsBotPie._BotaPiernaID = 0 Then
-            clsBotPie.Insertar()
+            clsBotPie.Insertar(dtb)
         Else
-            clsBotPie.Modificar()
+            clsBotPie.Modificar(dtb)
         End If
     End Sub
 
@@ -266,7 +266,7 @@ Public Class ctlDepositos
         clsTra._Estado = estado
     End Sub
 
-    Public Sub GuardarTransicuba( _
+    Public Sub GuardarTransicuba(ByRef dtb As BasesParaCompatibilidad.DataBase, _
                ByVal Descripcion As String, _
                ByVal Estado As Boolean)
 
@@ -274,9 +274,9 @@ Public Class ctlDepositos
         clsTra._Estado = Estado
 
         If clsTra._TransicubaID = 0 Then
-            clsTra.Insertar()
+            clsTra.Insertar(dtb)
         Else
-            clsTra.Modificar()
+            clsTra.Modificar(dtb)
         End If
     End Sub
 

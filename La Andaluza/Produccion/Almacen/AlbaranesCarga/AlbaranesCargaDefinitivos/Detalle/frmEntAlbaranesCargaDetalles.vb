@@ -2,13 +2,21 @@ Public Class frmEntAlbaranesCargaDetalles
 
     inherits BasesParaCompatibilidad.FrmAHeredarEntOld
 
-    Dim dtsAlb As New dtsAlbaranesCargaDetalles.AlbaranesCargaDetallesDataTable
-    Dim ctlAlb As New ctlAlbaranesCargaDetalles
+    Private dtsAlb As New dtsAlbaranesCargaDetalles.AlbaranesCargaDetallesDataTable
+    Private ctlAlb As New ctlAlbaranesCargaDetalles
+    Private dtb As BasesParaCompatibilidad.DataBase
 
+    Public Sub New()
+        InitializeComponent()
+
+        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtsAlb = New dtsAlbaranesCargaDetalles.AlbaranesCargaDetallesDataTable
+        ctlAlb = New ctlAlbaranesCargaDetalles
+    End Sub
     Overrides Sub Guardar()
         Try
             If Me.Text.Substring(0, 8) = "Insertar" Then
-                ctlAlb.GuardarAlbaranCargaDetalle(AlbaranCargaMaestroIDCuadroDeTexto.Text, _
+                ctlAlb.GuardarAlbaranCargaDetalle(dtb, AlbaranCargaMaestroIDCuadroDeTexto.Text, _
                                                   SccCuadroDeTexto.Text, _
                                                   CodigoQSCuadroDeTexto.Text, _
                                                   AticuloDescripcionCuadroDeTexto.Text, _
@@ -23,7 +31,7 @@ Public Class frmEntAlbaranesCargaDetalles
                 Me.Close()
             End If
             If Me.Text.Substring(0, 9) = "Modificar" Then
-                ctlAlb.GuardarAlbaranCargaDetalle( _
+                ctlAlb.GuardarAlbaranCargaDetalle(dtb, _
                            AlbaranCargaMaestroIDCuadroDeTexto.Text, _
                            SccCuadroDeTexto.Text, _
                            CodigoQSCuadroDeTexto.Text, _
@@ -46,7 +54,8 @@ Public Class frmEntAlbaranesCargaDetalles
     Private Sub frmEntAlbaranesCargaDetalles_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ModificarBindingNavigator()
         If Me.Text.Substring(0, 3) = "Ver" Then
-            ctlAlb.mostrarTodosAlbaranesCargaDetalles(dtsAlb)
+            Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+            ctlAlb.mostrarTodosAlbaranesCargaDetalles(dtb, dtsAlb)
             GeneralBindingSource.DataSource = dtsAlb
             GeneralBindingSource.Position = Posicion
         End If

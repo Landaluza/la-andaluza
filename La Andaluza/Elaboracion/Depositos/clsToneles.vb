@@ -55,24 +55,26 @@ Public Class clsToneles
         End Try
     End Sub
 
-    Public Function Modificar() As Integer
+    Public Function Modificar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Try
-            Deprecated.ConsultaModificar("Toneles", _
-                               "Descripcion='" & Descripcion & "', ContenidoHabitual='" & ContenidoHabitual & "'", _
-                               "TonelID=" & Convert.ToString(TonelID))
+            dtb.ConsultaAlteraciones("update Toneles set " & _
+                               "Descripcion='" & Descripcion & "', ContenidoHabitual='" & ContenidoHabitual & "'" & _
+                               " where TonelID=" & Convert.ToString(TonelID))
             Return 1
         Catch ex As Exception
             Return 0
         End Try
     End Function
 
-    Public Function Insertar() As Integer
+    Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
 
         Try
-            Deprecated.ConsultaInsertar( _
-                              "'" & Descripcion & "','" & ContenidoHabitual & "'", _
-                              "Toneles")
-            TonelID = Deprecated.ConsultaVer("max(TonelID)", "Toneles").Rows(0).Item(0)
+            dtb.ConsultaAlteraciones("insert into Toneles values(" & _
+                              "'" & Descripcion & "','" & ContenidoHabitual & "'" & _
+                             BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)) + "'," + BasesParaCompatibilidad.Config.User.ToString + ")")
+
+            dtb.PrepararConsulta("select max(TonelID) from Toneles")
+            TonelID = dtb.Consultar.Rows(0).Item(0)
             Return TonelID
         Catch ex As Exception
             Return 0

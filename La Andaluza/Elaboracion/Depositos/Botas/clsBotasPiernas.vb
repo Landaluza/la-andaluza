@@ -54,24 +54,26 @@ Public Class clsBotasPiernas
         End Try
     End Sub
 
-    Public Function Modificar() As Integer
+    Public Function Modificar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
+
         Try
-            Deprecated.ConsultaModificar("BotasPiernas", _
-                               "Descripcion='" & Descripcion & "', ContenidoHabitual='" & ContenidoHabitual & "'", _
-                               "BotaPiernaID=" & Convert.ToString(BotaPiernaID))
+            dtb.ConsultaAlteraciones("update BotasPiernas set " & _
+                               "Descripcion='" & Descripcion & "', ContenidoHabitual='" & ContenidoHabitual & "'" & _
+                               " where BotaPiernaID=" & Convert.ToString(BotaPiernaID))
             Return 1
         Catch ex As Exception
             Return 0
         End Try
     End Function
 
-    Public Function Insertar() As Integer
+    Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
 
         Try
-            Deprecated.ConsultaInsertar( _
-                              "'" & Descripcion & "','" & ContenidoHabitual & "'", _
-                              "BotasPiernas")
-            BotaPiernaID = Deprecated.ConsultaVer("max(BotaPiernaID)", "BotasPiernas").Rows(0).Item(0)
+            dtb.ConsultaAlteraciones("insert into BotasPiernas values(" & _
+                              "'" & Descripcion & "','" & ContenidoHabitual & "'," &
+                              BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)) + "'," + BasesParaCompatibilidad.Config.User.ToString + ")")
+            dtb.PrepararConsulta("select max(BotaPiernaID) from BotasPiernas")
+            BotaPiernaID = dtb.Consultar().Rows(0).Item(0)
             Return BotaPiernaID
         Catch ex As Exception
             Return 0

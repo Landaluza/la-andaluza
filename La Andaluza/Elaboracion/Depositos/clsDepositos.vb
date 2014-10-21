@@ -236,14 +236,14 @@ Public Class clsDepositos
         End Try
     End Sub
 
-    Public Function Limpiar() As Integer
+    Public Function Limpiar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Try
-            Deprecated.ConsultaModificar("Depositos", _
+            dtb.ConsultaAlteraciones("update Depositos set " & _
                                  "TonelID=" & Convert.ToString(TonelID) & "," & _
                                  "TransicubaID=" & Convert.ToString(TransicubaID) & "," & _
                                  "BotaPiernaID=" & Convert.ToString(BotaPiernaID) & "," & _
-                                 "BotaID=" & Convert.ToString(BotaID) & "", _
-                                 "DepositoID=" & Convert.ToString(DepositoID))
+                                 "BotaID=" & Convert.ToString(BotaID) & "" & _
+                                 " where DepositoID=" & Convert.ToString(DepositoID))
             Return 1
         Catch ex As Exception
             Return 0
@@ -260,9 +260,9 @@ Public Class clsDepositos
                               "(Transicubas.Estado = 'True')  and Depositos.DepositoID not in (SELECT DISTINCT Depositos.DepositoID FROM Depositos INNER JOIN Transicubas ON Depositos.TransicubaID = Transicubas.TransicubaID INNER JOIN Lotes ON Depositos.DepositoID = Lotes.DepositoID WHERE (Transicubas.Estado = 'True')) order by Depositos.Codigo")
     End Function
 
-    Public Function Modificar() As Integer
+    Public Function Modificar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Try
-            Deprecated.ConsultaModificar("Depositos", _
+            dtb.ConsultaAlteraciones(" update Depositos set " & _
                                  "Codigo='" & Codigo & "'," & _
                                  "FechaCreacion='" & BasesParaCompatibilidad.Calendar.ArmarFecha(FechaCreacion) & "'," & _
                                  "Capacidad='" & Capacidad & "'," & _
@@ -272,28 +272,29 @@ Public Class clsDepositos
                                  "TonelID=" & Convert.ToString(TonelID) & "," & _
                                  "TransicubaID=" & Convert.ToString(TransicubaID) & "," & _
                                  "BotaPiernaID=" & Convert.ToString(BotaPiernaID) & "," & _
-                                 "BotaID=" & Convert.ToString(BotaID) & "", _
-                                 "DepositoID=" & Convert.ToString(DepositoID))
+                                 "BotaID=" & Convert.ToString(BotaID) & "" & _
+                                 " where DepositoID=" & Convert.ToString(DepositoID))
             Return 1
         Catch ex As Exception
             Return 0
         End Try
     End Function
 
-    Public Function Insertar() As Integer
+    Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Try
             Dim calendar As New BasesParaCompatibilidad.Calendar
-            Deprecated.ConsultaInsertar( _
+            dtb.ConsultaAlteraciones("insert into depositos values(" & _
                               "'" & Codigo & "'," & _
                               "'" & BasesParaCompatibilidad.Calendar.ArmarFecha(FechaCreacion) & "'," & _
                               "'" & Convert.ToString(Capacidad) & "'," & _
                               "'" & DoctoUbicacionFisica & "'," & _
                               "" & Convert.ToString(TonelID) & "," & _
                               "" & Convert.ToString(TransicubaID) & "," & _
-                              "" & Convert.ToString(BotaID) & "," & Convert.ToString(BotaPiernaID) & "," & MaterialConstruccionID & ",'" & Listado & "'", _
-                              "Depositos")
+                              "" & Convert.ToString(BotaID) & "," & Convert.ToString(BotaPiernaID) & "," & MaterialConstruccionID & ",'" & Listado & "'" & _
+                              BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)) + "'," + BasesParaCompatibilidad.Config.User.ToString + ")")
 
-            DepositoID = Deprecated.ConsultaVer("max(DepositoID)", "Depositos").Rows(0).Item(0)
+            dtb.PrepararConsulta("select max(DepositoID) from Depositos")
+            DepositoID = dtb.Consultar().Rows(0).Item(0)
             Return DepositoID
         Catch ex As Exception
             Return 0

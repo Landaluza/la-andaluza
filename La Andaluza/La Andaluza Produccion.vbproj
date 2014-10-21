@@ -49,7 +49,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>474</ApplicationRevision>
+    <ApplicationRevision>475</ApplicationRevision>
     <ApplicationVersion>2014.7.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -6639,7 +6639,7 @@
     <None Include="Bases\ZLibrerias\Incidencias entre fechas.dll" />
     <None Include="Bases\ZLibrerias\InformesCalidad.dll" />
     <None Include="Bases\ZLibrerias\Envasados entre fechas.dll" />
-    <None Include="Bases\ZLibrerias\BasesParaCompatibilidad.dll" />
+    <Content Include="Bases\ZLibrerias\BasesParaCompatibilidad.dll" />
     <Content Include="Resources\window_new.ico" />
     <Content Include="Resources\window_new_3.ico" />
     <None Include="Resources\text-x-makefile.png" />

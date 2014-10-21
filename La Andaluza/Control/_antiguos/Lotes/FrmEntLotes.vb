@@ -135,7 +135,7 @@ Public Class FrmEntLotes
         cboProveedor.DisplayMember = "Display"
 
         'cboProveedoresLabExternos.DataSource = OldLib.HacerTablasObligatorias(ctlLabExt.devolverProveedoresAnaliticas())
-        cboProveedoresLabExternos.DataSource = OldLib.HacerTablasObligatorias(ctlProv.devolverProveedoresAnaliticas())
+        cboProveedoresLabExternos.DataSource = OldLib.HacerTablasObligatorias(ctlProv.devolverProveedoresAnaliticas(dtb))
         cboProveedoresLabExternos.ValueMember = "ID"
         cboProveedoresLabExternos.DisplayMember = "Display"
 
@@ -311,7 +311,7 @@ Public Class FrmEntLotes
 
     Overrides Sub Guardar()
         If Not Me.comprobarDatos(dtb) Then
-            MessageBox.Show("Los valores han cambiado desde que se abrio el formulario, cierrelo y vuelva a hacer sus cambios", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Alguien, que no eres tu, ha modificado los datos de este lote. Para evitar que se corrompan los datos el formulario se cerrara. Vuelva a intentar sus modificaciones de nuevo", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
         End If
 
@@ -382,7 +382,7 @@ Public Class FrmEntLotes
     End Sub
 
     Public Function comprobarDatos(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
-        If Not LoteID = 0 Then
+        If Me.Text.Substring(0, 8) <> "Insertar" Then
             Return sp.comprobar(dtb, dbo)
         End If
 
@@ -1011,10 +1011,10 @@ Public Class FrmEntLotes
                 Me.Height = 965
                 Me.Location = New Point(100, 100)
                 If (Me.Text.Substring(0, 9) = "Modificar") And (txtReferencia.Text = "0" Or txtReferencia.Text.Trim = "") Then
-                    txtReferencia.Text = ctlLot.devolverReferencia
+                    txtReferencia.Text = ctlLot.devolverReferencia(dtb)
                 End If
                 If (Me.Text.Substring(0, 8) = "Insertar") Then
-                    txtReferencia.Text = ctlLot.devolverReferencia
+                    txtReferencia.Text = ctlLot.devolverReferencia(dtb)
                 End If
             End If
         Catch ex As Exception

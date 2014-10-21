@@ -76,7 +76,7 @@ Public Class frmEntAlbaranesCargaMaestro
             End With
         Else
             If Me.Text.Substring(0, 3) = "Ver" Then
-                ctlAlb.mostrarTodosAlbaranesCargaMaestro(dtsAlb)
+                ctlAlb.mostrarTodosAlbaranesCargaMaestro(dtb, dtsAlb)
                 GeneralBindingSource.DataSource = dtsAlb
                 GeneralBindingSource.Position = Posicion
             Else
@@ -194,9 +194,9 @@ Public Class frmEntAlbaranesCargaMaestro
 
         Try
             If Me.Text.Substring(0, 8) = "Insertar" Then
-                ctlAlb.GuardarAlbaranCargaMaestro((m_MaestroProID), _
+                ctlAlb.GuardarAlbaranCargaMaestro(dtb, m_MaestroProID, _
                                                   FechaDateTimePicker.Value, _
-                                                  (ClienteIDCuadroDeTexto.Text), _
+                                                  ClienteIDCuadroDeTexto.Text, _
                                                   (SerieQSIDCuadroDeTexto.Text), _
                                                   (NumeroQSCuadroDeTexto.Text), _
                                                   (AlmacenSalidaQSIDCuadroDeTexto.Text), _
@@ -235,7 +235,7 @@ Public Class frmEntAlbaranesCargaMaestro
             End If
 
             If Me.Text.Substring(0, 9) = "Modificar" Then
-                ctlAlb.GuardarAlbaranCargaMaestro((m_MaestroProID), _
+                ctlAlb.GuardarAlbaranCargaMaestro(dtb, m_MaestroProID, _
                                                   FechaDateTimePicker.Value, _
                                                   (ClienteIDCuadroDeTexto.Text), _
                                                   (SerieQSIDCuadroDeTexto.Text), _

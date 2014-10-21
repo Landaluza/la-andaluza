@@ -75,9 +75,9 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         Me.cargar_Proveedores_Por_Tipo(cbo, 3)
     End Sub
 
-    Public Function devolverProveedoresAnaliticas() As DataTable
-        Return Deprecated.ConsultaVer("Proveedores.ProveedorID, Proveedores.Nombre", "TipoProv_Proveedor INNER JOIN Proveedores ON TipoProv_Proveedor.ProveedorID = Proveedores.ProveedorID INNER JOIN TiposProveedores ON TipoProv_Proveedor.TipoProveedorID = TiposProveedores.TipoProveedorID", "TiposProveedores.Descripcion = 'Analiticas'")
-
+    Public Function devolverProveedoresAnaliticas(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
+        dtb.PrepararConsulta("select Proveedores.ProveedorID, Proveedores.Nombre from TipoProv_Proveedor INNER JOIN Proveedores ON TipoProv_Proveedor.ProveedorID = Proveedores.ProveedorID INNER JOIN TiposProveedores ON TipoProv_Proveedor.TipoProveedorID = TiposProveedores.TipoProveedorID where TiposProveedores.Descripcion = 'Analiticas'")
+        Return dtb.Consultar()
     End Function
 
 

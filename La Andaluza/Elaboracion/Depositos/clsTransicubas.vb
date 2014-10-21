@@ -60,25 +60,13 @@ Public Class clsTransicubas
     End Sub
 
 
-    Public Function darDeBajaTransicuba() As Integer
-        Try
-            If Deprecated.ConsultaModificar("Transicubas", _
-                       "Estado='False'", _
-                       "TransicubaID=" & Convert.ToString(TransicubaID)) = 0 Then
-                Return 0
-            End If
-            Return 1
-        Catch ex As Exception
-            Return 0
-        End Try
 
-    End Function
-    Public Function Modificar() As Integer
+    Public Function Modificar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Try
-            Deprecated.ConsultaModificar("Transicubas", _
+            dtb.ConsultaAlteraciones("update Transicubas set " & _
                        "Descripcion='" & Descripcion & "'," & _
-                       "Estado='" & Estado & "'", _
-                       "TransicubaID=" & Convert.ToString(TransicubaID))
+                       "Estado='" & Estado & "'" & _
+                       " where TransicubaID=" & Convert.ToString(TransicubaID))
 
 
             Return 1
@@ -87,16 +75,16 @@ Public Class clsTransicubas
         End Try
     End Function
 
-    Public Function Insertar() As Integer
+    Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Try
-            Deprecated.ConsultaInsertar( _
+            dtb.ConsultaAlteraciones("insert into transicubas values(" & _
                        "'" & Descripcion & "'," & _
-                       "'" & Estado & "'", _
-                       "Transicubas")
+                       "'" & Estado & "'" & _
+                      BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)) + "'," + BasesParaCompatibilidad.Config.User.ToString + ")")
 
 
-
-            TransicubaID = Deprecated.ConsultaVer("max(TransicubaID)", "Transicubas").Rows(0).Item(0)
+            dtb.PrepararConsulta("select max(TransicubaID) from Transicubas")
+            TransicubaID = dtb.Consultar().Rows(0).Item(0)
             Return TransicubaID
         Catch ex As Exception
             Return 0

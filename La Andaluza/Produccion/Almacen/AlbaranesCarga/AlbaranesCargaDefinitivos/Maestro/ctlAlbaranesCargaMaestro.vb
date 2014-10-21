@@ -9,14 +9,10 @@ Public Class ctlAlbaranesCargaMaestro
         clsAlb._AlbaranCargaMaestroID = ID
     End Sub
 
-    Public Function devolverAlbaranesCargaMaestro() As DataTable
-        Return clsAlb.Devolver()
-    End Function
 
-
-    Public Sub mostrarTodosAlbaranesCargaMaestro(ByRef dts As dtsAlbaranesCargaMaestro.AlbaranesCargaMaestroDataTable)
+    Public Sub mostrarTodosAlbaranesCargaMaestro(ByRef dtb As BasesParaCompatibilidad.DataBase, ByRef dts As dtsAlbaranesCargaMaestro.AlbaranesCargaMaestroDataTable)
         Dim tabla As New DataTable
-        tabla = clsAlb.Devolver()
+        tabla = clsAlb.Devolver(dtb)
         Dim i As Integer = 0
         dts.Clear()
         Dim reg As dtsAlbaranesCargaMaestro.AlbaranesCargaMaestroRow
@@ -55,7 +51,7 @@ Public Class ctlAlbaranesCargaMaestro
         End While
     End Sub
 
-    Public Sub GuardarAlbaranCargaMaestro( _
+    Public Sub GuardarAlbaranCargaMaestro(ByRef dtb As BasesParaCompatibilidad.DataBase, _
                ByVal AlbaranCargaProMaestroID As Integer, _
                ByVal Fecha As DateTime, _
                ByVal ClienteID As Integer, _
@@ -97,9 +93,9 @@ Public Class ctlAlbaranesCargaMaestro
         clsAlb._Reserva2 = Reserva2
         clsAlb._Reserva3 = Reserva3
         If clsAlb._AlbaranCargaMaestroID = 0 Then
-            clsAlb.Insertar()
+            clsAlb.Insertar(dtb)
         Else
-            clsAlb.Modificar()
+            clsAlb.Modificar(dtb)
         End If
     End Sub
 

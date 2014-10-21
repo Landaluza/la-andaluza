@@ -13,7 +13,7 @@ Public Class frmAlbaranesCargaDetalles
         dtsAlb = New dtsAlbaranesCargaDetalles.AlbaranesCargaDetallesDataTable
     End Sub
     Protected Overrides Sub cargar_datos()
-        ctlAlb.mostrarTodosAlbaranesCargaDetalles(dtsAlb)
+        ctlAlb.mostrarTodosAlbaranesCargaDetalles(dtb, dtsAlb)
     End Sub
 
     Protected Overrides Sub BindDataSource()
@@ -47,7 +47,7 @@ Public Class frmAlbaranesCargaDetalles
         FrmEnt.Text = ACCION_INSERTAR & " AlbaranesCargaDetalles"
         FrmEnt.CargarDatos(0, 0, 0, 0, 0, "", 0, "", "", "", "", "", "", "")
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
-        ctlAlb.mostrarTodosAlbaranesCargaDetalles(dtsAlb)
+        ctlAlb.mostrarTodosAlbaranesCargaDetalles(dtb, dtsAlb)
         GeneralBindingSource.Position = 1
         GeneralBindingSource.Position = 0
     End Sub
@@ -72,7 +72,7 @@ Public Class frmAlbaranesCargaDetalles
                                dgvGeneral.Rows(Posicion).Cells(11).Value, _
                                dgvGeneral.Rows(Posicion).Cells(12).Value)
             BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
-            ctlAlb.mostrarTodosAlbaranesCargaDetalles(dtsAlb)
+            ctlAlb.mostrarTodosAlbaranesCargaDetalles(dtb, dtsAlb)
             GeneralBindingSource.Position = 1
             GeneralBindingSource.Position = Posicion
         Else
@@ -113,7 +113,7 @@ Public Class frmAlbaranesCargaDetalles
             If response = DialogResult.Yes Then
                 ctlAlb.SetAlbaranCargaDetalleID(dgvGeneral.Rows(Posicion).Cells(0).Value)
                 If ctlAlb.EliminarAlbaranCargaDetalle() Then
-                    ctlAlb.mostrarTodosAlbaranesCargaDetalles(dtsAlb)
+                    ctlAlb.mostrarTodosAlbaranesCargaDetalles(dtb, dtsAlb)
                     If Posicion > 0 Then
                         GeneralBindingSource.Position = Posicion - 1
                     Else

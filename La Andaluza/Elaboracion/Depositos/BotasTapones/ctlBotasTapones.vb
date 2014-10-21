@@ -1,21 +1,17 @@
 Public Class ctlBotasTapones
-    Dim clsbotTap As New clsBotasTapones
+    Private clsbotTap As New clsBotasTapones
 
-    Public Function GetBotaTaponID() As Integer
-        Return clsbotTap._BotaTaponID
-    End Function
+
 
     Public Sub SetBotaTaponID(ByVal ID As Integer)
         clsbotTap._BotaTaponID = ID
     End Sub
 
-    Public Function devolverBotasTapones() As DataTable
-        Return clsbotTap.Devolver()
-    End Function
 
-    Public Sub mostrarTodosBotasTapones(ByRef dts As dtsBotasTapones.BotasTaponesDataTable)
+
+    Public Sub mostrarTodosBotasTapones(ByRef dtb As BasesParaCompatibilidad.DataBase, ByRef dts As dtsBotasTapones.BotasTaponesDataTable)
         Dim tabla As New DataTable
-        tabla = clsbotTap.Devolver()
+        tabla = clsbotTap.Devolver(dtb)
         Dim i As Integer
         dts.Clear()
         Dim reg As dtsBotasTapones.BotasTaponesRow
@@ -29,13 +25,13 @@ Public Class ctlBotasTapones
         End While
     End Sub
 
-    Public Sub GuardarBotaTapon( _
+    Public Sub GuardarBotaTapon(ByRef dtb As BasesParaCompatibilidad.DataBase, _
                ByVal Descripcion As String)
         clsbotTap._Descripcion = Descripcion
         If clsbotTap._BotaTaponID = 0 Then
-            clsbotTap.Insertar()
+            clsbotTap.Insertar(dtb)
         Else
-            clsbotTap.Modificar()
+            clsbotTap.Modificar(dtb)
         End If
     End Sub
 

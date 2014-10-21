@@ -74,7 +74,7 @@ Public Class frmDepositos
             response = MessageBox.Show(" ¿Realmente desea eliminar este registro? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
             If response = DialogResult.Yes Then
                 ctlDep.SetDepositoID(dgvGeneral.Rows(Posicion).Cells(0).Value)
-                ctlDep.EliminarDeposito()
+                ctlDep.EliminarDeposito(dtb)
                 ctlDep.mostrarTodosDepositos(dtsDep)
                 If Posicion > 0 Then
                     GeneralBindingSource.Position = Posicion - 1

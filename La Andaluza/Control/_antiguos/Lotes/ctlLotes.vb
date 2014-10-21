@@ -117,8 +117,8 @@ Public Class ctlLotes
 
     '---------------------------------------------------MOVIMIENTOS----------------------------------------------------------
 
-    Public Function devolverReferencia() As Integer
-        clsLot.devolverReferencia()
+    Public Function devolverReferencia(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
+        clsLot.devolverReferencia(dtb)
         Return clsLot._Referencia
     End Function
 

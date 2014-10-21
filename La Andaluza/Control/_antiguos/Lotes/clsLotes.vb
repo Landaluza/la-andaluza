@@ -376,9 +376,10 @@ Public Class clsLotes
     End Sub
 
 
-    Public Sub devolverReferencia()
+    Public Sub devolverReferencia(ByRef dtb As BasesParaCompatibilidad.DataBase)
         Try
-            Referencia = Convert.ToInt32(Deprecated.ConsultaVer("max(referencia)", "Lotes").Rows(0).Item(0))
+            dtb.PrepararConsulta("select max(referencia) from Lotes")
+            Referencia = Convert.ToInt32(dtb.Consultar().Rows(0).Item(0))
             Referencia = Referencia + 1
         Catch ex As Exception
             Referencia = 1
@@ -649,23 +650,7 @@ Public Class clsLotes
 
     Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Try
-            If Botellas <> "null" Then
-                'Deprecated.ConsultaInsertar(Referencia & ",'" & Descripcion & "'," & _
-                '                    "'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha) & "'," & _
-                '                    "'" & Convert.ToString(CantidadRestante) & "'," & _
-                '                    "'" & Observacion & "'," & _
-                '                    "'" & LoteProveedor & "'," & _
-                '                    "'" & Convert.ToString(Botellas) & "'," & _
-                '                    "" & Convert.ToString(CantidadID) & "," & _
-                '                    "" & Convert.ToString(MedidaID) & "," & _
-                '                    "" & Convert.ToString(EspecificacionID) & "," & _
-                '                    "" & Convert.ToString(TipoLoteID) & "," & _
-                '                    "" & Convert.ToString(TipoProductoID) & "," & _
-                '                    Convert.ToString(CorredorID) & "," & _
-                '                    Convert.ToString(ProveedorID) & "," & _
-                '                    Convert.ToString(LoteConjuntoCompraID) & "," & _
-                '                    "'" & CodigoLote & "'," & DepositoID & "," & DepositoID & ",'False'," & RecipienteSalidaID, _
-                '                    "Lotes")
+            If Botellas <> "null" Then      
 
                 If Not dtb.ConsultaAlteraciones("insert into lotes values(" & Referencia & ",'" & Descripcion & "'," & _
                                     "'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha) & "'," & _
@@ -687,22 +672,7 @@ Public Class clsLotes
                     Throw New Exception("No se pudo insertar el lote")
                 End If
             Else
-                'Deprecated.ConsultaInsertar(Referencia & ",'" & Descripcion & "'," & _
-                '                    "'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha) & "'," & _
-                '                    "'" & Convert.ToString(CantidadRestante) & "'," & _
-                '                    "'" & Observacion & "'," & _
-                '                    "'" & LoteProveedor & "'," & _
-                '                    "" & Convert.ToString(Botellas) & "," & _
-                '                    "" & Convert.ToString(CantidadID) & "," & _
-                '                    "" & Convert.ToString(MedidaID) & "," & _
-                '                    "" & Convert.ToString(EspecificacionID) & "," & _
-                '                    "" & Convert.ToString(TipoLoteID) & "," & _
-                '                    "" & Convert.ToString(TipoProductoID) & "," & _
-                '                    Convert.ToString(CorredorID) & "," & _
-                '                    Convert.ToString(ProveedorID) & "," & _
-                '                    Convert.ToString(LoteConjuntoCompraID) & "," & _
-                '                    "'" & CodigoLote & "'," & DepositoID & "," & DepositoID & ",'False'," & RecipienteSalidaID, _
-                '                    "Lotes")
+
                 If Not dtb.ConsultaAlteraciones("insert into lotes values(" & Referencia & ",'" & Descripcion & "'," & _
                                     "'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha) & "'," & _
                                     "'" & Convert.ToString(CantidadRestante) & "'," & _

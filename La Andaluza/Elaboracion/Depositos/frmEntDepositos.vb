@@ -11,12 +11,14 @@ Public Class frmEntDepositos
 
     Private spnaves As New spNaves
     Private frmTiposDEpositoPorDeposito As frmTiposDEpositoPorDeposito
+    Private dtb As BasesParaCompatibilidad.DataBase
 
     Public Sub New()
 
         ' This call is required by the designer.
         InitializeComponent()
 
+        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
         FechaCreacionDateTimePicker.activarFoco()
     End Sub
 
@@ -33,66 +35,66 @@ Public Class frmEntDepositos
         Try
             If rbTonel.Checked Then
                 If ctlDep.GetBotaID > 0 Then
-                    ctlDep.LimpiarDeposito()
+                    ctlDep.LimpiarDeposito(dtb)
                     ctlDep.EliminarBota()
                 End If
                 If ctlDep.GetTransicubaID > 0 Then
-                    ctlDep.LimpiarDeposito()
+                    ctlDep.LimpiarDeposito(dtb)
                     ctlDep.EliminarTransicuba()
                 End If
                 If ctlDep.GetBotasPiernaID > 0 Then
-                    ctlDep.LimpiarDeposito()
+                    ctlDep.LimpiarDeposito(dtb)
                     ctlDep.EliminarBotaPierna()
                 End If
-                ctlDep.GuardarTonel(cdDescripcionTonel.Text, txtContenidoHabitual.Text)
+                ctlDep.GuardarTonel(dtb, cdDescripcionTonel.Text, txtContenidoHabitual.Text)
             ElseIf rbBota.Checked Then
                 If ctlDep.GetTonelID > 0 Then
-                    ctlDep.LimpiarDeposito()
+                    ctlDep.LimpiarDeposito(dtb)
                     ctlDep.EliminarTonel()
                 End If
                 If ctlDep.GetTransicubaID > 0 Then
-                    ctlDep.LimpiarDeposito()
+                    ctlDep.LimpiarDeposito(dtb)
                     ctlDep.EliminarTransicuba()
                 End If
                 If ctlDep.GetBotasPiernaID > 0 Then
-                    ctlDep.LimpiarDeposito()
+                    ctlDep.LimpiarDeposito(dtb)
                     ctlDep.EliminarBotaPierna()
                 End If
-                ctlDep.GuardarBota(BotaTaponIDComboMAM.SelectedValue, PosicionComboMAM.SelectedValue)
+                ctlDep.GuardarBota(dtb, BotaTaponIDComboMAM.SelectedValue, PosicionComboMAM.SelectedValue)
             ElseIf rbPiernas.Checked Then
                 If ctlDep.GetTonelID > 0 Then
-                    ctlDep.LimpiarDeposito()
+                    ctlDep.LimpiarDeposito(dtb)
                     ctlDep.EliminarTonel()
                 End If
                 If ctlDep.GetTransicubaID > 0 Then
-                    ctlDep.LimpiarDeposito()
+                    ctlDep.LimpiarDeposito(dtb)
                     ctlDep.EliminarTransicuba()
                 End If
                 If ctlDep.GetTransicubaID > 0 Then
-                    ctlDep.LimpiarDeposito()
+                    ctlDep.LimpiarDeposito(dtb)
                     ctlDep.EliminarTransicuba()
                 End If
-                ctlDep.GuardarBotaPierna(txtPiernasDescripcion.Text, txtPiernasContenido.Text)
+                ctlDep.GuardarBotaPierna(dtb, txtPiernasDescripcion.Text, txtPiernasContenido.Text)
             ElseIf rbTransicuba.Checked Then
                 If ctlDep.GetBotaID > 0 Then
-                    ctlDep.LimpiarDeposito()
+                    ctlDep.LimpiarDeposito(dtb)
                     ctlDep.EliminarBota()
                 End If
                 If ctlDep.GetTonelID > 0 Then
-                    ctlDep.LimpiarDeposito()
+                    ctlDep.LimpiarDeposito(dtb)
                     ctlDep.EliminarTonel()
                 End If
                 If ctlDep.GetBotasPiernaID > 0 Then
-                    ctlDep.LimpiarDeposito()
+                    ctlDep.LimpiarDeposito(dtb)
                     ctlDep.EliminarBotaPierna()
                 End If
-                ctlDep.GuardarTransicuba(cdDescripcionTransicuba.Text, cbEstadoTransicuba.Checked)
+                ctlDep.GuardarTransicuba(dtb, cdDescripcionTransicuba.Text, cbEstadoTransicuba.Checked)
             End If
 
             If Not rbTonel.Checked And Not rbBota.Checked And Not rbPiernas.Checked And Not rbTransicuba.Checked Then
                 MessageBox.Show("Debes seleccionar un tipo", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             Else
-                ctlDep.GuardarDeposito(cdCodigo.Text, FechaCreacionDateTimePicker.Value, If(CapacidadCuadroDeTexto.Text = "" Or Convert.IsDBNull(CapacidadCuadroDeTexto.Text), "0", CapacidadCuadroDeTexto.Text), DoctoUbicacionfisicaCuadroDeTexto.Text, MaterialConstruccionIDComboMAM.SelectedValue, ListadoCheckBox.Checked)
+                ctlDep.GuardarDeposito(dtb, cdCodigo.Text, FechaCreacionDateTimePicker.Value, If(CapacidadCuadroDeTexto.Text = "" Or Convert.IsDBNull(CapacidadCuadroDeTexto.Text), "0", CapacidadCuadroDeTexto.Text), DoctoUbicacionfisicaCuadroDeTexto.Text, MaterialConstruccionIDComboMAM.SelectedValue, ListadoCheckBox.Checked)
                 Me.Close()
             End If
 
@@ -268,7 +270,7 @@ Public Class frmEntDepositos
                 ctlDep.DevolverDatosBotaPierna(txtPiernasDescripcion.Text, txtPiernasContenido.Text)
             ElseIf ctlDep.GetBotaID > 0 Then
                 rbBota.Checked = True
-                ctlDep.CargarBota()
+                ctlDep.CargarBota(dtb)
                 ctlDep.DevolverDatosBota(BotaTaponIDComboMAM.SelectedValue, posi)
                 'ctlBotPos.SetPosicionID()
                 'ctlBotPos.CargarPorPosicion()

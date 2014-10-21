@@ -36,30 +36,33 @@ Public Class clsBotasTapones
 
     End Function
 
-    Public Function Devolver() As DataTable
-
-        Return Deprecated.ConsultaVer("BotasTapones.BotaTaponID,BotasTapones.Descripcion", "BotasTapones")
+    Public Function Devolver(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
+        dtb.PrepararConsulta("select BotasTapones.BotaTaponID,BotasTapones.Descripcion from BotasTapones")
+        Return dtb.Consultar
 
     End Function
 
-    Public Function Modificar() As Integer
+    Public Function Modificar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
 
         Try
-            Deprecated.ConsultaModificar("BotasTapones", _
-                               "Descripcion='" & Descripcion & "'", _
-                               "BotaTaponID=" & Convert.ToString(BotaTaponID))
+
+            dtb.ConsultaAlteraciones(" update BotasTapones set " & _
+                               "Descripcion='" & Descripcion & "'" & _
+                               " where BotaTaponID=" & Convert.ToString(BotaTaponID))
             Return 1
         Catch ex As Exception
             Return 0
         End Try
     End Function
 
-    Public Function Insertar() As Integer
+    Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Try
-            Deprecated.ConsultaInsertar( _
-                              "'" & Descripcion & "'", _
-                              "BotasTapones")
-            BotaTaponID = Deprecated.ConsultaVer("max(BotaTaponID)", "BotasTapones").Rows(0).Item(0)
+            dtb.ConsultaAlteraciones("insert into BotasTapones values(" & _
+                              "'" & Descripcion & "'," & _
+                             BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)) + "'," + BasesParaCompatibilidad.Config.User.ToString + ")")
+
+            dtb.PrepararConsulta("select max(BotaTaponID) from BotasTapones")
+            BotaTaponID = dtb.Consultar().Rows(0).Item(0)
             Return BotaTaponID
         Catch ex As Exception
             Return 0

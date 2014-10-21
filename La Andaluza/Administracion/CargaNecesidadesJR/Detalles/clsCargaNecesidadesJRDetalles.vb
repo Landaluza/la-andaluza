@@ -111,23 +111,6 @@ Public Class clsCargaNecesidadesJRDetalles
         Return dtb.Consultar
     End Function
 
-    Public Function Modificar() As Integer
-        Try
-            Deprecated.ConsultaModificar("CargaNecesidadesJRDetalles", _
-                       "CargaNecesidadesJRMaestroID=" & Convert.ToString(CargaNecesidadesJRMaestroID) & "," & _
-                       "ArticuloID=" & Convert.ToString(ArticuloID) & "," & _
-                       "Carga=" & Convert.ToString(Carga) & "," & _
-                       "Stock=" & Convert.ToString(Stock) & "," & _
-                       "Observaciones='" & Observaciones & "'," & _
-                       "Reserva1='" & Reserva1 & "'," & _
-                       "Reserva2='" & Reserva2 & "'," & _
-                       "Reserva3='" & Reserva3 & "'", _
-                       "CargaNecesidadesJRDetalleID=" & Convert.ToString(CargaNecesidadesJRDetalleID))
-            Return 1
-        Catch ex As Exception
-            Return 0
-        End Try
-    End Function
 
     Public Function Eliminar() As Integer
         Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)

@@ -40,15 +40,12 @@ Public Class clsBotas
 #End Region
 
 #Region "Metodos"
-    Public Function Devolver() As DataTable
 
-        Return Deprecated.ConsultaVer("Botas.BotaID,Botas.FechaLlegada,BotasTapones.Descripcion As BotasTapones,Posiciones.Descripcion As Posiciones", "Botas LEFT JOIN BotasTapones On Botas.BotaTaponID = BotasTapones.BotaTaponID LEFT JOIN Posiciones On Botas.PosicionID = Posiciones.PosicionID")
-    End Function
-
-    Public Sub Cargar()
+    Public Sub Cargar(ByRef dtb As BasesParaCompatibilidad.DataBase)
 
         Dim tabla As New DataTable
-        tabla = Deprecated.ConsultaVer("BotaTaponID,PosicionID", "Botas", "BotaID=" & Convert.ToString(BotaID))
+        dtb.PrepararConsulta("select BotaTaponID,PosicionID from Botas where BotaID=" & Convert.ToString(BotaID))
+        tabla = dtb.Consultar()
         Try
             BotaTaponID = tabla.Rows(0).Item(0)
             PosicionID = tabla.Rows(0).Item(1)
@@ -58,29 +55,32 @@ Public Class clsBotas
         End Try
     End Sub
 
-    Public Function Modificar() As Integer
+    Public Function Modificar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
 
 
         Try
-            Deprecated.ConsultaModificar("Botas", _
+
+
+            dtb.ConsultaAlteraciones("update Botas set " & _
                               "BotaTaponID=" & Convert.ToString(BotaTaponID) & "," & _
-                              "PosicionID=" & Convert.ToString(PosicionID) & "", _
-                              "BotaID=" & Convert.ToString(BotaID))
+                              "PosicionID=" & Convert.ToString(PosicionID) & "" & _
+                              " where BotaID=" & Convert.ToString(BotaID))
             Return 1
         Catch ex As Exception
             Return 0
         End Try
     End Function
 
-    Public Function Insertar() As Integer
+    Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
 
 
         Try
-            Deprecated.ConsultaInsertar( _
-                             "" & Convert.ToString(BotaTaponID) & "," & _
-                             "" & Convert.ToString(PosicionID) & "", _
-                             "Botas")
-            BotaID = Deprecated.ConsultaVer("max(BotaID)", "Botas").Rows(0).Item(0)
+            dtb.ConsultaAlteraciones("insert into Botas values( " & Convert.ToString(BotaTaponID) & "," & _
+                             Convert.ToString(PosicionID) & " ," & BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)) + "'," + BasesParaCompatibilidad.Config.User.ToString + ")")
+
+
+            dtb.PrepararConsulta("select max(BotaID) from Botas")
+            BotaID = dtb.Consultar().Rows(0).Item(0)
             Return BotaID
         Catch ex As Exception
             Return 0

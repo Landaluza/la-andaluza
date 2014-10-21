@@ -1,21 +1,16 @@
 Public Class ctlAlbaranesCargaDetalles
-    Dim clsAlb As New clsAlbaranesCargaDetalles
+    Private clsAlb As New clsAlbaranesCargaDetalles
 
-    Public Function GetAlbaranCargaDetalleID() As Integer
-        Return clsAlb._AlbaranCargaDetalleID
-    End Function
 
     Public Sub SetAlbaranCargaDetalleID(ByVal ID As Integer)
         clsAlb._AlbaranCargaDetalleID = ID
     End Sub
 
-    Public Function devolverAlbaranesCargaDetalles() As DataTable
-        Return clsAlb.Devolver()
-    End Function
 
-    Public Sub mostrarTodosAlbaranesCargaDetalles(ByRef dts As dtsAlbaranesCargaDetalles.AlbaranesCargaDetallesDataTable)
+
+    Public Sub mostrarTodosAlbaranesCargaDetalles(ByRef dtb As BasesParaCompatibilidad.DataBase, ByRef dts As dtsAlbaranesCargaDetalles.AlbaranesCargaDetallesDataTable)
         Dim tabla As New DataTable
-        tabla = clsAlb.Devolver()
+        tabla = clsAlb.Devolver(dtb)
         Dim i As Integer
         dts.Clear()
         Dim reg As dtsAlbaranesCargaDetalles.AlbaranesCargaDetallesRow
@@ -40,7 +35,7 @@ Public Class ctlAlbaranesCargaDetalles
         End While
     End Sub
 
-    Public Sub GuardarAlbaranCargaDetalle( _
+    Public Sub GuardarAlbaranCargaDetalle(ByRef dtb As BasesParaCompatibilidad.DataBase, _
                ByVal AlbaranCargaMaestroID As Integer, _
                ByVal Scc As Integer, _
                ByVal CodigoQS As Integer, _
@@ -66,9 +61,9 @@ Public Class ctlAlbaranesCargaDetalles
         clsAlb._Reserva2 = Reserva2
         clsAlb._Reserva3 = Reserva3
         If clsAlb._AlbaranCargaDetalleID = 0 Then
-            clsAlb.Insertar()
+            clsAlb.Insertar(dtb)
         Else
-            clsAlb.Modificar()
+            clsAlb.Modificar(dtb)
         End If
     End Sub
 

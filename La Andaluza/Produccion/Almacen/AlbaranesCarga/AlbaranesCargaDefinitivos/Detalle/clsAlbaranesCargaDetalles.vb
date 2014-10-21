@@ -152,13 +152,14 @@ Public Class clsAlbaranesCargaDetalles
 
 #Region "Metodos"
 
-    Public Function Devolver() As DataTable
-        Return Deprecated.ConsultaVer("AlbaranesCargaDetalles.AlbaranCargaDetalleID,AlbaranesCargaDetalles.AlbaranCargaMaestroID,AlbaranesCargaDetalles.Scc,AlbaranesCargaDetalles.CodigoQS,AlbaranesCargaDetalles.AticuloDescripcion,AlbaranesCargaDetalles.Cajas,AlbaranesCargaDetalles.UnidadMedida,AlbaranesCargaDetalles.Lote,AlbaranesCargaDetalles.TipoPalet,AlbaranesCargaDetalles.Observaciones,AlbaranesCargaDetalles.Reserva1,AlbaranesCargaDetalles.Reserva2,AlbaranesCargaDetalles.Reserva3", "AlbaranesCargaDetalles")
+    Public Function Devolver(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
+        dtb.PrepararConsulta("select AlbaranesCargaDetalles.AlbaranCargaDetalleID,AlbaranesCargaDetalles.AlbaranCargaMaestroID,AlbaranesCargaDetalles.Scc,AlbaranesCargaDetalles.CodigoQS,AlbaranesCargaDetalles.AticuloDescripcion,AlbaranesCargaDetalles.Cajas,AlbaranesCargaDetalles.UnidadMedida,AlbaranesCargaDetalles.Lote,AlbaranesCargaDetalles.TipoPalet,AlbaranesCargaDetalles.Observaciones,AlbaranesCargaDetalles.Reserva1,AlbaranesCargaDetalles.Reserva2,AlbaranesCargaDetalles.Reserva3 from AlbaranesCargaDetalles")
+        Return dtb.Consultar()
     End Function
 
-    Public Function Modificar() As Integer
+    Public Function Modificar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Try
-            Deprecated.ConsultaModificar("AlbaranesCargaDetalles", _
+            dtb.ConsultaAlteraciones("update AlbaranesCargaDetalles set " & _
                        "AlbaranCargaMaestroID=" & Convert.ToString(AlbaranCargaMaestroID) & "," & _
                        "Scc=" & Convert.ToString(Scc) & "," & _
                        "CodigoQS=" & Convert.ToString(CodigoQS) & "," & _
@@ -170,17 +171,17 @@ Public Class clsAlbaranesCargaDetalles
                        "Observaciones='" & Observaciones & "'," & _
                        "Reserva1='" & Reserva1 & "'," & _
                        "Reserva2='" & Reserva2 & "'," & _
-                       "Reserva3='" & Reserva3 & "'", _
-                       "AlbaranCargaDetalleID=" & Convert.ToString(AlbaranCargaDetalleID))
+                       "Reserva3='" & Reserva3 & "'" & _
+                       " where AlbaranCargaDetalleID=" & Convert.ToString(AlbaranCargaDetalleID))
             Return 1
         Catch ex As Exception
             Return 0
         End Try
     End Function
 
-    Public Function Insertar() As Integer
+    Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Try
-            Deprecated.ConsultaInsertar( _
+            dtb.ConsultaAlteraciones("insert into AlbaranesCargaDetalles values(" & _
                        "" & Convert.ToString(AlbaranCargaMaestroID) & "," & _
                        "" & Convert.ToString(Scc) & "," & _
                        "" & Convert.ToString(CodigoQS) & "," & _
@@ -192,9 +193,12 @@ Public Class clsAlbaranesCargaDetalles
                        "'" & Observaciones & "'," & _
                        "'" & Reserva1 & "'," & _
                        "'" & Reserva2 & "'," & _
-                       "'" & Reserva3 & "'", _
-                       "AlbaranesCargaDetalles")
-            AlbaranCargaDetalleID = Deprecated.ConsultaVer("max(AlbaranCargaDetalleID)", "AlbaranesCargaDetalles").Rows(0).Item(0)
+                       "'" & Reserva3 & "'," & _
+                       BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)) + "'," + BasesParaCompatibilidad.Config.User.ToString + ")")
+
+
+            dtb.PrepararConsulta("select max(AlbaranCargaDetalleID) from AlbaranesCargaDetalles")
+            AlbaranCargaDetalleID = dtb.Consultar().Rows(0).Item(0)
             Return AlbaranCargaDetalleID
         Catch ex As Exception
             Return 0
