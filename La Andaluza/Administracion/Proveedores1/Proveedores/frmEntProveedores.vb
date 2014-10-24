@@ -258,34 +258,50 @@ Public Class frmEntProveedores
 
     Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
         If Me.GetValores Then
-            dtb.EmpezarTransaccion()
+            Dim terminar As Boolean
+            If Not dtb Is Nothing Then
+                Me.dtb = dtb
+                terminar = False
+            Else
+                terminar = True
+            End If
+
+            If terminar Then Me.dtb.EmpezarTransaccion()
 
             Try
 
-                If sp.Grabar(dbo, dtb) Then
+                If sp.Grabar(dbo, Me.dtb) Then
 
-                    If Me.ModoDeApertura = INSERCION Then Me.m_DBO_Proveedores.ProveedorID = dtb.Consultar("select max(proveedorid) from proveedores", False).Rows(0).Item(0)
+                    If Me.ModoDeApertura = INSERCION Then Me.m_DBO_Proveedores.ProveedorID = Me.dtb.Consultar("select max(proveedorid) from proveedores", False).Rows(0).Item(0)
 
-                    If Me.grabarProveedoresTipos(dtb) Then
+                    If Me.grabarProveedoresTipos(Me.dtb) Then
 
                         If Me.cbProveedorCero.Checked Then
                             Me.m_DBO_Proveedores.proveedorCero.Id_proveedor = Me.m_DBO_Proveedores.ProveedorID
 
-                            If Me.spProveedoresCero.Grabar(Me.m_DBO_Proveedores.proveedorCero, dtb) Then
+                            If Me.spProveedoresCero.Grabar(Me.m_DBO_Proveedores.proveedorCero, Me.dtb) Then
 
-                                dtb.TerminarTransaccion()
+                                If terminar Then Me.dtb.TerminarTransaccion()
                                 RaiseEvent afterSave(Me, Nothing)
                                 Me.Close()
                             Else
-                                dtb.CancelarTransaccion()
-                                MessageBox.Show("No se pudo guardar el registro. Asegurese de tener conexion a la red.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                If terminar Then
+                                    Me.dtb.CancelarTransaccion()
+                                    MessageBox.Show("No se pudo guardar el registro. Asegurese de tener conexion a la red.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                Else
+                                    Throw New Exception("No se pudo guardar los datos de proveedor")
+                                End If
                             End If
                         Else
                             If Not Me.spProveedoresCero.Delete(Me.m_DBO_Proveedores.ProveedorID, dtb) And Me.ModoDeApertura = MODIFICACION Then
-                                dtb.CancelarTransaccion()
-                                MessageBox.Show("No se pudo guardar el registro. Asegurese de tener conexion a la red.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                If terminar Then
+                                    Me.dtb.CancelarTransaccion()
+                                    MessageBox.Show("No se pudo guardar el registro. Asegurese de tener conexion a la red.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                Else
+                                    Throw New Exception("Error guardanbdo los datos de proveedor cero")
+                                End If
                             Else
-                                dtb.TerminarTransaccion()
+                                If terminar Then Me.dtb.TerminarTransaccion()
                                 RaiseEvent afterSave(Me, Nothing)
                                 Me.Close()
                             End If
@@ -294,18 +310,29 @@ Public Class frmEntProveedores
                         End If
                     Else
 
-                        'MyBase.Guardar()
-                        dtb.CancelarTransaccion()
-                        MessageBox.Show("No se pudo guardar el registro. Asegurese de tener conexion a la red.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        If terminar Then
+                            Me.dtb.CancelarTransaccion()
+                            MessageBox.Show("No se pudo guardar el registro. Asegurese de tener conexion a la red.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Else
+                            Throw New Exception("Error 1 al gaurdar el registro")
+                        End If
                     End If
                 Else
-
-                    dtb.CancelarTransaccion()
-                    MessageBox.Show("No se pudo guardar el registro. Asegurese de tener conexion a la red.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    If terminar Then
+                        Me.dtb.CancelarTransaccion()
+                        MessageBox.Show("No se pudo guardar el registro. Asegurese de tener conexion a la red.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Else
+                        Throw New Exception("Error 2 al guardar el registro")
+                    End If
                 End If
             Catch ex As Exception
-                dtb.CancelarTransaccion()
-                MessageBox.Show("No se pudo guardar el registro. Detalles:" & Environment.NewLine & Environment.NewLine, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                If terminar Then
+                    Me.dtb.CancelarTransaccion()
+                    MessageBox.Show("No se pudo guardar el registro. Detalles:" & Environment.NewLine & Environment.NewLine, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Else
+                    Throw New Exception("Error 3 al guardar el registro")
+                End If
+
             End Try
         End If
     End Sub

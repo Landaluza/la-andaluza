@@ -147,15 +147,24 @@ Public Class frmEntPaletsContenidosMonodosis
 
     Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
         If Me.GetValores Then
-            dtb.EmpezarTransaccion()
+
+            Dim terminar As Boolean
+            If Not dtb Is Nothing Then
+                Me.dtb = dtb
+                terminar = False
+            Else
+                terminar = True
+            End If
+
+            If terminar Then Me.dtb.EmpezarTransaccion()
 
 
             Try
-                If sp.Grabar(dbo, dtb) Then
+                If sp.Grabar(dbo, Me.dtb) Then
                     evitarCerrarSinGuardar = False
                     RaiseEvent afterSave(Me, Nothing)
 
-                    monodosis.añadirMovimientoEncajado(Convert.ToInt32(Me.txtCantidadCajas.Text), Convert.ToInt32(Me.cboMonodosis.SelectedValue), Me.m_DBO_PaletsContenidos.PaletProducidoID, Me.mTipoFormatoEnvasadoID, dtb)
+                    monodosis.añadirMovimientoEncajado(Convert.ToInt32(Me.txtCantidadCajas.Text), Convert.ToInt32(Me.cboMonodosis.SelectedValue), Me.m_DBO_PaletsContenidos.PaletProducidoID, Me.mTipoFormatoEnvasadoID, Me.dtb)
 
                     Dim indice As Integer = Me.cboMonodosis.SelectedIndex
                     Dim cont As Integer
@@ -179,24 +188,33 @@ Public Class frmEntPaletsContenidosMonodosis
                     For Each row As DataGridViewRow In Me.dgvMermas.Rows
                         If Not row.Cells("Mover").Value Is Nothing Then
                             If CInt(row.Cells("Mover").Value) > 0 Then
-                                monodosis.moverNC(dtb, row.Cells("SCC").Value, row.Cells("Mover").Value)
+                                monodosis.moverNC(Me.dtb, row.Cells("SCC").Value, row.Cells("Mover").Value)
                             End If
                         End If
 
                         If CType(row.Cells("Vaciar").Value, Boolean) Then
-                            monodosis.realizarDiferencia(row.Cells("SCC").Value, dtb)
+                            monodosis.realizarDiferencia(row.Cells("SCC").Value, Me.dtb)
                         End If
                     Next
 
-                    dtb.TerminarTransaccion()
+                    If terminar Then Me.dtb.TerminarTransaccion()
                     RaiseEvent afterSave(Me, Nothing)
                     Me.Close()
                 Else
-                    dtb.CancelarTransaccion()
+                    If terminar Then
+                        Me.dtb.CancelarTransaccion()
+                        MsgBox("no se pudo guardar el registro.ERR1")
+                    Else
+                        Throw New Exception("No se pudo guardar el registro. Err1")
+                    End If
                 End If
             Catch ex As Exception
-                dtb.CancelarTransaccion()
-                MessageBox.Show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                If terminar Then
+                    Me.dtb.CancelarTransaccion()
+                    MessageBox.Show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Else
+                    Throw New Exception("ERR2, error al guardar")
+                End If
             End Try
         End If
     End Sub

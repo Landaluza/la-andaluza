@@ -56,16 +56,20 @@ Public Class frmEntNoticias
 
     Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
         If Me.GetValores Then
+            Dim terminar As Boolean
             If Not dtb Is Nothing Then
                 Me.dtb = dtb
+                terminar = False
+            Else
+                terminar = True
             End If
-            Me.dtb.EmpezarTransaccion()
+            If terminar Then Me.dtb.EmpezarTransaccion()
 
 
             Try
                 If sp.Grabar(dbo, Me.dtb) Then
                     If Me.ModoDeApertura = INSERCION Then Me.m_DBO_Noticias.ID = Convert.ToInt32(Me.dtb.Consultar("select max(id) from noticias", False).Rows(0).Item(0))
-                    Me.dtb.TerminarTransaccion()
+                    If terminar Then Me.dtb.TerminarTransaccion()
 
                     evitarCerrarSinGuardar = False
                     RaiseEvent afterSave(Me, Nothing)
@@ -78,12 +82,20 @@ Public Class frmEntNoticias
                         SetValores()
                     End If
                 Else
-                    Me.dtb.CancelarTransaccion()
-                    MessageBox.Show("No se pudo guardar el registro. Asegurese de tener conexion a la red.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    If terminar Then
+                        Me.dtb.CancelarTransaccion()
+                        MessageBox.Show("No se pudo guardar el registro. Asegurese de tener conexion a la red.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Else
+                        Throw New Exception("Error 1 al guardar el registro")
+                    End If
                 End If
             Catch ex As Exception
-                Me.dtb.CancelarTransaccion()
-                MessageBox.Show("No se pudo guardar el registro. Detalles:" & Environment.NewLine & Environment.NewLine, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                If terminar Then
+                    Me.dtb.CancelarTransaccion()
+                    MessageBox.Show("No se pudo guardar el registro. Detalles:" & Environment.NewLine & Environment.NewLine, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Else
+                    Throw New Exception("Error 2 al guardar el registro")
+                End If
             End Try
         End If
     End Sub

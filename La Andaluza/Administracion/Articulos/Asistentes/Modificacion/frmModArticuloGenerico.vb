@@ -102,33 +102,49 @@
             End If
         End If
 
+        Dim terminar As Boolean
+        If Not dtb Is Nothing Then
+            Me.dtb = dtb
+            terminar = False
+        Else
+            terminar = True
+        End If
+
         If comprobado Then
-            dtb.EmpezarTransaccion()
+            If terminar Then Me.dtb.EmpezarTransaccion()
 
 
             If Not Me.slGeneral_detalles.Panel2Collapsed Then
-                retorno = retorno And Me.frmGeneral.grabarDatos(dtb)
+                retorno = retorno And Me.frmGeneral.grabarDatos(Me.dtb)
 
-                retorno = retorno And Me.frmDetalle.grabarDatos()
+                retorno = retorno And Me.frmDetalle.grabarDatos(Me.dtb)
 
                 If retorno Then
-                    dtb.TerminarTransaccion()
+                    If terminar Then Me.dtb.TerminarTransaccion()
                     RaiseEvent afterSave()
                     Me.Close()
                 Else
-                    dtb.CancelarTransaccion()
-                    MessageBox.Show("Ocurrio un error al grabar el registro.", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    If terminar Then
+                        Me.dtb.CancelarTransaccion()
+                        MessageBox.Show("Ocurrio un error al grabar el registro.", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Else
+                        Throw New Exception("Error 1 al guardar el registro")
+                    End If
                 End If
+            End If
 
+        Else
+
+            If Me.frmGeneral.grabarDatos(dtb) Then
+                If terminar Then Me.dtb.TerminarTransaccion()
+                RaiseEvent afterSave()
+                Me.Close()
             Else
-
-                If Me.frmGeneral.grabarDatos(dtb) Then
-                    dtb.TerminarTransaccion()
-                    RaiseEvent afterSave()
-                    Me.Close()
-                Else
-                    dtb.CancelarTransaccion()
+                If terminar Then
+                    Me.dtb.CancelarTransaccion()
                     MessageBox.Show("Ocurrio un error al grabar el registro.", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Else
+                    Throw New Exception("Error al guardar los datos genericos")
                 End If
             End If
         End If

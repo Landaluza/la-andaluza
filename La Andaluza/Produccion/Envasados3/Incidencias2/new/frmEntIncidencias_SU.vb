@@ -160,13 +160,20 @@ Public Class frmEntIncidencias_SU
                     Return
                 End If
             End If
+            Dim terminar As Boolean
+            If Not dtb Is Nothing Then
+                Me.dtb = dtb
+                terminar = False
+            Else
+                terminar = True
+            End If
 
-            dtb.EmpezarTransaccion()
+            If terminar Then Me.dtb.EmpezarTransaccion()
             Try
-                If sp.Grabar(dbo, dtb) Then
+                If sp.Grabar(dbo, Me.dtb) Then
                     Me.evitarCerrarSinGuardar = False
                     Dim s As New spIncidencias
-                    Dim incidenciaId As Integer = s.selecccionar_ultima_incidencia(dtb)
+                    Dim incidenciaId As Integer = s.selecccionar_ultima_incidencia(Me.dtb)
                     frmIncidenciasEmpleados.Incidencia = incidenciaId
 
                     If Not Me.SplitContainer1.Panel2Collapsed Then
@@ -176,22 +183,31 @@ Public Class frmEntIncidencias_SU
 
                         End If
 
-                        Me.frmIncidenciasCalidad.Guardar(dtb)
+                        Me.frmIncidenciasCalidad.Guardar(Me.dtb)
 
                     End If
 
-                    Me.frmIncidenciasEmpleados.guardar(dtb)
+                    Me.frmIncidenciasEmpleados.guardar(Me.dtb)
 
-                    dtb.TerminarTransaccion()
+                    If terminar Then Me.dtb.TerminarTransaccion()
                     MyBase.saved()
                     Me.Close()
                 Else
-                    dtb.CancelarTransaccion()
-                    MessageBox.Show("No se pudo guardar el registro. Asegurese de tener conexion a la red.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    If terminar Then
+                        Me.dtb.CancelarTransaccion()
+                        MessageBox.Show("No se pudo guardar el registro. Asegurese de tener conexion a la red.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Else
+                        Throw New Exception("Error 1 al guardar")
+                    End If
                 End If
             Catch ex As Exception
-                dtb.CancelarTransaccion()
-                MessageBox.Show("No se pudo guardar el registro. Detalles:" & Environment.NewLine & Environment.NewLine, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                If terminar Then
+                    Me.dtb.CancelarTransaccion()
+                    MessageBox.Show("No se pudo guardar el registro. Detalles:" & Environment.NewLine & Environment.NewLine, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Else
+                    Throw New Exception("Error 2 al guardar el registro")
+                End If
+
             End Try
         End If
     End Sub

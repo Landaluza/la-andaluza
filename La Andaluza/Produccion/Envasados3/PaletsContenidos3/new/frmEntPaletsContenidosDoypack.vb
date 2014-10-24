@@ -157,16 +157,25 @@ Public Class frmEntPaletsContenidosDoypack
     Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
         If Me.GetValores Then
             Dim cbo As System.Windows.Forms.ComboBox
-            dtb.EmpezarTransaccion()
+
+            Dim terminar As Boolean
+            If Not dtb Is Nothing Then
+                Me.dtb = dtb
+                terminar = False
+            Else
+                terminar = True
+            End If
+
+            If terminar Then Me.dtb.EmpezarTransaccion()
             Try
 
 
-                If sp.Grabar(dbo, dtb) Then
+                If sp.Grabar(dbo, Me.dtb) Then
                     evitarCerrarSinGuardar = False
                     'RaiseEvent afterSave()
 
                     For Each cbo In Me.cbo_collection
-                        monodosis.añadirMovimientoEncajado(Convert.ToInt32(Me.txtCantidadCajas.Text), Convert.ToInt32(cbo.SelectedValue), Me.m_DBO_PaletsContenidos.PaletProducidoID, Me.mTipoFormatoEnvasadoID, dtb)
+                        monodosis.añadirMovimientoEncajado(Convert.ToInt32(Me.txtCantidadCajas.Text), Convert.ToInt32(cbo.SelectedValue), Me.m_DBO_PaletsContenidos.PaletProducidoID, Me.mTipoFormatoEnvasadoID, Me.dtb)
 
                         'Dim indice As Integer = Me.cboMonodosis.SelectedIndex
                         'Dim cont As Integer
@@ -195,25 +204,37 @@ Public Class frmEntPaletsContenidosDoypack
                             'End If
 
                             If (CType(row.Cells("Vaciar").Value, Boolean) = True) Then
-                                If Not monodosis.realizarDiferencia(row.Cells("SCC").Value, dtb) Then
-                                    dtb.CancelarTransaccion()
-                                    MessageBox.Show("Error al gaurdar las diferencias", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                                    Return
+                                If Not monodosis.realizarDiferencia(row.Cells("SCC").Value, Me.dtb) Then
+                                    If terminar Then
+                                        dtb.CancelarTransaccion()
+                                        MessageBox.Show("Error al gaurdar las diferencias", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                                        Return
+                                    Else
+                                        Throw New Exception("Error al gaurdar las diferencias")
+                                    End If
                                 End If
-                            End If
+                                End If
                         Next
                     Next
 
-                    dtb.TerminarTransaccion()
+                    If terminar Then Me.dtb.TerminarTransaccion()
                     RaiseEvent afterSave(Me, Nothing)
                     Me.Close()
                 Else
-                    dtb.CancelarTransaccion()
-                    MessageBox.Show("Error al guardar", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    If terminar Then
+                        Me.dtb.CancelarTransaccion()
+                        MessageBox.Show("Error al guardar", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    Else
+                        Throw New Exception("Erro 1 al guardar el registro")
+                    End If
                 End If
             Catch ex As Exception
-                dtb.CancelarTransaccion()
-                MessageBox.Show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                If terminar Then
+                    Me.dtb.CancelarTransaccion()
+                    MessageBox.Show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Else
+                    Throw New Exception("Error 2 al guardar el registro")
+                End If
             End Try
         End If
     End Sub

@@ -63,8 +63,8 @@
         End Try
     End Sub
 
-    Public Function grabarDatos() As Boolean
-        Return Me.frmDetalles.grabarDatos()
+    Public Function grabarDatos(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        Return Me.frmDetalles.grabarDatos(dtb)
     End Function
 
     Public Function comprobarCampos() As Boolean

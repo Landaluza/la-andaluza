@@ -110,35 +110,57 @@ Public Class frmEntempleados_formatosEnvasados
         If Me.ModoDeApertura = INSERCION Then
             'If Me.cbApoyo.Checked Then
             If GetValores() Then
-                dtb.EmpezarTransaccion()
+                Dim terminar As Boolean
+                If dtb.Transaccion Is Nothing Then
+                    terminar = True
+                    Me.dtb.EmpezarTransaccion()
+                Else
+                    Me.dtb = dtb
+                    terminar = False
+                End If
+
+
                 Try
-                    If Me.sp.Grabar(Me.m_DBO_empleados_formatosEnvasados, dtb) Then
+                    If Me.sp.Grabar(Me.m_DBO_empleados_formatosEnvasados, Me.dtb) Then
                         If Me.cbApoyo.Checked Then
                             Dim spCausas As New spPartesEnvasados_CausasPartesEnvasado
                             Dim dboCAusas As New DBO_PartesEnvasados_CausasPartesEnvasado
                             Dim spAux As New spempleados_formatosEnvasados
 
-                            dboCAusas.Id_ParteEnvasado = spAux.seleccionarUltimoRegistro(dtb)
+                            dboCAusas.Id_ParteEnvasado = spAux.seleccionarUltimoRegistro(Me.dtb)
                             dboCAusas.Id_CausaParteEnvasado = 3
 
-                            If Not spCausas.Grabar(dboCAusas, dtb) Then
-                                dtb.CancelarTransaccion()
-                                MessageBox.Show("No se pudo completar la operacion", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                                Return
+                            If Not spCausas.Grabar(dboCAusas, Me.dtb) Then
+                                If terminar Then
+                                    Me.dtb.CancelarTransaccion()
+                                    MessageBox.Show("No se pudo completar la operacion", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                    Return
+                                Else
+                                    Throw New Exception("Erro al guardar , ERR1")
+                                End If
+
                             End If
                         End If
-                        dtb.TerminarTransaccion()
-                        RaiseEvent afterSave(Me, Nothing)
-                        Me.Close()
+                        If terminar Then Me.dtb.TerminarTransaccion()
+                            RaiseEvent afterSave(Me, Nothing)
+                            Me.Close()
                     Else
-                        dtb.CancelarTransaccion()
-                        MessageBox.Show("No se pudo completar la operacion", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        Return
+                        If terminar Then
+                            Me.dtb.CancelarTransaccion()
+                            MessageBox.Show("No se pudo completar la operacion", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return
+                        Else
+                            Throw New Exception("Erro al guardar, ERR2")
+                        End If
                     End If
                 Catch ex As Exception
-                    dtb.CancelarTransaccion()
-                    MessageBox.Show("No se pudo completar la operacion", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Return
+                    If terminar Then
+                        Me.dtb.CancelarTransaccion()
+                        MessageBox.Show("No se pudo completar la operacion", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Return
+                    Else
+                        Throw New Exception("Error al guardar , ERR3")
+                    End If
                 End Try
             End If
 
@@ -146,42 +168,67 @@ Public Class frmEntempleados_formatosEnvasados
             'End If
         Else
             If GetValores() Then
-                dtb.EmpezarTransaccion()
+
+                Dim terminar As Boolean
+                If dtb.Transaccion Is Nothing Then
+                    terminar = True
+                    Me.dtb.EmpezarTransaccion()
+                Else
+                    Me.dtb = dtb
+                    terminar = False
+                End If
+
                 Try
-                    If Me.sp.Grabar(Me.m_DBO_empleados_formatosEnvasados, dtb) Then
+                    If Me.sp.Grabar(Me.m_DBO_empleados_formatosEnvasados, Me.dtb) Then
                         Dim spCausas As New spPartesEnvasados_CausasPartesEnvasado
                         Dim dboCAusas As New DBO_PartesEnvasados_CausasPartesEnvasado
                         Dim spAux As New spempleados_formatosEnvasados
 
-                        If Not spCausas.DeleteByParte(m_DBO_empleados_formatosEnvasados.ID, dtb) Then
-                            dtb.CancelarTransaccion()
-                            MessageBox.Show("No se pudo completar la operacion", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Return
-                        End If
-
-                        If Me.cbApoyo.Checked Then
-                            dboCAusas.Id_ParteEnvasado = m_DBO_empleados_formatosEnvasados.ID
-                            dboCAusas.Id_CausaParteEnvasado = 3
-
-                            If Not spCausas.Grabar(dboCAusas, dtb) Then
+                        If Not spCausas.DeleteByParte(m_DBO_empleados_formatosEnvasados.ID, Me.dtb) Then
+                            If terminar Then
                                 dtb.CancelarTransaccion()
                                 MessageBox.Show("No se pudo completar la operacion", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
                                 Return
+                            Else
+                                Throw New Exception("error al guardar , ERR4")
                             End If
                         End If
 
-                        dtb.TerminarTransaccion()
-                        RaiseEvent afterSave(Me, Nothing)
-                        Me.Close()
+                            If Me.cbApoyo.Checked Then
+                                dboCAusas.Id_ParteEnvasado = m_DBO_empleados_formatosEnvasados.ID
+                                dboCAusas.Id_CausaParteEnvasado = 3
+
+                            If Not spCausas.Grabar(dboCAusas, Me.dtb) Then
+                                If terminar Then
+                                    Me.dtb.CancelarTransaccion()
+                                    MessageBox.Show("No se pudo completar la operacion", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                    Return
+                                Else
+                                    Throw New Exception("Error al guardar , ERR5")
+                                End If
+                            End If
+                            End If
+
+                        If terminar Then Me.dtb.TerminarTransaccion()
+                            RaiseEvent afterSave(Me, Nothing)
+                            Me.Close()
                     Else
-                        dtb.CancelarTransaccion()
-                        MessageBox.Show("No se pudo completar la operacion", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        Return
+                        If terminar Then
+                            Me.dtb.CancelarTransaccion()
+                            MessageBox.Show("No se pudo completar la operacion", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return
+                        Else
+                            Throw New Exception("Error al guardar ERr6")
+                        End If
                     End If
                 Catch ex As Exception
-                    dtb.CancelarTransaccion()
-                    MessageBox.Show("No se pudo completar la operacion", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Return
+                    If terminar Then
+                        Me.dtb.CancelarTransaccion()
+                        MessageBox.Show("No se pudo completar la operacion", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Return
+                    Else
+                        Throw New Exception("Erro al guardar ERR7")
+                    End If
                 End Try
             End If
         End If
