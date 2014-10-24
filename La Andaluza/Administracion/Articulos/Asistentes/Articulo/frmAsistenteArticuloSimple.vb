@@ -19,10 +19,10 @@
     End Sub
 
     Private Sub finished() Handles Me.FinishWizard
-        If MyBase.guardar Then
+        If MyBase.guardar(Me.dtb) Then
             Me.Close()
         Else
-            messagebox.show("No se ha podido guardar. Vuelva a intentarlos en unos segundos o revise los datos.", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("No se ha podido guardar. Vuelva a intentarlos en unos segundos o revise los datos.", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
 

@@ -25,7 +25,7 @@ Public Class frmempresas
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboempresas = CType(sp, spempresas).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboempresas = CType(sp, spempresas).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboempresas Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboempresas)
         Else

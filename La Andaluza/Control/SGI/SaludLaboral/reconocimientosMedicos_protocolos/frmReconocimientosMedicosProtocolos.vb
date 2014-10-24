@@ -20,7 +20,7 @@ Public Class frmReconocimientosMedicosProtocolos
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboReconocimientosMedicosProtocolos = CType(sp, spReconocimientosMedicosProtocolos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboReconocimientosMedicosProtocolos = CType(sp, spReconocimientosMedicosProtocolos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboReconocimientosMedicosProtocolos Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboReconocimientosMedicosProtocolos)
         Else

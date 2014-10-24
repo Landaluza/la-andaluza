@@ -24,7 +24,7 @@ Public Class frmIdiomas
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboIdiomas = CType(sp, spIdiomas).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer))
+        dboIdiomas = CType(sp, spIdiomas).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
         If Not dboIdiomas Is Nothing Then
             newRegForm.SetDataBussinesObject(CType(Me.dboIdiomas, BasesParaCompatibilidad.DataBussines))
         Else

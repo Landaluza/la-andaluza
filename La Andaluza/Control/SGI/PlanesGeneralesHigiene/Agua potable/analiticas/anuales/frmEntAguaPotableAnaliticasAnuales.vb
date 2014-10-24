@@ -21,10 +21,10 @@ Public Class frmEntAguaPotableAnaliticasAnuales
 
     Private Sub frmEntAguaPotableAnaliticasAnuales_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spProveedores
-        s.cargar_ComboBox(Me.cboLaboratorio)
+        s.cargar_ComboBox(Me.cboLaboratorio, dtb)
 
         Dim s2 As New spEmpleados
-        s2.cargar_Empleados(Me.cboVerificador)
+        s2.cargar_Empleados(Me.cboVerificador, dtb)
         If Me.ModoDeApertura = VISION Then
             Me.cboVerificador.Enabled = False
             Me.lblVerificadorID.Enabled = False
@@ -85,8 +85,8 @@ Public Class frmEntAguaPotableAnaliticasAnuales
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butRuta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butRuta.Click
@@ -119,7 +119,7 @@ Public Class frmEntAguaPotableAnaliticasAnuales
         Dim frmEnt As New frmEntProveedores(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spProveedores, DBO_Proveedores)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spProveedores
-        s.cargar_ComboBox(Me.cboLaboratorio)
+        s.cargar_ComboBox(Me.cboLaboratorio, dtb)
     End Sub
 
     Private Sub butVerVerificadorID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerVerificadorID.Click
@@ -132,7 +132,7 @@ Public Class frmEntAguaPotableAnaliticasAnuales
         Dim frmEnt As New frmEntEmpleados(BasesParaCompatibilidad.DetailedSimpleForm.INSERCION, New spEmpleados, New DBO_Empleados)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spEmpleados
-        s.cargar_Empleados(Me.cboVerificador)
+        s.cargar_Empleados(Me.cboVerificador, dtb)
     End Sub
 
 End Class

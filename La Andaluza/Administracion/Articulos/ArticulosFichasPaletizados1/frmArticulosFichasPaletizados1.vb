@@ -23,7 +23,7 @@ Public Class frmArticulosFichasPaletizados1
 
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
-                           "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then CType(sp, spArticulosFichasPaletizados1).ArticulosFichasPaletizados1Delete(dgvGeneral.CurrentRow.Cells("ArticuloFichaPaletizadoID").Value)
+                           "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then CType(sp, spArticulosFichasPaletizados1).ArticulosFichasPaletizados1Delete(dgvGeneral.CurrentRow.Cells("ArticuloFichaPaletizadoID").Value, dtb)
         dgvFill()
     End Sub
 
@@ -37,7 +37,7 @@ Public Class frmArticulosFichasPaletizados1
 
             If m_MaestroID <> 0 Then m_ArticulosFichasPaletizados1.ArticuloID = m_MaestroID
         Else
-            m_ArticulosFichasPaletizados1 = CType(sp, spArticulosFichasPaletizados1).Select_Record(GeneralBindingSource(m_Pos).Item("ArticuloFichaPaletizadoID"))
+            m_ArticulosFichasPaletizados1 = CType(sp, spArticulosFichasPaletizados1).Select_Record(GeneralBindingSource(m_Pos).Item("ArticuloFichaPaletizadoID"), dtb)
         End If
 
         frmEnt = New frmEntArticulosFichasPaletizados1(m_ArticulosFichasPaletizados1, m_Pos, m_VerID)

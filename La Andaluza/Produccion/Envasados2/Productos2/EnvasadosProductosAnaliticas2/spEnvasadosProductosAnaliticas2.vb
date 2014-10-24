@@ -7,12 +7,12 @@ Class spEnvasadosProductosAnaliticas2
         MyBase.New("[dbo].[EnvasadosProductosAnaliticasSelect]", "[dbo].[EnvasadosProductosAnaliticasInsert]", "[dbo].[EnvasadosProductosAnaliticasUpdate]", _
                    "[dbo].[EnvasadosProductosAnaliticasDelete]", "EnvasadosProductosAnaliticasSelectDgv", "EnvasadosProductosAnaliticasSelectDgvByEnvasadoProductoID")
     End Sub
-    Public Function Select_Record(ByVal EnvasadoProductoAnaliticaID As Int32) As DBO_EnvasadosProductosAnaliticas2
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal EnvasadoProductoAnaliticaID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_EnvasadosProductosAnaliticas2
+        dtb.Conectar()
         Dim DBO_EnvasadosProductosAnaliticas As New DBO_EnvasadosProductosAnaliticas2
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[EnvasadosProductosAnaliticasSelect]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@EnvasadoProductoAnaliticaID", EnvasadoProductoAnaliticaID)
 
@@ -35,16 +35,16 @@ Class spEnvasadosProductosAnaliticas2
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_EnvasadosProductosAnaliticas
     End Function
 
-    Public Function EnvasadosProductosAnaliticasInsert(ByVal dbo_EnvasadosProductosAnaliticas As DBO_EnvasadosProductosAnaliticas2) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function EnvasadosProductosAnaliticasInsert(ByVal dbo_EnvasadosProductosAnaliticas As DBO_EnvasadosProductosAnaliticas2, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[EnvasadosProductosAnaliticasInsert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
         insertCommand.Parameters.AddWithValue("@EnvasadoProductoID", If(dbo_EnvasadosProductosAnaliticas.EnvasadoProductoID.HasValue, dbo_EnvasadosProductosAnaliticas.EnvasadoProductoID, Convert.DBNull))
         insertCommand.Parameters.AddWithValue("@ParametroID", If(dbo_EnvasadosProductosAnaliticas.ParametroID.HasValue, dbo_EnvasadosProductosAnaliticas.ParametroID, Convert.DBNull))
@@ -68,15 +68,15 @@ Class spEnvasadosProductosAnaliticas2
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function EnvasadosProductosAnaliticasUpdate(ByVal newDBO_EnvasadosProductosAnaliticas As DBO_EnvasadosProductosAnaliticas2) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function EnvasadosProductosAnaliticasUpdate(ByVal newDBO_EnvasadosProductosAnaliticas As DBO_EnvasadosProductosAnaliticas2, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[EnvasadosProductosAnaliticasUpdate]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         updateCommand.Parameters.AddWithValue("@NewEnvasadoProductoID", If(newDBO_EnvasadosProductosAnaliticas.EnvasadoProductoID.HasValue, newDBO_EnvasadosProductosAnaliticas.EnvasadoProductoID, Convert.DBNull))
         updateCommand.Parameters.AddWithValue("@NewParametroID", If(newDBO_EnvasadosProductosAnaliticas.ParametroID.HasValue, newDBO_EnvasadosProductosAnaliticas.ParametroID, Convert.DBNull))
@@ -99,19 +99,19 @@ Class spEnvasadosProductosAnaliticas2
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdateEnvasadosProductosAnaliticas" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdateEnvasadosProductosAnaliticas" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function EnvasadosProductosAnaliticasDelete(ByVal EnvasadoProductoAnaliticaID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function EnvasadosProductosAnaliticasDelete(ByVal EnvasadoProductoAnaliticaID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Try
             Dim deleteProcedure As String = "[dbo].[EnvasadosProductosAnaliticasDelete]"
-            Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+            Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
             deleteCommand.CommandType = CommandType.StoredProcedure
             deleteCommand.Parameters.AddWithValue("@OldEnvasadoProductoAnaliticaID", EnvasadoProductoAnaliticaID)
             deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
@@ -127,17 +127,17 @@ Class spEnvasadosProductosAnaliticas2
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function GrabarEnvasadosProductosAnaliticas(ByVal dbo_EnvasadosProductosAnaliticas As DBO_EnvasadosProductosAnaliticas2) As Boolean
-        dbo_EnvasadosProductosAnaliticas.FechaModificacion = System.DateTime.Now.date
+    Public Function GrabarEnvasadosProductosAnaliticas(ByVal dbo_EnvasadosProductosAnaliticas As DBO_EnvasadosProductosAnaliticas2, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dbo_EnvasadosProductosAnaliticas.FechaModificacion = System.DateTime.Now.Date
         dbo_EnvasadosProductosAnaliticas.UsuarioModificacion = BasesParaCompatibilidad.Config.User
         If dbo_EnvasadosProductosAnaliticas.EnvasadoProductoAnaliticaID = 0 Then
-            Return EnvasadosProductosAnaliticasInsert(dbo_EnvasadosProductosAnaliticas)
+            Return EnvasadosProductosAnaliticasInsert(dbo_EnvasadosProductosAnaliticas, dtb)
         Else
-            Return EnvasadosProductosAnaliticasUpdate(dbo_EnvasadosProductosAnaliticas)
+            Return EnvasadosProductosAnaliticasUpdate(dbo_EnvasadosProductosAnaliticas, dtb)
         End If
     End Function
 

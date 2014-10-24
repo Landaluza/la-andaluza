@@ -18,7 +18,7 @@ Public Class frmEntControlIncidencias_Proveedores
 
    Private Sub frmEntControlIncidencias_Proveedores_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s2 As New spProveedores
-        s2.cargar_Proveedores(Me.cboid_proveedor)
+        s2.cargar_Proveedores(Me.cboid_proveedor, dtb)
        If me.mododeapertura = VISION Then
            Me.cboid_proveedor.enabled = False
            Me.lblid_proveedor.enabled = False
@@ -53,8 +53,8 @@ Public Class frmEntControlIncidencias_Proveedores
         End IF
    End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As sqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerId_control_incidencias_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -74,7 +74,7 @@ Public Class frmEntControlIncidencias_Proveedores
         Dim frmEnt As New frmEntProveedores(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spProveedores, DBO_Proveedores)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spProveedores
-        s.cargar_Proveedores(Me.cboid_proveedor)
+        s.cargar_Proveedores(Me.cboid_proveedor, dtb)
     End Sub
 
     Private Sub frmEntControlIncidencias_Proveedores_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize

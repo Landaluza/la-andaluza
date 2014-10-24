@@ -25,7 +25,7 @@ Public Class frmProcessosCalidad_Clasesenvasado
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboClasesIncidencias = CType(sp, spClasesIncidencias).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboClasesIncidencias = CType(sp, spClasesIncidencias).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboClasesIncidencias Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboClasesIncidencias)
         Else
@@ -40,10 +40,10 @@ Public Class frmProcessosCalidad_Clasesenvasado
 
             If Me.dgvGeneral.Rows.Count > 0 Then
                 Dim spClases As New spClasesIncidencias
-                Dim DBO_ClasesIncidencias As DBO_ClasesIncidencias = spClases.Select_Record(Me.dgvGeneral.CurrentRow.Cells(campoId).Value)
+                Dim DBO_ClasesIncidencias As DBO_ClasesIncidencias = spClases.Select_Record(Me.dgvGeneral.CurrentRow.Cells(campoId).Value, dtb)
                 DBO_ClasesIncidencias.id_procesoCalidad = Nothing
 
-                If spClases.Grabar(DBO_ClasesIncidencias) Then
+                If spClases.Grabar(DBO_ClasesIncidencias, dtb) Then
                     dgvFill()
                 Else
                     MessageBox.Show("No se pudo completar la acción", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)

@@ -24,10 +24,10 @@ Public Class frmEntControlIncidencias_AccionesCorrectivas
     Private Sub frmEntControlIncidencias_AccionesCorrectivas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
         Dim s2 As New spAccionesCorrectivas
-        s2.cargar_AccionesCorrectivas(Me.cboAccionCorrectiva)
+        s2.cargar_AccionesCorrectivas(Me.cboAccionCorrectiva, dtb)
 
         Dim s3 As New spEmpleados
-        s3.cargar_Empleados(Me.cboid_empleado)
+        s3.cargar_Empleados(Me.cboid_empleado, dtb)
         If Me.ModoDeApertura = VISION Then
             Me.cboid_empleado.Enabled = False
             Me.lblid_empleado.Enabled = False
@@ -89,8 +89,8 @@ Public Class frmEntControlIncidencias_AccionesCorrectivas
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerId_control_incidencia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -112,7 +112,7 @@ Public Class frmEntControlIncidencias_AccionesCorrectivas
         Dim frmEnt As New frmEntAccionesCorrectivas(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spAccionesCorrectivas, DBO_AccionesCorrectivas)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spAccionesCorrectivas
-        s.cargar_AccionesCorrectivas(Me.cboAccionCorrectiva)
+        s.cargar_AccionesCorrectivas(Me.cboAccionCorrectiva, dtb)
     End Sub
 
     Private Sub butVerid_empleado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerid_empleado.Click
@@ -125,7 +125,7 @@ Public Class frmEntControlIncidencias_AccionesCorrectivas
         Dim frmEnt As New frmEntEmpleados(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spEmpleados, DBO_Empleados)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spEmpleados
-        s.cargar_Empleados(Me.cboid_empleado)
+        s.cargar_Empleados(Me.cboid_empleado, dtb)
     End Sub
 
 End Class

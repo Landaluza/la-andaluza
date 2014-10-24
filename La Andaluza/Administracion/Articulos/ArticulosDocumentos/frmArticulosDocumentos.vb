@@ -66,7 +66,7 @@ Public Class frmArticulosDocumentos
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
                            "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-            CType(sp, spArticulosDocumentos).ArticulosDocumentosDelete(dgvGeneral.CurrentRow.Cells("ArticuloDocumentoID").Value)
+            CType(sp, spArticulosDocumentos).ArticulosDocumentosDelete(dtb, dgvGeneral.CurrentRow.Cells("ArticuloDocumentoID").Value)
         End If
         dgvFill()
     End Sub
@@ -80,7 +80,7 @@ Public Class frmArticulosDocumentos
                 m_ArticulosDocumento.ArticuloID = m_MaestroID
             End If
         Else
-            m_ArticulosDocumento = CType(sp, spArticulosDocumentos).Select_Record(GeneralBindingSource(m_Pos).Item("ArticuloDocumentoID"))
+            m_ArticulosDocumento = CType(sp, spArticulosDocumentos).Select_Record(dtb, GeneralBindingSource(m_Pos).Item("ArticuloDocumentoID"))
         End If
 
         frmEnt = New frmEntArticulosDocumentos(m_ArticulosDocumento, m_Pos, m_VerID)

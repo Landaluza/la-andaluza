@@ -5,10 +5,11 @@ Public Class frmIncidenciasEnvasadosAsignables
     Private fechaEnvasado As DateTime
     Private id_ControlIncidencia As Integer
     Private id_incidenciaCalidadTipo As Integer
-
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New(ByVal maestro As Integer, ByVal id_incidenciaCalidadTipo As Integer, Optional ByVal fecha As DateTime = Nothing)
 
         InitializeComponent()
+        dtb = New BasesParaCompatibilidad.DataBase
         sp = New spIncidenciasEnvasadosAsignadas
         Me.id_ControlIncidencia = maestro
         Me.id_incidenciaCalidadTipo = id_incidenciaCalidadTipo
@@ -17,7 +18,7 @@ Public Class frmIncidenciasEnvasadosAsignables
 
     Private Sub btnAnadir_Click(sender As System.Object, e As System.EventArgs) Handles btnAnadir.Click
         Try
-            If sp.asignar_incidencia_envasado(Me.dgvAsignables.CurrentRow.Cells("Id").Value, id_ControlIncidencia) Then
+            If sp.asignar_incidencia_envasado(Me.dgvAsignables.CurrentRow.Cells("Id").Value, id_ControlIncidencia, dtb) Then
                 recargar(Me.fechaEnvasado, Me.id_ControlIncidencia, Me.id_incidenciaCalidadTipo)
             Else
                 MessageBox.Show("No se pudo realizar la operación", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
@@ -29,7 +30,7 @@ Public Class frmIncidenciasEnvasadosAsignables
 
     Private Sub btnEliminar_Click(sender As System.Object, e As System.EventArgs) Handles btnEliminar.Click
         Try
-            If sp.eliminar_incidencia_envasado(Me.dgvAsignadas.CurrentRow.Cells("Id").Value) Then
+            If sp.eliminar_incidencia_envasado(Me.dgvAsignadas.CurrentRow.Cells("Id").Value, dtb) Then
                 recargar(Me.fechaEnvasado, Me.id_ControlIncidencia, Me.id_incidenciaCalidadTipo)
             Else
                 MessageBox.Show("No se pudo realizar la operación", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
@@ -53,7 +54,7 @@ Public Class frmIncidenciasEnvasadosAsignables
     End Sub
 
     Private Sub cargar_asignados(ByVal id_controlIncidencia As Integer)
-        Dim dtAsignados As DataTable = sp.asignados(id_controlIncidencia)
+        Dim dtAsignados As DataTable = sp.asignados(id_controlIncidencia, dtb)
 
         If Not dtAsignados Is Nothing Then
             With dgvAsignadas
@@ -70,7 +71,7 @@ Public Class frmIncidenciasEnvasadosAsignables
     End Sub
 
     Private Sub cargar_disponibles(ByVal fecha As Date, ByVal tipoIncidencia As Integer)
-        Dim dtAsignables As DataTable = sp.asignables(fecha, tipoIncidencia)
+        Dim dtAsignables As DataTable = sp.asignables(fecha, tipoIncidencia, dtb)
 
         If Not dtAsignables Is Nothing Then
             With dgvAsignables

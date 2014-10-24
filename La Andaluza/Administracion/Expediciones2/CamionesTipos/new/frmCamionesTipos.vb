@@ -20,7 +20,7 @@ Public Class frmCamionesTipos
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboCamionesTipos = CType(sp, spCamionesTipos).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer))
+        dboCamionesTipos = CType(sp, spCamionesTipos).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
         If Not dboCamionesTipos Is Nothing Then
             newRegForm.SetDataBussinesObject(CType(Me.dboCamionesTipos, BasesParaCompatibilidad.DataBussines))
         Else

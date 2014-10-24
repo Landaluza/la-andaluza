@@ -22,7 +22,7 @@ Public Class frmEntControlesLotes
     Private Sub frmEntControlesLotes_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
         Dim s2 As New spEmpleados
-        s2.cargar_Empleados(Me.cboempleado)
+        s2.cargar_Empleados(Me.cboempleado, dtb)
 
         If Me.ModoDeApertura = VISION Then
             Me.cboempleado.Enabled = False
@@ -55,8 +55,8 @@ Public Class frmEntControlesLotes
         Dim spplant As New spTiposControlesLotesPlantilla
         Dim spCon As New spTiposControlesLotes
 
-        Dim DBO_TiposControlesLotesPlantilla As DBO_TiposControlesLotesPlantilla = spplant.Select_Record(m_DBO_ControlesLotes.Id_plantillaControlLote)
-        Dim dbo_con As DBO_TiposControlesLotes = spCon.Select_Record(DBO_TiposControlesLotesPlantilla.Id_TipoControl)
+        Dim DBO_TiposControlesLotesPlantilla As DBO_TiposControlesLotesPlantilla = spplant.Select_Record(m_DBO_ControlesLotes.Id_plantillaControlLote, dtb)
+        Dim dbo_con As DBO_TiposControlesLotes = spCon.Select_Record(DBO_TiposControlesLotesPlantilla.Id_TipoControl, dtb)
         ruta_defecto = dbo_con.RutaControles
     End Sub
 
@@ -86,8 +86,8 @@ Public Class frmEntControlesLotes
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butRutaControl_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butRutaControl.Click
@@ -127,7 +127,7 @@ Public Class frmEntControlesLotes
         Dim frmEnt As New frmEntEmpleados(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spEmpleados, DBO_Empleados)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spEmpleados
-        s.cargar_Empleados(Me.cboempleado)
+        s.cargar_Empleados(Me.cboempleado, dtb)
     End Sub
 
     Private Sub butVerId_controlIncidencia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)

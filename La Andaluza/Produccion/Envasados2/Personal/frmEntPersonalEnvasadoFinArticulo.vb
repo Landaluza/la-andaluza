@@ -3,6 +3,7 @@ Public Class frmEntPersonalEnvasadoFinArticulo
     Private m_resultado As DialogResult
     Private envasado As Integer
     Private linea As Integer
+    Private dtb As BasesParaCompatibilidad.DataBase
 
     Public ReadOnly Property resultado As DialogResult
         Get
@@ -14,6 +15,7 @@ Public Class frmEntPersonalEnvasadoFinArticulo
 
         InitializeComponent()
 
+        dtb = New BasesParaCompatibilidad.DataBase
         Me.envasado = envasadoId
         Me.linea = lineaId
         Me.m_resultado = Windows.Forms.DialogResult.No
@@ -24,7 +26,7 @@ Public Class frmEntPersonalEnvasadoFinArticulo
         Dim spEmlpeados As New spempleados_formatosEnvasados
         Dim dtEmpleados As DataTable
 
-        dtEmpleados = spEmlpeados.empleados_pendientes(Me.envasado, Me.linea)
+        dtEmpleados = spEmlpeados.empleados_pendientes(Me.envasado, Me.linea, dtb)
 
         If dtEmpleados Is Nothing Then
             MessageBox.Show("No se pudo recuperar los datos. Vuelva a intentarlo en unos minutos.", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -37,12 +39,12 @@ Public Class frmEntPersonalEnvasadoFinArticulo
         Next
 
         Dim sp As New spFormatosEnvasados
-        Dim d As DBO_FormatosEnvasados = sp.Select_Record(dgvEnLinea.Rows(0).Cells(3).Value)
+        Dim d As DBO_FormatosEnvasados = sp.Select_Record(dgvEnLinea.Rows(0).Cells(3).Value, dtb)
         Dim spFormato As New spArticulosEnvasadosHistoricos
-        lArticulo.Text = spFormato.Select_Record(d.TipoFormatoEnvasadoID).Descripcion
+        lArticulo.Text = spFormato.Select_Record(d.TipoFormatoEnvasadoID, dtb).Descripcion
 
         Dim spEnvasados As New spEnvasados
-        Dim denvasado As DBO_Envasados = spEnvasados.Select_Record(Me.envasado)
+        Dim denvasado As DBO_Envasados = spEnvasados.Select_Record(Me.envasado, dtb)
         lEnvasado.Text = denvasado.Fecha.ToShortDateString
 
         If d.fin_is_null Then
@@ -60,24 +62,24 @@ Public Class frmEntPersonalEnvasadoFinArticulo
         Dim sp As New spempleados_formatosEnvasados
         Dim dbo As New DBO_empleados_formatosEnvasados
 
-        BasesParaCompatibilidad.BD.EmpezarTransaccion()
+        dtb.EmpezarTransaccion()
         Try
             dbo.Fin = New TimeSpan(Me.dtpFin.Value.Hour, Me.dtpFin.Value.Minute, 0)
             For Each row As DataGridViewRow In Me.dgvEnLinea.Rows
                 dbo.id_empleado = row.Cells(0).Value
                 dbo.id_formatoEnvasado = row.Cells(3).Value
-                If Not sp.actualizar_hora_fin(dbo, BasesParaCompatibilidad.BD.Cnx, BasesParaCompatibilidad.BD.transaction) Then
-                    BasesParaCompatibilidad.BD.CancelarTransaccion()
+                If Not sp.actualizar_hora_fin(dbo, dtb) Then
+                    dtb.CancelarTransaccion()
                     MessageBox.Show("Error al realizar la operacion", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Return
                 End If
             Next
 
-            BasesParaCompatibilidad.BD.TerminarTransaccion()
+            dtb.TerminarTransaccion()
             Me.m_resultado = DialogResult.OK
             Me.Close()
         Catch ex As Exception
-            BasesParaCompatibilidad.BD.CancelarTransaccion()
+            dtb.CancelarTransaccion()
             MessageBox.Show("Error al realizar la operacion. Detalles" & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
         End Try

@@ -1,12 +1,10 @@
 ﻿Public Class spBusquedaAdministracion
-    Private dtb as BasesParaCompatibilidad.Database
     Private query As String
 
     Public Sub New()
-        Me.dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
     End Sub
 
-    Public Function recuperarDatos(ByVal filtro As String, Optional ByVal camiones As Boolean = True, Optional ByVal conductores As Boolean = True) As DataTable
+    Public Function recuperarDatos(ByVal filtro As String, ByRef dtb As BasesParaCompatibilidad.DataBase, Optional ByVal camiones As Boolean = True, Optional ByVal conductores As Boolean = True) As DataTable
 
 
         query = "select x.tipo, x.nombre, x.id, x.otros from ("

@@ -10,12 +10,12 @@ Class spArticulosUnidadesMedidas
 
     End Sub
 
-    Public Function Select_Record(ByVal ArticuloUnidadMedidaID As Int32) As DBO_ArticulosUnidadesMedidas
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal ArticuloUnidadMedidaID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_ArticulosUnidadesMedidas
+        dtb.Conectar()
         Dim DBO_ArticulosUnidadesMedidas As New DBO_ArticulosUnidadesMedidas
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[ArticulosUnidadesMedidasSelect]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@ArticuloUnidadMedidaID", ArticuloUnidadMedidaID)
         Try
@@ -34,16 +34,16 @@ Class spArticulosUnidadesMedidas
         Catch ex As System.Data.SqlClient.SqlException
 
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_ArticulosUnidadesMedidas
     End Function
 
-    Public Function ArticulosUnidadesMedidasInsert(ByVal dbo_ArticulosUnidadesMedidas As DBO_ArticulosUnidadesMedidas) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ArticulosUnidadesMedidasInsert(ByVal dbo_ArticulosUnidadesMedidas As DBO_ArticulosUnidadesMedidas, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[ArticulosUnidadesMedidasInsert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
         insertCommand.Parameters.AddWithValue("@Descripcion", dbo_ArticulosUnidadesMedidas.Descripcion)
         insertCommand.Parameters.AddWithValue("@Abreviatura", dbo_ArticulosUnidadesMedidas.Abreviatura)
@@ -63,15 +63,15 @@ Class spArticulosUnidadesMedidas
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function ArticulosUnidadesMedidasUpdate(ByVal newDBO_ArticulosUnidadesMedidas As DBO_ArticulosUnidadesMedidas) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ArticulosUnidadesMedidasUpdate(ByVal newDBO_ArticulosUnidadesMedidas As DBO_ArticulosUnidadesMedidas, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[ArticulosUnidadesMedidasUpdate]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         updateCommand.Parameters.AddWithValue("@NewDescripcion", newDBO_ArticulosUnidadesMedidas.Descripcion)
         updateCommand.Parameters.AddWithValue("@NewAbreviatura", newDBO_ArticulosUnidadesMedidas.Abreviatura)
@@ -90,18 +90,18 @@ Class spArticulosUnidadesMedidas
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdateArticulosUnidadesMedidas" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdateArticulosUnidadesMedidas" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function ArticulosUnidadesMedidasDelete(ByVal ArticuloUnidadMedidaID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ArticulosUnidadesMedidasDelete(ByVal ArticuloUnidadMedidaID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[ArticulosUnidadesMedidasDelete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         deleteCommand.Parameters.AddWithValue("@OldArticuloUnidadMedidaID", ArticuloUnidadMedidaID)
         deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
@@ -117,15 +117,15 @@ Class spArticulosUnidadesMedidas
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Sub GrabarArticulosUnidadesMedidas(ByVal dbo_ArticulosUnidadesMedidas As DBO_ArticulosUnidadesMedidas)
+    Public Sub GrabarArticulosUnidadesMedidas(ByVal dbo_ArticulosUnidadesMedidas As DBO_ArticulosUnidadesMedidas, ByRef dtb As BasesParaCompatibilidad.DataBase)
         If dbo_ArticulosUnidadesMedidas.ArticuloUnidadMedidaID = 0 Then
-            ArticulosUnidadesMedidasInsert(dbo_ArticulosUnidadesMedidas)
+            ArticulosUnidadesMedidasInsert(dbo_ArticulosUnidadesMedidas, dtb)
         Else
-            ArticulosUnidadesMedidasUpdate(dbo_ArticulosUnidadesMedidas)
+            ArticulosUnidadesMedidasUpdate(dbo_ArticulosUnidadesMedidas, dtb)
         End If
     End Sub
 

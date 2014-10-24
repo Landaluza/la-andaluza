@@ -20,7 +20,6 @@ Public Class frmEntAlbaranesCargaMaestro
     Private v_conductor As String
     Private tsExcel As ToolStripButton
     Private tsNuevoPalet As ToolStripButton
-    Private dtb as BasesParaCompatibilidad.Database
     Private macrosender As MacroAdapter.MacroSender
     Private Respuesta As MsgBoxResult
     'Private oQS As Object
@@ -32,7 +31,7 @@ Public Class frmEntAlbaranesCargaMaestro
         InitializeComponent()
 
 
-        dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.Database()
         ctlAlbDet = New ctlAlbaranesCargaDetalles
         dtsAlb = New dtsAlbaranesCargaMaestro.AlbaranesCargaMaestroDataTable
         ctlAlb = New ctlAlbaranesCargaMaestro
@@ -42,8 +41,8 @@ Public Class frmEntAlbaranesCargaMaestro
         HoraLlegadaDateTimePicker.activarFoco()
         HoraSalidaDateTimePicker.activarFoco()
 
-        cboConductores.mam_DataSource("ConductoresSelectCbo", False)
-        cboClientes.mam_DataSource("ClientesSelectCbo", False)
+        cboConductores.mam_DataSource("ConductoresSelectCbo", False, dtb)
+        cboClientes.mam_DataSource("ClientesSelectCbo", False, dtb)
 
         tsExcel = Me.bdnGeneral.Items.Add("Excel")
         tsExcel.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
@@ -63,7 +62,6 @@ Public Class frmEntAlbaranesCargaMaestro
             grbDatosCabecera.Visible = False
             grbAlbaranesPendientes.Visible = True
             grbAlbaranesPendientes.Location = New System.Drawing.Point(8, 32)
-            Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
             With dgvAlbaranesProvi
                 .Width = 500
                 .DataSource = dtb.Consultar("SelectAlbaranCargaProMaestroByReserva1", True)
@@ -190,11 +188,11 @@ Public Class frmEntAlbaranesCargaMaestro
 
     Overrides Sub Guardar()
         Me.txtAlbaranCargaMaestroID.Focus()
-        Dim dtb As New BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+        dtb.EmpezarTransaccion()
 
         Try
             If Me.Text.Substring(0, 8) = "Insertar" Then
-                ctlAlb.GuardarAlbaranCargaMaestro(dtb, m_MaestroProID, _
+                If Not ctlAlb.GuardarAlbaranCargaMaestro(dtb, m_MaestroProID, _
                                                   FechaDateTimePicker.Value, _
                                                   ClienteIDCuadroDeTexto.Text, _
                                                   (SerieQSIDCuadroDeTexto.Text), _
@@ -213,7 +211,10 @@ Public Class frmEntAlbaranesCargaMaestro
                                                   ObservacionesCuadroDeTexto.Text, _
                                                   Reserva1CuadroDeTexto.Text, _
                                                   Reserva2CuadroDeTexto.Text, _
-                                                  Reserva3CuadroDeTexto.Text)
+                                                  Reserva3CuadroDeTexto.Text) Then
+
+                    Throw New Exception("Error guardando el albaran")
+                End If
 
                 'Guardar el ID del albaran definitivo en el albaran provisional en el campo Reserva1
                 m_MaestroID = ctlAlb.GetAlbaranCargaMaestroID().ToString
@@ -221,21 +222,27 @@ Public Class frmEntAlbaranesCargaMaestro
 
                 'Por error estoy guardando en AlbaranesCargaProviDetalles.AlbaranCargaProviMaestroID 
                 'AlbaranesCargaProMaestro.Numero en lugar de AlbaranesCargaProMaestro.AlbaranCargaProMaestroID que seria lo correcto.
-                dtb.ConsultaAlteraciones("exec AlbaranCargaProMaestroUpdate " & m_MaestroProID & "," & m_MaestroProID)
+                If Not dtb.ConsultaAlteraciones("exec AlbaranCargaProMaestroUpdate " & m_MaestroProID & "," & m_MaestroProID) Then
+                    Throw New Exception("Error actualizando el albaran")
+                End If
 
                 Dim Contador As Integer = 0
                 Do While Contador < dgvPalet.Rows.Count
                     'Dar de baja a estos palets en almacen, en la tabla PaletsContenidos.
                     'Tambien pongo Terminado = True, porque de los contario seguia saliendo en Envasado como pico a completar.
                     Dim scc As Integer = Convert.ToInt32(dgvPalet.Rows(Contador).Cells(2).Value)
-                    dtb.ConsultaAlteraciones("exec PaletsContenidosUpdateEnAlmacenBySCC '" & scc & "'")
+                    If Not dtb.ConsultaAlteraciones("exec PaletsContenidosUpdateEnAlmacenBySCC '" & scc & "'") Then
+                        Throw New Exception("Error guardando los detalles")
+                    End If
                     Contador += 1
                 Loop
+
+                dtb.TerminarTransaccion()
                 Me.Close()
             End If
 
             If Me.Text.Substring(0, 9) = "Modificar" Then
-                ctlAlb.GuardarAlbaranCargaMaestro(dtb, m_MaestroProID, _
+                If Not ctlAlb.GuardarAlbaranCargaMaestro(dtb, m_MaestroProID, _
                                                   FechaDateTimePicker.Value, _
                                                   (ClienteIDCuadroDeTexto.Text), _
                                                   (SerieQSIDCuadroDeTexto.Text), _
@@ -254,11 +261,16 @@ Public Class frmEntAlbaranesCargaMaestro
                                                   ObservacionesCuadroDeTexto.Text, _
                                                   Reserva1CuadroDeTexto.Text, _
                                                   Reserva2CuadroDeTexto.Text, _
-                                                  Reserva3CuadroDeTexto.Text)
+                                                  Reserva3CuadroDeTexto.Text) Then
+                    Throw New Exception("Error modificando el albaran")
+                End If
+
+                dtb.TerminarTransaccion()
                 Me.Close()
             End If
         Catch ex As Exception
-            messagebox.show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            dtb.CancelarTransaccion()
+            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -401,7 +413,7 @@ Public Class frmEntAlbaranesCargaMaestro
         Try
             Dim m_Conductor As New DBO_Conductores
             Dim spConductores As New spConductores
-            m_Conductor = spConductores.Select_Record((cboConductores.SelectedValue))
+            m_Conductor = spConductores.Select_Record(cboConductores.SelectedValue, dtb)
             ConductorDNICuadroDeTexto.Text = m_Conductor.DNI
             Me.txtDNI.Text = m_Conductor.DNI
 
@@ -713,7 +725,7 @@ Public Class frmEntAlbaranesCargaMaestro
                 Transportista = InputBox("Introduce Transportista", "Transportista")
                 Transportista = Transportista + Space(20)
                 Transportista = Transportista.ToString.Substring(0, 20)
-                If macrosender.SiExisteTextoTeclea("Envio", 8, 37, Transportista) Then Return
+                If macrosender.SiExisteTextoTeclea("Envio", 8, 37, transportista) Then Return
 
                 'Matricula: Tiene que pedirla - OJO CON EL TAMAÑO DEL HUECO (8 POSICIONES)
                 Matricula = txtRemolque1.Text
@@ -2119,7 +2131,7 @@ Public Class frmEntAlbaranesCargaMaestro
                 Transportista = InputBox("Introduce Transportista", "Transportista")
                 Transportista = Transportista + Space(20)
                 Transportista = Transportista.ToString.Substring(0, 20)
-                If macrosender.SiExisteTextoTeclea("Envio", 8, 37, Transportista) Then Return
+                If macrosender.SiExisteTextoTeclea("Envio", 8, 37, transportista) Then Return
 
                 'Matricula: Tiene que pedirla - OJO CON EL TAMAÑO DEL HUECO (8 POSICIONES)
                 Matricula = txtRemolque1.Text
@@ -2201,19 +2213,23 @@ Public Class frmEntAlbaranesCargaMaestro
 
     Private Sub MarcarComoMultiloteToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles MarcarComoMultiloteToolStripMenuItem.Click
         Try
-            deprecated.realizarConsultaAlteraciones("update paletsproducidos set multilote=1 where scc = " & Me.dgvPalet.CurrentRow.Cells("SCC").Value)
+            dtb.PrepararConsulta("update paletsproducidos set multilote=1 where scc = @scc")
+            dtb.AñadirParametroConsulta("@scc", Me.dgvPalet.CurrentRow.Cells("SCC").Value)
+            dtb.Consultar(True)
             RellenarDgv()
         Catch ex As Exception
-            messagebox.show("Error al realizar la operacion. Detalles: " & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error al realizar la operacion. Detalles: " & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
     Private Sub MarcarComoNoMultiloteToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles MarcarComoNoMultiloteToolStripMenuItem.Click
         Try
-            deprecated.realizarConsultaAlteraciones("update paletsproducidos set multilote=1 where scc = " & Me.dgvPalet.CurrentRow.Cells("SCC").Value)
+            dtb.PrepararConsulta("update paletsproducidos set multilote=1 where scc =  @scc")
+            dtb.AñadirParametroConsulta("@scc", Me.dgvPalet.CurrentRow.Cells("SCC").Value)
+            dtb.Consultar(True)
             RellenarDgv()
         Catch ex As Exception
-            messagebox.show("Error al realizar la operacion. Detalles: " & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error al realizar la operacion. Detalles: " & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -2222,7 +2238,11 @@ Public Class frmEntAlbaranesCargaMaestro
             Dim lote As String = InputBox("Introduce el nuevo lote")
             If lote <> "" Then
                 If IsNumeric(lote) Then
-                    deprecated.realizarConsultaAlteraciones("update AlbaranesCargaProviDetalles set loteAlternativo=" & lote & " where  CodigoQS=" & Me.dgvAcumulados.CurrentRow.Cells("CodigoQS").Value & " and AlbaranCargaProviMaestroID = " & Me.dgvAcumulados.CurrentRow.Cells("AlbaranCargaProviMaestroID").Value)
+                    dtb.PrepararConsulta("update AlbaranesCargaProviDetalles set loteAlternativo= @lote where  CodigoQS= @qs and AlbaranCargaProviMaestroID = @id")
+                    dtb.AñadirParametroConsulta("@lote", lote)
+                    dtb.AñadirParametroConsulta("@qs", Me.dgvAcumulados.CurrentRow.Cells("CodigoQS").Value)
+                    dtb.AñadirParametroConsulta("@id", Me.dgvAcumulados.CurrentRow.Cells("AlbaranCargaProviMaestroID").Value)
+                    dtb.Consultar(True)
                     RellenarDgv()
                 End If
             End If
@@ -2236,7 +2256,10 @@ Public Class frmEntAlbaranesCargaMaestro
             Dim lote As String = InputBox("Introduce el nuevo lote")
             If lote <> "" Then
                 If IsNumeric(lote) Then
-                    deprecated.realizarConsultaAlteraciones("update AlbaranesCargaProviDetalles set loteAlternativo=" & lote & " where  AlbaranCargaProviDetalleID = " & Me.dgvPalet.CurrentRow.Cells("AlbaranCargaProviDetalleID").Value)
+                    dtb.PrepararConsulta("update AlbaranesCargaProviDetalles set loteAlternativo= @lote where  AlbaranCargaProviDetalleID = @id")
+                    dtb.AñadirParametroConsulta("@lote", lote)
+                    dtb.AñadirParametroConsulta("@id", Me.dgvPalet.CurrentRow.Cells("AlbaranCargaProviDetalleID").Value)
+                    dtb.Consultar(True)
                     RellenarDgv()
                 End If
             End If
@@ -2247,19 +2270,24 @@ Public Class frmEntAlbaranesCargaMaestro
 
     Private Sub ReiniciarLoteToolStripMenuItem1_Click(sender As System.Object, e As System.EventArgs) Handles ReiniciarLoteToolStripMenuItem1.Click
         Try
-            deprecated.realizarConsultaAlteraciones("update AlbaranesCargaProviDetalles set loteAlternativo=null where  AlbaranCargaProviDetalleID = " & Me.dgvPalet.CurrentRow.Cells("AlbaranCargaProviDetalleID").Value)
+            dtb.PrepararConsulta("update AlbaranesCargaProviDetalles set loteAlternativo=null where  AlbaranCargaProviDetalleID = @id")
+            dtb.AñadirParametroConsulta("@id", Me.dgvPalet.CurrentRow.Cells("AlbaranCargaProviDetalleID").Value)
+            dtb.Consultar(True)
             RellenarDgv()
         Catch ex As Exception
-            messagebox.show("Error al realizar la operacion. Detalles: " & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error al realizar la operacion. Detalles: " & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
     Private Sub ReiniciarLoteToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ReiniciarLoteToolStripMenuItem.Click
         Try
-            deprecated.realizarConsultaAlteraciones("update AlbaranesCargaProviDetalles set loteAlternativo=null where  CodigoQS=" & Me.dgvAcumulados.CurrentRow.Cells("CodigoQS").Value & " and AlbaranCargaProviMaestroID = " & Me.dgvAcumulados.CurrentRow.Cells("AlbaranCargaProviMaestroID").Value)
+            dtb.PrepararConsulta("update AlbaranesCargaProviDetalles set loteAlternativo=null where  CodigoQS= @qs and AlbaranCargaProviMaestroID = @id")
+            dtb.AñadirParametroConsulta("@qs", Me.dgvAcumulados.CurrentRow.Cells("CodigoQS").Value)
+            dtb.AñadirParametroConsulta("@id", Me.dgvAcumulados.CurrentRow.Cells("AlbaranCargaProviMaestroID").Value)
+            dtb.Consultar(True)
             RellenarDgv()
         Catch ex As Exception
-            messagebox.show("Error al realizar la operacion. Detalles: " & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error al realizar la operacion. Detalles: " & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 

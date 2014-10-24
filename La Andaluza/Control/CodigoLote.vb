@@ -7,7 +7,7 @@
         ctlTipLot = New spTiposLotes
     End Sub
 
-    Function GenerarCodigoDiferencias(ByVal fecha As Date, ByVal productoId As Integer, ByVal TipoLoteId As Integer) As String
+    Function GenerarCodigoDiferencias(ByVal fecha As Date, ByVal productoId As Integer, ByVal TipoLoteId As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As String
         Try
             Dim mes As String
 
@@ -17,8 +17,8 @@
                 mes = fecha.Month
             End If
 
-            Dim abrProducto As String = ctlTipPro.Select_Record(productoId, BasesParaCompatibilidad.BD.transaction).Abreviatura
-            Dim abrLote As String = ctlTipLot.Select_Record(TipoLoteId, BasesParaCompatibilidad.BD.transaction).Abreviatura
+            Dim abrProducto As String = ctlTipPro.Select_Record(productoId, dtb).Abreviatura
+            Dim abrLote As String = ctlTipLot.Select_Record(TipoLoteId, dtb).Abreviatura
 
             If abrProducto = "" Or abrLote = "" Then
                 Return ""
@@ -30,7 +30,7 @@
         End Try
     End Function
 
-    Function GenerarCodigoLoteFinal(ByVal fecha As Date, ByVal productoId As Integer, ByVal TipoLoteId As Integer) As String
+    Function GenerarCodigoLoteFinal(ByVal fecha As Date, ByVal productoId As Integer, ByVal TipoLoteId As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As String
         Try
             Dim dia, mes As String
             If fecha.Day < 10 Then
@@ -44,8 +44,8 @@
                 mes = fecha.Month
             End If
 
-            Dim abrProducto As String = ctlTipPro.Select_Record(productoId, BasesParaCompatibilidad.BD.transaction).Abreviatura
-            Dim abrLote As String = ctlTipLot.Select_Record(TipoLoteId, BasesParaCompatibilidad.BD.transaction).Abreviatura
+            Dim abrProducto As String = ctlTipPro.Select_Record(productoId, dtb).Abreviatura
+            Dim abrLote As String = ctlTipLot.Select_Record(TipoLoteId, dtb).Abreviatura
 
             Return fecha.Year & mes & dia & abrProducto & abrLote & "1"
         Catch ex As Exception
@@ -53,7 +53,7 @@
         End Try
     End Function
 
-    Function GenerarCodigoLoteProcesoCompra(ByVal fecha As Date, ByVal productoid As Integer, ByVal tipoloteid As Integer) As String
+    Function GenerarCodigoLoteProcesoCompra(ByVal fecha As Date, ByVal productoid As Integer, ByVal tipoloteid As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As String
         Try
             Dim dia, mes As String
             If fecha.Day < 10 Then
@@ -67,8 +67,8 @@
                 mes = fecha.Month
             End If
 
-            Dim abrProducto As String = ctlTipPro.Select_Record(productoid, BasesParaCompatibilidad.BD.transaction).Abreviatura
-            Dim abrLote As String = ctlTipLot.Select_Record(TipoLoteId, BasesParaCompatibilidad.BD.transaction).Abreviatura
+            Dim abrProducto As String = ctlTipPro.Select_Record(productoid, dtb).Abreviatura
+            Dim abrLote As String = ctlTipLot.Select_Record(tipoloteid, dtb).Abreviatura
 
 
             If abrProducto = "" Or abrLote = "" Then
@@ -83,7 +83,7 @@
 
     End Function
 
-    Function GenerarCodigoLote(ByVal fecha As Date, ByVal productoId As Integer, ByVal TipoLoteId As Integer) As String
+    Function GenerarCodigoLote(ByVal fecha As Date, ByVal productoId As Integer, ByVal TipoLoteId As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As String
         Try
             Dim dia, mes As String
             If fecha.Day < 10 Then
@@ -97,8 +97,8 @@
                 mes = fecha.Month
             End If
 
-            Dim abrProducto As String = ctlTipPro.Select_Record(productoId, BasesParaCompatibilidad.BD.transaction).Abreviatura
-            Dim abrLote As String = ctlTipLot.Select_Record(TipoLoteId, BasesParaCompatibilidad.BD.transaction).Abreviatura
+            Dim abrProducto As String = ctlTipPro.Select_Record(productoId, dtb).Abreviatura
+            Dim abrLote As String = ctlTipLot.Select_Record(TipoLoteId, dtb).Abreviatura
 
             If abrProducto = "" Or abrLote = "" Then
                 Return ""
@@ -110,7 +110,7 @@
         End Try
     End Function
 
-    Function GenerarCodigoLoteCompra(ByVal fecha As Date, ByVal productoid As Integer, ByVal DescripcionTipoLoteRecepcion As String) As String
+    Function GenerarCodigoLoteCompra(ByVal fecha As Date, ByVal productoid As Integer, ByVal DescripcionTipoLoteRecepcion As String, ByRef dtb As BasesParaCompatibilidad.DataBase) As String
         Try
             Dim dia, mes As String
             If fecha.Day < 10 Then
@@ -124,8 +124,8 @@
                 mes = fecha.Month
             End If
 
-            Dim abrProducto As String = ctlTipPro.Select_Record(productoid, BasesParaCompatibilidad.BD.transaction).Abreviatura
-            Dim abrlote As String = ctlTipLot.DevolverPorDescripcion(DescripcionTipoLoteRecepcion, BasesParaCompatibilidad.BD.transaction).Abreviatura
+            Dim abrProducto As String = ctlTipPro.Select_Record(productoid, dtb).Abreviatura
+            Dim abrlote As String = ctlTipLot.DevolverPorDescripcion(DescripcionTipoLoteRecepcion, dtb).Abreviatura
 
             If abrProducto = "" Or abrlote = "" Then
                 Return ""
@@ -138,7 +138,7 @@
         End Try
     End Function
 
-    Public Function GenerarCodigoLoteSalida(ByVal fecha As Date, ByVal productoid As Integer, ByVal tipoloteid As Integer) As String
+    Public Function GenerarCodigoLoteSalida(ByVal fecha As Date, ByVal productoid As Integer, ByVal tipoloteid As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As String
         Try
             Dim dia, mes As String
             If fecha.Day < 10 Then
@@ -152,8 +152,8 @@
                 mes = fecha.Month
             End If
 
-            Dim abrProducto As String = ctlTipPro.Select_Record(productoid, BasesParaCompatibilidad.BD.transaction).Abreviatura
-            Dim abrLote As String = ctlTipLot.Select_Record(tipoloteid, BasesParaCompatibilidad.BD.transaction).Abreviatura
+            Dim abrProducto As String = ctlTipPro.Select_Record(productoid, dtb).Abreviatura
+            Dim abrLote As String = ctlTipLot.Select_Record(tipoloteid, dtb).Abreviatura
 
             If abrProducto = "" Or abrLote = "" Then
                 Return ""

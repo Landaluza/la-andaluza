@@ -14,20 +14,20 @@ Public Class frmEntVisitasNombres1
 
     Private Sub frmEntVisitasNombres1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
-        cboVisitaTipoID.mam_DataSource("VisitasNombres1_VisitasTiposCbo", False)
+        cboVisitaTipoID.mam_DataSource("VisitasNombres1_VisitasTiposCbo", False, dtb)
 
         Select Case m_VisitaTipoID
             Case Is = 1
                 lblEmpresaID.Visible = True
                 lblEmpresaID.Text = "Proveedor"
                 cboEmpresaID.Visible = True
-                cboEmpresaID.mam_DataSource("Proveedores1Cbo", False)
+                cboEmpresaID.mam_DataSource("Proveedores1Cbo", False, dtb)
 
             Case Is = 2
                 lblEmpresaID.Visible = True
                 lblEmpresaID.Text = "Cliente"
                 cboEmpresaID.Visible = True
-                cboEmpresaID.mam_DataSource("ClientesSelectCbo", False)
+                cboEmpresaID.mam_DataSource("ClientesSelectCbo", False, dtb)
             Case Is = 3
                 lblEmpresaID.Visible = False
                 cboEmpresaID.Visible = False
@@ -66,7 +66,7 @@ Public Class frmEntVisitasNombres1
 
     Overrides Sub Guardar()
         GetValores()
-        spVisitasNombres1.GrabarVisitasNombres1(m_DBO_VisitasNombres1)
+        spVisitasNombres1.GrabarVisitasNombres1(m_DBO_VisitasNombres1, dtb)
         Me.Close()
     End Sub
 
@@ -81,7 +81,7 @@ Public Class frmEntVisitasNombres1
         frmEnt = New frmEntVisitasTipos(DBO_VisitasTipos, 1, False)
         frmEnt.Text = "Insertar"
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
-        Me.cboVisitaTipoID.mam_DataSource("VisitasNombres1_VisitasTiposCbo", False)
+        Me.cboVisitaTipoID.mam_DataSource("VisitasNombres1_VisitasTiposCbo", False, dtb)
     End Sub
 
     Private Sub cboVisitaTipoID_SelectionChangeCommitted(sender As Object, e As System.EventArgs) Handles cboVisitaTipoID.SelectionChangeCommitted
@@ -90,13 +90,13 @@ Public Class frmEntVisitasNombres1
                 lblEmpresaID.Visible = True
                 lblEmpresaID.Text = "Proveedor"
                 cboEmpresaID.Visible = True
-                cboEmpresaID.mam_DataSource("Proveedores1Cbo", False)
+                cboEmpresaID.mam_DataSource("Proveedores1Cbo", False, dtb)
 
             Case Is = 2
                 lblEmpresaID.Visible = True
                 lblEmpresaID.Text = "Cliente"
                 cboEmpresaID.Visible = True
-                cboEmpresaID.mam_DataSource("ClientesSelectCbo", False)
+                cboEmpresaID.mam_DataSource("ClientesSelectCbo", False, dtb)
             Case Is = 3
                 lblEmpresaID.Visible = False
                 cboEmpresaID.Visible = False

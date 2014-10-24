@@ -14,14 +14,13 @@ Public Class frmEntPedidosProveedoresMaestros
     Private frmEnt As frmEntPedidosProveedoresDetalles
     Private frmEntPedidosProveedoresEntregas As frmEntPedidosProveedoresEntregas
     Private frmPedidosProveedoresDocumentos1 As frmPedidosProveedoresDocumentos1
-    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New(ByRef PedidoProveedor As DBO_PedidosProveedoresMaestros, ByVal Pos As Integer)
         InitializeComponent()
         DBO_PedidoProveedorDetalle = New DBO_PedidosProveedoresDetalles
         spPedidosProveedoresMaestros = New spPedidosProveedoresMaestros
         spPedidosProveedoresEntregas = New spPedidosProveedoresEntregas
         spPedidosProveedoresDetalles = New spPedidosProveedoresDetalles
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.DataBase()
         DBO_PedidoProveedor = PedidoProveedor
         m_Pos = Pos
         Me.txtFechaEmision.activarFoco()
@@ -32,9 +31,9 @@ Public Class frmEntPedidosProveedoresMaestros
     End Sub
 
     Private Sub frmEntPedidosProveedoresMaestros_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        cboProveedores.mam_DataSource("ProveedoresSelectCbo", False)
-        cboEstados.mam_DataSource("PedidosProveedoresEstadosSelectCbo", False)
-        cboEmpleados.mam_DataSource("EmpleadosSelectCbo", False)
+        cboProveedores.mam_DataSource("ProveedoresSelectCbo", False, dtb)
+        cboEstados.mam_DataSource("PedidosProveedoresEstadosSelectCbo", False, dtb)
+        cboEmpleados.mam_DataSource("EmpleadosSelectCbo", False, dtb)
 
 
         'DBO_PedidoProveedor.EstadoID = 1 'Para que no se quede el combo vacio
@@ -58,16 +57,16 @@ Public Class frmEntPedidosProveedoresMaestros
                 m_Pos = GeneralBindingSource.Count - 1
         End Select
         GeneralBindingSource.Position = m_Pos
-        DBO_PedidoProveedor = spPedidosProveedoresMaestros.Select_Record(GeneralBindingSource(m_Pos).Item("ArticuloID"))
+        DBO_PedidoProveedor = spPedidosProveedoresMaestros.Select_Record(GeneralBindingSource(m_Pos).Item("ArticuloID"), dtb)
         SetValores()
     End Sub
 
     Overrides Sub Guardar()
         GetValores()
         If Me.Text.Substring(0, 3) = "Ins" Then
-            spPedidosProveedoresMaestros.InsertPedidosProveedoresMaestros(DBO_PedidoProveedor)
+            spPedidosProveedoresMaestros.InsertPedidosProveedoresMaestros(DBO_PedidoProveedor, dtb)
         Else
-            spPedidosProveedoresMaestros.UpdatePedidosProveedoresMaestros(DBO_PedidoProveedor, DBO_PedidoProveedor)
+            spPedidosProveedoresMaestros.UpdatePedidosProveedoresMaestros(DBO_PedidoProveedor, DBO_PedidoProveedor, dtb)
         End If
         Me.Close()
     End Sub
@@ -121,7 +120,7 @@ Public Class frmEntPedidosProveedoresMaestros
 
     Private Sub bdnNivel1Delete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles bdnNivel1Delete.Click
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then _
-                    spPedidosProveedoresDetalles.DeletePedidosProveedoresDetalles(dgvNivel1.CurrentRow.Cells("PedidoProveedorDetalleID").Value)
+                    spPedidosProveedoresDetalles.DeletePedidosProveedoresDetalles(dgvNivel1.CurrentRow.Cells("PedidoProveedorDetalleID").Value, dtb)
         RellenarDgvNivel1()
         If dgvNivel1.RowCount > 0 Then RellenarDgvNivel2()
     End Sub
@@ -137,7 +136,7 @@ Public Class frmEntPedidosProveedoresMaestros
             DBO_PedidoProveedorDetalle.PedidoProveedorMaestroID = DBO_PedidoProveedor.PedidoProveedorMaestroID
             DBO_PedidoProveedorDetalle.EstadoID = 1 'Para que en los pedidos nuevos los Articulos aparezacan como solicitado
         Else
-            DBO_PedidoProveedorDetalle = spPedidosProveedoresDetalles.Select_Record(bdsNivel1(m_Pos).Item("PedidoProveedorDetalleID"))
+            DBO_PedidoProveedorDetalle = spPedidosProveedoresDetalles.Select_Record(bdsNivel1(m_Pos).Item("PedidoProveedorDetalleID"), dtb)
         End If
 
         frmEnt = New frmEntPedidosProveedoresDetalles(DBO_PedidoProveedorDetalle, m_Pos)
@@ -207,7 +206,7 @@ Public Class frmEntPedidosProveedoresMaestros
 
     Private Sub bdnNivel2Delete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles bdnNivel2Delete.Click
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then _
-                    spPedidosProveedoresEntregas.DeletePedidosProveedoresEntregas(dgvNivel2.CurrentRow.Cells("PedidoProveedorEntregaID").Value)
+                    spPedidosProveedoresEntregas.DeletePedidosProveedoresEntregas(dgvNivel2.CurrentRow.Cells("PedidoProveedorEntregaID").Value, dtb)
         RellenarDgvNivel1()
         RellenarDgvNivel2()
     End Sub
@@ -220,7 +219,7 @@ Public Class frmEntPedidosProveedoresMaestros
         If TipoAction = "Insertar" Then
             DBO_PedidoProveedorEntrega.PedidoProveedorDetalleID = dgvNivel1.CurrentRow.Cells("PedidoProveedorDetalleID").Value
         Else
-            DBO_PedidoProveedorEntrega = spPedidosProveedoresEntregas.Select_Record(bdsNivel2(m_Pos).Item("PedidoProveedorEntregaID"))
+            DBO_PedidoProveedorEntrega = spPedidosProveedoresEntregas.Select_Record(bdsNivel2(m_Pos).Item("PedidoProveedorEntregaID"), dtb)
         End If
 
         frmEntPedidosProveedoresEntregas = New frmEntPedidosProveedoresEntregas(DBO_PedidoProveedorEntrega, m_Pos)

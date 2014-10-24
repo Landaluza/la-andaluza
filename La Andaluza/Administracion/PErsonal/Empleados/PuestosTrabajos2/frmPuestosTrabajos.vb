@@ -20,7 +20,7 @@ Public Class frmPuestosTrabajos
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboPuestosTrabajos = CType(sp, spPuestosTrabajos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboPuestosTrabajos = CType(sp, spPuestosTrabajos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboPuestosTrabajos Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboPuestosTrabajos)
         Else

@@ -6,8 +6,7 @@ Public Class DispensadorMonodosis
         spPaletsContenidos = New spPaletsContenidos
     End Sub
 
-    Public Function EsDoyPack(ByVal tipoformato As Integer) As Boolean
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+    Public Function EsDoyPack(ByVal tipoformato As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         dtb.PrepararConsulta("ComprobarDoypack @tf")
         dtb.AñadirParametroConsulta("@tf", tipoformato)
         Dim dt As DataTable = dtb.Consultar()
@@ -18,10 +17,10 @@ Public Class DispensadorMonodosis
         Return False
     End Function
 
-    Public Sub CargarMonodosis(ByRef pan As Panel, ByVal FormatoEnvasado As Integer, Optional ByRef frmDoypack As frmEntPaletsContenidosDoypack = Nothing)
+    Public Sub CargarMonodosis(ByRef pan As Panel, ByVal FormatoEnvasado As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase, Optional ByRef frmDoypack As frmEntPaletsContenidosDoypack = Nothing)
 
         Dim combos As New Collection
-        Dim dt As DataTable = Me.spPaletsContenidos.devolver_monodosis_para_doypack(FormatoEnvasado)
+        Dim dt As DataTable = Me.spPaletsContenidos.devolver_monodosis_para_doypack(FormatoEnvasado, dtb)
 
         Dim lbl As Label
         Dim cbo As ComboBox
@@ -43,7 +42,7 @@ Public Class DispensadorMonodosis
 
             cbo = New ComboBox
             cbo.Dock = DockStyle.Right
-            cargarComboDetallesMonodosis(cbo, CInt(row.Item(1)))
+            cargarComboDetallesMonodosis(cbo, CInt(row.Item(1)), dtb)
             If frmDoypack Is Nothing Then
                 AddHandler cbo.SelectedValueChanged, AddressOf Me.cboDoypack_SelectedValueChanged
             Else
@@ -68,8 +67,8 @@ Public Class DispensadorMonodosis
         End If
     End Sub
 
-    Public Sub cargarComboDetallesMonodosis(ByRef combo As ComboBox, ByVal tipoFormato As Integer)
-        combo.mam_DataSource("PaletsContenidosSelectMonodosisParaDoyPack " & tipoFormato, False)
+    Public Sub cargarComboDetallesMonodosis(ByRef combo As ComboBox, ByVal tipoFormato As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        combo.mam_DataSource("PaletsContenidosSelectMonodosisParaDoyPack " & tipoFormato, False, dtb)
     End Sub
 
     Public Sub cboDoypack_SelectedValueChanged(sender As System.Object, e As System.EventArgs)
@@ -114,16 +113,15 @@ Public Class DispensadorMonodosis
     '    Dim textNotificar As String = ""
     '    Dim fecha As String = DateTime.Now.Day & "/" & DateTime.Now.Month & "/" & DateTime.Now.Year
     '    Dim linea As String
-    '    Dim dtb as BasesParaCompatibilidad.Database
     '    If BasesParaCompatibilidad.BD.transaction Is Nothing Then
-    '        dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+    '        dtb = new BasesParaCompatibilidad.Database()
     '    Else
-    '        dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server, BasesParaCompatibilidad.BD.Cnx, transaction)
+    '        dtb = new BasesParaCompatibilidad.Database(, BasesParaCompatibilidad.BD.Cnx,dtbaction)
     '    End If
 
     '    For cont = 0 To cbo.SelectedIndex - 1
     '        Dim item As System.Windows.Forms.ComboBox.ObjectCollection = cbo.Items(cont)
-    '        Dim m_palet As DBO_PaletsProducidos2 = spPaletsProducidos2.Select_RecordBySSCCSinMachacar(CInt(item(1)), BasesParaCompatibilidad.BD.transaction)
+    '        Dim m_palet As DBO_PaletsProducidos2 = spPaletsProducidos2.Select_RecordBySSCCSinMachacar(CInt(item(1)),dtb)
     '        Dim dbo_movimiento As New Dbo_PaletsMovimiento
     '        Dim dbo_MovimientoDB As New spPaletsMovimiento
 
@@ -131,7 +129,7 @@ Public Class DispensadorMonodosis
     '            dbo_movimiento.Tipo = 8
     '            dbo_movimiento.Tipo_IsDBNull = False
     '            dbo_movimiento.PaletID_IsDBNull = False
-    '            dbo_movimiento.Cajas = spPaletsProducidos2.calcularCajasAntesExpedir(item(1), BasesParaCompatibilidad.BD.transaction)
+    '            dbo_movimiento.Cajas = spPaletsProducidos2.calcularCajasAntesExpedir(item(1),dtb)
     '            dbo_movimiento.Fecha = DateTime.Now
     '            dbo_movimiento.Comentarios = "Diferencia automatizada"
     '            dbo_movimiento.Comentarios_IsDBNull = False
@@ -152,7 +150,7 @@ Public Class DispensadorMonodosis
     '            dbo_MovimientoDB.Add(dbo_movimiento)
 
     '            m_palet.EnAlmacen = 0
-    '            spPaletsProducidos2.UpdatePaletsProducidos2(m_palet, BasesParaCompatibilidad.BD.transaction)
+    '            spPaletsProducidos2.UpdatePaletsProducidos2(m_palet,dtb)
     '            textNotificar = textNotificar & "Scc: " & m_palet.SCC & ", cajas: " & dbo_movimiento.Cajas & Environment.NewLine()
     '            linea = "Diferencia automatizada. Scc: " & m_palet.SCC & ", cajas:" & dbo_movimiento.Cajas & " , fecha: " & fecha & ""
 
@@ -186,7 +184,7 @@ Public Class DispensadorMonodosis
     '            '    dbo_MovimientoDB.Add(dbo_movimiento)
 
     '            '    'm_palet.EnAlmacen = 0
-    '            '    spPaletsProducidos2.UpdatePaletsProducidos2(m_palet, BasesParaCompatibilidad.BD.transaction)
+    '            '    spPaletsProducidos2.UpdatePaletsProducidos2(m_palet,dtb)
     '            '    textNotificar = textNotificar & "Scc: " & m_palet.SCC & ", cajas: " & dbo_movimiento.Cajas & Environment.NewLine()
     '            '    linea = "No conforme automatizado. Scc: " & m_palet.SCC & ", cajas:" & dbo_movimiento.Cajas & " , fecha: " & fecha & ""
 
@@ -219,19 +217,18 @@ Public Class DispensadorMonodosis
     '    Dim m_PaletProducidoDestino As DBO_PaletsProducidos2
     '    Dim dbo_MovimientoDB As New spPaletsMovimiento
     '    Dim fuente As String = ""
-    '    Dim dtb as BasesParaCompatibilidad.Database
     '    If BasesParaCompatibilidad.BD.transaction Is Nothing Then
-    '        dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+    '        dtb = new BasesParaCompatibilidad.Database()
     '    Else
-    '        dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server, BasesParaCompatibilidad.BD.Cnx, transaction)
+    '        dtb = new BasesParaCompatibilidad.Database(, BasesParaCompatibilidad.BD.Cnx,dtbaction)
     '    End If
 
     '    dbo_movimiento.Fecha = datetime.now
     '    dbo_movimiento.Cajas = cantidadCajas
     '    Dim cajasInicioMail As String = dbo_movimiento.Cajas.ToString
 
-    '    m_PaletProducidoOrigen = spPaletsProducidos2.Select_RecordBySSCCSinMachacar(CInt(cbo.SelectedItem(1)), BasesParaCompatibilidad.BD.transaction)
-    '    m_PaletProducidoDestino = spPaletsProducidos2.Select_RecordSinMachacar(m_DBO_PaletsContenidos2.PaletProducidoID, BasesParaCompatibilidad.BD.transaction)
+    '    m_PaletProducidoOrigen = spPaletsProducidos2.Select_RecordBySSCCSinMachacar(CInt(cbo.SelectedItem(1)),dtb)
+    '    m_PaletProducidoDestino = spPaletsProducidos2.Select_RecordSinMachacar(m_DBO_PaletsContenidos2.PaletProducidoID,dtb)
 
     '    If Doypack Then
     '        Dim pl As Panel = CType(cbo.Parent, Panel)
@@ -271,11 +268,10 @@ Public Class DispensadorMonodosis
     '                                        ByVal origen As Boolean, ByRef m_DBO_FormatoEnvasado As DBO_FormatosEnvasados, _
     '                                        Optional ByVal CantidadUds As Integer = Nothing, Optional fuente As String = "")
 
-    '    Dim dtb as BasesParaCompatibilidad.Database
     '    If BasesParaCompatibilidad.BD.transaction Is Nothing Then
-    '        dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+    '        dtb = new BasesParaCompatibilidad.Database()
     '    Else
-    '        dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server, BasesParaCompatibilidad.BD.Cnx, transaction)
+    '        dtb = new BasesParaCompatibilidad.Database(, BasesParaCompatibilidad.BD.Cnx,dtbaction)
     '    End If
 
     '    'If origen Then
@@ -293,7 +289,7 @@ Public Class DispensadorMonodosis
     '    End If
 
     '    dbo_movimiento.Cajas = dbo_movimiento.Cajas * capacidad
-    '    Dim tope As Long = spPaletsProducidos2.calcularCajasAntesExpedir(m_PaletProducidoOrigen.SCC, BasesParaCompatibilidad.BD.transaction)
+    '    Dim tope As Long = spPaletsProducidos2.calcularCajasAntesExpedir(m_PaletProducidoOrigen.SCC,dtb)
     '    If tope < dbo_movimiento.Cajas Then
     '        padre.Close()
     '        If fuente <> "" Then
@@ -342,19 +338,18 @@ Public Class DispensadorMonodosis
     '    Dim m_PaletProducidoDestino As DBO_PaletsProducidos2
     '    Dim dbo_MovimientoDB As New spPaletsMovimiento
     '    Dim fuente As String = ""
-    '    Dim dtb as BasesParaCompatibilidad.Database
     '    If BasesParaCompatibilidad.BD.transaction Is Nothing Then
-    '        dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+    '        dtb = new BasesParaCompatibilidad.Database()
     '    Else
-    '        dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server, BasesParaCompatibilidad.BD.Cnx, transaction)
+    '        dtb = new BasesParaCompatibilidad.Database(, BasesParaCompatibilidad.BD.Cnx,dtbaction)
     '    End If
 
     '    dbo_movimiento.Fecha = DateTime.Now
     '    dbo_movimiento.Cajas = cantidadCajas
     '    Dim cajasInicioMail As String = dbo_movimiento.Cajas.ToString
 
-    '    m_PaletProducidoOrigen = spPaletsProducidos2.Select_RecordBySSCCSinMachacar(CInt(cbo.SelectedItem(1)), BasesParaCompatibilidad.BD.transaction)
-    '    m_PaletProducidoDestino = spPaletsProducidos2.Select_RecordSinMachacar(m_DBO_PaletsContenidos2.PaletProducidoID, BasesParaCompatibilidad.BD.transaction)
+    '    m_PaletProducidoOrigen = spPaletsProducidos2.Select_RecordBySSCCSinMachacar(CInt(cbo.SelectedItem(1)),dtb)
+    '    m_PaletProducidoDestino = spPaletsProducidos2.Select_RecordSinMachacar(m_DBO_PaletsContenidos2.PaletProducidoID,dtb)
 
     '    If Doypack Then
     '        Dim pl As Panel = CType(cbo.Parent, Panel)
@@ -393,11 +388,10 @@ Public Class DispensadorMonodosis
     '                                        ByVal origen As Boolean, ByRef m_DBO_FormatoEnvasado As DBO_FormatosEnvasados, _
     '                                        Optional ByVal CantidadUds As Integer = Nothing, Optional fuente As String = "")
 
-    '    Dim dtb as BasesParaCompatibilidad.Database
     '    If BasesParaCompatibilidad.BD.transaction Is Nothing Then
-    '        dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+    '        dtb = new BasesParaCompatibilidad.Database()
     '    Else
-    '        dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server, BasesParaCompatibilidad.BD.Cnx, transaction)
+    '        dtb = new BasesParaCompatibilidad.Database(, BasesParaCompatibilidad.BD.Cnx,dtbaction)
     '    End If
     '    'If origen Then
     '    dbo_movimiento.PaletID = m_PaletProducidoOrigen.ID
@@ -414,7 +408,7 @@ Public Class DispensadorMonodosis
     '    End If
 
     '    dbo_movimiento.Cajas = dbo_movimiento.Cajas * capacidad
-    '    Dim tope As Long = spPaletsProducidos2.calcularCajasAntesExpedir(m_PaletProducidoOrigen.SCC, BasesParaCompatibilidad.BD.transaction)
+    '    Dim tope As Long = spPaletsProducidos2.calcularCajasAntesExpedir(m_PaletProducidoOrigen.SCC,dtb)
     '    If tope < dbo_movimiento.Cajas Then
     '        If fuente <> "" Then
     '            Throw New Exception("No hay suficientes cajas para realizar el movimiento de " & fuente & "." & Environment.NewLine() & _
@@ -453,12 +447,12 @@ Public Class DispensadorMonodosis
     '    Dim fecha As String = DateTime.Now.Day & "/" & DateTime.Now.Month & "/" & DateTime.Now.Year
     '    Dim linea As String
     '    Dim spPalet As New spPaletsProducidos
-    '    Dim m_palet As DBO_PaletsProducidos = spPalet.Select_RecordBySSCC(scc, trans)
+    '    Dim m_palet As DBO_PaletsProducidos = spPalet.Select_RecordBySSCC(scc,dtb)
     '    Dim spFormatosEnvasados As New spFormatosEnvasados
-    '    Dim dboFormato As DBO_FormatosEnvasados = spFormatosEnvasados.Select_Record(m_palet.FormatoID, trans)
+    '    Dim dboFormato As DBO_FormatosEnvasados = spFormatosEnvasados.Select_Record(m_palet.FormatoID,dtb)
     '    Dim dbo_movimiento As New Dbo_PaletsMovimiento
     '    Dim dbo_MovimientoDB As New spPaletsMovimiento
-    '    Dim paletNC As Integer = spPalet.No_conforme_por_formato(dboFormato.TipoFormatoEnvasadoID, trans)
+    '    Dim paletNC As Integer = spPalet.No_conforme_por_formato(dboFormato.TipoFormatoEnvasadoID,dtb)
 
     '    If m_palet.Id_Estado <> 3 Then
     '        dbo_movimiento.Tipo = 18
@@ -536,7 +530,7 @@ Public Class DispensadorMonodosis
 
 
         For cont = 0 To cbo.SelectedIndex - 1
-            Dim m_palet As DBO_PaletsProducidos2 = spPaletsProducidos2.Select_RecordBySSCCSinMachacar(cbo.Items(cont)(1), BasesParaCompatibilidad.BD.transaction)
+            Dim m_palet As DBO_PaletsProducidos2 = spPaletsProducidos2.Select_RecordBySSCCSinMachacar(cbo.Items(cont)(1), dtb)
             Dim dbo_movimiento As New Dbo_PaletsMovimiento
             Dim dbo_MovimientoDB As New spPaletsMovimiento
 
@@ -544,7 +538,7 @@ Public Class DispensadorMonodosis
                 dbo_movimiento.Tipo = 8
                 dbo_movimiento.Tipo_IsDBNull = False
                 dbo_movimiento.PaletID_IsDBNull = False
-                dbo_movimiento.Cajas = spPaletsProducidos2.calcularCajasAntesExpedir(cbo.Items(cont)(1), BasesParaCompatibilidad.BD.transaction)
+                dbo_movimiento.Cajas = spPaletsProducidos2.calcularCajasAntesExpedir(cbo.Items(cont)(1), dtb)
                 dbo_movimiento.Fecha = Now.Date
                 dbo_movimiento.Comentarios = "Diferencia automatizada"
                 dbo_movimiento.Comentarios_IsDBNull = False
@@ -562,10 +556,10 @@ Public Class DispensadorMonodosis
                 'dbo_movimiento.Tipo = 5
                 dbo_movimiento.ContenidoDestinoID = dtb.Consultar("select max(paletcontenidoid) from paletscontenidos", False).Rows(0).Item(0)
                 dbo_movimiento.PaletID = m_palet.PaletProducidoID
-                dbo_MovimientoDB.Add(dbo_movimiento)
+                dbo_MovimientoDB.Add(dbo_movimiento, dtb)
 
                 m_palet.EnAlmacen = 0
-                spPaletsProducidos2.UpdatePaletsProducidos2(m_palet, BasesParaCompatibilidad.BD.transaction)
+                spPaletsProducidos2.UpdatePaletsProducidos2(m_palet, dtb)
                 textNotificar = textNotificar & "Scc: " & m_palet.SCC & ", cajas: " & dbo_movimiento.Cajas & Environment.NewLine
                 linea = "Diferencia automatizada. Scc: " & m_palet.SCC & ", cajas:" & dbo_movimiento.Cajas & " , fecha: " & fecha & ""
 
@@ -600,7 +594,7 @@ Public Class DispensadorMonodosis
                 '    dbo_MovimientoDB.Add(dbo_movimiento)
 
                 '    'm_palet.EnAlmacen = 0
-                '    spPaletsProducidos2.UpdatePaletsProducidos2(m_palet, BasesParaCompatibilidad.BD.transaction)
+                '    spPaletsProducidos2.UpdatePaletsProducidos2(m_palet,dtb)
                 '    textNotificar = textNotificar & "Scc: " & m_palet.SCC & ", cajas: " & dbo_movimiento.Cajas & Environment.NewLine
                 '    linea = "No conforme automatizado. Scc: " & m_palet.SCC & ", cajas:" & dbo_movimiento.Cajas & " , fecha: " & fecha & ""
 
@@ -626,7 +620,7 @@ Public Class DispensadorMonodosis
                                        ByRef spPMovimientos As spPaletsMovimiento, ByRef dbomovimiento As Dbo_PaletsMovimiento, _
                                        ByRef m_DBO_FormatoEnvasado As DBO_FormatosEnvasados, Optional ByVal Doypack As Boolean = False)
 
-        If Not dbomovimiento Is Nothing Then spPMovimientos.Delete(dbomovimiento.ID)
+        If Not dbomovimiento Is Nothing Then spPMovimientos.Delete(dbomovimiento.ID, dtb)
 
         Dim dbo_movimiento As New Dbo_PaletsMovimiento
         Dim m_PaletProducidoOrigen As DBO_PaletsProducidos2
@@ -639,8 +633,8 @@ Public Class DispensadorMonodosis
         dbo_movimiento.Cajas = cantidadCajas
         Dim cajasInicioMail As String = dbo_movimiento.Cajas
 
-        m_PaletProducidoOrigen = spPaletsProducidos2.Select_RecordBySSCCSinMachacar(cbo.SelectedItem(1), BasesParaCompatibilidad.BD.transaction)
-        m_PaletProducidoDestino = spPaletsProducidos2.Select_RecordSinMachacar(m_DBO_PaletsContenidos2.PaletProducidoID, BasesParaCompatibilidad.BD.transaction)
+        m_PaletProducidoOrigen = spPaletsProducidos2.Select_RecordBySSCCSinMachacar(cbo.SelectedItem(1), dtb)
+        m_PaletProducidoDestino = spPaletsProducidos2.Select_RecordSinMachacar(m_DBO_PaletsContenidos2.PaletProducidoID, dtb)
 
         If Doypack Then
             Dim pl As Panel = cbo.Parent
@@ -657,7 +651,7 @@ Public Class DispensadorMonodosis
                                     True, m_DBO_FormatoEnvasado, If(Doypack, cbo.Tag, Nothing), fuente)
         'Movimiento del palets Origen
         dbo_movimiento.ContenidoDestinoID = dtb.Consultar("select max(paletcontenidoid) from paletscontenidos", False).Rows(0).Item(0)
-        dbo_MovimientoDB.Add(dbo_movimiento)
+        dbo_MovimientoDB.Add(dbo_movimiento, dtb)
         'Añadir Observaciones en PaletsProducidos
 
         'm_PaletProducidoOrigen.observacionesPalets = "Encajado de monodosis"
@@ -683,9 +677,8 @@ Public Class DispensadorMonodosis
                                           ByRef m_PaletProducidoOrigen As DBO_PaletsProducidos2, _
                                           ByVal m_PaletProducidoDestino As DBO_PaletsProducidos2, _
                                           ByVal origen As Boolean, ByRef m_DBO_FormatoEnvasado As DBO_FormatosEnvasados, _
-                                          Optional ByVal CantidadUds As Integer = Nothing, Optional fuente As String = "")
+                                          ByRef dtb As BasesParaCompatibilidad.DataBase, Optional ByVal CantidadUds As Integer = Nothing, Optional fuente As String = "")
 
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
         Dim spPaletsProducidos2 As New spPaletsProducidos2
         'If origen Then
         dbo_movimiento.PaletID = m_PaletProducidoOrigen.PaletProducidoID
@@ -704,7 +697,7 @@ Public Class DispensadorMonodosis
         End If
 
         dbo_movimiento.Cajas = dbo_movimiento.Cajas * capacidad
-        Dim tope As Long = spPaletsProducidos2.calcularCajasAntesExpedir(m_PaletProducidoOrigen.SCC, BasesParaCompatibilidad.BD.transaction)
+        Dim tope As Long = spPaletsProducidos2.calcularCajasAntesExpedir(m_PaletProducidoOrigen.SCC, dtb)
         If tope < dbo_movimiento.Cajas Then
             padre.Close()
             If fuente <> "" Then

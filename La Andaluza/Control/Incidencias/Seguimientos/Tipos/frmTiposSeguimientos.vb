@@ -22,7 +22,7 @@ Public Class frmTiposSeguimientos
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboTiposSeguimientos = CType(sp, spTiposSeguimientos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboTiposSeguimientos = CType(sp, spTiposSeguimientos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboTiposSeguimientos Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboTiposSeguimientos)
         Else

@@ -25,12 +25,12 @@ Public Class frmPaletsMovimientoEntrePalets
         InitializeComponent()
 
         spPaletsProducidos2 = New spPaletsProducidos2
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.DataBase()
         frmOrigen = New frmPaletSCC(True, "Origen")
         frmDestino = New frmPaletSCC(True, "Destino")
     End Sub
     Private Sub frmPaletsMovimientoEntrePalets_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        cboMovimientoTipo.mam_DataSource("PaletsMovimientosTipos1Cbo", False)
+        cboMovimientoTipo.mam_DataSource("PaletsMovimientosTipos1Cbo", False, dtb)
         cboMovimientoTipo.MaxDropDownItems = cboMovimientoTipo.Items.Count
 
         Engine_LA.FormEnPestaña(frmOrigen, panOrigen)
@@ -60,7 +60,7 @@ Public Class frmPaletsMovimientoEntrePalets
             validado = False
         End Try
         If validado Then
-            BasesParaCompatibilidad.BD.EmpezarTransaccion()
+            dtb.EmpezarTransaccion()
             Try
 
 
@@ -69,18 +69,18 @@ Public Class frmPaletsMovimientoEntrePalets
 
                 ComprobarCantidades()
                 'Movimiento del palets Origen
-                m_PaletProducidoOrigen = spPaletsProducidos2.Select_RecordBySSCC(frmOrigen.txtSCC.Text, BasesParaCompatibilidad.BD.transaction)
+                m_PaletProducidoOrigen = spPaletsProducidos2.Select_RecordBySSCC(frmOrigen.txtSCC.Text, dtb)
                 SetValores(dbo_movimiento, True)
-                dbo_MovimientoDB.Add(dbo_movimiento)
+                dbo_MovimientoDB.Add(dbo_movimiento, dtb)
                 'Añadir Observaciones en PaletsProducidos
 
                 m_PaletProducidoOrigen.observacionesPalets = txtObsPaletOrigen.Text
-                spPaletsProducidos2.GrabarPaletProducido2(m_PaletProducidoOrigen)
+                spPaletsProducidos2.GrabarPaletProducido2(m_PaletProducidoOrigen, dtb)
 
                 If DBO_PaletsMovimientoTipo.EntrePalets Then   'Movimiento del palets Destino
-                    m_PaletProducidoDestino = spPaletsProducidos2.Select_RecordBySSCC(frmDestino.txtSCC.Text, BasesParaCompatibilidad.BD.transaction)
+                    m_PaletProducidoDestino = spPaletsProducidos2.Select_RecordBySSCC(frmDestino.txtSCC.Text, dtb)
                     SetValores(dbo_movimiento, False)
-                    dbo_MovimientoDB.Add(dbo_movimiento, True)
+                    dbo_MovimientoDB.Add(dbo_movimiento, dtb, True)
                     'Añadir Observaciones en PaletsProducidos
                 End If
 
@@ -93,13 +93,13 @@ Public Class frmPaletsMovimientoEntrePalets
                 txtObsPaletDestino.Visible = False
                 gpbDestino.Visible = False
 
-                BasesParaCompatibilidad.BD.TerminarTransaccion()
+                dtb.TerminarTransaccion()
                 'messagebox.show("Movimiento añadido correctamente")
                 BasesParaCompatibilidad.MessageDialogue.DisplayMessage("Movimiento añadido correctamente", Me, AnchorStyles.Top, 2500)
                 ' MessageBox.Show("Movimiento añadido correctamente", "Operacion terminada", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             Catch ex As Exception
-                BasesParaCompatibilidad.BD.CancelarTransaccion()
+                dtb.CancelarTransaccion()
                 MessageBox.Show(ex.Message, Convert.ToString(ex.GetType))
             End Try
         End If
@@ -131,7 +131,7 @@ Public Class frmPaletsMovimientoEntrePalets
                 dbo_movimiento.DocumentoID_IsDBNull = False
 
                 'If DBO_PaletsMovimientoTipo.PaletMovimientoTipoID = 21 Or DBO_PaletsMovimientoTipo.PaletMovimientoTipoID = 23 Or DBO_PaletsMovimientoTipo.PaletMovimientoTipoID = 26 Then
-                If spPaletsMovimiento.esMovimientoEncajado(Me.cboMovimientoTipo.SelectedValue) Then
+                If spPaletsMovimiento.esMovimientoEncajado(Me.cboMovimientoTipo.SelectedValue, dtb) Then
                     Dim capacidad As Integer = dtb.Consultar("PaletsProducidosCapacidadFormatoByPaletProducidoID " & m_PaletProducidoDestino.PaletProducidoID, True).Rows(0).Item(0)
                     dbo_movimiento.Cajas = dbo_movimiento.Cajas / capacidad
                 End If
@@ -165,7 +165,7 @@ Public Class frmPaletsMovimientoEntrePalets
         Using frmEnt As New frmPaletsMovimientosTipos()
             BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         End Using
-        cboMovimientoTipo.mam_DataSource("PaletsMovimientosTipos1Cbo", False)
+        cboMovimientoTipo.mam_DataSource("PaletsMovimientosTipos1Cbo", False, dtb)
     End Sub
 
     'Private Sub txtCajas_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtCajas.Validated
@@ -179,7 +179,7 @@ Public Class frmPaletsMovimientoEntrePalets
             If IsNumeric(txtCajas.Text) Then
 
                 'Busco el PaletID del SSCC
-                m_PaletProducidoOrigen = spPaletsProducidos2.Select_RecordBySSCC(frmOrigen.txtSCC.Text)
+                m_PaletProducidoOrigen = spPaletsProducidos2.Select_RecordBySSCC(frmOrigen.txtSCC.Text, dtb)
                 'Sumo todas las cajas de los ContenidosPalet del PaletProducido de Origen y todos sus movimientos.
                 Dim tbPaletsContenidosOrigen As DataTable = dtb.Consultar("SelectPaletsEnAlmacenByPaletID " & m_PaletProducidoOrigen.PaletProducidoID, True)
 
@@ -207,14 +207,14 @@ Public Class frmPaletsMovimientoEntrePalets
                             Dim scc As Integer = 0
                             Dim paletgrabado As Integer
 
-                            dFormatoOrigen = spFormato.Select_Record(m_PaletProducidoOrigen.FormatoID)
+                            dFormatoOrigen = spFormato.Select_Record(m_PaletProducidoOrigen.FormatoID, dtb)
 
-                            BasesParaCompatibilidad.BD.EmpezarTransaccion()
+                            dtb.EmpezarTransaccion()
                             Try
 
-                                dEnvasado = spEnvasado.Select_Record(spEnvasado.recuperarEnvasadoDiario, BasesParaCompatibilidad.BD.transaction)
+                                dEnvasado = spEnvasado.Select_Record(spEnvasado.recuperarEnvasadoDiario(dtb), dtb)
 
-                                Dim aux As Integer = spFormato.buscar_por_envasado_articulo_formato(dEnvasado.ID, dFormatoOrigen.TipoFormatoEnvasadoID, dFormatoOrigen.TipoFormatoLineaID, BasesParaCompatibilidad.BD.transaction, BasesParaCompatibilidad.BD.Cnx)
+                                Dim aux As Integer = spFormato.buscar_por_envasado_articulo_formato(dEnvasado.ID, dFormatoOrigen.TipoFormatoEnvasadoID, dFormatoOrigen.TipoFormatoLineaID, dtb)
 
                                 m_PaletProducidoDestino = New DBO_PaletsProducidos2
                                 m_PaletProducidoDestino.FormatoID = aux
@@ -226,27 +226,27 @@ Public Class frmPaletsMovimientoEntrePalets
                                 m_PaletProducidoDestino.FechaModificacion = DateTime.Now
                                 m_PaletProducidoDestino.UsuarioModificacion = 2
                                 m_PaletProducidoDestino.observacionesPalets = ""
-                                scc = spPaletsProducidos2.GetUltimoSCCmas1
+                                scc = spPaletsProducidos2.GetUltimoSCCmas1(dtb)
                                 m_PaletProducidoDestino.SCC = scc
 
-                                paletgrabado = spPaletsProducidos2.InsertPaletsProducidos2(m_PaletProducidoDestino)
+                                paletgrabado = spPaletsProducidos2.InsertPaletsProducidos2(m_PaletProducidoDestino, dtb)
 
 
                                 If paletgrabado = 0 Then
-                                    BasesParaCompatibilidad.BD.CancelarTransaccion()
+                                    dtb.CancelarTransaccion()
                                     Return False
                                 Else
 
 
-                                    BasesParaCompatibilidad.BD.TerminarTransaccion()
+                                    dtb.TerminarTransaccion()
                                 End If
                             Catch ex As Exception
-                                BasesParaCompatibilidad.BD.CancelarTransaccion()
+                                dtb.CancelarTransaccion()
                                 Return False
                             End Try
 
                             Try
-                                m_PaletProducidoDestino = spPaletsProducidos2.Select_RecordSinMachacar(paletgrabado)
+                                m_PaletProducidoDestino = spPaletsProducidos2.Select_RecordSinMachacar(paletgrabado, dtb)
                             Catch ex As Exception
                                 Return False
                             End Try
@@ -256,7 +256,7 @@ Public Class frmPaletsMovimientoEntrePalets
                     End If
 
                     'Busco el PaletID del SSCC destino
-                    m_PaletProducidoDestino = spPaletsProducidos2.Select_RecordBySSCC(frmDestino.txtSCC.Text)
+                    m_PaletProducidoDestino = spPaletsProducidos2.Select_RecordBySSCC(frmDestino.txtSCC.Text, dtb)
 
                     'Sumo todas las cajas de los ContenidosPalet del PaletProducido Destino y todos sus movimientos.
                     Dim tbPaletsContenidosDestino As DataTable = dtb.Consultar("SelectPaletsEnAlmacenByPaletID " & m_PaletProducidoDestino.PaletProducidoID, True)
@@ -488,7 +488,7 @@ Public Class frmPaletsMovimientoEntrePalets
         'El palet Origen se queda a 0, ya no esta EnAlmacen
         'If CajasOrigen - txtCajas.Text = 0 Then
         If Me.frmOrigen.LblCajasExisten.Text - txtCajas.Text = 0 Then
-            dbo_MovimientoDB.UpdatePaletsContenidosEnAlmacen(m_PaletProducidoOrigen.PaletProducidoID, False)
+            dbo_MovimientoDB.UpdatePaletsContenidosEnAlmacen(m_PaletProducidoOrigen.PaletProducidoID, False, dtb)
         End If
 
         If frmOrigen.txtSCC.Text <> frmDestino.txtSCC.Text Then
@@ -501,15 +501,15 @@ Public Class frmPaletsMovimientoEntrePalets
                     "¿Dejamos el palets como incompleto?", _
                     "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 If Respuesta = DialogResult.Yes Then
-                    dbo_MovimientoDB.UpdatePaletsContenidosTerminado(m_PaletProducidoOrigen.PaletProducidoID, False)
+                    dbo_MovimientoDB.UpdatePaletsContenidosTerminado(m_PaletProducidoOrigen.PaletProducidoID, False, dtb)
                 Else
-                    dbo_MovimientoDB.UpdatePaletsContenidosTerminado(m_PaletProducidoOrigen.PaletProducidoID, True)
+                    dbo_MovimientoDB.UpdatePaletsContenidosTerminado(m_PaletProducidoOrigen.PaletProducidoID, True, dtb)
                 End If
             End If
 
             Dim cajasañadir As Integer
             ' If Me.cboMovimientoTipo.SelectedValue = 21 Or DBO_PaletsMovimientoTipo.PaletMovimientoTipoID = 23 Or DBO_PaletsMovimientoTipo.PaletMovimientoTipoID = 26 Then
-            If spPaletsMovimiento.esMovimientoEncajado(Me.cboMovimientoTipo.SelectedValue) Then
+            If spPaletsMovimiento.esMovimientoEncajado(Me.cboMovimientoTipo.SelectedValue, dtb) Then
                 Dim capacidad As Integer = dtb.Consultar("PaletsProducidosCapacidadFormatoByPaletProducidoID " & m_PaletProducidoDestino.PaletProducidoID, True).Rows(0).Item(0)
                 cajasañadir = If(txtCajas.Text = "", 0, Convert.ToInt32(txtCajas.Text)) / capacidad
             Else
@@ -523,9 +523,9 @@ Public Class frmPaletsMovimientoEntrePalets
                                    "¿Dejamos el palets como incompleto?", _
                                    "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 If Respuesta = DialogResult.Yes Then
-                    dbo_MovimientoDB.UpdatePaletsContenidosTerminado(m_PaletProducidoDestino.PaletProducidoID, False)
+                    dbo_MovimientoDB.UpdatePaletsContenidosTerminado(m_PaletProducidoDestino.PaletProducidoID, False, dtb)
                 Else
-                    dbo_MovimientoDB.UpdatePaletsContenidosTerminado(m_PaletProducidoDestino.PaletProducidoID, True)
+                    dbo_MovimientoDB.UpdatePaletsContenidosTerminado(m_PaletProducidoDestino.PaletProducidoID, True, dtb)
                 End If
             End If
         End If
@@ -538,7 +538,7 @@ Public Class frmPaletsMovimientoEntrePalets
                 Me.cboMovimientoSubTipo.mam_DataSource(dtb.Consultar("PaletsMovimientoSubTipoByTipo " & cboMovimientoTipo.SelectedValue, True), False)
                 cboMovimientoSubTipo.Refresh()
                 Dim sp As New spPaletsMovimientosTipos
-                DBO_PaletsMovimientoTipo = sp.Select_Record(Me.cboMovimientoTipo.SelectedValue)
+                DBO_PaletsMovimientoTipo = sp.Select_Record(Me.cboMovimientoTipo.SelectedValue, dtb)
             End If
 
             If DBO_PaletsMovimientoTipo.EntrePalets Then
@@ -631,7 +631,7 @@ Public Class frmPaletsMovimientoEntrePalets
     Private Sub cboMovimientoTipo_SelectionChangeCommitted(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboMovimientoTipo.SelectionChangeCommitted
         'Me.cboMovimientoSubTipo.mam_DataSource("PaletsMovimientoSubTipoByTipo " & cboMovimientoTipo.SelectedValue), False)
         Dim sp As String = "PaletsMovimientoSubTipoByTipo " & cboMovimientoTipo.SelectedValue
-        Me.cboMovimientoSubTipo.mam_DataSource(sp, False)
+        Me.cboMovimientoSubTipo.mam_DataSource(sp, False, dtb)
         cboMovimientoSubTipo.Refresh()
     End Sub
 

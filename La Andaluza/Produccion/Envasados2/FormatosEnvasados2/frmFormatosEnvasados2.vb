@@ -45,7 +45,7 @@ Public Class frmFormatosEnvasados2
         Try
             Dim response As DialogResult = DialogResult.Cancel
             Dim multiopcion As Boolean
-            If CType(sp, spFormatosEnvasados2).isDeleteAllowed(dgvGeneral.CurrentRow.Cells("FormatoEnvasadoID").Value) Then
+            If CType(sp, spFormatosEnvasados2).isDeleteAllowed(dgvGeneral.CurrentRow.Cells("FormatoEnvasadoID").Value, dtb) Then
                 response = MessageBox.Show("El formato seleccionado se puede eliminar completamente" & Environment.NewLine & _
                                     "(sus palets estan entre los ultimos 15 producidos o esta vacio)" & Environment.NewLine & _
                                     "¿Eliminar el palet por completo?" & Environment.NewLine & _
@@ -62,11 +62,11 @@ Public Class frmFormatosEnvasados2
 
             If response = DialogResult.Yes And multiopcion Then
                 System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
-                CType(sp, spFormatosEnvasados2).DeleteFormatosEnvasados2(dgvGeneral.CurrentRow.Cells("FormatoEnvasadoID").Value, True)
+                CType(sp, spFormatosEnvasados2).DeleteFormatosEnvasados2(dgvGeneral.CurrentRow.Cells("FormatoEnvasadoID").Value, True, dtb)
                 dgvFill()
             ElseIf (response = DialogResult.No And multiopcion = True) Or (response = DialogResult.Yes And multiopcion = False) Then
                 System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
-                CType(sp, spFormatosEnvasados2).DeleteFormatosEnvasados2(dgvGeneral.CurrentRow.Cells("FormatoEnvasadoID").Value, False)
+                CType(sp, spFormatosEnvasados2).DeleteFormatosEnvasados2(dgvGeneral.CurrentRow.Cells("FormatoEnvasadoID").Value, False, dtb)
                 dgvFill()
             End If
 
@@ -94,14 +94,14 @@ Public Class frmFormatosEnvasados2
             Else
                 Dim spAux As New spempleados_formatosEnvasados
                 Dim result As DialogResult = DialogResult.OK
-                If spAux.hay_empleados_pendientes(Me.m_Envasado.EnvasadoID, Me.linea) Then
+                If spAux.hay_empleados_pendientes(Me.m_Envasado.EnvasadoID, Me.linea, dtb) Then
                     Dim frm As New frmEntPersonalEnvasadoFinArticulo(Me.m_Envasado.EnvasadoID, Me.linea)
                     BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
                     result = frm.resultado
                 End If
                 If result = DialogResult.OK Then
-                    If spAux.hay_empleados_pendientes_dias_anteriores(Me.linea) Then
-                        Dim env As Integer = spAux.recuperar_envasado_empleados_pendientes_dias_anteriores(Me.linea)
+                    If spAux.hay_empleados_pendientes_dias_anteriores(Me.linea, dtb) Then
+                        Dim env As Integer = spAux.recuperar_envasado_empleados_pendientes_dias_anteriores(Me.linea, dtb)
                         Dim frm As New frmEntPersonalEnvasadoFinArticulo(env, Me.linea)
                         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
                         result = frm.resultado

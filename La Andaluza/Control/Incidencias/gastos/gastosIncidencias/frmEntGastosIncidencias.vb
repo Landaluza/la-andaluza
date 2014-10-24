@@ -23,16 +23,16 @@ Public Class frmEntGastosIncidencias
     Private Sub frmEntGastosIncidencias_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
         Dim s1 As New spConceptosGastosIncidencias
-        s1.cargar_ConceptosGastosIncidencias(Me.cboconcepto)
+        s1.cargar_ConceptosGastosIncidencias(Me.cboconcepto, dtb)
 
         Dim s3 As New spProveedores
-        s3.cargar_Proveedores(Me.cboproveedor)
+        s3.cargar_Proveedores(Me.cboproveedor, dtb)
         Dim s4 As New spEmpleados
-        s4.cargar_Empleados(Me.cboempleado)
+        s4.cargar_Empleados(Me.cboempleado, dtb)
         Dim s5 As New spClientes
-        s5.cargar_Clientes(Me.cbocliente)
+        s5.cargar_Clientes(Me.cbocliente, dtb)
         Dim s6 As New spMedidasProductos
-        s6.cargar_MedidasProductos(cboMedidaProducto)
+        s6.cargar_MedidasProductos(cboMedidaProducto, dtb)
 
         If (Me.ModoDeApertura = VISION) Then
             Me.cboconcepto.Enabled = False
@@ -185,8 +185,8 @@ Public Class frmEntGastosIncidencias
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerId_controlIncidencia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -211,7 +211,7 @@ Public Class frmEntGastosIncidencias
         Dim frmEnt As New frmEntConceptosGastosIncidencias(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spConceptosGastosIncidencias, DBO_ConceptosGastosIncidencias)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spConceptosGastosIncidencias
-        s.cargar_ConceptosGastosIncidencias(Me.cboconcepto)
+        s.cargar_ConceptosGastosIncidencias(Me.cboconcepto, dtb)
     End Sub
 
     Private Sub butVerId_costeConcepto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -224,7 +224,7 @@ Public Class frmEntGastosIncidencias
         Dim frmEnt As New frmEntCostesPorConcepto(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spCostesPorConcepto, DBO_CostesPorConcepto)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spCostesPorConcepto
-        s.cargar_CostesPorConcepto(Me.cbocosteConcepto, Convert.ToInt32(Me.cboconcepto.SelectedValue))
+        s.cargar_CostesPorConcepto(Me.cbocosteConcepto, Convert.ToInt32(Me.cboconcepto.SelectedValue), dtb)
     End Sub
 
     Private Sub butVerId_proveedor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_proveedor.Click
@@ -237,7 +237,7 @@ Public Class frmEntGastosIncidencias
         Dim frmEnt As New frmEntProveedores(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spProveedores, DBO_Proveedores)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spProveedores
-        s.cargar_Proveedores(Me.cboproveedor)
+        s.cargar_Proveedores(Me.cboproveedor, dtb)
     End Sub
 
     Private Sub butVerId_empleado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_empleado.Click
@@ -250,7 +250,7 @@ Public Class frmEntGastosIncidencias
         Dim frmEnt As New frmEntEmpleados(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spEmpleados, DBO_Empleados)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spEmpleados
-        s.cargar_Empleados(Me.cboempleado)
+        s.cargar_Empleados(Me.cboempleado, dtb)
     End Sub
 
     Private Sub frmEntGastosIncidencias_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
@@ -262,7 +262,7 @@ Public Class frmEntGastosIncidencias
     Private Sub cboconcepto_SelectedValueChanged(sender As Object, e As EventArgs) Handles cboconcepto.SelectedValueChanged
         Try
             If Not Me.cboconcepto.SelectedValue Is Nothing Then
-                spCostesPorConcepto.cargar_CostesPorConcepto(Me.cbocosteConcepto, Convert.ToInt32(Me.cboconcepto.SelectedValue))
+                spCostesPorConcepto.cargar_CostesPorConcepto(Me.cbocosteConcepto, Convert.ToInt32(Me.cboconcepto.SelectedValue), dtb)
             End If
         Catch ex As Exception
 
@@ -271,7 +271,7 @@ Public Class frmEntGastosIncidencias
 
     Private Sub btnActualizarCoste_Click(sender As Object, e As EventArgs) Handles btnActualizarCoste.Click
         Try
-            Dim dt As DataRow = spCostesPorConcepto.cargar_CostesPorConceptoActual(Convert.ToInt32(Me.cboconcepto.SelectedValue))
+            Dim dt As DataRow = spCostesPorConcepto.cargar_CostesPorConceptoActual(Convert.ToInt32(Me.cboconcepto.SelectedValue), dtb)
             Me.cbocosteConcepto.SelectedValue = dt.Item(0)
         Catch ex As Exception
 

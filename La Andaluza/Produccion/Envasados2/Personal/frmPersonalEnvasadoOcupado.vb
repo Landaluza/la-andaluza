@@ -1,11 +1,11 @@
 ﻿Public Class frmPersonalEnvasadoOcupado
     Private envasado As Integer
-
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New(ByVal envasado As Integer)
 
         ' This call is required by the designer.
         InitializeComponent()
-
+        dtb = New BasesParaCompatibilidad.DataBase
         Me.envasado = envasado
 
     End Sub
@@ -14,7 +14,7 @@
         Dim spEmlpeados As New spEmpleados
         DgvOcupados.Rows.Clear()
 
-        dtOcupados = spEmlpeados.devolver_Empleados_Envasados_ocupados(envasado)
+        dtOcupados = spEmlpeados.devolver_Empleados_Envasados_ocupados(envasado, dtb)
 
         For Each row As DataRow In dtOcupados.Rows
             DgvOcupados.Rows.Add(New String() {row(1), row(0), row(2), row(3), row(4)})

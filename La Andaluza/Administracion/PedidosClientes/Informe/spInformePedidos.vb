@@ -2,13 +2,13 @@
 
 Public Class spInformePedidos
 
-    Public Function SelectInformePedidos(ByVal ConNulos As Boolean) As DataTable
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+    Public Function SelectInformePedidos(ByVal ConNulos As Boolean, ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
+        dtb.Conectar()
+
 
         'selectProcedure = "[dbo].[InformePedidosDaniel]"
 
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand("[dbo].[InformePedidosMAM2]", connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.Comando("[dbo].[InformePedidosMAM2]")
         Dim dt As New DataTable
         selectCommand.Parameters.AddWithValue("@ConCeros", ConNulos)
         selectCommand.CommandType = CommandType.StoredProcedure
@@ -21,42 +21,23 @@ Public Class spInformePedidos
             reader.Close()
         Catch ex As System.Data.SqlClient.SqlException
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return dt
     End Function
 
-    Public Function SelectInformePedidos_AlbaranesCarga() As DataTable
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
-        Dim selectProcedure As String = "[dbo].[InformePedidos_SelectAlbaranesCargaMaestro]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
-        Dim dt As New DataTable
-        selectCommand.CommandType = CommandType.StoredProcedure
-        Try
-
-            Dim reader As System.Data.SqlClient.SqlDataReader = selectCommand.ExecuteReader()
-            If reader.HasRows Then
-                dt.Load(reader)
-            End If
-            reader.Close()
-        Catch ex As System.Data.SqlClient.SqlException
-        Finally
-            connection.Close()
-        End Try
-        Return dt
-    End Function
+ 
 
     Public Function SelectInformePedidos_AlbaranesCarga(ByRef dtb As BasesParaCompatibilidad.Database) As DataTable
         dtb.Conectar()
         Return dtb.Consultar("[dbo].[InformePedidos_SelectAlbaranesCargaMaestro]", True)
     End Function
 
-    Public Sub InsertInformePedidos_TablaTemporal(ByVal AlbaranCargaMaestroID As Integer)
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+    Public Sub InsertInformePedidos_TablaTemporal(ByVal AlbaranCargaMaestroID As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[InformePedidos_InsertTempAlbaranesCargaMaestro]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.Parameters.AddWithValue("@AlbaranCargaMaestroID", AlbaranCargaMaestroID)
         insertCommand.CommandType = CommandType.StoredProcedure
 
@@ -65,7 +46,7 @@ Public Class spInformePedidos
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Sub
 
@@ -85,10 +66,10 @@ Public Class spInformePedidos
         End Try
     End Sub
 
-    Public Function SelectInformePedidos_ClienteEnFecha() As DataTable
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand("[dbo].[InformePedidos_ClienteFecha]", connection)
+    Public Function SelectInformePedidos_ClienteEnFecha(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
+        dtb.Conectar()
+
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.Comando("[dbo].[InformePedidos_ClienteFecha]")
         Dim dt As New DataTable
         selectCommand.CommandType = CommandType.StoredProcedure
         Try
@@ -100,7 +81,7 @@ Public Class spInformePedidos
             reader.Close()
         Catch ex As System.Data.SqlClient.SqlException
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return dt
     End Function

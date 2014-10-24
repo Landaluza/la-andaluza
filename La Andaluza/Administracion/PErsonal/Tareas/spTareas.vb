@@ -9,24 +9,24 @@ Class spTareas
                    "TareasSelectDgv", "TareasSelectDgvByID")
     End Sub
 
-    Public Function Select_Record(ByVal TareaID As Int32) As DBO_Tareas
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal TareaID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_Tareas
+        dtb.Conectar()
         Dim DBO_Tareas As New DBO_Tareas
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[TareasSelect]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@TareaID", TareaID)
         Try
             Dim reader As System.Data.SqlClient.SqlDataReader = selectCommand.ExecuteReader(CommandBehavior.SingleRow)
             If reader.Read Then
-                
+
                 DBO_Tareas.TareaID = If(reader("TareaID") Is Convert.DBNull, 0, Convert.ToInt32(reader("TareaID")))
                 DBO_Tareas.Descripcion = If(reader("Descripcion") Is Convert.DBNull, String.Empty, Convert.ToString(reader("Descripcion")))
                 DBO_Tareas.Observaciones = If(reader("Observaciones") Is Convert.DBNull, String.Empty, Convert.ToString(reader("Observaciones")))
                 DBO_Tareas.FechaModificacion = If(reader("FechaModificacion") Is Convert.DBNull, System.DateTime.Now.Date, CDate(reader("FechaModificacion")))
                 DBO_Tareas.UsuarioModificacion = If(reader("UsuarioModificacion") Is Convert.DBNull, 0, Convert.ToInt32(reader("UsuarioModificacion")))
-                
+
             Else
                 DBO_Tareas = Nothing
             End If
@@ -34,23 +34,23 @@ Class spTareas
         Catch ex As System.Data.SqlClient.SqlException
 
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_Tareas
     End Function
 
-    Public Function TareasInsert(ByVal dbo_Tareas As DBO_Tareas) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function TareasInsert(ByVal dbo_Tareas As DBO_Tareas, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[TareasInsert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
-        
+
         insertCommand.Parameters.AddWithValue("@Descripcion", dbo_Tareas.Descripcion)
         insertCommand.Parameters.AddWithValue("@Observaciones", dbo_Tareas.Observaciones)
         insertCommand.Parameters.AddWithValue("@FechaModificacion", dbo_Tareas.FechaModificacion)
         insertCommand.Parameters.AddWithValue("@UsuarioModificacion", dbo_Tareas.UsuarioModificacion)
-        
+
         insertCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         insertCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
         Try
@@ -64,15 +64,15 @@ Class spTareas
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function TareasUpdate(ByVal newDBO_Tareas As DBO_Tareas) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function TareasUpdate(ByVal newDBO_Tareas As DBO_Tareas, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[TareasUpdate]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         '<Tag=[Three][Start]> -- please do not remove this line
         updateCommand.Parameters.AddWithValue("@NewDescripcion", newDBO_Tareas.Descripcion)
@@ -92,18 +92,18 @@ Class spTareas
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdateTareas" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdateTareas" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function TareasDelete(ByVal TareaID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function TareasDelete(ByVal TareaID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[TareasDelete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         '<Tag=[Four][Start]> -- please do not remove this line
         deleteCommand.Parameters.AddWithValue("@OldTareaID", TareaID)
@@ -121,17 +121,17 @@ Class spTareas
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Sub GrabarTareas(ByVal dbo_Tareas As DBO_Tareas)
-        dbo_Tareas.FechaModificacion = System.DateTime.Now.date
+    Public Sub GrabarTareas(ByVal dbo_Tareas As DBO_Tareas, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        dbo_Tareas.FechaModificacion = System.DateTime.Now.Date
         dbo_Tareas.UsuarioModificacion = BasesParaCompatibilidad.Config.User
         If dbo_Tareas.TareaID = 0 Then
-            TareasInsert(dbo_Tareas)
+            TareasInsert(dbo_Tareas, dtb)
         Else
-            TareasUpdate(dbo_Tareas)
+            TareasUpdate(dbo_Tareas, dtb)
         End If
     End Sub
 

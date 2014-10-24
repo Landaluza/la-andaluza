@@ -23,7 +23,7 @@ Public Class frmcargos
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dbocargos = CType(sp, spcargos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dbocargos = CType(sp, spcargos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dbocargos Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dbocargos)
         Else

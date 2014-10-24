@@ -3,10 +3,12 @@
     Private spVentas As spVentas
     Private mes As Integer
     Private agno As Integer
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New(ByVal month As Integer, ByVal agno As Integer)
 
         InitializeComponent()
 
+        dtb = New BasesParaCompatibilidad.DataBase
         spArt = New spArticulos1
         spVentas = New spVentas
 
@@ -15,7 +17,7 @@
     End Sub
 
     Private Sub setValores()
-        spArt.cargar_Articulos_Por_Tipo(Me.cboArticulo, 9)
+        spArt.cargar_Articulos_Por_Tipo(Me.cboArticulo, 9, dtb)
         Me.lMes.Text = Me.mes
         Me.lAgno.Text = Me.agno
     End Sub
@@ -66,7 +68,7 @@
     Private Sub cboArticulo_SelectedValueChanged(sender As System.Object, e As System.EventArgs) Handles cboArticulo.SelectedValueChanged
         Try
 
-            Dim dboArt As DBO_Articulos1 = spArt.Select_Record(cboArticulo.SelectedValue)
+            Dim dboArt As DBO_Articulos1 = spArt.Select_Record(cboArticulo.SelectedValue, dtb)
             Me.txtCodigoQS.Text = dboArt.CodigoQS
             Me.txtCodigoLA.Text = dboArt.CodigoLA
         Catch ex As Exception

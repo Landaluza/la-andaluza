@@ -35,11 +35,11 @@ Public Class frmEntEmpleados
 
     Private Sub frmEntEmpleados_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
-        Me.ctl_Paises.spPaises.cargar_ComboBox(Me.cbo_pais_domicilio)
-        Me.ctl_Paises.spPaises.cargar_ComboBox(Me.cbo_pais_nacimiento)
+        Me.ctl_Paises.spPaises.cargar_ComboBox(Me.cbo_pais_domicilio, dtb)
+        Me.ctl_Paises.spPaises.cargar_ComboBox(Me.cbo_pais_nacimiento, dtb)
 
         Dim spu As New spUsuarios
-        spu.cargar_Usuarios(Me.cboid_usuario)
+        spu.cargar_Usuarios(Me.cboid_usuario, dtb)
     End Sub
 
     Overrides Sub SetValores() Implements BasesParaCompatibilidad.Savable.setValores
@@ -55,16 +55,16 @@ Public Class frmEntEmpleados
             Dim dboProvincias As DBO_Provincias
 
             If m_DBO_Empleados.id_poblacion_nacimiento <> Nothing Then
-                dboPoblaciones = Me.ctl_Poblaciones.spPoblaciones.Select_Record(m_DBO_Empleados.id_poblacion_nacimiento)
-                dboProvincias = Me.ctl_Provincias.spProvincias.Select_Record(dboPoblaciones.Id_provincia)
+                dboPoblaciones = Me.ctl_Poblaciones.spPoblaciones.Select_Record(m_DBO_Empleados.id_poblacion_nacimiento, dtb)
+                dboProvincias = Me.ctl_Provincias.spProvincias.Select_Record(dboPoblaciones.Id_provincia, dtb)
 
                 Me.cbo_pais_nacimiento.SelectedValue = dboProvincias.Id_pais
                 Me.cbo_provincia_nacimiento.SelectedValue = dboPoblaciones.Id_provincia
             End If
 
             If m_DBO_Empleados.id_poblacion_domicilio <> Nothing Then
-                dboPoblaciones = Me.ctl_Poblaciones.spPoblaciones.Select_Record(m_DBO_Empleados.id_poblacion_domicilio)
-                dboProvincias = Me.ctl_Provincias.spProvincias.Select_Record(dboPoblaciones.Id_provincia)
+                dboPoblaciones = Me.ctl_Poblaciones.spPoblaciones.Select_Record(m_DBO_Empleados.id_poblacion_domicilio, dtb)
+                dboProvincias = Me.ctl_Provincias.spProvincias.Select_Record(dboPoblaciones.Id_provincia, dtb)
 
                 Me.cbo_pais_domicilio.SelectedValue = dboProvincias.Id_pais
                 Me.cbo_provincia_domicilio.SelectedValue = dboPoblaciones.Id_provincia
@@ -72,7 +72,7 @@ Public Class frmEntEmpleados
 
             If m_DBO_Empleados.ContratoVigente Then
                 Dim spContratos As New spempleados_contratos
-                Me.lVigente.Text = "Fecha finalización: " & spContratos.select_fecha_final(m_DBO_Empleados.ID)
+                Me.lVigente.Text = "Fecha finalización: " & spContratos.select_fecha_final(m_DBO_Empleados.ID, dtb)
                 lVigente.Visible = True
             End If
         End If
@@ -182,64 +182,64 @@ Public Class frmEntEmpleados
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
 
     Private Sub butAddid_poblacion_nacimiento_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddid_poblacion_nacimiento.Click
         Try
-            Me.ctl_Poblaciones.Añadir_poblacion_para_combo(Me.cbo_poblacion_nacimiento, cbo_provincia_nacimiento.SelectedValue)
+            Me.ctl_Poblaciones.Añadir_poblacion_para_combo(Me.cbo_poblacion_nacimiento, cbo_provincia_nacimiento.SelectedValue, dtb)
         Catch ex As Exception
         End Try
     End Sub
 
     Private Sub cbo_pais_nacimiento_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles cbo_pais_nacimiento.SelectedIndexChanged
         Try
-            ctl_Provincias.spProvincias.cargar_ComboBox(Me.cbo_provincia_nacimiento, cbo_pais_nacimiento.SelectedValue)
+            ctl_Provincias.spProvincias.cargar_ComboBox(Me.cbo_provincia_nacimiento, cbo_pais_nacimiento.SelectedValue, dtb)
         Catch ex As Exception
         End Try
     End Sub
 
     Private Sub cbo_municipio_nacimiento_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles cbo_provincia_nacimiento.SelectedIndexChanged
         Try
-            ctl_Poblaciones.spPoblaciones.cargar_ComboBox(Me.cbo_poblacion_nacimiento, Me.cbo_provincia_nacimiento.SelectedValue)
+            ctl_Poblaciones.spPoblaciones.cargar_ComboBox(Me.cbo_poblacion_nacimiento, Me.cbo_provincia_nacimiento.SelectedValue, dtb)
         Catch ex As Exception
         End Try
     End Sub
 
     Private Sub cbo_pais_domicilio_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles cbo_pais_domicilio.SelectedIndexChanged
         Try
-            ctl_Provincias.spProvincias.cargar_ComboBox(Me.cbo_provincia_domicilio, cbo_pais_domicilio.SelectedValue)
+            ctl_Provincias.spProvincias.cargar_ComboBox(Me.cbo_provincia_domicilio, cbo_pais_domicilio.SelectedValue, dtb)
         Catch ex As Exception
         End Try
     End Sub
 
     Private Sub cbo_municipio_domicilio_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles cbo_provincia_domicilio.SelectedIndexChanged
         Try
-            ctl_Poblaciones.spPoblaciones.cargar_ComboBox(Me.cbo_poblacion_domicilio, Me.cbo_provincia_domicilio.SelectedValue)
+            ctl_Poblaciones.spPoblaciones.cargar_ComboBox(Me.cbo_poblacion_domicilio, Me.cbo_provincia_domicilio.SelectedValue, dtb)
         Catch ex As Exception
         End Try
     End Sub
 
     Private Sub btnAddPais_nacimineto_Click(sender As System.Object, e As System.EventArgs) Handles btnAddPais_nacimineto.Click
-        ctl_Paises.Añadir_pais_para_combo(cbo_pais_nacimiento)
+        ctl_Paises.Añadir_pais_para_combo(cbo_pais_nacimiento, dtb)
     End Sub
 
     Private Sub btn_pais_domicilio_Click(sender As System.Object, e As System.EventArgs) Handles btn_pais_domicilio.Click
-        ctl_Paises.Añadir_pais_para_combo(cbo_pais_nacimiento)
+        ctl_Paises.Añadir_pais_para_combo(cbo_pais_nacimiento, dtb)
     End Sub
 
     Private Sub btnAddProvincia_nacimietno_Click(sender As System.Object, e As System.EventArgs) Handles btnAddProvincia_nacimietno.Click
-        Me.ctl_Provincias.Añadir_provincias_para_combo(cbo_provincia_nacimiento, Me.cbo_pais_nacimiento.SelectedValue)
+        Me.ctl_Provincias.Añadir_provincias_para_combo(cbo_provincia_nacimiento, Me.cbo_pais_nacimiento.SelectedValue, dtb)
     End Sub
 
     Private Sub btn_provincia_domicilio_Click(sender As System.Object, e As System.EventArgs) Handles btn_provincia_domicilio.Click
-        Me.ctl_Provincias.Añadir_provincias_para_combo(cbo_provincia_domicilio, Me.cbo_pais_domicilio.SelectedValue)
+        Me.ctl_Provincias.Añadir_provincias_para_combo(cbo_provincia_domicilio, Me.cbo_pais_domicilio.SelectedValue, dtb)
     End Sub
 
     Private Sub butAddid_poblacion_domicilio_Click(sender As System.Object, e As System.EventArgs) Handles butAddid_poblacion_domicilio.Click
-        Me.ctl_Poblaciones.Añadir_poblacion_para_combo(Me.cbo_poblacion_domicilio, cbo_provincia_domicilio.SelectedValue)
+        Me.ctl_Poblaciones.Añadir_poblacion_para_combo(Me.cbo_poblacion_domicilio, cbo_provincia_domicilio.SelectedValue, dtb)
     End Sub
 
     Private Sub frmEntEmpleados_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
@@ -251,7 +251,7 @@ Public Class frmEntEmpleados
         Dim frm As New frmEntUsuarios(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spUsuarios, New DBO_Usuarios)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         Dim spu As New spUsuarios
-        spu.cargar_Usuarios(Me.cboid_usuario)
+        spu.cargar_Usuarios(Me.cboid_usuario, dtb)
     End Sub
 
     Private Sub pbFoto_Click(sender As System.Object, e As System.EventArgs) Handles pbFoto.Click
@@ -265,11 +265,11 @@ Public Class frmEntEmpleados
     Private Sub btnModUsuario_Click(sender As Object, e As EventArgs) Handles btnModUsuario.Click
         If Not Me.cboid_usuario.SelectedValue Is Nothing Then
             Dim spusuarios As New spUsuarios
-            Dim dbousuarios As DBO_Usuarios = spusuarios.Select_Record(Me.cboid_usuario.SelectedValue)
+            Dim dbousuarios As DBO_Usuarios = spusuarios.Select_Record(Me.cboid_usuario.SelectedValue, dtb)
             Dim frm As New frmEntUsuarios(BasesParaCompatibilidad.gridsimpleform.ACCION_MODIFICAR, spusuarios, dbousuarios)
             BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
             Dim spu As New spUsuarios
-            spu.cargar_Usuarios(Me.cboid_usuario)
+            spu.cargar_Usuarios(Me.cboid_usuario, dtb)
         End If
     End Sub
 End Class

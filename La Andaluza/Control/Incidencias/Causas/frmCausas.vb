@@ -23,7 +23,7 @@ Public Class frmCausas
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboCausas = CType(sp, spCausas).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboCausas = CType(sp, spCausas).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboCausas Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboCausas)
         Else

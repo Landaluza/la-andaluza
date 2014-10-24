@@ -3,11 +3,10 @@ Public Class frmEntBotasTapones
 
     Private dtsBot As New dtsBotasTapones.BotasTaponesDataTable
     Private ctlBot As New ctlBotasTapones
-    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New()
         InitializeComponent()
 
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.DataBase()
         dtsBot = New dtsBotasTapones.BotasTaponesDataTable
         ctlBot = New ctlBotasTapones
     End Sub
@@ -21,7 +20,6 @@ Public Class frmEntBotasTapones
     Private Sub frmEntBotasTapones_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ModificarBindingNavigator()
         If Me.Text.Substring(0, 3) = "Ver" Then
-            Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
             ctlBot.mostrarTodosBotasTapones(dtb, dtsBot)
             GeneralBindingSource.DataSource = dtsBot
             GeneralBindingSource.Position = Posicion

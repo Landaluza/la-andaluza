@@ -11,10 +11,10 @@
         Me.sp_paises = New spPaises
     End Sub
 
-    Public Sub Añadir_pais_para_combo(ByRef combo As ComboBox)
+    Public Sub Añadir_pais_para_combo(ByRef combo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
         Dim frm As New frmEntPaises
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
 
-        Me.sp_paises.cargar_ComboBox(combo)
+        Me.sp_paises.cargar_ComboBox(combo, dtb)
     End Sub
 End Class

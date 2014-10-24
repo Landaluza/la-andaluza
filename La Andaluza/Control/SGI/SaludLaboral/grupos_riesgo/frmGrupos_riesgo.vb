@@ -20,7 +20,7 @@ Public Class frmGrupos_riesgo
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboGrupos_riesgo = CType(sp, spGrupos_riesgo).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboGrupos_riesgo = CType(sp, spGrupos_riesgo).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboGrupos_riesgo Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboGrupos_riesgo)
         Else

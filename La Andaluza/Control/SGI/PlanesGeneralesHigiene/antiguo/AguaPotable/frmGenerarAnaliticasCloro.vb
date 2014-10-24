@@ -11,11 +11,11 @@ Public Class frmGenerarAnaliticasCloro
         ' Llamada necesaria para el diseñador.
         InitializeComponent()
 
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.DataBase()
     End Sub
     Private Sub frmGenerarAnaliticasCloro_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        cboAnalista.mam_DataSource("EmpleadosSelectCbo", False)
-        cboVerificador.mam_DataSource("EmpleadosSelectCbo", False)
+        cboAnalista.mam_DataSource("EmpleadosSelectCbo", False, dtb)
+        cboVerificador.mam_DataSource("EmpleadosSelectCbo", False, dtb)
 
         With dgv
             .DataSource = dtb.Consultar("AguaPotablePuntosMuestreosSelectDgv", True)

@@ -3,11 +3,11 @@ Public Class frmArticulos1CompuestoPor
     Private spArticulos1CompuestoPor As spArticulos1CompuestoPor
     Private articuloId As Integer
     Public Event actualizarDatos()
-
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New(ByVal articuloid As Integer)
 
         InitializeComponent()
-
+        dtb = New BasesParaCompatibilidad.DataBase
         spArticulos1CompuestoPor = New spArticulos1CompuestoPor
         Me.articuloId = articuloid
     End Sub
@@ -17,7 +17,7 @@ Public Class frmArticulos1CompuestoPor
     End Sub
 
     Private Sub DgvFill()
-        Me.DataGridView1.DataSource = Me.spArticulos1CompuestoPor.DataTableFill(Me.articuloId)
+        Me.DataGridView1.DataSource = Me.spArticulos1CompuestoPor.DataTableFill(Me.articuloId, dtb)
 
         If Not Me.DataGridView1.DataSource Is Nothing Then
             DataGridView1.Columns("articuloid").Visible = False
@@ -47,7 +47,7 @@ Public Class frmArticulos1CompuestoPor
 
     Private Sub butEliminar_Click(sender As System.Object, e As System.EventArgs) Handles butEliminar.Click
         Try
-            If Me.spArticulos1CompuestoPor.Eliminar(Me.articuloId, DataGridView1.CurrentRow.Cells("articuloid").Value) Then
+            If Me.spArticulos1CompuestoPor.Eliminar(Me.articuloId, DataGridView1.CurrentRow.Cells("articuloid").Value, dtb) Then
                 RaiseEvent actualizarDatos()
                 DgvFill()
             Else

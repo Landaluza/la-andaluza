@@ -1,12 +1,13 @@
 ﻿Imports BasesParaCompatibilidad.dtpExtension
 Public Class frmEntPersonalEnvasado
-    Dim spTiposFormatosLineas_TiposFormatos As spTiposFormatosLineas_TiposFormatos
-    Dim dboTipoLinea As DBO_TiposFormatosLineas_TiposFormatos
+    Private spTiposFormatosLineas_TiposFormatos As spTiposFormatosLineas_TiposFormatos
+    Private dboTipoLinea As DBO_TiposFormatosLineas_TiposFormatos
 
     Private formato As DBO_FormatosEnvasados
     Private m_envasadoID As Integer
     Private Linea As Integer
     Private Event formato_changed()
+    Private dtb As BasesParaCompatibilidad.DataBase
 
     Public WriteOnly Property Formato_Envasado As Integer
         Set(value As Integer)
@@ -33,6 +34,7 @@ Public Class frmEntPersonalEnvasado
 
         InitializeComponent()
 
+        dtb = New BasesParaCompatibilidad.DataBase
         Me.formato = New DBO_FormatosEnvasados
         Me.dboTipoLinea = New DBO_TiposFormatosLineas_TiposFormatos
         Me.spTiposFormatosLineas_TiposFormatos = New spTiposFormatosLineas_TiposFormatos
@@ -48,6 +50,7 @@ Public Class frmEntPersonalEnvasado
 
         InitializeComponent()
 
+        dtb = New BasesParaCompatibilidad.DataBase
         Me.formato = New DBO_FormatosEnvasados
         Me.dboTipoLinea = New DBO_TiposFormatosLineas_TiposFormatos
         Me.spTiposFormatosLineas_TiposFormatos = New spTiposFormatosLineas_TiposFormatos
@@ -79,8 +82,8 @@ Public Class frmEntPersonalEnvasado
         Dim dtEmpleados As DataTable
         Dim spEmlpeados As New spEmpleados
 
-        dtEmpleados = spEmlpeados.devolver_Empleados_Envasados_libres
-        dtLinea = spEmlpeados.devolver_empleados_por_linea_libres(Me.Linea)
+        dtEmpleados = spEmlpeados.devolver_Empleados_Envasados_libres(dtb)
+        dtLinea = spEmlpeados.devolver_empleados_por_linea_libres(Me.Linea, dtb)
 
 
         If dtEmpleados Is Nothing Or dtLinea Is Nothing Then
@@ -107,7 +110,7 @@ Public Class frmEntPersonalEnvasado
 
 
         Dim spEnvasados As New spEnvasados
-        Dim dbo_envasados As DBO_Envasados = spEnvasados.Select_Record(m_envasadoID)
+        Dim dbo_envasados As DBO_Envasados = spEnvasados.Select_Record(m_envasadoID, dtb)
         Me.dtpInicio.Value = New DateTime(dbo_envasados.Fecha.Year, dbo_envasados.Fecha.Month, dbo_envasados.Fecha.Day, Now.Hour, Now.Minute, Now.Second)
 
         Dim frm As New frmPersonalEnvasadoOcupado(Me.m_envasadoID)
@@ -122,7 +125,7 @@ Public Class frmEntPersonalEnvasado
 
     Private Sub PersonalEnLinea_refresh() Handles Me.formato_changed
         Try
-            dboTipoLinea = spTiposFormatosLineas_TiposFormatos.Select_Record(spTiposFormatosLineas_TiposFormatos.Select_Id_By(formato.TipoFormatoLineaID, formato.TipoFormatoEnvasadoID))
+            dboTipoLinea = spTiposFormatosLineas_TiposFormatos.Select_Record(spTiposFormatosLineas_TiposFormatos.Select_Id_By(formato.TipoFormatoLineaID, formato.TipoFormatoEnvasadoID, dtb), dtb)
             Me.lRecomendado.Text = dboTipoLinea.PersonalRecomendado
 
             If Me.dgvEnLinea.Rows.Count > Me.lRecomendado.Text Then
@@ -178,28 +181,28 @@ Public Class frmEntPersonalEnvasado
             dbo.Inicio = New TimeSpan(Me.dtpInicio.Value.Hour, Me.dtpInicio.Value.Minute, 0)
             'dbo.Inicio = New Date(Now.Year, Now.Month, Now.Day, Now.Hour, Now.Minute, Now.Second)
             dbo.id_formatoEnvasado = formatoEnvasado
-            'BasesParaCompatibilidad.BD.EmpezarTransaccion()
+            'dtb.EmpezarTransaccion()
             'Try
             For Each row As DataGridViewRow In Me.dgvEnLinea.Rows
                 dbo.id_empleado = row.Cells(0).Value
                 If Not sp.Grabar(dbo, Nothing) Then
-                    '        BasesParaCompatibilidad.BD.CancelarTransaccion()
+                    '        dtb.CancelarTransaccion ()
                     MessageBox.Show("No se pudo guardar los datos. Introduzca el personal que arranca la linea manualmente.", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     '        Me.Close()
                 Else
                     If Convert.ToBoolean(row.Cells(2).Value) Then
                         Dim spCausas As New spPartesEnvasados_CausasPartesEnvasado
                         Dim dboCAusas As New DBO_PartesEnvasados_CausasPartesEnvasado
-                        dboCAusas.Id_ParteEnvasado = sp.seleccionarUltimoRegistro
+                        dboCAusas.Id_ParteEnvasado = sp.seleccionarUltimoRegistro(dtb)
                         dboCAusas.Id_CausaParteEnvasado = 3
-                        spCausas.Grabar(dboCAusas)
+                        spCausas.Grabar(dboCAusas, dtb)
                     End If
                 End If
             Next
 
-            'BasesParaCompatibilidad.BD.TerminarTransaccion()
+            'dtb.TerminarTransaccion ()
             'Catch ex As Exception
-            'BasesParaCompatibilidad.BD.CancelarTransaccion()
+            'dtb.CancelarTransaccion ()
             'End Try
             For Each row As DataGridViewRow In Me.dgvEnLinea.Rows
 

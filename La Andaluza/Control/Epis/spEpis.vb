@@ -6,12 +6,12 @@ Public Class spEpis
         MyBase.New("[dbo].[EpisSelect]", "[dbo].[EpisInsert]", "[dbo].[EpisUpdate]", _
                    "[dbo].[EpisDelete]", "EpisSelectDgv", "")
     End Sub
-    Public Function Select_Record(ByVal EpiID As Int32) As DBO_Epis
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal EpiID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_Epis
+        dtb.Conectar()
         Dim DBO_Epis As New DBO_Epis
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[EpisSelect]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@EpiID", EpiID)
         Try
@@ -65,40 +65,40 @@ Public Class spEpis
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_Epis
     End Function
 
-    Public Function InsertEpis(ByVal dbo_Epis As DBO_Epis) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function InsertEpis(ByVal dbo_Epis As DBO_Epis, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[EpisInsert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
         insertCommand.Parameters.AddWithValue("@Descripcion", dbo_Epis.Descripcion)
-        insertCommand.Parameters.AddWithValue("@Marca", if(dbo_Epis.Marca_IsDBNull = True, Convert.DBNull, dbo_Epis.Marca))
-        insertCommand.Parameters.AddWithValue("@Modelo", if(dbo_Epis.Modelo_IsDBNull = True, Convert.DBNull, dbo_Epis.Modelo))
-        insertCommand.Parameters.AddWithValue("@EpiTipoID", if(dbo_Epis.EpiTipoID_IsDBNull = True, Convert.DBNull, dbo_Epis.EpiTipoID))
+        insertCommand.Parameters.AddWithValue("@Marca", If(dbo_Epis.Marca_IsDBNull = True, Convert.DBNull, dbo_Epis.Marca))
+        insertCommand.Parameters.AddWithValue("@Modelo", If(dbo_Epis.Modelo_IsDBNull = True, Convert.DBNull, dbo_Epis.Modelo))
+        insertCommand.Parameters.AddWithValue("@EpiTipoID", If(dbo_Epis.EpiTipoID_IsDBNull = True, Convert.DBNull, dbo_Epis.EpiTipoID))
         insertCommand.Parameters.AddWithValue("@RiesgoQuimico", dbo_Epis.RiesgoQuimico)
         insertCommand.Parameters.AddWithValue("@RiesgoMecanico", dbo_Epis.RiesgoMecanico)
         insertCommand.Parameters.AddWithValue("@RiesgoMicrobiologico", dbo_Epis.RiesgoMicrobiologico)
         insertCommand.Parameters.AddWithValue("@RiesgoFrio", dbo_Epis.RiesgoFrio)
         insertCommand.Parameters.AddWithValue("@RiesgoTermico", dbo_Epis.RiesgoTermico)
-        insertCommand.Parameters.AddWithValue("@Usos", if(dbo_Epis.Usos_IsDBNull = True, Convert.DBNull, dbo_Epis.Usos))
-        insertCommand.Parameters.AddWithValue("@Advertencias", if(dbo_Epis.Advertencias_IsDBNull = True, Convert.DBNull, dbo_Epis.Advertencias))
-        insertCommand.Parameters.AddWithValue("@Observaciones", if(dbo_Epis.Observaciones_IsDBNull = True, Convert.DBNull, dbo_Epis.Observaciones))
-        insertCommand.Parameters.AddWithValue("@aMecanico", if(dbo_Epis.aMecanico_IsDBNull = True, Convert.DBNull, dbo_Epis.aMecanico))
-        insertCommand.Parameters.AddWithValue("@bMecanico", if(dbo_Epis.bMecanico_IsDBNull = True, Convert.DBNull, dbo_Epis.bMecanico))
-        insertCommand.Parameters.AddWithValue("@cMecanico", if(dbo_Epis.cMecanico_IsDBNull = True, Convert.DBNull, dbo_Epis.cMecanico))
-        insertCommand.Parameters.AddWithValue("@dMecanico", if(dbo_Epis.dMecanico_IsDBNull = True, Convert.DBNull, dbo_Epis.dMecanico))
-        insertCommand.Parameters.AddWithValue("@aQuimico", if(dbo_Epis.aQuimico_IsDBNull = True, Convert.DBNull, dbo_Epis.aQuimico))
-        insertCommand.Parameters.AddWithValue("@aMicrobiologico", if(dbo_Epis.aMicrobiologico_IsDBNull = True, Convert.DBNull, dbo_Epis.aMicrobiologico))
-        insertCommand.Parameters.AddWithValue("@aFrio", if(dbo_Epis.aFrio_IsDBNull = True, Convert.DBNull, dbo_Epis.aFrio))
-        insertCommand.Parameters.AddWithValue("@bFrio", if(dbo_Epis.bFrio_IsDBNull = True, Convert.DBNull, dbo_Epis.bFrio))
-        insertCommand.Parameters.AddWithValue("@cFrio", if(dbo_Epis.cFrio_IsDBNull = True, Convert.DBNull, dbo_Epis.cFrio))
-        insertCommand.Parameters.AddWithValue("@FechaModificacion", if(dbo_Epis.FechaModificacion_IsDBNull = True, Convert.DBNull, dbo_Epis.FechaModificacion))
-        insertCommand.Parameters.AddWithValue("@UsuarioModificacion", if(dbo_Epis.UsuarioModificacion_IsDBNull = True, Convert.DBNull, dbo_Epis.UsuarioModificacion))
+        insertCommand.Parameters.AddWithValue("@Usos", If(dbo_Epis.Usos_IsDBNull = True, Convert.DBNull, dbo_Epis.Usos))
+        insertCommand.Parameters.AddWithValue("@Advertencias", If(dbo_Epis.Advertencias_IsDBNull = True, Convert.DBNull, dbo_Epis.Advertencias))
+        insertCommand.Parameters.AddWithValue("@Observaciones", If(dbo_Epis.Observaciones_IsDBNull = True, Convert.DBNull, dbo_Epis.Observaciones))
+        insertCommand.Parameters.AddWithValue("@aMecanico", If(dbo_Epis.aMecanico_IsDBNull = True, Convert.DBNull, dbo_Epis.aMecanico))
+        insertCommand.Parameters.AddWithValue("@bMecanico", If(dbo_Epis.bMecanico_IsDBNull = True, Convert.DBNull, dbo_Epis.bMecanico))
+        insertCommand.Parameters.AddWithValue("@cMecanico", If(dbo_Epis.cMecanico_IsDBNull = True, Convert.DBNull, dbo_Epis.cMecanico))
+        insertCommand.Parameters.AddWithValue("@dMecanico", If(dbo_Epis.dMecanico_IsDBNull = True, Convert.DBNull, dbo_Epis.dMecanico))
+        insertCommand.Parameters.AddWithValue("@aQuimico", If(dbo_Epis.aQuimico_IsDBNull = True, Convert.DBNull, dbo_Epis.aQuimico))
+        insertCommand.Parameters.AddWithValue("@aMicrobiologico", If(dbo_Epis.aMicrobiologico_IsDBNull = True, Convert.DBNull, dbo_Epis.aMicrobiologico))
+        insertCommand.Parameters.AddWithValue("@aFrio", If(dbo_Epis.aFrio_IsDBNull = True, Convert.DBNull, dbo_Epis.aFrio))
+        insertCommand.Parameters.AddWithValue("@bFrio", If(dbo_Epis.bFrio_IsDBNull = True, Convert.DBNull, dbo_Epis.bFrio))
+        insertCommand.Parameters.AddWithValue("@cFrio", If(dbo_Epis.cFrio_IsDBNull = True, Convert.DBNull, dbo_Epis.cFrio))
+        insertCommand.Parameters.AddWithValue("@FechaModificacion", If(dbo_Epis.FechaModificacion_IsDBNull = True, Convert.DBNull, dbo_Epis.FechaModificacion))
+        insertCommand.Parameters.AddWithValue("@UsuarioModificacion", If(dbo_Epis.UsuarioModificacion_IsDBNull = True, Convert.DBNull, dbo_Epis.UsuarioModificacion))
         insertCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         insertCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
         Try
@@ -112,39 +112,39 @@ Public Class spEpis
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function UpdateEpis(ByVal oldDBO_Epis As DBO_Epis, ByVal newDBO_Epis As DBO_Epis) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function UpdateEpis(ByVal oldDBO_Epis As DBO_Epis, ByVal newDBO_Epis As DBO_Epis, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[EpisUpdate]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         updateCommand.Parameters.AddWithValue("@NewDescripcion", newDBO_Epis.Descripcion)
-        updateCommand.Parameters.AddWithValue("@NewMarca", if(newDBO_Epis.Marca_IsDBNull = True, Convert.DBNull, newDBO_Epis.Marca))
-        updateCommand.Parameters.AddWithValue("@NewModelo", if(newDBO_Epis.Modelo_IsDBNull = True, Convert.DBNull, newDBO_Epis.Modelo))
-        updateCommand.Parameters.AddWithValue("@NewEpiTipoID", if(newDBO_Epis.EpiTipoID_IsDBNull = True, Convert.DBNull, newDBO_Epis.EpiTipoID))
+        updateCommand.Parameters.AddWithValue("@NewMarca", If(newDBO_Epis.Marca_IsDBNull = True, Convert.DBNull, newDBO_Epis.Marca))
+        updateCommand.Parameters.AddWithValue("@NewModelo", If(newDBO_Epis.Modelo_IsDBNull = True, Convert.DBNull, newDBO_Epis.Modelo))
+        updateCommand.Parameters.AddWithValue("@NewEpiTipoID", If(newDBO_Epis.EpiTipoID_IsDBNull = True, Convert.DBNull, newDBO_Epis.EpiTipoID))
         updateCommand.Parameters.AddWithValue("@NewRiesgoQuimico", newDBO_Epis.RiesgoQuimico)
         updateCommand.Parameters.AddWithValue("@NewRiesgoMecanico", newDBO_Epis.RiesgoMecanico)
         updateCommand.Parameters.AddWithValue("@NewRiesgoMicrobiologico", newDBO_Epis.RiesgoMicrobiologico)
         updateCommand.Parameters.AddWithValue("@NewRiesgoFrio", newDBO_Epis.RiesgoFrio)
         updateCommand.Parameters.AddWithValue("@NewRiesgoTermico", newDBO_Epis.RiesgoTermico)
-        updateCommand.Parameters.AddWithValue("@NewUsos", if(newDBO_Epis.Usos_IsDBNull = True, Convert.DBNull, newDBO_Epis.Usos))
-        updateCommand.Parameters.AddWithValue("@NewAdvertencias", if(newDBO_Epis.Advertencias_IsDBNull = True, Convert.DBNull, newDBO_Epis.Advertencias))
-        updateCommand.Parameters.AddWithValue("@NewObservaciones", if(newDBO_Epis.Observaciones_IsDBNull = True, Convert.DBNull, newDBO_Epis.Observaciones))
-        updateCommand.Parameters.AddWithValue("@NewaMecanico", if(newDBO_Epis.aMecanico_IsDBNull = True, Convert.DBNull, newDBO_Epis.aMecanico))
-        updateCommand.Parameters.AddWithValue("@NewbMecanico", if(newDBO_Epis.bMecanico_IsDBNull = True, Convert.DBNull, newDBO_Epis.bMecanico))
-        updateCommand.Parameters.AddWithValue("@NewcMecanico", if(newDBO_Epis.cMecanico_IsDBNull = True, Convert.DBNull, newDBO_Epis.cMecanico))
-        updateCommand.Parameters.AddWithValue("@NewdMecanico", if(newDBO_Epis.dMecanico_IsDBNull = True, Convert.DBNull, newDBO_Epis.dMecanico))
-        updateCommand.Parameters.AddWithValue("@NewaQuimico", if(newDBO_Epis.aQuimico_IsDBNull = True, Convert.DBNull, newDBO_Epis.aQuimico))
-        updateCommand.Parameters.AddWithValue("@NewaMicrobiologico", if(newDBO_Epis.aMicrobiologico_IsDBNull = True, Convert.DBNull, newDBO_Epis.aMicrobiologico))
-        updateCommand.Parameters.AddWithValue("@NewaFrio", if(newDBO_Epis.aFrio_IsDBNull = True, Convert.DBNull, newDBO_Epis.aFrio))
-        updateCommand.Parameters.AddWithValue("@NewbFrio", if(newDBO_Epis.bFrio_IsDBNull = True, Convert.DBNull, newDBO_Epis.bFrio))
-        updateCommand.Parameters.AddWithValue("@NewcFrio", if(newDBO_Epis.cFrio_IsDBNull = True, Convert.DBNull, newDBO_Epis.cFrio))
-        updateCommand.Parameters.AddWithValue("@NewFechaModificacion", if(newDBO_Epis.FechaModificacion_IsDBNull = True, Convert.DBNull, newDBO_Epis.FechaModificacion))
-        updateCommand.Parameters.AddWithValue("@NewUsuarioModificacion", if(newDBO_Epis.UsuarioModificacion_IsDBNull = True, Convert.DBNull, newDBO_Epis.UsuarioModificacion))
+        updateCommand.Parameters.AddWithValue("@NewUsos", If(newDBO_Epis.Usos_IsDBNull = True, Convert.DBNull, newDBO_Epis.Usos))
+        updateCommand.Parameters.AddWithValue("@NewAdvertencias", If(newDBO_Epis.Advertencias_IsDBNull = True, Convert.DBNull, newDBO_Epis.Advertencias))
+        updateCommand.Parameters.AddWithValue("@NewObservaciones", If(newDBO_Epis.Observaciones_IsDBNull = True, Convert.DBNull, newDBO_Epis.Observaciones))
+        updateCommand.Parameters.AddWithValue("@NewaMecanico", If(newDBO_Epis.aMecanico_IsDBNull = True, Convert.DBNull, newDBO_Epis.aMecanico))
+        updateCommand.Parameters.AddWithValue("@NewbMecanico", If(newDBO_Epis.bMecanico_IsDBNull = True, Convert.DBNull, newDBO_Epis.bMecanico))
+        updateCommand.Parameters.AddWithValue("@NewcMecanico", If(newDBO_Epis.cMecanico_IsDBNull = True, Convert.DBNull, newDBO_Epis.cMecanico))
+        updateCommand.Parameters.AddWithValue("@NewdMecanico", If(newDBO_Epis.dMecanico_IsDBNull = True, Convert.DBNull, newDBO_Epis.dMecanico))
+        updateCommand.Parameters.AddWithValue("@NewaQuimico", If(newDBO_Epis.aQuimico_IsDBNull = True, Convert.DBNull, newDBO_Epis.aQuimico))
+        updateCommand.Parameters.AddWithValue("@NewaMicrobiologico", If(newDBO_Epis.aMicrobiologico_IsDBNull = True, Convert.DBNull, newDBO_Epis.aMicrobiologico))
+        updateCommand.Parameters.AddWithValue("@NewaFrio", If(newDBO_Epis.aFrio_IsDBNull = True, Convert.DBNull, newDBO_Epis.aFrio))
+        updateCommand.Parameters.AddWithValue("@NewbFrio", If(newDBO_Epis.bFrio_IsDBNull = True, Convert.DBNull, newDBO_Epis.bFrio))
+        updateCommand.Parameters.AddWithValue("@NewcFrio", If(newDBO_Epis.cFrio_IsDBNull = True, Convert.DBNull, newDBO_Epis.cFrio))
+        updateCommand.Parameters.AddWithValue("@NewFechaModificacion", If(newDBO_Epis.FechaModificacion_IsDBNull = True, Convert.DBNull, newDBO_Epis.FechaModificacion))
+        updateCommand.Parameters.AddWithValue("@NewUsuarioModificacion", If(newDBO_Epis.UsuarioModificacion_IsDBNull = True, Convert.DBNull, newDBO_Epis.UsuarioModificacion))
         updateCommand.Parameters.AddWithValue("@OldEpiID", oldDBO_Epis.EpiID)
         updateCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         updateCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
@@ -157,18 +157,18 @@ Public Class spEpis
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdateEpis" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdateEpis" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function DeleteEpis(ByVal EpiID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function DeleteEpis(ByVal EpiID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[EpisDelete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         deleteCommand.Parameters.AddWithValue("@OldEpiID", EpiID)
         deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
@@ -184,7 +184,7 @@ Public Class spEpis
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 

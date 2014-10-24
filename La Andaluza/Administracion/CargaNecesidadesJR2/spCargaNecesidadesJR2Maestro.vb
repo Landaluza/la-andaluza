@@ -8,12 +8,12 @@ Class spCargaNecesidadesJR2Maestro
                   "[dbo].[CargaNecesidadesJRMaestroDelete]", "CargaNecesidadesJRMaestroSelectDgv", "CargaNecesidadesJRMaestroSelectDgvByID")
     End Sub
 
-    Public Function Select_Record(ByVal CargaNecesidadesJRMaestroID As Int32) As DBO_CargaNecesidadesJR2Maestro
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal CargaNecesidadesJRMaestroID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_CargaNecesidadesJR2Maestro
+        dtb.Conectar()
         Dim DBO_CargaNecesidadesJRMaestro As New DBO_CargaNecesidadesJR2Maestro
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[CargaNecesidadesJRMaestroSelect]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@CargaNecesidadesJRMaestroID", CargaNecesidadesJRMaestroID)
         Try
@@ -36,23 +36,23 @@ Class spCargaNecesidadesJR2Maestro
         Catch ex As System.Data.SqlClient.SqlException
 
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_CargaNecesidadesJRMaestro
     End Function
 
-    Public Function CargaNecesidadesJRMaestroInsert(ByVal dbo_CargaNecesidadesJRMaestro As DBO_CargaNecesidadesJR2Maestro) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function CargaNecesidadesJRMaestroInsert(ByVal dbo_CargaNecesidadesJRMaestro As DBO_CargaNecesidadesJR2Maestro, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[CargaNecesidadesJRMaestroInsert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
         insertCommand.Parameters.AddWithValue("@Fecha", dbo_CargaNecesidadesJRMaestro.Fecha)
         insertCommand.Parameters.AddWithValue("@Hora", dbo_CargaNecesidadesJRMaestro.Hora)
-        insertCommand.Parameters.AddWithValue("@Observaciones", if(dbo_CargaNecesidadesJRMaestro.Observaciones Is Nothing, Convert.DBNull, dbo_CargaNecesidadesJRMaestro.Observaciones))
-        insertCommand.Parameters.AddWithValue("@Reserva1", if(dbo_CargaNecesidadesJRMaestro.Reserva1 Is Nothing, Convert.DBNull, dbo_CargaNecesidadesJRMaestro.Reserva1))
-        insertCommand.Parameters.AddWithValue("@Reserva2", if(dbo_CargaNecesidadesJRMaestro.Reserva2 Is Nothing, Convert.DBNull, dbo_CargaNecesidadesJRMaestro.Reserva2))
-        insertCommand.Parameters.AddWithValue("@Reserva3", if(dbo_CargaNecesidadesJRMaestro.Reserva3 Is Nothing, Convert.DBNull, dbo_CargaNecesidadesJRMaestro.Reserva3))
+        insertCommand.Parameters.AddWithValue("@Observaciones", If(dbo_CargaNecesidadesJRMaestro.Observaciones Is Nothing, Convert.DBNull, dbo_CargaNecesidadesJRMaestro.Observaciones))
+        insertCommand.Parameters.AddWithValue("@Reserva1", If(dbo_CargaNecesidadesJRMaestro.Reserva1 Is Nothing, Convert.DBNull, dbo_CargaNecesidadesJRMaestro.Reserva1))
+        insertCommand.Parameters.AddWithValue("@Reserva2", If(dbo_CargaNecesidadesJRMaestro.Reserva2 Is Nothing, Convert.DBNull, dbo_CargaNecesidadesJRMaestro.Reserva2))
+        insertCommand.Parameters.AddWithValue("@Reserva3", If(dbo_CargaNecesidadesJRMaestro.Reserva3 Is Nothing, Convert.DBNull, dbo_CargaNecesidadesJRMaestro.Reserva3))
         insertCommand.Parameters.AddWithValue("@FechaModificacion", dbo_CargaNecesidadesJRMaestro.FechaModificacion)
         insertCommand.Parameters.AddWithValue("@UsuarioModificacion", dbo_CargaNecesidadesJRMaestro.UsuarioModificacion)
         insertCommand.Parameters.AddWithValue("@Servido", dbo_CargaNecesidadesJRMaestro.Servido)
@@ -69,22 +69,22 @@ Class spCargaNecesidadesJR2Maestro
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function CargaNecesidadesJRMaestroUpdate(ByVal newDBO_CargaNecesidadesJRMaestro As DBO_CargaNecesidadesJR2Maestro) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function CargaNecesidadesJRMaestroUpdate(ByVal newDBO_CargaNecesidadesJRMaestro As DBO_CargaNecesidadesJR2Maestro, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[CargaNecesidadesJRMaestroUpdate]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         updateCommand.Parameters.AddWithValue("@NewFecha", newDBO_CargaNecesidadesJRMaestro.Fecha)
         updateCommand.Parameters.AddWithValue("@NewHora", newDBO_CargaNecesidadesJRMaestro.Hora)
-        updateCommand.Parameters.AddWithValue("@NewObservaciones", if(newDBO_CargaNecesidadesJRMaestro.Observaciones Is Nothing, Convert.DBNull, newDBO_CargaNecesidadesJRMaestro.Observaciones))
-        updateCommand.Parameters.AddWithValue("@NewReserva1", if(newDBO_CargaNecesidadesJRMaestro.Reserva1 Is Nothing, Convert.DBNull, newDBO_CargaNecesidadesJRMaestro.Reserva1))
-        updateCommand.Parameters.AddWithValue("@NewReserva2", if(newDBO_CargaNecesidadesJRMaestro.Reserva2 Is Nothing, Convert.DBNull, newDBO_CargaNecesidadesJRMaestro.Reserva2))
-        updateCommand.Parameters.AddWithValue("@NewReserva3", if(newDBO_CargaNecesidadesJRMaestro.Reserva3 Is Nothing, Convert.DBNull, newDBO_CargaNecesidadesJRMaestro.Reserva3))
+        updateCommand.Parameters.AddWithValue("@NewObservaciones", If(newDBO_CargaNecesidadesJRMaestro.Observaciones Is Nothing, Convert.DBNull, newDBO_CargaNecesidadesJRMaestro.Observaciones))
+        updateCommand.Parameters.AddWithValue("@NewReserva1", If(newDBO_CargaNecesidadesJRMaestro.Reserva1 Is Nothing, Convert.DBNull, newDBO_CargaNecesidadesJRMaestro.Reserva1))
+        updateCommand.Parameters.AddWithValue("@NewReserva2", If(newDBO_CargaNecesidadesJRMaestro.Reserva2 Is Nothing, Convert.DBNull, newDBO_CargaNecesidadesJRMaestro.Reserva2))
+        updateCommand.Parameters.AddWithValue("@NewReserva3", If(newDBO_CargaNecesidadesJRMaestro.Reserva3 Is Nothing, Convert.DBNull, newDBO_CargaNecesidadesJRMaestro.Reserva3))
         updateCommand.Parameters.AddWithValue("@NewFechaModificacion", newDBO_CargaNecesidadesJRMaestro.FechaModificacion)
         updateCommand.Parameters.AddWithValue("@NewUsuarioModificacion", newDBO_CargaNecesidadesJRMaestro.UsuarioModificacion)
         updateCommand.Parameters.AddWithValue("@NewServido", newDBO_CargaNecesidadesJRMaestro.Servido)
@@ -100,18 +100,18 @@ Class spCargaNecesidadesJR2Maestro
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdateCargaNecesidadesJRMaestro" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdateCargaNecesidadesJRMaestro" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function CargaNecesidadesJRMaestroDelete(ByVal CargaNecesidadesJRMaestroID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function CargaNecesidadesJRMaestroDelete(ByVal CargaNecesidadesJRMaestroID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[CargaNecesidadesJRMaestroDelete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         deleteCommand.Parameters.AddWithValue("@OldCargaNecesidadesJRMaestroID", CargaNecesidadesJRMaestroID)
         deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
@@ -127,15 +127,15 @@ Class spCargaNecesidadesJR2Maestro
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Sub GrabarCargaNecesidadesJRMaestro(ByVal dbo_CargaNecesidadesJRMaestro As DBO_CargaNecesidadesJR2Maestro)
+    Public Sub GrabarCargaNecesidadesJRMaestro(ByVal dbo_CargaNecesidadesJRMaestro As DBO_CargaNecesidadesJR2Maestro, ByRef dtb As BasesParaCompatibilidad.DataBase)
         If dbo_CargaNecesidadesJRMaestro.CargaNecesidadesJRMaestroID = 0 Then
-            CargaNecesidadesJRMaestroInsert(dbo_CargaNecesidadesJRMaestro)
+            CargaNecesidadesJRMaestroInsert(dbo_CargaNecesidadesJRMaestro, dtb)
         Else
-            CargaNecesidadesJRMaestroUpdate(dbo_CargaNecesidadesJRMaestro)
+            CargaNecesidadesJRMaestroUpdate(dbo_CargaNecesidadesJRMaestro, dtb)
         End If
     End Sub
 

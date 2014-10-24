@@ -24,7 +24,7 @@ Public Class frmEntControlesCalidadEnvasados2
 
     Overrides Sub SetValores(ByVal m_ID As Integer, ByVal m_SelectRecord As Boolean)
         
-        If m_SelectRecord Then m_DBO_ControlesCalidadEnvasados2 = spControlesCalidadEnvasados2.Select_Record(m_ID)
+        If m_SelectRecord Then m_DBO_ControlesCalidadEnvasados2 = spControlesCalidadEnvasados2.Select_Record(m_ID, dtb)
         If m_ID > 0 Then
 
 
@@ -62,7 +62,7 @@ Public Class frmEntControlesCalidadEnvasados2
 
     Overrides Sub Guardar()
         If GetValores() Then
-            If spControlesCalidadEnvasados2.GrabarControlesCalidadEnvasados2(m_DBO_ControlesCalidadEnvasados2) Then Me.Close()
+            If spControlesCalidadEnvasados2.GrabarControlesCalidadEnvasados2(m_DBO_ControlesCalidadEnvasados2, dtb) Then Me.Close()
         End If
     End Sub
 

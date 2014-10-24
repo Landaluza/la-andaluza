@@ -193,7 +193,7 @@ Public Class clsAlbaranesCargaDetalles
                        "'" & Observaciones & "'," & _
                        "'" & Reserva1 & "'," & _
                        "'" & Reserva2 & "'," & _
-                       "'" & Reserva3 & "'," & _
+                       "'" & Reserva3 & "','" & _
                        BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)) + "'," + BasesParaCompatibilidad.Config.User.ToString + ")")
 
 
@@ -205,8 +205,7 @@ Public Class clsAlbaranesCargaDetalles
         End Try
     End Function
 
-    Public Function Eliminar() As Boolean
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+    Public Function Eliminar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
 
         'Dim dtb As BasesParaCompatibilidad.DataBase 
         Try

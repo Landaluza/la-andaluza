@@ -20,7 +20,7 @@ Public Class frmEntControlesPresionLlenadora2
 
     Private Sub frmEntControlesPresionLlenadora1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim spEmpelados As New spEmpleados
-        spEmpelados.cargar_empleados_envasados(cboVerificadorID)
+        spEmpelados.cargar_empleados_envasados(cboVerificadorID, dtb)
 
         'Me.cboVerificadorID.mam_DataSource("EmpleadosSelectCbo"), False)
         spControlesPresionLlenadora2 = New spControlesPresionLlenadora2
@@ -78,7 +78,7 @@ Public Class frmEntControlesPresionLlenadora2
 
     Overrides Sub Guardar()
         If GetValores() Then
-            If spControlesPresionLlenadora2.GrabarControlesPresionLlenadora1(m_DBO_ControlesPresionLlenadora1) Then
+            If spControlesPresionLlenadora2.GrabarControlesPresionLlenadora1(m_DBO_ControlesPresionLlenadora1, dtb) Then
                 Me.Close()
             End If
         End If

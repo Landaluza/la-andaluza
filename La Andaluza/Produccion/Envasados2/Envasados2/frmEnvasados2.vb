@@ -47,9 +47,9 @@ Public Class frmEnvasados2
             If Not DateSelected.Equals(MonthCalendar.SelectionStart) Then
                 DateSelected = MonthCalendar.SelectionRange.Start
             End If
-            m_Envasado.EnvasadoID = CType(sp, spEnvasados2).GetEnvasadoIDPorFecha(m_Envasado.Fecha)
+            m_Envasado.EnvasadoID = CType(sp, spEnvasados2).GetEnvasadoIDPorFecha(m_Envasado.Fecha, dtb)
             If m_Envasado.EnvasadoID <> 0 Then
-                m_Envasado = CType(sp, spEnvasados2).Select_Record(m_Envasado.EnvasadoID)
+                m_Envasado = CType(sp, spEnvasados2).Select_Record(m_Envasado.EnvasadoID, dtb)
                 frmEnt.Text = "envasados del dia " & DateSelected.ToString.Substring(0, 10)
             Else
                 MessageBox.Show("No existe un envasado a modificar para la fecha seleccionada.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
@@ -86,7 +86,7 @@ Public Class frmEnvasados2
         If Not DateSelected.Equals(MonthCalendar.SelectionStart) Then
             DateSelected = MonthCalendar.SelectionRange.Start
         End If
-        m_Envasado.EnvasadoID = CType(sp, spEnvasados2).GetEnvasadoIDPorFecha(m_Envasado.Fecha)
+        m_Envasado.EnvasadoID = CType(sp, spEnvasados2).GetEnvasadoIDPorFecha(m_Envasado.Fecha, dtb)
         If m_Envasado.EnvasadoID <> 0 Then
             Modificar()
         Else

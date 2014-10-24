@@ -81,7 +81,7 @@ Public Class frmProveedores
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboProveedores = CType(sp, spProveedores).Select_Record(dgvGeneral.CurrentRow.Cells("ProveedorID").Value)
+        dboProveedores = CType(sp, spProveedores).Select_Record(dgvGeneral.CurrentRow.Cells("ProveedorID").Value, dtb)
         If Not dboProveedores Is Nothing Then
             MyBase.newRegForm = New frmEntProveedores(ACCION_MODIFICAR, sp, Me.dboProveedores)
             ''newRegForm.SetDataBussinesObject(Me.dboProveedores)
@@ -158,10 +158,13 @@ Public Class frmProveedores
                     .ShowNewFolderButton = True
 
                     If .ShowDialog = DialogResult.OK Then
-                        If deprecated.realizarConsultaAlteraciones("update proveedores set ruta='" & .SelectedPath & "' where proveedorID=" & Me.dgvGeneral.CurrentRow.Cells("ProveedorID").Value) Then
+                        dtb.PrepararConsulta("update proveedores set ruta= @ruta where proveedorID= @id")
+                        dtb.AñadirParametroConsulta("@ruta", .SelectedPath)
+                        dtb.AñadirParametroConsulta("@id", Me.dgvGeneral.CurrentRow.Cells("ProveedorID").Value)
+                        If dtb.Consultar(True) Then
                             Me.dgvFill()
                         Else
-                            messagebox.show("no se pudo actualizar el registro", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                            MessageBox.Show("no se pudo actualizar el registro", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                         End If
                     End If
                 End With
@@ -182,7 +185,7 @@ Public Class frmProveedores
         response = messagebox.show(" ¿Desea dejar el proveedor seleccionado como inactivo? ", _
                           "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If response = DialogResult.Yes Then
-            CType(Me.sp, spProveedores).MarcarInactivo(Me.dboProveedores.ProveedorID)
+            CType(Me.sp, spProveedores).MarcarInactivo(dtb, Me.dboProveedores.ProveedorID)
             Me.dgvFill()
         End If
     End Sub
@@ -192,7 +195,7 @@ Public Class frmProveedores
         response = MessageBox.Show(" ¿Desea dejar el proveedor seleccionado como inactivo? ", _
                           "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If response = DialogResult.Yes Then
-            CType(Me.sp, spProveedores).MarcarInactivo(Me.dboProveedores.ProveedorID)
+            CType(Me.sp, spProveedores).MarcarInactivo(dtb, Me.dboProveedores.ProveedorID)
             Me.dgvFill()
         End If
     End Sub

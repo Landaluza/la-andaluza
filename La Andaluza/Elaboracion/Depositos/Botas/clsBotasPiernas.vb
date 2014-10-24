@@ -41,10 +41,11 @@ Public Class clsBotasPiernas
 
 #Region "Metodos"
 
-    Public Sub Cargar()
-
+    Public Sub Cargar(ByRef dtb As BasesParaCompatibilidad.DataBase)
+        dtb.PrepararConsulta("select BotasPiernas.Descripcion, ContenidoHabitual from BotasPiernas where BotaPiernaID= @bot")
+        dtb.AñadirParametroConsulta("@bot", BotaPiernaID)
         Dim tabla As New DataTable
-        tabla = Deprecated.ConsultaVer("BotasPiernas.Descripcion, ContenidoHabitual", "BotasPiernas", "BotaPiernaID=" & BotaPiernaID)
+        tabla = dtb.Consultar()
         Try
             Descripcion = tabla.Rows(0).Item(0)
             ContenidoHabitual = tabla.Rows(0).Item(1)
@@ -70,7 +71,7 @@ Public Class clsBotasPiernas
 
         Try
             dtb.ConsultaAlteraciones("insert into BotasPiernas values(" & _
-                              "'" & Descripcion & "','" & ContenidoHabitual & "'," &
+                              "'" & Descripcion & "','" & ContenidoHabitual & "','" &
                               BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)) + "'," + BasesParaCompatibilidad.Config.User.ToString + ")")
             dtb.PrepararConsulta("select max(BotaPiernaID) from BotasPiernas")
             BotaPiernaID = dtb.Consultar().Rows(0).Item(0)
@@ -80,8 +81,7 @@ Public Class clsBotasPiernas
         End Try
     End Function
 
-    Public Function Eliminar() As Integer
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+    Public Function Eliminar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
 
         Try
             dtb.PrepararConsulta("delete from BotasPiernas where BotaPiernaID = @id")

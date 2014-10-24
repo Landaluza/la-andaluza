@@ -3,6 +3,7 @@ Public Class frmIncidenciasEmpleados
     Private frmEntIncidenciasEmpleados As frmEntIncidenciasEmpleados
     Private maestroID As Integer
     Private sp As spIncidenciasEmpleados
+    Private dtb As BasesParaCompatibilidad.DataBase
 
     Public WriteOnly Property Incidencia As Integer
         Set(value As Integer)
@@ -13,6 +14,7 @@ Public Class frmIncidenciasEmpleados
     Public Sub New(Optional ByVal maestro As Integer = Nothing)
 
         InitializeComponent()
+        dtb = New BasesParaCompatibilidad.DataBase
         Me.maestroID = maestro
         sp = New spIncidenciasEmpleados
     End Sub
@@ -45,13 +47,13 @@ Public Class frmIncidenciasEmpleados
         If Me.maestroID = Nothing Then
             Me.dgv.Rows.Remove(Me.dgv.CurrentRow)
         Else
-            sp.Eliminar(Me.dgv.CurrentRow.Cells("Id").Value)
+            sp.Eliminar(Me.dgv.CurrentRow.Cells("Id").Value, dtb)
             dgvFill()
         End If
     End Sub
 
     Private Sub dgvFill()
-        Dim dt As DataTable = sp.cargar_grilla(Me.maestroID)
+        Dim dt As DataTable = sp.cargar_grilla(Me.maestroID, dtb)
 
         If Not dt Is Nothing Then
             Me.dgv.DataSource = dt
@@ -68,13 +70,13 @@ Public Class frmIncidenciasEmpleados
         End If
     End Sub
 
-    Public Function guardar(ByRef transaction As SqlClient.SqlTransaction) As Boolean
+    Public Function guardar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Dim spIncidencias As New spIncidencias
         Dim spempleados_formatosEnvasados As New spempleados_formatosEnvasados
         Dim spPartesEnvasados_CausasPartesEnvasado As New spPartesEnvasados_CausasPartesEnvasado
         'Dim spPartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad As New spPartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad
 
-        Dim DBO_Incidencias As DBO_Incidencias = spIncidencias.Select_Record(Me.maestroID, transaction)
+        Dim DBO_Incidencias As DBO_Incidencias = spIncidencias.Select_Record(Me.maestroID, dtb)
         Dim DBO_empleados_formatosEnvasados As New DBO_empleados_formatosEnvasados
 
         DBO_empleados_formatosEnvasados.Inicio = DBO_Incidencias.HoraInicio
@@ -85,22 +87,22 @@ Public Class frmIncidenciasEmpleados
 
         For Each row As DataGridViewRow In Me.dgv.Rows
             DBO_empleados_formatosEnvasados.id_empleado = row.Cells("Id").Value
-            spIncidenciasEmpleados.Guardar(maestroID, DBO_empleados_formatosEnvasados, transaction)
+            spIncidenciasEmpleados.Guardar(maestroID, DBO_empleados_formatosEnvasados, dtb)
 
             'DBO_empleados_formatosEnvasados.id_empleado = row.Cells("Id").Value
-            'spempleados_formatosEnvasados.Grabar(DBO_empleados_formatosEnvasados, transaction)
+            'spempleados_formatosEnvasados.Grabar(DBO_empleados_formatosEnvasados,dtbaction)
 
             'Dim DBO_PartesEnvasados_CausasPartesEnvasado As New DBO_PartesEnvasados_CausasPartesEnvasado
-            'DBO_PartesEnvasados_CausasPartesEnvasado.Id_ParteEnvasado = spempleados_formatosEnvasados.seleccionarUltimoRegistro(BasesParaCompatibilidad.BD.Cnx, BasesParaCompatibilidad.BD.transaction)
+            'DBO_PartesEnvasados_CausasPartesEnvasado.Id_ParteEnvasado = spempleados_formatosEnvasados.seleccionarUltimoRegistro(BasesParaCompatibilidad.BD.Cnx,dtb)
             'DBO_PartesEnvasados_CausasPartesEnvasado.Id_CausaParteEnvasado = 2 'incidencia
 
-            'spPartesEnvasados_CausasPartesEnvasado.Grabar(DBO_PartesEnvasados_CausasPartesEnvasado, transaction)
+            'spPartesEnvasados_CausasPartesEnvasado.Grabar(DBO_PartesEnvasados_CausasPartesEnvasado,dtbaction)
 
             'Dim DBO_PartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad As New DBO_PartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad
-            'DBO_PartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad.Id_ParteEnvasado_causaParteEnvasado = spPartesEnvasados_CausasPartesEnvasado.seleccionarUltimoRegistro(BasesParaCompatibilidad.BD.Cnx, BasesParaCompatibilidad.BD.transaction)
+            'DBO_PartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad.Id_ParteEnvasado_causaParteEnvasado = spPartesEnvasados_CausasPartesEnvasado.seleccionarUltimoRegistro(BasesParaCompatibilidad.BD.Cnx,dtb)
             'DBO_PartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad.Id_Incidencia = maestroID
 
-            'spPartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad.Grabar(DBO_PartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad, transaction)
+            'spPartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad.Grabar(DBO_PartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad,dtbaction)
         Next
 
         Return True

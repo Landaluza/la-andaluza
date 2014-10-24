@@ -52,8 +52,8 @@ Public Class frmEntPersonalCompetencias
         End IF
    End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
 End Class

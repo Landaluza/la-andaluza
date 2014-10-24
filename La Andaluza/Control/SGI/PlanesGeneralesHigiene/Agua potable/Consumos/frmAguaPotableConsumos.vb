@@ -19,7 +19,7 @@ Public Class frmAguaPotableConsumos
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboAguaPotableConsumos = CType(sp, spAguaPotableConsumos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboAguaPotableConsumos = CType(sp, spAguaPotableConsumos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboAguaPotableConsumos Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboAguaPotableConsumos)
         Else

@@ -9,9 +9,11 @@ Public Class frmPanDoypack
     Private monodosis As Collection
     Public Event actualizarExtras()
     Private spdoypack As spdoypack
+    Private dtb As BasesParaCompatibilidad.DataBase
 
     Public Sub New(ByVal id As Integer, Optional ByVal asistente As Boolean = False)
         InitializeComponent()
+        dtb = New BasesParaCompatibilidad.DataBase
         Me.dbo = New Dbo_DoyPack
         spdoypack = New spdoypack
         Me.id = id
@@ -25,13 +27,13 @@ Public Class frmPanDoypack
         End If
 
         Dim s As New spArticulosEnvasadosHistoricos
-        s.cargar_TiposFormatos(Me.cboFormato)
+        s.cargar_TiposFormatos(Me.cboFormato, dtb)
         Dim sp As New spmarcas
-        sp.cargar_marcas(Me.cboMarca)
+        sp.cargar_marcas(Me.cboMarca, dtb)
         Dim s2 As New spTiposCajas
-        s2.cargar_TiposCajas(Me.cboCaja)
+        s2.cargar_TiposCajas(Me.cboCaja, dtb)
         Dim s3 As New spTiposProductos
-        s3.cargar_ComboBox(Me.cboProducto)
+        s3.cargar_ComboBox(Me.cboProducto, dtb)
 
         EstablecerValores()
     End Sub
@@ -56,18 +58,18 @@ Public Class frmPanDoypack
         dgvFill()
 
         If Me.mododeapertura = BasesParaCompatibilidad.DetailedSimpleForm.MODIFICACION Then
-            Me.cboFormato.SelectedValue = spdoypack.FormatoPorArticulo(Me.id)
-            Me.cboProducto.SelectedValue = spdoypack.ProductoPorArticulo(Me.id)
-            Me.cboCaja.SelectedValue = spdoypack.CajaPorArticulo(Me.id)
-            Me.txtEan.Text = spdoypack.EanPorArticulo(Me.id)
-            Me.cboSccNC.SelectedValue = spdoypack.PaletNCPorArticulo(Me.id)
-            Me.cboMarca.SelectedValue = spdoypack.MarcaPorArticulo(Me.id)
+            Me.cboFormato.SelectedValue = spdoypack.FormatoPorArticulo(Me.id, dtb)
+            Me.cboProducto.SelectedValue = spdoypack.ProductoPorArticulo(Me.id, dtb)
+            Me.cboCaja.SelectedValue = spdoypack.CajaPorArticulo(Me.id, dtb)
+            Me.txtEan.Text = spdoypack.EanPorArticulo(Me.id, dtb)
+            Me.cboSccNC.SelectedValue = spdoypack.PaletNCPorArticulo(Me.id, dtb)
+            Me.cboMarca.SelectedValue = spdoypack.MarcaPorArticulo(Me.id, dtb)
         End If
     End Sub
 
     Public Function grabarDatos(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean Implements wizardable.grabarDatos
         If Me.mododeapertura = BasesParaCompatibilidad.DetailedSimpleForm.MODIFICACION Then
-            Return spdoypack.actualizarFormatoPorArticulo(Me.id, Me.cboFormato.SelectedValue, Me.cboMarca.SelectedValue, Me.cboCaja.SelectedValue, Me.cboSccNC.SelectedValue, Me.cboProducto.SelectedValue, Me.txtEan.Text)
+            Return spdoypack.actualizarFormatoPorArticulo(dtb, Me.id, Me.cboFormato.SelectedValue, Me.cboMarca.SelectedValue, Me.cboCaja.SelectedValue, Me.cboSccNC.SelectedValue, Me.cboProducto.SelectedValue, Me.txtEan.Text)
         Else
             Dim retorno As Boolean = True
             Dim aux As Dbo_DoyPack
@@ -76,9 +78,9 @@ Public Class frmPanDoypack
             If cbEnvasado.Checked Then
                 formato = Me.cboFormato.SelectedValue
             Else
-                formato = spdoypack.crear_formato("")
+                formato = spdoypack.crear_formato("", dtb)
             End If
-            Dim articulo As Integer = spdoypack.UltimoArticuloInsertado
+            Dim articulo As Integer = spdoypack.UltimoArticuloInsertado(dtb)
 
             For i As Integer = 1 To Me.monodosis.Count
                 aux = Me.monodosis.Item(i)
@@ -88,9 +90,9 @@ Public Class frmPanDoypack
                 aux.ProductoId = cboProducto.SelectedValue
                 aux.CajaId = cboCaja.SelectedValue
 
-                retorno = retorno And spdoypack.add(aux)
+                retorno = retorno And spdoypack.add(aux, dtb)
 
-                retorno = retorno And spdoypack.InsertarCompuestoPor(aux.ArticuloPrimarioID, aux.MonodosisID, aux.Cantidad)
+                retorno = retorno And spdoypack.InsertarCompuestoPor(aux.ArticuloPrimarioID, aux.MonodosisID, aux.Cantidad, dtb)
             Next
 
             Return retorno
@@ -106,7 +108,7 @@ Public Class frmPanDoypack
     End Sub
 
     Private Sub tsadd_Click(sender As System.Object, e As System.EventArgs) Handles tsadd.Click
-        añadir()
+        añadir(dtb)
     End Sub
 
     Private Sub tsmod_Click(sender As System.Object, e As System.EventArgs) Handles tsmod.Click
@@ -119,8 +121,7 @@ Public Class frmPanDoypack
 
     Private Sub dgvFill()
         If Me.mododeapertura = BasesParaCompatibilidad.DetailedSimpleForm.MODIFICACION Then
-            Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
-            Dim dt As DataTable = spdoypack.selectRecords(Me.id)
+            Dim dt As DataTable = spdoypack.selectRecords(Me.id, dtb)
 
             If dt Is Nothing Then Return
             Me.DataGridView1.DataSource = dt
@@ -150,11 +151,11 @@ Public Class frmPanDoypack
         Return False
     End Function
 
-    Private Sub añadir()
+    Private Sub añadir(ByRef dtb As BasesParaCompatibilidad.DataBase)
         Dim frm As New frmSeleccionMonodosis()
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         dbo = New Dbo_DoyPack
-        
+
 
         If Not dbo Is Nothing Then
             dbo.ArticuloPrimarioID = Me.id
@@ -173,20 +174,20 @@ Public Class frmPanDoypack
                 End If
             Else
                 getValores()
-                BasesParaCompatibilidad.BD.EmpezarTransaccion()
+                dtb.EmpezarTransaccion()
 
-                If spdoypack.add(dbo) Then
+                If spdoypack.add(dbo, dtb) Then
 
-                    If spdoypack.InsertarCompuestoPor(dbo.ArticuloPrimarioID, dbo.MonodosisID, dbo.Cantidad) Then
-                        BasesParaCompatibilidad.BD.TerminarTransaccion()
+                    If spdoypack.InsertarCompuestoPor(dbo.ArticuloPrimarioID, dbo.MonodosisID, dbo.Cantidad, dtb) Then
+                        dtb.TerminarTransaccion()
                         dgvFill()
                         RaiseEvent actualizarExtras()
                     Else
-                        BasesParaCompatibilidad.BD.CancelarTransaccion()
+                        dtb.CancelarTransaccion()
                         MessageBox.Show("Ocurrio un error al añadir el registro.", "No se pudo guardar el registro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     End If
                 Else
-                    BasesParaCompatibilidad.BD.CancelarTransaccion()
+                    dtb.CancelarTransaccion()
                     MessageBox.Show("Ocurrio un error al añadir el registro.", "No se pudo guardar el registro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
             End If
@@ -209,7 +210,7 @@ Public Class frmPanDoypack
         Else
 
 
-            If spdoypack.delete(Me.DataGridView1.CurrentRow.Cells("id").Value) Then
+            If spdoypack.delete(Me.DataGridView1.CurrentRow.Cells("id").Value, dtb) Then
 
                 dgvFill()
                 RaiseEvent actualizarExtras()
@@ -226,7 +227,7 @@ Public Class frmPanDoypack
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         'spdoypack.modify()
         If frm.Result <> String.Empty Then
-            Dim dbo As Dbo_DoyPack = spdoypack.selectRecordById(Me.DataGridView1.CurrentRow.Cells("id").Value)
+            Dim dbo As Dbo_DoyPack = spdoypack.selectRecordById(Me.DataGridView1.CurrentRow.Cells("id").Value, dtb)
             dbo.Cantidad = frm.Result
 
             If Me.mododeapertura = BasesParaCompatibilidad.DetailedSimpleForm.INSERCION Then
@@ -243,7 +244,7 @@ Public Class frmPanDoypack
                 '    End If
                 'Next
             Else
-                If spdoypack.modify(dbo) Then
+                If spdoypack.modify(dbo, dtb) Then
                     dgvFill()
                     RaiseEvent actualizarExtras()
                 Else
@@ -265,14 +266,14 @@ Public Class frmPanDoypack
     Private Sub cboFormato_SelectedValueChanged(sender As System.Object, e As System.EventArgs) Handles cboFormato.SelectedValueChanged
         Try
             Dim spPalets As New spPaletsProducidos
-            spPalets.cargar_PaletsProducidosNC_byArticulo(Me.cboSccNC, Me.cboFormato.SelectedValue)
+            spPalets.cargar_PaletsProducidosNC_byArticulo(Me.cboSccNC, Me.cboFormato.SelectedValue, dtb)
         Catch ex As Exception
 
         End Try
 
         Try
             Dim sp As New spArticulosEnvasadosHistoricos
-            Dim dbo As DBO_ArticulosEnvasadoHistorico = sp.Select_Record(Me.cboFormato.SelectedValue)
+            Dim dbo As DBO_ArticulosEnvasadoHistorico = sp.Select_Record(Me.cboFormato.SelectedValue, dtb)
             Me.cboProducto.SelectedValue = dbo.TipoProductoID
         Catch ex As Exception
         End Try
@@ -299,13 +300,13 @@ Public Class frmPanDoypack
         Dim frm As New frmmarcas
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         Dim sp As New spmarcas
-        sp.cargar_marcas(Me.cboMarca)
+        sp.cargar_marcas(Me.cboMarca, dtb)
     End Sub
 
     Private Sub btnaddMarcas_Click(sender As System.Object, e As System.EventArgs) Handles btnaddMarcas.Click
         Dim frm As New frmEntmarcas
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         Dim sp As New spmarcas
-        sp.cargar_marcas(Me.cboMarca)
+        sp.cargar_marcas(Me.cboMarca, dtb)
     End Sub
 End Class

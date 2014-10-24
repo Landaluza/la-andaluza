@@ -77,7 +77,7 @@ Public Class frmPaletsProducidos
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboPaletsProducidos = CType(sp, spPaletsProducidos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboPaletsProducidos = CType(sp, spPaletsProducidos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboPaletsProducidos Is Nothing Then
             MyBase.newRegForm = New frmEntPaletsProducidos(Me.linea, Me.TipoFormato, Me.envasado, BasesParaCompatibilidad.gridsimpleform.ACCION_MODIFICAR, sp, dboPaletsProducidos)
             AddHandler newRegForm.afterSave, AddressOf dgvFill
@@ -90,7 +90,7 @@ Public Class frmPaletsProducidos
     Protected Overrides Sub cargar_datos()
         dataSource = dtb.Consultar(Me.sp.DataGridViewStoredProcedure, True)
 
-        datasourceIncompletos = CType(Me.sp, spPaletsProducidos).devolver_palets_incompletos_por_TipoFormato(Me.TipoFormato)
+        datasourceIncompletos = CType(Me.sp, spPaletsProducidos).devolver_palets_incompletos_por_TipoFormato(Me.TipoFormato, dtb)
     End Sub
 
     Protected Overrides Sub BindDataSource() Implements  BasesParaCompatibilidad.queriable.dataGridViewFill
@@ -168,7 +168,7 @@ Public Class frmPaletsProducidos
         If Me.m_MaestroID <> Nothing Then
             sp.DataGridViewStoredProcedure= If(m_MaestroID = Nothing, "", sp.DataGridViewStoredProcedureForFilteredSelect & "'" & Me.m_MaestroID & "'")
             Dim spformato As New spFormatosEnvasados
-            Dim dboformato As DBO_FormatosEnvasados = spformato.Select_Record(Me.dboPaletsProducidos.FormatoID)
+            Dim dboformato As DBO_FormatosEnvasados = spformato.Select_Record(Me.dboPaletsProducidos.FormatoID, dtb)
             Me.TipoFormato = dboformato.TipoFormatoEnvasadoID
         End If
     End Sub
@@ -206,11 +206,11 @@ Public Class frmPaletsProducidos
 
 
 
-                dboPalet = CType(Me.sp, spPaletsProducidos).Select_Record(CType(Me.dgvPicos.CurrentRow.Cells("PaletProducidoID").Value, Integer))
+                dboPalet = CType(Me.sp, spPaletsProducidos).Select_Record(CType(Me.dgvPicos.CurrentRow.Cells("PaletProducidoID").Value, Integer), dtb)
                 'dboFormato = spFormatos.Select_Record(dboPalet.FormatoID)
 
-                dboFormatoActual = spFormatos.Select_Record(Me.dboPaletsProducidos.FormatoID)
-                dboEnvasado = spEnvasados.Select_Record(dboFormatoActual.EnvasadoID)
+                dboFormatoActual = spFormatos.Select_Record(Me.dboPaletsProducidos.FormatoID, dtb)
+                dboEnvasado = spEnvasados.Select_Record(dboFormatoActual.EnvasadoID, dtb)
 
                 dboTemp.PaletProducidoID = dboPalet.ID
                 dboPalet.FormatoID = m_MaestroID
@@ -230,7 +230,7 @@ Public Class frmPaletsProducidos
     Private Sub mostrarEtiqueta()
         If Not Me.dgvGeneral.CurrentRow Is Nothing Then
             Dim spPaletsProducidos As New spPaletsProducidos
-            Dim dbo As DBO_PaletsProducidos = spPaletsProducidos.Select_Record(Me.dgvGeneral.CurrentRow.Cells("Id").Value)
+            Dim dbo As DBO_PaletsProducidos = spPaletsProducidos.Select_Record(Me.dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
             If Not dbo Is Nothing Then
                 If MessageBox.Show("¿Desea imprimir etiqueta?", "Etiqueta palet " & dbo.SCC, _
                                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
@@ -240,7 +240,7 @@ Public Class frmPaletsProducidos
                     frm.Show()
                     Try
 
-                        spPaletsProducidos.anadir_impresion_etiqueta(Me.dgvGeneral.CurrentRow.Cells("Id").Value)
+                        spPaletsProducidos.anadir_impresion_etiqueta(Me.dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
                         Dim textNotificar As String = "Se ha vuelto a imprimir la etiqueta de la matricula  " & Environment.NewLine() & Me.dgvGeneral.CurrentRow.Cells("SCC").Value.ToString & " el día " & DateTime.Now.ToString
                         Dim mail As New Mail.Mail1And1(True, "Reimpresion de etiqueta " & Me.dgvGeneral.CurrentRow.Cells("SCC").Value.ToString & _
                                                        "el " & DateTime.Now.ToString, textNotificar, _

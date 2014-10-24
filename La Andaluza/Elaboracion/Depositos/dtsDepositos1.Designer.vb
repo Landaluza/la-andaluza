@@ -477,7 +477,7 @@ Partial Public Class dtsDepositos
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Overloads Function AddDepositosRow(ByVal Codigo As String, ByVal FechaCreacion As Date, ByVal Capacidad As Integer, ByVal DoctoUbicacionFisica As String, ByVal TonelID As String, ByVal TransicubaID As String, ByVal BotaID As String, ByVal BotaPiernaID As String, ByVal Tipo As String, ByVal MaterialConstruccionID As String, ByVal Listado As Boolean) As DepositosRow
             Dim rowDepositosRow As DepositosRow = CType(Me.NewRow, DepositosRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Codigo, FechaCreacion, Capacidad, DoctoUbicacionFisica, TonelID, TransicubaID, BotaID, BotaPiernaID, Tipo, MaterialConstruccionID, Listado}
+            Dim columnValuesArray() As Object = New Object() {Nothing, Codigo, FechaCreacion, Capacidad, DoctoUbicacionFisica, TonelID, transicubaID, BotaID, BotaPiernaID, Tipo, MaterialConstruccionID, Listado}
             rowDepositosRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowDepositosRow)
             Return rowDepositosRow

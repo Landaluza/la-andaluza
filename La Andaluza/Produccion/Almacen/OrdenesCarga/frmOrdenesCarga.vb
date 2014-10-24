@@ -20,7 +20,7 @@ Public Class frmOrdenesCarga
 
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
-            If CType(sp, spOrdenesCarga).OrdenesCargaDelete(dgvGeneral.CurrentRow.Cells("OrdenCargaID").Value) Then
+            If CType(sp, spOrdenesCarga).OrdenesCargaDelete(dgvGeneral.CurrentRow.Cells("OrdenCargaID").Value, dtb) Then
                 dgvFill()
             End If
         End If
@@ -31,7 +31,7 @@ Public Class frmOrdenesCarga
         Dim m_Pos As Integer = GeneralBindingSource.Position
 
         If Not TipoAction = ACCION_INSERTAR Then
-            m_OrdeneCarga = CType(sp, spOrdenesCarga).Select_Record(GeneralBindingSource(m_Pos).Item("OrdenCargaID"))
+            m_OrdeneCarga = CType(sp, spOrdenesCarga).Select_Record(GeneralBindingSource(m_Pos).Item("OrdenCargaID"), dtb)
         End If
 
         frmEnt = New frmEntOrdenesCarga(m_OrdeneCarga, m_Pos, m_VerID)

@@ -7,11 +7,11 @@
     Public Event FinishWizard()
     Public Event PanelChanged(ByRef panel As Windows.Forms.Form)
     Protected title As String
-
+    Protected dtb As BasesParaCompatibilidad.DataBase
     Public Sub New()
 
         InitializeComponent()
-
+        dtb = New BasesParaCompatibilidad.DataBase()
         Me.forms = New Collection
         Me.titles = New Collection
         Me.wizardStep = 1
@@ -19,7 +19,7 @@
 
     Public Sub New(ByVal paneles As Collection, ByVal titles As Collection, ByVal title As String)
         InitializeComponent()
-
+        dtb = New BasesParaCompatibilidad.DataBase()
         Me.forms = paneles
         Me.titles = titles
         Me.title = title
@@ -132,13 +132,13 @@
         RaiseEvent PanelChanged(Me.forms.Item(actualstep))
     End Sub
 
-    Public Function guardar() As Boolean
+    Public Function guardar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Me.Cursor = Cursors.WaitCursor
         Me.btnNext.Enabled = False
         Me.btnPrev.Enabled = False
 
         Dim retorno As Boolean
-        BasesParaCompatibilidad.BD.EmpezarTransaccion()
+        dtb.EmpezarTransaccion()
         retorno = True
 
         Try
@@ -147,12 +147,12 @@
             Next
 
             If retorno Then
-                BasesParaCompatibilidad.BD.TerminarTransaccion()
+                dtb.TerminarTransaccion()
             Else
-                BasesParaCompatibilidad.BD.CancelarTransaccion()
+                dtb.CancelarTransaccion()
             End If
         Catch ex As Exception
-            BasesParaCompatibilidad.BD.CancelarTransaccion()
+            dtb.CancelarTransaccion()
             retorno = False
         End Try
 

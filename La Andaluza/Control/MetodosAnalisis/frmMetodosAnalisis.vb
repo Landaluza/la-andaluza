@@ -21,7 +21,7 @@ Public Class frmMetodosAnalisis
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboMetodosAnalisis = CType(sp, spMetodosAnalisis).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer))
+        dboMetodosAnalisis = CType(sp, spMetodosAnalisis).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
         If Not dboMetodosAnalisis Is Nothing Then
             newRegForm.SetDataBussinesObject(CType(Me.dboMetodosAnalisis, BasesParaCompatibilidad.DataBussines))
         Else

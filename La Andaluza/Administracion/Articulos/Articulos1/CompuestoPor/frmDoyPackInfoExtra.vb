@@ -1,6 +1,7 @@
 ﻿Public Class frmDoyPackInfoExtra
     Private formato As Integer
     Private spTiposFormatos As spArticulosEnvasadosHistoricos
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public ReadOnly Property result As Integer
         Get
             Return Me.formato
@@ -9,7 +10,7 @@
 
     Public Sub New()
         InitializeComponent()
-
+        dtb = New BasesParaCompatibilidad.DataBase
         spTiposFormatos = New spArticulosEnvasadosHistoricos
     End Sub
 
@@ -24,7 +25,7 @@
     End Sub
 
     Private Sub frmDoyPackInfoExtra_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        spTiposFormatos.cargar_TiposFormatos_Todos(Me.cboFormato)
+        spTiposFormatos.cargar_TiposFormatos_Todos(Me.cboFormato, dtb)
     End Sub
 
     Private Sub frmDoyPackInfoExtra_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize

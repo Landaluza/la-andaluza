@@ -10,11 +10,13 @@ Public Class LisDepPorTipos
     Private Tab As DataTable
     Private title As RenderParagraph
     Private frmEspera As BasesParaCompatibilidad.frmEspera
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New()
 
         ' This call is required by the designer.
         InitializeComponent()
 
+        dtb = New BasesParaCompatibilidad.DataBase()
         doc = New C1PrintDocument
 
         ContadorProductos = 0
@@ -31,8 +33,8 @@ Public Class LisDepPorTipos
     End Sub
 
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
-        TabTipPro = spProd.devolver_TiposProductos 'ctlTipPro.DevolverTiposProductos
-        Tab = ctlDep.devolverDepositosLotes()
+        TabTipPro = spProd.devolver_TiposProductos(dtb) 'ctlTipPro.DevolverTiposProductos
+        Tab = ctlDep.devolverDepositosLotes(dtb)
 
         doc.DefaultUnit = C1.C1Preview.UnitTypeEnum.Mm
 

@@ -18,7 +18,7 @@ Public Class frmEntAguaPotablePuntosMuestreos
 
    Private Sub frmEntAguaPotablePuntosMuestreos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
        dim s as new spEmpleados
-       s.cargar_empleados(Me.cboResponsable)
+        s.cargar_Empleados(Me.cboResponsable, dtb)
        If me.mododeapertura = VISION Then
            Me.cboResponsable.enabled = False
            Me.lblResponsableID.enabled = False
@@ -73,8 +73,8 @@ Public Class frmEntAguaPotablePuntosMuestreos
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As sqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
    Private Sub butVerResponsableID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerResponsableID.Click
@@ -87,7 +87,7 @@ Public Class frmEntAguaPotablePuntosMuestreos
         Dim frmEnt As New frmEntEmpleados(BasesParaCompatibilidad.DetailedSimpleForm.INSERCION, New spEmpleados, New DBO_Empleados)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spEmpleados
-        s.cargar_empleados(Me.cboResponsable)
+        s.cargar_Empleados(Me.cboResponsable, dtb)
     End Sub
 
 End Class

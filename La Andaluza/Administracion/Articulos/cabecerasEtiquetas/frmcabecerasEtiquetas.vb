@@ -19,7 +19,7 @@ Public Class frmcabecerasEtiquetas
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dbocabecerasEtiquetas = CType(sp, spcabecerasEtiquetas).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer))
+        dbocabecerasEtiquetas = CType(sp, spcabecerasEtiquetas).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
         If Not dbocabecerasEtiquetas Is Nothing Then
             newRegForm.SetDataBussinesObject(CType(Me.dbocabecerasEtiquetas, BasesParaCompatibilidad.DataBussines))
         Else

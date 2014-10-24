@@ -18,10 +18,10 @@ Public Class frmEntReconocimientosMedicosSolicitudesEmpleados
 
    Private Sub frmEntReconocimientosMedicosSolicitudesEmpleados_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
        dim s as new spReconocimientosMedicosSolicitudes
-        s.cargar_ReconocimientosMedicosSolicitudes(Me.cboReconocimientoMedicoSolicitud)
+        s.cargar_ReconocimientosMedicosSolicitudes(Me.cboReconocimientoMedicoSolicitud, dtb)
 
         Dim s2 As New spEmpleados
-        s2.cargar_empleados(Me.cboEmpleado)
+        s2.cargar_Empleados(Me.cboEmpleado, dtb)
 
        If me.mododeapertura = VISION Then
            Me.cboEmpleado.enabled = False
@@ -68,15 +68,15 @@ Public Class frmEntReconocimientosMedicosSolicitudesEmpleados
         End IF
    End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As sqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
    Private Sub butVerReconocimientoMedicoSolicitudID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerReconocimientoMedicoSolicitudID.Click
        Dim frmEnt As New frmReconocimientosMedicosSolicitudes()
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spReconocimientosMedicosSolicitudes
-        s.cargar_ReconocimientosMedicosSolicitudes(Me.cboReconocimientoMedicoSolicitud)
+        s.cargar_ReconocimientosMedicosSolicitudes(Me.cboReconocimientoMedicoSolicitud, dtb)
     End Sub
 
     Private Sub butAddReconocimientoMedicoSolicitudID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddReconocimientoMedicoSolicitudID.Click
@@ -84,7 +84,7 @@ Public Class frmEntReconocimientosMedicosSolicitudesEmpleados
         Dim frmEnt As New frmEntReconocimientosMedicosSolicitudes(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spReconocimientosMedicosSolicitudes, DBO_ReconocimientosMedicosSolicitudes)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spReconocimientosMedicosSolicitudes
-        s.cargar_ReconocimientosMedicosSolicitudes(Me.cboReconocimientoMedicoSolicitud)
+        s.cargar_ReconocimientosMedicosSolicitudes(Me.cboReconocimientoMedicoSolicitud, dtb)
     End Sub
 
     Private Sub butVerEmpleadoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)

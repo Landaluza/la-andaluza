@@ -19,7 +19,7 @@
 
     Private Sub frmEntClasesIncidencias_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spClasesIncidencias
-        s.cargar_ClasesIncidencias(Me.cboClase)
+        s.cargar_ClasesIncidencias(Me.cboClase, dtb)
         If Me.mododeapertura = VISION Then
             Me.cboClase.Enabled = False
             Me.lblId_clase.Enabled = False
@@ -44,7 +44,7 @@
             'm_DBO_ClasesIncidencias.ID = cboClase.SelectedValue
             Dim aux As Integer = m_DBO_ClasesIncidencias.id_procesoCalidad
             Dim spClase As New spClasesIncidencias
-            m_DBO_ClasesIncidencias = spClase.Select_Record(cboClase.SelectedValue)
+            m_DBO_ClasesIncidencias = spClase.Select_Record(cboClase.SelectedValue, dtb)
             m_DBO_ClasesIncidencias.id_procesoCalidad = aux
         End If
 
@@ -59,8 +59,8 @@
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerid_procesoCalidad_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)

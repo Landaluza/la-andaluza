@@ -13,29 +13,29 @@ Inherits BasesParaCompatibilidad.StoredProcedure
                         "[dbo].[PaletsProducidos6SelectByFormatoEnvasadoID]")
     End Sub
 
-    Public Overloads Function Select_Record(ByVal PaletProducidoID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As DBO_PaletsProducidos
+    Public Overloads Function Select_Record(ByVal PaletProducidoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_PaletsProducidos
         Dim dbo As New DBO_PaletsProducidos
         dbo.searchKey = dbo.item("PaletProducidoID")
         dbo.searchKey.value = PaletProducidoID
-        MyBase.Select_Record(CType(dbo, BasesParaCompatibilidad.databussines), trans)
+        MyBase.Select_Record(CType(dbo, BasesParaCompatibilidad.databussines), dtb)
         Return dbo
     End Function
 
-    Public Overrides Function Delete(ByVal PaletProducidoID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As Boolean
+    Public Overrides Function Delete(ByVal PaletProducidoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         'borrar contenidos
 
         'Dim dbo As New DBO_PaletsProducidos
         'dbo.searchKey = dbo.item("PaletProducidoID")
         'dbo.searchKey.value = PaletProducidoID
-        'Return MyBase.DeleteProcedure(CType(dbo, BasesParaCompatibilidad.databussines), trans)
+        'Return MyBase.DeleteProcedure(CType(dbo, BasesParaCompatibilidad.databussines),dtb)
 
 
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+        dtb.Conectar()
+
 
         Try
             Dim deleteProcedure As String = "[dbo].[PaletsProducidos2eliminarContenidoPaletsPorPalets]"
-            Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+            Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
             deleteCommand.CommandType = CommandType.StoredProcedure
             deleteCommand.Parameters.AddWithValue("@PaletID", PaletProducidoID)
             deleteCommand.Parameters.AddWithValue("@borradoCompleto", 1)
@@ -46,19 +46,19 @@ Inherits BasesParaCompatibilidad.StoredProcedure
             MessageBox.Show("Error en PaletsProducidos2Delete" & Environment.NewLine() & Environment.NewLine() & ex.Message, ex.GetType.ToString)
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function Delete_sin_borrado_completo(ByVal PaletProducidoID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As Boolean
+    Public Function Delete_sin_borrado_completo(ByVal PaletProducidoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
 
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+        dtb.Conectar()
+
 
         Try
 
             Dim deleteProcedure As String = "[dbo].[PaletsProducidos2eliminarContenidoPaletsPorPalets]"
-            Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+            Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
             deleteCommand.CommandType = CommandType.StoredProcedure
             deleteCommand.Parameters.AddWithValue("@PaletID", PaletProducidoID)
             deleteCommand.Parameters.AddWithValue("@borradoCompleto", 0)
@@ -67,10 +67,10 @@ Inherits BasesParaCompatibilidad.StoredProcedure
             Dim PaletsProducidos2 As New DBO_PaletsProducidos
 
             Dim updateProcedure As String = "[dbo].[PaletsProducidos3Delete]"
-            Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+            Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
             Dim mDBO_usuarios As New DBO_Usuarios
             Dim aux As New spUsuarios
-            mDBO_usuarios = aux.Select_Record(BasesParaCompatibilidad.Config.User)
+            mDBO_usuarios = aux.Select_Record(BasesParaCompatibilidad.Config.User, dtb)
 
             updateCommand.CommandType = CommandType.StoredProcedure
             updateCommand.Parameters.AddWithValue("@OldPaletProducidoID", PaletProducidoID)
@@ -88,79 +88,66 @@ Inherits BasesParaCompatibilidad.StoredProcedure
             MessageBox.Show("Error en PaletsProducidos2Delete" & Environment.NewLine() & Environment.NewLine() & ex.Message, ex.GetType.ToString)
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Sub cargar_PaletsProducidos(ByRef cbo As ComboBox)
-        cbo.mam_DataSource("PaletsProducidosCbo", False)
+    Public Sub cargar_PaletsProducidos(ByRef cbo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        cbo.mam_DataSource("PaletsProducidosCbo", False, dtb)
     End Sub
 
-    Public Function devolver_palets_incompletos_por_TipoFormato(ByVal TipoFormatoId As Integer) As DataTable
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+    Public Function devolver_palets_incompletos_por_TipoFormato(ByVal TipoFormatoId As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
         dtb.PrepararConsulta("PaletsProducidos3SelectPaletsIncompletos @id")
         dtb.AñadirParametroConsulta("@id", TipoFormatoId)
         Return dtb.Consultar()
     End Function
 
-    Public Function devolver_ultimo_palet(ByRef trans As System.Data.SqlClient.SqlTransaction, ByRef con As System.Data.SqlClient.SqlConnection) As Integer
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server, con, trans)
+    Public Function devolver_ultimo_palet(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Return dtb.Consultar("select max(paletproducidoid) from paletsproducidos", False).Rows(0).Item(0)
     End Function
 
-    Public Sub cargar_PaletsProducidosNC_byArticulo(ByRef cbo As ComboBox, ByVal TipoFormatoID As Integer)
-        cbo.mam_DataSource("PaletsProducidosNC_byArticuloCbo " & TipoFormatoID, False)
+    Public Sub cargar_PaletsProducidosNC_byArticulo(ByRef cbo As ComboBox, ByVal TipoFormatoID As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        cbo.mam_DataSource("PaletsProducidosNC_byArticuloCbo " & TipoFormatoID, False, dtb)
     End Sub
 
-    Public Sub cargar_PaletsProducidosEstados(ByRef cbo As ComboBox)
-        cbo.mam_DataSource("PaletsProducidosEstadosCbo", False)
+    Public Sub cargar_PaletsProducidosEstados(ByRef cbo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        cbo.mam_DataSource("PaletsProducidosEstadosCbo", False, dtb)
     End Sub
 
-    Public Function Select_RecordBySSCC(ByVal scc As Integer, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As DBO_PaletsProducidos
+    Public Function Select_RecordBySSCC(ByVal scc As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_PaletsProducidos
         Dim dbo As New DBO_PaletsProducidos
         dbo.searchKey = dbo.item("SCC")
         dbo.searchKey.value = scc
-        MyBase.Select_proc(dbo, "[dbo].[PaletsProducidos5SelectBySCC]", trans)
+        MyBase.Select_proc(dbo, "[dbo].[PaletsProducidos5SelectBySCC]", dtb)
         Return dbo
     End Function
 
-    Public Function calcularCajasAntesExpedir(ByVal scc As Integer, Optional cnn As SqlClient.SqlConnection = Nothing, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As Integer
-        Dim dtb as BasesParaCompatibilidad.Database
-        If trans Is Nothing Then
-            dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Else
-            dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server, cnn, trans)
-        End If
-
+    Public Function calcularCajasAntesExpedir(ByVal scc As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Dim cuenta As Integer = 0
         dtb.PrepararConsulta("PaletsProducidos4CalcularCajas @scc")
         dtb.AñadirParametroConsulta("@scc", scc)
         cuenta = dtb.Consultar().Rows(0).Item(0)
         'cuenta = dtb.Consultar("exec [dbo].[PaletsProducidos4CalcularCajas] " & scc, False).Rows(0).Item(0)
-        If trans Is Nothing Then dtb.Conectar()
+        dtb.Conectar()
 
         Return cuenta
     End Function
 
-    Public Sub anadir_impresion_etiqueta(ByVal scc As String)
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+    Public Sub anadir_impresion_etiqueta(ByVal scc As String, ByRef dtb As BasesParaCompatibilidad.DataBase)
         dtb.PrepararConsulta("update paletsproducidos set ContadorImpresion = ContadorImpresion +1 where scc = @scc")
         dtb.AñadirParametroConsulta("@scc", scc)
         dtb.Consultar()
     End Sub
 
-    Public Function SelectPaletsProducidosBySccAndReferencia() As DataTable
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+    Public Function SelectPaletsProducidosBySccAndReferencia(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
         Return dtb.Consultar("SelectPaletsProducidosBySccAndReferencia", True)
     End Function
 
-    Public Function SelectPaletsProducidosSumReferencia() As DataTable
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+    Public Function SelectPaletsProducidosSumReferencia(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
         Return dtb.Consultar("SelectPaletsProducidosSumReferencia", False)
     End Function
 
-    Public Function DevolverPorFecha(ByVal EnvID As Integer) As DataTable
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+    Public Function DevolverPorFecha(ByVal EnvID As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
 
         Dim strSELECT As String = "select Envasados.EnvasadoID, PaletsProducidos.SCC, PaletsProducidos.FormatoID, articulo Descripcion," & _
                        "DATEDIFF(minute, PaletsContenidos.HoraInicio, PaletsContenidos.HoraFin) as Duracion," & _
@@ -176,8 +163,7 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         Return dtb.Consultar(strSELECT & strFROM & strWHERE, False)
     End Function
 
-    Public Function seleccionarTipoPaletPorScc(ByVal scc As Integer) As Integer
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+    Public Function seleccionarTipoPaletPorScc(ByVal scc As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         dtb.PrepararConsulta("select palettipoid from articulosenvasesTerciarios, formatosEnvasados, paletsproducidos " & _
         "where articulosenvasesTerciarios.sccetiquetaid = tipoformatoEnvasadoid " & _
         "and formatoEnvasadoid = formatoid " & _
@@ -197,13 +183,8 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         End If
     End Function
 
-    Public Function No_conforme_por_formato(ByVal formato As Integer, Optional ByRef trans As SqlClient.SqlTransaction = Nothing) As Integer
-        Dim dtb as BasesParaCompatibilidad.Database
-        If trans Is Nothing Then
-            dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Else
-            dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server, BasesParaCompatibilidad.BD.Cnx, trans)
-        End If
+    Public Function No_conforme_por_formato(ByVal formato As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
+
 
         dtb.PrepararConsulta("select id_paletproducidonoconforme from articulosenvasesterciarios where sccetiquetaid = @tf")
         dtb.AñadirParametroConsulta("@tf", formato)
@@ -215,8 +196,7 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         Return CInt(dt.Rows(0).Item(0))
     End Function
 
-    Public Function estaEtiquetado(ByVal id As Integer) As Boolean
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+    Public Function estaEtiquetado(ByVal id As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         dtb.PrepararConsulta("select isnull(contadorImpresiones, 0) from paletsproducidos where paletproducidoid = @id")
         dtb.AñadirParametroConsulta("@id", id)
         Dim dt As DataTable = dtb.Consultar()
@@ -228,8 +208,7 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         Return True
     End Function
 
-    Public Function Etiquetar(ByVal id As Integer) As Boolean
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+    Public Function Etiquetar(ByVal id As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Try
             Return dtb.ConsultaAlteraciones("update paletsproducidos set contadorImpresiones = isnull(ContadorImpresiones, 0)+1 where paletproducidoid = " & id)
 
@@ -239,15 +218,15 @@ Inherits BasesParaCompatibilidad.StoredProcedure
 
     End Function
 
-    Public Function estaCargado(ByVal scc As Integer, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As Boolean
+    Public Function estaCargado(ByVal scc As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Dim cuenta As Integer = 0
 
-        If trans Is Nothing Then BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+        dtb.Conectar()
+
         Dim selectProcedure As String = "[dbo].[PaletsProducidos4EstaCargado]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
-        If Not trans Is Nothing Then selectCommand.Transaction = trans
+
         selectCommand.Parameters.AddWithValue("@SCC", scc)
         Try
             Dim reader As System.Data.SqlClient.SqlDataReader = selectCommand.ExecuteReader(CommandBehavior.SingleRow)
@@ -258,19 +237,19 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         Catch ex As System.Data.SqlClient.SqlException
             Throw New Exception("Error en la consulta. " & ex.Message)
         Finally
-            If trans Is Nothing Then connection.Close()
+            dtb.Desconectar()
         End Try
 
         Return If(cuenta > 0, True, False)
     End Function
 
-    Public Function marcarComoExtraviado(ByVal scc As Integer, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As Boolean
+    Public Function marcarComoExtraviado(ByVal scc As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Try
             Dim m_dbo As New DBO_PaletsProducidos
-            m_dbo = Me.Select_RecordBySSCC(scc, trans)
+            m_dbo = Me.Select_RecordBySSCC(scc, dtb)
             m_dbo.EnAlmacen = False
             m_dbo.Id_Estado = 2
-            Return Me.UpdateProcedure(m_dbo, trans)
+            Return Me.UpdateProcedure(m_dbo, dtb)
         Catch ex As Exception
             Return False
         End Try

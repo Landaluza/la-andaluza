@@ -11,19 +11,19 @@ Inherits BasesParaCompatibilidad.StoredProcedure
                      "[dbo].[ProveedoresMailsPedidosSelectDgvBy]")
    End Sub
 
-   Public Overloads Function Select_Record(ByVal ProveedorMailPedidoID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As DBO_ProveedoresMailsPedidos
-       Dim dbo As New DBO_ProveedoresMailsPedidos
-       dbo.searchKey = dbo.item("ProveedorMailPedidoID")
-       dbo.searchKey.value = ProveedorMailPedidoID
-       MyBase.Select_Record(ctype(dbo, BasesParaCompatibilidad.databussines), trans)
-       Return dbo
-   End Function
+    Public Overloads Function Select_Record(ByVal ProveedorMailPedidoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_ProveedoresMailsPedidos
+        Dim dbo As New DBO_ProveedoresMailsPedidos
+        dbo.searchKey = dbo.item("ProveedorMailPedidoID")
+        dbo.searchKey.value = ProveedorMailPedidoID
+        MyBase.Select_Record(CType(dbo, BasesParaCompatibilidad.databussines), dtb)
+        Return dbo
+    End Function
 
-   Public Overrides Function Delete(ByVal ProveedorMailPedidoID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As Boolean
-       Dim dbo As New DBO_ProveedoresMailsPedidos
-       dbo.searchKey = dbo.item("ProveedorMailPedidoID")
-       dbo.searchKey.value = ProveedorMailPedidoID
-       return MyBase.DeleteProcedure(ctype(dbo, BasesParaCompatibilidad.databussines), trans)
-   End Function
+    Public Overrides Function Delete(ByVal ProveedorMailPedidoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        Dim dbo As New DBO_ProveedoresMailsPedidos
+        dbo.searchKey = dbo.item("ProveedorMailPedidoID")
+        dbo.searchKey.value = ProveedorMailPedidoID
+        Return MyBase.DeleteProcedure(CType(dbo, BasesParaCompatibilidad.databussines), dtb)
+    End Function
 
 End Class

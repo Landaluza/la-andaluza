@@ -1,11 +1,12 @@
 ﻿Imports BasesParaCompatibilidad.DataGridViewExtension
 Public Class frmIncidenciasRecuento
     Private sp As spIncidenciasRecuento
+    Private dtb As BasesParaCompatibilidad.DataBase
 
     Public Sub New()
 
         InitializeComponent()
-
+        dtb = New BasesParaCompatibilidad.DataBase
         Me.sp = New spIncidenciasRecuento
     End Sub
     Private Sub frmIncidenciasRecuento_Resize(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Resize
@@ -19,7 +20,7 @@ Public Class frmIncidenciasRecuento
 
     Private Sub dgvFill()
 
-        Dim dt As DataTable = sp.SelectByFecha(Me.dtpInicio.Value, Me.dtpFin.Value)
+        Dim dt As DataTable = sp.SelectByFecha(Me.dtpInicio.Value, Me.dtpFin.Value, dtb)
         If Not dt Is Nothing Then
             Me.dgvIncidencias.DataSource = dt
 

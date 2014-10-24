@@ -22,12 +22,12 @@ Public Class frmVisitantesTipos
 
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then _
-                    CType(sp, spVisitantesTipos).VisitantesTiposDelete(dgvGeneral.CurrentRow.Cells("VisitanteTipoID").Value)
+                    CType(sp, spVisitantesTipos).VisitantesTiposDelete(dgvGeneral.CurrentRow.Cells("VisitanteTipoID").Value, dtb)
         dgvFill()
     End Sub
 
     Overrides Sub Action(ByVal TipoAction As String)
-        If TipoAction <> ACCION_INSERTAR Then m_VisitanteTipo = CType(sp, spVisitantesTipos).Select_Record(dgvGeneral.CurrentRow.Cells("VisitanteTipoID").Value)
+        If TipoAction <> ACCION_INSERTAR Then m_VisitanteTipo = CType(sp, spVisitantesTipos).Select_Record(dgvGeneral.CurrentRow.Cells("VisitanteTipoID").Value, dtb)
         'FormEntradaDatos(frmEntVisitantesTipos, m_VisitanteTipo, TipoAction, Titulo)
 
         frmEnt = New frmEntVisitantesTipos(m_VisitanteTipo)

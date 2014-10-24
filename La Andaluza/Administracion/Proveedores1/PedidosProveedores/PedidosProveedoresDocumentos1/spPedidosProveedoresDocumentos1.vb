@@ -8,12 +8,12 @@ Class spPedidosProveedoresDocumentos1
                     "[dbo].[PedidosProveedoresDocumentos1Delete]", "PedidosProveedoresDocumentos1SelectDgv", "PedidosProveedoresDocumentos1SelectDgvByPedidoProveedorMaestroID")
     End Sub
 
-    Public Function Select_Record(ByVal PedidoProveedorDocumentoID As Int32) As DBO_PedidosProveedoresDocumentos1
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal PedidoProveedorDocumentoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_PedidosProveedoresDocumentos1
+        dtb.Conectar()
         Dim DBO_PedidosProveedoresDocumentos1 As New DBO_PedidosProveedoresDocumentos1
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[PedidosProveedoresDocumentos1Select]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@PedidoProveedorDocumentoID", PedidoProveedorDocumentoID)
         Try
@@ -34,16 +34,16 @@ Class spPedidosProveedoresDocumentos1
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_PedidosProveedoresDocumentos1
     End Function
 
-    Public Function PedidosProveedoresDocumentos1Insert(ByVal dbo_PedidosProveedoresDocumentos1 As DBO_PedidosProveedoresDocumentos1) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function PedidosProveedoresDocumentos1Insert(ByVal dbo_PedidosProveedoresDocumentos1 As DBO_PedidosProveedoresDocumentos1, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[PedidosProveedoresDocumentos1Insert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
         insertCommand.Parameters.AddWithValue("@Descripcion", dbo_PedidosProveedoresDocumentos1.Descripcion)
         insertCommand.Parameters.AddWithValue("@Ruta", dbo_PedidosProveedoresDocumentos1.Ruta)
@@ -65,15 +65,15 @@ Class spPedidosProveedoresDocumentos1
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function PedidosProveedoresDocumentos1Update(ByVal newDBO_PedidosProveedoresDocumentos1 As DBO_PedidosProveedoresDocumentos1) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function PedidosProveedoresDocumentos1Update(ByVal newDBO_PedidosProveedoresDocumentos1 As DBO_PedidosProveedoresDocumentos1, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[PedidosProveedoresDocumentos1Update]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         updateCommand.Parameters.AddWithValue("@NewDescripcion", newDBO_PedidosProveedoresDocumentos1.Descripcion)
         updateCommand.Parameters.AddWithValue("@NewRuta", newDBO_PedidosProveedoresDocumentos1.Ruta)
@@ -94,18 +94,18 @@ Class spPedidosProveedoresDocumentos1
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdatePedidosProveedoresDocumentos1" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdatePedidosProveedoresDocumentos1" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function PedidosProveedoresDocumentos1Delete(ByVal PedidoProveedorDocumentoID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function PedidosProveedoresDocumentos1Delete(ByVal PedidoProveedorDocumentoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[PedidosProveedoresDocumentos1Delete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         deleteCommand.Parameters.AddWithValue("@OldPedidoProveedorDocumentoID", PedidoProveedorDocumentoID)
         deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
@@ -121,15 +121,15 @@ Class spPedidosProveedoresDocumentos1
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Sub GrabarPedidosProveedoresDocumentos1(ByVal dbo_PedidosProveedoresDocumentos1 As DBO_PedidosProveedoresDocumentos1)
+    Public Sub GrabarPedidosProveedoresDocumentos1(ByVal dbo_PedidosProveedoresDocumentos1 As DBO_PedidosProveedoresDocumentos1, ByRef dtb As BasesParaCompatibilidad.DataBase)
         If dbo_PedidosProveedoresDocumentos1.PedidoProveedorDocumentoID = 0 Then
-            PedidosProveedoresDocumentos1Insert(dbo_PedidosProveedoresDocumentos1)
+            PedidosProveedoresDocumentos1Insert(dbo_PedidosProveedoresDocumentos1, dtb)
         Else
-            PedidosProveedoresDocumentos1Update(dbo_PedidosProveedoresDocumentos1)
+            PedidosProveedoresDocumentos1Update(dbo_PedidosProveedoresDocumentos1, dtb)
         End If
     End Sub
 

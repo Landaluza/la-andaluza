@@ -24,10 +24,10 @@ Public Class frmEntArticulos_AlmacenNoConforme
 
     Private Sub frmEntArticulos_AlmacenNoConforme_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spTiposAcciones
-        s.cargar_TiposAcciones(Me.cboTipoAccion)
+        s.cargar_TiposAcciones(Me.cboTipoAccion, dtb)
 
         Dim s2 As New spMedidasProductos
-        s2.cargar_MedidasProductos(Me.cboid_MedidaProducto)
+        s2.cargar_MedidasProductos(Me.cboid_MedidaProducto, dtb)
         If Me.ModoDeApertura = VISION Then
             Me.cboid_MedidaProducto.Enabled = False
             Me.lblid_MedidaProducto.Enabled = False
@@ -91,8 +91,8 @@ Public Class frmEntArticulos_AlmacenNoConforme
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerId_TipoAccion_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_TipoAccion.Click
@@ -105,7 +105,7 @@ Public Class frmEntArticulos_AlmacenNoConforme
         Dim frmEnt As New frmEntTiposAcciones(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spTiposAcciones, DBO_TiposAcciones)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTiposAcciones
-        s.cargar_TiposAcciones(Me.cboTipoAccion)
+        s.cargar_TiposAcciones(Me.cboTipoAccion, dtb)
     End Sub
 
     Private Sub butVerid_MedidaProducto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerid_MedidaProducto.Click

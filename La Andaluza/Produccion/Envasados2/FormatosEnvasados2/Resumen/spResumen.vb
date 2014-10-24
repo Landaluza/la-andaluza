@@ -12,23 +12,23 @@ Public Class spResumen
     Private sp_CalcularMediasEnvasado As String = "FormatosEnvasados2resumenMedias"
     Private sp_CalcularTotalesEnvasado As String = "FormatosEnvasados2resumenTotales"
 
-    Public Function selectRecord(ByVal FormatoEnvasadoID As Integer) As DBO_ResumenFormatosEnvasados
+    Public Function selectRecord(ByVal FormatoEnvasadoID As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_ResumenFormatosEnvasados
         Dim m_dbo As DBO_ResumenFormatosEnvasados = New DBO_ResumenFormatosEnvasados
 
-        m_dbo = DetallesIncidencias(m_dbo)
-        m_dbo = MediasEnvasado(m_dbo)
-        m_dbo = TotalesEnvasado(m_dbo)
-        m_dbo = TotalesTiempo(m_dbo)
+        m_dbo = DetallesIncidencias(m_dbo, dtb)
+        m_dbo = MediasEnvasado(m_dbo, dtb)
+        m_dbo = TotalesEnvasado(m_dbo, dtb)
+        m_dbo = TotalesTiempo(m_dbo, dtb)
 
         Return m_dbo
     End Function
 
-    Public Function DetallesIncidencias(ByVal m_dbo As DBO_ResumenFormatosEnvasados) As DBO_ResumenFormatosEnvasados
+    Public Function DetallesIncidencias(ByVal m_dbo As DBO_ResumenFormatosEnvasados, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_ResumenFormatosEnvasados
         Try
-            BasesParaCompatibilidad.BD.Conectar()
+            dtb.Conectar()
             Dim dbo As DBO_ResumenFormatosEnvasados = New DBO_ResumenFormatosEnvasados
-            Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
-            Dim selectCommand As New System.Data.SqlClient.SqlCommand(sp_CalcularDetallesIncidencias, connection)
+
+            Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.Comando(sp_CalcularDetallesIncidencias)
             selectCommand.CommandType = CommandType.StoredProcedure
             selectCommand.Parameters.AddWithValue("@FormatoEnvasado", m_dbo.FormatoEnvasadoID)
 
@@ -48,20 +48,22 @@ Public Class spResumen
             End If
 
             reader.Close()
-            connection.Close()
+
         Catch ex As System.Data.SqlClient.SqlException
             MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            dtb.Desconectar()
         End Try
 
         Return m_dbo
     End Function
 
-    Public Function MediasEnvasado(ByVal m_dbo As DBO_ResumenFormatosEnvasados) As DBO_ResumenFormatosEnvasados
+    Public Function MediasEnvasado(ByVal m_dbo As DBO_ResumenFormatosEnvasados, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_ResumenFormatosEnvasados
         Try
-            BasesParaCompatibilidad.BD.Conectar()
+            dtb.Conectar()
             Dim dbo As DBO_ResumenFormatosEnvasados = New DBO_ResumenFormatosEnvasados
-            Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
-            Dim selectCommand As New System.Data.SqlClient.SqlCommand(sp_CalcularMediasEnvasado, connection)
+
+            Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.Comando(sp_CalcularMediasEnvasado)
             selectCommand.CommandType = CommandType.StoredProcedure
             selectCommand.Parameters.AddWithValue("@FormatoEnvasado", m_dbo.FormatoEnvasadoID)
 
@@ -73,20 +75,22 @@ Public Class spResumen
             End If
 
             reader.Close()
-            connection.Close()
+
         Catch ex As System.Data.SqlClient.SqlException
             MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            dtb.Desconectar()
         End Try
 
         Return m_dbo
     End Function
 
-    Public Function TotalesEnvasado(ByVal m_dbo As DBO_ResumenFormatosEnvasados) As DBO_ResumenFormatosEnvasados
+    Public Function TotalesEnvasado(ByVal m_dbo As DBO_ResumenFormatosEnvasados, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_ResumenFormatosEnvasados
         Try
-            BasesParaCompatibilidad.BD.Conectar()
+            dtb.Conectar()
             Dim dbo As DBO_ResumenFormatosEnvasados = New DBO_ResumenFormatosEnvasados
-            Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
-            Dim selectCommand As New System.Data.SqlClient.SqlCommand(sp_CalcularTotalesEnvasado, connection)
+
+            Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.Comando(sp_CalcularTotalesEnvasado)
             selectCommand.CommandType = CommandType.StoredProcedure
             selectCommand.Parameters.AddWithValue("@FormatoEnvasado", m_dbo.FormatoEnvasadoID)
 
@@ -101,20 +105,22 @@ Public Class spResumen
             End If
 
             reader.Close()
-            connection.Close()
+
         Catch ex As System.Data.SqlClient.SqlException
             MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            dtb.Desconectar()
         End Try
 
         Return m_dbo
     End Function
 
-    Public Function TotalesTiempo(ByVal m_dbo As DBO_ResumenFormatosEnvasados) As DBO_ResumenFormatosEnvasados
+    Public Function TotalesTiempo(ByVal m_dbo As DBO_ResumenFormatosEnvasados, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_ResumenFormatosEnvasados
         Try
-            BasesParaCompatibilidad.BD.Conectar()
+            dtb.Conectar()
             Dim dbo As DBO_ResumenFormatosEnvasados = New DBO_ResumenFormatosEnvasados
-            Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
-            Dim selectCommand As New System.Data.SqlClient.SqlCommand(sp_CalcularTotalesTiempo, connection)
+
+            Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.Comando(sp_CalcularTotalesTiempo)
             selectCommand.CommandType = CommandType.StoredProcedure
             selectCommand.Parameters.AddWithValue("@FormatoEnvasado", m_dbo.FormatoEnvasadoID)
 
@@ -130,9 +136,11 @@ Public Class spResumen
             End If
 
             reader.Close()
-            connection.Close()
+
         Catch ex As System.Data.SqlClient.SqlException
             MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            dtb.Desconectar()
         End Try
 
         Return m_dbo

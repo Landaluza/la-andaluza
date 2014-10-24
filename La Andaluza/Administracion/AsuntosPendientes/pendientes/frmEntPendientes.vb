@@ -33,13 +33,13 @@ Public Class frmEntPendientes
 
     Private Sub frmEntPendientes_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s0 As New spTiposPendientes
-        s0.cargar_TiposPendientes(Me.cboTipoPendiente)
+        s0.cargar_TiposPendientes(Me.cboTipoPendiente, dtb)
 
         Dim s1 As New spProveedores
-        s1.cargar_Proveedores(Me.cboProveedor)
+        s1.cargar_Proveedores(Me.cboProveedor, dtb)
 
         Dim s2 As New spEmpleados
-        s2.cargar_Empleados(Me.cboResponsable)
+        s2.cargar_Empleados(Me.cboResponsable, dtb)
 
         If Me.ModoDeApertura = VISION Then
             Me.cboTipoPendiente.Enabled = False
@@ -119,8 +119,8 @@ Public Class frmEntPendientes
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butRutaDocumento_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butRutaDocumento.Click
@@ -150,7 +150,7 @@ Public Class frmEntPendientes
         Dim spt As New spTiposPendientes
         Dim frmEnt As New frmTiposPendientes()
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
-        spt.cargar_TiposPendientes(Me.cboTipoPendiente)
+        spt.cargar_TiposPendientes(Me.cboTipoPendiente, dtb)
     End Sub
 
     Private Sub butAddTipoPendiente_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddTipoPendiente.Click
@@ -159,14 +159,14 @@ Public Class frmEntPendientes
         Dim frmEnt As New frmEntTiposPendientes(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, s, DBO_TiposPendientes)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 
-        s.cargar_TiposPendientes(Me.cboTipoPendiente)
+        s.cargar_TiposPendientes(Me.cboTipoPendiente, dtb)
     End Sub
 
     Private Sub butVerProveedor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerProveedor.Click
         Dim frmEnt As New frmProveedores()
         Dim s As New spProveedores
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
-        s.cargar_Proveedores(Me.cboProveedor)
+        s.cargar_Proveedores(Me.cboProveedor, dtb)
     End Sub
 
     Private Sub butAddProveedor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddProveedor.Click
@@ -174,14 +174,14 @@ Public Class frmEntPendientes
         Dim s As New spProveedores
         Dim frmEnt As New frmEntProveedores(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, s, DBO_Proveedores)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
-        s.cargar_Proveedores(Me.cboProveedor)
+        s.cargar_Proveedores(Me.cboProveedor, dtb)
     End Sub
 
     Private Sub butVerResponsableID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerResponsableID.Click
         Dim s As New spEmpleados
         Dim frmEnt As New frmEmpleados()
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
-        s.cargar_Empleados(Me.cboResponsable)
+        s.cargar_Empleados(Me.cboResponsable, dtb)
     End Sub
 
     Private Sub butAddResponsableID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddResponsableID.Click
@@ -189,7 +189,7 @@ Public Class frmEntPendientes
         Dim s As New spEmpleados
         Dim frmEnt As New frmEntEmpleados(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, s, DBO_Empleados)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
-        s.cargar_Empleados(Me.cboResponsable)
+        s.cargar_Empleados(Me.cboResponsable, dtb)
     End Sub
 
     Private Sub frmEntPendientes_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown

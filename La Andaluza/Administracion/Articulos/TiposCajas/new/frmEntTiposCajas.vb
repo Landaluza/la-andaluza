@@ -23,11 +23,11 @@ Public Class frmEntTiposCajas
 
     Private Sub frmEntTiposCajas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s0 As New spTiposBotellas
-        s0.cargar_TiposBotellas(Me.cboTipoBotella)
+        s0.cargar_TiposBotellas(Me.cboTipoBotella, dtb)
         Dim s1 As New spPaletsMovimientosTipos
-        s1.cargar_PaletsMovimientosTipos(Me.cboid_MovimentoEncajado)
+        s1.cargar_PaletsMovimientosTipos(Me.cboid_MovimentoEncajado, dtb)
         Dim s2 As New sptiposEnvases
-        s2.cargar_tiposEnvases(Me.cboid_tipoEnvase)
+        s2.cargar_tiposEnvases(Me.cboid_tipoEnvase, dtb)
         If Me.mododeapertura = VISION Then
             Me.cboTipoBotella.enabled = False
             Me.lblTipoBotellaID.enabled = False
@@ -121,8 +121,8 @@ Public Class frmEntTiposCajas
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerTipoBotellaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerTipoBotellaID.Click
@@ -135,7 +135,7 @@ Public Class frmEntTiposCajas
         Dim frmEnt As New frmEntTiposBotellas(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spTiposBotellas, DBO_TiposBotellas)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTiposBotellas
-        s.cargar_TiposBotellas(Me.cboTipoBotella)
+        s.cargar_TiposBotellas(Me.cboTipoBotella, dtb)
     End Sub
 
     Private Sub butVerid_MovimentoEncajado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerid_MovimentoEncajado.Click
@@ -148,7 +148,7 @@ Public Class frmEntTiposCajas
         Dim frmEnt As New frmEntPaletsMovimientosTipos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spPaletsMovimientosTipos, DBO_PaletsMovimientosTipos)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spPaletsMovimientosTipos
-        s.cargar_PaletsMovimientosTipos(Me.cboid_MovimentoEncajado)
+        s.cargar_PaletsMovimientosTipos(Me.cboid_MovimentoEncajado, dtb)
     End Sub
 
     Private Sub butVerid_tipoEnvase_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerid_tipoEnvase.Click
@@ -161,7 +161,7 @@ Public Class frmEntTiposCajas
         Dim frmEnt As New frmEnttiposEnvases(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New sptiposEnvases, DBO_tiposEnvases)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New sptiposEnvases
-        s.cargar_tiposEnvases(Me.cboid_tipoEnvase)
+        s.cargar_tiposEnvases(Me.cboid_tipoEnvase, dtb)
     End Sub
 
     Private Sub frmEntTiposCajas_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown

@@ -25,7 +25,7 @@ Public Class frmIncidenciasCalidad
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboIncidenciasCalidad = CType(sp, spIncidenciasCalidad).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboIncidenciasCalidad = CType(sp, spIncidenciasCalidad).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboIncidenciasCalidad Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboIncidenciasCalidad)
         Else

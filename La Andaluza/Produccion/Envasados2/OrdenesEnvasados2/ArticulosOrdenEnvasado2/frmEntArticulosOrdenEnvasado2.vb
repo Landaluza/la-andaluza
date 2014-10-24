@@ -6,7 +6,6 @@ Public Class frmEntArticulosOrdenEnvasado2
     Private m_Pos As Integer
     Private m_DBO_ArticulosOrdenEnvasado As DBO_ArticulosOrdenEnvasado2
     'Dim m_VerID As Boolean = False
-    Private dtb As BasesParaCompatibilidad.DataBase
     Private spTiposFormatos As spArticulosEnvasadosHistoricos
     Private spArticulosOrdenEnvasado2 As spArticulosOrdenEnvasado2
 
@@ -16,24 +15,24 @@ Public Class frmEntArticulosOrdenEnvasado2
         m_DBO_ArticulosOrdenEnvasado = ArticulosOrdenEnvasado
         m_Pos = Pos
         'm_VerID = VerID
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.DataBase()
         spTiposFormatos = New spArticulosEnvasadosHistoricos
         spArticulosOrdenEnvasado2 = New spArticulosOrdenEnvasado2
     End Sub
 
     Private Sub frmEntArticulosOrdenEnvasado_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'cboLineaID.mam_DataSource("OrdenesEnvasados2SelectLineasEnvasados"), True)
-        cboLineaID.mam_DataSource("OrdenesEnvasados2SelectLineasEnvasados", False)
+        cboLineaID.mam_DataSource("OrdenesEnvasados2SelectLineasEnvasados", False, dtb)
         SetValores(m_DBO_ArticulosOrdenEnvasado.ArticuloOrdenEnvasadoID, False)
     End Sub
 
     Overrides Sub SetValores(ByVal m_ID As Integer, ByVal m_SelectRecord As Boolean)
-        If m_SelectRecord Then m_DBO_ArticulosOrdenEnvasado = spArticulosOrdenEnvasado2.Select_Record(m_ID, New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server))
+        If m_SelectRecord Then m_DBO_ArticulosOrdenEnvasado = spArticulosOrdenEnvasado2.Select_Record(m_ID, dtb)
         txtArticuloOrdenEnvasadoID.Text = m_DBO_ArticulosOrdenEnvasado.ArticuloOrdenEnvasadoID
         cboLineaID.SelectedValue = If(m_DBO_ArticulosOrdenEnvasado.LineaID = Nothing, -1, m_DBO_ArticulosOrdenEnvasado.LineaID)
 
         Try
-            spTiposFormatos.cargar_comboByLinea_activos(cboArticuloEnvasadoID, cboLineaID.SelectedValue)
+            spTiposFormatos.cargar_comboByLinea_activos(cboArticuloEnvasadoID, cboLineaID.SelectedValue, dtb)
         Catch ex As Exception
         End Try
 
@@ -62,7 +61,7 @@ Public Class frmEntArticulosOrdenEnvasado2
     Private Sub cboLineaID_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cboLineaID.SelectedIndexChanged
         If cboLineaID.SelectedValue.ToString <> "System.Data.DataRowView" Then
 
-            spTiposFormatos.cargar_comboByLinea_activos(cboArticuloEnvasadoID, cboLineaID.SelectedValue)
+            spTiposFormatos.cargar_comboByLinea_activos(cboArticuloEnvasadoID, cboLineaID.SelectedValue, dtb)
         Else
             cboArticuloEnvasadoID.DataSource = Nothing
         End If

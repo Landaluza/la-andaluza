@@ -1,3 +1,4 @@
+Imports BasesParaCompatibilidad.ComboBoxExtension
 Public Class ctlLotes
     Private clsLot As New clsLotes
     Private clsEsp As New clsValoresespecificaciones
@@ -19,26 +20,23 @@ Public Class ctlLotes
         clsAnaExt = New clsAnaliticasExternas
     End Sub
 
-    Public Function CantidadDeMaceraciones() As Integer
-        Return clsLot.CantidadDeMaceraciones()
+    Public Function CantidadDeMaceraciones(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
+        Return clsLot.CantidadDeMaceraciones(dtb)
     End Function
 
-    Public Function DevolverMuestrasAnaliticas() As DataTable
-        Return clsLot.DevolverMuestrasAnaliticas()
-    End Function
+    Public Sub DevolverMuestrasAnaliticas(ByRef dtb As BasesParaCompatibilidad.DataBase, ByRef cbo As ComboBox)
+        cbo.mam_DataSource(clsLot.DevolverMuestrasAnaliticas(dtb), False)
+    End Sub
 
     Public Sub setLoteID(ByVal LoteID As Integer)
         clsLot._LoteID = LoteID
     End Sub
 
     '---------------------------------------------------ENOLOGICOS-----------------------------------------------------------
-    Public Function devolverLotesEnologicos() As DataTable
-        Return clsLot.DevolverEnologicos()
-    End Function
 
-    Public Sub mostrarTodosLotesEnologicos(ByRef dts As dtsLotes.LotesDataTable)
+    Public Sub mostrarTodosLotesEnologicos(ByRef dtb As BasesParaCompatibilidad.DataBase, ByRef dts As dtsLotes.LotesDataTable)
         Dim tabla As New DataTable
-        tabla = clsLot.DevolverEnologicos()
+        tabla = clsLot.DevolverEnologicos(dtb)
         Dim i As Integer
         dts.Clear()
         Dim reg As dtsLotes.LotesRow
@@ -122,9 +120,9 @@ Public Class ctlLotes
         Return clsLot._Referencia
     End Function
 
-    Public Sub mostrarLotesComponentes(ByRef dts As dtsLotesComponentes.LotesComponentesDataTable)
+    Public Sub mostrarLotesComponentes(ByRef dtb As BasesParaCompatibilidad.DataBase, ByRef dts As dtsLotesComponentes.LotesComponentesDataTable)
         Dim tabla As New DataTable
-        tabla = clsLot.DevolverLotesComponentes()
+        tabla = clsLot.DevolverLotesComponentes(dtb)
         Dim i As Integer
         dts.Clear()
         Dim reg As dtsLotesComponentes.LotesComponentesRow
@@ -144,9 +142,9 @@ Public Class ctlLotes
         End While
     End Sub
 
-    Public Sub mostrarLotesQueCompone(ByRef dts As dtsLotesComponentes.LotesComponentesDataTable)
+    Public Sub mostrarLotesQueCompone(ByRef dtb As BasesParaCompatibilidad.DataBase, ByRef dts As dtsLotesComponentes.LotesComponentesDataTable)
         Dim tabla As New DataTable
-        tabla = clsLot.DevolverLotesQueCompone()
+        tabla = clsLot.DevolverLotesQueCompone(dtb)
         Dim i As Integer
         dts.Clear()
         Dim reg As dtsLotesComponentes.LotesComponentesRow
@@ -167,9 +165,9 @@ Public Class ctlLotes
     End Sub
 
     '-----------------------------------------------------LOTES-----------------------------------------------------------------
-    Public Sub mostrarTrazabilidadLote(ByRef dts As dtsLotesTrazabilidad.LotesTrazabilidadDataTable, ByVal Lote As Integer)
+    Public Sub mostrarTrazabilidadLote(ByRef dtb As BasesParaCompatibilidad.DataBase, ByRef dts As dtsLotesTrazabilidad.LotesTrazabilidadDataTable, ByVal Lote As Integer)
         Dim tabla As New DataTable
-        tabla = clsLot.DevolverLotesTrazabilidad(Lote)
+        tabla = clsLot.DevolverLotesTrazabilidad(dtb, Lote)
         Dim i As Integer
         Dim reg As dtsLotesTrazabilidad.LotesTrazabilidadRow
         While i < tabla.Rows.Count
@@ -188,7 +186,7 @@ Public Class ctlLotes
             End If
 
             dts.AddLotesTrazabilidadRow(reg)
-            mostrarTrazabilidadLote(dts, reg.LoteId)
+            mostrarTrazabilidadLote(dtb, dts, reg.LoteId)
             reg = Nothing
             i = i + 1
         End While
@@ -222,8 +220,8 @@ Public Class ctlLotes
 
     Private Sub guardarvalor(sender As Object, e As EventArgs)
         Try
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             Dim txt As BasesParaCompatibilidad.CuadroDeTextoMuestra = CType(sender, BasesParaCompatibilidad.CuadroDeTextoMuestra)
-            Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
 
             If txt.Tag = 1 Then
                 guardarObservacionesLotes(dtb, txt)
@@ -914,7 +912,7 @@ Public Class ctlLotes
                 End If
             Else
                 clsMueObs._Descripcion = txtobservacion.Text
-                If clsMueObs.existe Then
+                If clsMueObs.existe(dtb) Then
                     If Not clsMueObs.Modificar(dtb) Then
                         Throw New Exception("Error al modificar las observaciones")
                     End If
@@ -940,7 +938,7 @@ Public Class ctlLotes
                 End If
             Else
                 clsAnaVal._Valor = txtParametro.Text
-                If clsAnaVal.existe Then
+                If clsAnaVal.existe(dtb) Then
                     If Not clsAnaVal.Modificar(dtb) Then
                         Throw New Exception("Erro al nmodificar valores de analiticas")
                     End If
@@ -1139,8 +1137,7 @@ Public Class ctlLotes
         Return True
     End Function
 
-    Public Function EliminarLote(ByVal ID As Integer) As Boolean
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+    Public Function EliminarLote(ByVal ID As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         dtb.EmpezarTransaccion()
         Try
 

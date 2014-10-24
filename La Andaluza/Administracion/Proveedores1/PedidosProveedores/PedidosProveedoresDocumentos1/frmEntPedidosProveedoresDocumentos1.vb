@@ -40,7 +40,7 @@ Public Class frmEntPedidosProveedoresDocumentos1
 
     Overrides Sub Guardar()
         GetValores()
-        spPedidosProveedoresDocumentos1.GrabarPedidosProveedoresDocumentos1(m_DBO_PedidosProveedoresDocumentos1)
+        spPedidosProveedoresDocumentos1.GrabarPedidosProveedoresDocumentos1(m_DBO_PedidosProveedoresDocumentos1, dtb)
         Me.Close()
     End Sub
 

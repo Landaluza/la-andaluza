@@ -12,23 +12,23 @@ Inherits BasesParaCompatibilidad.StoredProcedure
                      "[dbo].[ProcedimientosSelectDgvBy]")
    End Sub
 
-   Public Overloads Function Select_Record(ByVal Id As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As DBO_Procedimientos
-       Dim dbo As New DBO_Procedimientos
-       dbo.searchKey = dbo.item("Id")
-       dbo.searchKey.value = Id
-       MyBase.Select_Record(ctype(dbo, BasesParaCompatibilidad.databussines), trans)
-       Return dbo
-   End Function
+    Public Overloads Function Select_Record(ByVal Id As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_Procedimientos
+        Dim dbo As New DBO_Procedimientos
+        dbo.searchKey = dbo.item("Id")
+        dbo.searchKey.value = Id
+        MyBase.Select_Record(CType(dbo, BasesParaCompatibilidad.databussines), dtb)
+        Return dbo
+    End Function
 
-   Public Overrides Function Delete(ByVal Id As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As Boolean
-       Dim dbo As New DBO_Procedimientos
-       dbo.searchKey = dbo.item("Id")
-       dbo.searchKey.value = Id
-       return MyBase.DeleteProcedure(ctype(dbo, BasesParaCompatibilidad.databussines), trans)
-   End Function
+    Public Overrides Function Delete(ByVal Id As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        Dim dbo As New DBO_Procedimientos
+        dbo.searchKey = dbo.item("Id")
+        dbo.searchKey.value = Id
+        Return MyBase.DeleteProcedure(CType(dbo, BasesParaCompatibilidad.databussines), dtb)
+    End Function
 
-   Public Sub cargar_Procedimientos(ByRef cbo As ComboBox)
-       cbo.mam_DataSource("ProcedimientosCbo", False)
-   End Sub
+    Public Sub cargar_Procedimientos(ByRef cbo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        cbo.mam_DataSource("ProcedimientosCbo", False, dtb)
+    End Sub
 
 End Class

@@ -717,37 +717,47 @@ Public Class clsLotes
 
 
 
-    Public Function DevolverLotesComponentes() As DataTable
-        Return Deprecated.ConsultaVer("LotePartida.LoteID, LotePartida.CodigoLote, CompuestoPor.Cantidad, Movimientos.Observaciones", _
-                              "Lotes AS LotePartida INNER JOIN CompuestoPor ON LotePartida.LoteID = CompuestoPor.LotePartida INNER JOIN Movimientos ON CompuestoPor.MovimientoID = Movimientos.MovimientoID", _
-                              "CompuestoPor.LoteFinal = " & Convert.ToString(LoteID))
+    Public Function DevolverLotesComponentes(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
+        dtb.PrepararConsulta("select LotePartida.LoteID, LotePartida.CodigoLote, CompuestoPor.Cantidad, Movimientos.Observaciones " & _
+                              " from Lotes AS LotePartida INNER JOIN CompuestoPor ON LotePartida.LoteID = CompuestoPor.LotePartida INNER JOIN Movimientos ON CompuestoPor.MovimientoID = Movimientos.MovimientoID " & _
+                              " where CompuestoPor.LoteFinal = @lot")
+
+        dtb.AñadirParametroConsulta("@lot", LoteID)
+        Return dtb.Consultar
     End Function
 
-    Public Function DevolverLotesQueCompone() As DataTable
-        Return Deprecated.ConsultaVer("Lotes.LoteID, Lotes.CodigoLote, CompuestoPor.Cantidad, Movimientos.Observaciones", _
-                              "CompuestoPor INNER JOIN Movimientos ON CompuestoPor.MovimientoID = Movimientos.MovimientoID INNER JOIN Lotes ON CompuestoPor.LoteFinal = Lotes.LoteID", _
-                              "CompuestoPor.LotePartida=" & Convert.ToString(LoteID))
+    Public Function DevolverLotesQueCompone(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
+        dtb.PrepararConsulta("select Lotes.LoteID, Lotes.CodigoLote, CompuestoPor.Cantidad, Movimientos.Observaciones " & _
+                              " from CompuestoPor INNER JOIN Movimientos ON CompuestoPor.MovimientoID = Movimientos.MovimientoID INNER JOIN Lotes ON CompuestoPor.LoteFinal = Lotes.LoteID" & _
+                              " where CompuestoPor.LotePartida= @lot")
+
+        dtb.AñadirParametroConsulta("@lot", LoteID)
+        Return dtb.Consultar
     End Function
 
-    Public Function DevolverLotesTrazabilidad(ByVal Lote As Integer) As DataTable
-        Return Deprecated.ConsultaVer("Lotes.CodigoLote AS ComponeA, Lotes_Partida.LoteID, Lotes_Partida.CodigoLote, Movimientos.Fecha, Procesos.Descripcion AS Proceso, CompuestoPor.Cantidad, Proveedores.Nombre", _
-                              "Lotes INNER JOIN CompuestoPor ON Lotes.LoteID = CompuestoPor.LoteFinal LEFT JOIN Movimientos ON CompuestoPor.MovimientoID = Movimientos.MovimientoID LEFT JOIN Lotes AS Lotes_Partida ON CompuestoPor.LotePartida = Lotes_Partida.LoteID LEFT JOIN Procesos ON Movimientos.ProcesoID = Procesos.ProcesoID LEFT JOIN Proveedores ON Lotes_Partida.ProveedorID = Proveedores.ProveedorID", _
-                              "Lotes.LoteID =" & Lote)
+    Public Function DevolverLotesTrazabilidad(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal Lote As Integer) As DataTable
+        dtb.PrepararConsulta("select Lotes.CodigoLote AS ComponeA, Lotes_Partida.LoteID, Lotes_Partida.CodigoLote, Movimientos.Fecha, Procesos.Descripcion AS Proceso, CompuestoPor.Cantidad, Proveedores.Nombre " & _
+                              " from Lotes INNER JOIN CompuestoPor ON Lotes.LoteID = CompuestoPor.LoteFinal LEFT JOIN Movimientos ON CompuestoPor.MovimientoID = Movimientos.MovimientoID LEFT JOIN Lotes AS Lotes_Partida ON CompuestoPor.LotePartida = Lotes_Partida.LoteID LEFT JOIN Procesos ON Movimientos.ProcesoID = Procesos.ProcesoID LEFT JOIN Proveedores ON Lotes_Partida.ProveedorID = Proveedores.ProveedorID " & _
+                              " where Lotes.LoteID = @lot")
+        dtb.AñadirParametroConsulta("@lot", Lote)
+        Return dtb.Consultar
     End Function
 
-    Public Function DevolverMuestrasAnaliticas() As DataTable
-        Return Deprecated.ConsultaVer("Analiticas.AnaliticaID, Lotes.Referencia", _
-                              "Lotes inner JOIN Analiticas ON Lotes.LoteID = Analiticas.LoteID", _
-                              "Analiticas.Nombre= 'La Andaluza'  and referencia is not null and referencia <> 0 order by Lotes.Referencia")
+    Public Function DevolverMuestrasAnaliticas(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
+        dtb.PrepararConsulta("select Analiticas.AnaliticaID, convert(varchar, Lotes.Referencia) + ' - ' + isnull(codigolote, '') " & _
+                              "from Lotes inner JOIN Analiticas ON Lotes.LoteID = Analiticas.LoteID" & _
+                              " where Analiticas.Nombre= 'La Andaluza'  and referencia is not null and referencia <> 0 order by Lotes.Referencia")
+
+        Return dtb.Consultar
     End Function
 
     '-----------------------------------ENOLOGICOS---------------------------------------------------
-    Public Function DevolverEnologicos() As DataTable
+    Public Function DevolverEnologicos(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
         Dim strSELECT As String
         Dim strFROM As String
         Dim strWHERE As String
 
-        strSELECT = "Lotes.LoteID," & _
+        strSELECT = "select Lotes.LoteID," & _
                     "Lotes.Descripcion," & _
                     "Lotes.Fecha," & _
                     "Lotes.CantidadRestante, " & _
@@ -758,20 +768,24 @@ Public Class clsLotes
                     "Lotes.CodigoLote, " & _
                     "LoteProveedor"
 
-        strFROM = "Lotes LEFT OUTER JOIN TiposLotes " & _
+        strFROM = " from Lotes LEFT OUTER JOIN TiposLotes " & _
                   "ON Lotes.TipoLoteID = TiposLotes.TipoLoteID LEFT OUTER JOIN " & _
                   "TiposProductos ON Lotes.TipoProductoID = TiposProductos.TipoProductoID LEFT OUTER JOIN " & _
                   "Proveedores ON Lotes.ProveedorID = Proveedores.ProveedorID"
 
-        strWHERE = "(TiposProductos.Enologico = 'True') AND (TiposLotes.Abreviatura = 'Eco')"
+        strWHERE = " where (TiposProductos.Enologico = 'True') AND (TiposLotes.Abreviatura = 'Eco')"
 
-        Return Deprecated.ConsultaVer(strSELECT, strFROM, strWHERE)
+        dtb.PrepararConsulta(strSELECT & strFROM & strWHERE)
+        Return dtb.Consultar
     End Function
 
-    Public Function CantidadDeMaceraciones() As Integer
-        Return Deprecated.ConsultaVer("count(*)", _
-                              "Lotes INNER JOIN CompuestoPor ON Lotes.LoteID = CompuestoPor.LoteFinal INNER JOIN Movimientos ON CompuestoPor.MovimientoID = Movimientos.MovimientoID INNER JOIN Procesos ON Movimientos.ProcesoID = Procesos.ProcesoID inner join tiposmovimientos on tipomovimientoid = tiposmovimientos.id ", _
-                              "tiposmovimientos.abreviatura = 'M' and  Lotes.LoteId =" & Convert.ToString(LoteID)).Rows(0).Item(0)
+    Public Function CantidadDeMaceraciones(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
+        dtb.PrepararConsulta(" select count(*) " & _
+                              " from Lotes INNER JOIN CompuestoPor ON Lotes.LoteID = CompuestoPor.LoteFinal INNER JOIN Movimientos ON CompuestoPor.MovimientoID = Movimientos.MovimientoID INNER JOIN Procesos ON Movimientos.ProcesoID = Procesos.ProcesoID inner join tiposmovimientos on tipomovimientoid = tiposmovimientos.id " & _
+                              " where tiposmovimientos.abreviatura = 'M' and  Lotes.LoteId = @lot")
+        dtb.AñadirParametroConsulta("@lot", LoteID)
+
+        Return dtb.Consultar().Rows(0).Item(0)
     End Function
 #End Region
 End Class

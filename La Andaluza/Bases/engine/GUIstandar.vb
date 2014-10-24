@@ -114,13 +114,13 @@
             '    End If
             Case 9 '4
 
-                If spEnvasados2.personalPendiente Then
+                If spEnvasados2.personalPendiente(dtb) Then
                     Me.lPersonalSinFin.Visible = True
                 End If
 
                 Me.cmsNotificaciones.Items.Clear()
 
-                notificacion = LAengine.comprobarNotificaciones
+                notificacion = LAengine.comprobarNotificaciones(dtb)
 
 
                 If notificacion.Rows.Count > 0 Then

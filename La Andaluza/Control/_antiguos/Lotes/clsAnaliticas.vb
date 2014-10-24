@@ -99,18 +99,6 @@ Public Class clsAnaliticas
         End Try
     End Sub
 
-    Function verAnalitica() As Integer
-        Try
-            AnaliticaID = Deprecated.ConsultaVer("AnaliticaID", "Analiticas", "Nombre = '" & Nombre & "'").Rows(0).Item(0)
-            Return AnaliticaID
-        Catch ex As Exception
-            Return 0
-        End Try
-    End Function
-
-    Public Function Devolver() As DataTable
-        Return Deprecated.ConsultaVer("*", "Analiticas", "AnaliticaID > 0")
-    End Function
 
     Public Function DevolverPorMuestra(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
 

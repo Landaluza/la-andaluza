@@ -24,7 +24,7 @@ Public Class frmComunicaciones
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboComunicaciones = CType(sp, spComunicaciones).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer))
+        dboComunicaciones = CType(sp, spComunicaciones).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
         If Not dboComunicaciones Is Nothing Then
             newRegForm.SetDataBussinesObject(CType(Me.dboComunicaciones, BasesParaCompatibilidad.DataBussines))
         Else

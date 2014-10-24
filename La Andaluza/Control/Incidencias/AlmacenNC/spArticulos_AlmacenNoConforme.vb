@@ -12,34 +12,33 @@ Inherits BasesParaCompatibilidad.StoredProcedure
                      "[dbo].[Articulos_AlmacenNoConformeSelectDgvBy]")
    End Sub
 
-   Public Overloads Function Select_Record(ByVal Id As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As DBO_Articulos_AlmacenNoConforme
-       Dim dbo As New DBO_Articulos_AlmacenNoConforme
-       dbo.searchKey = dbo.item("Id")
-       dbo.searchKey.value = Id
-       MyBase.Select_Record(dbo, trans)
-       Return dbo
-   End Function
+    Public Overloads Function Select_Record(ByVal Id As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_Articulos_AlmacenNoConforme
+        Dim dbo As New DBO_Articulos_AlmacenNoConforme
+        dbo.searchKey = dbo.item("Id")
+        dbo.searchKey.value = Id
+        MyBase.Select_Record(dbo, dtb)
+        Return dbo
+    End Function
 
-   Public Overrides Function Delete(ByVal Id As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As Boolean
-       Dim dbo As New DBO_Articulos_AlmacenNoConforme
-       dbo.searchKey = dbo.item("Id")
-       dbo.searchKey.value = Id
-        If trans Is Nothing Then
-            BasesParaCompatibilidad.BD.EmpezarTransaccion()
-            trans = BasesParaCompatibilidad.BD.transaction
+    Public Overrides Function Delete(ByVal Id As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        Dim dbo As New DBO_Articulos_AlmacenNoConforme
+        dbo.searchKey = dbo.item("Id")
+        dbo.searchKey.value = Id
+        If dtb.Transaccion Is Nothing Then
+            dtb.EmpezarTransaccion()
         End If
         Try
-            If MyBase.DeleteProcedure(dbo, trans) Then
-                BasesParaCompatibilidad.BD.TerminarTransaccion()
+            If MyBase.DeleteProcedure(dbo, dtb) Then
+                dtb.TerminarTransaccion()
                 Return True
             Else
-                BasesParaCompatibilidad.BD.CancelarTransaccion()
+                dtb.CancelarTransaccion()
                 Return False
             End If
         Catch ex As Exception
-            BasesParaCompatibilidad.BD.CancelarTransaccion()
+            dtb.CancelarTransaccion()
             Return False
         End Try
-   End Function
+    End Function
 
 End Class

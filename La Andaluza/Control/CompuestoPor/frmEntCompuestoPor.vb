@@ -11,16 +11,16 @@ Public Class frmEntCompuestoPor
     End Sub
 
     Private Sub frmEntCompuestoPor_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Me.cboLoteFinal.mam_DataSource("CompuestoPor_LotesCbo", False)
+        Me.cboLoteFinal.mam_DataSource("CompuestoPor_LotesCbo", False, dtb)
 
         Me.cboLoteFinal.Visible = False
         Me.lblLoteFinal.Visible = False
 
-        Me.cboLotePartida.mam_DataSource("CompuestoPor_LotesCbo", False)
+        Me.cboLotePartida.mam_DataSource("CompuestoPor_LotesCbo", False, dtb)
         Me.cboLotePartida.Visible = False
         Me.lblLotePartida.Visible = False
 
-        Me.cboMovimientoID.mam_DataSource("CompuestoPor_MovimientosCbo", False)
+        Me.cboMovimientoID.mam_DataSource("CompuestoPor_MovimientosCbo", False, dtb)
         Me.cboMovimientoID.Visible = False
         Me.lblMovimientoID.Visible = False
 
@@ -53,7 +53,7 @@ Public Class frmEntCompuestoPor
 
     Overrides Sub Guardar()
         GetValores()
-        spCompuestoPor.GrabarCompuestoPor(m_DBO_CompuestoPor)
+        spCompuestoPor.GrabarCompuestoPor(m_DBO_CompuestoPor, dtb)
         Me.Close()
     End Sub
 

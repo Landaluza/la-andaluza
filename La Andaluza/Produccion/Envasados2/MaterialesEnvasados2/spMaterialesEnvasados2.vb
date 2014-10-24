@@ -5,12 +5,12 @@ Public Class spMaterialesEnvasados2
     Public Sub New()
         MyBase.New("[dbo].[MaterialesEnvasados2Select]", "[dbo].[MaterialesEnvasados2Insert]", "[dbo].[MaterialesEnvasados2Update]", "[dbo].[MaterialesEnvasados2Delete]", "MaterialesEnvasados2SelectPorFormatoEnvasado ", "MaterialesEnvasados2SelectPorFormatoEnvasado ")
     End Sub
-    Public Function Select_Record(ByVal MaterialEnvasadoID As Int32) As DBO_MaterialesEnvasados2
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal MaterialEnvasadoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_MaterialesEnvasados2
+        dtb.Conectar()
         Dim DBO_MaterialesEnvasados2 As New DBO_MaterialesEnvasados2
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[MaterialesEnvasados2Select]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@MaterialEnvasadoID", MaterialEnvasadoID)
         Try
@@ -43,25 +43,25 @@ Public Class spMaterialesEnvasados2
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_MaterialesEnvasados2
     End Function
 
-    Public Function MaterialesEnvasados2Insert(ByVal dbo_MaterialesEnvasados2 As DBO_MaterialesEnvasados2) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function MaterialesEnvasados2Insert(ByVal dbo_MaterialesEnvasados2 As DBO_MaterialesEnvasados2, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[MaterialesEnvasados2Insert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
-        insertCommand.Parameters.AddWithValue("@HoraInicio", if(dbo_MaterialesEnvasados2.HoraInicio_IsDBNull = True, Convert.DBNull, dbo_MaterialesEnvasados2.HoraInicio))
-        insertCommand.Parameters.AddWithValue("@HoraFin", if(dbo_MaterialesEnvasados2.HoraFin_IsDBNull = True, Convert.DBNull, dbo_MaterialesEnvasados2.HoraFin))
-        insertCommand.Parameters.AddWithValue("@Observaciones", if(dbo_MaterialesEnvasados2.Observaciones_IsDBNull = True, Convert.DBNull, dbo_MaterialesEnvasados2.Observaciones))
-        insertCommand.Parameters.AddWithValue("@Lote", if(dbo_MaterialesEnvasados2.Lote_IsDBNull = True, Convert.DBNull, dbo_MaterialesEnvasados2.Lote))
-        insertCommand.Parameters.AddWithValue("@Cantidad", if(dbo_MaterialesEnvasados2.Cantidad_IsDBNull = True, Convert.DBNull, dbo_MaterialesEnvasados2.Cantidad))
-        insertCommand.Parameters.AddWithValue("@TipoMaterialID", if(dbo_MaterialesEnvasados2.TipoMaterialID_IsDBNull = True, Convert.DBNull, dbo_MaterialesEnvasados2.TipoMaterialID))
-        insertCommand.Parameters.AddWithValue("@ProveedorID", if(dbo_MaterialesEnvasados2.ProveedorID_IsDBNull = True, Convert.DBNull, dbo_MaterialesEnvasados2.ProveedorID))
-        insertCommand.Parameters.AddWithValue("@FormatoEnvasadoID", if(dbo_MaterialesEnvasados2.FormatoEnvasadoID_IsDBNull = True, Convert.DBNull, dbo_MaterialesEnvasados2.FormatoEnvasadoID))
+        insertCommand.Parameters.AddWithValue("@HoraInicio", If(dbo_MaterialesEnvasados2.HoraInicio_IsDBNull = True, Convert.DBNull, dbo_MaterialesEnvasados2.HoraInicio))
+        insertCommand.Parameters.AddWithValue("@HoraFin", If(dbo_MaterialesEnvasados2.HoraFin_IsDBNull = True, Convert.DBNull, dbo_MaterialesEnvasados2.HoraFin))
+        insertCommand.Parameters.AddWithValue("@Observaciones", If(dbo_MaterialesEnvasados2.Observaciones_IsDBNull = True, Convert.DBNull, dbo_MaterialesEnvasados2.Observaciones))
+        insertCommand.Parameters.AddWithValue("@Lote", If(dbo_MaterialesEnvasados2.Lote_IsDBNull = True, Convert.DBNull, dbo_MaterialesEnvasados2.Lote))
+        insertCommand.Parameters.AddWithValue("@Cantidad", If(dbo_MaterialesEnvasados2.Cantidad_IsDBNull = True, Convert.DBNull, dbo_MaterialesEnvasados2.Cantidad))
+        insertCommand.Parameters.AddWithValue("@TipoMaterialID", If(dbo_MaterialesEnvasados2.TipoMaterialID_IsDBNull = True, Convert.DBNull, dbo_MaterialesEnvasados2.TipoMaterialID))
+        insertCommand.Parameters.AddWithValue("@ProveedorID", If(dbo_MaterialesEnvasados2.ProveedorID_IsDBNull = True, Convert.DBNull, dbo_MaterialesEnvasados2.ProveedorID))
+        insertCommand.Parameters.AddWithValue("@FormatoEnvasadoID", If(dbo_MaterialesEnvasados2.FormatoEnvasadoID_IsDBNull = True, Convert.DBNull, dbo_MaterialesEnvasados2.FormatoEnvasadoID))
         insertCommand.Parameters.AddWithValue("@FechaModificacion", dbo_MaterialesEnvasados2.FechaModificacion)
         insertCommand.Parameters.AddWithValue("@UsuarioModificacion", dbo_MaterialesEnvasados2.UsuarioModificacion)
         insertCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
@@ -77,24 +77,24 @@ Public Class spMaterialesEnvasados2
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function MaterialesEnvasados2Update(ByVal newDBO_MaterialesEnvasados2 As DBO_MaterialesEnvasados2) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function MaterialesEnvasados2Update(ByVal newDBO_MaterialesEnvasados2 As DBO_MaterialesEnvasados2, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[MaterialesEnvasados2Update]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
-        updateCommand.Parameters.AddWithValue("@NewHoraInicio", if(newDBO_MaterialesEnvasados2.HoraInicio_IsDBNull = True, Convert.DBNull, newDBO_MaterialesEnvasados2.HoraInicio))
-        updateCommand.Parameters.AddWithValue("@NewHoraFin", if(newDBO_MaterialesEnvasados2.HoraFin_IsDBNull = True, Convert.DBNull, newDBO_MaterialesEnvasados2.HoraFin))
-        updateCommand.Parameters.AddWithValue("@NewObservaciones", if(newDBO_MaterialesEnvasados2.Observaciones_IsDBNull = True, Convert.DBNull, newDBO_MaterialesEnvasados2.Observaciones))
-        updateCommand.Parameters.AddWithValue("@NewLote", if(newDBO_MaterialesEnvasados2.Lote_IsDBNull = True, Convert.DBNull, newDBO_MaterialesEnvasados2.Lote))
-        updateCommand.Parameters.AddWithValue("@NewCantidad", if(newDBO_MaterialesEnvasados2.Cantidad_IsDBNull = True, Convert.DBNull, newDBO_MaterialesEnvasados2.Cantidad))
-        updateCommand.Parameters.AddWithValue("@NewTipoMaterialID", if(newDBO_MaterialesEnvasados2.TipoMaterialID_IsDBNull = True, Convert.DBNull, newDBO_MaterialesEnvasados2.TipoMaterialID))
-        updateCommand.Parameters.AddWithValue("@NewProveedorID", if(newDBO_MaterialesEnvasados2.ProveedorID_IsDBNull = True, Convert.DBNull, newDBO_MaterialesEnvasados2.ProveedorID))
-        updateCommand.Parameters.AddWithValue("@NewFormatoEnvasadoID", if(newDBO_MaterialesEnvasados2.FormatoEnvasadoID_IsDBNull = True, Convert.DBNull, newDBO_MaterialesEnvasados2.FormatoEnvasadoID))
+        updateCommand.Parameters.AddWithValue("@NewHoraInicio", If(newDBO_MaterialesEnvasados2.HoraInicio_IsDBNull = True, Convert.DBNull, newDBO_MaterialesEnvasados2.HoraInicio))
+        updateCommand.Parameters.AddWithValue("@NewHoraFin", If(newDBO_MaterialesEnvasados2.HoraFin_IsDBNull = True, Convert.DBNull, newDBO_MaterialesEnvasados2.HoraFin))
+        updateCommand.Parameters.AddWithValue("@NewObservaciones", If(newDBO_MaterialesEnvasados2.Observaciones_IsDBNull = True, Convert.DBNull, newDBO_MaterialesEnvasados2.Observaciones))
+        updateCommand.Parameters.AddWithValue("@NewLote", If(newDBO_MaterialesEnvasados2.Lote_IsDBNull = True, Convert.DBNull, newDBO_MaterialesEnvasados2.Lote))
+        updateCommand.Parameters.AddWithValue("@NewCantidad", If(newDBO_MaterialesEnvasados2.Cantidad_IsDBNull = True, Convert.DBNull, newDBO_MaterialesEnvasados2.Cantidad))
+        updateCommand.Parameters.AddWithValue("@NewTipoMaterialID", If(newDBO_MaterialesEnvasados2.TipoMaterialID_IsDBNull = True, Convert.DBNull, newDBO_MaterialesEnvasados2.TipoMaterialID))
+        updateCommand.Parameters.AddWithValue("@NewProveedorID", If(newDBO_MaterialesEnvasados2.ProveedorID_IsDBNull = True, Convert.DBNull, newDBO_MaterialesEnvasados2.ProveedorID))
+        updateCommand.Parameters.AddWithValue("@NewFormatoEnvasadoID", If(newDBO_MaterialesEnvasados2.FormatoEnvasadoID_IsDBNull = True, Convert.DBNull, newDBO_MaterialesEnvasados2.FormatoEnvasadoID))
         updateCommand.Parameters.AddWithValue("@NewFechaModificacion", newDBO_MaterialesEnvasados2.FechaModificacion)
         updateCommand.Parameters.AddWithValue("@NewUsuarioModificacion", newDBO_MaterialesEnvasados2.UsuarioModificacion)
         updateCommand.Parameters.AddWithValue("@OldMaterialEnvasadoID", newDBO_MaterialesEnvasados2.MaterialEnvasadoID)
@@ -109,18 +109,18 @@ Public Class spMaterialesEnvasados2
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdateMaterialesEnvasados2" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdateMaterialesEnvasados2" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function MaterialesEnvasados2Delete(ByVal MaterialEnvasadoID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function MaterialesEnvasados2Delete(ByVal MaterialEnvasadoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[MaterialesEnvasados2Delete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         deleteCommand.Parameters.AddWithValue("@OldMaterialEnvasadoID", MaterialEnvasadoID)
         deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
@@ -136,20 +136,19 @@ Public Class spMaterialesEnvasados2
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function GrabarMaterialesEnvasados2(ByVal dbo_MaterialesEnvasados2 As DBO_MaterialesEnvasados2) As Boolean
+    Public Function GrabarMaterialesEnvasados2(ByVal dbo_MaterialesEnvasados2 As DBO_MaterialesEnvasados2, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         If dbo_MaterialesEnvasados2.MaterialEnvasadoID = 0 Then
-            Return MaterialesEnvasados2Insert(dbo_MaterialesEnvasados2)
+            Return MaterialesEnvasados2Insert(dbo_MaterialesEnvasados2, dtb)
         Else
-            Return MaterialesEnvasados2Update(dbo_MaterialesEnvasados2)
+            Return MaterialesEnvasados2Update(dbo_MaterialesEnvasados2, dtb)
         End If
     End Function
 
-    Public Function selectProveedorMasUsado(ByVal p1 As Integer, ByVal p2 As Integer) As Integer
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+    Public Function selectProveedorMasUsado(ByVal p1 As Integer, ByVal p2 As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         dtb.PrepararConsulta("ProveedoresSelectMasUsadoPorTipoMaterial @p1, @p2")
         dtb.AñadirParametroConsulta("@p1", p1)
         dtb.AñadirParametroConsulta("@p2", p2)

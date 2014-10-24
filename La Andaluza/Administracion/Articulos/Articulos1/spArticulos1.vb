@@ -18,27 +18,27 @@ Public Class spArticulos1
                       "[dbo].[Articulos1SelectDgvBy]")
     End Sub
 
-   Public Overloads Function Select_Record(ByVal ArticuloID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As DBO_Articulos1
-       Dim dbo As New DBO_Articulos1
-       dbo.searchKey = dbo.item("ArticuloID")
-       dbo.searchKey.value = ArticuloID
-       MyBase.Select_Record(ctype(dbo, BasesParaCompatibilidad.databussines), trans)
-       Return dbo
-   End Function
+    Public Overloads Function Select_Record(ByVal ArticuloID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_Articulos1
+        Dim dbo As New DBO_Articulos1
+        dbo.searchKey = dbo.item("ArticuloID")
+        dbo.searchKey.value = ArticuloID
+        MyBase.Select_Record(CType(dbo, BasesParaCompatibilidad.databussines), dtb)
+        Return dbo
+    End Function
 
-   Public Overrides Function Delete(ByVal ArticuloID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As Boolean
-       Dim dbo As New DBO_Articulos1
-       dbo.searchKey = dbo.item("ArticuloID")
-       dbo.searchKey.value = ArticuloID
-       return MyBase.DeleteProcedure(ctype(dbo, BasesParaCompatibilidad.databussines), trans)
-   End Function
+    Public Overrides Function Delete(ByVal ArticuloID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        Dim dbo As New DBO_Articulos1
+        dbo.searchKey = dbo.item("ArticuloID")
+        dbo.searchKey.value = ArticuloID
+        Return MyBase.DeleteProcedure(CType(dbo, BasesParaCompatibilidad.databussines), dtb)
+    End Function
 
-    Public Sub cargar_Articulos(ByRef cbo As ComboBox)
-        cbo.mam_DataSource("Articulos1Cbo", False)
+    Public Sub cargar_Articulos(ByRef cbo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        cbo.mam_DataSource("Articulos1Cbo", False, dtb)
     End Sub
 
-    Public Sub cargar_Articulos_Por_Tipo(ByRef cbo As ComboBox, ByVal tipo As Integer)
-        cbo.mam_DataSource("Articulos1CboByTipo " & tipo, False)
+    Public Sub cargar_Articulos_Por_Tipo(ByRef cbo As ComboBox, ByVal tipo As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        cbo.mam_DataSource("Articulos1CboByTipo " & tipo, False, dtb)
     End Sub
 
     'Public Function Articulos1SelecMax(ByRef mytrans As System.Data.SqlClient.SqlTransaction) As Integer
@@ -55,16 +55,14 @@ Public Class spArticulos1
 
     'End Function
 
-    Public Function certificadosByArticuloId(ByVal articuloID As Integer) As DataTable
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+    Public Function certificadosByArticuloId(ByVal articuloID As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
         dtb.PrepararConsulta("Articulos_certificadosSelect @id")
         dtb.AñadirParametroConsulta("@id", articuloID)
 
         Return dtb.Consultar
     End Function
 
-    Public Function comprobarCambioTipo(ByVal id As Integer) As Boolean
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+    Public Function comprobarCambioTipo(ByVal id As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         dtb.PrepararConsulta("select count(*) from (select articuloid from articulosEnvasesterciarios union select articuloid from ArticulosEnvasesSecundarios union select articuloid from ArticulosGraneles union select articuloid from ArticulosIngredientes union select articuloid from ArticulosIngredientesIDI union select articuloid from ArticulosMateriasPrimas union select id_articulo as articulid from ArticulosPrimarios) as x where x.articuloid = @id")
         dtb.AñadirParametroConsulta("@id", id)
         Dim dt As DataTable = dtb.Consultar
@@ -74,7 +72,7 @@ Public Class spArticulos1
                 Return True
             End If
         Catch ex As Exception
-        End Try        
+        End Try
 
         Return False
     End Function

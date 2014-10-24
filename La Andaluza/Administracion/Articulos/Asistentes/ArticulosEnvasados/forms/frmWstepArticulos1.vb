@@ -2,7 +2,7 @@
     Implements wizardable
     Private m_DBO_Articulos1 As DBO_Articulos1
     Private no_crear As Boolean
-
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public ReadOnly Property EstaDescripcionHabilitada As Boolean
         Get
             Return Me.txtDescripcion.Visible
@@ -59,7 +59,7 @@
     Public Sub New()
 
         InitializeComponent()
-
+        dtb = New BasesParaCompatibilidad.DataBase
         m_DBO_Articulos1 = New DBO_Articulos1
         Me.no_crear = True
     End Sub
@@ -82,8 +82,8 @@
     Public Sub New(ByVal articuloID As Integer)
         Dim spArticulos1 As New spArticulos1
         InitializeComponent()
-
-        Me.m_DBO_Articulos1 = spArticulos1.Select_Record(articuloID)
+        dtb = New BasesParaCompatibilidad.DataBase
+        Me.m_DBO_Articulos1 = spArticulos1.Select_Record(articuloID, dtb)
         Me.lDescripcion.Visible = True
         Me.txtDescripcion.Visible = True
 
@@ -160,7 +160,7 @@
             Return False
         Else
             If Me.no_crear Then
-                Return spArticulos1.Grabar(m_DBO_Articulos1, BasesParaCompatibilidad.BD.transaction)
+                Return spArticulos1.Grabar(m_DBO_Articulos1, dtb)
             Else
                 Return True
             End If

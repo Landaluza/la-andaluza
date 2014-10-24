@@ -21,7 +21,7 @@ Public Class frmEntFacturas
 
     Private Sub frmEntFacturas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spProveedores
-        s.cargar_ComboBox(Me.cboid_proveedor)
+        s.cargar_ComboBox(Me.cboid_proveedor, dtb)
         If Me.ModoDeApertura = VISION Then
             Me.cboid_proveedor.Enabled = False
             Me.lblid_proveedor.Enabled = False
@@ -80,8 +80,8 @@ Public Class frmEntFacturas
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerid_proveedor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerid_proveedor.Click
@@ -94,7 +94,7 @@ Public Class frmEntFacturas
         Dim frmEnt As New frmEntProveedores(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spProveedores, DBO_Proveedores)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spProveedores
-        s.cargar_ComboBox(Me.cboid_proveedor)
+        s.cargar_ComboBox(Me.cboid_proveedor, dtb)
     End Sub
 
 

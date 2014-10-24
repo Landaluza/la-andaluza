@@ -7,12 +7,12 @@ Class spArticulosDocumentos
         MyBase.New("[dbo].[ArticulosDocumentosSelect]", "[dbo].[ArticulosDocumentosInsert]", "[dbo].[ArticulosDocumentosUpdate]", _
                    "[dbo].[ArticulosDocumentosDelete]", "ArticulosDocumentosSelectDgv", "ArticulosDocumentosSelectDgvByArticuloID")
     End Sub
-    Public Function Select_Record(ByVal ArticuloDocumentoID As Int32) As DBO_ArticulosDocumentos
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal ArticuloDocumentoID As Int32) As DBO_ArticulosDocumentos
+        dtb.Conectar()
         Dim DBO_ArticulosDocumentos As New DBO_ArticulosDocumentos
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[ArticulosDocumentosSelect]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.Comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@ArticuloDocumentoID", ArticuloDocumentoID)
         Try
@@ -34,16 +34,17 @@ Class spArticulosDocumentos
         Catch ex As System.Data.SqlClient.SqlException
 
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
+
         Return DBO_ArticulosDocumentos
     End Function
 
-    Public Function ArticulosDocumentosInsert(ByVal dbo_ArticulosDocumentos As DBO_ArticulosDocumentos) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ArticulosDocumentosInsert(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal dbo_ArticulosDocumentos As DBO_ArticulosDocumentos) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[ArticulosDocumentosInsert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.Comando(insertProcedure)
         Dim retorno As Boolean = True
         Try
 
@@ -59,7 +60,7 @@ Class spArticulosDocumentos
             insertCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
             insertCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
 
-            
+
             insertCommand.ExecuteNonQuery()
             'Dim count As Integer = System.Convert.ToInt32(insertCommand.Parameters("@ReturnValue").Value)
             'If count > 0 Then
@@ -68,20 +69,20 @@ Class spArticulosDocumentos
             '    Return False
             'End If
         Catch ex As System.Data.SqlClient.SqlException
-            messagebox.show("Error al guardar." & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error al guardar." & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             retorno = False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
 
         Return retorno
     End Function
 
-    Public Function ArticulosDocumentosUpdate(ByVal newDBO_ArticulosDocumentos As DBO_ArticulosDocumentos) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ArticulosDocumentosUpdate(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal newDBO_ArticulosDocumentos As DBO_ArticulosDocumentos) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[ArticulosDocumentosUpdate]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.Comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         updateCommand.Parameters.AddWithValue("@NewArticuloID", newDBO_ArticulosDocumentos.ArticuloID)
         updateCommand.Parameters.AddWithValue("@NewDescripcion", newDBO_ArticulosDocumentos.Descripcion)
@@ -95,7 +96,7 @@ Class spArticulosDocumentos
         updateCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         updateCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
         Try
-            
+
             updateCommand.ExecuteNonQuery()
             Dim count As Integer = System.Convert.ToInt32(updateCommand.Parameters("@ReturnValue").Value)
             If count > 0 Then
@@ -107,21 +108,21 @@ Class spArticulosDocumentos
             MessageBox.Show("Error en UpdateArticulosDocumentos" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function ArticulosDocumentosDelete(ByVal ArticuloDocumentoID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ArticulosDocumentosDelete(ByRef dtb As BasesParaCompatibilidad.DataBase, ArticuloDocumentoID As Int32) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[ArticulosDocumentosDelete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.Comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         deleteCommand.Parameters.AddWithValue("@OldArticuloDocumentoID", ArticuloDocumentoID)
         deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         deleteCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
         Try
-            
+
             deleteCommand.ExecuteNonQuery()
             Dim count As Integer = System.Convert.ToInt32(deleteCommand.Parameters("@ReturnValue").Value)
             If count > 0 Then
@@ -132,15 +133,15 @@ Class spArticulosDocumentos
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function GrabarArticulosDocumentos(ByVal dbo_ArticulosDocumentos As DBO_ArticulosDocumentos) As Boolean
+    Public Function GrabarArticulosDocumentos(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal dbo_ArticulosDocumentos As DBO_ArticulosDocumentos) As Boolean
         If dbo_ArticulosDocumentos.ArticuloDocumentoID = 0 Then
-            Return ArticulosDocumentosInsert(dbo_ArticulosDocumentos)
+            Return ArticulosDocumentosInsert(dtb, dbo_ArticulosDocumentos)
         Else
-            Return ArticulosDocumentosUpdate(dbo_ArticulosDocumentos)
+            Return ArticulosDocumentosUpdate(dtb, dbo_ArticulosDocumentos)
         End If
     End Function
 

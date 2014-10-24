@@ -31,11 +31,11 @@ Public Class frmEntCambiosFormatosEnvasados2
         'Me.cboPersonalID.mam_DataSource("CambiosFormatosEnvasados2_PersonalCbo"), False)
 
         Dim spEmpelados As New spEmpleados
-        spEmpelados.cargar_empleados_envasados(cboPersonalID)
+        spEmpelados.cargar_empleados_envasados(cboPersonalID, dtb)
 
-        spArticulosEnvasadosHistoricos.cargar_comboByLinea_activos(cboTipoformatoInicialID, m_Envasado.LineaID)
+        spArticulosEnvasadosHistoricos.cargar_comboByLinea_activos(cboTipoformatoInicialID, m_Envasado.LineaID, dtb)
 
-        Me.cboFormatoEnvasadoAID.mam_DataSource("CambiosFormatosEnvasados2_FormatosEnvasadosCbo", False)
+        Me.cboFormatoEnvasadoAID.mam_DataSource("CambiosFormatosEnvasados2_FormatosEnvasadosCbo", False, dtb)
 
 
         SetValores(m_DBO_CambiosFormatosEnvasados2.CambioFormatoEnvasadoId)
@@ -51,7 +51,7 @@ Public Class frmEntCambiosFormatosEnvasados2
 
     Private Shadows Sub SetValores(ByVal m_ID As Integer)
 
-        If m_ID > 0 Then m_DBO_CambiosFormatosEnvasados2 = spCambiosFormatosEnvasados2.Select_Record(m_ID)
+        If m_ID > 0 Then m_DBO_CambiosFormatosEnvasados2 = spCambiosFormatosEnvasados2.Select_Record(m_ID, dtb)
 
         txtCambioFormatoEnvasadoId.Text = m_DBO_CambiosFormatosEnvasados2.CambioFormatoEnvasadoId
         dtpHoraInicio.Value = DateTime.Now.Date.Add(m_DBO_CambiosFormatosEnvasados2.HoraInicio)
@@ -63,7 +63,7 @@ Public Class frmEntCambiosFormatosEnvasados2
         If Me.ModoDeApertura = INSERCION Then
 
             Try
-                Me.cboTipoformatoInicialID.SelectedValue = spCambiosFormatosEnvasados2.recuperar_ultimo_formato_por_linea_de_formatoEnvasado(Me.m_Envasado.LineaID, m_DBO_CambiosFormatosEnvasados2.FormatoEnvasadoAID)
+                Me.cboTipoformatoInicialID.SelectedValue = spCambiosFormatosEnvasados2.recuperar_ultimo_formato_por_linea_de_formatoEnvasado(Me.m_Envasado.LineaID, m_DBO_CambiosFormatosEnvasados2.FormatoEnvasadoAID, dtb)
             Catch ex As Exception
                 Me.cboTipoformatoInicialID.SelectedIndex = 0
             End Try
@@ -72,7 +72,7 @@ Public Class frmEntCambiosFormatosEnvasados2
 
             Try
                 Dim sp As New spFormatosEnvasados
-                Dim f As DBO_FormatosEnvasados = sp.Select_Record(Me.formatoId)
+                Dim f As DBO_FormatosEnvasados = sp.Select_Record(Me.formatoId, dtb)
                 dtpHoraFin.Value = DateTime.Now.Date.Add(f.inicio)
             Catch ex As Exception
                 dtpHoraFin.Value = Me.dtpHoraInicio.Value.AddMinutes(15)
@@ -80,7 +80,7 @@ Public Class frmEntCambiosFormatosEnvasados2
 
             Try
                 Dim spFormatosEnvasados2 As New spFormatosEnvasados2
-                Dim d As DBO_PaletsProducidos2 = spFormatosEnvasados2.select_ultimo_palet_por_linea(Me.m_Envasado.LineaID)
+                Dim d As DBO_PaletsProducidos2 = spFormatosEnvasados2.select_ultimo_palet_por_linea(Me.m_Envasado.LineaID, dtb)
                 dtpHoraInicio.Value = DateTime.Now.Date.Add(d.HoraFin)
             Catch ex As Exception
                 dtpHoraFin.Value = Me.dtpHoraInicio.Value.AddMinutes(15)
@@ -88,7 +88,7 @@ Public Class frmEntCambiosFormatosEnvasados2
 
             cboFormatoEnvasadoAID.SelectedValue = If(m_DBO_CambiosFormatosEnvasados2.FormatoEnvasadoAID = Nothing, -1, m_DBO_CambiosFormatosEnvasados2.FormatoEnvasadoAID)
             Try
-                Me.cboPersonalID.SelectedIndex = spCambiosFormatosEnvasados2.recuperar_personal_habitual_por_linea(Me.m_Envasado.LineaID)
+                Me.cboPersonalID.SelectedIndex = spCambiosFormatosEnvasados2.recuperar_personal_habitual_por_linea(Me.m_Envasado.LineaID, dtb)
             Catch ex As Exception
                 Me.cboPersonalID.SelectedIndex = 0
             End Try
@@ -149,7 +149,7 @@ Public Class frmEntCambiosFormatosEnvasados2
 
     Overrides Sub Guardar()
         If GetValores() Then
-            If spCambiosFormatosEnvasados2.GrabarCambiosFormatosEnvasados2(m_DBO_CambiosFormatosEnvasados2) Then
+            If spCambiosFormatosEnvasados2.GrabarCambiosFormatosEnvasados2(m_DBO_CambiosFormatosEnvasados2, dtb) Then
                 Me.Close()
             End If
         End If
@@ -170,7 +170,7 @@ Public Class frmEntCambiosFormatosEnvasados2
 
     Private Sub cboTipoformatoInicialID_SelectedValueChanged(sender As System.Object, e As System.EventArgs) Handles cboTipoformatoInicialID.SelectedValueChanged
         Try
-            Dim d As Date = spCambiosFormatosEnvasados2.selectUltimaHoraPorLineaYformato(Me.m_Envasado.LineaID, Me.cboTipoformatoInicialID.SelectedValue)
+            Dim d As Date = spCambiosFormatosEnvasados2.selectUltimaHoraPorLineaYformato(Me.m_Envasado.LineaID, Me.cboTipoformatoInicialID.SelectedValue, dtb)
             Me.dtpHoraInicio.Value = New DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, d.Hour, d.Minute, 0)
             Me.dtpHoraFin.Value = New DateTime(Now.Year, Now.Month, Now.Day, Me.dtpHoraFin.Value.Hour, Me.dtpHoraFin.Value.Minute, 0)
         Catch ex As Exception

@@ -18,10 +18,10 @@ Public Class frmEntTiposFormatosLineas_TiposFormatos
 
     Private Sub frmEntTiposFormatosLineas_TiposFormatos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spTiposFormatosLineas
-        s.cargar_TiposFormatosLineas(Me.cboTipoFormatoLinea)
+        s.cargar_TiposFormatosLineas(Me.cboTipoFormatoLinea, dtb)
 
         Dim spTiposFormatos1 As New spArticulosEnvasadosHistorico1
-        spTiposFormatos1.cargarComboBoxTodosSinLinea(Me.cboTipoFormato)
+        spTiposFormatos1.cargarComboBoxTodosSinLinea(Me.cboTipoFormato, dtb)
 
         If Me.ModoDeApertura = VISION Then
             Me.cboTipoFormato.Enabled = False
@@ -85,8 +85,8 @@ Public Class frmEntTiposFormatosLineas_TiposFormatos
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerTipoFormatoLineaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -99,7 +99,7 @@ Public Class frmEntTiposFormatosLineas_TiposFormatos
         Dim frmEnt As New frmEntTiposFormatosLineas(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spTiposFormatosLineas, DBO_TiposFormatosLineas)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTiposFormatosLineas
-        s.cargar_TiposFormatosLineas(Me.cboTipoFormatoLinea)
+        s.cargar_TiposFormatosLineas(Me.cboTipoFormatoLinea, dtb)
     End Sub
 
 

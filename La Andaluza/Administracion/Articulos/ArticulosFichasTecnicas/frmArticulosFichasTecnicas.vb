@@ -66,7 +66,7 @@ Public Class frmArticulosFichasTecnicas
 
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
-                          "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then CType(sp, spArticulosFichasTecnicas).ArticulosFichasTecnicasDelete(dgvGeneral.CurrentRow.Cells("ArticuloFichaTecnicaID").Value)
+                          "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then CType(sp, spArticulosFichasTecnicas).ArticulosFichasTecnicasDelete(dgvGeneral.CurrentRow.Cells("ArticuloFichaTecnicaID").Value, dtb)
         dgvFill()
     End Sub
 
@@ -77,7 +77,7 @@ Public Class frmArticulosFichasTecnicas
         If TipoAction = ACCION_INSERTAR Then
             If m_MaestroID <> 0 Then m_ArticulosFichasTecnica.ArticuloID = m_MaestroID
         Else
-            m_ArticulosFichasTecnica = CType(sp, spArticulosFichasTecnicas).Select_Record(GeneralBindingSource(m_Pos).Item("ArticuloFichaTecnicaID"))
+            m_ArticulosFichasTecnica = CType(sp, spArticulosFichasTecnicas).Select_Record(GeneralBindingSource(m_Pos).Item("ArticuloFichaTecnicaID"), dtb)
         End If
 
         frmEnt = New frmEntArticulosFichasTecnicas(m_ArticulosFichasTecnica, m_Pos, m_VerID)

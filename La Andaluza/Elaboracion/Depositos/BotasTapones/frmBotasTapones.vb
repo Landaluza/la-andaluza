@@ -73,7 +73,7 @@ Public Class frmBotasTapones
             response = messageBox.show(" ¿Realmente desea eliminar este registro? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
             If response = DialogResult.Yes Then
                 ctlBot.SetBotaTaponID((dgvGeneral.Rows(Posicion).Cells(0).Value))
-                ctlBot.EliminarBotaTapon()
+                ctlBot.EliminarBotaTapon(dtb)
                 ctlBot.mostrarTodosBotasTapones(dtb, dtsBot)
                 If Posicion > 0 Then
                     GeneralBindingSource.Position = Posicion - 1

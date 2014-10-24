@@ -1,8 +1,15 @@
 ﻿Imports C1.C1Preview
 
 
-
 Public Class LisEnoExistencias
+
+    Private dtb As BasesParaCompatibilidad.DataBase
+
+    Public Sub New()
+        InitializeComponent()
+
+    End Sub
+
     Private Sub LisEnoExistencias_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim doc As New C1PrintDocument()
         Dim valor As Object
@@ -19,7 +26,7 @@ Public Class LisEnoExistencias
 
         Dim ctlLot As New ctlLotes
         Dim Tab As New DataTable
-        Tab = ctlLot.devolverLotesEnologicos
+        Tab = ctlLot.devolverLotesEnologicos(dtb)
 
         With pl
             .PageSettings = New C1PageSettings()

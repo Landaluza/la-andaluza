@@ -26,7 +26,7 @@ Public Class frmEntProveedoresDocumentos
     End Sub
 
     Private Sub frmEntProveedoresDocumentos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Me.cboProveedorID.mam_DataSource("ProveedoresDocumentos_ProveedoresCbo", False)
+        Me.cboProveedorID.mam_DataSource("ProveedoresDocumentos_ProveedoresCbo", False, dtb)
         If Not m_VerID Then
             Me.cboProveedorID.Visible = False
             Me.lblProveedorID.Visible = False
@@ -37,7 +37,7 @@ Public Class frmEntProveedoresDocumentos
 
     Overrides Sub SetValores(ByVal m_ID As Integer, ByVal m_SelectRecord As Boolean)
 
-        If m_SelectRecord Then m_DBO_ProveedoresDocumento = spProveedoresDocumentos.Select_Record(m_ID)
+        If m_SelectRecord Then m_DBO_ProveedoresDocumento = spProveedoresDocumentos.Select_Record(m_ID, dtb)
         'If m_ID > 0 Then
         txtProveedorDocumentoID.Text = m_DBO_ProveedoresDocumento.ProveedorDocumentoID
         'cboProveedorID.SelectedValue = if(m_DBO_ProveedoresDocumento.ProveedorID.HasValue, m_DBO_ProveedoresDocumento.ProveedorID, -1)
@@ -63,7 +63,7 @@ Public Class frmEntProveedoresDocumentos
 
     Overrides Sub Guardar()
         GetValores()
-        spProveedoresDocumentos.GrabarProveedoresDocumentos(m_DBO_ProveedoresDocumento)
+        spProveedoresDocumentos.GrabarProveedoresDocumentos(m_DBO_ProveedoresDocumento, dtb)
         Me.Close()
     End Sub
 

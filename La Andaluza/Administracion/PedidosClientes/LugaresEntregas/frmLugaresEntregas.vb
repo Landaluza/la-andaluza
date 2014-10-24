@@ -23,7 +23,7 @@ Public Class frmLugaresEntregas
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboLugaresEntregas = CType(sp, spLugaresEntregas).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer))
+        dboLugaresEntregas = CType(sp, spLugaresEntregas).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
         If Not dboLugaresEntregas Is Nothing Then
             newRegForm.SetDataBussinesObject(CType(Me.dboLugaresEntregas, BasesParaCompatibilidad.DataBussines))
         Else

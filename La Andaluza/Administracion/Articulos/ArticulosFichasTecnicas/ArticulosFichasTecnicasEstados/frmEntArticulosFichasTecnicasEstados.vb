@@ -21,7 +21,7 @@ Public Class frmEntArticulosFichasTecnicasEstados
 
         If m_SelectRecord Then
             Dim spArticulosFichasTecnicasEstados As New spArticulosFichasTecnicasEstados
-            m_DBO_ArticulosFichasTecnicasEstado = spArticulosFichasTecnicasEstados.Select_Record(m_ID)
+            m_DBO_ArticulosFichasTecnicasEstado = spArticulosFichasTecnicasEstados.Select_Record(m_ID, dtb)
         End If
        txtArticuloFichaTecnicaEstadoID.Text = m_DBO_ArticulosFichasTecnicasEstado.ArticuloFichaTecnicaEstadoID
        txtDescripcion.Text = m_DBO_ArticulosFichasTecnicasEstado.Descripcion
@@ -38,7 +38,7 @@ Public Class frmEntArticulosFichasTecnicasEstados
    Overrides Sub Guardar()
         GetValores()
         Dim spArticulosFichasTecnicasEstados As New spArticulosFichasTecnicasEstados
-        spArticulosFichasTecnicasEstados.GrabarArticulosFichasTecnicasEstados(m_DBO_ArticulosFichasTecnicasEstado)
+        spArticulosFichasTecnicasEstados.GrabarArticulosFichasTecnicasEstados(m_DBO_ArticulosFichasTecnicasEstado, dtb)
        Me.Close()
    End Sub
 

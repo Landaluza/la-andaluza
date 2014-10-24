@@ -49,7 +49,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>475</ApplicationRevision>
+    <ApplicationRevision>477</ApplicationRevision>
     <ApplicationVersion>2014.7.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -314,7 +314,6 @@
     </Compile>
     <Compile Include="Administracion\Articulos\ArticulosMateriasPrimas\DBO_ArticulosMateriasPrimas.vb" />
     <Compile Include="Administracion\Articulos\ArticulosMateriasPrimas\spArticulosMateriasPrimas.vb" />
-    <Compile Include="Administracion\Articulos\Articulos1\CompuestoPor\DBO_Articulos1CompuestoPor2.vb" />
     <Compile Include="Administracion\Articulos\Articulos1\CompuestoPor\frmArticulos1CompuestoPor.Designer.vb">
       <DependentUpon>frmArticulos1CompuestoPor.vb</DependentUpon>
     </Compile>
@@ -333,7 +332,6 @@
     <Compile Include="Administracion\Articulos\Articulos1\CompuestoPor\frmModCompuestoPor.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administracion\Articulos\Articulos1\CompuestoPor\spArticulos1CompuestoPor2.vb" />
     <Compile Include="Administracion\Articulos\Articulos1\DBO_Articulos1.vb" />
     <Compile Include="Administracion\Articulos\Articulos1\frmArticulos1.Designer.vb">
       <DependentUpon>frmArticulos1.vb</DependentUpon>
@@ -2102,12 +2100,6 @@
     <Compile Include="Control\_antiguos\Lotes\LotesEnologicos\frmLotesEnologicos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Control\_antiguos\Lotes\LotesEnologicos\LisEnoExistencias.Designer.vb">
-      <DependentUpon>LisEnoExistencias.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Control\_antiguos\Lotes\LotesEnologicos\LisEnoExistencias.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Control\_antiguos\Lotes\MuestrasObservaciones\clsMuestrasObservaciones.vb" />
     <Compile Include="Control\_antiguos\Lotes\MuestrasObservaciones\clsObservaciones.vb" />
     <Compile Include="Control\_antiguos\Lotes\spElaboraciones.vb" />
@@ -2215,18 +2207,6 @@
     <Compile Include="Produccion\Almacen\Movimientos\spAlmacenPalets.vb" />
     <Compile Include="ApplicationEvents.vb" />
     <Compile Include="Administracion\Articulos\Articulos1\CompuestoPor\DBO_Articulos1CompuestoPor.vb" />
-    <Compile Include="Administracion\Articulos\Articulos1\CompuestoPor\frmArticulos1CompuestoPorMAM.Designer.vb">
-      <DependentUpon>frmArticulos1CompuestoPorMAM.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Administracion\Articulos\Articulos1\CompuestoPor\frmArticulos1CompuestoPorMAM.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Administracion\Articulos\Articulos1\CompuestoPor\frmModCompuestoPorMAM.Designer.vb">
-      <DependentUpon>frmModCompuestoPorMAM.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Administracion\Articulos\Articulos1\CompuestoPor\frmModCompuestoPorMAM.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Administracion\Articulos\Articulos1\CompuestoPor\spArticulos1CompuestoPor.vb" />
     <Compile Include="Administracion\Articulos\Asistentes\graneles\fases\DBO_elaboraciones_fases.vb" />
     <Compile Include="Administracion\Articulos\Asistentes\graneles\fases\frmelaboraciones_fases.Designer.vb">
@@ -4489,7 +4469,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\PaletsMovimientoSubTipo\spPaletsMovimientoSubTipo.vb" />
-    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\spDbo_Movimiento_Dbo_Movimientosubtipo.vb" />
     <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\spPaletsMovimiento.vb" />
     <Compile Include="Administracion\PedidosClientes\Informe\frmInformePedidos.Designer.vb">
       <DependentUpon>frmInformePedidos.vb</DependentUpon>
@@ -5311,9 +5290,6 @@
     <EmbeddedResource Include="Control\_antiguos\Lotes\LotesEnologicos\frmLotesEnologicos.resx">
       <DependentUpon>frmLotesEnologicos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Control\_antiguos\Lotes\LotesEnologicos\LisEnoExistencias.resx">
-      <DependentUpon>LisEnoExistencias.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Elaboracion\Depositos\BotasTapones\frmBotasTapones.resx">
       <DependentUpon>frmBotasTapones.vb</DependentUpon>
     </EmbeddedResource>
@@ -5457,12 +5433,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Produccion\Almacen\Informes\frmAlmacenEntradasInforme.resx">
       <DependentUpon>frmAlmacenEntradasInforme.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Administracion\Articulos\Articulos1\CompuestoPor\frmArticulos1CompuestoPorMAM.resx">
-      <DependentUpon>frmArticulos1CompuestoPorMAM.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Administracion\Articulos\Articulos1\CompuestoPor\frmModCompuestoPorMAM.resx">
-      <DependentUpon>frmModCompuestoPorMAM.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administracion\Articulos\Asistentes\graneles\fases\frmelaboraciones_fases.resx">
       <DependentUpon>frmelaboraciones_fases.vb</DependentUpon>

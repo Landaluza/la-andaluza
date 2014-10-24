@@ -19,7 +19,7 @@ Public Class frmEntProcesosCalidad
 
     Private Sub frmEntProcesosCalidad_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spEmpleados
-        s.cargar_empleados(Me.cboempleado)
+        s.cargar_Empleados(Me.cboempleado, dtb)
         If Me.mododeapertura = VISION Then
             Me.cboempleado.enabled = False
             Me.lblId_empleado.enabled = False
@@ -68,8 +68,8 @@ Public Class frmEntProcesosCalidad
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerId_empleado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_empleado.Click
@@ -82,7 +82,7 @@ Public Class frmEntProcesosCalidad
         Dim frmEnt As New frmEntEmpleados(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spEmpleados, DBO_Empleados)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spEmpleados
-        s.cargar_empleados(Me.cboempleado)
+        s.cargar_Empleados(Me.cboempleado, dtb)
     End Sub
 
    

@@ -42,10 +42,12 @@ Public Class clsToneles
 #Region "Metodos"
 
 
-    Public Sub Cargar()
+    Public Sub Cargar(ByRef dtb As BasesParaCompatibilidad.DataBase)
 
         Dim tabla As New DataTable
-        tabla = Deprecated.ConsultaVer("Toneles.Descripcion, ContenidoHabitual", "Toneles", "TonelID=" & TonelID)
+        dtb.PrepararConsulta("select Toneles.Descripcion, ContenidoHabitual from Toneles where TonelID= @ton")
+        dtb.AñadirParametroConsulta("@ton", TonelID)
+        tabla = dtb.Consultar()
         Try
             Descripcion = tabla.Rows(0).Item(0)
             ContenidoHabitual = tabla.Rows(0).Item(1)
@@ -70,7 +72,7 @@ Public Class clsToneles
 
         Try
             dtb.ConsultaAlteraciones("insert into Toneles values(" & _
-                              "'" & Descripcion & "','" & ContenidoHabitual & "'" & _
+                              "'" & Descripcion & "','" & ContenidoHabitual & "','" & _
                              BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)) + "'," + BasesParaCompatibilidad.Config.User.ToString + ")")
 
             dtb.PrepararConsulta("select max(TonelID) from Toneles")
@@ -81,8 +83,7 @@ Public Class clsToneles
         End Try
     End Function
 
-    Public Function Eliminar() As Integer
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+    Public Function Eliminar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
 
         Try
 

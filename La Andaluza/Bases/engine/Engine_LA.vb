@@ -178,16 +178,16 @@
         End If
     End Sub
 
-    Function comprobarNotificaciones() As DataTable
-        Return notificador.comprobarNotificaciones
+    Function comprobarNotificaciones(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
+        Return notificador.comprobarNotificaciones(dtb)
     End Function
 
-    Function comprobarNumeroPedidos() As Integer
-        Return notificador.comprobarNumeroPedidos
+    Function comprobarNumeroPedidos(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
+        Return notificador.comprobarNumeroPedidos(dtb)
     End Function
 
-    Function comprobarNumeroOC() As Integer
-        Return notificador.comprobarNumeroOC
+    Function comprobarNumeroOC(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
+        Return notificador.comprobarNumeroOC(dtb)
     End Function
 
     Sub ayuda(url As String)

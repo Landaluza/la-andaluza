@@ -18,14 +18,14 @@ Public Class frmEntEmpleados_competencias
 
     Private Sub frmEntEmpleados_competencias_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spEmpleados
-        s.cargar_empleados(Me.cboid_empleado)
+        s.cargar_Empleados(Me.cboid_empleado, dtb)
         If Me.mododeapertura = VISION Then
             Me.cboid_empleado.enabled = False
             Me.lblid_empleado.enabled = False
 
         End If
         Dim s2 As New spPersonalCompetencias
-        s2.cargar_PersonalCompetencias(Me.cboid_personalCompetencia)
+        s2.cargar_PersonalCompetencias(Me.cboid_personalCompetencia, dtb)
         If Me.mododeapertura = VISION Then
             Me.cboid_personalCompetencia.enabled = False
             Me.lblid_personalCompetencia.enabled = False
@@ -69,8 +69,8 @@ Public Class frmEntEmpleados_competencias
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerid_empleado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -83,7 +83,7 @@ Public Class frmEntEmpleados_competencias
         Dim frmEnt As New frmEntEmpleados(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spEmpleados, DBO_Empleados)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spEmpleados
-        s.cargar_Empleados(Me.cboid_empleado)
+        s.cargar_Empleados(Me.cboid_empleado, dtb)
     End Sub
 
     Private Sub butVerid_personalCompetencia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerid_personalCompetencia.Click
@@ -96,7 +96,7 @@ Public Class frmEntEmpleados_competencias
         Dim frmEnt As New frmEntPersonalCompetencias(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spPersonalCompetencias, DBO_PersonalCompetencias)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spPersonalCompetencias
-        s.cargar_PersonalCompetencias(Me.cboid_personalCompetencia)
+        s.cargar_PersonalCompetencias(Me.cboid_personalCompetencia, dtb)
     End Sub
 
 

@@ -12,23 +12,23 @@ Inherits BasesParaCompatibilidad.StoredProcedure
                      "[dbo].[AccionesInmediatasSelectDgvBy]")
    End Sub
 
-    Public Overloads Function Select_Record(ByVal Id As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As DBO_AccionesInmediatas
+    Public Overloads Function Select_Record(ByVal Id As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_AccionesInmediatas
         Dim dbo As New DBO_AccionesInmediatas
         dbo.searchKey = dbo.item("Id")
         dbo.searchKey.value = Id
-        MyBase.Select_Record(dbo, trans)
+        MyBase.Select_Record(dbo, dtb)
         Return dbo
     End Function
 
-    Public Overrides Function Delete(ByVal Id As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As Boolean
+    Public Overrides Function Delete(ByVal Id As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Dim dbo As New DBO_AccionesInmediatas
         dbo.searchKey = dbo.item("Id")
         dbo.searchKey.value = Id
-        Return MyBase.DeleteProcedure(dbo, trans)
+        Return MyBase.DeleteProcedure(dbo, dtb)
     End Function
 
-   Public Sub cargar_AccionesInmediatas(ByRef cbo As ComboBox)
-       cbo.mam_DataSource("AccionesInmediatasCbo", False)
-   End Sub
+    Public Sub cargar_AccionesInmediatas(ByRef cbo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        cbo.mam_DataSource("AccionesInmediatasCbo", False, dtb)
+    End Sub
 
 End Class

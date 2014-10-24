@@ -13,23 +13,23 @@ Inherits BasesParaCompatibilidad.StoredProcedure
                      "[dbo].[UnidadesMedidasSelectDgvBy]")
    End Sub
 
-   Public Overloads Function Select_Record(ByVal UnidadMedidaID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As DBO_UnidadesMedidas
-       Dim dbo As New DBO_UnidadesMedidas
-       dbo.searchKey = dbo.item("UnidadMedidaID")
-       dbo.searchKey.value = UnidadMedidaID
-       MyBase.Select_Record(dbo, trans)
-       Return dbo
-   End Function
+    Public Overloads Function Select_Record(ByVal UnidadMedidaID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_UnidadesMedidas
+        Dim dbo As New DBO_UnidadesMedidas
+        dbo.searchKey = dbo.item("UnidadMedidaID")
+        dbo.searchKey.value = UnidadMedidaID
+        MyBase.Select_Record(dbo, dtb)
+        Return dbo
+    End Function
 
-   Public Overrides Function Delete(ByVal UnidadMedidaID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As Boolean
-       Dim dbo As New DBO_UnidadesMedidas
-       dbo.searchKey = dbo.item("UnidadMedidaID")
-       dbo.searchKey.value = UnidadMedidaID
-       return MyBase.DeleteProcedure(dbo,  trans)
-   End Function
+    Public Overrides Function Delete(ByVal UnidadMedidaID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        Dim dbo As New DBO_UnidadesMedidas
+        dbo.searchKey = dbo.item("UnidadMedidaID")
+        dbo.searchKey.value = UnidadMedidaID
+        Return MyBase.DeleteProcedure(dbo, dtb)
+    End Function
 
-    Sub cargar_UnidadesMedidas(ByRef comboBox As ComboBox)
-        combobox.mam_DataSource("[UnidadesMedidasCbo]", False)
+    Sub cargar_UnidadesMedidas(ByRef comboBox As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        comboBox.mam_DataSource("[UnidadesMedidasCbo]", False, dtb)
     End Sub
 
 End Class

@@ -8,12 +8,12 @@ Class spEpisTipos
         MyBase.New("[dbo].[EpisTiposSelect]", "[dbo].[EpisTiposInsert]", "[dbo].[EpisTiposUpdate]", _
                    "[dbo].[EpisTiposDelete]", "EpisSelectDgv", String.Empty)
     End Sub
-    Public Function Select_Record(ByVal EpiTipoID As Int32) As DBO_EpisTipos
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal EpiTipoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_EpisTipos
+        dtb.Conectar()
         Dim DBO_EpisTipos As New DBO_EpisTipos
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[EpisTiposSelect]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@EpiTipoID", EpiTipoID)
         Try
@@ -34,21 +34,21 @@ Class spEpisTipos
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_EpisTipos
     End Function
 
-    Public Function InsertEpisTipos(ByVal dbo_EpisTipos As DBO_EpisTipos) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function InsertEpisTipos(ByVal dbo_EpisTipos As DBO_EpisTipos, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[EpisTiposInsert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
         insertCommand.Parameters.AddWithValue("@Descripcion", dbo_EpisTipos.Descripcion)
-        insertCommand.Parameters.AddWithValue("@Observaciones", if(dbo_EpisTipos.Observaciones_IsDBNull = True, Convert.DBNull, dbo_EpisTipos.Observaciones))
-        insertCommand.Parameters.AddWithValue("@FechaModificacion", if(dbo_EpisTipos.FechaModificacion_IsDBNull = True, Convert.DBNull, dbo_EpisTipos.FechaModificacion))
-        insertCommand.Parameters.AddWithValue("@UsuarioModificacion", if(dbo_EpisTipos.UsuarioModificacion_IsDBNull = True, Convert.DBNull, dbo_EpisTipos.UsuarioModificacion))
+        insertCommand.Parameters.AddWithValue("@Observaciones", If(dbo_EpisTipos.Observaciones_IsDBNull = True, Convert.DBNull, dbo_EpisTipos.Observaciones))
+        insertCommand.Parameters.AddWithValue("@FechaModificacion", If(dbo_EpisTipos.FechaModificacion_IsDBNull = True, Convert.DBNull, dbo_EpisTipos.FechaModificacion))
+        insertCommand.Parameters.AddWithValue("@UsuarioModificacion", If(dbo_EpisTipos.UsuarioModificacion_IsDBNull = True, Convert.DBNull, dbo_EpisTipos.UsuarioModificacion))
         insertCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         insertCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
         Try
@@ -62,20 +62,20 @@ Class spEpisTipos
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function UpdateEpisTipos(ByVal oldDBO_EpisTipos As DBO_EpisTipos, ByVal newDBO_EpisTipos As DBO_EpisTipos) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function UpdateEpisTipos(ByVal oldDBO_EpisTipos As DBO_EpisTipos, ByVal newDBO_EpisTipos As DBO_EpisTipos, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[EpisTiposUpdate]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         updateCommand.Parameters.AddWithValue("@NewDescripcion", newDBO_EpisTipos.Descripcion)
-        updateCommand.Parameters.AddWithValue("@NewObservaciones", if(newDBO_EpisTipos.Observaciones_IsDBNull = True, Convert.DBNull, newDBO_EpisTipos.Observaciones))
-        updateCommand.Parameters.AddWithValue("@NewFechaModificacion", if(newDBO_EpisTipos.FechaModificacion_IsDBNull = True, Convert.DBNull, newDBO_EpisTipos.FechaModificacion))
-        updateCommand.Parameters.AddWithValue("@NewUsuarioModificacion", if(newDBO_EpisTipos.UsuarioModificacion_IsDBNull = True, Convert.DBNull, newDBO_EpisTipos.UsuarioModificacion))
+        updateCommand.Parameters.AddWithValue("@NewObservaciones", If(newDBO_EpisTipos.Observaciones_IsDBNull = True, Convert.DBNull, newDBO_EpisTipos.Observaciones))
+        updateCommand.Parameters.AddWithValue("@NewFechaModificacion", If(newDBO_EpisTipos.FechaModificacion_IsDBNull = True, Convert.DBNull, newDBO_EpisTipos.FechaModificacion))
+        updateCommand.Parameters.AddWithValue("@NewUsuarioModificacion", If(newDBO_EpisTipos.UsuarioModificacion_IsDBNull = True, Convert.DBNull, newDBO_EpisTipos.UsuarioModificacion))
         updateCommand.Parameters.AddWithValue("@OldEpiTipoID", oldDBO_EpisTipos.EpiTipoID)
         updateCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         updateCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
@@ -88,18 +88,18 @@ Class spEpisTipos
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdateEpisTipos" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdateEpisTipos" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function DeleteEpisTipos(ByVal EpiTipoID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function DeleteEpisTipos(ByVal EpiTipoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[EpisTiposDelete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         deleteCommand.Parameters.AddWithValue("@OldEpiTipoID", EpiTipoID)
         deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
@@ -115,11 +115,11 @@ Class spEpisTipos
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Sub cargar_combo(ByRef cbo As ComboBox)
-        cbo.mam_DataSource("[EPIsTiposSelectCbo]", False)
+    Public Sub cargar_combo(ByRef cbo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        cbo.mam_DataSource("[EPIsTiposSelectCbo]", False, dtb)
     End Sub
 End Class

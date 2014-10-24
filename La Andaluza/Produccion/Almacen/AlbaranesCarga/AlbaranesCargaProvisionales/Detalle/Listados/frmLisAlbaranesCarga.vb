@@ -15,7 +15,7 @@ Public Class frmLisAlbaranesCarga
         ' This call is required by the designer.
         InitializeComponent()
 
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.DataBase()
         dtpDesde.activarFoco()
         dtpHasta.activarFoco()
     End Sub

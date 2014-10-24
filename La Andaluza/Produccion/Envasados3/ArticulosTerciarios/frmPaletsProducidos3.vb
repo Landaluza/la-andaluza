@@ -52,7 +52,7 @@ Public Class frmPaletsProducidos3
         bdnGeneral.BringToFront()
         Me.dgvGeneral.BringToFront()
 
-        CType(sp, spPaletsProducidos).cargar_PaletsProducidosEstados(Me.cboEstado)
+        CType(sp, spPaletsProducidos).cargar_PaletsProducidosEstados(Me.cboEstado, dtb)
         dtb.TimeOut = 300
     End Sub
 
@@ -63,14 +63,14 @@ Public Class frmPaletsProducidos3
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboPaletsProducidos = CType(sp, spPaletsProducidos).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer))
+        dboPaletsProducidos = CType(sp, spPaletsProducidos).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
 
 
         If dboPaletsProducidos Is Nothing Then
             MyBase.EventHandeld = True
             MessageBox.Show("No se pudo recuperar los datos", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         Else
-            Dim dbpFormato As DBO_FormatosEnvasados = spForamtosEnvasados.Select_Record(dboPaletsProducidos.FormatoID)
+            Dim dbpFormato As DBO_FormatosEnvasados = spForamtosEnvasados.Select_Record(dboPaletsProducidos.FormatoID, dtb)
             Me.newRegForm = New frmEntPaletsProducidos(0, dbpFormato.TipoFormatoEnvasadoID, dbpFormato.EnvasadoID, ACCION_MODIFICAR, sp, dboPaletsProducidos)
             AddHandler newRegForm.afterSave, AddressOf dgvFill
         End If
@@ -107,14 +107,14 @@ Public Class frmPaletsProducidos3
     Private Sub mostrarEtiqueta()
         If Not Me.dgvGeneral.CurrentRow Is Nothing Then
             Dim spPaletsProducidos As New spPaletsProducidos
-            Dim dbo As DBO_PaletsProducidos = spPaletsProducidos.Select_Record(Me.dgvGeneral.CurrentRow.Cells("PaletProducidoID").Value)
+            Dim dbo As DBO_PaletsProducidos = spPaletsProducidos.Select_Record(Me.dgvGeneral.CurrentRow.Cells("PaletProducidoID").Value, dtb)
             If Not dbo Is Nothing Then
                 Dim frm As New frmEtiqueta0(dbo.ID, If(Config.UserType = 1 Or Config.UserType = 9 Or Config.UserType = 4, True, False))
                 frm.Show()
 
                 Try
 
-                    spPaletsProducidos.anadir_impresion_etiqueta(Me.dgvGeneral.CurrentRow.Cells("PaletProducidoID").Value)
+                    spPaletsProducidos.anadir_impresion_etiqueta(Me.dgvGeneral.CurrentRow.Cells("PaletProducidoID").Value, dtb)
                     Dim textNotificar As String = "Se ha vuelto a imprimir la etiqueta de la matricula  " & Environment.NewLine() & Me.dgvGeneral.CurrentRow.Cells("SCC").Value.ToString & " el día " & DateTime.Now.ToString
                     Dim mail As New Mail.Mail1And1(True, "Reimpresion de etiqueta " & Me.dgvGeneral.CurrentRow.Cells("SCC").Value.ToString & _
                                                    "el " & DateTime.Now.ToString, textNotificar, _

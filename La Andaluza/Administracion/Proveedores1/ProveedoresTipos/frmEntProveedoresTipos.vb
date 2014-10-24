@@ -21,7 +21,7 @@ Public Class frmEntProveedoresTipos
 
    Overrides Sub SetValores(ByVal m_ID As Integer, ByVal m_SelectRecord As Boolean)
        
-       If m_SelectRecord Then m_DBO_ProveedoresTipo = spProveedoresTipos.Select_Record(m_ID)
+        If m_SelectRecord Then m_DBO_ProveedoresTipo = spProveedoresTipos.Select_Record(m_ID, dtb)
        If m_ID > 0 Then
            txtProveedorTipoID.Text = m_DBO_ProveedoresTipo.ProveedorTipoID
            txtDescripcion.Text = m_DBO_ProveedoresTipo.Descripcion
@@ -38,7 +38,7 @@ Public Class frmEntProveedoresTipos
 
    Overrides Sub Guardar()
        GetValores()
-        spProveedoresTipos.GrabarProveedoresTipos(m_DBO_ProveedoresTipo)
+        spProveedoresTipos.GrabarProveedoresTipos(m_DBO_ProveedoresTipo, dtb)
        Me.Close()
    End Sub
 

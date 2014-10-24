@@ -22,7 +22,7 @@ Public Class frmEntPagosFormas
 
    Overrides Sub SetValores(ByVal m_ID As Integer, ByVal m_SelectRecord As Boolean)
        
-       If m_SelectRecord Then m_DBO_PagosForma = spPagosFormas.Select_Record(m_ID)
+        If m_SelectRecord Then m_DBO_PagosForma = spPagosFormas.Select_Record(m_ID, dtb)
        If m_ID > 0 Then
             txtPagoFormaID.Text = m_DBO_PagosForma.PagoFormaID.ToString
            txtDescripcion.Text = m_DBO_PagosForma.Descripcion
@@ -39,7 +39,7 @@ Public Class frmEntPagosFormas
 
    Overrides Sub Guardar()
        GetValores()
-        spPagosFormas.GrabarPagosFormas(m_DBO_PagosForma)
+        spPagosFormas.GrabarPagosFormas(m_DBO_PagosForma, dtb)
        Me.Close()
    End Sub
 

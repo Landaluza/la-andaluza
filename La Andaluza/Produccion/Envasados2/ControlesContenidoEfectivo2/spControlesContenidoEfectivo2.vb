@@ -8,12 +8,12 @@ Class spControlesContenidoEfectivo2
                    "[dbo].[ControlesContenidoEfectivoDelete2]", "ControlesContenidoEfectivoSelectDgv", "ControlesContenidoEfectivoSelectDgvByEnvasadoID")
     End Sub
 
-    Public Function Select_Record(ByVal ControlContenidoEfectivoID As Int32) As DBO_ControlesContenidoEfectivo2
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal ControlContenidoEfectivoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_ControlesContenidoEfectivo2
+        dtb.Conectar()
         Dim DBO_ControlesContenidoEfectivo As New DBO_ControlesContenidoEfectivo2
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[ControlesContenidoEfectivoSelect2]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@ControlContenidoEfectivoID", ControlContenidoEfectivoID)
         Try
@@ -43,16 +43,16 @@ Class spControlesContenidoEfectivo2
         Catch ex As System.Data.SqlClient.SqlException
 
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_ControlesContenidoEfectivo
     End Function
 
-    Public Function ControlesContenidoEfectivoInsert(ByVal dbo_ControlesContenidoEfectivo As DBO_ControlesContenidoEfectivo2) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ControlesContenidoEfectivoInsert(ByVal dbo_ControlesContenidoEfectivo As DBO_ControlesContenidoEfectivo2, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[ControlesContenidoEfectivoInsert2]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
         insertCommand.Parameters.AddWithValue("@EnvasadoID", If(dbo_ControlesContenidoEfectivo.EnvasadoID.HasValue, dbo_ControlesContenidoEfectivo.EnvasadoID, Convert.DBNull))
         insertCommand.Parameters.AddWithValue("@VerificadorID", If(dbo_ControlesContenidoEfectivo.VerificadorID.HasValue, dbo_ControlesContenidoEfectivo.VerificadorID, Convert.DBNull))
@@ -83,15 +83,15 @@ Class spControlesContenidoEfectivo2
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function ControlesContenidoEfectivoUpdate(ByVal newDBO_ControlesContenidoEfectivo As DBO_ControlesContenidoEfectivo2) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ControlesContenidoEfectivoUpdate(ByVal newDBO_ControlesContenidoEfectivo As DBO_ControlesContenidoEfectivo2, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[ControlesContenidoEfectivoUpdate2]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         updateCommand.Parameters.AddWithValue("@EnvasadoID", If(newDBO_ControlesContenidoEfectivo.EnvasadoID.HasValue, newDBO_ControlesContenidoEfectivo.EnvasadoID, Convert.DBNull))
         updateCommand.Parameters.AddWithValue("@VerificadorID", If(newDBO_ControlesContenidoEfectivo.VerificadorID.HasValue, newDBO_ControlesContenidoEfectivo.VerificadorID, Convert.DBNull))
@@ -121,18 +121,18 @@ Class spControlesContenidoEfectivo2
             ' Return False
             ' End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdateControlesContenidoEfectivo" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdateControlesContenidoEfectivo" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function ControlesContenidoEfectivoDelete(ByVal ControlContenidoEfectivoID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ControlesContenidoEfectivoDelete(ByVal ControlContenidoEfectivoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[ControlesContenidoEfectivoDelete2]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         deleteCommand.Parameters.AddWithValue("@ControlContenidoEfectivoID", ControlContenidoEfectivoID)
         'deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
@@ -148,17 +148,17 @@ Class spControlesContenidoEfectivo2
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function GrabarControlesContenidoEfectivo(ByVal dbo_ControlesContenidoEfectivo As DBO_ControlesContenidoEfectivo2) As Boolean
-        dbo_ControlesContenidoEfectivo.FechaModificacion = System.DateTime.Now.date
+    Public Function GrabarControlesContenidoEfectivo(ByVal dbo_ControlesContenidoEfectivo As DBO_ControlesContenidoEfectivo2, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dbo_ControlesContenidoEfectivo.FechaModificacion = System.DateTime.Now.Date
         dbo_ControlesContenidoEfectivo.UsuarioModificacion = BasesParaCompatibilidad.Config.User
         If dbo_ControlesContenidoEfectivo.ControlContenidoEfectivoID = 0 Then
-            Return ControlesContenidoEfectivoInsert(dbo_ControlesContenidoEfectivo)
+            Return ControlesContenidoEfectivoInsert(dbo_ControlesContenidoEfectivo, dtb)
         Else
-            Return ControlesContenidoEfectivoUpdate(dbo_ControlesContenidoEfectivo)
+            Return ControlesContenidoEfectivoUpdate(dbo_ControlesContenidoEfectivo, dtb)
         End If
     End Function
 

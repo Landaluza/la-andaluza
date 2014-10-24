@@ -23,7 +23,7 @@ Public Class frmUnidadesMedidas
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboUnidadesMedidas = CType(sp, spUnidadesMedidas).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboUnidadesMedidas = CType(sp, spUnidadesMedidas).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboUnidadesMedidas Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboUnidadesMedidas)
         Else

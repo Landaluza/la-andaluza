@@ -26,7 +26,7 @@ Public Class frmEntPartesEnvasados_CausasPartesEnvasado
     Private Sub frmEntPartesEnvasados_CausasPartesEnvasado_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
         Dim s2 As New spCausasPartesEnvasado
-        s2.cargar_CausasPartesEnvasado(Me.cboCausaParteEnvasado)
+        s2.cargar_CausasPartesEnvasado(Me.cboCausaParteEnvasado, dtb)
         If Me.ModoDeApertura = VISION Then
             Me.cboCausaParteEnvasado.Enabled = False
             Me.lblId_CausaParteEnvasado.Enabled = False
@@ -69,9 +69,9 @@ Public Class frmEntPartesEnvasados_CausasPartesEnvasado
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
 
-        MyBase.Guardar(trans)
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerId_CausaParteEnvasado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_CausaParteEnvasado.Click
@@ -84,7 +84,7 @@ Public Class frmEntPartesEnvasados_CausasPartesEnvasado
         Dim frmEnt As New frmEntCausasPartesEnvasado(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spCausasPartesEnvasado, DBO_CausasPartesEnvasado)
         basesparacompatibilidad.Pantalla.mostrarDialogo(frmEnt)
         Dim s As New spCausasPartesEnvasado
-        s.cargar_CausasPartesEnvasado(Me.cboCausaParteEnvasado)
+        s.cargar_CausasPartesEnvasado(Me.cboCausaParteEnvasado, dtb)
     End Sub
 
 End Class

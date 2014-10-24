@@ -28,7 +28,7 @@ Public Class frmCambiosFormatosEnvasados2
     Overrides Sub Eliminar()
         If Me.dgvGeneral.RowCount > 0 Then
             If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
-                CType(sp, spCambiosFormatosEnvasados2).CambiosFormatosEnvasados2Delete(dgvGeneral.CurrentRow.Cells("CambioFormatoEnvasadoId").Value)
+                CType(sp, spCambiosFormatosEnvasados2).CambiosFormatosEnvasados2Delete(dgvGeneral.CurrentRow.Cells("CambioFormatoEnvasadoId").Value, dtb)
                 dgvFill()
             End If
         End If
@@ -46,7 +46,7 @@ Public Class frmCambiosFormatosEnvasados2
             m_CambiosFormatosEnvasados2.HoraInicio = DateTime.Now.TimeOfDay
             m_CambiosFormatosEnvasados2.HoraFin = DateTime.Now.TimeOfDay
         Else
-            m_CambiosFormatosEnvasados2 = CType(sp, spCambiosFormatosEnvasados2).Select_Record(GeneralBindingSource(m_Pos).Item("CambioFormatoEnvasadoId"))
+            m_CambiosFormatosEnvasados2 = CType(sp, spCambiosFormatosEnvasados2).Select_Record(GeneralBindingSource(m_Pos).Item("CambioFormatoEnvasadoId"), dtb)
         End If
         m_CambiosFormatosEnvasados2.FormatoEnvasadoAID = m_FormatoEnvasadoID
 

@@ -8,12 +8,12 @@ Class spPedidosProveedoresDetalles
                    "[dbo].[PedidosProveedoresDetallesDelete]", "PedidosProveedoresDetallesSelectDgv", String.Empty)
     End Sub
 
-    Public Function Select_Record(ByVal PedidoProveedorDetalleID As Int32) As DBO_PedidosProveedoresDetalles
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal PedidoProveedorDetalleID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_PedidosProveedoresDetalles
+        dtb.Conectar()
         Dim Dbo_PedidosProveedoresDetalles As New DBO_PedidosProveedoresDetalles
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[PedidosProveedoresDetallesSelect]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@PedidoProveedorDetalleID", PedidoProveedorDetalleID)
         Try
@@ -37,25 +37,25 @@ Class spPedidosProveedoresDetalles
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return Dbo_PedidosProveedoresDetalles
     End Function
 
-    Public Function InsertPedidosProveedoresDetalles(ByVal dbo_PedidosProveedoresDetalles As DBO_PedidosProveedoresDetalles) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function InsertPedidosProveedoresDetalles(ByVal dbo_PedidosProveedoresDetalles As DBO_PedidosProveedoresDetalles, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[PedidosProveedoresDetallesInsert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
         insertCommand.Parameters.AddWithValue("@PedidoProveedorMaestroID", dbo_PedidosProveedoresDetalles.PedidoProveedorMaestroID)
         insertCommand.Parameters.AddWithValue("@ArticuloID", dbo_PedidosProveedoresDetalles.ArticuloID)
         insertCommand.Parameters.AddWithValue("@Cantidad", dbo_PedidosProveedoresDetalles.Cantidad)
         insertCommand.Parameters.AddWithValue("@FechaServicio", dbo_PedidosProveedoresDetalles.FechaServicio)
-        insertCommand.Parameters.AddWithValue("@Observaciones", if(dbo_PedidosProveedoresDetalles.Observaciones_IsDBNull = True, Convert.DBNull, dbo_PedidosProveedoresDetalles.Observaciones))
+        insertCommand.Parameters.AddWithValue("@Observaciones", If(dbo_PedidosProveedoresDetalles.Observaciones_IsDBNull = True, Convert.DBNull, dbo_PedidosProveedoresDetalles.Observaciones))
         insertCommand.Parameters.AddWithValue("@EstadoID", dbo_PedidosProveedoresDetalles.EstadoID)
         insertCommand.Parameters.AddWithValue("@PedidosProveedoresMaestro_PedidoProveedorMaestroID", dbo_PedidosProveedoresDetalles.PedidosProveedoresMaestro_PedidoProveedorMaestroID)
-        insertCommand.Parameters.AddWithValue("@MedidaProductoID", if(dbo_PedidosProveedoresDetalles.MedidaProductoID_IsDBNull = True, Convert.DBNull, dbo_PedidosProveedoresDetalles.MedidaProductoID))
+        insertCommand.Parameters.AddWithValue("@MedidaProductoID", If(dbo_PedidosProveedoresDetalles.MedidaProductoID_IsDBNull = True, Convert.DBNull, dbo_PedidosProveedoresDetalles.MedidaProductoID))
         insertCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         insertCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
         Try
@@ -69,24 +69,24 @@ Class spPedidosProveedoresDetalles
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function UpdatePedidosProveedoresDetalles(ByVal newDbo_PedidosProveedoresDetalles As DBO_PedidosProveedoresDetalles) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function UpdatePedidosProveedoresDetalles(ByVal newDbo_PedidosProveedoresDetalles As DBO_PedidosProveedoresDetalles, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[PedidosProveedoresDetallesUpdate]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         updateCommand.Parameters.AddWithValue("@NewPedidoProveedorMaestroID", newDbo_PedidosProveedoresDetalles.PedidoProveedorMaestroID)
         updateCommand.Parameters.AddWithValue("@NewArticuloID", newDbo_PedidosProveedoresDetalles.ArticuloID)
         updateCommand.Parameters.AddWithValue("@NewCantidad", newDbo_PedidosProveedoresDetalles.Cantidad)
         updateCommand.Parameters.AddWithValue("@NewFechaServicio", newDbo_PedidosProveedoresDetalles.FechaServicio)
-        updateCommand.Parameters.AddWithValue("@NewObservaciones", if(newDbo_PedidosProveedoresDetalles.Observaciones_IsDBNull = True, Convert.DBNull, newDbo_PedidosProveedoresDetalles.Observaciones))
+        updateCommand.Parameters.AddWithValue("@NewObservaciones", If(newDbo_PedidosProveedoresDetalles.Observaciones_IsDBNull = True, Convert.DBNull, newDbo_PedidosProveedoresDetalles.Observaciones))
         updateCommand.Parameters.AddWithValue("@NewEstadoID", newDbo_PedidosProveedoresDetalles.EstadoID)
         updateCommand.Parameters.AddWithValue("@NewPedidosProveedoresMaestro_PedidoProveedorMaestroID", newDbo_PedidosProveedoresDetalles.PedidosProveedoresMaestro_PedidoProveedorMaestroID)
-        updateCommand.Parameters.AddWithValue("@NewMedidaProductoID", if(newDbo_PedidosProveedoresDetalles.MedidaProductoID_IsDBNull = True, Convert.DBNull, newDbo_PedidosProveedoresDetalles.MedidaProductoID))
+        updateCommand.Parameters.AddWithValue("@NewMedidaProductoID", If(newDbo_PedidosProveedoresDetalles.MedidaProductoID_IsDBNull = True, Convert.DBNull, newDbo_PedidosProveedoresDetalles.MedidaProductoID))
         updateCommand.Parameters.AddWithValue("@OldPedidoProveedorDetalleID", newDbo_PedidosProveedoresDetalles.PedidoProveedorDetalleID)
         updateCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         updateCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
@@ -99,18 +99,18 @@ Class spPedidosProveedoresDetalles
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdatePedidosProveedoresDetalles" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdatePedidosProveedoresDetalles" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function DeletePedidosProveedoresDetalles(ByVal PedidoProveedorDetalleID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function DeletePedidosProveedoresDetalles(ByVal PedidoProveedorDetalleID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[PedidosProveedoresDetallesDelete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         deleteCommand.Parameters.AddWithValue("@OldPedidoProveedorDetalleID", PedidoProveedorDetalleID)
         deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
@@ -126,7 +126,7 @@ Class spPedidosProveedoresDetalles
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 

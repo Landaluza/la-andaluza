@@ -23,7 +23,7 @@ Public Class frmAguaPotableAnaliticasOrganolepticas
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboAguaPotableAnaliticasOrganolepticas = CType(sp, spAguaPotableAnaliticasOrganolepticas).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboAguaPotableAnaliticasOrganolepticas = CType(sp, spAguaPotableAnaliticasOrganolepticas).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboAguaPotableAnaliticasOrganolepticas Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboAguaPotableAnaliticasOrganolepticas)
         Else

@@ -2,14 +2,14 @@
     Private id As Integer
     Private nombre As String
     Private maestroid As Integer
-
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New(Optional ByVal maestro As Integer = Nothing)
 
         InitializeComponent()
-
+        dtb = New BasesParaCompatibilidad.DataBase
         Me.maestroid = maestro
         Dim sp As New spEmpleados
-        sp.cargar_empleados_envasados(Me.cboEmpleado)
+        sp.cargar_empleados_envasados(Me.cboEmpleado, dtb)
     End Sub
 
     Public ReadOnly Property Empleado_ID As Integer
@@ -41,7 +41,7 @@
             Try
                 Dim sp As New spIncidenciasEmpleados
                 Dim spIncidencias As New spIncidencias
-                Dim DBO_Incidencias As DBO_Incidencias = spIncidencias.Select_Record(Me.maestroid, BasesParaCompatibilidad.BD.transaction)
+                Dim DBO_Incidencias As DBO_Incidencias = spIncidencias.Select_Record(Me.maestroid, dtb)
                 Dim DBO_empleados_formatosEnvasados As New DBO_empleados_formatosEnvasados
 
                 DBO_empleados_formatosEnvasados.Inicio = DBO_Incidencias.HoraInicio

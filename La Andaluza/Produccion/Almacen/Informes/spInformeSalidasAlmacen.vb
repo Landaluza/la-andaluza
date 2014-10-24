@@ -2,8 +2,7 @@
 
 Public Class spInformeSalidasAlmacen
 
-    Public Function listar_palets_por_producto_entre_fechas(ByVal producto As Integer, ByVal inicio As Date, ByVal fin As Date) As DataTable
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+    Public Function listar_palets_por_producto_entre_fechas(ByVal producto As Integer, ByVal inicio As Date, ByVal fin As Date, ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
         dtb.Conectar()
 
         Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.Comando("selectInformeSalidasAlmacen ")

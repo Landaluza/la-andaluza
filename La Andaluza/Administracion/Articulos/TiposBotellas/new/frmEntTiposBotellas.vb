@@ -23,9 +23,9 @@ Public Class frmEntTiposBotellas
 
     Private Sub frmEntTiposBotellas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s0 As New sptiposEnvases
-        s0.cargar_tiposEnvases(Me.cboid_tipoEnvase)
+        s0.cargar_tiposEnvases(Me.cboid_tipoEnvase, dtb)
         Dim s1 As New spMedidasProductos
-        s1.cargar_MedidasProductos(Me.cboid_medidaProducto)
+        s1.cargar_MedidasProductos(Me.cboid_medidaProducto, dtb)
         If Me.mododeapertura = VISION Then
             Me.cboid_tipoEnvase.enabled = False
             Me.lblid_tipoEnvase.enabled = False
@@ -89,8 +89,8 @@ Public Class frmEntTiposBotellas
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerid_tipoEnvase_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerid_tipoEnvase.Click
@@ -103,7 +103,7 @@ Public Class frmEntTiposBotellas
         Dim frmEnt As New frmEnttiposEnvases(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New sptiposEnvases, DBO_tiposEnvases)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New sptiposEnvases
-        s.cargar_tiposEnvases(Me.cboid_tipoEnvase)
+        s.cargar_tiposEnvases(Me.cboid_tipoEnvase, dtb)
     End Sub
 
     Private Sub butVerid_medidaProducto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerid_medidaProducto.Click
@@ -116,7 +116,7 @@ Public Class frmEntTiposBotellas
         Dim frmEnt As New frmEntMedidasProductos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spMedidasProductos, DBO_MedidasProductos)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spMedidasProductos
-        s.cargar_MedidasProductos(Me.cboid_medidaProducto)
+        s.cargar_MedidasProductos(Me.cboid_medidaProducto, dtb)
     End Sub
 
     Private Sub frmEntTiposBotellas_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown

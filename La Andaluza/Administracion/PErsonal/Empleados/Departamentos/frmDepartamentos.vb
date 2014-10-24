@@ -21,7 +21,7 @@ Public Class frmDepartamentos
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboDepartamentos = CType(sp, spDepartamentos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboDepartamentos = CType(sp, spDepartamentos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboDepartamentos Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboDepartamentos)
         Else

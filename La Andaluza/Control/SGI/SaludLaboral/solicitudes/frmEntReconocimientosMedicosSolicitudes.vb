@@ -24,10 +24,10 @@ Public Class frmEntReconocimientosMedicosSolicitudes
 
     Private Sub frmEntReconocimientosMedicosSolicitudes_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spReconocimientosMedicosTipos
-        s.cargar_ReconocimientosMedicosTipos(Me.cboReconocimientoMedicoTipo)
+        s.cargar_ReconocimientosMedicosTipos(Me.cboReconocimientoMedicoTipo, dtb)
 
         Dim s2 As New spProveedores
-        s2.cargar_ComboBox(Me.cboProveedor)
+        s2.cargar_ComboBox(Me.cboProveedor, dtb)
         If Me.ModoDeApertura = VISION Then
             Me.cboProveedor.Enabled = False
             Me.lblProveedorID.Enabled = False
@@ -83,15 +83,15 @@ Public Class frmEntReconocimientosMedicosSolicitudes
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerReconocimientoMedicoTipoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerReconocimientoMedicoTipoID.Click
         Dim frmEnt As New frmReconocimientosMedicosTipos()
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spReconocimientosMedicosTipos
-        s.cargar_ReconocimientosMedicosTipos(Me.cboReconocimientoMedicoTipo)
+        s.cargar_ReconocimientosMedicosTipos(Me.cboReconocimientoMedicoTipo, dtb)
     End Sub
 
     Private Sub butAddReconocimientoMedicoTipoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddReconocimientoMedicoTipoID.Click
@@ -99,14 +99,14 @@ Public Class frmEntReconocimientosMedicosSolicitudes
         Dim frmEnt As New frmEntReconocimientosMedicosTipos(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spReconocimientosMedicosTipos, DBO_ReconocimientosMedicosTipos)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spReconocimientosMedicosTipos
-        s.cargar_ReconocimientosMedicosTipos(Me.cboReconocimientoMedicoTipo)
+        s.cargar_ReconocimientosMedicosTipos(Me.cboReconocimientoMedicoTipo, dtb)
     End Sub
 
     Private Sub butVerProveedorID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerProveedorID.Click
         Dim frmEnt As New frmProveedores()
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s2 As New spProveedores
-        s2.cargar_ComboBox(Me.cboProveedor)
+        s2.cargar_ComboBox(Me.cboProveedor, dtb)
     End Sub
 
     Private Sub butAddProveedorID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddProveedorID.Click
@@ -114,7 +114,7 @@ Public Class frmEntReconocimientosMedicosSolicitudes
         Dim frmEnt As New frmEntProveedores(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spProveedores, DBO_Proveedores)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s2 As New spProveedores
-        s2.cargar_ComboBox(Me.cboProveedor)
+        s2.cargar_ComboBox(Me.cboProveedor, dtb)
     End Sub
 
 End Class

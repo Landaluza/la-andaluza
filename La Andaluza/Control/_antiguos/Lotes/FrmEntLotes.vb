@@ -42,7 +42,6 @@ Public Class FrmEntLotes
     Private frmControlesPorLote As frmControlesPorLote
     Private spElaboraciones As spElaboraciones
     Private frmTRazabilidad As frmTrazabilidad
-    Private dtb As BasesParaCompatibilidad.DataBase
 
     Private dbo As DBO_Lotes1
     Private sp As spLotes1
@@ -52,7 +51,7 @@ Public Class FrmEntLotes
 
         InitializeComponent()
 
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.DataBase()
         sp = New spLotes1
         Me.dtsMue = New dtsLotes.LotesDataTable
         Me.dtsCompuestoPor = New dtsLotesComponentes.LotesComponentesDataTable
@@ -113,24 +112,24 @@ Public Class FrmEntLotes
         ConEnologicos = ConEnologic
 
 
-        spTiposLotes.cargar_TiposLotes(cboTipoLote)
+        spTiposLotes.cargar_TiposLotes(cboTipoLote, dtb)
 
         'cboTipoLote.DataSource = OldLib.HacerTablasObligatorias(ctlTipLot.devolverLotes())
         'cboTipoLote.ValueMember = "ID"
         'cboTipoLote.DisplayMember = "Display"
 
-        spTiposProductos.cargar_ComboBox(cboTipoProducto)
+        spTiposProductos.cargar_ComboBox(cboTipoProducto, dtb)
         'cboTipoProducto.DataSource = OldLib.HacerTablasObligatorias(ctlTipPro.DevolverTiposProductos())
         'cboTipoProducto.ValueMember = "ID"
         'cboTipoProducto.DisplayMember = "Display"
 
 
-        ctlCor.cargar_Corredores(cboCorredor)
+        ctlCor.cargar_Corredores(cboCorredor, dtb)
         'cboCorredor.DataSource = OldLib.HacerTablasNoObligatorias(ctlCor.devolverCorredores())
         'cboCorredor.ValueMember = "ID"
         'cboCorredor.DisplayMember = "Display"
 
-        cboProveedor.DataSource = OldLib.HacerTablasNoObligatorias(ctlProv.devolverProveedores())
+        cboProveedor.DataSource = OldLib.HacerTablasNoObligatorias(ctlProv.devolverProveedores(dtb))
         cboProveedor.ValueMember = "ID"
         cboProveedor.DisplayMember = "Display"
 
@@ -139,26 +138,26 @@ Public Class FrmEntLotes
         cboProveedoresLabExternos.ValueMember = "ID"
         cboProveedoresLabExternos.DisplayMember = "Display"
 
-        ctlMed.cargar_MuestrasMedidas(cboMedidas)
+        ctlMed.cargar_MuestrasMedidas(cboMedidas, dtb)
         'cboMedidas.DataSource = OldLib.HacerTablasObligatorias(ctlMed.devolverMuestrasMedidas())
         'cboMedidas.ValueMember = "ID"
         'cboMedidas.DisplayMember = "Display"
 
-        ctlCant.cargar_MuestrasCantidades(cboCantidad)
+        ctlCant.cargar_MuestrasCantidades(cboCantidad, dtb)
         'cboCantidad.DataSource = OldLib.HacerTablasObligatorias(ctlCant.devolverMuestrasCantidades())
         'cboCantidad.ValueMember = "ID"
         'cboCantidad.DisplayMember = "Display"
 
 
-        cboCatador.DataSource = OldLib.HacerTablasNoObligatorias(spEmpleados.devolver_Empleados_Catadores)
+        cboCatador.DataSource = OldLib.HacerTablasNoObligatorias(spEmpleados.devolver_Empleados_Catadores(dtb))
         cboCatador.ValueMember = "ID"
         cboCatador.DisplayMember = "Display"
 
-        cboAnalista.DataSource = OldLib.HacerTablasNoObligatorias(spEmpleados.devolver_Empleados_Analistas)
+        cboAnalista.DataSource = OldLib.HacerTablasNoObligatorias(spEmpleados.devolver_Empleados_Analistas(dtb))
         cboAnalista.ValueMember = "ID"
         cboAnalista.DisplayMember = "Display"
 
-        Dim tabdep As DataTable = ctlDep.devolverDepositosporCodigo()
+        Dim tabdep As DataTable = ctlDep.devolverDepositosporCodigo(dtb)
         cboDeposito.DataSource = OldLib.HacerTablasNoObligatorias(tabdep)
         cboDeposito.ValueMember = "ID"
         cboDeposito.DisplayMember = "Display"
@@ -170,17 +169,18 @@ Public Class FrmEntLotes
         'cboRecipientes.DataSource = OldLib.HacerTablasNoObligatorias(ctlRecSal.devolverRecipientesSalidas)
         'cboRecipientes.ValueMember = "ID"
         'cboRecipientes.DisplayMember = "Display"
-        ctlRecSal.cargar_RecipientesSalidas(cboRecipientes)
+        ctlRecSal.cargar_RecipientesSalidas(cboRecipientes, dtb)
 
-        cboMuestras.DataSource = OldLib.HacerTablasNoObligatorias(ctlLot.DevolverMuestrasAnaliticas)
-        cboMuestras.ValueMember = "ID"
-        cboMuestras.DisplayMember = "Display"
+        'cboMuestras.DataSource = OldLib.HacerTablasNoObligatorias(ctlLot.DevolverMuestrasAnaliticas)
+        'cboMuestras.ValueMember = "ID"
+        'cboMuestras.DisplayMember = "Display"
+        ctlLot.DevolverMuestrasAnaliticas(dtb, cboMuestras)
 
         Me.dtpFecha.activarFoco()
         dtpFechaAnaliticaExterna.activarFoco()
 
         If LoteID <> 0 Then
-            frmControlesPorLote = New frmControlesPorLote(LoteID)
+            frmControlesPorLote = New frmControlesPorLote(LoteID, dtb)
             Engine_LA.FormEnPestaña(frmControlesPorLote, Me.tpControles)
         End If
     End Sub
@@ -267,13 +267,13 @@ Public Class FrmEntLotes
         frmTRazabilidad = New frmTrazabilidad(LoteID, ConEnologicos)
         Engine_LA.FormEnPestaña(frmTRazabilidad, TabPage1)
 
-        txtMaceraciones.Text = ctlLot.CantidadDeMaceraciones()
+        txtMaceraciones.Text = ctlLot.CantidadDeMaceraciones(dtb)
 
         calcularExtractoGrados()
         calcularExtractoNeto()
 
         If LoteID <> Nothing Then
-            If spElaboraciones.procede_de_elaboracion(LoteID) Then
+            If spElaboraciones.procede_de_elaboracion(LoteID, dtb) Then
                 tsaprobar = Me.bdnGeneral.Items.Add("Aprobar mezcla")
                 tsaprobar.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
                 tsaprobar.Image = My.Resources.dialog_apply
@@ -297,7 +297,7 @@ Public Class FrmEntLotes
             End If
 
 
-            dbo = Me.sp.Select_Record(LoteID)
+            dbo = Me.sp.Select_Record(LoteID, dtb)
         End If
     End Sub
 
@@ -372,7 +372,7 @@ Public Class FrmEntLotes
                     dtb.TerminarTransaccion()
                 End If
 
-                dbo = sp.Select_Record(LoteID)
+                dbo = sp.Select_Record(LoteID, dtb)
                 'Me.Close()
             End If
         Catch ex As Exception
@@ -448,9 +448,9 @@ Public Class FrmEntLotes
             End If
             txtCodigoLote.Text = dtpFecha.Value.Year & mes & dia
             'txtCodigoLote.Text &= ctlTipPro.DevolverAbreviatura(cboTipoProducto.SelectedValue)
-            txtCodigoLote.Text &= spTiposProductos.Select_Record(cboTipoProducto.SelectedValue, BasesParaCompatibilidad.BD.transaction).Abreviatura
+            txtCodigoLote.Text &= spTiposProductos.Select_Record(cboTipoProducto.SelectedValue, dtb).Abreviatura
             If cboTipoLote.SelectedValue <> Nothing Then
-                txtCodigoLote.Text &= ctlTipLot.Select_Record(cboTipoLote.SelectedValue, BasesParaCompatibilidad.BD.transaction).Abreviatura & "1"
+                txtCodigoLote.Text &= ctlTipLot.Select_Record(cboTipoLote.SelectedValue, dtb).Abreviatura & "1"
             End If
         Catch ex As Exception
             txtCodigoLote.Text = ""
@@ -463,7 +463,7 @@ Public Class FrmEntLotes
                 Dim aux1 As Integer = cboTipoLote.SelectedValue
                 Dim aux2 As Integer = cboTipoProducto.SelectedValue
                 If aux1 <> 0 And aux2 <> 0 Then
-                    cboEspecificacion.DataSource = HacerTablaEspecificacion(ctlEsp.devolverEspecificacionesPorLote(cboTipoLote.SelectedValue, cboTipoProducto.SelectedValue))
+                    cboEspecificacion.DataSource = HacerTablaEspecificacion(ctlEsp.devolverEspecificacionesPorLote(dtb, cboTipoLote.SelectedValue, cboTipoProducto.SelectedValue))
                     cboEspecificacion.ValueMember = "ID"
                     cboEspecificacion.DisplayMember = "Display"
                     cboEspecificacion.SelectedValue = 0
@@ -695,7 +695,7 @@ Public Class FrmEntLotes
             'txtCodigoLote.validarCodigoLote()
         End If
         Try
-            If ctlTipLot.Select_Record(cboTipoLote.SelectedValue).Abreviatura = "Env" Then
+            If ctlTipLot.Select_Record(cboTipoLote.SelectedValue, dtb).Abreviatura = "Env" Then
                 If frmTRazabilidad.count > 0 Then
                     Me.AutoScroll = True
                     gbAnalitica.Visible = True
@@ -714,7 +714,7 @@ Public Class FrmEntLotes
                 Dim aux1 As Integer = cboTipoLote.SelectedValue
                 Dim aux2 As Integer = cboTipoProducto.SelectedValue
                 If aux1 <> 0 And aux2 <> 0 Then
-                    cboEspecificacion.DataSource = HacerTablaEspecificacion(ctlEsp.devolverEspecificacionesPorLote(cboTipoLote.SelectedValue, cboTipoProducto.SelectedValue))
+                    cboEspecificacion.DataSource = HacerTablaEspecificacion(ctlEsp.devolverEspecificacionesPorLote(dtb, cboTipoLote.SelectedValue, cboTipoProducto.SelectedValue))
                     cboEspecificacion.ValueMember = "ID"
                     cboEspecificacion.DisplayMember = "Display"
                     GenerarCodigoLote()
@@ -794,7 +794,7 @@ Public Class FrmEntLotes
         frm.Text = "Insertar Corredor"
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         'Dim sp As New spCorredores
-        ctlCor.cargar_Corredores(cboCorredor)
+        ctlCor.cargar_Corredores(cboCorredor, dtb)
         'cboCorredor.DataSource = OldLib.HacerTablasNoObligatorias(ctlCor.devolverCorredores())
         'cboCorredor.ValueMember = "ID"
         'cboCorredor.DisplayMember = "Display"
@@ -810,7 +810,7 @@ Public Class FrmEntLotes
         Dim frm As New frmEntProveedores(INSERCION, sp, DBO_Proveedor)
         'frm.Text = "Insertar Proveedor"
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
-        cboProveedor.DataSource = OldLib.HacerTablasNoObligatorias(ctlProv.devolverProveedores())
+        cboProveedor.DataSource = OldLib.HacerTablasNoObligatorias(ctlProv.devolverProveedores(dtb))
         cboProveedor.ValueMember = "ID"
         cboProveedor.DisplayMember = "Display"
         cboProveedor.SelectedIndex = cboProveedor.Items.Count - 1
@@ -991,11 +991,11 @@ Public Class FrmEntLotes
             cboAnaliticas.Enabled = False
         End If
         ctlLot.setLoteID((txtLoteID.Text))
-        ctlLot.mostrarLotesComponentes(dtsCompuestoPor)
+        ctlLot.mostrarLotesComponentes(dtb, dtsCompuestoPor)
 
-        ctlLot.mostrarLotesQueCompone(dtsComponenteDe)
+        ctlLot.mostrarLotesQueCompone(dtb, dtsComponenteDe)
 
-        txtMaceraciones.Text = ctlLot.CantidadDeMaceraciones()
+        txtMaceraciones.Text = ctlLot.CantidadDeMaceraciones(dtb)
     End Sub
 
     Private Sub dudBotellas_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtBotellas.TextChanged
@@ -1042,34 +1042,34 @@ Public Class FrmEntLotes
 
     Private Sub tsAprobar_click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim sp As New spElaboraciones
-        If Not sp.aprobar_lote_mezcla(LoteID) Then
-            messagebox.show("No se pudo realizar la operacion", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        If Not sp.aprobar_lote_mezcla(LoteID, dtb) Then
+            MessageBox.Show("No se pudo realizar la operacion", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
-            messagebox.show("Completado con exito", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("Completado con exito", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
 
     Private Sub tsDeprobar_click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim sp As New spElaboraciones
-        If Not sp.deprobar_lote_mezcla(LoteID) Then
-            messagebox.show("No se pudo realizar la operacion", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        If Not sp.deprobar_lote_mezcla(LoteID, dtb) Then
+            MessageBox.Show("No se pudo realizar la operacion", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
-            messagebox.show("Completado con exito", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("Completado con exito", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
 
     Private Sub tsrepetir_click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim sp As New spElaboraciones
-        If Not sp.repetir_muestra_mezcla(LoteID) Then
-            messagebox.show("No se pudo realizar la operacion", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        If Not sp.repetir_muestra_mezcla(LoteID, dtb) Then
+            MessageBox.Show("No se pudo realizar la operacion", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
-            messagebox.show("Completado con exito", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("Completado con exito", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
 
     Private Sub btnImprimirBoletin_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImprimirBoletin.Click
         Dim clsLotesAnaliticas As New clsLotesAnaliticas
-        If clsLotesAnaliticas.comprobar_disponibilidad_boletin_envasado(txtCodigoLote.Text) Then
+        If clsLotesAnaliticas.comprobar_disponibilidad_boletin_envasado(txtCodigoLote.Text, dtb) Then
             'Dim Frm As New LisBoletinesParametros(txtCodigoLote.Text, _
             '                                      cboTipoLote.SelectedValue, _
             '                                      cboTipoProducto.Text, _
@@ -1085,10 +1085,10 @@ Public Class FrmEntLotes
             'Frm.Dispose()
             Dim Frm As New frmEntplantillasBoletines(txtCodigoLote.Text, True)
 
-            BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
+            BasesParaCompatibilidad.Pantalla.mostrarDialogo(Frm)
             Frm.Dispose()
         Else
-            messagebox.show("Boletin no disponible", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("Boletin no disponible", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
 

@@ -4,11 +4,13 @@ Public Class frmControlIncidencias_Origen
     Implements BasesParaCompatibilidad.Queriable
     Private spControlIncidencias_Origen As spControlIncidencias_Origen
     Private m_maestroid As Integer
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New(ByVal MaestroID As Integer)
         MyBase.New()
         InitializeComponent()
         spControlIncidencias_Origen = New spControlIncidencias_Origen(MaestroID)
         m_maestroid = MaestroID
+        dtb = New BasesParaCompatibilidad.DataBase()
     End Sub
 
     Private Sub frmControlIncidencias_Clientes_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -20,7 +22,6 @@ Public Class frmControlIncidencias_Origen
 
 
     Protected Sub dgvFill() Implements BasesParaCompatibilidad.Queriable.dataGridViewFill
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
         Dim dt As DataTable = dtb.Consultar(Me.spControlIncidencias_Origen.DataGridViewStoredProcedure, True)
 
         If Not dt Is Nothing Then
@@ -45,15 +46,15 @@ Public Class frmControlIncidencias_Origen
     Private Sub btnEliminar_Click(sender As System.Object, e As System.EventArgs) Handles btnEliminar.Click
         If dgvGrilla.SelectedRows.Item(0).Cells("Tipo").Value = "Cliente" Then
             Dim sp As New spControlIncidencias_Clientes()
-            sp.Delete(dgvGrilla.SelectedRows.Item(0).Cells("Id").Value)
+            sp.Delete(dgvGrilla.SelectedRows.Item(0).Cells("Id").Value, dtb)
         Else
             If dgvGrilla.SelectedRows.Item(0).Cells("Tipo").Value = "Empleado" Then
                 Dim sp As New spControlIncidencias_Empleados()
-                sp.Delete(dgvGrilla.SelectedRows.Item(0).Cells("Id").Value)
+                sp.Delete(dgvGrilla.SelectedRows.Item(0).Cells("Id").Value, dtb)
             Else
                 If dgvGrilla.SelectedRows.Item(0).Cells("Tipo").Value = "Proveedor" Then
                     Dim sp As New spControlIncidencias_Proveedores()
-                    sp.Delete(dgvGrilla.SelectedRows.Item(0).Cells("Id").Value)
+                    sp.Delete(dgvGrilla.SelectedRows.Item(0).Cells("Id").Value, dtb)
                 End If
             End If
         End If

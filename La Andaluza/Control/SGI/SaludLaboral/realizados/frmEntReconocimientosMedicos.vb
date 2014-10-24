@@ -21,13 +21,13 @@ Public Class frmEntReconocimientosMedicos
 
     Private Sub frmEntReconocimientosMedicos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spReconocimientosMedicosSolicitudesEmpleados
-        s.cargar_combobox(Me.cboReconocimientoMedicoSolicitudEmpleado)
+        s.cargar_combobox(Me.cboReconocimientoMedicoSolicitudEmpleado, dtb)
 
         Dim s2 As New spGrupos_riesgo
-        s2.cargar_Grupos_riesgo(Me.cboid_grupo_riesgo)
+        s2.cargar_Grupos_riesgo(Me.cboid_grupo_riesgo, dtb)
 
         Dim s3 As New spMedicos
-        s3.cargar_Medicos(Me.cboid_medico)
+        s3.cargar_Medicos(Me.cboid_medico, dtb)
         If Me.ModoDeApertura = VISION Then
             Me.cboid_medico.Enabled = False
             Me.lblid_medico.Enabled = False
@@ -80,15 +80,15 @@ Public Class frmEntReconocimientosMedicos
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerReconocimientoMedicoSolicitudEmpleadoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerReconocimientoMedicoSolicitudEmpleadoID.Click
         Dim frmEnt As New frmReconocimientosMedicosSolicitudesEmpleados()
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spReconocimientosMedicosSolicitudesEmpleados
-        s.cargar_combobox(Me.cboReconocimientoMedicoSolicitudEmpleado)
+        s.cargar_combobox(Me.cboReconocimientoMedicoSolicitudEmpleado, dtb)
     End Sub
 
     Private Sub butAddReconocimientoMedicoSolicitudEmpleadoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddReconocimientoMedicoSolicitudEmpleadoID.Click
@@ -96,14 +96,14 @@ Public Class frmEntReconocimientosMedicos
         Dim frmEnt As New frmEntReconocimientosMedicosSolicitudesEmpleados(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spReconocimientosMedicosSolicitudesEmpleados, DBO_ReconocimientosMedicosSolicitudesEmpleados)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spReconocimientosMedicosSolicitudesEmpleados
-        s.cargar_combobox(Me.cboReconocimientoMedicoSolicitudEmpleado)
+        s.cargar_combobox(Me.cboReconocimientoMedicoSolicitudEmpleado, dtb)
     End Sub
 
     Private Sub butVerid_grupo_riesgo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerid_grupo_riesgo.Click
         Dim frmEnt As New frmGrupos_riesgo()
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spGrupos_riesgo
-        s.cargar_Grupos_riesgo(Me.cboid_grupo_riesgo)
+        s.cargar_Grupos_riesgo(Me.cboid_grupo_riesgo, dtb)
     End Sub
 
     Private Sub butAddid_grupo_riesgo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddid_grupo_riesgo.Click
@@ -111,14 +111,14 @@ Public Class frmEntReconocimientosMedicos
         Dim frmEnt As New frmEntGrupos_riesgo(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spGrupos_riesgo, DBO_Grupos_riesgo)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spGrupos_riesgo
-        s.cargar_Grupos_riesgo(Me.cboid_grupo_riesgo)
+        s.cargar_Grupos_riesgo(Me.cboid_grupo_riesgo, dtb)
     End Sub
 
     Private Sub butVerid_medico_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerid_medico.Click
         Dim frmEnt As New frmMedicos()
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spMedicos
-        s.cargar_Medicos(Me.cboid_medico)
+        s.cargar_Medicos(Me.cboid_medico, dtb)
     End Sub
 
     Private Sub butAddid_medico_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddid_medico.Click
@@ -126,7 +126,7 @@ Public Class frmEntReconocimientosMedicos
         Dim frmEnt As New frmEntMedicos(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spMedicos, DBO_Medicos)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spMedicos
-        s.cargar_Medicos(Me.cboid_medico)
+        s.cargar_Medicos(Me.cboid_medico, dtb)
     End Sub
 
 

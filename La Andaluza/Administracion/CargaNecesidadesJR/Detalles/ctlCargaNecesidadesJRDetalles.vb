@@ -1,9 +1,8 @@
 Public Class ctlCargaNecesidadesJRDetalles
     Private clsCar As clsCargaNecesidadesJRDetalles
-    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New()
         clsCar = New clsCargaNecesidadesJRDetalles
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+
     End Sub
 
     Public Function GetCargaNecesidadesJRDetalleID() As Integer
@@ -15,7 +14,7 @@ Public Class ctlCargaNecesidadesJRDetalles
     End Sub
 
 
-    Public Sub mostrarTodosCargaNecesidadesJRDetalles(ByRef dts As dtsCargaNecesidadesJRDetalles.CargaNecesidadesJRDetallesDataTable)
+    Public Sub mostrarTodosCargaNecesidadesJRDetalles(ByRef dts As dtsCargaNecesidadesJRDetalles.CargaNecesidadesJRDetallesDataTable, ByRef dtb As BasesParaCompatibilidad.DataBase)
         Dim tabla As New DataTable
         tabla = clsCar.Devolver(dtb)
         Dim i As Integer
@@ -40,7 +39,7 @@ Public Class ctlCargaNecesidadesJRDetalles
 
  
 
-    Public Sub EliminarCargaNecesidadesJRDetalle()
-        clsCar.Eliminar()
+    Public Sub EliminarCargaNecesidadesJRDetalle(ByRef dtb As BasesParaCompatibilidad.DataBase)
+        clsCar.Eliminar(dtb)
     End Sub
 End Class

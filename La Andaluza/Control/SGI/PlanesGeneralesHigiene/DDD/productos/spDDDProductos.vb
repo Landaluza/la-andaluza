@@ -13,23 +13,23 @@ Inherits BasesParaCompatibilidad.StoredProcedure
                      "[dbo].[DDDProductosSelectDgvBy]")
    End Sub
 
-   Public Overloads Function Select_Record(ByVal DDDProductoID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As DBO_DDDProductos
-       Dim dbo As New DBO_DDDProductos
-       dbo.searchKey = dbo.item("DDDProductoID")
-       dbo.searchKey.value = DDDProductoID
-       MyBase.Select_Record(dbo, trans)
-       Return dbo
-   End Function
+    Public Overloads Function Select_Record(ByVal DDDProductoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_DDDProductos
+        Dim dbo As New DBO_DDDProductos
+        dbo.searchKey = dbo.item("DDDProductoID")
+        dbo.searchKey.value = DDDProductoID
+        MyBase.Select_Record(dbo, dtb)
+        Return dbo
+    End Function
 
-   Public Overrides Function Delete(ByVal DDDProductoID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As Boolean
-       Dim dbo As New DBO_DDDProductos
-       dbo.searchKey = dbo.item("DDDProductoID")
-       dbo.searchKey.value = DDDProductoID
-       return MyBase.DeleteProcedure(dbo,  trans)
-   End Function
+    Public Overrides Function Delete(ByVal DDDProductoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        Dim dbo As New DBO_DDDProductos
+        dbo.searchKey = dbo.item("DDDProductoID")
+        dbo.searchKey.value = DDDProductoID
+        Return MyBase.DeleteProcedure(dbo, dtb)
+    End Function
 
-    Sub cargar_DDDProductos(ByRef comboBox As ComboBox)
-        comboBox.mam_DataSource("[DDDProductosCbo]", False)
+    Sub cargar_DDDProductos(ByRef comboBox As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        comboBox.mam_DataSource("[DDDProductosCbo]", False, dtb)
     End Sub
 
 End Class

@@ -20,7 +20,7 @@ Public Class frmPaletsMovimientosTipos
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboPaletsMovimientosTipos = CType(sp, spPaletsMovimientosTipos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboPaletsMovimientosTipos = CType(sp, spPaletsMovimientosTipos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboPaletsMovimientosTipos Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboPaletsMovimientosTipos)
         Else

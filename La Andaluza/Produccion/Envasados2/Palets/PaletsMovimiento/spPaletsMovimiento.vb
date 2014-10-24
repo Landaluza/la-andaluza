@@ -7,29 +7,9 @@ Public Class spPaletsMovimiento
         MyBase.New("[dbo].[PaletsMovimientoSelect]", "[dbo].[PaletsMovimientoInsert]", "[dbo].[PaletsMovimientoUpdate]", _
                     "[dbo].[PaletsMovimientoDelete]", "", "")
     End Sub
-    Public Function SelectPaletSCC(ByVal SCC As String) As DataTable
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
-        Dim selectProcedure As String = "[dbo].[PaletsProducidosSCCSelect]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
-        selectCommand.Parameters.AddWithValue("@SCC", SCC)
-        Dim dt As New DataTable
-        selectCommand.CommandType = CommandType.StoredProcedure
 
-        Try
-            Dim reader As System.Data.SqlClient.SqlDataReader  = selectCommand.ExecuteReader()
-            If reader.HasRows Then
-                dt.Load(reader)
-            End If
-            reader.Close()
-        Catch ex As System.Data.SqlClient.SqlException
-        Finally
-            connection.Close()
-        End Try
-        Return dt
-    End Function
 
-    Public Function SelectPaletSCC(ByVal SCC As String, dtb as BasesParaCompatibilidad.Database) As DataTable
+    Public Function SelectPaletSCC(ByVal SCC As String, dtb As BasesParaCompatibilidad.Database) As DataTable
         dtb.Conectar()
 
         Dim selectProcedure As String = "[dbo].[PaletsProducidosSCCSelect]"
@@ -39,22 +19,22 @@ Public Class spPaletsMovimiento
         selectCommand.CommandType = CommandType.StoredProcedure
 
         Try
-            Dim reader As System.Data.SqlClient.SqlDataReader  = selectCommand.ExecuteReader()
+            Dim reader As System.Data.SqlClient.SqlDataReader = selectCommand.ExecuteReader()
             If reader.HasRows Then
                 dt.Load(reader)
             End If
             reader.Close()
         Catch ex As System.Data.SqlClient.SqlException
         Finally
-           dtb.Conectar()
+            dtb.Conectar()
         End Try
         Return dt
     End Function
     'Public Function SelectAllPaletSCC() As DataTable
-    '    BasesParaCompatibilidad.BD.Conectar()
+    '    dtb.Conectar 
     '    Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
     '    Dim selectProcedure As String = "[dbo].[PaletSCCSelectAll]"
-    '    Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+    '    Dim selectCommand As  System.Data.SqlClient.SqlCommand= dtb.comando(selectProcedure)
     '    Dim dt As New DataTable
     '    selectCommand.CommandType = CommandType.StoredProcedure
 
@@ -66,41 +46,41 @@ Public Class spPaletsMovimiento
     '        reader.Close()
     '    Catch ex As System.Data.SqlClient.SqlException
     '    Finally
-    '        connection.Close()
+    '        dtb.Desconectar 
     '    End Try
     '    Return dt
     'End Function
 
-    Public Function SelectAllPalets() As DataTable
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
-        Dim selectProcedure As String = "[dbo].[PaletsMovimientoSelectAll]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
-        Dim dt As New DataTable
-        selectCommand.CommandType = CommandType.StoredProcedure
+    'Public Function SelectAllPalets() As DataTable
+    '    dtb.Conectar()
 
-        Try
-            Dim reader As System.Data.SqlClient.SqlDataReader  = selectCommand.ExecuteReader()
-            If reader.HasRows Then
-                dt.Load(reader)
-            End If
-            reader.Close()
-        Catch ex As System.Data.SqlClient.SqlException
-        Finally
-            connection.Close()
-        End Try
-        Return dt
-    End Function
+    '    Dim selectProcedure As String = "[dbo].[PaletsMovimientoSelectAll]"
+    '    Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
+    '    Dim dt As New DataTable
+    '    selectCommand.CommandType = CommandType.StoredProcedure
 
-    Public Function Add(ByVal dbo_movimiento As Dbo_PaletsMovimiento, Optional ByVal entrepalets As Boolean = False) As Boolean
+    '    Try
+    '        Dim reader As System.Data.SqlClient.SqlDataReader = selectCommand.ExecuteReader()
+    '        If reader.HasRows Then
+    '            dt.Load(reader)
+    '        End If
+    '        reader.Close()
+    '    Catch ex As System.Data.SqlClient.SqlException
+    '    Finally
+    '        dtb.Desconectar()
+    '    End Try
+    '    Return dt
+    ' End Function
+
+    Public Function Add(ByVal dbo_movimiento As Dbo_PaletsMovimiento, ByRef dtb As BasesParaCompatibilidad.DataBase, Optional ByVal entrepalets As Boolean = False) As Boolean
         dbo_movimiento.MovimientoEntrePaletsID = dtb.consultar("select max(id) from paletsmovimiento", False).Rows(0).Item(0)
 
-        If BasesParaCompatibilidad.BD.transaction Is Nothing Then BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[PaletsMovimientoInsert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
-        If Not BasesParaCompatibilidad.BD.transaction Is Nothing Then insertCommand.Transaction = BasesParaCompatibilidad.BD.transaction
+
 
         If dbo_movimiento.Tipo <> vbNullString Then
             insertCommand.Parameters.AddWithValue("@Tipo", dbo_movimiento.Tipo)
@@ -117,19 +97,19 @@ Public Class spPaletsMovimiento
         Else
             insertCommand.Parameters.AddWithValue("@PaletID", Convert.DBNull)
         End If
-        insertCommand.Parameters.AddWithValue("@Fecha", if(dbo_movimiento.Fecha_IsDBNull = True, Convert.DBNull, dbo_movimiento.Fecha))
-        insertCommand.Parameters.AddWithValue("@Cajas", if(dbo_movimiento.Cajas_IsDBNull = True, Convert.DBNull, dbo_movimiento.Cajas))
-        insertCommand.Parameters.AddWithValue("@DocumentoID", if(dbo_movimiento.DocumentoID_IsDBNull = True, Convert.DBNull, dbo_movimiento.DocumentoID))
-        insertCommand.Parameters.AddWithValue("@Comentarios", if(dbo_movimiento.Comentarios_IsDBNull = True, Convert.DBNull, dbo_movimiento.Comentarios))
-        insertCommand.Parameters.AddWithValue("@AutorizadoPor", if(dbo_movimiento.AutorizadoPor_IsDBNull = True, Convert.DBNull, dbo_movimiento.AutorizadoPor))
-        insertCommand.Parameters.AddWithValue("@Receptor", if(dbo_movimiento.Receptor_IsDBNull = True, Convert.DBNull, dbo_movimiento.Receptor))
-        insertCommand.Parameters.AddWithValue("@Motivo", if(dbo_movimiento.Motivo_IsDBNull = True, Convert.DBNull, dbo_movimiento.Motivo))
-        insertCommand.Parameters.AddWithValue("@Solicitante", if(dbo_movimiento.Solicitante_IsDBNull = True, Convert.DBNull, dbo_movimiento.Solicitante))
-        insertCommand.Parameters.AddWithValue("@Cliente", if(dbo_movimiento.Cliente_IsDBNull = True, Convert.DBNull, dbo_movimiento.Cliente))
+        insertCommand.Parameters.AddWithValue("@Fecha", If(dbo_movimiento.Fecha_IsDBNull = True, Convert.DBNull, dbo_movimiento.Fecha))
+        insertCommand.Parameters.AddWithValue("@Cajas", If(dbo_movimiento.Cajas_IsDBNull = True, Convert.DBNull, dbo_movimiento.Cajas))
+        insertCommand.Parameters.AddWithValue("@DocumentoID", If(dbo_movimiento.DocumentoID_IsDBNull = True, Convert.DBNull, dbo_movimiento.DocumentoID))
+        insertCommand.Parameters.AddWithValue("@Comentarios", If(dbo_movimiento.Comentarios_IsDBNull = True, Convert.DBNull, dbo_movimiento.Comentarios))
+        insertCommand.Parameters.AddWithValue("@AutorizadoPor", If(dbo_movimiento.AutorizadoPor_IsDBNull = True, Convert.DBNull, dbo_movimiento.AutorizadoPor))
+        insertCommand.Parameters.AddWithValue("@Receptor", If(dbo_movimiento.Receptor_IsDBNull = True, Convert.DBNull, dbo_movimiento.Receptor))
+        insertCommand.Parameters.AddWithValue("@Motivo", If(dbo_movimiento.Motivo_IsDBNull = True, Convert.DBNull, dbo_movimiento.Motivo))
+        insertCommand.Parameters.AddWithValue("@Solicitante", If(dbo_movimiento.Solicitante_IsDBNull = True, Convert.DBNull, dbo_movimiento.Solicitante))
+        insertCommand.Parameters.AddWithValue("@Cliente", If(dbo_movimiento.Cliente_IsDBNull = True, Convert.DBNull, dbo_movimiento.Cliente))
         'insertCommand.Parameters.AddWithValue("@Inicial", if(dbo_movimiento.Inicial_IsDBNull = True, Convert.DBNull, dbo_movimiento.Inicial))
         'insertCommand.Parameters.AddWithValue("@Final", if(dbo_movimiento.Final_IsDBNull = True, Convert.DBNull, dbo_movimiento.Final))
-        insertCommand.Parameters.AddWithValue("@id_PaletReceptor", if(dbo_movimiento.ContenidoDestinoID = Nothing, Convert.DBNull, dbo_movimiento.ContenidoDestinoID))
-        insertCommand.Parameters.AddWithValue("@id_MovimientoEntrePalet", if(entrepalets, dbo_movimiento.MovimientoEntrePaletsID, Convert.DBNull))
+        insertCommand.Parameters.AddWithValue("@id_PaletReceptor", If(dbo_movimiento.ContenidoDestinoID = Nothing, Convert.DBNull, dbo_movimiento.ContenidoDestinoID))
+        insertCommand.Parameters.AddWithValue("@id_MovimientoEntrePalet", If(entrepalets, dbo_movimiento.MovimientoEntrePaletsID, Convert.DBNull))
 
         insertCommand.Parameters.AddWithValue("@FechaModificacion", System.DateTime.Now)
         insertCommand.Parameters.AddWithValue("@UsuarioModificacion", BasesParaCompatibilidad.Config.User)
@@ -139,22 +119,22 @@ Public Class spPaletsMovimiento
 
         Try
             insertCommand.ExecuteNonQuery()
-            
-                Return True
+
+            Return True
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            If BasesParaCompatibilidad.BD.transaction Is Nothing Then connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function update(ByVal dbo_movimiento As Dbo_PaletsMovimiento) As Boolean
-        If BasesParaCompatibilidad.BD.transaction Is Nothing Then BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function update(ByVal dbo_movimiento As Dbo_PaletsMovimiento, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[PaletsMovimientoUpdate]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
-        If Not BasesParaCompatibilidad.BD.transaction Is Nothing Then insertCommand.Transaction = BasesParaCompatibilidad.BD.transaction
+
 
         If dbo_movimiento.Tipo <> vbNullString Then
             insertCommand.Parameters.AddWithValue("@NewTipo", dbo_movimiento.Tipo)
@@ -171,21 +151,21 @@ Public Class spPaletsMovimiento
         Else
             insertCommand.Parameters.AddWithValue("@NewPaletID", Convert.DBNull)
         End If
-        insertCommand.Parameters.AddWithValue("@NewFecha", if(dbo_movimiento.Fecha_IsDBNull = True, Convert.DBNull, dbo_movimiento.Fecha))
-        insertCommand.Parameters.AddWithValue("@NewCajas", if(dbo_movimiento.Cajas_IsDBNull = True, Convert.DBNull, dbo_movimiento.Cajas))
-        insertCommand.Parameters.AddWithValue("@NewDocumentoID", if(dbo_movimiento.DocumentoID_IsDBNull = True, Convert.DBNull, dbo_movimiento.DocumentoID))
-        insertCommand.Parameters.AddWithValue("@NewComentarios", if(dbo_movimiento.Comentarios_IsDBNull = True, Convert.DBNull, dbo_movimiento.Comentarios))
-        insertCommand.Parameters.AddWithValue("@NewAutorizadoPor", if(dbo_movimiento.AutorizadoPor_IsDBNull = True, Convert.DBNull, dbo_movimiento.AutorizadoPor))
-        insertCommand.Parameters.AddWithValue("@NewReceptor", if(dbo_movimiento.Receptor_IsDBNull = True, Convert.DBNull, dbo_movimiento.Receptor))
-        insertCommand.Parameters.AddWithValue("@NewMotivo", if(dbo_movimiento.Motivo_IsDBNull = True, Convert.DBNull, dbo_movimiento.Motivo))
-        insertCommand.Parameters.AddWithValue("@NewSolicitante", if(dbo_movimiento.Solicitante_IsDBNull = True, Convert.DBNull, dbo_movimiento.Solicitante))
-        insertCommand.Parameters.AddWithValue("@NewCliente", if(dbo_movimiento.Cliente_IsDBNull = True, Convert.DBNull, dbo_movimiento.Cliente))
+        insertCommand.Parameters.AddWithValue("@NewFecha", If(dbo_movimiento.Fecha_IsDBNull = True, Convert.DBNull, dbo_movimiento.Fecha))
+        insertCommand.Parameters.AddWithValue("@NewCajas", If(dbo_movimiento.Cajas_IsDBNull = True, Convert.DBNull, dbo_movimiento.Cajas))
+        insertCommand.Parameters.AddWithValue("@NewDocumentoID", If(dbo_movimiento.DocumentoID_IsDBNull = True, Convert.DBNull, dbo_movimiento.DocumentoID))
+        insertCommand.Parameters.AddWithValue("@NewComentarios", If(dbo_movimiento.Comentarios_IsDBNull = True, Convert.DBNull, dbo_movimiento.Comentarios))
+        insertCommand.Parameters.AddWithValue("@NewAutorizadoPor", If(dbo_movimiento.AutorizadoPor_IsDBNull = True, Convert.DBNull, dbo_movimiento.AutorizadoPor))
+        insertCommand.Parameters.AddWithValue("@NewReceptor", If(dbo_movimiento.Receptor_IsDBNull = True, Convert.DBNull, dbo_movimiento.Receptor))
+        insertCommand.Parameters.AddWithValue("@NewMotivo", If(dbo_movimiento.Motivo_IsDBNull = True, Convert.DBNull, dbo_movimiento.Motivo))
+        insertCommand.Parameters.AddWithValue("@NewSolicitante", If(dbo_movimiento.Solicitante_IsDBNull = True, Convert.DBNull, dbo_movimiento.Solicitante))
+        insertCommand.Parameters.AddWithValue("@NewCliente", If(dbo_movimiento.Cliente_IsDBNull = True, Convert.DBNull, dbo_movimiento.Cliente))
         insertCommand.Parameters.AddWithValue("@NewInicial", Convert.DBNull)
         insertCommand.Parameters.AddWithValue("@NewFinal", Convert.DBNull)
         insertCommand.Parameters.AddWithValue("@OldID", dbo_movimiento.ID)
         ' insertCommand.Parameters.AddWithValue("@NewPaletdesctinoID", if(dbo_movimiento.PaletDestinoID = Nothing, Convert.DBNull, dbo_movimiento.PaletDestinoID))
-        insertCommand.Parameters.AddWithValue("@id_PaletReceptor", if(dbo_movimiento.ContenidoDestinoID = Nothing, Convert.DBNull, dbo_movimiento.ContenidoDestinoID))
-        insertCommand.Parameters.AddWithValue("@id_MovimientoEntrePalet", if(dbo_movimiento.MovimientoEntrePaletsID = Nothing, Convert.DBNull, dbo_movimiento.MovimientoEntrePaletsID))
+        insertCommand.Parameters.AddWithValue("@id_PaletReceptor", If(dbo_movimiento.ContenidoDestinoID = Nothing, Convert.DBNull, dbo_movimiento.ContenidoDestinoID))
+        insertCommand.Parameters.AddWithValue("@id_MovimientoEntrePalet", If(dbo_movimiento.MovimientoEntrePaletsID = Nothing, Convert.DBNull, dbo_movimiento.MovimientoEntrePaletsID))
 
         insertCommand.Parameters.AddWithValue("@NewFechaModificacion", System.DateTime.Now)
         insertCommand.Parameters.AddWithValue("@NewUsuarioModificacion", BasesParaCompatibilidad.Config.User)
@@ -195,21 +175,21 @@ Public Class spPaletsMovimiento
 
         Try
             insertCommand.ExecuteNonQuery()
-            
+
             Return True
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            If BasesParaCompatibilidad.BD.transaction Is Nothing Then connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function UpdatePaletsContenidosTerminado(ByVal PaletProducidoID As Int32, ByVal Terminado As Boolean) As Boolean
-        If BasesParaCompatibilidad.BD.transaction Is Nothing Then BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function UpdatePaletsContenidosTerminado(ByVal PaletProducidoID As Int32, ByVal Terminado As Boolean, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[PaletsContenidosTerminadoUpdate]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
-        If Not BasesParaCompatibilidad.BD.transaction Is Nothing Then updateCommand.Transaction = BasesParaCompatibilidad.BD.transaction
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
+
         updateCommand.CommandType = CommandType.StoredProcedure
         updateCommand.Parameters.AddWithValue("@PaletProducidoID", PaletProducidoID)
         updateCommand.Parameters.AddWithValue("@Terminado", Terminado)
@@ -225,20 +205,19 @@ Public Class spPaletsMovimiento
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdatePaletsContenidosTerminado" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdatePaletsContenidosTerminado" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            If BasesParaCompatibilidad.BD.transaction Is Nothing Then connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function UpdatePaletsContenidosEnAlmacen(ByVal PaletProducidoID As Int32, ByVal EnAlmacen As Boolean) As Boolean
-        If BasesParaCompatibilidad.BD.transaction Is Nothing Then BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function UpdatePaletsContenidosEnAlmacen(ByVal PaletProducidoID As Int32, ByVal EnAlmacen As Boolean, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[PaletsContenidosEnAlmacenUpdate]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
-        If Not BasesParaCompatibilidad.BD.transaction Is Nothing Then updateCommand.Transaction = BasesParaCompatibilidad.BD.transaction
 
         updateCommand.Parameters.AddWithValue("@PaletProducidoID", PaletProducidoID)
         updateCommand.Parameters.AddWithValue("@EnAlmacen", EnAlmacen)
@@ -254,20 +233,19 @@ Public Class spPaletsMovimiento
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdatePaletsContenidosTerminado" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdatePaletsContenidosTerminado" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            If BasesParaCompatibilidad.BD.transaction Is Nothing Then connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function Delete(ByVal movimientoId As Integer) As Boolean
-        If BasesParaCompatibilidad.BD.transaction Is Nothing Then BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function Delete(ByVal movimientoId As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[PaletsMovimientoDelete]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
-        If Not BasesParaCompatibilidad.BD.transaction Is Nothing Then updateCommand.Transaction = BasesParaCompatibilidad.BD.transaction
         updateCommand.Parameters.AddWithValue("@id", movimientoId)
 
         Try
@@ -275,25 +253,25 @@ Public Class spPaletsMovimiento
 
             Return True
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en PaletsMovimientoDelete" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en PaletsMovimientoDelete" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            If BasesParaCompatibilidad.BD.transaction Is Nothing Then connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function Select_Record(ByVal ID As Int32) As Dbo_PaletsMovimiento
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim DBO_PaletsMovimiento As New DBO_PaletsMovimiento
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function Select_Record(ByVal ID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Dbo_PaletsMovimiento
+        dtb.Conectar()
+        Dim DBO_PaletsMovimiento As New Dbo_PaletsMovimiento
+
         Dim selectProcedure As String = "[dbo].[PaletsMovimientoSelect]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@ID", ID)
         Try
             Dim reader As System.Data.SqlClient.SqlDataReader = selectCommand.ExecuteReader(CommandBehavior.SingleRow)
             If reader.Read Then
-                
+
                 DBO_PaletsMovimiento.ID = If(reader("ID") Is Convert.DBNull, 0, Convert.ToInt32(reader("ID")))
                 DBO_PaletsMovimiento.Tipo = If(reader("Tipo") Is Convert.DBNull, 0, Convert.ToInt32(reader("Tipo")))
                 DBO_PaletsMovimiento.SubTipo = If(reader("SubTipo") Is Convert.DBNull, 0, Convert.ToInt32(reader("SubTipo")))
@@ -313,7 +291,7 @@ Public Class spPaletsMovimiento
                 DBO_PaletsMovimiento.MovimientoEntrePaletsID = If(reader("id_MovimientoEntrePalet") Is Convert.DBNull, 0, Convert.ToInt32(reader("id_MovimientoEntrePalet")))
                 DBO_PaletsMovimiento.FechaModificacion = If(reader("FechaModificacion") Is Convert.DBNull, System.DateTime.Now.Date, CDate(reader("FechaModificacion")))
                 DBO_PaletsMovimiento.UsuarioModificacion = If(reader("UsuarioModificacion") Is Convert.DBNull, 0, Convert.ToInt32(reader("UsuarioModificacion")))
-                
+
             Else
                 DBO_PaletsMovimiento = Nothing
             End If
@@ -321,12 +299,12 @@ Public Class spPaletsMovimiento
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_PaletsMovimiento
     End Function
 
-    Public Function comprobarFormatoEncajado(p1 As Integer) As Boolean
+    Public Function comprobarFormatoEncajado(p1 As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Dim dt As DataTable = dtb.Consultar("select id_MovimentoEncajado from tiposcajas, articulosEnvasadosHistorico where articulosEnvasadosHistorico.tipocajaID = tiposcajas.tipocajaID and tipoformato = " & p1, False)
         If dt Is Nothing Then Return False
         If dt.Rows.Count = 0 Then Return False
@@ -337,22 +315,21 @@ Public Class spPaletsMovimiento
         End If
     End Function
 
-    Public Function Select_RecordByContenidoPalet(p1 As Integer) As Dbo_PaletsMovimiento
+    Public Function Select_RecordByContenidoPalet(p1 As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Dbo_PaletsMovimiento
         Dim spPaletsContenidos2 As New spPaletsContenidos2
-        Dim aux As DBO_PaletsContenidos2 = spPaletsContenidos2.Select_Record(p1)
+        Dim aux As DBO_PaletsContenidos2 = spPaletsContenidos2.Select_Record(p1, dtb)
 
         Try
             Dim id As Integer = dtb.consultar("select id from paletsmovimiento where id_PaletReceptor = " & aux.PaletContenidoID, False).Rows(0).Item(0)
 
             Dim sp As New spPaletsMovimiento
-            Return sp.Select_Record(id)
+            Return sp.Select_Record(id, dtb)
         Catch ex As Exception
             Return Nothing
         End Try
     End Function
 
-    Shared Function esMovimientoEncajado(p1 As Integer) As Boolean
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+    Shared Function esMovimientoEncajado(p1 As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Try
             Dim i As Integer = dtb.Consultar("select count(*) from tiposcajas where id_movimentoEncajado =" & p1, False).Rows(0).Item(0)
 
@@ -366,13 +343,7 @@ Public Class spPaletsMovimiento
         End Try
     End Function
 
-    Public Function ultimo_registro(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) As Integer
-        Dim dtb as BasesParaCompatibilidad.Database
-        If trans Is Nothing Then
-            dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        Else
-            dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server, BasesParaCompatibilidad.BD.Cnx, trans)
-        End If
+    Public Function ultimo_registro(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
 
         Dim dt As DataTable = dtb.Consultar("select max(id) from paletsmovimiento", False)
         If dt Is Nothing Then Return 0

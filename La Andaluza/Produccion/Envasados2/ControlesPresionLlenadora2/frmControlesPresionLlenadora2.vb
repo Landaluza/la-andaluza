@@ -25,7 +25,7 @@ Public Class frmControlesPresionLlenadora2
         If Me.dgvGeneral.RowCount > 0 Then
             If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
                           "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-                If CType(sp, spControlesPresionLlenadora2).ControlesPresionLlenadora1Delete(dgvGeneral.CurrentRow.Cells("ControlPresionLlenadora1ID").Value) Then
+                If CType(sp, spControlesPresionLlenadora2).ControlesPresionLlenadora1Delete(dgvGeneral.CurrentRow.Cells("ControlPresionLlenadora1ID").Value, dtb) Then
                     dgvFill()
                 End If
             End If
@@ -41,7 +41,7 @@ Public Class frmControlesPresionLlenadora2
         If TipoAction = ACCION_INSERTAR Then
             If m_MaestroID <> 0 Then m_ControlePresionLlenadora1.EnvasadoID = m_MaestroID
         Else
-            m_ControlePresionLlenadora1 = CType(sp, spControlesPresionLlenadora2).Select_Record(GeneralBindingSource(m_Pos).Item("ControlPresionLlenadora1ID"))
+            m_ControlePresionLlenadora1 = CType(sp, spControlesPresionLlenadora2).Select_Record(GeneralBindingSource(m_Pos).Item("ControlPresionLlenadora1ID"), dtb)
         End If
 
         frmEnt = New frmEntControlesPresionLlenadora2(TipoAction, m_ControlePresionLlenadora1, m_Pos, m_VerID)

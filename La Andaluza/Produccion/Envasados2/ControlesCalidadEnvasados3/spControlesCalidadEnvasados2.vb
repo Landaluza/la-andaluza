@@ -8,18 +8,18 @@ Class spControlesCalidadEnvasados2
                   "[dbo].[ControlesCalidadEnvasados2Delete]", "ControlesCalidadEnvasados2SelectDgv", "ControlesCalidadEnvasados2SelectDgvByControlCalidadEnvasados2ID")
     End Sub
 
-    Public Function Select_Record(ByVal ControlCalidadEnvasados2ID As Int32) As DBO_ControlesCalidadEnvasados2
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal ControlCalidadEnvasados2ID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_ControlesCalidadEnvasados2
+        dtb.Conectar()
         Dim DBO_ControlesCalidadEnvasados2 As New DBO_ControlesCalidadEnvasados2
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[ControlesCalidadEnvasados2Select]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@ControlCalidadEnvasados2ID", ControlCalidadEnvasados2ID)
         Try
             Dim reader As System.Data.SqlClient.SqlDataReader = selectCommand.ExecuteReader(CommandBehavior.SingleRow)
             If reader.Read Then
-                
+
                 DBO_ControlesCalidadEnvasados2.ControlCalidadEnvasados2ID = If(reader("ControlCalidadEnvasados2ID") Is Convert.DBNull, 0, Convert.ToInt32(reader("ControlCalidadEnvasados2ID")))
                 DBO_ControlesCalidadEnvasados2.Botella = If(reader("Botella") Is Convert.DBNull, False, Convert.ToBoolean(reader("Botella")))
                 DBO_ControlesCalidadEnvasados2.Etiqueta = If(reader("Etiqueta") Is Convert.DBNull, False, Convert.ToBoolean(reader("Etiqueta")))
@@ -34,7 +34,7 @@ Class spControlesCalidadEnvasados2
                 DBO_ControlesCalidadEnvasados2.SegundoNuevo = If(reader("SegundoNuevo") Is Convert.DBNull, String.Empty, Convert.ToString(reader("SegundoNuevo")))
                 DBO_ControlesCalidadEnvasados2.FechaModificacion = If(reader("FechaModificacion") Is Convert.DBNull, System.DateTime.Now.Date, CDate(reader("FechaModificacion")))
                 DBO_ControlesCalidadEnvasados2.UsuarioModificacion = If(reader("UsuarioModificacion") Is Convert.DBNull, 0, Convert.ToInt32(reader("UsuarioModificacion")))
-                
+
             Else
                 DBO_ControlesCalidadEnvasados2 = Nothing
             End If
@@ -42,18 +42,18 @@ Class spControlesCalidadEnvasados2
         Catch ex As System.Data.SqlClient.SqlException
 
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_ControlesCalidadEnvasados2
     End Function
 
-    Public Function ControlesCalidadEnvasados2Insert(ByVal dbo_ControlesCalidadEnvasados2 As DBO_ControlesCalidadEnvasados2) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ControlesCalidadEnvasados2Insert(ByVal dbo_ControlesCalidadEnvasados2 As DBO_ControlesCalidadEnvasados2, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[ControlesCalidadEnvasados2Insert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
-        
+
         insertCommand.Parameters.AddWithValue("@Botella", dbo_ControlesCalidadEnvasados2.Botella)
         insertCommand.Parameters.AddWithValue("@Etiqueta", dbo_ControlesCalidadEnvasados2.Etiqueta)
         insertCommand.Parameters.AddWithValue("@LoteadoEtiqueta", dbo_ControlesCalidadEnvasados2.LoteadoEtiqueta)
@@ -67,7 +67,7 @@ Class spControlesCalidadEnvasados2
         insertCommand.Parameters.AddWithValue("@SegundoNuevo", dbo_ControlesCalidadEnvasados2.SegundoNuevo)
         insertCommand.Parameters.AddWithValue("@FechaModificacion", dbo_ControlesCalidadEnvasados2.FechaModificacion)
         insertCommand.Parameters.AddWithValue("@UsuarioModificacion", dbo_ControlesCalidadEnvasados2.UsuarioModificacion)
-        
+
         insertCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         insertCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
         Try
@@ -81,15 +81,15 @@ Class spControlesCalidadEnvasados2
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function ControlesCalidadEnvasados2Update(ByVal newDBO_ControlesCalidadEnvasados2 As DBO_ControlesCalidadEnvasados2) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ControlesCalidadEnvasados2Update(ByVal newDBO_ControlesCalidadEnvasados2 As DBO_ControlesCalidadEnvasados2, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[ControlesCalidadEnvasados2Update]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         '<Tag=[Three][Start]> -- please do not remove this line
         updateCommand.Parameters.AddWithValue("@NewBotella", newDBO_ControlesCalidadEnvasados2.Botella)
@@ -118,18 +118,18 @@ Class spControlesCalidadEnvasados2
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdateControlesCalidadEnvasados2" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdateControlesCalidadEnvasados2" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function ControlesCalidadEnvasados2Delete(ByVal ControlCalidadEnvasados2ID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ControlesCalidadEnvasados2Delete(ByVal ControlCalidadEnvasados2ID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[ControlesCalidadEnvasados2Delete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         '<Tag=[Four][Start]> -- please do not remove this line
         deleteCommand.Parameters.AddWithValue("@OldControlCalidadEnvasados2ID", ControlCalidadEnvasados2ID)
@@ -147,17 +147,17 @@ Class spControlesCalidadEnvasados2
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function GrabarControlesCalidadEnvasados2(ByVal dbo_ControlesCalidadEnvasados2 As DBO_ControlesCalidadEnvasados2) As Boolean
-        dbo_ControlesCalidadEnvasados2.FechaModificacion = System.DateTime.Now.date
+    Public Function GrabarControlesCalidadEnvasados2(ByVal dbo_ControlesCalidadEnvasados2 As DBO_ControlesCalidadEnvasados2, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dbo_ControlesCalidadEnvasados2.FechaModificacion = System.DateTime.Now.Date
         dbo_ControlesCalidadEnvasados2.UsuarioModificacion = BasesParaCompatibilidad.Config.User
         If dbo_ControlesCalidadEnvasados2.ControlCalidadEnvasados2ID = 0 Then
-            Return ControlesCalidadEnvasados2Insert(dbo_ControlesCalidadEnvasados2)
+            Return ControlesCalidadEnvasados2Insert(dbo_ControlesCalidadEnvasados2, dtb)
         Else
-            Return ControlesCalidadEnvasados2Update(dbo_ControlesCalidadEnvasados2)
+            Return ControlesCalidadEnvasados2Update(dbo_ControlesCalidadEnvasados2, dtb)
         End If
     End Function
 

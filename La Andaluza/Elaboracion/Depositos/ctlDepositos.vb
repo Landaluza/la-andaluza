@@ -9,16 +9,16 @@ Public Class ctlDepositos
         clsDep._DepositoID = ID
     End Sub
 
-    Public Function devolverDepositosporCodigo() As DataTable
-        Return clsDep.devolverDepositosporCodigo()
+    Public Function devolverDepositosporCodigo(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
+        Return clsDep.devolverDepositosporCodigo(dtb)
     End Function
 
-    Public Sub devolverDepositosporCodigo(ByRef cbo As ComboBox)
-        cbo.mam_DataSource(clsDep.devolverDepositosporCodigo(), False)
+    Public Sub devolverDepositosporCodigo(ByRef dtb As BasesParaCompatibilidad.DataBase, ByRef cbo As ComboBox)
+        cbo.mam_DataSource(clsDep.devolverDepositosporCodigo(dtb), False)
     End Sub
 
-    Public Sub CargarDepositos()
-        clsDep.Cargar()
+    Public Sub CargarDepositos(ByRef dtb As BasesParaCompatibilidad.DataBase)
+        clsDep.Cargar(dtb)
     End Sub
 
     Public Sub DevolverDatosDepositos(ByRef capacidad As String, ByRef DoctoUbicacionFisica As String)
@@ -40,16 +40,16 @@ Public Class ctlDepositos
         End If
     End Sub
 
-    Public Function devolverDepositosLotes() As DataTable
-        Return clsDep.devolverDepositosLotes()
+    Public Function devolverDepositosLotes(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
+        Return clsDep.devolverDepositosLotes(dtb)
     End Function
 
-    Public Sub mostrarTodosDepositos(ByRef dts As dtsDepositos.DepositosDataTable)
+    Public Sub mostrarTodosDepositos(ByRef dtb As BasesParaCompatibilidad.DataBase, ByRef dts As dtsDepositos.DepositosDataTable)
         Dim reg As dtsDepositos.DepositosRow
         Dim i As Integer
         Dim tabla As New DataTable
 
-        tabla = clsDep.Devolver()
+        tabla = clsDep.Devolver(dtb)
         dts.Clear()
 
         While i < tabla.Rows.Count
@@ -133,26 +133,26 @@ Public Class ctlDepositos
     End Sub
 
     Public Sub EliminarDeposito(ByRef dtb As BasesParaCompatibilidad.DataBase)
-        clsDep.Cargar()
+        clsDep.Cargar(dtb)
 
         If clsDep._BotaID > 0 Then
             clsBot._BotaID = clsDep._BotaID
             LimpiarDeposito(dtb)
-            EliminarBota()
+            EliminarBota(dtb)
         ElseIf clsDep._TonelID > 0 Then
             clsTon._TonelID = clsDep._TonelID
             LimpiarDeposito(dtb)
-            EliminarTonel()
+            EliminarTonel(dtb)
         ElseIf clsDep._BotaPiernaID > 0 Then
             clsBotPie._BotaPiernaID = clsDep._BotaPiernaID
             LimpiarDeposito(dtb)
-            EliminarBotaPierna()
+            EliminarBotaPierna(dtb)
         ElseIf clsDep._TransicubaID > 0 Then
             clsTra._TransicubaID = clsDep._TransicubaID
             LimpiarDeposito(dtb)
-            EliminarTransicuba()
+            EliminarTransicuba(dtb)
         End If
-        clsDep.Eliminar()
+        clsDep.Eliminar(dtb)
     End Sub
 
     '--------------------------------BOTAS---------------------------------------------
@@ -183,8 +183,8 @@ Public Class ctlDepositos
         End If
     End Sub
 
-    Public Sub EliminarBota()
-        clsBot.Eliminar()
+    Public Sub EliminarBota(ByRef dtb As BasesParaCompatibilidad.DataBase)
+        clsBot.Eliminar(dtb)
     End Sub
 
     '-------------------------------- TONELES ---------------------------------------------
@@ -194,8 +194,8 @@ Public Class ctlDepositos
         Return clsTon._TonelID
     End Function
 
-    Public Sub CargarTonel()
-        clsTon.Cargar()
+    Public Sub CargarTonel(ByRef dtb As BasesParaCompatibilidad.DataBase)
+        clsTon.Cargar(dtb)
     End Sub
 
     Public Sub DevolverDatosTonel(ByRef Descripcion As String, ByRef contHab As String)
@@ -214,8 +214,8 @@ Public Class ctlDepositos
         End If
     End Sub
 
-    Public Sub EliminarTonel()
-        clsTon.Eliminar()
+    Public Sub EliminarTonel(ByRef dtb As BasesParaCompatibilidad.DataBase)
+        clsTon.Eliminar(dtb)
     End Sub
 
     '-------------------------------- PIERNAS ---------------------------------------------
@@ -225,8 +225,8 @@ Public Class ctlDepositos
         Return clsBotPie._BotaPiernaID
     End Function
 
-    Public Sub CargarBotaPierna()
-        clsBotPie.Cargar()
+    Public Sub CargarBotaPierna(ByRef dtb As BasesParaCompatibilidad.DataBase)
+        clsBotPie.Cargar(dtb)
     End Sub
 
     Public Sub DevolverDatosBotaPierna(ByRef Descripcion As String, ByRef contHab As String)
@@ -244,8 +244,8 @@ Public Class ctlDepositos
         End If
     End Sub
 
-    Public Sub EliminarBotaPierna()
-        clsBotPie.Eliminar()
+    Public Sub EliminarBotaPierna(ByRef dtb As BasesParaCompatibilidad.DataBase)
+        clsBotPie.Eliminar(dtb)
     End Sub
 
     '-------------------------------- TRANSICUBAS ---------------------------------------------
@@ -256,8 +256,8 @@ Public Class ctlDepositos
     End Function
 
 
-    Public Sub CargarTransicuba()
-        clsTra.Cargar()
+    Public Sub CargarTransicuba(ByRef dtb As BasesParaCompatibilidad.DataBase)
+        clsTra.Cargar(dtb)
     End Sub
 
 
@@ -280,7 +280,7 @@ Public Class ctlDepositos
         End If
     End Sub
 
-    Public Sub EliminarTransicuba()
-        clsTra.Eliminar()
+    Public Sub EliminarTransicuba(ByRef dtb As BasesParaCompatibilidad.DataBase)
+        clsTra.Eliminar(dtb)
     End Sub
 End Class

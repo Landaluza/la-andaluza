@@ -36,9 +36,9 @@ Public Class frmEntPaletsContenidos2
         Me.ToolTip1.SetToolTip(Me.btnMonodosis, "muestra una lista en detalle apra seleccionar las monodosis")
 
         If m_DBO_PaletsContenidos2.FormatoEnvasadoID <> m_DBO_PaletProducido.FormatoID And m_DBO_PaletsContenidos2.FormatoEnvasadoID <> 0 Then
-            m_DBO_FormatoEnvasado = spFormato.Select_Record(m_DBO_PaletsContenidos2.FormatoEnvasadoID)
+            m_DBO_FormatoEnvasado = spFormato.Select_Record(m_DBO_PaletsContenidos2.FormatoEnvasadoID, dtb)
         Else
-            m_DBO_FormatoEnvasado = spFormato.Select_Record(m_DBO_PaletProducido.FormatoID)
+            m_DBO_FormatoEnvasado = spFormato.Select_Record(m_DBO_PaletProducido.FormatoID, dtb)
         End If
         dtpHoraInicio.activarFoco()
         dtpHoraFin.activarFoco()
@@ -51,14 +51,14 @@ Public Class frmEntPaletsContenidos2
     Overrides Sub Guardar()
         Try
             GetValores()
-            If Not spPaletsContenidos2.ValidarRangoHorario(m_DBO_PaletsContenidos2, Me.m_DBO_Envasado.EnvasadoID) Then
+            If Not spPaletsContenidos2.ValidarRangoHorario(m_DBO_PaletsContenidos2, Me.m_DBO_Envasado.EnvasadoID, dtb) Then
                 MessageBox.Show("La hora de produccion se suporpone con la de otro palet.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 Return
             End If
 
             Dim modoAntesDeCambios As Integer
-            BasesParaCompatibilidad.BD.EmpezarTransaccion()
-            Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server, BasesParaCompatibilidad.BD.Cnx, BasesParaCompatibilidad.BD.transaction)
+            dtb.EmpezarTransaccion()
+
 
             If Not padre Is Nothing Then
                 modoAntesDeCambios = padre.ModoDeApertura
@@ -72,16 +72,16 @@ Public Class frmEntPaletsContenidos2
                     If Not padre Is Nothing Then m_DBO_PaletsContenidos2.PaletProducidoID = padre.getPaletId()
                     m_DBO_PaletsContenidos2.EnAlmacen = True
                     padre.chbEnAlmacen.Checked = True
-                    m_DBO_PaletsContenidos2.PaletContenidoID = spPaletsContenidos2.InsertPaletsContenidos2(m_DBO_PaletsContenidos2)
+                    m_DBO_PaletsContenidos2.PaletContenidoID = spPaletsContenidos2.InsertPaletsContenidos2(m_DBO_PaletsContenidos2, dtb)
                 Case COMPLETAR
                     m_DBO_PaletsContenidos2.Terminado = True
                     padre.chbTerminado.Checked = True
                     m_DBO_PaletsContenidos2.EnAlmacen = True
                     padre.chbEnAlmacen.Checked = True
-                    m_DBO_PaletsContenidos2.PaletContenidoID = spPaletsContenidos2.InsertPaletsContenidos2(m_DBO_PaletsContenidos2)
-                    spPaletsContenidos2.DarPorTerminadoPaletContenido(m_DBO_PaletsContenidos2)
+                    m_DBO_PaletsContenidos2.PaletContenidoID = spPaletsContenidos2.InsertPaletsContenidos2(m_DBO_PaletsContenidos2, dtb)
+                    spPaletsContenidos2.DarPorTerminadoPaletContenido(m_DBO_PaletsContenidos2, dtb)
                 Case MODIFICACION
-                    spPaletsContenidos2.UpdatePaletsContenidos2(m_DBO_PaletsContenidos2)
+                    spPaletsContenidos2.UpdatePaletsContenidos2(m_DBO_PaletsContenidos2, dtb)
             End Select
 
             'realzia los movimientso de las monodosis
@@ -149,7 +149,7 @@ Public Class frmEntPaletsContenidos2
 
 
             If m_DBO_PaletsContenidos2.Terminado Then
-                spPaletsContenidos2.DarPorTerminadoPaletContenido(m_DBO_PaletsContenidos2)
+                spPaletsContenidos2.DarPorTerminadoPaletContenido(m_DBO_PaletsContenidos2, dtb)
                 padre.chbTerminado.Checked = True
                 Me.DialogResult = Windows.Forms.DialogResult.Yes
                 If Not padre Is Nothing Then Me.padre.ModoDeApertura = modoAntesDeCambios
@@ -161,10 +161,10 @@ Public Class frmEntPaletsContenidos2
                 If Not padre Is Nothing Then padre.etiquetar()
             End If
 
-            BasesParaCompatibilidad.BD.TerminarTransaccion()
+            dtb.TerminarTransaccion()
             Me.Hide()
         Catch ex As Exception
-            BasesParaCompatibilidad.BD.CancelarTransaccion()
+            dtb.CancelarTransaccion()
             MessageBox.Show("Error al guardar, se BasesParaCompatibilidad.BD.Cerrará la ventana. Detalles:" & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Me.Close()
         End Try
@@ -200,7 +200,7 @@ Public Class frmEntPaletsContenidos2
             Dim aux As Integer = m_DBO_PaletsContenidos2.NroCajasCompletar
 
             CajasCompletarAux = m_DBO_PaletsContenidos2.NroCajasCompletar
-            m_DBO_PaletsContenidos2 = spPaletsContenidos2.Select_Record(m_DBO_PaletsContenidos2.PaletContenidoID)
+            m_DBO_PaletsContenidos2 = spPaletsContenidos2.Select_Record(m_DBO_PaletsContenidos2.PaletContenidoID, dtb)
             CajasCompletarAux = m_DBO_PaletsContenidos2.CantidadCajas
             m_DBO_PaletsContenidos2.NroCajasCompletar = aux
 
@@ -317,18 +317,18 @@ Public Class frmEntPaletsContenidos2
                 System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
                 Me.Enabled = False
 
-                m_DBO_PaletProducido = spPaletsProducidos2.Select_Record((Me.cbScc.SelectedValue))
+                m_DBO_PaletProducido = spPaletsProducidos2.Select_Record(Me.cbScc.SelectedValue, dtb)
                 spPaletsProducidos2.scc = m_DBO_PaletProducido.SCC.ToString
 
                 Dim aux As DBO_FormatosEnvasados
                 Dim spFormatosEnvasados As New spFormatosEnvasados
                 Dim spEnvasados2 As New spEnvasados2
-                Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
 
-                aux = spFormatosEnvasados.Select_Record(m_DBO_PaletProducido.FormatoID)
-                m_DBO_Envasado = spEnvasados2.Select_Record(aux.EnvasadoID)
 
-                spPaletsProducidos2.CompletarPaletContenido(m_DBO_PaletProducido)
+                aux = spFormatosEnvasados.Select_Record(m_DBO_PaletProducido.FormatoID, dtb)
+                m_DBO_Envasado = spEnvasados2.Select_Record(aux.EnvasadoID, dtb)
+
+                spPaletsProducidos2.CompletarPaletContenido(m_DBO_PaletProducido, dtb)
                 m_DBO_PaletsContenidos2.NroCajasCompletar = m_DBO_PaletProducido.NroCajasCompletar
 
                 dtb.PrepararConsulta("PaletsProducidos2GetUltimaHoraProduccionPorLinea2 @flinea, @envasado")
@@ -351,7 +351,7 @@ Public Class frmEntPaletsContenidos2
 
 
         If Me.padre Is Nothing Then
-            Me.cbScc.mam_DataSource("paletsProducidosSelectCboScc", False)
+            Me.cbScc.mam_DataSource("paletsProducidosSelectCboScc", False, dtb)
             Me.cbScc.Visible = True
             Me.lblScc.Visible = True
         Else
@@ -367,22 +367,22 @@ Public Class frmEntPaletsContenidos2
             Me.cbScc.Enabled = False
         End If
 
-        If spPMovimientos.comprobarFormatoEncajado(Me.m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID) Then
+        If spPMovimientos.comprobarFormatoEncajado(Me.m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID, dtb) Then
             If Me.ModoDeApertura = INSERCION Or ModoDeApertura = COMPLETAR Then
-                If Not Me.monodosis.EsDoyPack(Me.m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID) Then
+                If Not Me.monodosis.EsDoyPack(Me.m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID, dtb) Then
 
                     Me.SplitContainer1.Panel2Collapsed = True
                     Me.cboMonodosis.Visible = True
                     Me.Label1.Visible = True
                     Me.btnMonodosis.Visible = True
 
-                    spPaletsContenidos2.cargarComboDetallesMonodosis(Me.cboMonodosis, Me.m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID)
+                    spPaletsContenidos2.cargarComboDetallesMonodosis(Me.cboMonodosis, Me.m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID, dtb)
 
                     If Me.ModoDeApertura = INSERCION Or ModoDeApertura = COMPLETAR Then
                     Else
 
-                        Me.dbo_movimiento = spPMovimientos.Select_RecordByContenidoPalet(Me.m_DBO_PaletsContenidos2.PaletContenidoID)
-                        Me.dbo_movimiento = spPMovimientos.Select_RecordByContenidoPalet(Me.m_DBO_PaletsContenidos2.PaletContenidoID)
+                        Me.dbo_movimiento = spPMovimientos.Select_RecordByContenidoPalet(Me.m_DBO_PaletsContenidos2.PaletContenidoID, dtb)
+                        Me.dbo_movimiento = spPMovimientos.Select_RecordByContenidoPalet(Me.m_DBO_PaletsContenidos2.PaletContenidoID, dtb)
                         cboMonodosis.SelectedValue = dbo_movimiento.PaletID
 
                         If Me.ModoDeApertura = MODIFICACION Then
@@ -402,7 +402,7 @@ Public Class frmEntPaletsContenidos2
                     Me.Label1.Visible = False
                     Me.btnMonodosis.Visible = False
 
-                    Me.monodosis.CargarMonodosis(Me.PanDoyPack, Me.m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID)
+                    Me.monodosis.CargarMonodosis(Me.PanDoyPack, Me.m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID, dtb)
                     'cargar los combos de monodosis correspondientes
                 End If
             Else

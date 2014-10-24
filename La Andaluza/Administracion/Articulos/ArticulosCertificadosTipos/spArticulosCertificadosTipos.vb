@@ -9,12 +9,12 @@ Class spArticulosCertificadosTipos
 
     End Sub
 
-    Public Function Select_Record(ByVal ArticuloCertificadoTipoID As Int32) As DBO_ArticulosCertificadosTipos
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal ArticuloCertificadoTipoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_ArticulosCertificadosTipos
+        dtb.Conectar()
         Dim DBO_ArticulosCertificadosTipos As New DBO_ArticulosCertificadosTipos
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[ArticulosCertificadosTiposSelect]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.Comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@ArticuloCertificadoTipoID", ArticuloCertificadoTipoID)
         Try
@@ -32,16 +32,16 @@ Class spArticulosCertificadosTipos
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_ArticulosCertificadosTipos
     End Function
 
-    Public Function ArticulosCertificadosTiposInsert(ByVal dbo_ArticulosCertificadosTipos As DBO_ArticulosCertificadosTipos) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ArticulosCertificadosTiposInsert(ByVal dbo_ArticulosCertificadosTipos As DBO_ArticulosCertificadosTipos, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[ArticulosCertificadosTiposInsert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
         insertCommand.Parameters.AddWithValue("@Descripcion", dbo_ArticulosCertificadosTipos.Descripcion)
         insertCommand.Parameters.AddWithValue("@Observaciones", dbo_ArticulosCertificadosTipos.Observaciones)
@@ -60,15 +60,15 @@ Class spArticulosCertificadosTipos
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function ArticulosCertificadosTiposUpdate(ByVal newDBO_ArticulosCertificadosTipos As DBO_ArticulosCertificadosTipos) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ArticulosCertificadosTiposUpdate(ByVal newDBO_ArticulosCertificadosTipos As DBO_ArticulosCertificadosTipos, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[ArticulosCertificadosTiposUpdate]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         updateCommand.Parameters.AddWithValue("@NewDescripcion", newDBO_ArticulosCertificadosTipos.Descripcion)
         updateCommand.Parameters.AddWithValue("@NewObservaciones", newDBO_ArticulosCertificadosTipos.Observaciones)
@@ -89,15 +89,15 @@ Class spArticulosCertificadosTipos
             MessageBox.Show("Error en UpdateArticulosCertificadosTipos" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function ArticulosCertificadosTiposDelete(ByVal ArticuloCertificadoTipoID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ArticulosCertificadosTiposDelete(ByVal ArticuloCertificadoTipoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[ArticulosCertificadosTiposDelete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         deleteCommand.Parameters.AddWithValue("@OldArticuloCertificadoTipoID", ArticuloCertificadoTipoID)
         deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
@@ -113,17 +113,17 @@ Class spArticulosCertificadosTipos
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Sub GrabarArticulosCertificadosTipos(ByVal dbo_ArticulosCertificadosTipos As DBO_ArticulosCertificadosTipos)
+    Public Sub GrabarArticulosCertificadosTipos(ByVal dbo_ArticulosCertificadosTipos As DBO_ArticulosCertificadosTipos, ByRef dtb As BasesParaCompatibilidad.DataBase)
         dbo_ArticulosCertificadosTipos.FechaModificacion = System.DateTime.Now.Date
         dbo_ArticulosCertificadosTipos.UsuarioModificacion = BasesParaCompatibilidad.Config.User
         If dbo_ArticulosCertificadosTipos.ArticuloCertificadoTipoID = 0 Then
-            ArticulosCertificadosTiposInsert(dbo_ArticulosCertificadosTipos)
+            ArticulosCertificadosTiposInsert(dbo_ArticulosCertificadosTipos, dtb)
         Else
-            ArticulosCertificadosTiposUpdate(dbo_ArticulosCertificadosTipos)
+            ArticulosCertificadosTiposUpdate(dbo_ArticulosCertificadosTipos, dtb)
         End If
     End Sub
 

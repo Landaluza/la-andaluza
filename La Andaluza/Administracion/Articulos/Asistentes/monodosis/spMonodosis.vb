@@ -8,14 +8,14 @@ Class spMonodosis
                    String.Empty, String.Empty, String.Empty)
     End Sub
 
-    Public Function guardarMonodosis(ByVal dbo_Monodosis As DBO_Monodosis) As Boolean
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+    Public Function guardarMonodosis(ByVal dbo_Monodosis As DBO_Monodosis, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+
         Dim insertProcedure As String = "[dbo].[MonodosisInsert]"
 
         Try
-            Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+            Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
             insertCommand.CommandType = CommandType.StoredProcedure
-            insertCommand.Transaction = BasesParaCompatibilidad.BD.transaction
+
 
             insertCommand.Parameters.AddWithValue("@ArticuloID", dbo_Monodosis.ArticuloId)
             insertCommand.Parameters.AddWithValue("@tipoFormatoID", If(dbo_Monodosis.TipoFormatoId = 0, Convert.DBNull, dbo_Monodosis.TipoFormatoId))
@@ -23,7 +23,7 @@ Class spMonodosis
             insertCommand.Parameters.AddWithValue("@id_Palet", If(dbo_Monodosis.Palet_NO_Conforme_ID = 0, Convert.DBNull, dbo_Monodosis.Palet_NO_Conforme_ID))
             insertCommand.Parameters.AddWithValue("@id_Producto", dbo_Monodosis.ProductoId)
             insertCommand.Parameters.AddWithValue("@id_Caja", dbo_Monodosis.CajaId)
-            insertCommand.Parameters.AddWithValue("@cantidad", dbo_Monodosis.cantidadpormatricula)
+            insertCommand.Parameters.AddWithValue("@cantidad", dbo_Monodosis.CantidadPorMatricula)
             insertCommand.Parameters.AddWithValue("@ean", If(dbo_Monodosis.Ean13 = "0" Or dbo_Monodosis.Ean13 = String.Empty, Convert.DBNull, dbo_Monodosis.Ean13))
 
             insertCommand.ExecuteNonQuery()
@@ -32,17 +32,20 @@ Class spMonodosis
 
         Catch ex As System.Data.SqlClient.SqlException
             Return False
+        Finally
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function updateMonodosis(ByVal dbo_Monodosis As DBO_Monodosis) As Boolean
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+    Public Function updateMonodosis(ByVal dbo_Monodosis As DBO_Monodosis, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+
+        dtb.Conectar()
         Dim insertProcedure As String = "[dbo].[MonodosisUpdate]"
 
         Try
-            Dim updateCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+            Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.Comando(insertProcedure)
             updateCommand.CommandType = CommandType.StoredProcedure
-            updateCommand.Transaction = BasesParaCompatibilidad.BD.transaction
+
 
             updateCommand.Parameters.AddWithValue("@ArticuloID", dbo_Monodosis.ArticuloId)
             updateCommand.Parameters.AddWithValue("@tipoFormatoID", dbo_Monodosis.TipoFormatoId)
@@ -62,13 +65,13 @@ Class spMonodosis
         End Try
     End Function
 
-    Function selectRecord(p1 As Integer) As DBO_Monodosis
-        If BasesParaCompatibilidad.BD.transaction Is Nothing Then BasesParaCompatibilidad.BD.Conectar()
+    Function selectRecord(p1 As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_Monodosis
+        dtb.Conectar()
         Dim DBO_monodosis As New DBO_Monodosis
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[monodosisSelect]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
-        If Not BasesParaCompatibilidad.BD.transaction Is Nothing Then selectCommand.Transaction = BasesParaCompatibilidad.BD.transaction
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
+
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@articuloID", p1)
 
@@ -91,8 +94,9 @@ Class spMonodosis
         Catch ex As System.Data.SqlClient.SqlException
             DBO_monodosis = Nothing
         Finally
-            If BasesParaCompatibilidad.BD.transaction Is Nothing Then connection.Close()
+            dtb.Desconectar()
         End Try
+
         Return DBO_monodosis
     End Function
 
@@ -113,13 +117,13 @@ Class spMonodosis
         End Try
     End Function
 
-    Public Function selectDgv() As DataTable
-        Dim dbt As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+    Public Function selectDgv(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
+
         dtb.PrepararConsulta("MonodosisSelectDetallado")
         Return dtb.Consultar
     End Function
 
-    Function esMonodosis(ByVal p1 As Integer, Optional dtb as BasesParaCompatibilidad.Database = Nothing) As Boolean
+    Function esMonodosis(ByVal p1 As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Dim dt As DataTable
 
         dtb.PrepararConsulta("Select count(*) from monodosis where id_articuloPrimario = @id")

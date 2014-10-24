@@ -208,7 +208,7 @@ Public Class frmPaletsContenidos2
                                   "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 If response = DialogResult.Yes Then
                     Dim m_Pos As Integer = GeneralBindingSource.Position
-                    CType(sp, spPaletsContenidos2).EliminarPaletContenido(GeneralBindingSource(m_Pos).Item("PaletContenidoID"))
+                    CType(sp, spPaletsContenidos2).EliminarPaletContenido(GeneralBindingSource(m_Pos).Item("PaletContenidoID"), dtb)
                     actualizarTrasAccion()
                 End If
             Catch ex As Exception
@@ -230,14 +230,14 @@ Public Class frmPaletsContenidos2
 
             'm_PaletContenido = spPaletsContenidos2.Select_Record(Me.dgvGeneral.CurrentRow.Cells("PaletContenidoID").Value)
 
-            m_PaletContenido = CType(sp, spPaletsContenidos2).Select_Record(Me.dgvGeneral.CurrentRow.Cells("PaletContenidoID").Value)
-            m_PaletProducido = spPaletsProducidos2.Select_Record(Me.dgvGeneral.CurrentRow.Cells("PaletProducidoID").Value)
+            m_PaletContenido = CType(sp, spPaletsContenidos2).Select_Record(Me.dgvGeneral.CurrentRow.Cells("PaletContenidoID").Value, dtb)
+            m_PaletProducido = spPaletsProducidos2.Select_Record(Me.dgvGeneral.CurrentRow.Cells("PaletProducidoID").Value, dtb)
             spPaletsProducidos2.scc = m_PaletContenido.SCC
 
             Dim aux As DBO_FormatosEnvasados
             Dim spFormatosEnvasados As New spFormatosEnvasados
-            aux = spFormatosEnvasados.Select_Record(m_PaletProducido.FormatoID)
-            m_Envasado = spEnvasados2.Select_Record(aux.EnvasadoID)
+            aux = spFormatosEnvasados.Select_Record(m_PaletProducido.FormatoID, dtb)
+            m_Envasado = spEnvasados2.Select_Record(aux.EnvasadoID, dtb)
             m_Envasado.LineaID = aux.TipoFormatoLineaID
         End If
 
@@ -245,7 +245,7 @@ Public Class frmPaletsContenidos2
 
         Select Case TipoAction
             Case ACCION_INSERTAR
-                spPaletsProducidos2.CompletarPaletContenido(m_PaletProducido)
+                spPaletsProducidos2.CompletarPaletContenido(m_PaletProducido, dtb)
                 m_PaletContenido.PaletProducidoID = m_PaletProducido.PaletProducidoID
                 m_PaletContenido.Terminado = True
 
@@ -262,13 +262,13 @@ Public Class frmPaletsContenidos2
                 frmEnt.ModoDeApertura = frmEntPaletsContenidos2.INSERCION
 
             Case ACCION_MODIFICAR
-                spPaletsProducidos2.CompletarPaletContenido(m_PaletProducido)
+                spPaletsProducidos2.CompletarPaletContenido(m_PaletProducido, dtb)
                 m_PaletContenido.NroCajasCompletar = m_PaletProducido.NroCajasCompletar
                 m_PaletContenido.PaletContenidoID = GeneralBindingSource(m_Pos).Item("PaletContenidoID")
                 frmEnt.ModoDeApertura = frmEntPaletsContenidos2.MODIFICACION
 
             Case ACCION_VER
-                spPaletsProducidos2.CompletarPaletContenido(m_PaletProducido)
+                spPaletsProducidos2.CompletarPaletContenido(m_PaletProducido, dtb)
                 m_PaletContenido.NroCajasCompletar = m_PaletProducido.NroCajasCompletar
                 m_PaletContenido.PaletContenidoID = GeneralBindingSource(m_Pos).Item("PaletContenidoID")
                 frmEnt.ModoDeApertura = frmEntPaletsContenidos2.VISION
@@ -279,7 +279,7 @@ Public Class frmPaletsContenidos2
                     Return
                 End If
                 padre.m_DBO_PaletProducido.PaletProducidoID = padre.dgvIncompletos.CurrentRow.Cells("PaletProducidoID").Value
-                padre.m_DBO_PaletProducido = spPaletsProducidos2.Select_Record(padre.dgvIncompletos.CurrentRow.Cells("PaletProducidoID").Value)
+                padre.m_DBO_PaletProducido = spPaletsProducidos2.Select_Record(padre.dgvIncompletos.CurrentRow.Cells("PaletProducidoID").Value, dtb)
                 frmEnt.CambiarMensaje(padre.m_DBO_PaletProducido.SCC, padre.dgvIncompletos.CurrentRow.Cells("Cajas").Value)
 
                 dtb.PrepararConsulta("PaletsProducidos2GetUltimaHoraProduccionPorLinea2 @lin, @env")

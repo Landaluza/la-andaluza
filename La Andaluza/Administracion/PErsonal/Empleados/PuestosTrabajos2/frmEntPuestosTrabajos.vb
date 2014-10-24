@@ -19,7 +19,7 @@ Public Class frmEntPuestosTrabajos
 
     Private Sub frmEntPuestosTrabajos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spDepartamentos
-        s.cargar_Departamentos(Me.cboDepartamento)
+        s.cargar_Departamentos(Me.cboDepartamento, dtb)
         If Me.mododeapertura = VISION Then
             Me.cboDepartamento.enabled = False
             Me.lblId_Departamento.enabled = False
@@ -65,15 +65,15 @@ Public Class frmEntPuestosTrabajos
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerId_Departamento_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_Departamento.Click
         Dim frmEnt As New frmDepartamentos()
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spDepartamentos
-        s.cargar_Departamentos(Me.cboDepartamento)
+        s.cargar_Departamentos(Me.cboDepartamento, dtb)
     End Sub
 
     Private Sub butAddId_Departamento_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_Departamento.Click
@@ -81,7 +81,7 @@ Public Class frmEntPuestosTrabajos
         Dim frmEnt As New frmEntDepartamentos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spDepartamentos, DBO_Departamentos)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spDepartamentos
-        s.cargar_Departamentos(Me.cboDepartamento)
+        s.cargar_Departamentos(Me.cboDepartamento, dtb)
     End Sub
 
 End Class

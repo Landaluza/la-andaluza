@@ -6,6 +6,7 @@
     Private formato As DBO_FormatosEnvasados
     Private Linea As Integer
     Private Event formato_changed()
+    Private dtb As BasesParaCompatibilidad.DataBase
 
     Public WriteOnly Property Formato_Envasado As Integer
         Set(value As Integer)
@@ -31,7 +32,7 @@
     Public Sub New(ByVal linea As Integer, Optional ByVal embebido As Boolean = False)
 
         InitializeComponent()
-
+        dtb = New BasesParaCompatibilidad.DataBase
         Me.formato = New DBO_FormatosEnvasados
         Me.dboTipoLinea = New DBO_TiposFormatosLineas_TiposFormatos
         Me.spTiposFormatosLineas_TiposFormatos = New spTiposFormatosLineas_TiposFormatos
@@ -45,7 +46,7 @@
     Public Sub New()
 
         InitializeComponent()
-
+        dtb = New BasesParaCompatibilidad.DataBase
         Me.formato = New DBO_FormatosEnvasados
         Me.dboTipoLinea = New DBO_TiposFormatosLineas_TiposFormatos
         Me.spTiposFormatosLineas_TiposFormatos = New spTiposFormatosLineas_TiposFormatos
@@ -73,8 +74,8 @@
         Dim dtLinea As DataTable
         Dim dtEmpleados As DataTable
 
-        dtEmpleados = spEmlpeados.devolver_Empleados_Envasados
-        dtLinea = spEmlpeados.devolver_empleados_por_linea(Me.Linea)
+        dtEmpleados = spEmlpeados.devolver_Empleados_Envasados(dtb)
+        dtLinea = spEmlpeados.devolver_empleados_por_linea(Me.Linea, dtb)
 
         If dtEmpleados Is Nothing Or dtLinea Is Nothing Then
             messagebox.show("No se pudo recuperar los datos. Introduzca el personal que arranca la linea manualmente.","", MessageBoxButtons.OK, MessageBoxIcon.Error )
@@ -108,7 +109,7 @@
 
     Private Sub PersonalEnLinea_refresh() Handles Me.formato_changed
         Try
-            dboTipoLinea = spTiposFormatosLineas_TiposFormatos.Select_Record(spTiposFormatosLineas_TiposFormatos.Select_Id_By(formato.TipoFormatoLineaID, formato.TipoFormatoEnvasadoID))
+            dboTipoLinea = spTiposFormatosLineas_TiposFormatos.Select_Record(spTiposFormatosLineas_TiposFormatos.Select_Id_By(formato.TipoFormatoLineaID, formato.TipoFormatoEnvasadoID, dtb), dtb)
             Me.lRecomendado.Text = dboTipoLinea.PersonalRecomendado
 
             If Me.dgvEnLinea.Rows.Count > Me.lRecomendado.Text Then
@@ -130,20 +131,20 @@
     Public Function guardar() As Boolean
         If Me.dgvEnLinea.Rows.Count > 0 Then
             'Dim sp As New spempleados_envasados
-            'BasesParaCompatibilidad.BD.EmpezarTransaccion()
+            'dtb.EmpezarTransaccion()
             'Try
             'For Each row As DataGridViewRow In Me.dgvEnLinea.Rows
             '    Me.dbo.Id_empleado = row.Cells(0).Value
-            '    If Not sp.Grabar(dbo, BasesParaCompatibilidad.BD.transaction) Then
-            '        BasesParaCompatibilidad.BD.CancelarTransaccion()
+            '    If Not sp.Grabar(dbo,dtb) Then
+            '        dtb.CancelarTransaccion ()
             '        messagebox.show("No se pudo guardar los datos. Introduzca el personal que arranca la linea manualmente.","", MessageBoxButtons.OK, MessageBoxIcon.Error )
             '        Me.Close()
             '    End If
             'Next
 
-            'BasesParaCompatibilidad.BD.TerminarTransaccion()
+            'dtb.TerminarTransaccion ()
             'Catch ex As Exception
-            'BasesParaCompatibilidad.BD.CancelarTransaccion()
+            'dtb.CancelarTransaccion ()
             'End Try
             For Each row As DataGridViewRow In Me.dgvEnLinea.Rows
 

@@ -8,12 +8,12 @@ Class spPedidosClientesDetalles2
                    "[dbo].[PedidosClientesDetalles2Delete]", "PedidosClientesDetalles2SelectDgv", "PedidosClientesDetalles2SelectDgvByPedidoClienteDatalleID")
     End Sub
 
-    Public Function Select_Record(ByVal PedidoClienteDatalleID As Int32) As DBO_PedidosClientesDetalles2
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal PedidoClienteDatalleID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_PedidosClientesDetalles2
+        dtb.Conectar()
         Dim DBO_PedidosClientesDetalles2 As New DBO_PedidosClientesDetalles2
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[PedidosClientesDetalles2Select]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@PedidoClienteDatalleID", PedidoClienteDatalleID)
         Try
@@ -35,16 +35,16 @@ Class spPedidosClientesDetalles2
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_PedidosClientesDetalles2
     End Function
 
-    Public Function PedidosClientesDetalles2Insert(ByVal dbo_PedidosClientesDetalles2 As DBO_PedidosClientesDetalles2) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function PedidosClientesDetalles2Insert(ByVal dbo_PedidosClientesDetalles2 As DBO_PedidosClientesDetalles2, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[PedidosClientesDetalles2Insert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
         insertCommand.Parameters.AddWithValue("@PedidoclienteMaestroID", dbo_PedidosClientesDetalles2.PedidoclienteMaestroID)
         insertCommand.Parameters.AddWithValue("@ArticuloID", dbo_PedidosClientesDetalles2.ArticuloID)
@@ -57,7 +57,7 @@ Class spPedidosClientesDetalles2
         insertCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         insertCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
         Try
-            
+
             insertCommand.ExecuteNonQuery()
             Dim count As Integer = System.Convert.ToInt32(insertCommand.Parameters("@ReturnValue").Value)
             If count > 0 Then
@@ -68,15 +68,15 @@ Class spPedidosClientesDetalles2
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function PedidosClientesDetalles2Update(ByVal newDBO_PedidosClientesDetalles2 As DBO_PedidosClientesDetalles2) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function PedidosClientesDetalles2Update(ByVal newDBO_PedidosClientesDetalles2 As DBO_PedidosClientesDetalles2, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[PedidosClientesDetalles2Update]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         updateCommand.Parameters.AddWithValue("@NewPedidoclienteMaestroID", newDBO_PedidosClientesDetalles2.PedidoclienteMaestroID)
         updateCommand.Parameters.AddWithValue("@NewArticuloID", newDBO_PedidosClientesDetalles2.ArticuloID)
@@ -90,7 +90,7 @@ Class spPedidosClientesDetalles2
         updateCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         updateCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
         Try
-            
+
             updateCommand.ExecuteNonQuery()
             Dim count As Integer = System.Convert.ToInt32(updateCommand.Parameters("@ReturnValue").Value)
             If count > 0 Then
@@ -99,24 +99,24 @@ Class spPedidosClientesDetalles2
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdatePedidosClientesDetalles2" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdatePedidosClientesDetalles2" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function PedidosClientesDetalles2Delete(ByVal PedidoClienteDatalleID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function PedidosClientesDetalles2Delete(ByVal PedidoClienteDatalleID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[PedidosClientesDetalles2Delete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         deleteCommand.Parameters.AddWithValue("@OldPedidoClienteDatalleID", PedidoClienteDatalleID)
         deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         deleteCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
         Try
-            
+
             deleteCommand.ExecuteNonQuery()
             Dim count As Integer = System.Convert.ToInt32(deleteCommand.Parameters("@ReturnValue").Value)
             If count > 0 Then
@@ -127,15 +127,15 @@ Class spPedidosClientesDetalles2
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Sub GrabarPedidosClientesDetalles2(ByVal dbo_PedidosClientesDetalles2 As DBO_PedidosClientesDetalles2)
+    Public Sub GrabarPedidosClientesDetalles2(ByVal dbo_PedidosClientesDetalles2 As DBO_PedidosClientesDetalles2, ByRef dtb As BasesParaCompatibilidad.DataBase)
         If dbo_PedidosClientesDetalles2.PedidoClienteDatalleID = 0 Then
-            PedidosClientesDetalles2Insert(dbo_PedidosClientesDetalles2)
+            PedidosClientesDetalles2Insert(dbo_PedidosClientesDetalles2, dtb)
         Else
-            PedidosClientesDetalles2Update(dbo_PedidosClientesDetalles2)
+            PedidosClientesDetalles2Update(dbo_PedidosClientesDetalles2, dtb)
         End If
     End Sub
 

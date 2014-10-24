@@ -26,15 +26,15 @@ Public Class frmEntPedidosClientesDetalles2
 
         If Me.Text.Contains(BasesParaCompatibilidad.FrmAheredarOld.ACCION_INSERTAR) Then
             If Not mercadona Then
-                spTiposFormatos.cargar_TiposFormatos(cboArticuloID)
+                spTiposFormatos.cargar_TiposFormatos(cboArticuloID, dtb)
             Else
-                spTiposFormatos.cargar_TiposFormatos_por_palet(cboArticuloID, 10)
+                spTiposFormatos.cargar_TiposFormatos_por_palet(cboArticuloID, 10, dtb)
             End If
 
             ' spTiposFormatos.cargar_TiposFormatos(Me.cboArticuloID)
             'Me.cboArticuloID.mam_DataSource("PedidosClientesDetalles2_TiposFormatosCboAll"), False)
         Else
-            spTiposFormatos.cargar_TiposFormatos_Todos(Me.cboArticuloID)
+            spTiposFormatos.cargar_TiposFormatos_Todos(Me.cboArticuloID, dtb)
             'Me.cboArticuloID.mam_DataSource("PedidosClientesDetalles2_TiposFormatosCbo"), False)
         End If
 
@@ -46,7 +46,7 @@ Public Class frmEntPedidosClientesDetalles2
 
         txtPedidoclienteMaestroID.Text = m_DBO_PedidosClientesDetalles2.PedidoclienteMaestroID
 
-        If m_SelectRecord Then m_DBO_PedidosClientesDetalles2 = spPedidosClientesDetalles2.Select_Record(m_ID)
+        If m_SelectRecord Then m_DBO_PedidosClientesDetalles2 = spPedidosClientesDetalles2.Select_Record(m_ID, dtb)
         If m_ID > 0 Then
             txtPedidoClienteDatalleID.Text = m_DBO_PedidosClientesDetalles2.PedidoClienteDatalleID
 
@@ -71,7 +71,7 @@ Public Class frmEntPedidosClientesDetalles2
 
     Overrides Sub Guardar()
         GetValores()
-        spPedidosClientesDetalles2.GrabarPedidosClientesDetalles2(m_DBO_PedidosClientesDetalles2)
+        spPedidosClientesDetalles2.GrabarPedidosClientesDetalles2(m_DBO_PedidosClientesDetalles2, dtb)
         Me.Close()
     End Sub
 

@@ -3,9 +3,11 @@ Public Class frmAlmacenEntradasInforme
     Inherits Windows.Forms.Form
     Private spAlmacen As spAlmacenPalets
     Private datasource As DataTable
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New()
         InitializeComponent()
 
+        dtb = New BasesParaCompatibilidad.DataBase
         Me.spAlmacen = New spAlmacenPalets
         Me.MonthCalendar.MaxDate = DateTime.Now.Date
         Me.MonthCalendar.SelectionRange.Start = DateTime.Now.Date
@@ -18,7 +20,7 @@ Public Class frmAlmacenEntradasInforme
     Private Sub dgvFill()
         If Not spAlmacen Is Nothing Then
             Me.Cursor = Cursors.WaitCursor
-            datasource = Me.spAlmacen.selectEntradasPorFecha(Me.MonthCalendar.SelectionRange.Start)
+            datasource = Me.spAlmacen.selectEntradasPorFecha(Me.MonthCalendar.SelectionRange.Start, dtb)
 
             If Not datasource Is Nothing Then
                 dgv.DataSource = datasource

@@ -1,9 +1,13 @@
 ﻿Imports BasesParaCompatibilidad.ComboBoxExtension
 Public Class frmElegirOrdenListadoPedidos
-    Dim Orden As Integer
+    Private Orden As Integer
+    Private dtb As BasesParaCompatibilidad.DataBase
 
+    Public Sub New()
+        InitializeComponent()
+        dtb = New BasesParaCompatibilidad.DataBase
+    End Sub
     Private Sub frmElegirOrdenListadoPedidos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
         Dim dt As DataTable = dtb.Consultar("SELECT DISTINCT proveedores.proveedorid, Proveedores.Nombre  FROM  PedidosProveedoresMaestros INNER JOIN Proveedores  ON  PedidosProveedoresMaestros.ProveedorID = Proveedores.ProveedorID INNER JOIN PedidosProveedoresEstados  ON  PedidosProveedoresMaestros.EstadoID = PedidosProveedoresEstados.PedidoProveedorEstadoID  WHERE PedidosProveedoresMaestros.EstadoID <> 5 And PedidosProveedoresMaestros.EstadoID <> 6 ORDER BY  Proveedores.Nombre", False)
         cboProveedores.mam_DataSource(dt, False)
     End Sub

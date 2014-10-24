@@ -19,7 +19,7 @@ Public Class frmEntTiposFormatosLineas
 
     Private Sub frmEntTiposFormatosLineas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spLineasEnvasado
-        s.cargar_LineasEnvasado(Me.cboLineaEnvasado)
+        s.cargar_LineasEnvasado(Me.cboLineaEnvasado, dtb)
         If Me.ModoDeApertura = VISION Then
             Me.cboLineaEnvasado.Enabled = False
             Me.lblLineaEnvasadoID.Enabled = False
@@ -65,8 +65,8 @@ Public Class frmEntTiposFormatosLineas
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerLineaEnvasadoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerLineaEnvasadoID.Click
@@ -79,7 +79,7 @@ Public Class frmEntTiposFormatosLineas
         Dim frmEnt As New frmEntLineasEnvasado(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spLineasEnvasado, DBO_LineasEnvasado)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spLineasEnvasado
-        s.cargar_LineasEnvasado(Me.cboLineaEnvasado)
+        s.cargar_LineasEnvasado(Me.cboLineaEnvasado, dtb)
     End Sub
 
     Private Sub frmEntTiposFormatosLineas_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize

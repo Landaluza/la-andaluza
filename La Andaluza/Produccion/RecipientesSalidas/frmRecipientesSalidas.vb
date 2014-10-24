@@ -17,7 +17,7 @@ Public Class frmRecipientesSalidas
     End Sub
 
    Private Sub modify_Before() Handles MyBase.BeforeModify
-       dboRecipientesSalidas =ctype(sp, spRecipientesSalidas).Select_Record(ctype(dgvGeneral.CurrentRow.Cells("Id").Value, integer))
+        dboRecipientesSalidas = CType(sp, spRecipientesSalidas).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
        If Not dboRecipientesSalidas Is Nothing Then
            newRegForm.SetDataBussinesObject(ctype(Me.dboRecipientesSalidas,BasesParaCompatibilidad.databussines))
        Else

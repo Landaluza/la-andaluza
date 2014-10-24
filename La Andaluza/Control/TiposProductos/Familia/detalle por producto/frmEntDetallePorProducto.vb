@@ -18,7 +18,7 @@ Public Class frmEntDetallePorProducto
 
     Private Sub frmEntFamliaProductos_TiposProductos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s0 As New spFamiliaProducto
-        s0.cargar_FamiliaProducto(Me.cboFamiliaProducto)
+        s0.cargar_FamiliaProducto(Me.cboFamiliaProducto, dtb)
         If (Me.mododeapertura = VISION) Then
             Me.cboFamiliaProducto.enabled = False
             Me.lblId_FamiliaProducto.enabled = False
@@ -57,8 +57,8 @@ Public Class frmEntDetallePorProducto
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerId_FamiliaProducto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_FamiliaProducto.Click
@@ -71,7 +71,7 @@ Public Class frmEntDetallePorProducto
         Dim frmEnt As New frmEntFamiliaProducto(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spFamiliaProducto, DBO_FamiliaProducto)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spFamiliaProducto
-        s.cargar_FamiliaProducto(Me.cboFamiliaProducto)
+        s.cargar_FamiliaProducto(Me.cboFamiliaProducto, dtb)
     End Sub
 
     Private Sub frmEntFamliaProductos_TiposProductos_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown

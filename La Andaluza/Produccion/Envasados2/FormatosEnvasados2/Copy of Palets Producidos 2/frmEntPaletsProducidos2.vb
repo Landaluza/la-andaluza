@@ -15,11 +15,10 @@ Public Class frmEntPaletsProducidos2
     Public Const INSERTAR_PRIMER_PALET As Integer = 3
     Private editable As Boolean
     Private spPaletsProducidos2 As spPaletsProducidos2
-    Private dtb As BasesParaCompatibilidad.DataBase
 
     Public Sub New(formatoid As Integer, Optional ByVal editable As Boolean = True)
         InitializeComponent()
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.DataBase()
         Me.instance(formatoid, editable)
     End Sub
 
@@ -84,8 +83,8 @@ Public Class frmEntPaletsProducidos2
     Public Overrides Sub SetValores()
         If m_DBO_PaletProducido.PaletProducidoID > 0 Then
             Dim PrimerPaletAux As Boolean = m_DBO_PaletProducido.EsPrimerPalet
-            m_DBO_PaletProducido = spPaletsProducidos2.Select_Record(m_DBO_PaletProducido.PaletProducidoID, BasesParaCompatibilidad.BD.transaction)
-            spPaletsProducidos2.GetCajasPalet(m_DBO_PaletProducido)
+            m_DBO_PaletProducido = spPaletsProducidos2.Select_Record(m_DBO_PaletProducido.PaletProducidoID, dtb)
+            spPaletsProducidos2.GetCajasPalet(m_DBO_PaletProducido, dtb)
             m_DBO_PaletProducido.EsPrimerPalet = PrimerPaletAux
             grbContenido.Visible = True
             grbIncompletos.Visible = False
@@ -96,7 +95,7 @@ Public Class frmEntPaletsProducidos2
                 txtObservaciones.Text = m_DBO_PaletProducido.observacionesPalets
             End If
         Else
-            m_DBO_PaletProducido.SCC = spPaletsProducidos2.GetUltimoSCCmas1()
+            m_DBO_PaletProducido.SCC = spPaletsProducidos2.GetUltimoSCCmas1(dtb)
             grbContenido.Visible = True
             Me.TimerSSCC.Start()
         End If
@@ -146,7 +145,7 @@ Public Class frmEntPaletsProducidos2
             End If
         Else
             Me.TimerSSCC.Stop()
-            spPaletsProducidos2.GrabarPaletProducido2(m_DBO_PaletProducido)
+            spPaletsProducidos2.GrabarPaletProducido2(m_DBO_PaletProducido, dtb)
             If spPaletsProducidos2.message <> "" Then
                 Dim frmAuto As New PaletsEntAutoGuardado(Me)
                 frmAuto.ShowDialog()
@@ -178,7 +177,7 @@ Public Class frmEntPaletsProducidos2
         Try
             'm_Tabla = DataTableFill("PaletsProducidos3SelectPaletsIncompletos " & m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID)
             Dim sp As New spFormatosEnvasados
-            Dim dbo As DBO_FormatosEnvasados = sp.Select_Record(If(Me.formatoId = Nothing, Me.m_DBO_PaletProducido.FormatoID, Me.formatoId), BasesParaCompatibilidad.BD.transaction)
+            Dim dbo As DBO_FormatosEnvasados = sp.Select_Record(If(Me.formatoId = Nothing, Me.m_DBO_PaletProducido.FormatoID, Me.formatoId), dtb)
             If dbo Is Nothing Then Return
 
             dtb.PrepararConsulta("PaletsProducidos3SelectPaletsIncompletos @id")
@@ -395,7 +394,7 @@ Public Class frmEntPaletsProducidos2
                 Else
                     If Me.txtObservaciones.Text = "" Then Me.txtObservaciones.Text = "Generado sin contenidos por usuario " & Config.UserName
                     GetValores()
-                    spPaletsProducidos2.GrabarPaletProducido2(m_DBO_PaletProducido)
+                    spPaletsProducidos2.GrabarPaletProducido2(m_DBO_PaletProducido, dtb)
                 End If
             End If
         ElseIf operation = MODIFICACION Then
@@ -411,7 +410,7 @@ Public Class frmEntPaletsProducidos2
                 If Me.txtObservaciones.Text = "" Then Me.txtObservaciones.Text = "Generado sin contenidos por usuario " & Config.UserName
             End If
             GetValores()
-            spPaletsProducidos2.GrabarPaletProducido2(m_DBO_PaletProducido)
+            spPaletsProducidos2.GrabarPaletProducido2(m_DBO_PaletProducido, dtb)
 
         ElseIf operation = CERRADO Then
             If (Me.frContenidos.RowCount = 0 And Me.ModoDeApertura = MODIFICACION) Then '(Me.paletCreado = True) And 
@@ -424,12 +423,12 @@ Public Class frmEntPaletsProducidos2
                     If Me.ModoDeApertura = MODIFICACION Then
                         Me.txtObservaciones.Text = "Generado sin contenidos por usuario " & Config.UserName
                         GetValores()
-                        spPaletsProducidos2.GrabarPaletProducido2(m_DBO_PaletProducido)
+                        spPaletsProducidos2.GrabarPaletProducido2(m_DBO_PaletProducido, dtb)
                     Else
                         If Me.paletCreado Then
                             Me.txtObservaciones.Text = "Generado sin contenidos por usuario " & Config.UserName
                             GetValores()
-                            spPaletsProducidos2.GrabarPaletProducido2(m_DBO_PaletProducido)
+                            spPaletsProducidos2.GrabarPaletProducido2(m_DBO_PaletProducido, dtb)
                         End If
                     End If
                 End If
@@ -448,7 +447,7 @@ Public Class frmEntPaletsProducidos2
     End Sub
 
     Public Sub actualizar_sscc()
-        m_DBO_PaletProducido.SCC = spPaletsProducidos2.GetUltimoSCCmas1()
+        m_DBO_PaletProducido.SCC = spPaletsProducidos2.GetUltimoSCCmas1(dtb)
         lblSSCCtext.Text = m_DBO_PaletProducido.SCC
     End Sub
 
@@ -473,7 +472,7 @@ Public Class frmEntPaletsProducidos2
         If Me.m_DBO_PaletProducido.PaletProducidoID <> 0 Then
             'If MessageBox.Show("¿Desea imprimir etiqueta?", "Etiqueta palet " & Me.m_DBO_PaletProducido.SCC, _
             '                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
-            If spPaletsProducidos2.Etiquetar(Me.m_DBO_PaletProducido.PaletProducidoID) Then
+            If spPaletsProducidos2.Etiquetar(Me.m_DBO_PaletProducido.PaletProducidoID, dtb) Then
                 Try
                     Dim frm As New frmEtiqueta0(Me.m_DBO_PaletProducido.PaletProducidoID, False)
                     frm.Show()

@@ -13,26 +13,26 @@ Inherits BasesParaCompatibilidad.StoredProcedure
                      "[dbo].[MaquinasSelectDgvBy]")
    End Sub
 
-   Public Overloads Function Select_Record(ByVal MaquinaID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As DBO_Maquinas
-       Dim dbo As New DBO_Maquinas
-       dbo.searchKey = dbo.item("MaquinaID")
-       dbo.searchKey.value = MaquinaID
-       MyBase.Select_Record(dbo, trans)
-       Return dbo
-   End Function
+    Public Overloads Function Select_Record(ByVal MaquinaID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_Maquinas
+        Dim dbo As New DBO_Maquinas
+        dbo.searchKey = dbo.item("MaquinaID")
+        dbo.searchKey.value = MaquinaID
+        MyBase.Select_Record(dbo, dtb)
+        Return dbo
+    End Function
 
-   Public Overrides Function Delete(ByVal MaquinaID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As Boolean
-       Dim dbo As New DBO_Maquinas
-       dbo.searchKey = dbo.item("MaquinaID")
-       dbo.searchKey.value = MaquinaID
-       return MyBase.DeleteProcedure(dbo,  trans)
-   End Function
+    Public Overrides Function Delete(ByVal MaquinaID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        Dim dbo As New DBO_Maquinas
+        dbo.searchKey = dbo.item("MaquinaID")
+        dbo.searchKey.value = MaquinaID
+        Return MyBase.DeleteProcedure(dbo, dtb)
+    End Function
 
-    Public Sub cargar_Maquinas(ByRef comboBox As ComboBox)
-        comboBox.mam_DataSource("MaquinasCbo", False)
+    Public Sub cargar_Maquinas(ByRef comboBox As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        comboBox.mam_DataSource("MaquinasCbo", False, dtb)
     End Sub
 
-    Public Sub cargar_MaquinasporLinea(ByRef cbo As ComboBox, ByVal linea As Integer)
-        cbo.mam_DataSource("_Incidencias2SelectMaquinasPorLinea " & linea, False)
+    Public Sub cargar_MaquinasporLinea(ByRef cbo As ComboBox, ByVal linea As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        cbo.mam_DataSource("_Incidencias2SelectMaquinasPorLinea " & linea, False, dtb)
     End Sub
 End Class

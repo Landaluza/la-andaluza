@@ -8,12 +8,12 @@ Class spControlesPresionLlenadora2
                    "[dbo].[ControlesPresionLlenadora1Update2]", "[dbo].[ControlesPresionLlenadora1Delete2]", _
                    "ControlesPresionLlenadora1SelectDgv", "ControlesPresionLlenadora1SelectDgvByEnvasadoID")
     End Sub
-    Public Function Select_Record(ByVal ControlPresionLlenadora1ID As Int32) As DBO_ControlesPresionLlenadora2
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal ControlPresionLlenadora1ID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_ControlesPresionLlenadora2
+        dtb.Conectar()
         Dim DBO_ControlesPresionLlenadora1 As New DBO_ControlesPresionLlenadora2
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[ControlesPresionLlenadora1Select2]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@ControlPresionLlenadora1ID", ControlPresionLlenadora1ID)
         Try
@@ -35,16 +35,16 @@ Class spControlesPresionLlenadora2
         Catch ex As System.Data.SqlClient.SqlException
 
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_ControlesPresionLlenadora1
     End Function
 
-    Public Function ControlesPresionLlenadora1Insert(ByVal dbo_ControlesPresionLlenadora1 As DBO_ControlesPresionLlenadora2) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ControlesPresionLlenadora1Insert(ByVal dbo_ControlesPresionLlenadora1 As DBO_ControlesPresionLlenadora2, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[ControlesPresionLlenadora1Insert2]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
         insertCommand.Parameters.AddWithValue("@EnvasadoID", dbo_ControlesPresionLlenadora1.EnvasadoID)
         insertCommand.Parameters.AddWithValue("@VerificadorID", If(dbo_ControlesPresionLlenadora1.VerificadorID.HasValue, dbo_ControlesPresionLlenadora1.VerificadorID, Convert.DBNull))
@@ -67,15 +67,15 @@ Class spControlesPresionLlenadora2
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function ControlesPresionLlenadora1Update(ByVal newDBO_ControlesPresionLlenadora1 As DBO_ControlesPresionLlenadora2) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ControlesPresionLlenadora1Update(ByVal newDBO_ControlesPresionLlenadora1 As DBO_ControlesPresionLlenadora2, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[ControlesPresionLlenadora1Update2]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         updateCommand.Parameters.AddWithValue("@EnvasadoID", newDBO_ControlesPresionLlenadora1.EnvasadoID)
         updateCommand.Parameters.AddWithValue("@VerificadorID", If(newDBO_ControlesPresionLlenadora1.VerificadorID.HasValue, newDBO_ControlesPresionLlenadora1.VerificadorID, Convert.DBNull))
@@ -97,18 +97,18 @@ Class spControlesPresionLlenadora2
             ' Return False
             ' End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdateControlesPresionLlenadora1" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdateControlesPresionLlenadora1" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function ControlesPresionLlenadora1Delete(ByVal ControlPresionLlenadora1ID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ControlesPresionLlenadora1Delete(ByVal ControlPresionLlenadora1ID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[ControlesPresionLlenadora1Delete2]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         deleteCommand.Parameters.AddWithValue("@ControlPresionLlenadora1ID", ControlPresionLlenadora1ID)
         'deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
@@ -124,17 +124,17 @@ Class spControlesPresionLlenadora2
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function GrabarControlesPresionLlenadora1(ByVal dbo_ControlesPresionLlenadora1 As DBO_ControlesPresionLlenadora2) As Boolean
-        dbo_ControlesPresionLlenadora1.FechaModificacion = System.DateTime.Now.date
+    Public Function GrabarControlesPresionLlenadora1(ByVal dbo_ControlesPresionLlenadora1 As DBO_ControlesPresionLlenadora2, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dbo_ControlesPresionLlenadora1.FechaModificacion = System.DateTime.Now.Date
         dbo_ControlesPresionLlenadora1.UsuarioModificacion = BasesParaCompatibilidad.Config.User
         If dbo_ControlesPresionLlenadora1.ControlPresionLlenadora1ID = 0 Then
-            Return ControlesPresionLlenadora1Insert(dbo_ControlesPresionLlenadora1)
+            Return ControlesPresionLlenadora1Insert(dbo_ControlesPresionLlenadora1, dtb)
         Else
-            Return ControlesPresionLlenadora1Update(dbo_ControlesPresionLlenadora1)
+            Return ControlesPresionLlenadora1Update(dbo_ControlesPresionLlenadora1, dtb)
         End If
     End Function
 

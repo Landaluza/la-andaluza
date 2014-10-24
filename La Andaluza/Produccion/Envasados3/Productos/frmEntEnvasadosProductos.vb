@@ -23,7 +23,7 @@ Public Class frmEntEnvasadosProductos
     Private Sub frmEntEnvasadosProductos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
         Dim s1 As New spTiposProductos
-        s1.cargar_ComboBox(Me.cboProducto)
+        s1.cargar_ComboBox(Me.cboProducto, dtb)
         If Me.ModoDeApertura = VISION Then
             Me.cboProducto.Enabled = False
             Me.lblProductoID.Enabled = False
@@ -85,29 +85,32 @@ Public Class frmEntEnvasadosProductos
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
         If Me.GetValores Then
+            Dim terminar As Boolean
 
-            If trans Is Nothing Then
-                BasesParaCompatibilidad.BD.EmpezarTransaccion()
-                trans = BasesParaCompatibilidad.BD.transaction
+            If dtb.Transaccion Is Nothing Then
+                dtb.EmpezarTransaccion()
+                terminar = True
+            Else
+                terminar = False
             End If
 
             Try
-                If sp.Grabar(dbo, trans) Then
+                If sp.Grabar(dbo, dtb) Then
                     If Me.ModoDeApertura = INSERCION Then
-                        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+
                         Me.m_DBO_EnvasadosProductos.ID = Convert.ToInt32(dtb.Consultar("Select max(envasadoProductoid) from envasadosProductos", False).Rows(0).Item(0))
                     End If
 
-                    BasesParaCompatibilidad.BD.TerminarTransaccion()
+                    If terminar Then dtb.TerminarTransaccion()
                 Else
-                    BasesParaCompatibilidad.BD.CancelarTransaccion()
+                    If terminar Then dtb.CancelarTransaccion()
                     MessageBox.Show("No se pudo guardar el registro. Asegurese de tener conexion a la red.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Return
                 End If
             Catch ex As Exception
-                BasesParaCompatibilidad.BD.CancelarTransaccion()
+                If terminar Then dtb.CancelarTransaccion()
                 MessageBox.Show("No se pudo guardar el registro. Detalles:" & Environment.NewLine() & Environment.NewLine(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Return
             End Try
@@ -132,7 +135,7 @@ Public Class frmEntEnvasadosProductos
         Dim frmEnt As New frmEntTiposProductos(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spTiposProductos, DBO_TiposProductos)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTiposProductos
-        s.cargar_ComboBox(Me.cboProducto)
+        s.cargar_ComboBox(Me.cboProducto, dtb)
     End Sub
 
     Private Sub frmEntEnvasadosProductos_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown

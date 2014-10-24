@@ -24,7 +24,7 @@ Public Class frmCostesAnuales_Empleados
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboCostesAnuales_Empleados = CType(sp, spCostesAnuales_Empleados).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboCostesAnuales_Empleados = CType(sp, spCostesAnuales_Empleados).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboCostesAnuales_Empleados Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboCostesAnuales_Empleados)
         Else

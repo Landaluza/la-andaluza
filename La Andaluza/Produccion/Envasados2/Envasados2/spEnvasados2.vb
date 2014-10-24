@@ -8,14 +8,14 @@ Class spEnvasados2
                   "[dbo].[Envasados2Delete]", "Envasados2SelectDgv", String.Empty)
     End Sub
 
-    Public Function Select_Record(ByVal EnvasadoID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As DBO_Envasados2
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal EnvasadoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_Envasados2
+        dtb.Conectar()
         Dim Dbo_Envasados2 As DBO_Envasados2 = Dbo_Envasados2.Instance
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[Envasados3Select]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
-        If Not trans Is Nothing Then selectCommand.Transaction = trans
+
         selectCommand.Parameters.AddWithValue("@EnvasadoID", EnvasadoID)
         Try
             Dim reader As System.Data.SqlClient.SqlDataReader = selectCommand.ExecuteReader(CommandBehavior.SingleRow)
@@ -32,17 +32,17 @@ Class spEnvasados2
         Catch ex As System.Data.SqlClient.SqlException
             messagebox.show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
-            If trans Is Nothing Then connection.Close()
+            dtb.Desconectar()
         End Try
         Return Dbo_Envasados2
     End Function
 
-    Public Function Select_Record(ByVal EnvasadoID As Int32, ByRef dbt as BasesParaCompatibilidad.Database) As DBO_Envasados3
-        If dbt.Transaccion Is Nothing Then dtb.Conectar()
+    Public Function Select_Record(ByVal EnvasadoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal stub As Boolean) As DBO_Envasados3
+        If dtb.Transaccion Is Nothing Then dtb.Conectar()
         Dim Dbo_Envasados2 As New DBO_Envasados3
 
         ' Dim selectProcedure As String = "[dbo].[Envasados3Select]"
-        ' Dim selectCommand As System.Data.SqlClient.SqlCommand = dbt.Comando("[dbo].[Envasados3Select]")
+        ' Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.Comando("[dbo].[Envasados3Select]")
         Dim selectCommand As New System.Data.SqlClient.SqlCommand("[dbo].[Envasados3Select]", dtb.Conexion)
         selectCommand.CommandType = CommandType.StoredProcedure
 
@@ -62,16 +62,16 @@ Class spEnvasados2
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
-            If dbt.Transaccion Is Nothing Then dbt.Desconectar()
+            If dtb.Transaccion Is Nothing Then dtb.Desconectar()
         End Try
         Return Dbo_Envasados2
     End Function
 
-    Public Function InsertEnvasados2(ByVal dbo_Envasados2 As DBO_Envasados2) As Integer
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function InsertEnvasados2(ByVal dbo_Envasados2 As DBO_Envasados2, ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[Envasados3Insert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
         insertCommand.Parameters.AddWithValue("@Fecha", dbo_Envasados2.Fecha)
         insertCommand.Parameters.AddWithValue("@FechaModificacion", dbo_Envasados2.FechaModificacion)
@@ -88,19 +88,19 @@ Class spEnvasados2
                 Return 0
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            messagebox.show(ex.Message, "Error", MessageBoxButtons.OK , MessageBoxIcon.Error )
+            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return 0
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function UpdateEnvasados2(ByVal Envasados2 As DBO_Envasados2) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function UpdateEnvasados2(ByVal Envasados2 As DBO_Envasados2, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
 
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim updateProcedure As String = "[dbo].[Envasados3Update]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         updateCommand.Parameters.AddWithValue("@NewFecha", Envasados2.Fecha)
         updateCommand.Parameters.AddWithValue("@NewFechaModificacion", Envasados2.FechaModificacion)
@@ -118,18 +118,18 @@ Class spEnvasados2
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdateEnvasados2" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdateEnvasados2" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function DeleteEnvasados2(ByVal EnvasadoID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function DeleteEnvasados2(ByVal EnvasadoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[Envasados2Delete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         deleteCommand.Parameters.AddWithValue("@OldEnvasadoID", EnvasadoID)
         deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
@@ -143,43 +143,42 @@ Class spEnvasados2
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            messagebox.show(ex.Message, "Error", MessageBoxButtons.OK , MessageBoxIcon.Error )
+            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function GetEnvasadoIDPorFecha(ByVal EnvasadoFecha As DateTime) As Integer
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function GetEnvasadoIDPorFecha(ByVal EnvasadoFecha As DateTime, ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
+        dtb.Conectar()
+
         Dim Procedure As String = "[dbo].[Envasados2ExisteEnFecha]"
-        Dim Command as new System.Data.SqlClient.SqlCommand(Procedure, connection)
+        Dim Command As System.Data.SqlClient.SqlCommand = dtb.Comando(Procedure)
         Command.CommandType = CommandType.StoredProcedure
         Command.Parameters.AddWithValue("@Fecha", EnvasadoFecha)
         Try
             Return (Command.ExecuteScalar)
         Catch ex As System.Data.SqlClient.SqlException
-            messagebox.show(ex.Message, "Error", MessageBoxButtons.OK , MessageBoxIcon.Error )
+            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return 0
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Sub GrabarEnvasados2(ByRef m_Envasados2 As DBO_Envasados2)
+    Public Sub GrabarEnvasados2(ByRef m_Envasados2 As DBO_Envasados2, ByRef dtb As BasesParaCompatibilidad.DataBase)
         If Not m_Envasados2.EnvasadoID = Nothing Then
-            UpdateEnvasados2(m_Envasados2)
+            UpdateEnvasados2(m_Envasados2, dtb)
         Else
-            m_Envasados2.EnvasadoID = InsertEnvasados2(m_Envasados2)
+            m_Envasados2.EnvasadoID = InsertEnvasados2(m_Envasados2, dtb)
         End If
 
-        m_Envasados2 = Select_Record(m_Envasados2.EnvasadoID)
+        m_Envasados2 = Select_Record(m_Envasados2.EnvasadoID, dtb)
 
     End Sub
 
-    Public Shared Function personalPendiente() As Boolean
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+    Public Shared Function personalPendiente(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Dim dt As DataTable = dtb.Consultar("select count(*) from empleados_formatosEnvasados, formatosEnvasados, envasados where id_formatoEnvasado = formatoEnvasadoid and formatosEnvasados.envasadoid = envasados.envasadoid and convert(varchar, envasados.fecha, 103) <> convert(varchar, CURRENT_TIMESTAMP, 103) and empleados_formatosEnvasados.fin is null", False)
         If dt Is Nothing Then Return False
         If dt.Rows(0) Is Nothing Then Return False

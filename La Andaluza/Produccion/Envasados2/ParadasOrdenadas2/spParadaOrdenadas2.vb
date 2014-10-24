@@ -8,12 +8,12 @@ Class spParadaOrdenadas2
                    "[dbo].[ParadaOrdenadas2Delete]", "ParadasOrdenadas2SelectPorFormatoEnvasado", "ParadasOrdenadas2SelectPorFormatoEnvasado")
     End Sub
 
-    Public Function Select_Record(ByVal ParadaOrdenadaID As Int32) As DBO_ParadaOrdenadas2
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal ParadaOrdenadaID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_ParadaOrdenadas2
+        dtb.Conectar()
         Dim DBO_ParadaOrdenadas2 As New DBO_ParadaOrdenadas2
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[ParadaOrdenadas2Select]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@ParadaOrdenadaID", ParadaOrdenadaID)
         Try
@@ -41,23 +41,23 @@ Class spParadaOrdenadas2
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_ParadaOrdenadas2
     End Function
 
-    Public Function ParadaOrdenadas2Insert(ByVal dbo_ParadaOrdenadas2 As DBO_ParadaOrdenadas2) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ParadaOrdenadas2Insert(ByVal dbo_ParadaOrdenadas2 As DBO_ParadaOrdenadas2, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[ParadaOrdenadas2Insert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
-        insertCommand.Parameters.AddWithValue("@HoraInicio", if(dbo_ParadaOrdenadas2.HoraInicio_IsDBNull = True, Convert.DBNull, dbo_ParadaOrdenadas2.HoraInicio))
-        insertCommand.Parameters.AddWithValue("@HoraFinal", if(dbo_ParadaOrdenadas2.HoraFinal_IsDBNull = True, Convert.DBNull, dbo_ParadaOrdenadas2.HoraFinal))
-        insertCommand.Parameters.AddWithValue("@Observacion", if(dbo_ParadaOrdenadas2.Observacion_IsDBNull = True, Convert.DBNull, dbo_ParadaOrdenadas2.Observacion))
-        insertCommand.Parameters.AddWithValue("@ParadaOrdenadaMotivoID", if(dbo_ParadaOrdenadas2.ParadaOrdenadaMotivoID_IsDBNull = True, Convert.DBNull, dbo_ParadaOrdenadas2.ParadaOrdenadaMotivoID))
-        insertCommand.Parameters.AddWithValue("@PersonalID", if(dbo_ParadaOrdenadas2.PersonalID_IsDBNull = True, Convert.DBNull, dbo_ParadaOrdenadas2.PersonalID))
-        insertCommand.Parameters.AddWithValue("@FormatoEnvasadoID", if(dbo_ParadaOrdenadas2.FormatoEnvasadoID_IsDBNull = True, Convert.DBNull, dbo_ParadaOrdenadas2.FormatoEnvasadoID))
+        insertCommand.Parameters.AddWithValue("@HoraInicio", If(dbo_ParadaOrdenadas2.HoraInicio_IsDBNull = True, Convert.DBNull, dbo_ParadaOrdenadas2.HoraInicio))
+        insertCommand.Parameters.AddWithValue("@HoraFinal", If(dbo_ParadaOrdenadas2.HoraFinal_IsDBNull = True, Convert.DBNull, dbo_ParadaOrdenadas2.HoraFinal))
+        insertCommand.Parameters.AddWithValue("@Observacion", If(dbo_ParadaOrdenadas2.Observacion_IsDBNull = True, Convert.DBNull, dbo_ParadaOrdenadas2.Observacion))
+        insertCommand.Parameters.AddWithValue("@ParadaOrdenadaMotivoID", If(dbo_ParadaOrdenadas2.ParadaOrdenadaMotivoID_IsDBNull = True, Convert.DBNull, dbo_ParadaOrdenadas2.ParadaOrdenadaMotivoID))
+        insertCommand.Parameters.AddWithValue("@PersonalID", If(dbo_ParadaOrdenadas2.PersonalID_IsDBNull = True, Convert.DBNull, dbo_ParadaOrdenadas2.PersonalID))
+        insertCommand.Parameters.AddWithValue("@FormatoEnvasadoID", If(dbo_ParadaOrdenadas2.FormatoEnvasadoID_IsDBNull = True, Convert.DBNull, dbo_ParadaOrdenadas2.FormatoEnvasadoID))
         insertCommand.Parameters.AddWithValue("@FechaModificacion", dbo_ParadaOrdenadas2.FechaModificacion)
         insertCommand.Parameters.AddWithValue("@UsuarioModificacion", dbo_ParadaOrdenadas2.UsuarioModificacion)
         insertCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
@@ -73,22 +73,22 @@ Class spParadaOrdenadas2
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function ParadaOrdenadas2Update(ByVal newDBO_ParadaOrdenadas2 As DBO_ParadaOrdenadas2) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ParadaOrdenadas2Update(ByVal newDBO_ParadaOrdenadas2 As DBO_ParadaOrdenadas2, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[ParadaOrdenadas2Update]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
-        updateCommand.Parameters.AddWithValue("@NewHoraInicio", if(newDBO_ParadaOrdenadas2.HoraInicio_IsDBNull = True, Convert.DBNull, newDBO_ParadaOrdenadas2.HoraInicio))
-        updateCommand.Parameters.AddWithValue("@NewHoraFinal", if(newDBO_ParadaOrdenadas2.HoraFinal_IsDBNull = True, Convert.DBNull, newDBO_ParadaOrdenadas2.HoraFinal))
-        updateCommand.Parameters.AddWithValue("@NewObservacion", if(newDBO_ParadaOrdenadas2.Observacion_IsDBNull = True, Convert.DBNull, newDBO_ParadaOrdenadas2.Observacion))
-        updateCommand.Parameters.AddWithValue("@NewParadaOrdenadaMotivoID", if(newDBO_ParadaOrdenadas2.ParadaOrdenadaMotivoID_IsDBNull = True, Convert.DBNull, newDBO_ParadaOrdenadas2.ParadaOrdenadaMotivoID))
-        updateCommand.Parameters.AddWithValue("@NewPersonalID", if(newDBO_ParadaOrdenadas2.PersonalID_IsDBNull = True, Convert.DBNull, newDBO_ParadaOrdenadas2.PersonalID))
-        updateCommand.Parameters.AddWithValue("@NewFormatoEnvasadoID", if(newDBO_ParadaOrdenadas2.FormatoEnvasadoID_IsDBNull = True, Convert.DBNull, newDBO_ParadaOrdenadas2.FormatoEnvasadoID))
+        updateCommand.Parameters.AddWithValue("@NewHoraInicio", If(newDBO_ParadaOrdenadas2.HoraInicio_IsDBNull = True, Convert.DBNull, newDBO_ParadaOrdenadas2.HoraInicio))
+        updateCommand.Parameters.AddWithValue("@NewHoraFinal", If(newDBO_ParadaOrdenadas2.HoraFinal_IsDBNull = True, Convert.DBNull, newDBO_ParadaOrdenadas2.HoraFinal))
+        updateCommand.Parameters.AddWithValue("@NewObservacion", If(newDBO_ParadaOrdenadas2.Observacion_IsDBNull = True, Convert.DBNull, newDBO_ParadaOrdenadas2.Observacion))
+        updateCommand.Parameters.AddWithValue("@NewParadaOrdenadaMotivoID", If(newDBO_ParadaOrdenadas2.ParadaOrdenadaMotivoID_IsDBNull = True, Convert.DBNull, newDBO_ParadaOrdenadas2.ParadaOrdenadaMotivoID))
+        updateCommand.Parameters.AddWithValue("@NewPersonalID", If(newDBO_ParadaOrdenadas2.PersonalID_IsDBNull = True, Convert.DBNull, newDBO_ParadaOrdenadas2.PersonalID))
+        updateCommand.Parameters.AddWithValue("@NewFormatoEnvasadoID", If(newDBO_ParadaOrdenadas2.FormatoEnvasadoID_IsDBNull = True, Convert.DBNull, newDBO_ParadaOrdenadas2.FormatoEnvasadoID))
         updateCommand.Parameters.AddWithValue("@NewFechaModificacion", newDBO_ParadaOrdenadas2.FechaModificacion)
         updateCommand.Parameters.AddWithValue("@NewUsuarioModificacion", newDBO_ParadaOrdenadas2.UsuarioModificacion)
         updateCommand.Parameters.AddWithValue("@OldParadaOrdenadaID", newDBO_ParadaOrdenadas2.ParadaOrdenadaID)
@@ -103,18 +103,18 @@ Class spParadaOrdenadas2
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdateParadaOrdenadas2" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdateParadaOrdenadas2" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function ParadaOrdenadas2Delete(ByVal ParadaOrdenadaID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ParadaOrdenadas2Delete(ByVal ParadaOrdenadaID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[ParadaOrdenadas2Delete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         deleteCommand.Parameters.AddWithValue("@OldParadaOrdenadaID", ParadaOrdenadaID)
         deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
@@ -130,15 +130,15 @@ Class spParadaOrdenadas2
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function GrabarParadaOrdenadas2(ByVal dbo_ParadaOrdenadas2 As DBO_ParadaOrdenadas2) As Boolean
+    Public Function GrabarParadaOrdenadas2(ByVal dbo_ParadaOrdenadas2 As DBO_ParadaOrdenadas2, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         If dbo_ParadaOrdenadas2.ParadaOrdenadaID = 0 Then
-            Return ParadaOrdenadas2Insert(dbo_ParadaOrdenadas2)
+            Return ParadaOrdenadas2Insert(dbo_ParadaOrdenadas2, dtb)
         Else
-            Return ParadaOrdenadas2Update(dbo_ParadaOrdenadas2)
+            Return ParadaOrdenadas2Update(dbo_ParadaOrdenadas2, dtb)
         End If
     End Function
 

@@ -3,10 +3,11 @@
 Public Class frmInformePedidos
     Private dt As DataTable
     Private spInformePedidos As spInformePedidos
+    Private dtb As BasesParaCompatibilidad.DataBase
 
     Public Sub New()
         InitializeComponent()
-
+        dtb = New BasesParaCompatibilidad.DataBase
         spInformePedidos = New spInformePedidos
     End Sub
 
@@ -14,8 +15,8 @@ Public Class frmInformePedidos
         Dim dtCli As DataTable
         Dim filCli As DataRow
         Dim NomCol As String
-        dt = spInformePedidos.SelectInformePedidos(False)
-        dtCli = spInformePedidos.SelectInformePedidos_ClienteEnFecha()
+        dt = spInformePedidos.SelectInformePedidos(False, dtb)
+        dtCli = spInformePedidos.SelectInformePedidos_ClienteEnFecha(dtb)
 
         'Crea las columnas correspondientes a los clientes con pedidos
         For Each filCli In dtCli.Rows

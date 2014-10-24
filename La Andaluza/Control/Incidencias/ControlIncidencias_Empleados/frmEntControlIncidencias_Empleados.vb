@@ -18,7 +18,7 @@ Public Class frmEntControlIncidencias_Empleados
 
    Private Sub frmEntControlIncidencias_Empleados_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s2 As New spEmpleados
-        s2.cargar_Empleados(Me.cboempleado)
+        s2.cargar_Empleados(Me.cboempleado, dtb)
        If me.mododeapertura = VISION Then
            Me.cboempleado.enabled = False
            Me.lblId_empleado.enabled = False
@@ -53,8 +53,8 @@ Public Class frmEntControlIncidencias_Empleados
         End IF
    End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As sqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerId_control_incidencias_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -72,7 +72,7 @@ Public Class frmEntControlIncidencias_Empleados
         Dim frmEnt As New frmEntEmpleados(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spEmpleados, DBO_Empleados)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spEmpleados
-        s.cargar_empleados(Me.cboempleado)
+        s.cargar_Empleados(Me.cboempleado, dtb)
     End Sub
 
     Private Sub frmEntControlIncidencias_Empleados_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize

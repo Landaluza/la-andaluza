@@ -246,7 +246,7 @@ public class clsAlbaranesCargaMaestro
 
     Public Function Modificar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Try
-            dtb.ConsultaAlteraciones("update AlbaranesCargaMaestro set " & _
+            If Not dtb.ConsultaAlteraciones("update AlbaranesCargaMaestro set " & _
                         "AlbaranCargaProMaestroID=" & Convert.ToString(AlbaranCargaProMaestroID) & "," & _
                         "Fecha='" & BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha) & "'," & _
                         "ClienteID=" & Convert.ToString(ClienteID) & "," & _
@@ -267,7 +267,11 @@ public class clsAlbaranesCargaMaestro
                         "Reserva1='" & Reserva1 & "'," & _
                         "Reserva2='" & Reserva2 & "'," & _
                         "Reserva3='" & Reserva3 & "'" & _
-                        " where AlbaranCargaMaestroID=" & Convert.ToString(AlbaranCargaMaestroID))
+                        " where AlbaranCargaMaestroID=" & Convert.ToString(AlbaranCargaMaestroID)) Then
+
+                Return 0
+            End If
+
             Return 1
         Catch ex As Exception
             Return 0
@@ -276,7 +280,7 @@ public class clsAlbaranesCargaMaestro
 
     Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Try
-            dtb.ConsultaAlteraciones("insert into AlbaranesCargaMaestro values(" & _
+            If Not dtb.ConsultaAlteraciones("insert into AlbaranesCargaMaestro values(" & _
                         "" & Convert.ToString(AlbaranCargaProMaestroID) & "," & _
                         "'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha) & "'," & _
                         "" & Convert.ToString(ClienteID) & "," & _
@@ -296,8 +300,11 @@ public class clsAlbaranesCargaMaestro
                         "'" & Observaciones & "'," & _
                         "'" & Reserva1 & "'," & _
                         "'" & Reserva2 & "'," & _
-                        "'" & Reserva3 & "'" & _
-                        BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)) + "'," + BasesParaCompatibilidad.Config.User.ToString + ")")
+                        "'" & Reserva3 & "','" & _
+                        BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)) + "'," + BasesParaCompatibilidad.Config.User.ToString + ")") Then
+
+                Return 0
+            End If
 
             dtb.PrepararConsulta("select max(AlbaranCargaMaestroID) from AlbaranesCargaMaestro")
             AlbaranCargaMaestroID = dtb.Consultar().Rows(0).Item(0)
@@ -307,8 +314,7 @@ public class clsAlbaranesCargaMaestro
         End Try
     End Function
 
-    Public Function Eliminar() As Integer
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+    Public Function Eliminar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Try
             dtb.PrepararConsulta("delete from AlbaranesCargaMaestro where AlbaranCargaMaestroID = @id")
             dtb.AñadirParametroConsulta("@id", Convert.ToString(AlbaranCargaMaestroID))

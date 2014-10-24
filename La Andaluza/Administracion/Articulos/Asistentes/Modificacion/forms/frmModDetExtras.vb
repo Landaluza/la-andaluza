@@ -17,7 +17,7 @@ Public Class frmModDetExtras
 
         Me.ArticuloId = articuloId
         Me.ArticuloTipo = articulotipo
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.DataBase()
 
         crearPestañas()
         administrarPestañas()

@@ -4,9 +4,11 @@ Public Class FrmInicio
     'Public Const acceso As Integer = 1    
     Private Gform As GUIstandar
     Private Calendar As BasesParaCompatibilidad.Calendar
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New()
 
         InitializeComponent()
+        dtb = New BasesParaCompatibilidad.DataBase
         Calendar = New BasesParaCompatibilidad.Calendar
         BasesParaCompatibilidad.Calendar.testDateTime = False
         Me.Gform = New GUIstandar(Me)
@@ -87,7 +89,7 @@ Public Class FrmInicio
 
     Private Sub FrmInicio_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
        
-            BasesParaCompatibilidad.BD.Cerrar()
+
          
         Me.txtLogin.Text = ""
         Me.txtPassword.Text = ""
@@ -95,16 +97,16 @@ Public Class FrmInicio
     End Sub
 
     Private Sub btnPass_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPass.Click
-        recuperarContraseña()
+        recuperarContraseña(dtb)
     End Sub
 
     Private Sub lPass_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lPass.Click
-        recuperarContraseña()
+        recuperarContraseña(dtb)
     End Sub
 
-    Private Sub recuperarContraseña()
+    Private Sub recuperarContraseña(ByRef dtb As BasesParaCompatibilidad.DataBase)
         Dim longitud As Integer
-        Dim semilla As Integer = datetime.now.Millisecond
+        Dim semilla As Integer = DateTime.Now.Millisecond
         Dim rnd As Random
 
         rnd = New Random(semilla)
@@ -118,10 +120,10 @@ Public Class FrmInicio
         Next
 
         Dim spUsuarios As New spUsuarios
-        BasesParaCompatibilidad.BD.EmpezarTransaccion()
+        dtb.EmpezarTransaccion()
 
         Try
-            Dim dbo_usuarios As DBO_Usuarios = spUsuarios.select_record_by_usuario(Me.txtLogin.Text, BasesParaCompatibilidad.BD.transaction)
+            Dim dbo_usuarios As DBO_Usuarios = spUsuarios.select_record_by_usuario(Me.txtLogin.Text, dtb)
 
             If dbo_usuarios.email IsNot String.Empty Then
 
@@ -130,28 +132,28 @@ Public Class FrmInicio
 
                 If frm.Result = dbo_usuarios.email Then
                     dbo_usuarios.cryptedPassword = s.ToString
-                    spUsuarios.Grabar(dbo_usuarios, BasesParaCompatibilidad.BD.transaction)
+                    spUsuarios.Grabar(dbo_usuarios, dtb)
 
                     Dim cuerpo As String = "Su nueva contraseña es: " & dbo_usuarios.cryptedPassword
 
-                    If Mail.notificarUsuario(s.ToString, Me.txtLogin.Text) Then
-                        BasesParaCompatibilidad.BD.TerminarTransaccion()
+                    If Mail.notificarUsuario(s.ToString, Me.txtLogin.Text, dtb) Then
+                        dtb.TerminarTransaccion()
                         MessageBox.Show("Recuperación de contraseñas completada, revise su correo", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Else
-                        BasesParaCompatibilidad.BD.CancelarTransaccion()
+                        dtb.CancelarTransaccion()
                         MessageBox.Show("no se pudo recuperar la contraseñas", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     End If
 
                 Else
-                    BasesParaCompatibilidad.BD.CancelarTransaccion()
+                    dtb.CancelarTransaccion()
                     MessageBox.Show("Los datos no coinciden. Vuelva a intetarlo o pongase en contacto con el administrador", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
             Else
-                BasesParaCompatibilidad.BD.CancelarTransaccion()
+                dtb.CancelarTransaccion()
                 MessageBox.Show("EL usuario no contiene información sobre su correo. Pongase en contacto con el administrador", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             End If
         Catch ex As Exception
-            BasesParaCompatibilidad.BD.CancelarTransaccion()
+            dtb.CancelarTransaccion()
             MessageBox.Show("Error recuperando la contraseña", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
     End Sub
@@ -184,7 +186,7 @@ Public Class FrmInicio
         If Not Calendar.TestDate() Then
             BasesParaCompatibilidad.Config.User = -1
         Else
-            If Not spUsuarios.autentificar(txtLogin.Text, txtPassword.Text) Then
+            If Not spUsuarios.autentificar(txtLogin.Text, txtPassword.Text, dtb) Then
                 BasesParaCompatibilidad.Config.User = 0
             End If
         End If

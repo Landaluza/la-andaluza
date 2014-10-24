@@ -20,9 +20,9 @@ Public Class frmEntPoblaciones
         Dim s As New spProvincias
 
         If Me.m_DBO_Poblaciones.Id_provincia = Nothing Then
-            s.cargar_ComboBox(cboId_provincia, 0)
+            s.cargar_ComboBox(cboId_provincia, 0, dtb)
         Else
-            s.cargar_ComboBox(cboId_provincia, s.Select_Record(Me.m_DBO_Poblaciones.Id_provincia).Id_pais)
+            s.cargar_ComboBox(cboId_provincia, s.Select_Record(Me.m_DBO_Poblaciones.Id_provincia, dtb).Id_pais, dtb)
         End If
 
         
@@ -69,15 +69,15 @@ Public Class frmEntPoblaciones
         End IF
    End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As sqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
    Private Sub butVerId_provincia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_provincia.Click
        Dim frmEnt As New frmProvincias()
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spProvincias
-        s.cargar_ComboBox(cboId_provincia, s.Select_Record(Me.cboId_provincia.SelectedValue).Id_pais)
+        s.cargar_ComboBox(cboId_provincia, s.Select_Record(Me.cboId_provincia.SelectedValue, dtb).Id_pais, dtb)
     End Sub
 
     Private Sub butAddId_provincia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_provincia.Click
@@ -86,7 +86,7 @@ Public Class frmEntPoblaciones
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spProvincias
 
-        s.cargar_ComboBox(cboId_provincia, s.Select_Record(Me.cboId_provincia.SelectedValue).Id_pais)
+        s.cargar_ComboBox(cboId_provincia, s.Select_Record(Me.cboId_provincia.SelectedValue, dtb).Id_pais, dtb)
     End Sub
 
 End Class

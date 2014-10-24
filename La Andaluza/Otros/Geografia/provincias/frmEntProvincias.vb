@@ -14,7 +14,7 @@ Public Class frmEntProvincias
 
    Private Sub frmEntProvincias_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spPaises
-        s.cargar_ComboBox(cboId_pais)        
+        s.cargar_ComboBox(cboId_pais, dtb)
         If Not Me.ModoDeApertura = VISION Then
             
             Me.cboId_pais.Visible = False
@@ -53,15 +53,15 @@ Public Class frmEntProvincias
         End IF
    End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As sqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
    Private Sub butVerId_pais_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_pais.Click
        Dim frmEnt As New frmPaises()
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spPaises
-        s.cargar_ComboBox(cboId_pais)
+        s.cargar_ComboBox(cboId_pais, dtb)
     End Sub
 
     Private Sub butAddId_pais_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddId_pais.Click
@@ -70,7 +70,7 @@ Public Class frmEntProvincias
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 
         Dim s As New spPaises
-        s.cargar_ComboBox(cboId_pais)
+        s.cargar_ComboBox(cboId_pais, dtb)
     End Sub
 
 End Class

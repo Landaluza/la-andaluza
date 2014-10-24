@@ -19,7 +19,7 @@ Public Class frmEntArticulos_AlmacenNoConforme_PaletsProducidos
 
     Private Sub frmEntArticulos_AlmacenNoConforme_PaletsProducidos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spPaletsProducidos
-        s.cargar_PaletsProducidos(Me.cbopaletProduccido)
+        s.cargar_PaletsProducidos(Me.cbopaletProduccido, dtb)
         If Me.mododeapertura = VISION Then
             Me.cbopaletProduccido.enabled = False
             Me.lblId_paletProduccido.enabled = False
@@ -53,8 +53,8 @@ Public Class frmEntArticulos_AlmacenNoConforme_PaletsProducidos
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
 

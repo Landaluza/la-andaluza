@@ -22,21 +22,19 @@
         Me.ID = id
     End Sub
 
-    Public Sub recuperar_datos()
-        Me.Cajas = calcular_cajas(ID)
-        Me.Cajas_a_tener = calcular_cajas_tipo(ID)
+    Public Sub recuperar_datos(ByRef dtb As BasesParaCompatibilidad.DataBase)
+        Me.Cajas = calcular_cajas(ID, dtb)
+        Me.Cajas_a_tener = calcular_cajas_tipo(ID, dtb)
     End Sub
 
-    Public Function calcular_cajas(ByVal paletId As Integer) As String
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+    Public Function calcular_cajas(ByVal paletId As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As String
         dtb.PrepararConsulta("SELECT isnull(sum(PaletsContenidos.CantidadCajas), 0) AS SumCajas FROM paletsProducidos INNER JOIN PaletsContenidos ON  PaletsProducidos.PaletProducidoID = PaletsContenidos.PaletProducidoID WHERE PaletsProducidos.paletproducidoid = @id")
         dtb.AñadirParametroConsulta("@id", ID)
         Dim cantidad As Integer = dtb.Consultar().Rows(0).Item(0)
-        Return if(cantidad < 0, 0, cantidad)
+        Return If(cantidad < 0, 0, cantidad)
     End Function
 
-    Public Function calcular_cajas_tipo(ByVal paletId As Integer) As String
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+    Public Function calcular_cajas_tipo(ByVal paletId As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As String
         dtb.PrepararConsulta("select isnull(CajasPorMatricula, 0) from paletsproducidos, formatosEnvasados, ArticulosEnvasadosHistoricoSinLinea where paletsproducidos.formatoid = formatosEnvasados.formatoEnvasadoid and tipoformatoEnvasadoid = tipoformato and paletproducidoid = @id")
         dtb.AñadirParametroConsulta("@id", Me.ID)
         Dim dt As DataTable = dtb.Consultar()

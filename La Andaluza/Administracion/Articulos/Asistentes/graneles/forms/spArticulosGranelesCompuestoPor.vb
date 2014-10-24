@@ -1,12 +1,11 @@
 ﻿Public Class spArticulosGranelesCompuestoPor
-    Private dtb as BasesParaCompatibilidad.Database
     'añadir en la
     'alter table articulosIngredientes_articulos1Compuestopor add subcantidad Double(14,6)
     Public Sub New()
-        dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+
     End Sub
 
-    Public Sub select_record(ByRef p1 As DBO_articulosGranelesCompuestoPor)
+    Public Sub select_record(ByRef p1 As DBO_articulosGranelesCompuestoPor, ByRef dtb As BasesParaCompatibilidad.DataBase)
         dtb.PrepararConsulta("select subcantidad, orden from articulosIngredientes_articulos1Compuestopor where id_articuloIngrediente = @componente and id_articulo = @articulo and id_elaboracion_fase = @fase")
         dtb.AñadirParametroConsulta("@componente", p1.ArticuloComponente)
         dtb.AñadirParametroConsulta("@articulo", p1.ArticuloPrincipal)
@@ -19,7 +18,7 @@
         p1.Old_Orden = dt.Rows(0).Item(1)
     End Sub
 
-    Public Function DataTableFill(ByVal id As Integer) As DataTable
+    Public Function DataTableFill(ByVal id As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
         dtb.PrepararConsulta("select " & _
                                 "articulos1.articuloid, descripcionLa, costeUnitario, cantidad*costeunitario subtotal, orden, fase, subcantidad as cantidad, elaboraciones_fases.id id_fase " & _
                             "from articulos1_articulos1_compuestoPor, articulos1, elaboraciones_fases, articulosIngredientes_articulos1Compuestopor " & _
@@ -33,7 +32,7 @@
         Return dtb.Consultar
     End Function
 
-    Function Eliminar(p1 As DBO_articulosGranelesCompuestoPor) As Boolean
+    Function Eliminar(p1 As DBO_articulosGranelesCompuestoPor, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         dtb.EmpezarTransaccion()
         Dim retorno As Boolean = True
         Try
@@ -74,15 +73,15 @@
         End Try
     End Function
 
-    Function CargarCombo(id As Integer) As DataTable
+    Function CargarCombo(id As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
         dtb.PrepararConsulta("select articulos1.articuloId, descripcionLA, isnull(id_unidadMedida,0) from articulos1, articulosIngredientes " & _
                                 "where articuloTpoId = 6 and id_tipoProducto is not null " & _
                                 "and articulos1.articuloid = articulosIngredientes.articuloId order by descripcionLA")
         Return dtb.Consultar
-     
+
     End Function
 
-    Function Insertar(p1 As DBO_articulosGranelesCompuestoPor) As Boolean
+    Function Insertar(p1 As DBO_articulosGranelesCompuestoPor, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
 
         dtb.EmpezarTransaccion()
         Dim retorno As Boolean = True
@@ -128,7 +127,7 @@
         End Try
     End Function
 
-    Function Actualizar(p1 As DBO_articulosGranelesCompuestoPor) As Boolean
+    Function Actualizar(p1 As DBO_articulosGranelesCompuestoPor, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         dtb.EmpezarTransaccion()
         Dim retorno As Boolean = True
         Try

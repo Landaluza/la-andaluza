@@ -22,10 +22,10 @@ Public Class frmEntArticulosFichasTecnicas
         Dim spProv As New spProveedores
         Dim spart As New spArticulosFichasTecnicasEstados
 
-        spArticulo.cargar_Articulos(cboArticuloID)
-        spEmp.cargar_Empleados(cboAprobadorID)
-        spProv.cargar_ComboBox(cboProveedorID)
-        spart.cargar_combo(cboEstadoID)
+        spArticulo.cargar_Articulos(cboArticuloID, dtb)
+        spEmp.cargar_Empleados(cboAprobadorID, dtb)
+        spProv.cargar_ComboBox(cboProveedorID, dtb)
+        spart.cargar_combo(cboEstadoID, dtb)
         Me.butVer.Visible = True
         SetValores(m_DBO_ArticulosFichasTecnica.ArticuloFichaTecnicaID, False)
     End Sub
@@ -33,7 +33,7 @@ Public Class frmEntArticulosFichasTecnicas
     Overrides Sub SetValores(ByVal m_ID As Integer, ByVal m_SelectRecord As Boolean)
         'cboArticuloID.SelectedValue = if(m_DBO_ArticulosFichasTecnica.ArticuloID = Nothing, -1, m_DBO_ArticulosFichasTecnica.ArticuloID)
 
-        If m_SelectRecord Then m_DBO_ArticulosFichasTecnica = spArticulosFichasTecnicas.Select_Record(m_ID)
+        If m_SelectRecord Then m_DBO_ArticulosFichasTecnica = spArticulosFichasTecnicas.Select_Record(m_ID, dtb)
         txtArticuloFichaTecnicaID.Text = m_DBO_ArticulosFichasTecnica.ArticuloFichaTecnicaID
         cboArticuloID.SelectedValue = If(m_DBO_ArticulosFichasTecnica.ArticuloID = Nothing, -1, m_DBO_ArticulosFichasTecnica.ArticuloID)
         cboProveedorID.SelectedValue = If(m_DBO_ArticulosFichasTecnica.ProveedorID = Nothing, -1, m_DBO_ArticulosFichasTecnica.ProveedorID)
@@ -68,7 +68,7 @@ Public Class frmEntArticulosFichasTecnicas
 
     Overrides Sub Guardar()
         GetValores()
-        spArticulosFichasTecnicas.GrabarArticulosFichasTecnicas(m_DBO_ArticulosFichasTecnica)
+        spArticulosFichasTecnicas.GrabarArticulosFichasTecnicas(m_DBO_ArticulosFichasTecnica, dtb)
         Me.Close()
     End Sub
 
@@ -94,7 +94,7 @@ Public Class frmEntArticulosFichasTecnicas
 
     Private Sub cboEstadoID_SelectionChangeCommitted(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboEstadoID.SelectionChangeCommitted
         If cboEstadoID.Text = "Vigente" And cboArticuloID.Text <> "" And cboProveedorID.Text <> "" Then
-            spArticulosFichasTecnicas.Select_ArticulosFichasTecnicas_EstadoVigente(cboArticuloID.SelectedValue, cboProveedorID.SelectedValue)
+            spArticulosFichasTecnicas.Select_ArticulosFichasTecnicas_EstadoVigente(cboArticuloID.SelectedValue, cboProveedorID.SelectedValue, dtb)
         End If
     End Sub
 End Class

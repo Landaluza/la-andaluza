@@ -12,34 +12,33 @@ Public Class spempleados_contratos
                         "[dbo].[empleados_contratosSelectDgvByid_empleado]")
     End Sub
 
-    Public Overloads Function Select_Record(ByVal id As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As DBO_empleados_contratos
+    Public Overloads Function Select_Record(ByVal id As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_empleados_contratos
         Dim dbo As New DBO_empleados_contratos
         dbo.searchKey = dbo.item("id")
         dbo.searchKey.value = id
-        MyBase.Select_Record(dbo, trans)
+        MyBase.Select_Record(dbo, dtb)
         Return dbo
     End Function
 
-    Public Overrides Function Delete(ByVal id As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As Boolean
+    Public Overrides Function Delete(ByVal id As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Dim dbo As New DBO_empleados_contratos
         dbo.searchKey = dbo.item("id")
         dbo.searchKey.value = id
-        Return MyBase.DeleteProcedure(dbo, trans)
+        Return MyBase.DeleteProcedure(dbo, dtb)
     End Function
 
-    Public Function select_fecha_final(ByVal id_empleado As Integer) As String
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+    Public Function select_fecha_final(ByVal id_empleado As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As String
         dtb.PrepararConsulta("select max(fecha_final) from empleados_contratos where id_empleado = @id")
         dtb.AñadirParametroConsulta("@id", id_empleado)
         Dim row As Object = dtb.Consultar().Rows(0).Item(0)
-        Return if(IsDBNull(row), "-", row)
+        Return If(IsDBNull(row), "-", row)
     End Function
 
-    Function select_ultimo_contrato(personalId As Integer) As DBO_empleados_contratos
+    Function select_ultimo_contrato(personalId As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_empleados_contratos
         Dim dbo As New DBO_empleados_contratos
         dbo.searchKey = dbo.item("id_empleado")
         dbo.searchKey.value = personalId
-        MyBase.Select_proc(dbo, "[empleados_contratosSelectUltimo]")
+        MyBase.Select_proc(dbo, "[empleados_contratosSelectUltimo]", dtb)
         Return dbo
     End Function
 

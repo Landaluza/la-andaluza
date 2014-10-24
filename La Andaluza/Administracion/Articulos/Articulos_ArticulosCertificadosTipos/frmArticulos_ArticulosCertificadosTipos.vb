@@ -24,7 +24,7 @@ Public Class frmArticulos_ArticulosCertificadosTipos
 
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
-                            "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then CType(sp, spArticulos_ArticulosCertificadosTipos).Articulos_ArticulosCertificadosTiposDelete(dgvGeneral.CurrentRow.Cells("Articulo_ArticuloCertificadoTipoID").Value)
+                            "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then CType(sp, spArticulos_ArticulosCertificadosTipos).Articulos_ArticulosCertificadosTiposDelete(dgvGeneral.CurrentRow.Cells("Articulo_ArticuloCertificadoTipoID").Value, dtb)
         dgvFill()
     End Sub
 
@@ -38,7 +38,7 @@ Public Class frmArticulos_ArticulosCertificadosTipos
 
             If m_MaestroID <> 0 Then m_Articulo_ArticuloCertificadoTipo.ArticuloID = m_MaestroID
         Else
-            m_Articulo_ArticuloCertificadoTipo = CType(sp, spArticulos_ArticulosCertificadosTipos).Select_Record(GeneralBindingSource(m_Pos).Item("Articulo_ArticuloCertificadoTipoID"))
+            m_Articulo_ArticuloCertificadoTipo = CType(sp, spArticulos_ArticulosCertificadosTipos).Select_Record(GeneralBindingSource(m_Pos).Item("Articulo_ArticuloCertificadoTipoID"), dtb)
         End If
 
         frmEnt = New frmEntArticulos_ArticulosCertificadosTipos(m_Articulo_ArticuloCertificadoTipo, m_Pos, m_VerID)

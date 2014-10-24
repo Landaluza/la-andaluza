@@ -21,7 +21,7 @@ Public Class frmEntPagosPlazos
 
     Overrides Sub SetValores(ByVal m_ID As Integer, ByVal m_SelectRecord As Boolean)
         
-        If m_SelectRecord Then m_DBO_PagosPlazos = spPagosPlazos.Select_Record(m_ID)
+        If m_SelectRecord Then m_DBO_PagosPlazos = spPagosPlazos.Select_Record(m_ID, dtb)
         If m_ID > 0 Then
             txtPagoPlazoID.Text = m_DBO_PagosPlazos.PagoPlazoID
             txtDescripcion.Text = m_DBO_PagosPlazos.Descripcion
@@ -38,7 +38,7 @@ Public Class frmEntPagosPlazos
 
     Overrides Sub Guardar()
         GetValores()
-        spPagosPlazos.GrabarPagosPlazos(m_DBO_PagosPlazos)
+        spPagosPlazos.GrabarPagosPlazos(m_DBO_PagosPlazos, dtb)
         Me.Close()
     End Sub
 

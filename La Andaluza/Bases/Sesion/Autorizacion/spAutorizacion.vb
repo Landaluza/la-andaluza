@@ -2,9 +2,8 @@
 
 Public Class spAutorizacion
 
-    Public Function verificarUsuario(ByVal usuarioId As Integer, ByVal pass As String) As Boolean
+    Public Function verificarUsuario(ByVal usuarioId As Integer, ByVal pass As String, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Dim resultado As Integer
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
 
         dtb.Conectar()
         Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.Comando("[dbo].[UsuariosVerificar]")
@@ -24,8 +23,8 @@ Public Class spAutorizacion
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-           dtb.Conectar()
+            dtb.Conectar()
         End Try
-        Return if(resultado > 0, True, False)
+        Return If(resultado > 0, True, False)
     End Function
 End Class

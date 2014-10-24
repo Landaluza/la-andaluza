@@ -24,7 +24,7 @@ Public Class frmEntVisitantesTipos
         m_DBO_VisitantesTipo.Descripcion = if(txtDescripcion.Text = "", String.Empty, txtDescripcion.Text)
         m_DBO_VisitantesTipo.Observaciones = if(txtObservaciones.Text = "", String.Empty, txtObservaciones.Text)
         
-        spVisitantesTipos.GrabarVisitantesTipos(m_DBO_VisitantesTipo)
+        spVisitantesTipos.GrabarVisitantesTipos(m_DBO_VisitantesTipo, dtb)
         Me.Close()
     End Sub
 

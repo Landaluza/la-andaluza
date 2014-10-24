@@ -6,10 +6,12 @@
     Private cont4 As Integer
     Private cont5 As Integer
     Private cont6 As Integer
+    Private dtb As BasesParaCompatibilidad.DataBase
 
     Public Sub New()
 
         InitializeComponent()
+        dtb = New BasesParaCompatibilidad.DataBase
         Me.sp = New spEmpleados
         cont1 = 1
         cont2 = 1
@@ -22,7 +24,7 @@
 
     Private Sub frmSituacionPersonal_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
 
-        Dim dt As DataTable = sp.devolver_Empleados_Envasados_Situacion_Actual
+        Dim dt As DataTable = sp.devolver_Empleados_Envasados_Situacion_Actual(dtb)
         Dim lab As Label
         Dim labArt As Label
         Dim pan As Panel

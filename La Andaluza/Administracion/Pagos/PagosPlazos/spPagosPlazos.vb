@@ -8,12 +8,12 @@ Class spPagosPlazos
                    "[dbo].[PagosPlazosDelete]", "PagosPlazosSelectDgv", "PagosPlazosSelectDgvByID")
     End Sub
 
-    Public Function Select_Record(ByVal PagoPlazoID As Int32) As DBO_PagosPlazos
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal PagoPlazoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_PagosPlazos
+        dtb.Conectar()
         Dim DBO_PagosPlazos As New DBO_PagosPlazos
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[PagosPlazosSelect]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@PagoPlazoID", PagoPlazoID)
         Try
@@ -31,16 +31,16 @@ Class spPagosPlazos
         Catch ex As System.Data.SqlClient.SqlException
             DBO_PagosPlazos = Nothing
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_PagosPlazos
     End Function
 
-    Public Function PagosPlazosInsert(ByVal dbo_PagosPlazos As DBO_PagosPlazos) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function PagosPlazosInsert(ByVal dbo_PagosPlazos As DBO_PagosPlazos, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[PagosPlazosInsert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
         insertCommand.Parameters.AddWithValue("@Descripcion", dbo_PagosPlazos.Descripcion)
         insertCommand.Parameters.AddWithValue("@Observaciones", dbo_PagosPlazos.Observaciones)
@@ -49,7 +49,7 @@ Class spPagosPlazos
         insertCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         insertCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
         Try
-            
+
             insertCommand.ExecuteNonQuery()
             Dim count As Integer = System.Convert.ToInt32(insertCommand.Parameters("@ReturnValue").Value)
             If count > 0 Then
@@ -60,15 +60,15 @@ Class spPagosPlazos
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function PagosPlazosUpdate(ByVal newDBO_PagosPlazos As DBO_PagosPlazos) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function PagosPlazosUpdate(ByVal newDBO_PagosPlazos As DBO_PagosPlazos, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[PagosPlazosUpdate]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         updateCommand.Parameters.AddWithValue("@NewDescripcion", newDBO_PagosPlazos.Descripcion)
         updateCommand.Parameters.AddWithValue("@NewObservaciones", newDBO_PagosPlazos.Observaciones)
@@ -78,7 +78,7 @@ Class spPagosPlazos
         updateCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         updateCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
         Try
-            
+
             updateCommand.ExecuteNonQuery()
             Dim count As Integer = System.Convert.ToInt32(updateCommand.Parameters("@ReturnValue").Value)
             If count > 0 Then
@@ -87,24 +87,24 @@ Class spPagosPlazos
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdatePagosPlazos" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdatePagosPlazos" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function PagosPlazosDelete(ByVal PagoPlazoID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function PagosPlazosDelete(ByVal PagoPlazoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[PagosPlazosDelete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         deleteCommand.Parameters.AddWithValue("@OldPagoPlazoID", PagoPlazoID)
         deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         deleteCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
         Try
-            
+
             deleteCommand.ExecuteNonQuery()
             Dim count As Integer = System.Convert.ToInt32(deleteCommand.Parameters("@ReturnValue").Value)
             If count > 0 Then
@@ -115,15 +115,15 @@ Class spPagosPlazos
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Sub GrabarPagosPlazos(ByVal dbo_PagosPlazos As DBO_PagosPlazos)
+    Public Sub GrabarPagosPlazos(ByVal dbo_PagosPlazos As DBO_PagosPlazos, ByRef dtb As BasesParaCompatibilidad.DataBase)
         If dbo_PagosPlazos.PagoPlazoID = 0 Then
-            PagosPlazosInsert(dbo_PagosPlazos)
+            PagosPlazosInsert(dbo_PagosPlazos, dtb)
         Else
-            PagosPlazosUpdate(dbo_PagosPlazos)
+            PagosPlazosUpdate(dbo_PagosPlazos, dtb)
         End If
     End Sub
 

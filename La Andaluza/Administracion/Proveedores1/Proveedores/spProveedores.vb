@@ -20,59 +20,61 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         spArtFilter = "SELECT [dbo].[Proveedores].[ProveedorID] ,[dbo].[Proveedores].[Nombre] ,[dbo].[Proveedores].[QS]  FROM  [dbo].[Proveedores] where proveedorID in (select proveedorId from proveedores_articulos where articuloID = " & maestroId & ")"
     End Sub
 
-    Public Overloads Function Select_Record(ByVal ProveedorID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As DBO_Proveedores
+    Public Overloads Function Select_Record(ByVal ProveedorID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_Proveedores
         Dim dbo As New DBO_Proveedores
         dbo.searchKey = dbo.item("ProveedorID")
         dbo.searchKey.value = ProveedorID
-        MyBase.Select_Record(dbo, trans)
+        MyBase.Select_Record(dbo, dtb)
 
 
-        dbo.proveedorCero = spProveedoresCero.Select_Record(ProveedorID, trans)
+        dbo.proveedorCero = spProveedoresCero.Select_Record(ProveedorID, dtb)
 
         Return dbo
     End Function
 
-    Public Overloads Function Select_RecordByArticulo() As DataTable
+    Public Overloads Function Select_RecordByArticulo(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
         Return dtb.Consultar(spArtFilter, True)
     End Function
 
-    Public Overrides Function Delete(ByVal ProveedorID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As Boolean
+    Public Overrides Function Delete(ByVal ProveedorID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Dim dbo As New DBO_Proveedores
         dbo.searchKey = dbo.item("ProveedorID")
         dbo.searchKey.value = ProveedorID
-        Return MyBase.DeleteProcedure(dbo, trans)
+        Return MyBase.DeleteProcedure(dbo, dtb)
     End Function
 
-    Public Sub cargar_ComboBox(ByRef cbo As ComboBox)
-        cbo.mam_DataSource("ProveedoresSelectCbo", False)
+    Public Sub cargar_ComboBox(ByRef cbo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        cbo.mam_DataSource("ProveedoresSelectCbo", False, dtb)
     End Sub
 
-    Sub MarcarInactivo(ByVal proveedorID As Integer)
-        deprecated.realizarConsultaAlteraciones("update proveedores set activo = 0 where proveedorID=" & proveedorID)
+    Sub MarcarInactivo(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal proveedorID As Integer)
+        dtb.PrepararConsulta("update proveedores set activo = 0 where proveedorID= @id")
+        dtb.AñadirParametroConsulta("@scc", proveedorID)
+        dtb.Consultar(True)
     End Sub
 
-    Sub cargar_Proveedores(ByRef comboBox As ComboBox)
-        comboBox.mam_DataSource("ProveedoresCbo", False)
+    Sub cargar_Proveedores(ByRef comboBox As ComboBox, ByRef dtb As BasesParaCompatibilidad.database)
+        comboBox.mam_DataSource("ProveedoresCbo", False, dtb)
     End Sub
 
-    Sub cargar_Proveedores_Por_Tipo_Material(ByRef cbo As ComboBox, ByVal TipoMaterialId As Integer)
-        cbo.mam_DataSource("ProveedoresCboByTipoMaterial " & TipoMaterialId, False)
+    Sub cargar_Proveedores_Por_Tipo_Material(ByRef cbo As ComboBox, ByVal TipoMaterialId As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        cbo.mam_DataSource("ProveedoresCboByTipoMaterial " & TipoMaterialId, False, dtb)
     End Sub
 
-    Public Sub cargar_Proveedores_Por_Tipo(ByRef cbo As ComboBox, ByVal tipo As Integer)
-        cbo.mam_DataSource("Proveedores1CboPorTipo " & tipo, False)
+    Public Sub cargar_Proveedores_Por_Tipo(ByRef cbo As ComboBox, ByVal tipo As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        cbo.mam_DataSource("Proveedores1CboPorTipo " & tipo, False, dtb)
     End Sub
 
-    Public Sub cargar_Proveedores_Analiticas(ByRef cbo As ComboBox)
-        Me.cargar_Proveedores_Por_Tipo(cbo, 6)
+    Public Sub cargar_Proveedores_Analiticas(ByRef cbo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        Me.cargar_Proveedores_Por_Tipo(cbo, 6, dtb)
     End Sub
 
-    Public Sub cargar_Proveedores_Enologicos(ByRef cbo As ComboBox)
-        Me.cargar_Proveedores_Por_Tipo(cbo, 5)
+    Public Sub cargar_Proveedores_Enologicos(ByRef cbo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        Me.cargar_Proveedores_Por_Tipo(cbo, 5, dtb)
     End Sub
 
-    Public Sub cargar_Proveedores_Compras(ByRef cbo As ComboBox)
-        Me.cargar_Proveedores_Por_Tipo(cbo, 3)
+    Public Sub cargar_Proveedores_Compras(ByRef cbo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        Me.cargar_Proveedores_Por_Tipo(cbo, 3, dtb)
     End Sub
 
     Public Function devolverProveedoresAnaliticas(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
@@ -82,7 +84,7 @@ Inherits BasesParaCompatibilidad.StoredProcedure
 
 
 
-    Public Function devolverProveedores() As DataTable
+    Public Function devolverProveedores(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
         dtb.PrepararConsulta("select * from proveedores")
         Return dtb.Consultar
 

@@ -23,7 +23,7 @@ Public Class frmTiposMateriales
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboTiposMateriales = CType(sp, spTiposMateriales).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboTiposMateriales = CType(sp, spTiposMateriales).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboTiposMateriales Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboTiposMateriales)
         Else

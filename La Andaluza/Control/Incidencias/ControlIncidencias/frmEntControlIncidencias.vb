@@ -30,25 +30,25 @@ Public Class frmEntControlIncidencias
 
     Private Sub frmEntControlIncidencias_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spProcesosCalidad
-        s.cargar_ProcesosCalidad(Me.cboprocesoCalidad)
+        s.cargar_ProcesosCalidad(Me.cboprocesoCalidad, dtb)
 
         Dim s2 As New spArticulosTipos
-        s2.cargar_ArticulosTipos(Me.cboTipoArticulo)
+        s2.cargar_ArticulosTipos(Me.cboTipoArticulo, dtb)
 
         Dim s3 As New spIncidenciasCalidadGeneral
-        s3.cargar_IncidenciasCalidadGeneral(Me.cboincidenciaCalidadGeneral)
+        s3.cargar_IncidenciasCalidadGeneral(Me.cboincidenciaCalidadGeneral, dtb)
 
         Dim s4 As New spEmpleados
-        s4.cargar_Empleados(Me.cboid_empleado)
+        s4.cargar_Empleados(Me.cboid_empleado, dtb)
 
         Dim s5 As New spTiposGravedadesIncidencias
-        s5.cargar_TiposGravedadesIncidencias(Me.cboPuntosGravedad)
+        s5.cargar_TiposGravedadesIncidencias(Me.cboPuntosGravedad, dtb)
 
         Dim s6 As New spTiposFrecuenciasIncidencias
-        s6.cargar_TiposFrecuenciasIncidencias(Me.cboPuntosFrecuencia)
+        s6.cargar_TiposFrecuenciasIncidencias(Me.cboPuntosFrecuencia, dtb)
 
         Dim s7 As New spEstadosControlesIncidencias
-        s7.cargar_estados(Me.cboEstado)
+        s7.cargar_estados(Me.cboEstado, dtb)
 
         If Me.ModoDeApertura = VISION Then
             Me.cboPuntosFrecuencia.Enabled = False
@@ -92,7 +92,7 @@ Public Class frmEntControlIncidencias
         If Me.ModoDeApertura = MODIFICACION Then
             If m_DBO_ControlIncidencias.Id_articulo <> Nothing Then
                 Dim spArt As New spArticulos1
-                Dim dboArt As DBO_Articulos1 = spArt.Select_Record(m_DBO_ControlIncidencias.Id_articulo)
+                Dim dboArt As DBO_Articulos1 = spArt.Select_Record(m_DBO_ControlIncidencias.Id_articulo, dtb)
                 Me.cboTipoArticulo.SelectedValue = dboArt.ArticuloTpoID
             End If
         End If
@@ -208,8 +208,8 @@ Public Class frmEntControlIncidencias
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerId_procesoCalidad_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_procesoCalidad.Click
@@ -222,7 +222,7 @@ Public Class frmEntControlIncidencias
         Dim frmEnt As New frmEntProcesosCalidad(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spProcesosCalidad, DBO_ProcesosCalidad)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spProcesosCalidad
-        s.cargar_ProcesosCalidad(Me.cboprocesoCalidad)
+        s.cargar_ProcesosCalidad(Me.cboprocesoCalidad, dtb)
     End Sub
 
     Private Sub butVerId_incidenciaCalidadGeneral_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_incidenciaCalidadGeneral.Click
@@ -235,7 +235,7 @@ Public Class frmEntControlIncidencias
         Dim frmEnt As New frmEntIncidenciasCalidadGeneral(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spIncidenciasCalidadGeneral, DBO_IncidenciasCalidadGeneral)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spIncidenciasCalidadGeneral
-        s.cargar_IncidenciasCalidadGeneral(Me.cboincidenciaCalidadGeneral)
+        s.cargar_IncidenciasCalidadGeneral(Me.cboincidenciaCalidadGeneral, dtb)
     End Sub
 
     Private Sub butVerid_empleado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerid_empleado.Click
@@ -248,7 +248,7 @@ Public Class frmEntControlIncidencias
         Dim frmEnt As New frmEntEmpleados(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spEmpleados, DBO_Empleados)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spEmpleados
-        s.cargar_Empleados(Me.cboid_empleado)
+        s.cargar_Empleados(Me.cboid_empleado, dtb)
     End Sub
 
     Private Sub butVerId_PuntosGravedad_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_PuntosGravedad.Click
@@ -261,7 +261,7 @@ Public Class frmEntControlIncidencias
         Dim frmEnt As New frmEntTiposGravedadesIncidencias(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spTiposGravedadesIncidencias, DBO_TiposGravedadesIncidencias)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTiposGravedadesIncidencias
-        s.cargar_TiposGravedadesIncidencias(Me.cboPuntosGravedad)
+        s.cargar_TiposGravedadesIncidencias(Me.cboPuntosGravedad, dtb)
     End Sub
 
     Private Sub butVerId_PuntosFrecuencia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_PuntosFrecuencia.Click
@@ -274,7 +274,7 @@ Public Class frmEntControlIncidencias
         Dim frmEnt As New frmEntTiposFrecuenciasIncidencias(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spTiposFrecuenciasIncidencias, DBO_TiposFrecuenciasIncidencias)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTiposFrecuenciasIncidencias
-        s.cargar_TiposFrecuenciasIncidencias(Me.cboPuntosFrecuencia)
+        s.cargar_TiposFrecuenciasIncidencias(Me.cboPuntosFrecuencia, dtb)
     End Sub
 
     Private Sub frmEntControlIncidencias_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
@@ -291,7 +291,7 @@ Public Class frmEntControlIncidencias
         Try
             If Me.cboTipoArticulo.SelectedValue <> Nothing Then
                 Dim s2 As New spArticulos1
-                s2.cargar_Articulos_Por_Tipo(Me.cboarticulo, Me.cboTipoArticulo.SelectedValue)
+                s2.cargar_Articulos_Por_Tipo(Me.cboarticulo, Me.cboTipoArticulo.SelectedValue, dtb)
             End If
         Catch ex As Exception
         End Try
@@ -318,7 +318,7 @@ Public Class frmEntControlIncidencias
         Try
             If Me.cboincidenciaCalidadGeneral.SelectedValue <> Nothing Then
                 Dim spIncidencia As New spIncidenciasCalidadGeneral
-                Dim dboIncidencia As DBO_IncidenciasCalidadGeneral = spIncidencia.Select_Record(Me.cboincidenciaCalidadGeneral.SelectedValue)
+                Dim dboIncidencia As DBO_IncidenciasCalidadGeneral = spIncidencia.Select_Record(Me.cboincidenciaCalidadGeneral.SelectedValue, dtb)
 
                 Me.txtCriterioFrecuenciaAlta.Text = dboIncidencia.CriterioFrecuenciaAlta
                 Me.txtCriterioFrecuenciaBaja.Text = dboIncidencia.CriterioFrecuenciaBaja
@@ -347,7 +347,7 @@ Public Class frmEntControlIncidencias
         Dim frmEnt As New frmEstadosControlesIncidencias()
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spEstadosControlesIncidencias
-        s.cargar_estados(Me.cboEstado)
+        s.cargar_estados(Me.cboEstado, dtb)
     End Sub
 
     Private Sub btnAddEstados_Click(sender As System.Object, e As System.EventArgs) Handles btnAddEstados.Click
@@ -355,7 +355,7 @@ Public Class frmEntControlIncidencias
         Dim frmEnt As New frmEntEstadosControlesIncidencias(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spEstadosControlesIncidencias, DBO_EstadosControlesIncidencias)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spEstadosControlesIncidencias
-        s.cargar_estados(Me.cboEstado)
+        s.cargar_estados(Me.cboEstado, dtb)
     End Sub
 
     Private Sub btnCleanArticulo_Click(sender As System.Object, e As System.EventArgs) Handles btnCleanArticulo.Click

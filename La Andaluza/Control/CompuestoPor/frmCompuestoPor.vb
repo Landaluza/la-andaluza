@@ -24,7 +24,7 @@ Public Class frmCompuestoPor
 
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
-            If CType(sp, spCompuestoPor).CompuestoPorDelete(dgvGeneral.CurrentRow.Cells("LoteFinal").Value, dgvGeneral.CurrentRow.Cells("LotePartida").Value, dgvGeneral.CurrentRow.Cells("MovimientoID").Value) Then
+            If CType(sp, spCompuestoPor).CompuestoPorDelete(dgvGeneral.CurrentRow.Cells("LoteFinal").Value, dgvGeneral.CurrentRow.Cells("LotePartida").Value, dgvGeneral.CurrentRow.Cells("MovimientoID").Value, dtb) Then
                 dgvFill()
             End If
         End If
@@ -37,7 +37,7 @@ Public Class frmCompuestoPor
         If TipoAction = ACCION_INSERTAR Then
             If m_MaestroID <> 0 Then m_DBO_CompuestoPor.LotePartida = m_MaestroID
         Else
-            m_DBO_CompuestoPor = CType(sp, spCompuestoPor).Select_Record(dgvGeneral.CurrentRow.Cells("LoteFinal").Value, dgvGeneral.CurrentRow.Cells("LotePartida").Value, dgvGeneral.CurrentRow.Cells("MovimientoID").Value)
+            m_DBO_CompuestoPor = CType(sp, spCompuestoPor).Select_Record(dgvGeneral.CurrentRow.Cells("LoteFinal").Value, dgvGeneral.CurrentRow.Cells("LotePartida").Value, dgvGeneral.CurrentRow.Cells("MovimientoID").Value, dtb)
         End If
 
         frmEnt = New frmEntCompuestoPor(m_DBO_CompuestoPor)

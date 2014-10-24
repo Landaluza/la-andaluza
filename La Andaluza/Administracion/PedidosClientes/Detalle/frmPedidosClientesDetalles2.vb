@@ -26,7 +26,7 @@ Public Class frmPedidosClientesDetalles2
 
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then _
-                    CType(sp, spPedidosClientesDetalles2).PedidosClientesDetalles2Delete(dgvGeneral.CurrentRow.Cells("PedidoClienteDatalleID").Value)
+                    CType(sp, spPedidosClientesDetalles2).PedidosClientesDetalles2Delete(dgvGeneral.CurrentRow.Cells("PedidoClienteDatalleID").Value, dtb)
         dgvFill()
     End Sub
 
@@ -38,7 +38,7 @@ Public Class frmPedidosClientesDetalles2
 
             If m_MaestroID <> 0 Then m_PedidosClientesDetalles2.PedidoclienteMaestroID = m_MaestroID
         Else
-            m_PedidosClientesDetalles2 = CType(sp, spPedidosClientesDetalles2).Select_Record(GeneralBindingSource(m_Pos).Item("PedidoClienteDatalleID"))
+            m_PedidosClientesDetalles2 = CType(sp, spPedidosClientesDetalles2).Select_Record(GeneralBindingSource(m_Pos).Item("PedidoClienteDatalleID"), dtb)
         End If
 
         frmEnt = New frmEntPedidosClientesDetalles2(m_PedidosClientesDetalles2, m_Pos, m_VerID, mercadona)

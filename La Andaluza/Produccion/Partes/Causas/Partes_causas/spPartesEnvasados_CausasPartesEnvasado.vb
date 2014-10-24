@@ -12,34 +12,31 @@ Inherits BasesParaCompatibilidad.StoredProcedure
                      "[dbo].[PartesEnvasados_CausasPartesEnvasadoSelectDgvBy]")
    End Sub
 
-   Public Overloads Function Select_Record(ByVal Id As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As DBO_PartesEnvasados_CausasPartesEnvasado
-       Dim dbo As New DBO_PartesEnvasados_CausasPartesEnvasado
-       dbo.searchKey = dbo.item("Id")
-       dbo.searchKey.value = Id
-       MyBase.Select_Record(dbo, trans)
-       Return dbo
-   End Function
+    Public Overloads Function Select_Record(ByVal Id As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_PartesEnvasados_CausasPartesEnvasado
+        Dim dbo As New DBO_PartesEnvasados_CausasPartesEnvasado
+        dbo.searchKey = dbo.item("Id")
+        dbo.searchKey.value = Id
+        MyBase.Select_Record(dbo, dtb)
+        Return dbo
+    End Function
 
-   Public Overrides Function Delete(ByVal Id As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As Boolean
-       Dim dbo As New DBO_PartesEnvasados_CausasPartesEnvasado
-       dbo.searchKey = dbo.item("Id")
-       dbo.searchKey.value = Id
-       return MyBase.DeleteProcedure(dbo,  trans)
-   End Function
+    Public Overrides Function Delete(ByVal Id As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        Dim dbo As New DBO_PartesEnvasados_CausasPartesEnvasado
+        dbo.searchKey = dbo.item("Id")
+        dbo.searchKey.value = Id
+        Return MyBase.DeleteProcedure(dbo, dtb)
+    End Function
 
-    Public Function DeleteByParte(ByVal Id_empleadoFormatoEnvasado As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As Boolean
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+    Public Function DeleteByParte(ByVal Id_empleadoFormatoEnvasado As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean        
 
         Return dtb.ConsultaAlteraciones("delete from PartesEnvasados_CausasPartesEnvasado where id_ParteEnvasado=" & Id_empleadoFormatoEnvasado)
     End Function
 
-    Public Function seleccionarUltimoRegistro(Optional ByVal cnn as System.Data.SqlClient.SqlConnection = Nothing, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As Integer
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server, cnn, trans)
+    Public Function seleccionarUltimoRegistro(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Return dtb.Consultar("select max(id) from PartesEnvasados_CausasPartesEnvasado", False).Rows(0).Item(0)
     End Function
 
-    Function isNoConforme(ByVal parteId As Integer) As Boolean
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+    Function isNoConforme(ByVal parteId As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         dtb.PrepararConsulta("select count(*) from PartesEnvasados_CausasPartesEnvasado where id_parteEnvasado = @id")
         dtb.AñadirParametroConsulta("@id", parteId)
 

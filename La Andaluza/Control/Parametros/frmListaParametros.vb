@@ -19,7 +19,7 @@ Public Class frmListaParametros
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboListaParametros = CType(sp, spListaParametros).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboListaParametros = CType(sp, spListaParametros).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboListaParametros Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboListaParametros)
         Else

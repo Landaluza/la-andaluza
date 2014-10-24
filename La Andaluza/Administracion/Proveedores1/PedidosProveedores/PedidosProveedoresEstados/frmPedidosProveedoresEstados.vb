@@ -22,7 +22,7 @@ Public Class frmPedidosProveedoresEstados
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboPedidosProveedoresEstados = CType(sp, spPedidosProveedoresEstados).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer))
+        dboPedidosProveedoresEstados = CType(sp, spPedidosProveedoresEstados).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
         If Not dboPedidosProveedoresEstados Is Nothing Then
             newRegForm.SetDataBussinesObject(CType(Me.dboPedidosProveedoresEstados, BasesParaCompatibilidad.DataBussines))
         Else

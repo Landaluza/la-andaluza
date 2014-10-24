@@ -24,7 +24,7 @@ Public Class frmUsuarios
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboUsuarios = CType(sp, spUsuarios).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboUsuarios = CType(sp, spUsuarios).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboUsuarios Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboUsuarios)
         Else

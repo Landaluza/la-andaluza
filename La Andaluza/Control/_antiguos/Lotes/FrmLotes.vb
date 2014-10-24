@@ -58,10 +58,10 @@ Public Class FrmLotesEnologicos
     End Sub
 
     Private Sub FrmLotes_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        spTiposLotes.cargar_TiposLotes(CType(cboTipoLoteID, ComboBox), "Todos")
+        spTiposLotes.cargar_TiposLotes(CType(cboTipoLoteID, ComboBox), dtb, "Todos")
         cboTipoLoteID.MaxDropDownItems = cboTipoLoteID.Items.Count
 
-        spTiposProductos.cargar_ComboBox_No_enologicos(CType(cboTipoProducto, ComboBox), "Todos")
+        spTiposProductos.cargar_ComboBox_No_enologicos(CType(cboTipoProducto, ComboBox), dtb, "Todos")
         GeneralBindingSource.Position = GeneralBindingSource.Count
     End Sub
 
@@ -164,7 +164,7 @@ Public Class FrmLotesEnologicos
             If response = DialogResult.Yes Then
 
                 'eliminar muestra
-                ctlMue.EliminarLote((dgvGeneral.Rows(Posicion).Cells(0).Value))
+                ctlMue.EliminarLote(dgvGeneral.Rows(Posicion).Cells(0).Value, dtb)
                 toolStripRefresh100_Click(Nothing, Nothing)
                 'ctlMue.mostrarTodosLotesPorTipoLoteoProducto((cboTipoLoteID.SelectedValue), (cboTipoProducto.SelectedValue), dtsMue, chbConEnologicos.Checked, True)
 
@@ -194,10 +194,10 @@ Public Class FrmLotesEnologicos
 
     Private Sub CheckBox1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chbConEnologicos.CheckedChanged
         If chbConEnologicos.Checked Then
-            spTiposProductos.cargar_ComboBox_Enologicos(CType(cboTipoProducto, ComboBox), "Todos")
+            spTiposProductos.cargar_ComboBox_Enologicos(CType(cboTipoProducto, ComboBox), dtb, "Todos")
             'Oldlib.RellenarComboBox(cboTipoProducto, ctlTipPro.devolverTiposProductosPorDescripcionEnologicos, True, "Todos")
         Else
-            spTiposProductos.cargar_ComboBox_No_enologicos(CType(cboTipoProducto, ComboBox), "Todos")
+            spTiposProductos.cargar_ComboBox_No_enologicos(CType(cboTipoProducto, ComboBox), dtb, "Todos")
             'Oldlib.RellenarComboBox(cboTipoProducto, ctlTipPro.devolverTiposProductosPorDescripcionNoEnologicos, True, "Todos")
         End If
 

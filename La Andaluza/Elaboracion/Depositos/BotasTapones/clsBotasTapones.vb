@@ -30,16 +30,14 @@ Public Class clsBotasTapones
 
 #Region "Metodos"
 
-    Public Function devolverBotasTaponesPorDescripcion() As DataTable
-
-        Return Deprecated.ConsultaVer("BotaTaponID,Descripcion", "BotasTapones", "BotaTaponID > 0 order by Descripcion")
-
+    Public Function devolverBotasTaponesPorDescripcion(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
+        dtb.PrepararConsulta("select BotaTaponID,Descripcion from BotasTapones where BotaTaponID > 0 order by Descripcion")
+        Return dtb.Consultar()
     End Function
 
     Public Function Devolver(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
         dtb.PrepararConsulta("select BotasTapones.BotaTaponID,BotasTapones.Descripcion from BotasTapones")
         Return dtb.Consultar
-
     End Function
 
     Public Function Modificar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
@@ -58,7 +56,7 @@ Public Class clsBotasTapones
     Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Try
             dtb.ConsultaAlteraciones("insert into BotasTapones values(" & _
-                              "'" & Descripcion & "'," & _
+                              "'" & Descripcion & "','" & _
                              BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)) + "'," + BasesParaCompatibilidad.Config.User.ToString + ")")
 
             dtb.PrepararConsulta("select max(BotaTaponID) from BotasTapones")
@@ -69,8 +67,7 @@ Public Class clsBotasTapones
         End Try
     End Function
 
-    Public Function Eliminar() As Integer
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+    Public Function Eliminar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
 
         Try
             dtb.PrepararConsulta("delete from BotasTapones where BotaTaponID = @id")

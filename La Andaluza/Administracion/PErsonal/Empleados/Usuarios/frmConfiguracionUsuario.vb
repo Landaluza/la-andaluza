@@ -1,6 +1,6 @@
 ﻿Public Class frmConfiguracionUsuario
     Private dbobject As DBO_Usuarios
-
+    Private dtb As BasesParaCompatibilidad.DataBase
     'Dim dt As DataTable = RealizarConsulta("Select email from usuarios where usuarioid = " & clsUsu._UsuarioID)
     '            If IsDBNull(dt.Rows(0).Item(0)) Then
     'Dim strInput As String
@@ -32,21 +32,20 @@
         dbobject.pass = Me.txtCorreoPass.Text
         dbobject.email = Me.txtCorreo.Text
 
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
         dtb.EmpezarTransaccion()
 
         Try
             Dim sp_Usuarios As New spUsuarios
 
-            If sp_Usuarios.Grabar(dbobject) Then   'update(dbobject) Then
+            If sp_Usuarios.Grabar(dbobject, dtb) Then   'update(dbobject) Then
 
                 If Me.cbPass.Checked Then
-                    If sp_Usuarios.CambiarContraseña(BasesParaCompatibilidad.Config.User, Me.txtoldPass.Text, Me.txtNewPass.Text) Then
+                    If sp_Usuarios.CambiarContraseña(BasesParaCompatibilidad.Config.User, Me.txtoldPass.Text, Me.txtNewPass.Text, dtb) Then
                         dtb.TerminarTransaccion()
                         Me.Close()
                     Else
                         dtb.CancelarTransaccion()
-                        messagebox.show("No se pudo actualizar la contraseña.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                        MessageBox.Show("No se pudo actualizar la contraseña.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     End If
                 Else
                     dtb.TerminarTransaccion()
@@ -54,7 +53,7 @@
                 End If
             Else
                 dtb.CancelarTransaccion()
-                messagebox.show("No se pudo actualizar los datos de usuario.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                MessageBox.Show("No se pudo actualizar los datos de usuario.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             End If
 
         Catch ex As Exception
@@ -69,9 +68,18 @@
 
     Private Sub frmConfiguracionUsuario_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         Dim sp_Usuarios As New spUsuarios()
-        Me.dbobject = sp_Usuarios.select_record(BasesParaCompatibilidad.Config.User)
+        Me.dbobject = sp_Usuarios.Select_Record(BasesParaCompatibilidad.Config.User, dtb)
 
         Me.txtCorreo.Text = Me.dbobject.email
         Me.txtCorreoPass.Text = Me.dbobject.pass
+    End Sub
+
+    Public Sub New()
+
+        ' Llamada necesaria para el diseñador.
+        InitializeComponent()
+
+        dtb = New BasesParaCompatibilidad.DataBase()
+
     End Sub
 End Class

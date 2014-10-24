@@ -23,7 +23,7 @@ Public Class frmEntPosiciones
 
     Private Sub frmEntPosiciones_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s0 As New spAlturas
-        s0.cargar_Alturas(Me.cboAltura)
+        s0.cargar_Alturas(Me.cboAltura, dtb)
         If Me.mododeapertura = VISION Then
             Me.cboAltura.enabled = False
             Me.lblAlturaID.enabled = False
@@ -76,8 +76,8 @@ Public Class frmEntPosiciones
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerAlturaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerAlturaID.Click
@@ -90,7 +90,7 @@ Public Class frmEntPosiciones
         Dim frmEnt As New frmEntAlturas(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spAlturas, DBO_Alturas)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spAlturas
-        s.cargar_Alturas(Me.cboAltura)
+        s.cargar_Alturas(Me.cboAltura, dtb)
     End Sub
 
     Private Sub frmEntPosiciones_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown

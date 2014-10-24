@@ -18,7 +18,7 @@ Public Class frmEntCostesPorConcepto
 
    Private Sub frmEntCostesPorConcepto_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
        dim s0 as new spConceptosGastosIncidencias
-       s0.cargar_ConceptosGastosIncidencias(Me.cboConceptosGastosIncidencias)
+        s0.cargar_ConceptosGastosIncidencias(Me.cboConceptosGastosIncidencias, dtb)
        If (me.mododeapertura = VISION) Then
            Me.cboConceptosGastosIncidencias.enabled = False
            Me.lblId_ConceptosGastosIncidencias.enabled = False
@@ -69,9 +69,9 @@ Public Class frmEntCostesPorConcepto
         End IF
    End Function
 
-   Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = nothing) Implements BasesParaCompatibilidad.Savable.Guardar
-       MyBase.Guardar(trans)
-   End Sub
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+        MyBase.Guardar(Me.dtb)
+    End Sub
 
    Private Sub butVerId_ConceptosGastosIncidencias_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_ConceptosGastosIncidencias.Click
        Dim frmEnt As New frmConceptosGastosIncidencias()
@@ -83,7 +83,7 @@ Public Class frmEntCostesPorConcepto
        Dim frmEnt As New frmEntConceptosGastosIncidencias(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, new spConceptosGastosIncidencias,DBO_ConceptosGastosIncidencias)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
        dim s as new spConceptosGastosIncidencias
-       s.cargar_ConceptosGastosIncidencias(Me.cboConceptosGastosIncidencias)
+        s.cargar_ConceptosGastosIncidencias(Me.cboConceptosGastosIncidencias, dtb)
    End Sub
 
    Private Sub frmEntCostesPorConcepto_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown

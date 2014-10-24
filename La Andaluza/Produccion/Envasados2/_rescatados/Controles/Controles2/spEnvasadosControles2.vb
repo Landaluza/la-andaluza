@@ -7,12 +7,12 @@ Class spEnvasadosControles2
         MyBase.New("[dbo].[EnvasadosControles2Select]", "[dbo].[EnvasadosControles2Insert]", "[dbo].[EnvasadosControles2Update]", _
                    "[dbo].[EnvasadosControles2Delete]", "EnvasadosControles2SelectDgv", "EnvasadosControles2SelectDgvByEnvasadoControlID")
     End Sub
-    Public Function SelectByEnvasadoControlID(ByVal EnvasadoControlID As Int32) As DBO_EnvasadosControles2
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function SelectByEnvasadoControlID(ByVal EnvasadoControlID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_EnvasadosControles2
+        dtb.Conectar()
         Dim DBO_EnvasadosControles2 As New DBO_EnvasadosControles2
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[EnvasadosControles2SelectByEnvasadoControlID]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@EnvasadoControlID", EnvasadoControlID)
         Try
@@ -44,19 +44,19 @@ Class spEnvasadosControles2
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_EnvasadosControles2
     End Function
 
 
-    Public Function EnvasadosControles2Insert(ByVal dbo_EnvasadosControles2 As DBO_EnvasadosControles2) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function EnvasadosControles2Insert(ByVal dbo_EnvasadosControles2 As DBO_EnvasadosControles2, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[EnvasadosControles2Insert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
-        
+
         insertCommand.Parameters.AddWithValue("@EnvasadoControlID", If(dbo_EnvasadosControles2.EnvasadoControlID.HasValue, dbo_EnvasadosControles2.EnvasadoControlID, Convert.DBNull))
         insertCommand.Parameters.AddWithValue("@Boquilla1", dbo_EnvasadosControles2.Boquilla1)
         insertCommand.Parameters.AddWithValue("@Boquilla2", dbo_EnvasadosControles2.Boquilla2)
@@ -73,7 +73,7 @@ Class spEnvasadosControles2
         insertCommand.Parameters.AddWithValue("@Caja", dbo_EnvasadosControles2.Caja)
         insertCommand.Parameters.AddWithValue("@FechaModificacion", dbo_EnvasadosControles2.FechaModificacion)
         insertCommand.Parameters.AddWithValue("@UsuarioModificacion", dbo_EnvasadosControles2.UsuarioModificacion)
-        
+
         insertCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         insertCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
         Try
@@ -87,15 +87,15 @@ Class spEnvasadosControles2
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function EnvasadosControles2Update(ByVal newDBO_EnvasadosControles2 As DBO_EnvasadosControles2) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function EnvasadosControles2Update(ByVal newDBO_EnvasadosControles2 As DBO_EnvasadosControles2, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[EnvasadosControles2Update]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         '<Tag=[Three][Start]> -- please do not remove this line
         updateCommand.Parameters.AddWithValue("@NewEnvasadoControlID", If(newDBO_EnvasadosControles2.EnvasadoControlID.HasValue, newDBO_EnvasadosControles2.EnvasadoControlID, Convert.DBNull))
@@ -127,20 +127,20 @@ Class spEnvasadosControles2
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdateEnvasadosControles2" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdateEnvasadosControles2" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Sub GrabarEnvasadosControles2(ByVal dbo_EnvasadosControles2 As DBO_EnvasadosControles2)
-        dbo_EnvasadosControles2.FechaModificacion = System.DateTime.Now.date
+    Public Sub GrabarEnvasadosControles2(ByVal dbo_EnvasadosControles2 As DBO_EnvasadosControles2, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        dbo_EnvasadosControles2.FechaModificacion = System.DateTime.Now.Date
         dbo_EnvasadosControles2.UsuarioModificacion = BasesParaCompatibilidad.Config.User
         If dbo_EnvasadosControles2.EnvasadoControl2ID = 0 Then
-            EnvasadosControles2Insert(dbo_EnvasadosControles2)
+            EnvasadosControles2Insert(dbo_EnvasadosControles2, dtb)
         Else
-            EnvasadosControles2Update(dbo_EnvasadosControles2)
+            EnvasadosControles2Update(dbo_EnvasadosControles2, dtb)
         End If
     End Sub
 

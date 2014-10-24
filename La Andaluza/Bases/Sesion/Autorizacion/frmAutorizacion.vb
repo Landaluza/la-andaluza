@@ -4,7 +4,7 @@
     Private embebido As Boolean
     Public Event verificado()
     Public Event cancelado()
-
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public ReadOnly Property Retorno As DialogResult
         Get
             Return Me.resultado
@@ -14,7 +14,7 @@
     Public Sub New(Optional embebed As Boolean = True)
 
         InitializeComponent()
-
+        dtb = New BasesParaCompatibilidad.DataBase
         Me.sp = New spAutorizacion
         Me.embebido = embebed
         Me.resultado = Windows.Forms.DialogResult.Cancel
@@ -36,7 +36,7 @@
     End Sub
 
     Private Sub ComprobarUsuario()
-        If Me.sp.verificarUsuario(BasesParaCompatibilidad.Config.User, Me.txtPassword.Text) Then
+        If Me.sp.verificarUsuario(BasesParaCompatibilidad.Config.User, Me.txtPassword.Text, dtb) Then
             Me.lError.Visible = False
             Me.resultado = Windows.Forms.DialogResult.OK
             RaiseEvent verificado()

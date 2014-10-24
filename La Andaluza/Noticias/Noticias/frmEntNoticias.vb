@@ -54,16 +54,16 @@ Public Class frmEntNoticias
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
         If Me.GetValores Then
 
-            BasesParaCompatibilidad.BD.EmpezarTransaccion()
-            Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server, BasesParaCompatibilidad.BD.Cnx, BasesParaCompatibilidad.BD.transaction)
+            dtb.EmpezarTransaccion()
+
 
             Try
-                If sp.Grabar(dbo, BasesParaCompatibilidad.BD.transaction) Then
+                If sp.Grabar(dbo, dtb) Then
                     If Me.ModoDeApertura = INSERCION Then Me.m_DBO_Noticias.ID = Convert.ToInt32(dtb.Consultar("select max(id) from noticias", False).Rows(0).Item(0))
-                    BasesParaCompatibilidad.BD.TerminarTransaccion()
+                    dtb.TerminarTransaccion()
 
                     evitarCerrarSinGuardar = False
                     RaiseEvent afterSave(Me, Nothing)
@@ -76,11 +76,11 @@ Public Class frmEntNoticias
                         SetValores()
                     End If
                 Else
-                    BasesParaCompatibilidad.BD.CancelarTransaccion()
+                    dtb.CancelarTransaccion()
                     MessageBox.Show("No se pudo guardar el registro. Asegurese de tener conexion a la red.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
             Catch ex As Exception
-                BasesParaCompatibilidad.BD.CancelarTransaccion()
+                dtb.CancelarTransaccion()
                 MessageBox.Show("No se pudo guardar el registro. Detalles:" & Environment.NewLine & Environment.NewLine, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         End If

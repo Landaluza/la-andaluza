@@ -18,13 +18,13 @@ Public Class frmEntProtocolosMedicosPuestosTrabajos
 
    Private Sub frmEntProtocolosMedicosPuestosTrabajos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spPuestosTrabajos
-        s.cargar_PuestosTrabajos(Me.cboPuestoTrabajo)
+        s.cargar_PuestosTrabajos(Me.cboPuestoTrabajo, dtb)
        
         Dim s2 As New spProtocolosMedicos
-        s2.cargar_ProtocolosMedicos(Me.cboProtocoloMedico)
+        s2.cargar_ProtocolosMedicos(Me.cboProtocoloMedico, dtb)
      
         Dim s3 As New spProgramasActividadesPreventivas
-        s3.cargar_ProgramasActividadesPreventivas(Me.cboProgramaActividadPreventiva)
+        s3.cargar_ProgramasActividadesPreventivas(Me.cboProgramaActividadPreventiva, dtb)
 
        If me.mododeapertura = VISION Then
            Me.cboProgramaActividadPreventiva.enabled = False
@@ -65,15 +65,15 @@ Public Class frmEntProtocolosMedicosPuestosTrabajos
         End IF
    End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As sqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
    Private Sub butVerPuestoTrabajoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerPuestoTrabajoID.Click
        Dim frmEnt As New frmPuestosTrabajos()
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spPuestosTrabajos
-        s.cargar_PuestosTrabajos(Me.cboPuestoTrabajo)
+        s.cargar_PuestosTrabajos(Me.cboPuestoTrabajo, dtb)
     End Sub
 
     Private Sub butAddPuestoTrabajoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddPuestoTrabajoID.Click
@@ -88,7 +88,7 @@ Public Class frmEntProtocolosMedicosPuestosTrabajos
         Dim frmEnt As New frmProtocolosMedicos()
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spProtocolosMedicos
-        s.cargar_ProtocolosMedicos(Me.cboProtocoloMedico)
+        s.cargar_ProtocolosMedicos(Me.cboProtocoloMedico, dtb)
     End Sub
 
     Private Sub butAddProtocoloMedicoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddProtocoloMedicoID.Click
@@ -96,14 +96,14 @@ Public Class frmEntProtocolosMedicosPuestosTrabajos
         Dim frmEnt As New frmEntProtocolosMedicos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spProtocolosMedicos, DBO_ProtocolosMedicos)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spProtocolosMedicos
-        s.cargar_ProtocolosMedicos(Me.cboProtocoloMedico)
+        s.cargar_ProtocolosMedicos(Me.cboProtocoloMedico, dtb)
     End Sub
 
     Private Sub butVerProgramaActividadPreventivaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerProgramaActividadPreventivaID.Click
         Dim frmEnt As New frmProgramasActividadesPreventivas()
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spProgramasActividadesPreventivas
-        s.cargar_ProgramasActividadesPreventivas(Me.cboProgramaActividadPreventiva)
+        s.cargar_ProgramasActividadesPreventivas(Me.cboProgramaActividadPreventiva, dtb)
     End Sub
 
     Private Sub butAddProgramaActividadPreventivaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddProgramaActividadPreventivaID.Click
@@ -111,7 +111,7 @@ Public Class frmEntProtocolosMedicosPuestosTrabajos
         Dim frmEnt As New frmEntProgramasActividadesPreventivas(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spProgramasActividadesPreventivas, DBO_ProgramasActividadesPreventivas)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spProgramasActividadesPreventivas
-        s.cargar_ProgramasActividadesPreventivas(Me.cboProgramaActividadPreventiva)
+        s.cargar_ProgramasActividadesPreventivas(Me.cboProgramaActividadPreventiva, dtb)
     End Sub
 
 End Class

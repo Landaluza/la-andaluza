@@ -48,7 +48,7 @@ Public Class frmEntPedidosClientesDocumentos
 
     Overrides Sub Guardar()
         GetValores()
-        spPedidosClientesDocumentos.GrabarPedidosClientesDocumentos(m_DBO_PedidosClientesDocumento)
+        spPedidosClientesDocumentos.GrabarPedidosClientesDocumentos(m_DBO_PedidosClientesDocumento, dtb)
         Me.Close()
     End Sub
 

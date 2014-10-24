@@ -24,7 +24,7 @@ Public Class frmPartesEnvasados_CausasPartesEnvasado
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboPartesEnvasados_CausasPartesEnvasado = CType(sp, spPartesEnvasados_CausasPartesEnvasado).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboPartesEnvasados_CausasPartesEnvasado = CType(sp, spPartesEnvasados_CausasPartesEnvasado).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboPartesEnvasados_CausasPartesEnvasado Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboPartesEnvasados_CausasPartesEnvasado)
         Else
@@ -46,7 +46,7 @@ Public Class frmPartesEnvasados_CausasPartesEnvasado
         End If
     End Sub
 
-    Public Function grabar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) As Boolean
+    Public Function grabar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Return True
     End Function
 

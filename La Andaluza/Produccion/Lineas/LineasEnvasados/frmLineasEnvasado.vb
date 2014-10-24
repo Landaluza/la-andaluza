@@ -21,7 +21,7 @@ Public Class frmLineasEnvasado
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboLineasEnvasado = CType(sp, spLineasEnvasado).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboLineasEnvasado = CType(sp, spLineasEnvasado).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboLineasEnvasado Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboLineasEnvasado)
         Else

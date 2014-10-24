@@ -19,7 +19,7 @@ Public Class frmEntArticulosFichasPaletizados1
 
     Private Sub frmEntArticulosFichasPaletizados1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim spArticulosEnvasadosHistoricos As New spArticulosEnvasadosHistoricos
-        spArticulosEnvasadosHistoricos.cargar_TiposFormatos_Todos(cboArticuloID)
+        spArticulosEnvasadosHistoricos.cargar_TiposFormatos_Todos(cboArticuloID, dtb)
         'Me.cboArticuloID.mam_DataSource("ArticulosFichasPaletizados1_TiposFormatosCbo"), False)
         If Not m_VerID Then
             Me.cboArticuloID.Visible = False
@@ -31,7 +31,7 @@ Public Class frmEntArticulosFichasPaletizados1
 
     Overrides Sub SetValores(ByVal m_ID As Integer, ByVal m_SelectRecord As Boolean)
 
-        If m_SelectRecord Then m_DBO_ArticulosFichasPaletizados1 = spArticulosFichasPaletizados1.Select_Record(m_ID)
+        If m_SelectRecord Then m_DBO_ArticulosFichasPaletizados1 = spArticulosFichasPaletizados1.Select_Record(m_ID, dtb)
         If m_ID > 0 Then
             txtArticuloFichaPaletizadoID.Text = m_DBO_ArticulosFichasPaletizados1.ArticuloFichaPaletizadoID
             cboArticuloID.SelectedValue = If(m_DBO_ArticulosFichasPaletizados1.ArticuloID.HasValue, m_DBO_ArticulosFichasPaletizados1.ArticuloID, -1)
@@ -58,7 +58,7 @@ Public Class frmEntArticulosFichasPaletizados1
 
     Overrides Sub Guardar()
         GetValores()
-        spArticulosFichasPaletizados1.GrabarArticulosFichasPaletizados1(m_DBO_ArticulosFichasPaletizados1)
+        spArticulosFichasPaletizados1.GrabarArticulosFichasPaletizados1(m_DBO_ArticulosFichasPaletizados1, dtb)
         Me.Close()
     End Sub
 

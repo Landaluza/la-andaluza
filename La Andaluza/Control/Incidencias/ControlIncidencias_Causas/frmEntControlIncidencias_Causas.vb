@@ -21,10 +21,10 @@ Public Class frmEntControlIncidencias_Causas
 
     Private Sub frmEntControlIncidencias_Causas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spCausas
-        s.cargar_Causas(Me.cbocausa)
+        s.cargar_Causas(Me.cbocausa, dtb)
 
         Dim s2 As New spEmpleados
-        s2.cargar_Empleados(Me.cboempleado)
+        s2.cargar_Empleados(Me.cboempleado, dtb)
         If Me.ModoDeApertura = VISION Then
             Me.cboempleado.Enabled = False
             Me.lblId_empleado.Enabled = False
@@ -75,8 +75,8 @@ Public Class frmEntControlIncidencias_Causas
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerId_causa_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_causa.Click
@@ -89,7 +89,7 @@ Public Class frmEntControlIncidencias_Causas
         Dim frmEnt As New frmEntCausas(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spCausas, DBO_Causas)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spCausas
-        s.cargar_Causas(Me.cbocausa)
+        s.cargar_Causas(Me.cbocausa, dtb)
     End Sub
 
     Private Sub butVerId_control_incidencia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -111,7 +111,7 @@ Public Class frmEntControlIncidencias_Causas
         Dim frmEnt As New frmEntEmpleados(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spEmpleados, DBO_Empleados)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spEmpleados
-        s.cargar_Empleados(Me.cboempleado)
+        s.cargar_Empleados(Me.cboempleado, dtb)
     End Sub
 
 End Class

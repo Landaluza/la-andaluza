@@ -43,23 +43,23 @@ Public Class frmEntNoticias_TiposUsuarios
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub frmEntNoticias_TiposUsuarios_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        spTiposUsuarios.cargar_TiposUsuarios(Me.cbotipoUsuario)
+        spTiposUsuarios.cargar_TiposUsuarios(Me.cbotipoUsuario, dtb)
     End Sub
 
     Private Sub butVerId_tipoUsuario_Click(sender As System.Object, e As System.EventArgs) Handles butVerId_tipoUsuario.Click
         Dim frm As New frmTiposUsuarios
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
-        spTiposUsuarios.cargar_TiposUsuarios(Me.cbotipoUsuario)
+        spTiposUsuarios.cargar_TiposUsuarios(Me.cbotipoUsuario, dtb)
     End Sub
 
     Private Sub butAddId_tipoUsuario_Click(sender As System.Object, e As System.EventArgs) Handles butAddId_tipoUsuario.Click
         Dim frm As New frmEntTiposUsuarios
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
-        spTiposUsuarios.cargar_TiposUsuarios(Me.cbotipoUsuario)
+        spTiposUsuarios.cargar_TiposUsuarios(Me.cbotipoUsuario, dtb)
     End Sub
 End Class

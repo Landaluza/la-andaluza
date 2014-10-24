@@ -22,13 +22,13 @@ Public Class frmEntIncidenciasCalidadGeneral
 
     Private Sub frmEntIncidenciasCalidadGeneral_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spEmpleados
-        s.cargar_Empleados(Me.cboempleado)
+        s.cargar_Empleados(Me.cboempleado, dtb)
 
         Dim s2 As New spArticulosTipos
-        s2.cargar_ArticulosTipos(Me.cboArticuloTipo)
+        s2.cargar_ArticulosTipos(Me.cboArticuloTipo, dtb)
 
         Dim s3 As New spProcesosCalidad
-        s3.cargar_ProcesosCalidad(Me.cboprocesoCalidad)
+        s3.cargar_ProcesosCalidad(Me.cboprocesoCalidad, dtb)
         If Me.ModoDeApertura = VISION Then
             Me.cboprocesoCalidad.Enabled = False
             Me.lblId_procesoCalidad.Enabled = False
@@ -141,8 +141,8 @@ Public Class frmEntIncidenciasCalidadGeneral
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerId_empleado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_empleado.Click
@@ -155,7 +155,7 @@ Public Class frmEntIncidenciasCalidadGeneral
         Dim frmEnt As New frmEntEmpleados(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spEmpleados, DBO_Empleados)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spEmpleados
-        s.cargar_Empleados(Me.cboempleado)
+        s.cargar_Empleados(Me.cboempleado, dtb)
     End Sub
 
     Private Sub butVerId_ArticuloTipo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_ArticuloTipo.Click
@@ -168,7 +168,7 @@ Public Class frmEntIncidenciasCalidadGeneral
         Dim frmEnt As New frmEntArticulosTipos(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spArticulosTipos, DBO_ArticulosTipos)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spArticulosTipos
-        s.cargar_ArticulosTipos(Me.cboArticuloTipo)
+        s.cargar_ArticulosTipos(Me.cboArticuloTipo, dtb)
     End Sub
 
     Private Sub butVerId_procesoCalidad_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_procesoCalidad.Click
@@ -181,7 +181,7 @@ Public Class frmEntIncidenciasCalidadGeneral
         Dim frmEnt As New frmEntProcesosCalidad(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spProcesosCalidad, DBO_ProcesosCalidad)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spProcesosCalidad
-        s.cargar_ProcesosCalidad(Me.cboprocesoCalidad)
+        s.cargar_ProcesosCalidad(Me.cboprocesoCalidad, dtb)
     End Sub
 
     Private Sub frmEntIncidenciasCalidadGeneral_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize

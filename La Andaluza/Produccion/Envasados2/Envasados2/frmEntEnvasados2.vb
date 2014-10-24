@@ -18,7 +18,6 @@ Public Class frmEntEnvasados2
     Private spEnvasados2 As spEnvasados2
     Private btnEO As ToolStripButton
     Private calendar As BasesParaCompatibilidad.Calendar
-    Private dtb As BasesParaCompatibilidad.DataBase
 
     Public ReadOnly Property Linea As Integer
         Get
@@ -30,7 +29,7 @@ Public Class frmEntEnvasados2
         InitializeComponent()
         spEnvasados2 = New spEnvasados2
         calendar = New BasesParaCompatibilidad.Calendar
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.DataBase()
         m_DBO_Envasado = DBO_Envasados2.Instance
         dtpFecha.activarFoco()
 
@@ -62,7 +61,7 @@ Public Class frmEntEnvasados2
             txtObservaciones.Text = m_DBO_Envasado.Observaciones
         End If
 
-        cboLineas.mam_DataSource("LineasEnvasadoSelectCbo", True, "Todas")
+        cboLineas.mam_DataSource("LineasEnvasadoSelectCbo", True, dtb, "Todas")
         SetValores()
 
         If Me.ModoDeApertura = INSERCION Then
@@ -103,7 +102,7 @@ Public Class frmEntEnvasados2
     Overrides Sub Guardar()
         Try
             If GetValores() Then
-                spEnvasados2.GrabarEnvasados2(m_DBO_Envasado)
+                spEnvasados2.GrabarEnvasados2(m_DBO_Envasado, dtb)
 
                 If Me.ModoDeApertura = MODIFICACION Then
                     Me.Close()
@@ -264,9 +263,9 @@ Public Class frmEntEnvasados2
         Dim dt As DataTable
 
         If Me.cboLineas.SelectedValue = 0 Then
-            dt = spEmp.devolver_Empleados_Envasados_ocupados(Me.m_DBO_Envasado.EnvasadoID)
+            dt = spEmp.devolver_Empleados_Envasados_ocupados(Me.m_DBO_Envasado.EnvasadoID, dtb)
         Else
-            dt = spEmp.devolver_Empleados_Envasados_ocupados_por_linea(Me.cboLineas.SelectedValue, Me.m_DBO_Envasado.EnvasadoID)
+            dt = spEmp.devolver_Empleados_Envasados_ocupados_por_linea(Me.cboLineas.SelectedValue, Me.m_DBO_Envasado.EnvasadoID, dtb)
         End If
 
         If Not dt Is Nothing Then

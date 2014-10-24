@@ -17,7 +17,7 @@ Public Class frmFamiliaProducto
     End Sub
 
    Private Sub modify_Before() Handles MyBase.BeforeModify
-       dboFamiliaProducto =ctype(sp, spFamiliaProducto).Select_Record(ctype(dgvGeneral.CurrentRow.Cells("Id").Value, integer))
+        dboFamiliaProducto = CType(sp, spFamiliaProducto).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
        If Not dboFamiliaProducto Is Nothing Then
            newRegForm.SetDataBussinesObject(ctype(Me.dboFamiliaProducto,BasesParaCompatibilidad.databussines))
        Else

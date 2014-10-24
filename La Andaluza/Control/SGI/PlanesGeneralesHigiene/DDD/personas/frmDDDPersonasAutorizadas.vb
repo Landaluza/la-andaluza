@@ -19,7 +19,7 @@ Public Class frmDDDPersonasAutorizadas
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboDDDPersonasAutorizadas = CType(sp, spDDDPersonasAutorizadas).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboDDDPersonasAutorizadas = CType(sp, spDDDPersonasAutorizadas).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboDDDPersonasAutorizadas Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboDDDPersonasAutorizadas)
         Else

@@ -18,10 +18,10 @@ Public Class frmEntListaParametros
 
     Private Sub frmEntListaParametros_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spUnidadesMedidas
-        s.cargar_UnidadesMedidas(Me.cboUnidadMedida)
+        s.cargar_UnidadesMedidas(Me.cboUnidadMedida, dtb)
 
         Dim s2 As New spParametrosTipos
-        s2.cargar_ParametrosTipos(Me.cboid_parametroTipo)
+        s2.cargar_ParametrosTipos(Me.cboid_parametroTipo, dtb)
         If Me.mododeapertura = VISION Then
             Me.cboid_parametroTipo.enabled = False
             Me.lblid_parametroTipo.enabled = False
@@ -80,15 +80,15 @@ Public Class frmEntListaParametros
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As sqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerUnidadMedidaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerUnidadMedidaID.Click
         Dim frmEnt As New frmUnidadesMedidas()
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spUnidadesMedidas
-        s.cargar_UnidadesMedidas(Me.cboUnidadMedida)
+        s.cargar_UnidadesMedidas(Me.cboUnidadMedida, dtb)
     End Sub
 
     Private Sub butAddUnidadMedidaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddUnidadMedidaID.Click
@@ -96,14 +96,14 @@ Public Class frmEntListaParametros
         Dim frmEnt As New frmEntUnidadesMedidas(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spUnidadesMedidas, DBO_UnidadesMedidas)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spUnidadesMedidas
-        s.cargar_UnidadesMedidas(Me.cboUnidadMedida)
+        s.cargar_UnidadesMedidas(Me.cboUnidadMedida, dtb)
     End Sub
 
     Private Sub butVerid_parametroTipo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerid_parametroTipo.Click
         Dim frmEnt As New frmParametrosTipos()
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spParametrosTipos
-        s.cargar_ParametrosTipos(Me.cboid_parametroTipo)
+        s.cargar_ParametrosTipos(Me.cboid_parametroTipo, dtb)
     End Sub
 
     Private Sub butAddid_parametroTipo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddid_parametroTipo.Click
@@ -111,7 +111,7 @@ Public Class frmEntListaParametros
         Dim frmEnt As New frmEntParametrosTipos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spParametrosTipos, DBO_ParametrosTipos)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spParametrosTipos
-        s.cargar_ParametrosTipos(Me.cboid_parametroTipo)
+        s.cargar_ParametrosTipos(Me.cboid_parametroTipo, dtb)
     End Sub
 
 End Class

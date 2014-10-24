@@ -87,21 +87,20 @@ Public Class ctlBotasPosiciones
 
     Public Sub GuardarAltura( _
                 ByVal Descripcion As String, _
-                ByVal PiernaID As Integer)
+                ByVal PiernaID As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase)
         dboAltura.Descripcion = Descripcion
         dboAltura.PiernaID = PiernaID
 
-            clsAlt.Grabar(dboAltura)
-       
+        clsAlt.Grabar(dboAltura, dtb)
+
     End Sub
 
-    Public Sub EliminarAltura()
-        clsAlt.Delete(dboAltura.ID)
+    Public Sub EliminarAltura(ByRef dtb As BasesParaCompatibilidad.DataBase)
+        clsAlt.Delete(dboAltura.ID, dtb)
     End Sub
 
-    Public Function devolverAlturasPorPiernas(ByVal pierna As Integer) As DataTable
+    Public Function devolverAlturasPorPiernas(ByVal pierna As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
         dboAltura.PiernaID = pierna 'clsPie._PiernaID
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
         dtb.PrepararConsulta("select AlturaID,Descripcion from Alturas where PiernaID= @pierna order by descripcion")
         dtb.AñadirParametroConsulta("@pierna", pierna)
         Return dtb.Consultar
@@ -121,28 +120,26 @@ Public Class ctlBotasPosiciones
         dboPosiciones.ID = ID
     End Sub
 
-    Public Function devolverPosiciones() As DataTable
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+    Public Function devolverPosiciones(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
         Return dtb.Consultar("select Posiciones.PosicionID,Posiciones.Descripcion,Alturas.Descripcion As Alturas from Posiciones LEFT JOIN Alturas On Posiciones.AlturaID = Alturas.AlturaID", False)
     End Function
 
 
     Public Sub GuardarPosicion( _
                 ByVal Descripcion As String, _
-                ByVal AlturaID As Integer)
+                ByVal AlturaID As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase)
         dboPosiciones.Descripcion = Descripcion
         dboPosiciones.AlturaID = AlturaID
 
-        clsPos.Grabar(dboPosiciones)
+        clsPos.Grabar(dboPosiciones, dtb)
     End Sub
 
-    Public Sub EliminarPosicion()
-        clsPos.Delete(dboPosiciones.ID)
+    Public Sub EliminarPosicion(ByRef dtb As BasesParaCompatibilidad.DataBase)
+        clsPos.Delete(dboPosiciones.ID, dtb)
     End Sub
 
-    Public Function devolverPosicionesPorAlturas() As DataTable
+    Public Function devolverPosicionesPorAlturas(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
         dboPosiciones.AlturaID = dboAltura.ID
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
         dtb.PrepararConsulta("select PosicionID,Descripcion from Posiciones where AlturaID= @alt order by Descripcion")
         dtb.AñadirParametroConsulta("@alt", dboPosiciones.AlturaID)
         Return dtb.Consultar

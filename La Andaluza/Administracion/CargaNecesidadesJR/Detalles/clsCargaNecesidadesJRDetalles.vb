@@ -112,9 +112,7 @@ Public Class clsCargaNecesidadesJRDetalles
     End Function
 
 
-    Public Function Eliminar() As Integer
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
-       
+    Public Function Eliminar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
 
         Try
             dtb.PrepararConsulta("Delete from CargaNecesidadesJRDetalles where CargaNecesidadesJRDetalleID = @id")

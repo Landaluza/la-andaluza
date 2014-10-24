@@ -28,7 +28,7 @@ Public Class frmEntPeriodosServicio
 
     Private Sub frmEntPeriodosServicio_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s0 As New spMotivosCeseServicio
-        s0.cargar_MotivosCeseServicio(Me.cboMotivoCeseServicio)
+        s0.cargar_MotivosCeseServicio(Me.cboMotivoCeseServicio, dtb)
         If Me.ModoDeApertura = VISION Then
             Me.cboMotivoCeseServicio.Enabled = False
             Me.lblMotivoCeseServicioID.Enabled = False
@@ -79,8 +79,8 @@ Public Class frmEntPeriodosServicio
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerMotivoCeseServicioID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerMotivoCeseServicioID.Click
@@ -93,7 +93,7 @@ Public Class frmEntPeriodosServicio
         Dim frmEnt As New frmEntMotivosCeseServicio(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spMotivosCeseServicio, DBO_MotivosCeseServicio)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spMotivosCeseServicio
-        s.cargar_MotivosCeseServicio(Me.cboMotivoCeseServicio)
+        s.cargar_MotivosCeseServicio(Me.cboMotivoCeseServicio, dtb)
     End Sub
 
     Private Sub frmEntPeriodosServicio_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown

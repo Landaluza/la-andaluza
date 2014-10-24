@@ -15,7 +15,7 @@ Public Class frmEntEpis
     Private Sub frmEntEpis_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ModificarBindingNavigator()
         Dim spEpisTipos As New spEpisTipos
-        spEpisTipos.cargar_combo(cboEpisTipos)
+        spEpisTipos.cargar_combo(cboEpisTipos, dtb)
 
 
         If Me.Text.Substring(0, 3) = "Ver" Then
@@ -103,9 +103,9 @@ Public Class frmEntEpis
         Dim m_NewEpi As New DBO_Epis
         GetValores(m_NewEpi)
         If Me.Text.Substring(0, 3) = "Ins" Then
-            spEpis.InsertEpis(m_NewEpi)
+            spEpis.InsertEpis(m_NewEpi, dtb)
         Else
-            spEpis.UpdateEpis(m_Epi, m_NewEpi)
+            spEpis.UpdateEpis(m_Epi, m_NewEpi, dtb)
         End If
         Me.Close()
     End Sub
@@ -122,7 +122,7 @@ Public Class frmEntEpis
                 m_Pos = GeneralBindingSource.Count - 1
         End Select
         GeneralBindingSource.Position = m_Pos
-        m_Epi = spEpis.Select_Record(GeneralBindingSource(m_Pos).Item("EpiID"))
+        m_Epi = spEpis.Select_Record(GeneralBindingSource(m_Pos).Item("EpiID"), dtb)
         SetValores()
     End Sub
 

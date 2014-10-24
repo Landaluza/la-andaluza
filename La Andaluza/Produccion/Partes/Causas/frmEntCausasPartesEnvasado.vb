@@ -19,7 +19,7 @@ Public Class frmEntCausasPartesEnvasado
 
     Private Sub frmEntCausasPartesEnvasado_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spCausasPartesEnvasadoTipos
-        s.cargar_CausasPartesEnvasadoTipos(Me.cboid_CausaParteTipo)
+        s.cargar_CausasPartesEnvasadoTipos(Me.cboid_CausaParteTipo, dtb)
         If Me.mododeapertura = VISION Then
             Me.cboid_CausaParteTipo.enabled = False
             Me.lblid_CausaParteTipo.enabled = False
@@ -69,15 +69,15 @@ Public Class frmEntCausasPartesEnvasado
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerid_CausaParteTipo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerid_CausaParteTipo.Click
         Dim frmEnt As New frmCausasPartesEnvasadoTipos()
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spCausasPartesEnvasadoTipos
-        s.cargar_CausasPartesEnvasadoTipos(Me.cboid_CausaParteTipo)
+        s.cargar_CausasPartesEnvasadoTipos(Me.cboid_CausaParteTipo, dtb)
     End Sub
 
     Private Sub butAddid_CausaParteTipo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddid_CausaParteTipo.Click
@@ -85,7 +85,7 @@ Public Class frmEntCausasPartesEnvasado
         Dim frmEnt As New frmEntCausasPartesEnvasadoTipos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spCausasPartesEnvasadoTipos, DBO_CausasPartesEnvasadoTipos)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spCausasPartesEnvasadoTipos
-        s.cargar_CausasPartesEnvasadoTipos(Me.cboid_CausaParteTipo)
+        s.cargar_CausasPartesEnvasadoTipos(Me.cboid_CausaParteTipo, dtb)
     End Sub
 
     

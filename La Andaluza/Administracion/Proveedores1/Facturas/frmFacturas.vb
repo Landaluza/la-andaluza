@@ -23,7 +23,7 @@ Public Class frmFacturas
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboFacturas = CType(sp, spFacturas).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboFacturas = CType(sp, spFacturas).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboFacturas Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboFacturas)
         Else

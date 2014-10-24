@@ -12,29 +12,35 @@ Inherits BasesParaCompatibilidad.StoredProcedure
                      "[dbo].[ControlIncidenciasSelectDgvBy]")
    End Sub
 
-   Public Overloads Function Select_Record(ByVal Id As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As DBO_ControlIncidencias
-       Dim dbo As New DBO_ControlIncidencias
-       dbo.searchKey = dbo.item("Id")
-       dbo.searchKey.value = Id
-       MyBase.Select_Record(dbo, trans)
-       Return dbo
-   End Function
+    Public Overloads Function Select_Record(ByVal Id As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_ControlIncidencias
+        Dim dbo As New DBO_ControlIncidencias
+        dbo.searchKey = dbo.item("Id")
+        dbo.searchKey.value = Id
+        MyBase.Select_Record(dbo, dtb)
+        Return dbo
+    End Function
 
-   Public Overrides Function Delete(ByVal Id As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As Boolean
-       Dim dbo As New DBO_ControlIncidencias
-       dbo.searchKey = dbo.item("Id")
-       dbo.searchKey.value = Id
+    Public Overrides Function Delete(ByVal Id As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        Dim dbo As New DBO_ControlIncidencias
+        dbo.searchKey = dbo.item("Id")
+        dbo.searchKey.value = Id
+        Dim terminar As Boolean
 
-        If trans Is Nothing Then BasesParaCompatibilidad.BD.EmpezarTransaccion()
+        If dtb.Transaccion Is Nothing Then
+            dtb.EmpezarTransaccion()
+            terminar = True
+        Else
+            terminar = False
+        End If
 
-        If MyBase.DeleteProcedure(dbo, trans) Then
-            If trans Is Nothing Then BasesParaCompatibilidad.BD.TerminarTransaccion()
+        If MyBase.DeleteProcedure(dbo, dtb) Then
+            If terminar Then dtb.TerminarTransaccion()
             Return True
         Else
-            If trans Is Nothing Then BasesParaCompatibilidad.BD.CancelarTransaccion()
+            If terminar Then dtb.CancelarTransaccion()
             Return False
         End If
-   End Function
+    End Function
 
 
 End Class

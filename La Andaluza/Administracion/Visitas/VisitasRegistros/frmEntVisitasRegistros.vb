@@ -21,11 +21,11 @@ Public Class frmEntVisitasRegistros
     End Sub
 
     Private Sub frmEntVisitasRegistros_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Me.cboVisitaTipoID.mam_DataSource("VisitasRegistros_VisitasTiposCbo", False)
-        Me.cboVisitaNombreID.mam_DataSource("VisitasRegistros_VisitasNombresCbo", False)
-        Me.cboVisitaMotivoID.mam_DataSource("VisitasRegistros_VisitasMotivosCbo", False)
-        Me.cboEmpresaID.mam_DataSource("VisitasRegistros_ClientesCbo", False)
-        Me.cboPersonaResponsableVisitaID.mam_DataSource("EmpleadosSelectCbo", False)
+        Me.cboVisitaTipoID.mam_DataSource("VisitasRegistros_VisitasTiposCbo", False, dtb)
+        Me.cboVisitaNombreID.mam_DataSource("VisitasRegistros_VisitasNombresCbo", False, dtb)
+        Me.cboVisitaMotivoID.mam_DataSource("VisitasRegistros_VisitasMotivosCbo", False, dtb)
+        Me.cboEmpresaID.mam_DataSource("VisitasRegistros_ClientesCbo", False, dtb)
+        Me.cboPersonaResponsableVisitaID.mam_DataSource("EmpleadosSelectCbo", False, dtb)
 
         If Not m_VerID Then
             Me.cboPersonaResponsableVisitaID.Visible = False
@@ -40,7 +40,7 @@ Public Class frmEntVisitasRegistros
     End Sub
 
     Overrides Sub SetValores(ByVal m_ID As Integer, ByVal m_SelectRecord As Boolean)
-        If m_SelectRecord Then m_DBO_VisitasRegistro = spVisitasRegistros.Select_Record(m_ID)
+        If m_SelectRecord Then m_DBO_VisitasRegistro = spVisitasRegistros.Select_Record(m_ID, dtb)
         If m_ID > 0 Then
 
             txtVisitaRegistroID.Text = m_DBO_VisitasRegistro.VisitaRegistroID
@@ -91,7 +91,7 @@ Public Class frmEntVisitasRegistros
             dtpHoraSalida.Focus()
         Else
             GetValores()
-            If spVisitasRegistros.GrabarVisitasRegistros(m_DBO_VisitasRegistro) Then
+            If spVisitasRegistros.GrabarVisitasRegistros(m_DBO_VisitasRegistro, dtb) Then
                 Me.Close()
             Else
                 MessageBox.Show("No se pudo guardar el registro", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -103,7 +103,7 @@ Public Class frmEntVisitasRegistros
         Using frmEnt As New frmVisitasNombres1()
             BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         End Using
-        Me.cboVisitaNombreID.mam_DataSource("VisitasRegistros_VisitasNombresCbo", False)
+        Me.cboVisitaNombreID.mam_DataSource("VisitasRegistros_VisitasNombresCbo", False, dtb)
     End Sub
 
     Private Sub butAddVisitaNombreID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddVisitaNombreID.Click
@@ -112,13 +112,13 @@ Public Class frmEntVisitasRegistros
         frmEntArticulosDocumentosVisitasNombres1.Text = "Insertar"
         'frmEntArticulosDocumentosVisitasNombres1.ShowDialog()
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frmEntArticulosDocumentosVisitasNombres1)
-        Me.cboVisitaNombreID.mam_DataSource("VisitasRegistros_VisitasNombresCbo", False)
+        Me.cboVisitaNombreID.mam_DataSource("VisitasRegistros_VisitasNombresCbo", False, dtb)
     End Sub
 
     Private Sub butVerVisitaMotivoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerVisitaMotivoID.Click
         frmVisitasMotivos = New frmVisitasMotivos()
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frmVisitasMotivos)
-        Me.cboVisitaMotivoID.mam_DataSource("VisitasRegistros_VisitasMotivosCbo", False)
+        Me.cboVisitaMotivoID.mam_DataSource("VisitasRegistros_VisitasMotivosCbo", False, dtb)
     End Sub
 
     Private Sub butAddVisitaMotivoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddVisitaMotivoID.Click
@@ -126,7 +126,7 @@ Public Class frmEntVisitasRegistros
         frmEntArticulosDocumentosVisitasMotivos = New frmEntVisitasMotivos(DBO_VisitasMotivos, 1, False)
         frmEntArticulosDocumentosVisitasMotivos.Text = "Insertar"
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frmEntArticulosDocumentosVisitasMotivos)
-        Me.cboVisitaMotivoID.mam_DataSource("VisitasRegistros_VisitasMotivosCbo", False)
+        Me.cboVisitaMotivoID.mam_DataSource("VisitasRegistros_VisitasMotivosCbo", False, dtb)
     End Sub
 
     'Private Sub dtpHoraEntrada_ValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles dtpHoraEntrada.ValueChanged
@@ -153,11 +153,11 @@ Public Class frmEntVisitasRegistros
             Case Is = 1
                 cboEmpresaID.Visible = True
                 lblEmpresaID.Visible = True
-                Me.cboEmpresaID.mam_DataSource("VisitasRegistros_ProveedoresCbo", False)
+                Me.cboEmpresaID.mam_DataSource("VisitasRegistros_ProveedoresCbo", False, dtb)
             Case Is = 2
                 cboEmpresaID.Visible = True
                 lblEmpresaID.Visible = True
-                Me.cboEmpresaID.mam_DataSource("VisitasRegistros_ClientesCbo", False)
+                Me.cboEmpresaID.mam_DataSource("VisitasRegistros_ClientesCbo", False, dtb)
             Case Is = 3 'Otras
                 cboEmpresaID.Visible = False
                 lblEmpresaID.Visible = False

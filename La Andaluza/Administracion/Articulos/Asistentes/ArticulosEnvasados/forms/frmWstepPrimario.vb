@@ -5,10 +5,11 @@
     Private modoDeApertura As Integer
     Public Event actualizarExtras()
 
-
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New(ByVal mode As Integer, ByVal stub As Byte)
 
         InitializeComponent()
+        dtb = New BasesParaCompatibilidad.DataBase
         Me.id = 0
         Me.modoDeApertura = BasesParaCompatibilidad.DetailedSimpleForm.INSERCION
 
@@ -73,12 +74,12 @@
 
     Public Sub EstablecerValores() Implements wizardable.EstablecerValores
         Dim spMonodosis As New spMonodosis
-        Dim aux As DBO_Monodosis = spMonodosis.selectRecord(Me.id)
+        Dim aux As DBO_Monodosis = spMonodosis.selectRecord(Me.id, dtb)
         If Not aux Is Nothing Then
             Me.rbmonodosis.Checked = True
         Else
             Dim spdoypack As New spdoypack
-            If spdoypack.esDoypack(Me.id) Then
+            If spdoypack.esDoypack(Me.id, dtb) Then
                 Me.rbDoypack.Checked = True
             End If
         End If

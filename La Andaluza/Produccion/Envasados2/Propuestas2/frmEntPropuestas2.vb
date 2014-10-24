@@ -14,13 +14,13 @@ Public Class frmEntPropuestas2
     End Sub
 
     Private Sub frmEntPropuestas2_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Me.cboPropuestaTipoMejoraID.mam_DataSource("Propuestas2_PropuestasTiposMejorasCbo", False)
-        Me.cboPropuestaUrgenciaID.mam_DataSource("Propuestas2_PropuestasUrgenciasCbo", False)
+        Me.cboPropuestaTipoMejoraID.mam_DataSource("Propuestas2_PropuestasTiposMejorasCbo", False, dtb)
+        Me.cboPropuestaUrgenciaID.mam_DataSource("Propuestas2_PropuestasUrgenciasCbo", False, dtb)
         'Me.cboPersonalID.mam_DataSource("Propuestas2_PersonalCbo"), False)
         Dim spEmpleados As New spEmpleados
-        spEmpleados.cargar_empleados_envasados(cboPersonalID)
+        spEmpleados.cargar_empleados_envasados(cboPersonalID, dtb)
 
-        Me.cboFormatoEnvasadoID.mam_DataSource("Propuestas2_FormatosEnvasadosCbo", False)
+        Me.cboFormatoEnvasadoID.mam_DataSource("Propuestas2_FormatosEnvasadosCbo", False, dtb)
         MyBase.ModificarBindingNavigator()
         SetValores(m_DBO_Propuestas2.PropuestaID)
         System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.Default
@@ -29,7 +29,7 @@ Public Class frmEntPropuestas2
     Private Shadows Sub SetValores(ByVal m_ID As Integer)
 
         If m_ID > 0 Then
-            m_DBO_Propuestas2 = spPropuestas2.Select_Record(m_ID)
+            m_DBO_Propuestas2 = spPropuestas2.Select_Record(m_ID, dtb)
         End If
 
         txtPropuestaID.Text = m_DBO_Propuestas2.PropuestaID
@@ -83,7 +83,7 @@ Public Class frmEntPropuestas2
 
     Overrides Sub Guardar()
         If GetValores() Then
-            If spPropuestas2.GrabarPropuestas2(m_DBO_Propuestas2) Then
+            If spPropuestas2.GrabarPropuestas2(m_DBO_Propuestas2, dtb) Then
                 Me.Close()
             End If
         End If

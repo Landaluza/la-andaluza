@@ -98,10 +98,10 @@ Class spCamposADD
     End Function
 
     'Public Function CamposADDInsert(ByVal dbo_CamposADD As DBO_CamposADD) As Boolean
-    '    BasesParaCompatibilidad.BD.Conectar()
+    '    dtb.Conectar 
     '    Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
     '    Dim insertProcedure As String = "[dbo].[CamposADDInsert]"
-    '    Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+    '    Dim insertCommand As  System.Data.SqlClient.SqlCommand= dtb.comando(insertProcedure )
     '    insertCommand.CommandType = CommandType.StoredProcedure
     '    insertCommand.Parameters.AddWithValue("@ArticuloTipoID", if(dbo_CamposADD.ArticuloTipoID.HasValue, dbo_CamposADD.ArticuloTipoID, Convert.DBNull ))
     '    insertCommand.Parameters.AddWithValue("@SolicitanteID", if(dbo_CamposADD.SolicitanteID.HasValue, dbo_CamposADD.SolicitanteID, Convert.DBNull ))
@@ -123,15 +123,15 @@ Class spCamposADD
     '    Catch ex As System.Data.SqlClient.SqlException
     '         Return False
     '    Finally
-    '        connection.Close()
+    '        dtb.Desconectar 
     '    End Try
     'End Function
 
     'Public Function CamposADDUpdate(ByVal newDBO_CamposADD As DBO_CamposADD) As Boolean
-    '    BasesParaCompatibilidad.BD.Conectar()
+    '    dtb.Conectar 
     '    Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
     '    Dim updateProcedure As String = "[dbo].[CamposADDUpdate]"
-    '    Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+    '    Dim updateCommand As  System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
     '    updateCommand.CommandType = CommandType.StoredProcedure
     '    updateCommand.Parameters.AddWithValue("@NewArticuloTipoID", if(newDBO_CamposADD.ArticuloTipoID.HasValue, newDBO_CamposADD.ArticuloTipoID, Convert.DBNull ))
     '    updateCommand.Parameters.AddWithValue("@NewSolicitanteID", if(newDBO_CamposADD.SolicitanteID.HasValue, newDBO_CamposADD.SolicitanteID, Convert.DBNull ))
@@ -155,7 +155,7 @@ Class spCamposADD
     '         MessageBox.Show("Error en UpdateCamposADD" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
     '         Return False
     '    Finally
-    '        connection.Close()
+    '        dtb.Desconectar 
     '    End Try
     'End Function
 

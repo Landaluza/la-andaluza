@@ -35,7 +35,7 @@ Public Class frmEntArticulosCertificadosTipos
 
    Overrides Sub Guardar()
        GetValores()
-        spArticulosCertificadosTipos.GrabarArticulosCertificadosTipos(m_DBO_ArticulosCertificadosTipo)
+        spArticulosCertificadosTipos.GrabarArticulosCertificadosTipos(m_DBO_ArticulosCertificadosTipo, dtb)
        Me.Close()
    End Sub
 

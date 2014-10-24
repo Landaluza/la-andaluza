@@ -24,7 +24,7 @@ Public Class frmPoblaciones
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboPoblaciones = CType(sp, spPoblaciones).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboPoblaciones = CType(sp, spPoblaciones).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboPoblaciones Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboPoblaciones)
         Else

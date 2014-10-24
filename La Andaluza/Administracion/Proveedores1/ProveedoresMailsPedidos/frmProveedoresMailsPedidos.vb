@@ -26,7 +26,7 @@ Public Class frmProveedoresMailsPedidos
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboProveedoresMailsPedidos = CType(sp, spProveedoresMailsPedidos).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer))
+        dboProveedoresMailsPedidos = CType(sp, spProveedoresMailsPedidos).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
         If Not dboProveedoresMailsPedidos Is Nothing Then
             MyBase.newRegForm = CType(New frmEntProveedoresMailsPedidos(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, sp), BasesParaCompatibilidad.DetailedSimpleForm)
             AddHandler newRegForm.afterSave, AddressOf dgvFill

@@ -8,11 +8,11 @@ Class spArticulosOrdenEnvasado2
     End Sub
 
     'Public Function Select_Record(ByVal ArticuloOrdenEnvasadoID As Int32) As DBO_ArticulosOrdenEnvasado2
-    '    BasesParaCompatibilidad.BD.Conectar()
+    '    dtb.Conectar 
     '    Dim DBO_ArticulosOrdenEnvasado As New DBO_ArticulosOrdenEnvasado2
     '    Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
     '    Dim selectProcedure As String = "[dbo].[ArticulosOrdenEnvasado2Select]"
-    '    Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+    '    Dim selectCommand As  System.Data.SqlClient.SqlCommand= dtb.comando(selectProcedure)
     '    selectCommand.CommandType = CommandType.StoredProcedure
     '    selectCommand.Parameters.AddWithValue("@ArticuloOrdenEnvasadoID", ArticuloOrdenEnvasadoID)
     '    Try
@@ -36,12 +36,12 @@ Class spArticulosOrdenEnvasado2
     '    Catch ex As System.Data.SqlClient.SqlException
     '        messagebox.show(ex.Message, "Error", MessageBoxButtons.OK , MessageBoxIcon.Error )
     '    Finally
-    '        connection.Close()
+    '        dtb.Desconectar 
     '    End Try
     '    Return DBO_ArticulosOrdenEnvasado
     'End Function
 
-    Public Function Select_Record(ByVal ArticuloOrdenEnvasadoID As Int32, ByRef dtb as BasesParaCompatibilidad.Database) As DBO_ArticulosOrdenEnvasado2
+    Public Function Select_Record(ByVal ArticuloOrdenEnvasadoID As Int32, ByRef dtb As BasesParaCompatibilidad.Database) As DBO_ArticulosOrdenEnvasado2
         dtb.Conectar()
         Dim DBO_ArticulosOrdenEnvasado As New DBO_ArticulosOrdenEnvasado2
         Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.Comando("[dbo].[ArticulosOrdenEnvasado2Select]")
@@ -135,10 +135,10 @@ Class spArticulosOrdenEnvasado2
     End Function
 
     'Public Function ArticulosOrdenEnvasadoInsert(ByVal dbo_ArticulosOrdenEnvasado As DBO_ArticulosOrdenEnvasado2) As Boolean
-    '    BasesParaCompatibilidad.BD.Conectar()
+    '    dtb.Conectar 
     '    Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
     '    Dim insertProcedure As String = "[dbo].[ArticulosOrdenEnvasado2Insert]"
-    '    Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+    '    Dim insertCommand As  System.Data.SqlClient.SqlCommand= dtb.comando(insertProcedure )
     '    insertCommand.CommandType = CommandType.StoredProcedure
     '    insertCommand.Parameters.AddWithValue("@LineaID", dbo_ArticulosOrdenEnvasado.LineaID)
     '    insertCommand.Parameters.AddWithValue("@ArticuloEnvasadoID", dbo_ArticulosOrdenEnvasado.ArticuloEnvasadoID)
@@ -162,15 +162,15 @@ Class spArticulosOrdenEnvasado2
     '        messagebox.show(ex.Message, "Error", MessageBoxButtons.OK , MessageBoxIcon.Error )
     '        Return False
     '    Finally
-    '        connection.Close()
+    '        dtb.Desconectar 
     '    End Try
     'End Function
 
     'Public Function ArticulosOrdenEnvasadoUpdate(ByVal newDBO_ArticulosOrdenEnvasado As DBO_ArticulosOrdenEnvasado2) As Boolean
-    '    BasesParaCompatibilidad.BD.Conectar()
+    '    dtb.Conectar 
     '    Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
     '    Dim updateProcedure As String = "[dbo].[ArticulosOrdenEnvasado2Update]"
-    '    Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+    '    Dim updateCommand As  System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
     '    updateCommand.CommandType = CommandType.StoredProcedure
     '    updateCommand.Parameters.AddWithValue("@NewLineaID", newDBO_ArticulosOrdenEnvasado.LineaID)
     '    updateCommand.Parameters.AddWithValue("@NewArticuloEnvasadoID", newDBO_ArticulosOrdenEnvasado.ArticuloEnvasadoID)
@@ -195,15 +195,15 @@ Class spArticulosOrdenEnvasado2
     '        MessageBox.Show("Error en UpdateArticulosOrdenEnvasado" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
     '        Return False
     '    Finally
-    '        connection.Close()
+    '        dtb.Desconectar 
     '    End Try
     'End Function
 
     'Public Function ArticulosOrdenEnvasadoDelete(ByVal ArticuloOrdenEnvasadoID As Int32) As Boolean
-    '    BasesParaCompatibilidad.BD.Conectar()
+    '    dtb.Conectar 
     '    Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
     '    Dim deleteProcedure As String = "[dbo].[ArticulosOrdenEnvasado2Delete]"
-    '    Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+    '    Dim deleteCommand As  System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
     '    deleteCommand.CommandType = CommandType.StoredProcedure
     '    deleteCommand.Parameters.AddWithValue("@OldArticuloOrdenEnvasadoID", ArticuloOrdenEnvasadoID)
     '    deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
@@ -221,7 +221,7 @@ Class spArticulosOrdenEnvasado2
     '        messagebox.show(ex.Message, "Error", MessageBoxButtons.OK , MessageBoxIcon.Error )
     '        Return False
     '    Finally
-    '        connection.Close()
+    '        dtb.Desconectar 
     '    End Try
     'End Function
 

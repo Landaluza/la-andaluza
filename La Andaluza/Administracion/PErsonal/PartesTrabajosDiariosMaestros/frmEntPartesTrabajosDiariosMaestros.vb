@@ -20,7 +20,7 @@ Public Class frmEntPartesTrabajosDiariosMaestros
     End Sub
 
     Private Sub frmEntPartesTrabajosDiariosMaestros_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Me.cboEmpleadoID.mam_DataSource("EmpleadosSelectCbo", False)
+        Me.cboEmpleadoID.mam_DataSource("EmpleadosSelectCbo", False, dtb)
 
         If Me.Text.Substring(0, 3) = "Ver" Then
             OcultarBotonGrabar(True)
@@ -46,7 +46,7 @@ Public Class frmEntPartesTrabajosDiariosMaestros
     End Sub
     Overrides Sub Guardar()
         GetValores()
-        spPartesTrabajosDiariosMaestros.GrabarPartesTrabajosDiariosMaestros(m_DBO_PartesTrabajosDiariosMaestro)
+        spPartesTrabajosDiariosMaestros.GrabarPartesTrabajosDiariosMaestros(m_DBO_PartesTrabajosDiariosMaestro, dtb)
         Me.Close()
     End Sub
     Private Sub butVerEmpleadoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerEmpleadoID.Click

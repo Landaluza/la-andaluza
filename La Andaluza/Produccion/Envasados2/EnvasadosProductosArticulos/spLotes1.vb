@@ -6,14 +6,14 @@ Class spLotes1
         MyBase.New("[dbo].[Lotes1Select]", "[dbo].[Lotes1Insert]", "[dbo].[Lotes1Update]", _
                    "[dbo].[Lotes1Delete]", "OrdenesEnvasados2SelectDgv", String.Empty)
     End Sub
-    Public Function Select_Record(ByVal LoteID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As DBO_Lotes1
-        If trans Is Nothing Then BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal LoteID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_Lotes1
+        dtb.Conectar()
         Dim DBO_Lotes1 As New DBO_Lotes1
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[Lotes1Select]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
-        If Not trans Is Nothing Then selectCommand.Transaction = trans
+
         selectCommand.Parameters.AddWithValue("@LoteID", LoteID)
 
         Try
@@ -52,20 +52,20 @@ Class spLotes1
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            If trans Is Nothing Then connection.Close()
+            dtb.Desconectar()
         End Try
 
         Return DBO_Lotes1
     End Function
 
-    Public Function Select_Record(ByVal codigoLote As String, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As DBO_Lotes1
-        If trans Is Nothing Then BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal codigoLote As String, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_Lotes1
+        dtb.Conectar()
         Dim DBO_Lotes1 As New DBO_Lotes1
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[Lotes1SelectPorCodigoLote]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
-        If Not trans Is Nothing Then selectCommand.Transaction = trans
+
         selectCommand.Parameters.AddWithValue("@codigoLote", codigoLote)
 
         Try
@@ -104,19 +104,19 @@ Class spLotes1
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            If trans Is Nothing Then connection.Close()
+            dtb.Desconectar()
         End Try
 
         Return DBO_Lotes1
     End Function
 
-    Public Function Lotes1Insert(ByVal dbo_Lotes1 As DBO_Lotes1, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As Boolean
-        If trans Is Nothing Then BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+    Public Function Lotes1Insert(ByVal dbo_Lotes1 As DBO_Lotes1, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[Lotes1Insert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
-        If Not trans Is Nothing Then insertCommand.Transaction = trans
+
 
         insertCommand.Parameters.AddWithValue("@Referencia", If(dbo_Lotes1.Referencia.HasValue, dbo_Lotes1.Referencia, Convert.DBNull))
         insertCommand.Parameters.AddWithValue("@Descripcion", If(String.IsNullOrEmpty(dbo_Lotes1.Descripcion), Convert.DBNull, dbo_Lotes1.Descripcion))
@@ -154,17 +154,17 @@ Class spLotes1
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            If trans Is Nothing Then connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function Lotes1Update(ByVal newDBO_Lotes1 As DBO_Lotes1, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+    Public Function Lotes1Update(ByVal newDBO_Lotes1 As DBO_Lotes1, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[Lotes1Update]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
-        If Not trans Is Nothing Then updateCommand.Transaction = trans
+
         '<Tag=[Three][Start]> -- please do not remove this line
         updateCommand.Parameters.AddWithValue("@NewReferencia", If(newDBO_Lotes1.Referencia.HasValue, newDBO_Lotes1.Referencia, Convert.DBNull))
         updateCommand.Parameters.AddWithValue("@NewDescripcion", If(String.IsNullOrEmpty(newDBO_Lotes1.Descripcion), Convert.DBNull, newDBO_Lotes1.Descripcion))
@@ -204,18 +204,18 @@ Class spLotes1
             MessageBox.Show("Error en UpdateLotes1" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            If trans Is Nothing Then connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
 
-    Public Function Lotes1UpdateCantidadRestante(ByVal NewLoteID As Integer, ByVal NewCantidadRestante As Integer, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As Boolean
-        If trans Is Nothing Then BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+    Public Function Lotes1UpdateCantidadRestante(ByVal NewLoteID As Integer, ByVal NewCantidadRestante As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[Lotes1UpdateCantidadRestante]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
-        If Not trans Is Nothing Then updateCommand.Transaction = trans
+
         '<Tag=[Three][Start]> -- please do not remove this line
         updateCommand.Parameters.AddWithValue("@NewCantidadRestante", NewCantidadRestante)
         updateCommand.Parameters.AddWithValue("@NewFechaModificacion", System.DateTime.Now)
@@ -236,16 +236,16 @@ Class spLotes1
             MessageBox.Show("Error en Lotes1UpdateCantidadRestante" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            If trans Is Nothing Then connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
 
-    Public Function Lotes1Delete(ByVal LoteID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+    Public Function Lotes1Delete(ByVal LoteID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[Lotes1Delete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         '<Tag=[Four][Start]> -- please do not remove this line
         deleteCommand.Parameters.AddWithValue("@OldLoteID", LoteID)
@@ -263,62 +263,62 @@ Class spLotes1
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function GrabarLotes1(ByVal dbo_Lotes1 As DBO_Lotes1, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As Boolean
+    Public Function GrabarLotes1(ByVal dbo_Lotes1 As DBO_Lotes1, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         dbo_Lotes1.FechaModificacion = System.DateTime.Now.date
         dbo_Lotes1.UsuarioModificacion = BasesParaCompatibilidad.Config.User
         If dbo_Lotes1.LoteID = 0 Then
-            Return Lotes1Insert(dbo_Lotes1, trans)
+            Return Lotes1Insert(dbo_Lotes1, dtb)
         Else
-            Return Lotes1Update(dbo_Lotes1, trans)
+            Return Lotes1Update(dbo_Lotes1, dtb)
         End If
     End Function
 
-    Public Function CountLotesTerminadosPorTipoProducto(ByVal m_Producto As Integer) As Integer
+    Public Function CountLotesTerminadosPorTipoProducto(ByVal m_Producto As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         dtb.PrepararConsulta("LotesByTipoProducto @pro, @otro")
         dtb.AñadirParametroConsulta("@pro", m_Producto)
         dtb.AñadirParametroConsulta("@otro", 0)
         Return dtb.Consultar().Rows.Count
     End Function
 
-    Public Function DgvFillLotesTodosPorTipoProducto(ByVal m_Producto As Integer) As System.Data.DataTable
+    Public Function DgvFillLotesTodosPorTipoProducto(ByVal m_Producto As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As System.Data.DataTable
         dtb.PrepararConsulta("LotesAllByTipoProducto @pro")
         dtb.AñadirParametroConsulta("@pro", m_Producto)
         Return dtb.Consultar()
     End Function
 
-    Public Function DgvFillLotesTerminadosPorTipoProducto(ByVal m_Producto As Integer) As System.Data.DataTable
+    Public Function DgvFillLotesTerminadosPorTipoProducto(ByVal m_Producto As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As System.Data.DataTable
         dtb.PrepararConsulta("LotesByTipoProducto @pro, @otro")
         dtb.AñadirParametroConsulta("@pro", m_Producto)
         dtb.AñadirParametroConsulta("@otro", 0)
         Return dtb.Consultar
     End Function
 
-    Public Function DgvFillLotesTerminadosPorTipoProductoYLote(ByVal m_Producto As Integer, ByVal LoteId As Integer) As System.Data.DataTable
+    Public Function DgvFillLotesTerminadosPorTipoProductoYLote(ByVal m_Producto As Integer, ByVal LoteId As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As System.Data.DataTable
         dtb.PrepararConsulta("LotesByTipoProducto @pro, @lote")
         dtb.AñadirParametroConsulta("@pro", m_Producto)
         dtb.AñadirParametroConsulta("@lote", LoteId)
         Return dtb.Consultar()
     End Function
 
-    Public Function calcularDensidad(ByVal m_LoteID As Integer) As Double
+    Public Function calcularDensidad(ByVal m_LoteID As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Double
         dtb.PrepararConsulta("LotesSelectDensidadByLoteID @id")
         dtb.AñadirParametroConsulta("@id", m_LoteID)
         Return dtb.Consultar().Rows(0).Item(0)
     End Function
 
-    Function devolverproximocodigoLote(ByVal codigoSinLetra As String, Optional ByRef trans As SqlClient.SqlTransaction = Nothing) As String
+    Function devolverproximocodigoLote(ByVal codigoSinLetra As String, ByRef dtb As BasesParaCompatibilidad.DataBase) As String
         Dim codigo As String
         Dim letra As Char
         Dim letraAsc As Integer
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+        dtb.Conectar()
+
         Dim selectProcedure As String = "[dbo].[LotesSelectUltimoCodigo]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
-        If Not trans Is Nothing Then selectCommand.Transaction = trans
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
+
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@codigoLote", codigoSinLetra)
 
@@ -330,7 +330,7 @@ Class spLotes1
         End If
 
         reader.Close()
-        If trans Is Nothing Then connection.Close()
+        dtb.Desconectar()
 
         letra = codigo.Substring(14, 1)
         letraAsc = Asc(letra) + 1
@@ -357,12 +357,12 @@ Class spLotes1
         Dim cantidad As String = m_dbo.CantidadRestante
         Dim m_compuestoPor As New DBO_CompuestoPor
         Dim m_movimiento As New DBO_Movimientos1
-        Dim m_lote As DBO_Lotes1 = Me.Select_Record(m_dbo.LoteID, dtb.Transaccion)
+        Dim m_lote As DBO_Lotes1 = Me.Select_Record(m_dbo.LoteID, dtb)
 
 
         m_dbo.CodigoLote = GenerarCodigoDiferencias(m_dbo.Fecha, m_dbo.CodigoLote.Substring(8, 3))
 
-        If existeLote(m_dbo.CodigoLote, dtb.Transaccion) Then
+        If existeLote(dtb, m_dbo.CodigoLote) Then
             'seleccionar registro lote
             'update cantidad = cantidad+nuevacantidad
             dtb.PrepararConsulta("select LoteID, cantidadRestante from Lotes where codigoLote= @cod")
@@ -371,7 +371,7 @@ Class spLotes1
             Dim cantidadOriginal As Integer = tabla.Rows(0).Item(1)
             m_dbo.LoteID = tabla.Rows(0).Item(0)
 
-            Me.Lotes1UpdateCantidadRestante(m_dbo.LoteID, cantidadOriginal + Convert.ToInt32(cantidad), dtb.Transaccion)
+            Me.Lotes1UpdateCantidadRestante(m_dbo.LoteID, cantidadOriginal + Convert.ToInt32(cantidad), dtb)
 
         Else
             'insertar lote
@@ -383,8 +383,8 @@ Class spLotes1
             m_dbo.UsuarioModificacion = BasesParaCompatibilidad.Config.User
             m_dbo.FechaModificacion = Today.Date
 
-            retorno = retorno And Me.Lotes1Insert(m_dbo, dtb.Transaccion)
-            'm_dbo = spLotes1.Select_Record(codigoLote, trans)
+            retorno = retorno And Me.Lotes1Insert(m_dbo, dtb)
+            'm_dbo = spLotes1.Select_Record(codigoLote,dtb)
             dtb.PrepararConsulta("select max(LoteID) from Lotes")
             m_dbo.LoteID = dtb.Consultar().Rows(0).Item(0)
 
@@ -401,7 +401,7 @@ Class spLotes1
         m_movimiento.UsuarioModificacion = BasesParaCompatibilidad.Config.User
         m_movimiento.FechaModificacion = Today.Date
 
-        retorno = retorno And spMovimientos1.Movimientos1Insert(m_movimiento, dtb.Transaccion)
+        retorno = retorno And spMovimientos1.Movimientos1Insert(m_movimiento, dtb)
 
         m_compuestoPor.Cantidad = cantidad
         m_compuestoPor.LotePartida = loteProcedencia
@@ -410,23 +410,25 @@ Class spLotes1
         m_compuestoPor.MovimientoID = dtb.Consultar().Rows(0).Item(0)
         m_compuestoPor.UsuarioModificacion = BasesParaCompatibilidad.Config.User
         m_compuestoPor.FechaModificacion = Today.Date
-        retorno = retorno And spCompuestoPor.CompuestoPorInsert(m_compuestoPor, dtb.Transaccion)
+        retorno = retorno And spCompuestoPor.CompuestoPorInsert(m_compuestoPor, dtb)
 
-        Me.Lotes1UpdateCantidadRestante(loteProcedencia, 0, dtb.Transaccion)
+        Me.Lotes1UpdateCantidadRestante(loteProcedencia, 0, dtb)
         Return retorno
     End Function
 
 
-    Public Function existeLote(ByVal lote As String, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As Boolean
-        Dim tabla As DataTable = Deprecated.ConsultaVer("count(*)", "Lotes", "codigoLote='" & lote & "'")
+    Public Function existeLote(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal lote As String) As Boolean
+        dtb.PrepararConsulta("select count(*) from Lotes where codigoLote= @cod")
+        dtb.AñadirParametroConsulta("@cod", lote)
+        Dim tabla As DataTable = dtb.Consultar
         Return If(tabla.Rows(0).Item(0) > 0, True, False)
-        'If trans Is Nothing Then BasesParaCompatibilidad.BD.Conectar()
+        'dtb.Conectar 
         'Dim cuenta As Integer
         'Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
         'Dim selectProcedure As String = "[dbo].[Lotes1SelectCountByCodigoLote]"
-        'Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        'Dim selectCommand As  System.Data.SqlClient.SqlCommand= dtb.comando(selectProcedure)
         'selectCommand.CommandType = CommandType.StoredProcedure
-        'If Not trans Is Nothing Then selectCommand.Transaction = trans
+        '
         'selectCommand.Parameters.AddWithValue("@codigoLote", lote)
 
 
@@ -438,7 +440,7 @@ Class spLotes1
         'End If
 
         'reader.Close()
-        'If trans Is Nothing Then connection.Close()
+        'dtb.Desconectar 
 
         'Return if(cuenta > 0, True, False)
     End Function
@@ -460,13 +462,12 @@ Class spLotes1
         Return m_fecha.Year & mes & dia & m_Articulo & "Dif" & "1"
     End Function
 
-    Public Function ActualizarCantidad(ByVal loteId As Integer, ByVal p2 As String) As Boolean
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+    Public Function ActualizarCantidad(ByVal loteId As Integer, ByVal p2 As String, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Return dtb.ConsultaAlteraciones("update lotes set cantidadrestante = " & p2 & " where loteID =" & loteId)
     End Function
 
     Public Function comprobar(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal dbo As DBO_Lotes1) As Boolean
-        Dim dbo_actual As DBO_Lotes1 = Me.Select_Record(dbo.LoteID, dtb.Transaccion)
+        Dim dbo_actual As DBO_Lotes1 = Me.Select_Record(dbo.LoteID, dtb)
 
 
         If dbo_actual.LoteID <> dbo.LoteID Then Return False

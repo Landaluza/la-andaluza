@@ -42,10 +42,12 @@ Public Class clsTransicubas
 #Region "Metodos"
   
 
-    Public Sub Cargar()
+    Public Sub Cargar(ByRef dtb As BasesParaCompatibilidad.DataBase)
         Try
             Dim tabla As New DataTable
-            tabla = Deprecated.ConsultaVer("Transicubas.Descripcion,Transicubas.Estado", "Transicubas", "TransicubaID=" & Convert.ToString(TransicubaID))
+            dtb.PrepararConsulta("select Transicubas.Descripcion,Transicubas.Estado from Transicubas where TransicubaID= @tra")
+            dtb.AñadirParametroConsulta("@tra", transicubaID)
+            tabla = dtb.Consultar()
 
             If Convert.IsDBNull(tabla.Rows(0).Item(0)) Then
                 Descripcion = ""
@@ -79,7 +81,7 @@ Public Class clsTransicubas
         Try
             dtb.ConsultaAlteraciones("insert into transicubas values(" & _
                        "'" & Descripcion & "'," & _
-                       "'" & Estado & "'" & _
+                       "'" & Estado & "','" & _
                       BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)) + "'," + BasesParaCompatibilidad.Config.User.ToString + ")")
 
 
@@ -91,8 +93,7 @@ Public Class clsTransicubas
         End Try
     End Function
 
-    Public Function Eliminar() As Integer
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+    Public Function Eliminar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
 
         Try
             dtb.PrepararConsulta("delete from Transicubas where TransicubaID = @id")

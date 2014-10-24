@@ -9,12 +9,12 @@ Class spProveedoresTipos
                   "ProveedoresTiposSelectDgv", "ProveedoresTiposSelectDgvByID")
     End Sub
 
-    Public Function Select_Record(ByVal ProveedorTipoID As Int32) As DBO_ProveedoresTipos
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal ProveedorTipoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_ProveedoresTipos
+        dtb.Conectar()
         Dim DBO_ProveedoresTipos As New DBO_ProveedoresTipos
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[ProveedoresTiposSelect]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@ProveedorTipoID", ProveedorTipoID)
         Try
@@ -32,16 +32,16 @@ Class spProveedoresTipos
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_ProveedoresTipos
     End Function
 
-    Public Function ProveedoresTiposInsert(ByVal dbo_ProveedoresTipos As DBO_ProveedoresTipos) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ProveedoresTiposInsert(ByVal dbo_ProveedoresTipos As DBO_ProveedoresTipos, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[ProveedoresTiposInsert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
         insertCommand.Parameters.AddWithValue("@Descripcion", dbo_ProveedoresTipos.Descripcion)
         insertCommand.Parameters.AddWithValue("@Observaciones", dbo_ProveedoresTipos.Observaciones)
@@ -60,15 +60,15 @@ Class spProveedoresTipos
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function ProveedoresTiposUpdate(ByVal newDBO_ProveedoresTipos As DBO_ProveedoresTipos) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ProveedoresTiposUpdate(ByVal newDBO_ProveedoresTipos As DBO_ProveedoresTipos, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[ProveedoresTiposUpdate]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         updateCommand.Parameters.AddWithValue("@NewDescripcion", newDBO_ProveedoresTipos.Descripcion)
         updateCommand.Parameters.AddWithValue("@NewObservaciones", newDBO_ProveedoresTipos.Observaciones)
@@ -86,18 +86,18 @@ Class spProveedoresTipos
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdateProveedoresTipos" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdateProveedoresTipos" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function ProveedoresTiposDelete(ByVal ProveedorTipoID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ProveedoresTiposDelete(ByVal ProveedorTipoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[ProveedoresTiposDelete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         deleteCommand.Parameters.AddWithValue("@OldProveedorTipoID", ProveedorTipoID)
         deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
@@ -113,15 +113,15 @@ Class spProveedoresTipos
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Sub GrabarProveedoresTipos(ByVal dbo_ProveedoresTipos As DBO_ProveedoresTipos)
+    Public Sub GrabarProveedoresTipos(ByVal dbo_ProveedoresTipos As DBO_ProveedoresTipos, ByRef dtb As BasesParaCompatibilidad.DataBase)
         If dbo_ProveedoresTipos.ProveedorTipoID = 0 Then
-            ProveedoresTiposInsert(dbo_ProveedoresTipos)
+            ProveedoresTiposInsert(dbo_ProveedoresTipos, dtb)
         Else
-            ProveedoresTiposUpdate(dbo_ProveedoresTipos)
+            ProveedoresTiposUpdate(dbo_ProveedoresTipos, dtb)
         End If
     End Sub
 

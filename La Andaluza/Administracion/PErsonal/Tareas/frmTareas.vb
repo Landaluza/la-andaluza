@@ -26,7 +26,7 @@ Public Class frmTareas
 
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
-                          "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then CType(sp, spTareas).TareasDelete(dgvGeneral.CurrentRow.Cells("TareaID").Value)
+                          "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then CType(sp, spTareas).TareasDelete(dgvGeneral.CurrentRow.Cells("TareaID").Value, dtb)
         dgvFill()
     End Sub
 
@@ -39,7 +39,7 @@ Public Class frmTareas
         If TipoAction = ACCION_INSERTAR Then
             If m_MaestroID <> 0 Then m_Tarea.Descripcion = m_MaestroID.ToString
         Else
-            m_Tarea = CType(sp, spTareas).Select_Record(dgvGeneral.CurrentRow.Cells("TareaID").Value)
+            m_Tarea = CType(sp, spTareas).Select_Record(dgvGeneral.CurrentRow.Cells("TareaID").Value, dtb)
         End If
 
         frmEnt = New frmEntTareas(m_Tarea, m_Pos, m_VerID)

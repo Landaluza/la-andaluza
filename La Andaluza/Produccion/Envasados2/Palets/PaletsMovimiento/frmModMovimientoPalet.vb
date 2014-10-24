@@ -15,19 +15,20 @@ Public Class frmModMovimientoPalet
     Private m_PaletProducidoOrigen As DBO_PaletsProducidos2
     Private m_PaletProducidoDestino As DBO_PaletsProducidos2
     Private tsMovimiento As ToolStripItem
-
+    Private dtb As BasesParaCompatibilidad.DataBase
 
     Public Sub New(ByVal Dbo_PaletsMovimiento As Dbo_PaletsMovimiento)
 
         InitializeComponent()
 
+        dtb = New BasesParaCompatibilidad.DataBase
         Me.dbo_movimiento = Dbo_PaletsMovimiento
         dtpFecha.activarFoco()
     End Sub
 
 
     Private Sub frmModMovimientoPalet_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        cboMovimientoTipo.mam_DataSource("PaletsMovimientosTipos1CboNoEntrePalets", False)
+        cboMovimientoTipo.mam_DataSource("PaletsMovimientosTipos1CboNoEntrePalets", False, dtb)
         cboMovimientoTipo.MaxDropDownItems = cboMovimientoTipo.Items.Count
 
         setValores()
@@ -68,10 +69,10 @@ Public Class frmModMovimientoPalet
         Try
             If cboMovimientoTipo.SelectedIndex = 0 Then
             Else
-                Me.cboMovimientoSubTipo.mam_DataSource("PaletsMovimientoSubTipoByTipo " & Convert.ToString(cboMovimientoTipo.SelectedValue), False)
+                Me.cboMovimientoSubTipo.mam_DataSource("PaletsMovimientoSubTipoByTipo " & Convert.ToString(cboMovimientoTipo.SelectedValue), False, dtb)
                 cboMovimientoSubTipo.Refresh()
                 Dim sp As New spPaletsMovimientosTipos
-                DBO_PaletsMovimientoTipo = sp.Select_Record(Me.cboMovimientoTipo.SelectedValue)
+                DBO_PaletsMovimientoTipo = sp.Select_Record(Me.cboMovimientoTipo.SelectedValue, dtb)
             End If
 
             lblAutorizadoPor.Visible = False
@@ -189,7 +190,7 @@ Public Class frmModMovimientoPalet
 
     Private Sub btnGenerar_Click(sender As System.Object, e As System.EventArgs) Handles btnGenerar.Click
         If getValores() Then
-            If dbo_MovimientoDB.update(dbo_movimiento) Then
+            If dbo_MovimientoDB.update(dbo_movimiento, dtb) Then
                 Me.Close()
             Else
                 MessageBox.Show("Error al guardar", "", MessageBoxButtons.OK, MessageBoxIcon.Error)

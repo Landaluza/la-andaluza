@@ -1,16 +1,16 @@
 ﻿Public Class frmDevolucionCarga
-
+    Private dtb As BasesParaCompatibilidad.DataBase
     Private _SCC As String
 
     Sub New(ByVal scc As String)
         InitializeComponent()
-
+        dtb = New BasesParaCompatibilidad.DataBase
         _SCC = scc
     End Sub
 
     Private Function guardar() As Boolean
         Dim sp As New spAlbaranesCarga
-        Return sp.devolverPalet(Me._SCC)
+        Return sp.devolverPalet(Me._SCC, dtb)
         'If Me.rbSacar.Checked Then
         ''Return sp.spDeleteAlbaranCargaDetalle(Me._SCC)
         'Else

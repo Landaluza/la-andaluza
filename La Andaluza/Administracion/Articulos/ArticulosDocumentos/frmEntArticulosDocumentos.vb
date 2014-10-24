@@ -18,7 +18,7 @@ Public Class frmEntArticulosDocumentos
 
     Private Sub frmEntArticulosDocumentos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim spArt As New spArticulos1
-        spArt.cargar_Articulos(cboArticuloID)
+        spArt.cargar_Articulos(cboArticuloID, dtb)
         'Me.cboArticuloID.mam_DataSource("ArticulosDocumentos_ArticulosCbo"), False)
         If Not m_VerID Then
             Me.cboArticuloID.Visible = False
@@ -29,7 +29,7 @@ Public Class frmEntArticulosDocumentos
     End Sub
 
     Overrides Sub SetValores(ByVal m_ID As Integer, ByVal m_SelectRecord As Boolean)
-        If m_SelectRecord Then m_DBO_ArticulosDocumento = spArticulosDocumentos.Select_Record(m_ID)
+        If m_SelectRecord Then m_DBO_ArticulosDocumento = spArticulosDocumentos.Select_Record(dtb, m_ID)
         txtArticuloDocumentoID.Text = m_DBO_ArticulosDocumento.ArticuloDocumentoID.ToString
         cboArticuloID.SelectedValue = If(m_DBO_ArticulosDocumento.ArticuloID = Nothing, -1, m_DBO_ArticulosDocumento.ArticuloID)
         txtDescripcion.Text = m_DBO_ArticulosDocumento.Descripcion
@@ -66,7 +66,7 @@ Public Class frmEntArticulosDocumentos
 
     Overrides Sub Guardar()
         If GetValores() Then
-            If spArticulosDocumentos.GrabarArticulosDocumentos(m_DBO_ArticulosDocumento) Then
+            If spArticulosDocumentos.GrabarArticulosDocumentos(dtb, m_DBO_ArticulosDocumento) Then
                 Me.Close()
             End If
         End If

@@ -51,7 +51,7 @@ Public Class ctlAlbaranesCargaMaestro
         End While
     End Sub
 
-    Public Sub GuardarAlbaranCargaMaestro(ByRef dtb As BasesParaCompatibilidad.DataBase, _
+    Public Function GuardarAlbaranCargaMaestro(ByRef dtb As BasesParaCompatibilidad.DataBase, _
                ByVal AlbaranCargaProMaestroID As Integer, _
                ByVal Fecha As DateTime, _
                ByVal ClienteID As Integer, _
@@ -71,7 +71,7 @@ Public Class ctlAlbaranesCargaMaestro
                ByVal Observaciones As String, _
                ByVal Reserva1 As String, _
                ByVal Reserva2 As String, _
-               ByVal Reserva3 As String)
+               ByVal Reserva3 As String) As Boolean
         clsAlb._AlbaranCargaProMaestroID = AlbaranCargaProMaestroID
         clsAlb._Fecha = Fecha
         clsAlb._ClienteID = ClienteID
@@ -92,15 +92,22 @@ Public Class ctlAlbaranesCargaMaestro
         clsAlb._Reserva1 = Reserva1
         clsAlb._Reserva2 = Reserva2
         clsAlb._Reserva3 = Reserva3
+
         If clsAlb._AlbaranCargaMaestroID = 0 Then
-            clsAlb.Insertar(dtb)
+            If clsAlb.Insertar(dtb) = 0 Then
+                Return False
+            End If
         Else
-            clsAlb.Modificar(dtb)
+            If clsAlb.Modificar(dtb) = 0 Then
+                Return False
+            End If
         End If
-    End Sub
+
+        Return True
+    End Function
 
 
-    Public Sub EliminarAlbaranCargaMaestro()
-        clsAlb.Eliminar()
+    Public Sub EliminarAlbaranCargaMaestro(ByRef dtb As BasesParaCompatibilidad.DataBase)
+        clsAlb.Eliminar(dtb)
     End Sub
 End Class

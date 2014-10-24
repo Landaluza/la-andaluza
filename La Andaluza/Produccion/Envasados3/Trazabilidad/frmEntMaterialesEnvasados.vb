@@ -25,14 +25,14 @@ Public Class frmEntMaterialesEnvasados
 
     Private Sub frmEntMaterialesEnvasados_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spTiposMateriales
-        s.cargar_TiposMateriales(Me.cboTipoMaterial)
+        s.cargar_TiposMateriales(Me.cboTipoMaterial, dtb)
         If Me.ModoDeApertura = VISION Then
             Me.cboTipoMaterial.Enabled = False
             Me.lblTipoMaterialID.Enabled = False
 
         End If
         Dim s2 As New spProveedores
-        s2.cargar_Proveedores(Me.cboProveedor)
+        s2.cargar_Proveedores(Me.cboProveedor, dtb)
         If Me.ModoDeApertura = VISION Then
             Me.cboProveedor.Enabled = False
             Me.lblProveedorID.Enabled = False
@@ -86,8 +86,8 @@ Public Class frmEntMaterialesEnvasados
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerTipoMaterialID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerTipoMaterialID.Click
@@ -100,7 +100,7 @@ Public Class frmEntMaterialesEnvasados
         Dim frmEnt As New frmEntTiposMateriales(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spTiposMateriales, DBO_TiposMateriales)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTiposMateriales
-        s.cargar_TiposMateriales(Me.cboTipoMaterial)
+        s.cargar_TiposMateriales(Me.cboTipoMaterial, dtb)
     End Sub
 
     Private Sub butVerProveedorID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerProveedorID.Click
@@ -113,7 +113,7 @@ Public Class frmEntMaterialesEnvasados
         Dim frmEnt As New frmEntProveedores(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spProveedores, DBO_Proveedores)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spProveedores
-        s.cargar_Proveedores(Me.cboProveedor)
+        s.cargar_Proveedores(Me.cboProveedor, dtb)
     End Sub
 
 

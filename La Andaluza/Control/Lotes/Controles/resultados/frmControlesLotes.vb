@@ -46,7 +46,7 @@ Public Class frmControlesLotes
         RaiseEvent insert()
 
         MyBase.newRegForm = CType(New frmEntControlesLotes(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, sp), BasesParaCompatibilidad.DetailedSimpleForm)
-        dboControlesLotes = CType(sp, spControlesLotes).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer))
+        dboControlesLotes = CType(sp, spControlesLotes).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
 
         If Not dboControlesLotes Is Nothing Then
             AddHandler newRegForm.afterSave, AddressOf insertado

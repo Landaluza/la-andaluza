@@ -8,12 +8,12 @@ Class spArticulosTiposDocumentos
                 "[dbo].[ArticulosTiposDocumentosDelete]", "ArticulosTiposDocumentosSelectDgv", "ArticulosTiposDocumentosSelectDgvByArticuloTipoID")
     End Sub
 
-    Public Function Select_Record(ByVal ArticuloTipoDocumentoID As Int32) As DBO_ArticulosTiposDocumentos
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal ArticuloTipoDocumentoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_ArticulosTiposDocumentos
+        dtb.Conectar()
         Dim DBO_ArticulosTiposDocumentos As New DBO_ArticulosTiposDocumentos
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[ArticulosTiposDocumentosSelect]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@ArticuloTipoDocumentoID", ArticuloTipoDocumentoID)
 
@@ -36,16 +36,16 @@ Class spArticulosTiposDocumentos
         Catch ex As System.Data.SqlClient.SqlException
 
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_ArticulosTiposDocumentos
     End Function
 
-    Public Function ArticulosTiposDocumentosInsert(ByVal dbo_ArticulosTiposDocumentos As DBO_ArticulosTiposDocumentos) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ArticulosTiposDocumentosInsert(ByVal dbo_ArticulosTiposDocumentos As DBO_ArticulosTiposDocumentos, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[ArticulosTiposDocumentosInsert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
         insertCommand.Parameters.AddWithValue("@ArticuloTipoID", If(dbo_ArticulosTiposDocumentos.ArticuloTipoID.HasValue, dbo_ArticulosTiposDocumentos.ArticuloTipoID, Convert.DBNull))
         insertCommand.Parameters.AddWithValue("@Descripcion", dbo_ArticulosTiposDocumentos.Descripcion)
@@ -69,15 +69,15 @@ Class spArticulosTiposDocumentos
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function ArticulosTiposDocumentosUpdate(ByVal newDBO_ArticulosTiposDocumentos As DBO_ArticulosTiposDocumentos) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ArticulosTiposDocumentosUpdate(ByVal newDBO_ArticulosTiposDocumentos As DBO_ArticulosTiposDocumentos, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[ArticulosTiposDocumentosUpdate]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         updateCommand.Parameters.AddWithValue("@NewArticuloTipoID", If(newDBO_ArticulosTiposDocumentos.ArticuloTipoID.HasValue, newDBO_ArticulosTiposDocumentos.ArticuloTipoID, Convert.DBNull))
         updateCommand.Parameters.AddWithValue("@NewDescripcion", newDBO_ArticulosTiposDocumentos.Descripcion)
@@ -100,18 +100,18 @@ Class spArticulosTiposDocumentos
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdateArticulosTiposDocumentos" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdateArticulosTiposDocumentos" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function ArticulosTiposDocumentosDelete(ByVal ArticuloTipoDocumentoID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ArticulosTiposDocumentosDelete(ByVal ArticuloTipoDocumentoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[ArticulosTiposDocumentosDelete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         deleteCommand.Parameters.AddWithValue("@OldArticuloTipoDocumentoID", ArticuloTipoDocumentoID)
         deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
@@ -128,15 +128,15 @@ Class spArticulosTiposDocumentos
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Sub GrabarArticulosTiposDocumentos(ByVal dbo_ArticulosTiposDocumentos As DBO_ArticulosTiposDocumentos)
+    Public Sub GrabarArticulosTiposDocumentos(ByVal dbo_ArticulosTiposDocumentos As DBO_ArticulosTiposDocumentos, ByRef dtb As BasesParaCompatibilidad.DataBase)
         If dbo_ArticulosTiposDocumentos.ArticuloTipoDocumentoID = 0 Then
-            ArticulosTiposDocumentosInsert(dbo_ArticulosTiposDocumentos)
+            ArticulosTiposDocumentosInsert(dbo_ArticulosTiposDocumentos, dtb)
         Else
-            ArticulosTiposDocumentosUpdate(dbo_ArticulosTiposDocumentos)
+            ArticulosTiposDocumentosUpdate(dbo_ArticulosTiposDocumentos, dtb)
         End If
     End Sub
 

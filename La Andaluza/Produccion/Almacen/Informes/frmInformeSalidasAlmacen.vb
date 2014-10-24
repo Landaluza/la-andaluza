@@ -2,14 +2,16 @@
 Imports BasesParaCompatibilidad.dtpExtension
 Public Class frmInformeSalidasAlmacen
     Private sp As spInformeSalidasAlmacen
+    Private dtb As BasesParaCompatibilidad.DataBase
 
     Public Sub New()
         InitializeComponent()
 
+        dtb = New BasesParaCompatibilidad.DataBase
         sp = New spInformeSalidasAlmacen
 
         Dim spTipoProducto As New spTiposProductos
-        spTipoProducto.cargar_ComboBox(Me.cboProducto)
+        spTipoProducto.cargar_ComboBox(Me.cboProducto, dtb)
 
         dtpFin.activarFoco()
         dtpInicio.activarFoco()
@@ -26,7 +28,7 @@ Public Class frmInformeSalidasAlmacen
     End Sub
 
     Private Sub dgvFill()
-        Dim dt As DataTable = sp.listar_palets_por_producto_entre_fechas(Me.cboProducto.SelectedValue, Me.dtpInicio.Value, Me.dtpFin.Value)
+        Dim dt As DataTable = sp.listar_palets_por_producto_entre_fechas(Me.cboProducto.SelectedValue, Me.dtpInicio.Value, Me.dtpFin.Value, dtb)
         If Not dt Is Nothing Then
             Me.DataGridView1.DataSource = dt
 

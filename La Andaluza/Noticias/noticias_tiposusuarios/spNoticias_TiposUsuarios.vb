@@ -12,19 +12,19 @@ Inherits BasesParaCompatibilidad.StoredProcedure
                      "[dbo].[Noticias_TiposUsuariosSelectDgvBy]")
    End Sub
 
-    Public Overloads Function Select_Record(ByVal Id As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As DBO_Noticias_TiposUsuarios
+    Public Overloads Function Select_Record(ByVal Id As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_Noticias_TiposUsuarios
         Dim dbo As New DBO_Noticias_TiposUsuarios
         dbo.searchKey = dbo.item("Id")
         dbo.searchKey.value = Id
-        MyBase.Select_Record(CType(dbo, BasesParaCompatibilidad.databussines), trans)
+        MyBase.Select_Record(CType(dbo, BasesParaCompatibilidad.databussines), dtb)
         Return dbo
     End Function
 
-    Public Overrides Function Delete(ByVal Id As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As Boolean
+    Public Overrides Function Delete(ByVal Id As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Dim dbo As New DBO_Noticias_TiposUsuarios
         dbo.searchKey = dbo.item("Id")
         dbo.searchKey.value = Id
-        Return MyBase.DeleteProcedure(CType(dbo, BasesParaCompatibilidad.databussines), trans)
+        Return MyBase.DeleteProcedure(CType(dbo, BasesParaCompatibilidad.databussines), dtb)
     End Function
 
 

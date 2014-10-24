@@ -44,7 +44,7 @@ Public Class frmControlesEntregasEpis
 
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
-            If CType(sp, spControlesEntregasEpis).DeleteControlesEntregasEpis(dgvGeneral.CurrentRow.Cells("ControlEntregaEpiID").Value) Then
+            If CType(sp, spControlesEntregasEpis).DeleteControlesEntregasEpis(dgvGeneral.CurrentRow.Cells("ControlEntregaEpiID").Value, dtb) Then
                 dgvFill()
             End If
             ' GeneralBindingSource. dataSource = dtb.consultar(spSelectDgv)
@@ -61,7 +61,7 @@ Public Class frmControlesEntregasEpis
             'Asignar las propiedades del objeto creado cuyos valores se obtengan en este Form.
         Else
 
-            m_ControlesEntregasEpi = CType(sp, spControlesEntregasEpis).Select_Record(GeneralBindingSource(m_Pos).Item("ControlEntregaEpiID"))
+            m_ControlesEntregasEpi = CType(sp, spControlesEntregasEpis).Select_Record(GeneralBindingSource(m_Pos).Item("ControlEntregaEpiID"), dtb)
         End If
 
         Dim frmEnt As New frmEntControlesEntregasEpis(m_ControlesEntregasEpi, m_Pos)

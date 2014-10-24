@@ -35,7 +35,7 @@ Public Class frmEntIncidenciasCalidad
         's.cargar_Proveedores(Me.cboProveedor)
         
         Dim s2 As New spTiposMateriales
-        s2.cargar_TiposMateriales(Me.cboTipoMaterial)
+        s2.cargar_TiposMateriales(Me.cboTipoMaterial, dtb)
 
         If Me.ModoDeApertura = VISION Then
             Me.cboTipoMaterial.Enabled = False
@@ -62,7 +62,7 @@ Public Class frmEntIncidenciasCalidad
         If Me.m_DBO_IncidenciasCalidad.IncidenciaID <> Nothing Then
             Try
                 Dim scalidad As New spIncidenciasCalidad
-                Me.m_DBO_IncidenciasCalidad = scalidad.Select_RecordByIncidenciaID(m_DBO_IncidenciasCalidad.IncidenciaID)
+                Me.m_DBO_IncidenciasCalidad = scalidad.Select_RecordByIncidenciaID(m_DBO_IncidenciasCalidad.IncidenciaID, dtb)
             Catch ex As Exception
                 Me.m_DBO_IncidenciasCalidad = dbo
             End Try
@@ -112,10 +112,10 @@ Public Class frmEntIncidenciasCalidad
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
         If Me.GetValores Then
 
-            If sp.Grabar(dbo, trans) Then
+            If sp.Grabar(dbo, dtb) Then
                 evitarCerrarSinGuardar = False
                 RaiseEvent afterSave(Me, Nothing)
                 Me.Close()
@@ -156,7 +156,7 @@ Public Class frmEntIncidenciasCalidad
         Dim frmEnt As New frmEntProveedores(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spProveedores, DBO_Proveedores)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spProveedores
-        s.cargar_Proveedores(Me.cboProveedor)
+        s.cargar_Proveedores(Me.cboProveedor, dtb)
     End Sub
 
     Private Sub butVerTipoMaterialID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerTipoMaterialID.Click
@@ -169,7 +169,7 @@ Public Class frmEntIncidenciasCalidad
         Dim frmEnt As New frmEntTiposMateriales(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spTiposMateriales, DBO_TiposMateriales)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTiposMateriales
-        s.cargar_TiposMateriales(Me.cboTipoMaterial)
+        s.cargar_TiposMateriales(Me.cboTipoMaterial, dtb)
     End Sub
 
     Private Sub frmEntIncidenciasCalidad_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
@@ -183,10 +183,10 @@ Public Class frmEntIncidenciasCalidad
     Private Sub cboTipoMaterial_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles cboTipoMaterial.SelectedIndexChanged
         Try
             Dim s As New spProveedores
-            s.cargar_Proveedores_Por_Tipo_Material(Me.cboProveedor, Me.cboTipoMaterial.SelectedValue)
+            s.cargar_Proveedores_Por_Tipo_Material(Me.cboProveedor, Me.cboTipoMaterial.SelectedValue, dtb)
 
             Dim spMaterialesEnvasados2 As New spMaterialesEnvasados2
-            If Me.m_linea <> Nothing Then Me.cboProveedor.SelectedValue = spMaterialesEnvasados2.selectProveedorMasUsado(Me.cboTipoMaterial.SelectedValue, Me.m_linea)
+            If Me.m_linea <> Nothing Then Me.cboProveedor.SelectedValue = spMaterialesEnvasados2.selectProveedorMasUsado(Me.cboTipoMaterial.SelectedValue, Me.m_linea, dtb)
         Catch ex As Exception
         End Try
     End Sub

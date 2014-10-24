@@ -24,7 +24,7 @@ Public Class frmProveedoresTipos
 
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then _
-                   CType(sp, spProveedoresTipos).ProveedoresTiposDelete(dgvGeneral.CurrentRow.Cells("ProveedorTipoID").Value)
+                   CType(sp, spProveedoresTipos).ProveedoresTiposDelete(dgvGeneral.CurrentRow.Cells("ProveedorTipoID").Value, dtb)
         dgvFill()
     End Sub
 
@@ -37,7 +37,7 @@ Public Class frmProveedoresTipos
 
             If m_MaestroID <> 0 Then m_ProveedorTipo.Descripcion = m_MaestroID
         Else
-            m_ProveedorTipo = CType(sp, spProveedoresTipos).Select_Record(GeneralBindingSource(m_Pos).Item("ProveedorTipoID"))
+            m_ProveedorTipo = CType(sp, spProveedoresTipos).Select_Record(GeneralBindingSource(m_Pos).Item("ProveedorTipoID"), dtb)
         End If
 
         frmEnt = New frmEntProveedoresTipos(m_ProveedorTipo, m_Pos, m_VerID)

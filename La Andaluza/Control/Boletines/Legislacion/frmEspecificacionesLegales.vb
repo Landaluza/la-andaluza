@@ -32,7 +32,7 @@ Public Class frmEspecificacionesLegales
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dbolegislacionProductos = CType(sp, spEspecificacionLegal).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dbolegislacionProductos = CType(sp, spEspecificacionLegal).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dbolegislacionProductos Is Nothing Then
             newRegForm.SetDataBussinesObject(CType(Me.dbolegislacionProductos, BasesParaCompatibilidad.DataBussines))
         Else

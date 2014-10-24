@@ -12,23 +12,23 @@ Public Class spArticulosEtiquetasTipos
                       "[dbo].[ArticulosEtiquetasTiposSelectDgvBy]")
     End Sub
 
-   Public Overloads Function Select_Record(ByVal ArticuloEtiquetaTipoID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As DBO_ArticulosEtiquetasTipos
-       Dim dbo As New DBO_ArticulosEtiquetasTipos
-       dbo.searchKey = dbo.item("ArticuloEtiquetaTipoID")
-       dbo.searchKey.value = ArticuloEtiquetaTipoID
-       MyBase.Select_Record(ctype(dbo, BasesParaCompatibilidad.databussines), trans)
-       Return dbo
-   End Function
+    Public Overloads Function Select_Record(ByVal ArticuloEtiquetaTipoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_ArticulosEtiquetasTipos
+        Dim dbo As New DBO_ArticulosEtiquetasTipos
+        dbo.searchKey = dbo.item("ArticuloEtiquetaTipoID")
+        dbo.searchKey.value = ArticuloEtiquetaTipoID
+        MyBase.Select_Record(CType(dbo, BasesParaCompatibilidad.databussines), dtb)
+        Return dbo
+    End Function
 
-   Public Overrides Function Delete(ByVal ArticuloEtiquetaTipoID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As Boolean
-       Dim dbo As New DBO_ArticulosEtiquetasTipos
-       dbo.searchKey = dbo.item("ArticuloEtiquetaTipoID")
-       dbo.searchKey.value = ArticuloEtiquetaTipoID
-       return MyBase.DeleteProcedure(ctype(dbo, BasesParaCompatibilidad.databussines), trans)
-   End Function
+    Public Overrides Function Delete(ByVal ArticuloEtiquetaTipoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        Dim dbo As New DBO_ArticulosEtiquetasTipos
+        dbo.searchKey = dbo.item("ArticuloEtiquetaTipoID")
+        dbo.searchKey.value = ArticuloEtiquetaTipoID
+        Return MyBase.DeleteProcedure(CType(dbo, BasesParaCompatibilidad.databussines), dtb)
+    End Function
 
-   Public Sub cargar_ArticulosEtiquetasTipos(ByRef cbo As ComboBox)
-       cbo.mam_DataSource("ArticulosEtiquetasTiposCbo", False)
-   End Sub
+    Public Sub cargar_ArticulosEtiquetasTipos(ByRef cbo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        cbo.mam_DataSource("ArticulosEtiquetasTiposCbo", False, dtb)
+    End Sub
 
 End Class

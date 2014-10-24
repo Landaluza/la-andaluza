@@ -6,9 +6,10 @@ Public Class frmEntelaboraciones_fases
     Private mododeapertura As Integer
     Private sp As spelaboraciones_fases
     Private spArticulosGraneles As New spArticulosGraneles
-
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New(ByVal modoDeApertura As String, ByVal granelId As Integer, Optional id As Integer = Nothing)
         InitializeComponent()
+        dtb = New BasesParaCompatibilidad.DataBase
         sp = New spelaboraciones_fases
         m_DBO_elaboraciones_fases = New DBO_elaboraciones_fases
         m_DBO_elaboraciones_fases.id_articuloGranel = granelId
@@ -18,7 +19,7 @@ Public Class frmEntelaboraciones_fases
 
 
     Private Sub frmEntelaboraciones_fases_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        spArticulosGraneles.cargar_ArticulosGraneles(Me.cboid_articuloGranel)
+        spArticulosGraneles.cargar_ArticulosGraneles(Me.cboid_articuloGranel, dtb)
     End Sub
 
     Sub SetValores() Implements BasesParaCompatibilidad.Savable.setValores
@@ -29,7 +30,7 @@ Public Class frmEntelaboraciones_fases
                 Me.cboid_articuloGranel.Enabled = False
             End If
         Else
-            Me.m_DBO_elaboraciones_fases = Me.sp.Select_Record(Me.m_DBO_elaboraciones_fases.ID)
+            Me.m_DBO_elaboraciones_fases = Me.sp.Select_Record(Me.m_DBO_elaboraciones_fases.ID, dtb)
             Me.cboid_articuloGranel.Enabled = False
             Me.txtfase.Enabled = False
         End If
@@ -66,15 +67,15 @@ Public Class frmEntelaboraciones_fases
         End If
     End Function
 
-    Public Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+    Public Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
         If Me.GetValores Then
             If Me.mododeapertura = BasesParaCompatibilidad.DetailedSimpleForm.INSERCION Then
-                If Me.sp.insertar(Me.m_DBO_elaboraciones_fases) Then
+                If Me.sp.insertar(Me.m_DBO_elaboraciones_fases, dtb) Then
                     RaiseEvent afterSave(Me, Nothing)
                     Me.Close()
                 End If
             Else
-                If Me.sp.modificar(Me.m_DBO_elaboraciones_fases) Then
+                If Me.sp.modificar(Me.m_DBO_elaboraciones_fases, dtb) Then
                     RaiseEvent afterSave(Me, Nothing)
                     Me.Close()
                 End If

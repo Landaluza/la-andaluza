@@ -6,6 +6,7 @@ Public Class frmDepositos
     Private ctlDep As ctlDepositos
     Private dtsDep As dtsDepositos.DepositosDataTable
 
+
     Public Sub New()
         MyBase.New()
         InitializeComponent()
@@ -14,7 +15,7 @@ Public Class frmDepositos
     End Sub
 
     Protected Overrides Sub cargar_datos()
-        ctlDep.mostrarTodosDepositos(dtsDep)
+        ctlDep.mostrarTodosDepositos(dtb, dtsDep)
         'dataSource = dtsDep
     End Sub
 
@@ -51,14 +52,14 @@ Public Class frmDepositos
 
     Overrides Sub Insertar()
         LlamarCargar(ACCION_INSERTAR)
-        ctlDep.mostrarTodosDepositos(dtsDep)
+        ctlDep.mostrarTodosDepositos(dtb, dtsDep)
         GeneralBindingSource.Position = 1
         GeneralBindingSource.Position = 0
     End Sub
 
     Overrides Sub Modificar()
         LlamarCargar(ACCION_MODIFICAR)
-        ctlDep.mostrarTodosDepositos(dtsDep)
+        ctlDep.mostrarTodosDepositos(dtb, dtsDep)
         GeneralBindingSource.Position = 1
         GeneralBindingSource.Position = Posicion
     End Sub
@@ -75,7 +76,7 @@ Public Class frmDepositos
             If response = DialogResult.Yes Then
                 ctlDep.SetDepositoID(dgvGeneral.Rows(Posicion).Cells(0).Value)
                 ctlDep.EliminarDeposito(dtb)
-                ctlDep.mostrarTodosDepositos(dtsDep)
+                ctlDep.mostrarTodosDepositos(dtb, dtsDep)
                 If Posicion > 0 Then
                     GeneralBindingSource.Position = Posicion - 1
                 Else

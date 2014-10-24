@@ -44,7 +44,7 @@ Public Class frmEntTurnosTrabajo
 
     Overrides Sub Guardar()
         GetValores()
-        spTurnosTrabajo.GrabarTurnosTrabajo(m_DBO_TurnosTrabajo, New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server))
+        spTurnosTrabajo.GrabarTurnosTrabajo(m_DBO_TurnosTrabajo, New BasesParaCompatibilidad.DataBase())
         Me.Close()
     End Sub
 

@@ -3401,9 +3401,9 @@ Partial Class FrmEntLotes
         '
         Me.dtpFechaAnaliticaExterna.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtpFechaAnaliticaExterna.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpFechaAnaliticaExterna.Location = New System.Drawing.Point(763, 53)
+        Me.dtpFechaAnaliticaExterna.Location = New System.Drawing.Point(780, 51)
         Me.dtpFechaAnaliticaExterna.Name = "dtpFechaAnaliticaExterna"
-        Me.dtpFechaAnaliticaExterna.Size = New System.Drawing.Size(113, 20)
+        Me.dtpFechaAnaliticaExterna.Size = New System.Drawing.Size(186, 20)
         Me.dtpFechaAnaliticaExterna.TabIndex = 14
         Me.dtpFechaAnaliticaExterna.Value = New Date(2006, 8, 17, 0, 0, 0, 0)
         Me.dtpFechaAnaliticaExterna.Visible = False
@@ -4013,9 +4013,9 @@ Partial Class FrmEntLotes
         Me.cboMuestras.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cboMuestras.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cboMuestras.FormattingEnabled = True
-        Me.cboMuestras.Location = New System.Drawing.Point(892, 19)
+        Me.cboMuestras.Location = New System.Drawing.Point(783, 19)
         Me.cboMuestras.Name = "cboMuestras"
-        Me.cboMuestras.Size = New System.Drawing.Size(74, 21)
+        Me.cboMuestras.Size = New System.Drawing.Size(183, 21)
         Me.cboMuestras.TabIndex = 11
         Me.cboMuestras.ValueMember = "TiposLotesID"
         '
@@ -4023,7 +4023,7 @@ Partial Class FrmEntLotes
         '
         Me.Label74.AutoSize = True
         Me.Label74.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label74.Location = New System.Drawing.Point(824, 21)
+        Me.Label74.Location = New System.Drawing.Point(720, 19)
         Me.Label74.Name = "Label74"
         Me.Label74.Size = New System.Drawing.Size(61, 15)
         Me.Label74.TabIndex = 10

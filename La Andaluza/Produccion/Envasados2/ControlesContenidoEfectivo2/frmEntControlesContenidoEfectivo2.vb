@@ -20,7 +20,7 @@ Public Class frmEntControlesContenidoEfectivo2
 
     Private Sub frmEntControlesContenidoEfectivo_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim spEmpelados As New spEmpleados
-        spEmpelados.cargar_empleados_envasados(cboVerificadorID)
+        spEmpelados.cargar_empleados_envasados(cboVerificadorID, dtb)
 
         'Me.cboVerificadorID.mam_DataSource("EmpleadosSelectCbo"), False)
         SetValores(m_DBO_ControlesContenidoEfectivo.ControlContenidoEfectivoID, False)
@@ -137,7 +137,7 @@ Public Class frmEntControlesContenidoEfectivo2
 
     Overrides Sub Guardar()
         If GetValores() Then
-            If spControlesContenidoEfectivo2.GrabarControlesContenidoEfectivo(m_DBO_ControlesContenidoEfectivo) Then
+            If spControlesContenidoEfectivo2.GrabarControlesContenidoEfectivo(m_DBO_ControlesContenidoEfectivo, dtb) Then
                 Me.Close()
             End If
         End If

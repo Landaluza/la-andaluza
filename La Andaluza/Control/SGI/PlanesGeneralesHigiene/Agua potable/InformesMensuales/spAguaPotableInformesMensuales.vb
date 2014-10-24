@@ -12,19 +12,19 @@ Inherits BasesParaCompatibilidad.StoredProcedure
                      "[dbo].[AguaPotableInformesMensualesSelectDgvBy]")
    End Sub
 
-   Public Overloads Function Select_Record(ByVal InformeMensualID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As DBO_AguaPotableInformesMensuales
-       Dim dbo As New DBO_AguaPotableInformesMensuales
-       dbo.searchKey = dbo.item("InformeMensualID")
-       dbo.searchKey.value = InformeMensualID
-       MyBase.Select_Record(dbo, trans)
-       Return dbo
-   End Function
+    Public Overloads Function Select_Record(ByVal InformeMensualID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_AguaPotableInformesMensuales
+        Dim dbo As New DBO_AguaPotableInformesMensuales
+        dbo.searchKey = dbo.item("InformeMensualID")
+        dbo.searchKey.value = InformeMensualID
+        MyBase.Select_Record(dbo, dtb)
+        Return dbo
+    End Function
 
-   Public Overrides Function Delete(ByVal InformeMensualID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As Boolean
-       Dim dbo As New DBO_AguaPotableInformesMensuales
-       dbo.searchKey = dbo.item("InformeMensualID")
-       dbo.searchKey.value = InformeMensualID
-       return MyBase.DeleteProcedure(dbo,  trans)
-   End Function
+    Public Overrides Function Delete(ByVal InformeMensualID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        Dim dbo As New DBO_AguaPotableInformesMensuales
+        dbo.searchKey = dbo.item("InformeMensualID")
+        dbo.searchKey.value = InformeMensualID
+        Return MyBase.DeleteProcedure(dbo, dtb)
+    End Function
 
 End Class

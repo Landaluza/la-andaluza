@@ -4,12 +4,12 @@
     Private dboLote As DBO_Lotes1
     Private spLotes1 As spLotes1
 
-    Public Sub New(ByVal loteid As Integer)
+    Public Sub New(ByVal loteid As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase)
 
         InitializeComponent()
 
         spLotes1 = New spLotes1
-        Me.dboLote = spLotes1.Select_Record(loteid)
+        Me.dboLote = spLotes1.Select_Record(loteid, dtb)
         frmResultados = New frmControlesLotes(loteid)
         frmPlantillas = New frmTiposControlesLotesPlantilla2(dboLote.TipoLoteID, dboLote.TipoProductoID)
 

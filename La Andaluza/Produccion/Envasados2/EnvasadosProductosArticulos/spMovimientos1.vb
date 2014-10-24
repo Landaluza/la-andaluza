@@ -8,12 +8,12 @@ Class spMovimientos1
                    "[dbo].[Movimientos1Delete]", String.Empty, String.Empty)
     End Sub
 
-    Public Function Select_Record(ByVal MovimientoID As Int32) As DBO_Movimientos1
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal MovimientoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_Movimientos1
+        dtb.Conectar()
         Dim DBO_Movimientos1 As New DBO_Movimientos1
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[Movimientos1Select]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@MovimientoID", MovimientoID)
         Try
@@ -41,32 +41,32 @@ Class spMovimientos1
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_Movimientos1
     End Function
 
-    Public Function Movimientos1Insert(ByVal dbo_Movimientos1 As DBO_Movimientos1, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As Boolean
-        If trans Is Nothing Then BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function Movimientos1Insert(ByVal dbo_Movimientos1 As DBO_Movimientos1, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[Movimientos1Insert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
-        If Not trans Is Nothing Then insertCommand.Transaction = trans
-        
-        insertCommand.Parameters.AddWithValue("@Fecha", if(dbo_Movimientos1.Fecha.HasValue, dbo_Movimientos1.Fecha, Convert.DBNull))
-        insertCommand.Parameters.AddWithValue("@Observaciones", if(String.IsNullOrEmpty(dbo_Movimientos1.Observaciones), Convert.DBNull, dbo_Movimientos1.Observaciones))
+
+
+        insertCommand.Parameters.AddWithValue("@Fecha", If(dbo_Movimientos1.Fecha.HasValue, dbo_Movimientos1.Fecha, Convert.DBNull))
+        insertCommand.Parameters.AddWithValue("@Observaciones", If(String.IsNullOrEmpty(dbo_Movimientos1.Observaciones), Convert.DBNull, dbo_Movimientos1.Observaciones))
         insertCommand.Parameters.AddWithValue("@Cantidad", dbo_Movimientos1.Cantidad)
         insertCommand.Parameters.AddWithValue("@ProcesoID", dbo_Movimientos1.ProcesoID)
-        insertCommand.Parameters.AddWithValue("@EntraDepositoID", if(dbo_Movimientos1.EntraDepositoID.HasValue, dbo_Movimientos1.EntraDepositoID, Convert.DBNull))
-        insertCommand.Parameters.AddWithValue("@SaleDepositoID", if(dbo_Movimientos1.SaleDepositoID.HasValue, dbo_Movimientos1.SaleDepositoID, Convert.DBNull))
-        insertCommand.Parameters.AddWithValue("@LoteID", if(dbo_Movimientos1.LoteID.HasValue, dbo_Movimientos1.LoteID, Convert.DBNull))
-        insertCommand.Parameters.AddWithValue("@FiltroID", if(dbo_Movimientos1.FiltroID.HasValue, dbo_Movimientos1.FiltroID, Convert.DBNull))
-        insertCommand.Parameters.AddWithValue("@Suma", if(dbo_Movimientos1.Suma.HasValue, dbo_Movimientos1.Suma, Convert.DBNull))
-        insertCommand.Parameters.AddWithValue("@NuevoLote", if(dbo_Movimientos1.NuevoLote.HasValue, dbo_Movimientos1.NuevoLote, Convert.DBNull))
+        insertCommand.Parameters.AddWithValue("@EntraDepositoID", If(dbo_Movimientos1.EntraDepositoID.HasValue, dbo_Movimientos1.EntraDepositoID, Convert.DBNull))
+        insertCommand.Parameters.AddWithValue("@SaleDepositoID", If(dbo_Movimientos1.SaleDepositoID.HasValue, dbo_Movimientos1.SaleDepositoID, Convert.DBNull))
+        insertCommand.Parameters.AddWithValue("@LoteID", If(dbo_Movimientos1.LoteID.HasValue, dbo_Movimientos1.LoteID, Convert.DBNull))
+        insertCommand.Parameters.AddWithValue("@FiltroID", If(dbo_Movimientos1.FiltroID.HasValue, dbo_Movimientos1.FiltroID, Convert.DBNull))
+        insertCommand.Parameters.AddWithValue("@Suma", If(dbo_Movimientos1.Suma.HasValue, dbo_Movimientos1.Suma, Convert.DBNull))
+        insertCommand.Parameters.AddWithValue("@NuevoLote", If(dbo_Movimientos1.NuevoLote.HasValue, dbo_Movimientos1.NuevoLote, Convert.DBNull))
         insertCommand.Parameters.AddWithValue("@FechaModificacion", System.DateTime.Now)
         insertCommand.Parameters.AddWithValue("@UsuarioModificacion", BasesParaCompatibilidad.Config.User)
-        
+
         insertCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         insertCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
         Try
@@ -80,28 +80,28 @@ Class spMovimientos1
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            If trans Is Nothing Then connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function Movimientos1Update(ByVal newDBO_Movimientos1 As DBO_Movimientos1, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function Movimientos1Update(ByVal newDBO_Movimientos1 As DBO_Movimientos1, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[Movimientos1Update]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
-        If Not trans Is Nothing Then updateCommand.Transaction = trans
+
         '<Tag=[Three][Start]> -- please do not remove this line
-        updateCommand.Parameters.AddWithValue("@NewFecha", if(newDBO_Movimientos1.Fecha.HasValue, newDBO_Movimientos1.Fecha, Convert.DBNull))
+        updateCommand.Parameters.AddWithValue("@NewFecha", If(newDBO_Movimientos1.Fecha.HasValue, newDBO_Movimientos1.Fecha, Convert.DBNull))
         updateCommand.Parameters.AddWithValue("@NewObservaciones", newDBO_Movimientos1.Observaciones)
         updateCommand.Parameters.AddWithValue("@NewCantidad", newDBO_Movimientos1.Cantidad)
         updateCommand.Parameters.AddWithValue("@NewProcesoID", newDBO_Movimientos1.ProcesoID)
-        updateCommand.Parameters.AddWithValue("@NewEntraDepositoID", if(newDBO_Movimientos1.EntraDepositoID.HasValue, newDBO_Movimientos1.EntraDepositoID, Convert.DBNull))
-        updateCommand.Parameters.AddWithValue("@NewSaleDepositoID", if(newDBO_Movimientos1.SaleDepositoID.HasValue, newDBO_Movimientos1.SaleDepositoID, Convert.DBNull))
-        updateCommand.Parameters.AddWithValue("@NewLoteID", if(newDBO_Movimientos1.LoteID.HasValue, newDBO_Movimientos1.LoteID, Convert.DBNull))
-        updateCommand.Parameters.AddWithValue("@NewFiltroID", if(newDBO_Movimientos1.FiltroID.HasValue, newDBO_Movimientos1.FiltroID, Convert.DBNull))
-        updateCommand.Parameters.AddWithValue("@NewSuma", if(newDBO_Movimientos1.Suma.HasValue, newDBO_Movimientos1.Suma, Convert.DBNull))
-        updateCommand.Parameters.AddWithValue("@NewNuevoLote", if(newDBO_Movimientos1.NuevoLote.HasValue, newDBO_Movimientos1.NuevoLote, Convert.DBNull))
+        updateCommand.Parameters.AddWithValue("@NewEntraDepositoID", If(newDBO_Movimientos1.EntraDepositoID.HasValue, newDBO_Movimientos1.EntraDepositoID, Convert.DBNull))
+        updateCommand.Parameters.AddWithValue("@NewSaleDepositoID", If(newDBO_Movimientos1.SaleDepositoID.HasValue, newDBO_Movimientos1.SaleDepositoID, Convert.DBNull))
+        updateCommand.Parameters.AddWithValue("@NewLoteID", If(newDBO_Movimientos1.LoteID.HasValue, newDBO_Movimientos1.LoteID, Convert.DBNull))
+        updateCommand.Parameters.AddWithValue("@NewFiltroID", If(newDBO_Movimientos1.FiltroID.HasValue, newDBO_Movimientos1.FiltroID, Convert.DBNull))
+        updateCommand.Parameters.AddWithValue("@NewSuma", If(newDBO_Movimientos1.Suma.HasValue, newDBO_Movimientos1.Suma, Convert.DBNull))
+        updateCommand.Parameters.AddWithValue("@NewNuevoLote", If(newDBO_Movimientos1.NuevoLote.HasValue, newDBO_Movimientos1.NuevoLote, Convert.DBNull))
         updateCommand.Parameters.AddWithValue("@NewFechaModificacion", newDBO_Movimientos1.FechaModificacion)
         updateCommand.Parameters.AddWithValue("@NewUsuarioModificacion", newDBO_Movimientos1.UsuarioModificacion)
         updateCommand.Parameters.AddWithValue("@OldMovimientoID", newDBO_Movimientos1.MovimientoID)
@@ -117,18 +117,18 @@ Class spMovimientos1
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdateMovimientos1" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdateMovimientos1" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            If trans Is Nothing Then connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function Movimientos1Delete(ByVal MovimientoID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function Movimientos1Delete(ByVal MovimientoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[Movimientos1Delete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         '<Tag=[Four][Start]> -- please do not remove this line
         deleteCommand.Parameters.AddWithValue("@OldMovimientoID", MovimientoID)
@@ -146,17 +146,17 @@ Class spMovimientos1
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function GrabarMovimientos1(ByVal dbo_Movimientos1 As DBO_Movimientos1, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As Boolean
+    Public Function GrabarMovimientos1(ByVal dbo_Movimientos1 As DBO_Movimientos1, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         dbo_Movimientos1.FechaModificacion = System.DateTime.Now.date
         dbo_Movimientos1.UsuarioModificacion = BasesParaCompatibilidad.Config.User
         If dbo_Movimientos1.MovimientoID = 0 Then
-            Return Movimientos1Insert(dbo_Movimientos1, trans)
+            Return Movimientos1Insert(dbo_Movimientos1, dtb)
         Else
-            Return Movimientos1Update(dbo_Movimientos1, trans)
+            Return Movimientos1Update(dbo_Movimientos1, dtb)
         End If
     End Function
 

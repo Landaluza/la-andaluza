@@ -59,8 +59,8 @@ Public Class frmEntLineasEnvasado
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As sqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub frmEntLineasEnvasado_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize

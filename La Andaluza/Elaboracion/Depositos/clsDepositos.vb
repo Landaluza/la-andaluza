@@ -12,7 +12,6 @@ Public Class clsDepositos
     Private BotaPiernaID As String
     Private MaterialConstruccionID As String
     Private Listado As Boolean
-    Private dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
 #End Region
 
 #Region "Propiedades"
@@ -169,33 +168,26 @@ Public Class clsDepositos
 #End Region
 
 #Region "Metodos"
-    Public Function devolverDepositosFinales() As DataTable
-        Return dtb.Consultar("devolverDepositosFinales", True)
+
+    Public Function devolverDepositosLotes(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
+        dtb.PrepararConsulta("select Depositos.Codigo,  Depositos.Capacidad, Depositos.Listado,Lotes.TipoLoteID, Lotes.CodigoLote, Lotes.CantidadRestante,CASE WHEN CodigoLote is NULL THEN dbo.DepositoLavado(Depositos.DepositoID) ELSE Lotes.Descripcion END AS Descripcion,Lotes.TipoProductoID,dbo.DevolerValorParametroDeLote(Lotes.LoteID, 'Acidez') as Acidez,dbo.DevolerValorParametroDeLote(Lotes.LoteID, 'Alcohol') as Alcohol, dbo.DevolerValorParametroDeLote(Lotes.LoteID, 'Densidad') as Densidad, dbo.DevolerValorParametroDeLote(Lotes.LoteID, 'Sulfuroso') as Sulfuroso from Lotes RIGHT OUTER JOIN  Depositos ON Lotes.DepositoID = Depositos.DepositoID where (Depositos.BotaID Is NULL and Depositos.Listado = 'TRUE') ORDER BY Depositos.Codigo")
+        Return dtb.Consultar()
     End Function
 
-    Public Function devolverDepositosVacios() As DataTable
-        Return Deprecated.ConsultaVer("Depositos.DepositoID, Depositos.Codigo, Lotes.CantidadRestante", "Lotes RIGHT OUTER JOIN Depositos ON Lotes.DepositoID = Depositos.DepositoID", "(Depositos.BotaID Is NULL AND Lotes.CantidadRestante Is NULL) ORDER BY Depositos.Codigo")
+    Public Function devolverDepositosporCodigo(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
+        dtb.PrepararConsulta("select DepositoId,Codigo from Depositos where botaID is null ORDER BY Depositos.Codigo")
+        Return dtb.Consultar()
     End Function
 
-    Public Function devolverDepositosPartidas() As DataTable
-        Return dtb.Consultar("devolverDepositosPartidas", True)
-    End Function
-
-    Public Function devolverDepositosLotes() As DataTable
-        Return Deprecated.ConsultaVer("Depositos.Codigo,  Depositos.Capacidad, Depositos.Listado,Lotes.TipoLoteID, Lotes.CodigoLote, Lotes.CantidadRestante,CASE WHEN CodigoLote is NULL THEN dbo.DepositoLavado(Depositos.DepositoID) ELSE Lotes.Descripcion END AS Descripcion,Lotes.TipoProductoID,dbo.DevolerValorParametroDeLote(Lotes.LoteID, 'Acidez') as Acidez,dbo.DevolerValorParametroDeLote(Lotes.LoteID, 'Alcohol') as Alcohol, dbo.DevolerValorParametroDeLote(Lotes.LoteID, 'Densidad') as Densidad, dbo.DevolerValorParametroDeLote(Lotes.LoteID, 'Sulfuroso') as Sulfuroso", "Lotes RIGHT OUTER JOIN  Depositos ON Lotes.DepositoID = Depositos.DepositoID", "(Depositos.BotaID Is NULL and Depositos.Listado = 'TRUE') ORDER BY Depositos.Codigo")
-    End Function
-
-    Public Function devolverDepositosporCodigo() As DataTable
-        Return Deprecated.ConsultaVer("DepositoId,Codigo", "Depositos", "botaID is null ORDER BY Depositos.Codigo")
-    End Function
-
-    Public Sub Cargar()
+    Public Sub Cargar(ByRef dtb As BasesParaCompatibilidad.DataBase)
         Try
             Dim tabla As New DataTable
-            tabla = Deprecated.ConsultaVer("Depositos.FechaCreacion, Depositos.Capacidad,Depositos.DoctoUbicacionFisica,TonelID,TransicubaID, BotaID, BotaPiernaID", "Depositos", "DepositoID=" & DepositoID)
+            dtb.PrepararConsulta("select Depositos.FechaCreacion, Depositos.Capacidad,Depositos.DoctoUbicacionFisica,TonelID,TransicubaID, BotaID, BotaPiernaID from Depositos where DepositoID= @dep")
+            dtb.AñadirParametroConsulta("@dep", DepositoID)
+            tabla = dtb.Consultar()
 
             If Convert.IsDBNull(tabla.Rows(0).Item(0)) Then
-                FechaCreacion = datetime.now
+                FechaCreacion = DateTime.Now
             Else
                 FechaCreacion = tabla.Rows(0).Item(0)
             End If
@@ -250,15 +242,12 @@ Public Class clsDepositos
         End Try
     End Function
 
-    Public Function Devolver() As DataTable
-        Return Deprecated.ConsultaVer("Depositos.DepositoID,Depositos.Codigo,Depositos.FechaCreacion,Depositos.Capacidad,Depositos.DoctoUbicacionFisica,Depositos.TonelID,Depositos.TransicubaID,Depositos.BotaID,Depositos.BotaPiernaID,MaterialConstruccion.descripcion, Listado", "Depositos left join MaterialConstruccion on Depositos.MaterialConstruccionID = MaterialConstruccion.MaterialConstruccionID", "Depositos.depositoID > 0 ORDER BY Depositos.Codigo")
+    Public Function Devolver(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
+        dtb.PrepararConsulta("select Depositos.DepositoID,Depositos.Codigo,Depositos.FechaCreacion,Depositos.Capacidad,Depositos.DoctoUbicacionFisica,Depositos.TonelID,Depositos.TransicubaID,Depositos.BotaID,Depositos.BotaPiernaID,MaterialConstruccion.descripcion, Listado from Depositos left join MaterialConstruccion on Depositos.MaterialConstruccionID = MaterialConstruccion.MaterialConstruccionID where Depositos.depositoID > 0 ORDER BY Depositos.Codigo")
+        Return dtb.Consultar()
     End Function
 
-    Public Function devolverTransicubasActivas() As DataTable
-        Return Deprecated.ConsultaVer("Depositos.TransicubaID,Depositos.Codigo", _
-                              "Depositos INNER JOIN Transicubas ON Depositos.TransicubaID = Transicubas.TransicubaID", _
-                              "(Transicubas.Estado = 'True')  and Depositos.DepositoID not in (SELECT DISTINCT Depositos.DepositoID FROM Depositos INNER JOIN Transicubas ON Depositos.TransicubaID = Transicubas.TransicubaID INNER JOIN Lotes ON Depositos.DepositoID = Lotes.DepositoID WHERE (Transicubas.Estado = 'True')) order by Depositos.Codigo")
-    End Function
+
 
     Public Function Modificar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Try
@@ -290,7 +279,7 @@ Public Class clsDepositos
                               "'" & DoctoUbicacionFisica & "'," & _
                               "" & Convert.ToString(TonelID) & "," & _
                               "" & Convert.ToString(TransicubaID) & "," & _
-                              "" & Convert.ToString(BotaID) & "," & Convert.ToString(BotaPiernaID) & "," & MaterialConstruccionID & ",'" & Listado & "'" & _
+                              "" & Convert.ToString(BotaID) & "," & Convert.ToString(BotaPiernaID) & "," & MaterialConstruccionID & ",'" & Listado & "','" & _
                               BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)) + "'," + BasesParaCompatibilidad.Config.User.ToString + ")")
 
             dtb.PrepararConsulta("select max(DepositoID) from Depositos")
@@ -301,8 +290,7 @@ Public Class clsDepositos
         End Try
     End Function
 
-    Public Function Eliminar() As Integer
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+    Public Function Eliminar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Try
             dtb.PrepararConsulta("delete from Depositos where DepositoID = @id")
             dtb.AñadirParametroConsulta("@id", DepositoID)

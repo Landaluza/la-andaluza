@@ -9,12 +9,12 @@ Class spArticulosMateriasPrimas
                   String.Empty, String.Empty)
     End Sub
 
-    Public Function Select_Record(ByVal MateriaPrimaID As Int32) As DBO_ArticulosMateriasPrimas
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal MateriaPrimaID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_ArticulosMateriasPrimas
+        dtb.Conectar()
         Dim DBO_ArticulosMateriasPrimas As New DBO_ArticulosMateriasPrimas
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[ArticulosMateriasPrimasSelect]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@MateriaPrimaID", MateriaPrimaID)
 
@@ -33,18 +33,18 @@ Class spArticulosMateriasPrimas
         Catch ex As System.Data.SqlClient.SqlException
 
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_ArticulosMateriasPrimas
     End Function
 
 
-    Public Function Select_RecordByArticuloID(ByVal ArticuloID As Int32) As DBO_ArticulosMateriasPrimas
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_RecordByArticuloID(ByVal ArticuloID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_ArticulosMateriasPrimas
+        dtb.Conectar()
         Dim DBO_ArticulosMateriasPrimas As New DBO_ArticulosMateriasPrimas
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[ArticulosMateriasPrimasSelectByArticuloID]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@ArticuloID", ArticuloID)
 
@@ -64,7 +64,7 @@ Class spArticulosMateriasPrimas
         Catch ex As System.Data.SqlClient.SqlException
 
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_ArticulosMateriasPrimas
     End Function
@@ -72,11 +72,11 @@ Class spArticulosMateriasPrimas
 
 
 
-    Public Function ArticulosMateriasPrimasInsert(ByVal dbo_ArticulosMateriasPrimas As DBO_ArticulosMateriasPrimas) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ArticulosMateriasPrimasInsert(ByVal dbo_ArticulosMateriasPrimas As DBO_ArticulosMateriasPrimas, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[ArticulosMateriasPrimasInsert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
         insertCommand.Parameters.AddWithValue("@ArticuloID", If(dbo_ArticulosMateriasPrimas.ArticuloID.HasValue, dbo_ArticulosMateriasPrimas.ArticuloID, Convert.DBNull))
         insertCommand.Parameters.AddWithValue("@MateriaPrimaTipoID", If(dbo_ArticulosMateriasPrimas.MateriaPrimaTipoID.HasValue, dbo_ArticulosMateriasPrimas.MateriaPrimaTipoID, Convert.DBNull))
@@ -96,15 +96,15 @@ Class spArticulosMateriasPrimas
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function ArticulosMateriasPrimasUpdate(ByVal newDBO_ArticulosMateriasPrimas As DBO_ArticulosMateriasPrimas) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ArticulosMateriasPrimasUpdate(ByVal newDBO_ArticulosMateriasPrimas As DBO_ArticulosMateriasPrimas, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[ArticulosMateriasPrimasUpdate]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         updateCommand.Parameters.AddWithValue("@NewArticuloID", If(newDBO_ArticulosMateriasPrimas.ArticuloID.HasValue, newDBO_ArticulosMateriasPrimas.ArticuloID, Convert.DBNull))
         updateCommand.Parameters.AddWithValue("@NewMateriaPrimaTipoID", If(newDBO_ArticulosMateriasPrimas.MateriaPrimaTipoID.HasValue, newDBO_ArticulosMateriasPrimas.MateriaPrimaTipoID, Convert.DBNull))
@@ -126,18 +126,18 @@ Class spArticulosMateriasPrimas
             MessageBox.Show("Error en UpdateArticulosMateriasPrimas" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
 
-    Public Function ArticulosMateriasPrimasInsertSinTransaccion(ByVal dbo_ArticulosMateriasPrimas As DBO_ArticulosMateriasPrimas, ByRef mytrans As SqlClient.SqlTransaction) As Boolean
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ArticulosMateriasPrimasInsertSinTransaccion(ByVal dbo_ArticulosMateriasPrimas As DBO_ArticulosMateriasPrimas, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+
         Try
             Dim insertProcedure As String = "[dbo].[ArticulosMateriasPrimasInsert2]"
-            Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+            Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
             insertCommand.CommandType = CommandType.StoredProcedure
-            insertCommand.Transaction = mytrans
+
             insertCommand.Parameters.AddWithValue("@ArticuloID", If(dbo_ArticulosMateriasPrimas.ArticuloID.HasValue, dbo_ArticulosMateriasPrimas.ArticuloID, Convert.DBNull))
             insertCommand.Parameters.AddWithValue("@MateriaPrimaTipoID", If(dbo_ArticulosMateriasPrimas.MateriaPrimaTipoID.HasValue, dbo_ArticulosMateriasPrimas.MateriaPrimaTipoID, Convert.DBNull))
             insertCommand.Parameters.AddWithValue("@FechaModificacion", dbo_ArticulosMateriasPrimas.FechaModificacion)
@@ -157,14 +157,14 @@ Class spArticulosMateriasPrimas
         End Try
     End Function
 
-    Public Function ArticulosMateriasPrimasUpdateSinTransaccion(ByVal newDBO_ArticulosMateriasPrimas As DBO_ArticulosMateriasPrimas, ByRef mytrans As SqlClient.SqlTransaction) As Boolean
+    Public Function ArticulosMateriasPrimasUpdateSinTransaccion(ByVal newDBO_ArticulosMateriasPrimas As DBO_ArticulosMateriasPrimas, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
 
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Try
             Dim updateProcedure As String = "[dbo].[ArticulosMateriasPrimasUpdate2]"
-            Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+            Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
             updateCommand.CommandType = CommandType.StoredProcedure
-            updateCommand.Transaction = mytrans
+
             updateCommand.Parameters.AddWithValue("@NewArticuloID", If(newDBO_ArticulosMateriasPrimas.ArticuloID.HasValue, newDBO_ArticulosMateriasPrimas.ArticuloID, Convert.DBNull))
             updateCommand.Parameters.AddWithValue("@NewMateriaPrimaTipoID", If(newDBO_ArticulosMateriasPrimas.MateriaPrimaTipoID.HasValue, newDBO_ArticulosMateriasPrimas.MateriaPrimaTipoID, Convert.DBNull))
             updateCommand.Parameters.AddWithValue("@NewFechaModificacion", newDBO_ArticulosMateriasPrimas.FechaModificacion)
@@ -187,11 +187,11 @@ Class spArticulosMateriasPrimas
         End Try
     End Function
 
-    Public Function ArticulosMateriasPrimasDelete(ByVal MateriaPrimaID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ArticulosMateriasPrimasDelete(ByVal MateriaPrimaID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[ArticulosMateriasPrimasDelete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         deleteCommand.Parameters.AddWithValue("@OldMateriaPrimaID", MateriaPrimaID)
         deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
@@ -208,24 +208,24 @@ Class spArticulosMateriasPrimas
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Sub GrabarArticulosMateriasPrimas(ByVal dbo_ArticulosMateriasPrimas As DBO_ArticulosMateriasPrimas)
+    Public Sub GrabarArticulosMateriasPrimas(ByVal dbo_ArticulosMateriasPrimas As DBO_ArticulosMateriasPrimas, ByRef dtb As BasesParaCompatibilidad.DataBase)
         If dbo_ArticulosMateriasPrimas.MateriaPrimaID = 0 Then
-            ArticulosMateriasPrimasInsert(dbo_ArticulosMateriasPrimas)
+            ArticulosMateriasPrimasInsert(dbo_ArticulosMateriasPrimas, dtb)
         Else
-            ArticulosMateriasPrimasUpdate(dbo_ArticulosMateriasPrimas)
+            ArticulosMateriasPrimasUpdate(dbo_ArticulosMateriasPrimas, dtb)
         End If
     End Sub
 
 
-    Public Function GrabarArticulosMateriasPrimasSinTransaccion(ByVal dbo_ArticulosMateriasPrimas As DBO_ArticulosMateriasPrimas, ByRef mytrans As SqlClient.SqlTransaction) As Boolean
+    Public Function GrabarArticulosMateriasPrimasSinTransaccion(ByVal dbo_ArticulosMateriasPrimas As DBO_ArticulosMateriasPrimas, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         If dbo_ArticulosMateriasPrimas.MateriaPrimaID = 0 Then
-            Return ArticulosMateriasPrimasInsertSinTransaccion(dbo_ArticulosMateriasPrimas, mytrans)
+            Return ArticulosMateriasPrimasInsertSinTransaccion(dbo_ArticulosMateriasPrimas, dtb)
         Else
-            Return ArticulosMateriasPrimasUpdateSinTransaccion(dbo_ArticulosMateriasPrimas, mytrans)
+            Return ArticulosMateriasPrimasUpdateSinTransaccion(dbo_ArticulosMateriasPrimas, dtb)
         End If
     End Function
 

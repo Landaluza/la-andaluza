@@ -71,7 +71,7 @@ Public Class frmPaletsProducidos2
             'AddHandler print.Click, AddressOf PrintDocument1_PrintPage
 
             Dim sp As New spPaletsProducidos
-            sp.cargar_PaletsProducidosEstados(Me.cboEstado)
+            sp.cargar_PaletsProducidosEstados(Me.cboEstado, dtb)
         Else
             Me.Panel1.Visible = False
         End If
@@ -110,7 +110,7 @@ Public Class frmPaletsProducidos2
             Dim multiopcion As Boolean
 
 
-            If CType(sp, spPaletsProducidos2).isDeleteAllowed(dgvGeneral.CurrentRow.Cells("PaletProducidoID").Value) Then
+            If CType(sp, spPaletsProducidos2).isDeleteAllowed(dgvGeneral.CurrentRow.Cells("PaletProducidoID").Value, dtb) Then
                 response = MessageBox.Show("El palet seleccionado se encuentra entre los ultimos 15 producidos" & Environment.NewLine & _
                                   "y , por tanto, puede eliminar completamente" & Environment.NewLine & _
                                   "¿Eliminar el palet por completo?" & Environment.NewLine & _
@@ -125,7 +125,7 @@ Public Class frmPaletsProducidos2
 
             If response = DialogResult.Yes Then
                 System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
-                CType(sp, spPaletsProducidos2).DeletePaletsProducidos2(dgvGeneral.CurrentRow.Cells("PaletProducidoID").Value, If(multiopcion = True, True, False))
+                CType(sp, spPaletsProducidos2).DeletePaletsProducidos2(dgvGeneral.CurrentRow.Cells("PaletProducidoID").Value, If(multiopcion = True, True, False), dtb)
 
                 dtb.PrepararConsulta("PaletsProducidos3SelectByFormatoEnvasadoID @for")
                 dtb.AñadirParametroConsulta("@for", Me.formatoId)
@@ -133,7 +133,7 @@ Public Class frmPaletsProducidos2
                 System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.Default
             ElseIf response = DialogResult.No And multiopcion Then
                 System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
-                CType(sp, spPaletsProducidos2).DeletePaletsProducidos2(dgvGeneral.CurrentRow.Cells("PaletProducidoID").Value, False)
+                CType(sp, spPaletsProducidos2).DeletePaletsProducidos2(dgvGeneral.CurrentRow.Cells("PaletProducidoID").Value, False, dtb)
 
                 dtb.PrepararConsulta("PaletsProducidos3SelectByFormatoEnvasadoID @for")
                 dtb.AñadirParametroConsulta("@for", Me.formatoId)
@@ -172,7 +172,7 @@ Public Class frmPaletsProducidos2
             End If
         ElseIf TipoAction = ACCION_MODIFICAR Then
             Try
-                m_DBO_PaletsProducidos2 = CType(sp, spPaletsProducidos2).Select_Record(Me.dgvGeneral.SelectedRows(0).Cells("PaletProducidoID").Value)
+                m_DBO_PaletsProducidos2 = CType(sp, spPaletsProducidos2).Select_Record(Me.dgvGeneral.SelectedRows(0).Cells("PaletProducidoID").Value, dtb)
                 m_DBO_PaletsProducidos2.EsPrimerPalet = False
                 frmEnt.ModoDeApertura = BasesParaCompatibilidad.FrmAHeredarEntOld.MODIFICACION
                 If Convert.ToString(Me.dgvGeneral.SelectedRows(0).Cells("Contenidos").Value) = "" Or _
@@ -190,7 +190,7 @@ Public Class frmPaletsProducidos2
             End Try
         Else
             Try
-                m_DBO_PaletsProducidos2 = CType(sp, spPaletsProducidos2).Select_Record(Me.dgvGeneral.SelectedRows(0).Cells("PaletProducidoID").Value)
+                m_DBO_PaletsProducidos2 = CType(sp, spPaletsProducidos2).Select_Record(Me.dgvGeneral.SelectedRows(0).Cells("PaletProducidoID").Value, dtb)
                 m_DBO_PaletsProducidos2.EsPrimerPalet = False
                 frmEnt.ModoDeApertura = BasesParaCompatibilidad.FrmAHeredarEntOld.VISION
             Catch ex As Exception
@@ -302,7 +302,7 @@ Public Class frmPaletsProducidos2
     Private Sub mostrarEtiqueta()
         If Not Me.dgvGeneral.CurrentRow Is Nothing Then
             Dim sp As New spPaletsProducidos
-            Dim dbo As DBO_PaletsProducidos = sp.Select_Record(Me.dgvGeneral.CurrentRow.Cells("PaletProducidoID").Value)
+            Dim dbo As DBO_PaletsProducidos = sp.Select_Record(Me.dgvGeneral.CurrentRow.Cells("PaletProducidoID").Value, dtb)
             If Not dbo Is Nothing Then
                 If MessageBox.Show("¿Desea imprimir etiqueta?", "Etiqueta palet " & dbo.SCC, _
                                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
@@ -310,7 +310,7 @@ Public Class frmPaletsProducidos2
                     frm.Show()
                     Try
                         Dim spPalet As New spPaletsProducidos
-                        spPalet.anadir_impresion_etiqueta(Me.dgvGeneral.CurrentRow.Cells("PaletProducidoID").Value)
+                        spPalet.anadir_impresion_etiqueta(Me.dgvGeneral.CurrentRow.Cells("PaletProducidoID").Value, dtb)
                         Dim textNotificar As String = "Se ha vuelto a imprimir la etiqueta de la matricula  " & Environment.NewLine & Me.dgvGeneral.CurrentRow.Cells("SCC").Value & " el día " & Now.Date.ToString
                         Dim mail As New Mail.Mail1And1(True, "Reimpresion de etiqueta " & Me.dgvGeneral.CurrentRow.Cells("SCC").Value & _
                                                        "el " & Now.Date.ToString, textNotificar, _

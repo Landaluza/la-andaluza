@@ -7,6 +7,7 @@ Public Class frmEntDepositosPorTIpo
     Public Sub New(ByVal modoDeApertura As String, Optional ByRef v_sp As spDepositos_TiposDepositos = Nothing, Optional ByRef v_dbo As DBO_Depositos_TiposDepositos = Nothing)
         MyBase.new(modoDeApertura, v_sp, CType(v_dbo, BasesParaCompatibilidad.databussines))
         InitializeComponent()
+        dtb = New BasesParaCompatibilidad.DataBase()
         If v_sp Is Nothing Then
             sp = CType(New spDepositos_TiposDepositos, BasesParaCompatibilidad.StoredProcedure)
         Else
@@ -18,7 +19,7 @@ Public Class frmEntDepositosPorTIpo
 
     Private Sub frmEntDepositos_TiposDepositos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s0 As New ctlDepositos
-        s0.devolverDepositosporCodigo(Me.cboDeposito)
+        s0.devolverDepositosporCodigo(dtb, Me.cboDeposito)
 
         If (Me.mododeapertura = VISION) Then
             Me.cboDeposito.enabled = False
@@ -52,8 +53,8 @@ Public Class frmEntDepositosPorTIpo
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub frmEntDepositos_TiposDepositos_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown

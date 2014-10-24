@@ -31,7 +31,7 @@ Public Class frmEntCargaNecesidadesJRDetalles
         AddHandler tsb.Click, AddressOf BindingNavigatorItemOnClick
 
         Dim sp As New spArticulosEnvasadosHistoricos
-        sp.cargar_TiposFormatos(cboArticulos)
+        sp.cargar_TiposFormatos(cboArticulos, dtb)
         'RellenarComboBox(c, RealizarConsulta("SelectTiposFormatosAll"), False)
 
         If Me.Text = "Insertar" Then 'Solo necesitamos este campo
@@ -82,7 +82,7 @@ Public Class frmEntCargaNecesidadesJRDetalles
                  Reserva2CuadroDeTexto.Text, _
                  Reserva3CuadroDeTexto.Text, _
                  Now(), _
-                 1)
+                 1, dtb)
 
         If CerrarForm Then
             Me.Close()

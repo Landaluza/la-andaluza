@@ -11,19 +11,19 @@ Public Class spPendientes
                       "[dbo].[PendientesSelectDgvBy]")
     End Sub
 
-   Public Overloads Function Select_Record(ByVal PendienteID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As DBO_Pendientes
-       Dim dbo As New DBO_Pendientes
-       dbo.searchKey = dbo.item("PendienteID")
-       dbo.searchKey.value = PendienteID
-       MyBase.Select_Record(ctype(dbo, BasesParaCompatibilidad.databussines), trans)
-       Return dbo
-   End Function
+    Public Overloads Function Select_Record(ByVal PendienteID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_Pendientes
+        Dim dbo As New DBO_Pendientes
+        dbo.searchKey = dbo.item("PendienteID")
+        dbo.searchKey.value = PendienteID
+        MyBase.Select_Record(CType(dbo, BasesParaCompatibilidad.databussines), dtb)
+        Return dbo
+    End Function
 
-   Public Overrides Function Delete(ByVal PendienteID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As Boolean
-       Dim dbo As New DBO_Pendientes
-       dbo.searchKey = dbo.item("PendienteID")
-       dbo.searchKey.value = PendienteID
-       return MyBase.DeleteProcedure(ctype(dbo, BasesParaCompatibilidad.databussines), trans)
-   End Function
+    Public Overrides Function Delete(ByVal PendienteID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        Dim dbo As New DBO_Pendientes
+        dbo.searchKey = dbo.item("PendienteID")
+        dbo.searchKey.value = PendienteID
+        Return MyBase.DeleteProcedure(CType(dbo, BasesParaCompatibilidad.databussines), dtb)
+    End Function
 
 End Class

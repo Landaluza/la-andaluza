@@ -31,7 +31,7 @@ Public Class frmEntOrdenesEnvasado2
         'Me.Width = 1633
         'Me.Height = 776
 
-        If m_SelectRecord Then m_DBO_OrdenesEnvasado = spOrdenesEnvasado2.Select_Record(m_ID, New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server))
+        If m_SelectRecord Then m_DBO_OrdenesEnvasado = spOrdenesEnvasado2.Select_Record(m_ID, dtb)
         txtOrdenEnvasadoID.Text = m_DBO_OrdenesEnvasado.OrdenEnvasadoID
         dtpFecha.Text = If(m_DBO_OrdenesEnvasado.Fecha_IsDBNull = True, Nothing, m_DBO_OrdenesEnvasado.Fecha)
         txtObservaciones.Text = If(m_DBO_OrdenesEnvasado.Observaciones_IsDBNull = True, Nothing, m_DBO_OrdenesEnvasado.Observaciones)
@@ -60,7 +60,7 @@ Public Class frmEntOrdenesEnvasado2
 
     Overrides Sub Guardar()
         GetValores()
-        spOrdenesEnvasado2.GrabarOrdenesEnvasado(m_DBO_OrdenesEnvasado, New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server))
+        spOrdenesEnvasado2.GrabarOrdenesEnvasado(m_DBO_OrdenesEnvasado, dtb)
         If m_DBO_OrdenesEnvasado.OrdenEnvasadoID <> 0 And Me.Text.Substring(0, 3) = "Ins" Then
             Me.Text = Me.Text.Replace("Insertar", "Modificar")
             SetValores(m_DBO_OrdenesEnvasado.OrdenEnvasadoID, True)
@@ -75,7 +75,7 @@ Public Class frmEntOrdenesEnvasado2
 
     Private Sub dtpFecha_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles dtpFecha.ValueChanged
         m_DBO_OrdenesEnvasado.Fecha = dtpFecha.Value
-        m_DBO_OrdenesEnvasado.OrdenEnvasadoID = spOrdenesEnvasado2.GetIDByFecha(m_DBO_OrdenesEnvasado.Fecha, New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server))
+        m_DBO_OrdenesEnvasado.OrdenEnvasadoID = spOrdenesEnvasado2.GetIDByFecha(m_DBO_OrdenesEnvasado.Fecha, dtb)
         SetValores(m_DBO_OrdenesEnvasado.OrdenEnvasadoID, False)
     End Sub
 End Class

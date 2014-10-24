@@ -9,12 +9,12 @@ Public Class spArticulosFichasTecnicasEstados
                    , "[dbo].[ArticulosFichasTecnicasEstadosUpdate]", "[dbo].[ArticulosFichasTecnicasEstadosDelete]", _
                    "EnvasadosControles2SelectDgv", "EnvasadosControles2SelectDgvByEnvasadoControlID")
     End Sub
-    Public Function Select_Record(ByVal ArticuloFichaTecnicaEstadoID As Int32) As DBO_ArticulosFichasTecnicasEstados
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal ArticuloFichaTecnicaEstadoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_ArticulosFichasTecnicasEstados
+        dtb.Conectar()
         Dim DBO_ArticulosFichasTecnicasEstados As New DBO_ArticulosFichasTecnicasEstados
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = Me.selectProcedureName
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.Comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@ArticuloFichaTecnicaEstadoID", ArticuloFichaTecnicaEstadoID)
         Try
@@ -32,16 +32,16 @@ Public Class spArticulosFichasTecnicasEstados
         Catch ex As System.Data.SqlClient.SqlException
 
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_ArticulosFichasTecnicasEstados
     End Function
 
-    Public Function ArticulosFichasTecnicasEstadosInsert(ByVal dbo_ArticulosFichasTecnicasEstados As DBO_ArticulosFichasTecnicasEstados) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+    Public Function ArticulosFichasTecnicasEstadosInsert(ByVal dbo_ArticulosFichasTecnicasEstados As DBO_ArticulosFichasTecnicasEstados, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = insertProcedureName
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
         insertCommand.Parameters.AddWithValue("@Descripcion", dbo_ArticulosFichasTecnicasEstados.Descripcion)
         insertCommand.Parameters.AddWithValue("@Observaciones", dbo_ArticulosFichasTecnicasEstados.Observaciones)
@@ -61,16 +61,16 @@ Public Class spArticulosFichasTecnicasEstados
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
 
         End Try
     End Function
 
-    Public Function ArticulosFichasTecnicasEstadosUpdate(ByVal newDBO_ArticulosFichasTecnicasEstados As DBO_ArticulosFichasTecnicasEstados) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+    Public Function ArticulosFichasTecnicasEstadosUpdate(ByVal newDBO_ArticulosFichasTecnicasEstados As DBO_ArticulosFichasTecnicasEstados, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = updateProcedureName
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         updateCommand.Parameters.AddWithValue("@NewDescripcion", newDBO_ArticulosFichasTecnicasEstados.Descripcion)
         updateCommand.Parameters.AddWithValue("@NewObservaciones", newDBO_ArticulosFichasTecnicasEstados.Observaciones)
@@ -92,15 +92,15 @@ Public Class spArticulosFichasTecnicasEstados
             MessageBox.Show("Error en UpdateArticulosFichasTecnicasEstados" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function ArticulosFichasTecnicasEstadosDelete(ByVal ArticuloFichaTecnicaEstadoID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+    Public Function ArticulosFichasTecnicasEstadosDelete(ByVal ArticuloFichaTecnicaEstadoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = deleteProcedureName
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         deleteCommand.Parameters.AddWithValue("@OldArticuloFichaTecnicaEstadoID", ArticuloFichaTecnicaEstadoID)
         deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
@@ -117,19 +117,19 @@ Public Class spArticulosFichasTecnicasEstados
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Sub GrabarArticulosFichasTecnicasEstados(ByVal dbo_ArticulosFichasTecnicasEstados As DBO_ArticulosFichasTecnicasEstados)
+    Public Sub GrabarArticulosFichasTecnicasEstados(ByVal dbo_ArticulosFichasTecnicasEstados As DBO_ArticulosFichasTecnicasEstados, ByRef dtb As BasesParaCompatibilidad.DataBase)
         If dbo_ArticulosFichasTecnicasEstados.ArticuloFichaTecnicaEstadoID = 0 Then
-            ArticulosFichasTecnicasEstadosInsert(dbo_ArticulosFichasTecnicasEstados)
+            ArticulosFichasTecnicasEstadosInsert(dbo_ArticulosFichasTecnicasEstados, dtb)
         Else
-            ArticulosFichasTecnicasEstadosUpdate(dbo_ArticulosFichasTecnicasEstados)
+            ArticulosFichasTecnicasEstadosUpdate(dbo_ArticulosFichasTecnicasEstados, dtb)
         End If
     End Sub
 
-    Public Sub cargar_combo(ByRef cbo As ComboBox)
-        cbo.mam_DataSource("ArticulosFichasTecnicas_ArticulosFichasTecnicasEstadosCbo", False)
+    Public Sub cargar_combo(ByRef cbo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        cbo.mam_DataSource("ArticulosFichasTecnicas_ArticulosFichasTecnicasEstadosCbo", False, dtb)
     End Sub
 End Class

@@ -18,8 +18,8 @@ Public Class frmEntCamposADD
     Private Sub frmEntCamposADD_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'Me.cboArticuloTipoID.mam_DataSource("CamposADD_ArticulosTiposCbo"), False)
         'Me.cboSolicitanteID.mam_DataSource("EmpleadosSelectCbo"), False)
-        Me.cboArticuloTipoID.mam_DataSource("CamposADD_ArticulosTiposCbo", False)
-        Me.cboSolicitanteID.mam_DataSource("EmpleadosSelectCbo", False)
+        Me.cboArticuloTipoID.mam_DataSource("CamposADD_ArticulosTiposCbo", False, dtb)
+        Me.cboSolicitanteID.mam_DataSource("EmpleadosSelectCbo", False, dtb)
 
         SetValores(m_DBO_CamposADD.ID, False)
     End Sub
@@ -43,7 +43,7 @@ Public Class frmEntCamposADD
 
     Overrides Sub Guardar()
         GetValores()
-        spCamposADD.GrabarCamposADD(m_DBO_CamposADD, New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server))
+        spCamposADD.GrabarCamposADD(m_DBO_CamposADD, New BasesParaCompatibilidad.DataBase())
         Me.Close()
     End Sub
 

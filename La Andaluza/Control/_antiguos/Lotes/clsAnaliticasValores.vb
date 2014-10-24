@@ -40,8 +40,11 @@ Public Class clsAnaliticasValores
 
 #Region "Metodos"
 
-    Public Function existe() As Boolean
-        Return Deprecated.ConsultaVer("Count(*)", "AnaliticasValores", "AnaliticaID = " & Convert.ToString(AnaliticaID) & " and ParametroID = " & Convert.ToString(ParametroID)).Rows(0).Item(0) > 0
+    Public Function existe(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.PrepararConsulta("select Count(*) from AnaliticasValores where AnaliticaID = @ana and ParametroID = @par")
+        dtb.AñadirParametroConsulta("@ana", AnaliticaID)
+        dtb.AñadirParametroConsulta("@par", ParametroID)
+        Return dtb.Consultar().Rows(0).Item(0) > 0
     End Function
 
     Public Function cargar(ByRef dtb As BasesParaCompatibilidad.DataBase) As String

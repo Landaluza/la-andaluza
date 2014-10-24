@@ -19,7 +19,7 @@ Public Class frmTrazabilidad
         InitializeComponent()
 
         Me.loteID = loteID
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.DataBase()
         spCompuesto = New spCompuestoPor
         Me.ConEnologicos = conenologicos
         ctlLot = New ctlLotes

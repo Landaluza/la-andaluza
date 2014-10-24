@@ -112,7 +112,7 @@ Public Class frmAlbaranesCargaDetalles
             response = MessageBox.Show(" Realmente desea eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If response = DialogResult.Yes Then
                 ctlAlb.SetAlbaranCargaDetalleID(dgvGeneral.Rows(Posicion).Cells(0).Value)
-                If ctlAlb.EliminarAlbaranCargaDetalle() Then
+                If ctlAlb.EliminarAlbaranCargaDetalle(dtb) Then
                     ctlAlb.mostrarTodosAlbaranesCargaDetalles(dtb, dtsAlb)
                     If Posicion > 0 Then
                         GeneralBindingSource.Position = Posicion - 1

@@ -23,7 +23,7 @@ Public Class frmEntPedidosClientesNecesidades
 
     Private Sub frmEntPedidosClientesNecesidades_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim spClientes As New spClientes
-        spClientes.cargar_Clientes(Me.cboCliente)
+        spClientes.cargar_Clientes(Me.cboCliente, dtb)
         If Me.mododeapertura = VISION Then
             Me.cboCliente.enabled = False
             Me.lblClienteID.enabled = False
@@ -73,8 +73,8 @@ Public Class frmEntPedidosClientesNecesidades
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butRuta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butRuta.Click
@@ -108,7 +108,7 @@ Public Class frmEntPedidosClientesNecesidades
         Dim spClientes As New spClientes
         Dim frmEnt As New frmEntClientes(0, 0)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
-        spClientes.cargar_Clientes(Me.cboCliente)
+        spClientes.cargar_Clientes(Me.cboCliente, dtb)
     End Sub
 
     Private Sub frmEntPedidosClientesNecesidades_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown

@@ -59,7 +59,7 @@ Public Class frmCargaNecesidadesJRMaestro
         response = MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
                           "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If response = DialogResult.Yes Then
-            CType(sp, spCargasNecesidades).spDeleteCargaNecesidadesJRMaestro(dgvGeneral.CurrentRow.Cells("MaestroID").Value)
+            CType(sp, spCargasNecesidades).spDeleteCargaNecesidadesJRMaestro(dgvGeneral.CurrentRow.Cells("MaestroID").Value, dtb)
             GeneralBindingSource.DataSource = dtb.Consultar("SelectCargaNecesidadesMaestroALL", True)
         End If
         HabilitarBotones()

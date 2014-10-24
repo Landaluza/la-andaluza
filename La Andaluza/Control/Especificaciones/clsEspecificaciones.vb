@@ -95,39 +95,31 @@ Public Class clsEspecificaciones
         EspecificacionID = 0
     End Sub
 
-    Function devolverIDtipoProducto() As Integer
-        Try
-            Return Deprecated.ConsultaVer("TipoProductoID", "Especificaciones", "EspecificacionID = " & EspecificacionID.ToString).Rows(0).Item(0)
-        Catch ex As Exception
-            Return 0
-        End Try
+    Public Function devolver(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
+        dtb.PrepararConsulta(" select Especificaciones.EspecificacionID, Especificaciones.Descripcion, Especificaciones.CodigoQS, Especificaciones.FechaRevisado, TiposLotes.Descripcion, TiposProductos.Descripcion AS FormatoGranel, Especificaciones.LegislacionID " & _
+        " from Especificaciones INNER JOIN TiposLotes ON Especificaciones.TipoLoteID = TiposLotes.TipoLoteID LEFT OUTER JOIN TiposProductos ON Especificaciones.TipoProductoID = TiposProductos.TipoProductoID " & _
+        " where (Especificaciones.EspecificacionID > 0)")
+
+        Return dtb.Consultar()
     End Function
 
-    Public Function devolver() As DataTable
+    Public Function devolverPorLote(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
 
-        Return Deprecated.ConsultaVer("Especificaciones.EspecificacionID, Especificaciones.Descripcion, Especificaciones.CodigoQS, Especificaciones.FechaRevisado, TiposLotes.Descripcion, TiposProductos.Descripcion AS FormatoGranel, Especificaciones.LegislacionID", _
-        "Especificaciones INNER JOIN TiposLotes ON Especificaciones.TipoLoteID = TiposLotes.TipoLoteID LEFT OUTER JOIN TiposProductos ON Especificaciones.TipoProductoID = TiposProductos.TipoProductoID", _
-        "(Especificaciones.EspecificacionID > 0)")
+        dtb.PrepararConsulta(" select Especificaciones.EspecificacionID, Especificaciones.Descripcion " & _
+        " from Especificaciones " & _
+        " where Especificaciones.TipoLoteID = @lot and Especificaciones.TipoProductoID = @pro")
 
+        dtb.AñadirParametroConsulta("@lot", TipoLoteID)
+        dtb.AñadirParametroConsulta("@pro", TipoProductoID)
+        Return dtb.Consultar
     End Function
 
-    Public Function devolverPorLote() As DataTable
+    Public Function devolverTodo(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
+        dtb.PrepararConsulta(" select Especificaciones.EspecificacionID, Especificaciones.Descripcion " & _
+        "from Especificaciones " & _
+        " where EspecificacionID > 0 order by Descripcion")
 
-
-        Return Deprecated.ConsultaVer("Especificaciones.EspecificacionID, Especificaciones.Descripcion", _
-        "Especificaciones", _
-        "Especificaciones.TipoLoteID = " & TipoLoteID.ToString & " and Especificaciones.TipoProductoID =" & TipoProductoID.ToString)
-
-    End Function
-
-
-    Public Function devolverTodo() As DataTable
-
-
-        Return Deprecated.ConsultaVer("Especificaciones.EspecificacionID, Especificaciones.Descripcion", _
-        "Especificaciones", _
-        "EspecificacionID > 0 order by Descripcion")
-
+        Return dtb.Consultar
     End Function
 
     Public Function Modificar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean

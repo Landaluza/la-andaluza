@@ -8,12 +8,12 @@ Class spClientes
         MyBase.New("[dbo].[ClientesSelect]", "[dbo].[ClientesInsert]", "[dbo].[ClientesUpdate]", _
                     "[dbo].[ClientesDelete]", "ClientesSelectDgv", String.Empty)
     End Sub
-    Public Function Select_Record(ByVal ClienteID As Int32) As Dbo_Clientes
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal ClienteID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_Clientes
+        dtb.Conectar()
         Dim Dbo_Clientes As New DBO_Clientes
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[ClientesSelect]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@ClienteID", ClienteID)
         Try
@@ -29,16 +29,16 @@ Class spClientes
         Catch ex As System.Data.SqlClient.SqlException
 
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return Dbo_Clientes
     End Function
 
-    Public Function InsertClientes(ByVal dbo_Clientes As Dbo_Clientes) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function InsertClientes(ByVal dbo_Clientes As DBO_Clientes, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[ClientesInsert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
         insertCommand.Parameters.AddWithValue("@Nombre", dbo_Clientes.Nombre)
         insertCommand.Parameters.AddWithValue("@CodigoQS", dbo_Clientes.CodigoQS)
@@ -55,15 +55,15 @@ Class spClientes
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function UpdateClientes(ByVal oldDbo_Clientes As Dbo_Clientes, ByVal newDbo_Clientes As Dbo_Clientes) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function UpdateClientes(ByVal oldDbo_Clientes As DBO_Clientes, ByVal newDbo_Clientes As DBO_Clientes, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[ClientesUpdate]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         updateCommand.Parameters.AddWithValue("@NewNombre", newDbo_Clientes.Nombre)
         updateCommand.Parameters.AddWithValue("@NewCodigoQS", newDbo_Clientes.CodigoQS)
@@ -79,40 +79,18 @@ Class spClientes
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdateClientes" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdateClientes" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function DeleteClientes(ByVal ClienteID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
-        Dim deleteProcedure As String = "[dbo].[ClientesDelete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
-        deleteCommand.CommandType = CommandType.StoredProcedure
-        deleteCommand.Parameters.AddWithValue("@OldClienteID", ClienteID)
-        deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
-        deleteCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
-        Try
-            deleteCommand.ExecuteNonQuery()
-            Dim count As Integer = System.Convert.ToInt32(deleteCommand.Parameters("@ReturnValue").Value)
-            If count > 0 Then
-                Return True
-            Else
-                Return False
-            End If
-        Catch ex As System.Data.SqlClient.SqlException
-            Return False
-        Finally
-            connection.Close()
-        End Try
-    End Function
-
-    Public Function DeleteClientes(ByVal ClienteID As Int32, ByRef dtb as BasesParaCompatibilidad.Database) As Boolean
+    Public Function DeleteClientes(ByVal ClienteID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         dtb.Conectar()
-        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.Comando("[dbo].[ClientesDelete]")
+
+        Dim deleteProcedure As String = "[dbo].[ClientesDelete]"
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         deleteCommand.Parameters.AddWithValue("@OldClienteID", ClienteID)
         deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
@@ -128,12 +106,12 @@ Class spClientes
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-           dtb.Conectar()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Sub cargar_Clientes(ByRef comboBox As ComboBox)
-        comboBox.mam_DataSource("ClientesCbo", False)
+    Sub cargar_Clientes(ByRef comboBox As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        comboBox.mam_DataSource("ClientesCbo", False, dtb)
     End Sub
 
 End Class

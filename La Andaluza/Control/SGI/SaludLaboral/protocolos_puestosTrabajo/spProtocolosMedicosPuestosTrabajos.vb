@@ -12,19 +12,19 @@ Public Class spProtocolosMedicosPuestosTrabajos
                       "[dbo].[ProtocolosMedicosPuestosTrabajosSelectDgvBy]")
     End Sub
 
-   Public Overloads Function Select_Record(ByVal ProtocoloMedicoPuestoTrabajoID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As DBO_ProtocolosMedicosPuestosTrabajos
-       Dim dbo As New DBO_ProtocolosMedicosPuestosTrabajos
-       dbo.searchKey = dbo.item("ProtocoloMedicoPuestoTrabajoID")
-       dbo.searchKey.value = ProtocoloMedicoPuestoTrabajoID
-       MyBase.Select_Record(dbo, trans)
-       Return dbo
-   End Function
+    Public Overloads Function Select_Record(ByVal ProtocoloMedicoPuestoTrabajoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_ProtocolosMedicosPuestosTrabajos
+        Dim dbo As New DBO_ProtocolosMedicosPuestosTrabajos
+        dbo.searchKey = dbo.item("ProtocoloMedicoPuestoTrabajoID")
+        dbo.searchKey.value = ProtocoloMedicoPuestoTrabajoID
+        MyBase.Select_Record(dbo, dtb)
+        Return dbo
+    End Function
 
-   Public Overrides Function Delete(ByVal ProtocoloMedicoPuestoTrabajoID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As Boolean
-       Dim dbo As New DBO_ProtocolosMedicosPuestosTrabajos
-       dbo.searchKey = dbo.item("ProtocoloMedicoPuestoTrabajoID")
-       dbo.searchKey.value = ProtocoloMedicoPuestoTrabajoID
-       return MyBase.DeleteProcedure(dbo,  trans)
-   End Function
+    Public Overrides Function Delete(ByVal ProtocoloMedicoPuestoTrabajoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        Dim dbo As New DBO_ProtocolosMedicosPuestosTrabajos
+        dbo.searchKey = dbo.item("ProtocoloMedicoPuestoTrabajoID")
+        dbo.searchKey.value = ProtocoloMedicoPuestoTrabajoID
+        Return MyBase.DeleteProcedure(dbo, dtb)
+    End Function
 
 End Class

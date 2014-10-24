@@ -21,7 +21,7 @@ Public Class frmDDDAccionesRealizadas
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboDDDAccionesRealizadas = CType(sp, spDDDAccionesRealizadas).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboDDDAccionesRealizadas = CType(sp, spDDDAccionesRealizadas).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboDDDAccionesRealizadas Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboDDDAccionesRealizadas)
         Else

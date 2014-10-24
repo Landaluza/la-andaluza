@@ -38,23 +38,22 @@ Public Class frmEntempleados_formatosEnvasados
     Overrides Sub SetValores() Implements BasesParaCompatibilidad.Savable.setValores
         Me.m_DBO_empleados_formatosEnvasados = dbo
 
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
         Dim spFormatosEnvasados As New spFormatosEnvasados
-        Dim dboFormato As DBO_FormatosEnvasados = spFormatosEnvasados.Select_Record(Me.m_DBO_empleados_formatosEnvasados.id_formatoEnvasado)
+        Dim dboFormato As DBO_FormatosEnvasados = spFormatosEnvasados.Select_Record(Me.m_DBO_empleados_formatosEnvasados.id_formatoEnvasado, dtb)
         Dim spLineas As New spTiposFormatosLineas
-        Dim dboFormatoLinea As DBO_TiposFormatosLineas = spLineas.Select_Record(dboFormato.TipoFormatoLineaID)
+        Dim dboFormatoLinea As DBO_TiposFormatosLineas = spLineas.Select_Record(dboFormato.TipoFormatoLineaID, dtb)
 
         Dim s2 As New spEmpleados
 
         If Me.ModoDeApertura = INSERCION Then
-            s2.cargar_Empleados_Envasados_libres(Me.cboid_empleado)
+            s2.cargar_Empleados_Envasados_libres(Me.cboid_empleado, dtb)
             Me.cboid_empleado.Enabled = True
-            Dim dbo_formato As DBO_FormatosEnvasados = spFormatosEnvasados.Select_Record(Me.m_DBO_empleados_formatosEnvasados.id_formatoEnvasado)
+            Dim dbo_formato As DBO_FormatosEnvasados = spFormatosEnvasados.Select_Record(Me.m_DBO_empleados_formatosEnvasados.id_formatoEnvasado, dtb)
             dtpInicio.Value = DateTime.Now.Date.Add(dbo_formato.inicio)
             dtpFin.Value = DateTime.Now.Date.Add(dbo_formato.fin)
             ' Me.cbApoyo.Visible = True
         Else
-            s2.cargar_empleados_envasados(Me.cboid_empleado)
+            s2.cargar_empleados_envasados(Me.cboid_empleado, dtb)
             Me.cboid_empleado.Enabled = False
             'Me.cbApoyo.Visible = False
             dtpInicio.Value = DateTime.Now.Date.Add(m_DBO_empleados_formatosEnvasados.Inicio)
@@ -90,9 +89,9 @@ Public Class frmEntempleados_formatosEnvasados
             Dim spAux As New spempleados_formatosEnvasados
             Dim dboF As DBO_FormatosEnvasados
             Dim spf As New spFormatosEnvasados
-            dboF = spf.Select_Record(Me.m_DBO_empleados_formatosEnvasados.id_formatoEnvasado)
+            dboF = spf.Select_Record(Me.m_DBO_empleados_formatosEnvasados.id_formatoEnvasado, dtb)
 
-            If spAux.EstaDesdoblado(m_DBO_empleados_formatosEnvasados, dboF.EnvasadoID, Me.m_DBO_empleados_formatosEnvasados.ID) Then
+            If spAux.EstaDesdoblado(m_DBO_empleados_formatosEnvasados, dboF.EnvasadoID, Me.m_DBO_empleados_formatosEnvasados.ID, dtb) Then
                 errores = errores & "El empleado se encontraba ocupado durante esa hora." & Environment.NewLine
             End If
         End If
@@ -107,55 +106,55 @@ Public Class frmEntempleados_formatosEnvasados
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
         If Me.ModoDeApertura = INSERCION Then
             'If Me.cbApoyo.Checked Then
             If GetValores() Then
-                BasesParaCompatibilidad.BD.EmpezarTransaccion()
+                dtb.EmpezarTransaccion()
                 Try
-                    If Me.sp.Grabar(Me.m_DBO_empleados_formatosEnvasados, BasesParaCompatibilidad.BD.transaction) Then
+                    If Me.sp.Grabar(Me.m_DBO_empleados_formatosEnvasados, dtb) Then
                         If Me.cbApoyo.Checked Then
                             Dim spCausas As New spPartesEnvasados_CausasPartesEnvasado
                             Dim dboCAusas As New DBO_PartesEnvasados_CausasPartesEnvasado
                             Dim spAux As New spempleados_formatosEnvasados
 
-                            dboCAusas.Id_ParteEnvasado = spAux.seleccionarUltimoRegistro(BasesParaCompatibilidad.BD.Cnx, BasesParaCompatibilidad.BD.transaction)
+                            dboCAusas.Id_ParteEnvasado = spAux.seleccionarUltimoRegistro(dtb)
                             dboCAusas.Id_CausaParteEnvasado = 3
 
-                            If Not spCausas.Grabar(dboCAusas, BasesParaCompatibilidad.BD.transaction) Then
-                                BasesParaCompatibilidad.BD.CancelarTransaccion()
+                            If Not spCausas.Grabar(dboCAusas, dtb) Then
+                                dtb.CancelarTransaccion()
                                 MessageBox.Show("No se pudo completar la operacion", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
                                 Return
                             End If
                         End If
-                        BasesParaCompatibilidad.BD.TerminarTransaccion()
+                        dtb.TerminarTransaccion()
                         RaiseEvent afterSave(Me, Nothing)
                         Me.Close()
                     Else
-                        BasesParaCompatibilidad.BD.CancelarTransaccion()
+                        dtb.CancelarTransaccion()
                         MessageBox.Show("No se pudo completar la operacion", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Return
                     End If
                 Catch ex As Exception
-                    BasesParaCompatibilidad.BD.CancelarTransaccion()
+                    dtb.CancelarTransaccion()
                     MessageBox.Show("No se pudo completar la operacion", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Return
                 End Try
             End If
 
-            'MyBase.Guardar(trans)
+            'MyBase.Guardar(me.dtb)
             'End If
         Else
             If GetValores() Then
-                BasesParaCompatibilidad.BD.EmpezarTransaccion()
+                dtb.EmpezarTransaccion()
                 Try
-                    If Me.sp.Grabar(Me.m_DBO_empleados_formatosEnvasados, BasesParaCompatibilidad.BD.transaction) Then
+                    If Me.sp.Grabar(Me.m_DBO_empleados_formatosEnvasados, dtb) Then
                         Dim spCausas As New spPartesEnvasados_CausasPartesEnvasado
                         Dim dboCAusas As New DBO_PartesEnvasados_CausasPartesEnvasado
                         Dim spAux As New spempleados_formatosEnvasados
 
-                        If Not spCausas.DeleteByParte(m_DBO_empleados_formatosEnvasados.ID, BasesParaCompatibilidad.BD.transaction) Then
-                            BasesParaCompatibilidad.BD.CancelarTransaccion()
+                        If Not spCausas.DeleteByParte(m_DBO_empleados_formatosEnvasados.ID, dtb) Then
+                            dtb.CancelarTransaccion()
                             MessageBox.Show("No se pudo completar la operacion", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
                             Return
                         End If
@@ -164,23 +163,23 @@ Public Class frmEntempleados_formatosEnvasados
                             dboCAusas.Id_ParteEnvasado = m_DBO_empleados_formatosEnvasados.ID
                             dboCAusas.Id_CausaParteEnvasado = 3
 
-                            If Not spCausas.Grabar(dboCAusas, BasesParaCompatibilidad.BD.transaction) Then
-                                BasesParaCompatibilidad.BD.CancelarTransaccion()
+                            If Not spCausas.Grabar(dboCAusas, dtb) Then
+                                dtb.CancelarTransaccion()
                                 MessageBox.Show("No se pudo completar la operacion", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
                                 Return
                             End If
                         End If
 
-                        BasesParaCompatibilidad.BD.TerminarTransaccion()
+                        dtb.TerminarTransaccion()
                         RaiseEvent afterSave(Me, Nothing)
                         Me.Close()
                     Else
-                        BasesParaCompatibilidad.BD.CancelarTransaccion()
+                        dtb.CancelarTransaccion()
                         MessageBox.Show("No se pudo completar la operacion", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Return
                     End If
                 Catch ex As Exception
-                    BasesParaCompatibilidad.BD.CancelarTransaccion()
+                    dtb.CancelarTransaccion()
                     MessageBox.Show("No se pudo completar la operacion", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Return
                 End Try
@@ -194,11 +193,10 @@ Public Class frmEntempleados_formatosEnvasados
     End Sub
 
     Private Sub butAddid_empleado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddid_empleado.Click
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
         Dim spFormatosEnvasados As New spFormatosEnvasados
-        Dim dboFormato As DBO_FormatosEnvasados = spFormatosEnvasados.Select_Record(Me.m_DBO_empleados_formatosEnvasados.id_formatoEnvasado)
+        Dim dboFormato As DBO_FormatosEnvasados = spFormatosEnvasados.Select_Record(Me.m_DBO_empleados_formatosEnvasados.id_formatoEnvasado, dtb)
         Dim spLineas As New spTiposFormatosLineas
-        Dim dboFormatoLinea As DBO_TiposFormatosLineas = spLineas.Select_Record(dboFormato.TipoFormatoLineaID)
+        Dim dboFormatoLinea As DBO_TiposFormatosLineas = spLineas.Select_Record(dboFormato.TipoFormatoLineaID, dtb)
 
         Dim v_dbo As New DBO_Empleados_LineasEnvasado
         v_dbo.Id_LineaEnvasado = dboFormatoLinea.LineaEnvasadoID
@@ -206,7 +204,7 @@ Public Class frmEntempleados_formatosEnvasados
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
 
         Dim s As New spEmpleados
-        s.cargar_empleados_por_linea(Me.cboid_empleado, dboFormatoLinea.LineaEnvasadoID)
+        s.cargar_empleados_por_linea(Me.cboid_empleado, dboFormatoLinea.LineaEnvasadoID, dtb)
     End Sub
 
     Private Sub frmEntempleados_formatosEnvasados_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize

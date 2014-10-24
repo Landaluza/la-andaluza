@@ -7,12 +7,12 @@ Class spEnvasadosControles
         MyBase.New("[dbo].[EnvasadosControlesSelect]", "[dbo].[EnvasadosControlesInsert]", "[dbo].[EnvasadosControlesUpdate]", _
                    "[dbo].[EnvasadosControlesDelete]", String.Empty, "EnvasadosControlesSelectDgvByFormatoEnvasadoID")
     End Sub
-    Public Function Select_Record(ByVal EnvasadoControlID As Int32) As DBO_EnvasadosControles
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal EnvasadoControlID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_EnvasadosControles
+        dtb.Conectar()
         Dim DBO_EnvasadosControles As New DBO_EnvasadosControles
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[EnvasadosControlesSelect]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@EnvasadoControlID", EnvasadoControlID)
         Try
@@ -40,18 +40,18 @@ Class spEnvasadosControles
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_EnvasadosControles
     End Function
 
-    Public Function EnvasadosControlesInsert(ByVal dbo_EnvasadosControles As DBO_EnvasadosControles) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function EnvasadosControlesInsert(ByVal dbo_EnvasadosControles As DBO_EnvasadosControles, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[EnvasadosControlesInsert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
-        
+
         insertCommand.Parameters.AddWithValue("@ResponsableID", If(dbo_EnvasadosControles.ResponsableID.HasValue, dbo_EnvasadosControles.ResponsableID, Convert.DBNull))
         insertCommand.Parameters.AddWithValue("@FormatoEnvasadoID", If(dbo_EnvasadosControles.FormatoEnvasadoID.HasValue, dbo_EnvasadosControles.FormatoEnvasadoID, Convert.DBNull))
         insertCommand.Parameters.AddWithValue("@Hora", dbo_EnvasadosControles.Hora)
@@ -64,7 +64,7 @@ Class spEnvasadosControles
         insertCommand.Parameters.AddWithValue("@Observaciones", dbo_EnvasadosControles.Observaciones)
         insertCommand.Parameters.AddWithValue("@FechaModificacion", dbo_EnvasadosControles.FechaModificacion)
         insertCommand.Parameters.AddWithValue("@UsuarioModificacion", dbo_EnvasadosControles.UsuarioModificacion)
-        
+
         insertCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         insertCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
         Try
@@ -78,15 +78,15 @@ Class spEnvasadosControles
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function EnvasadosControlesUpdate(ByVal newDBO_EnvasadosControles As DBO_EnvasadosControles) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function EnvasadosControlesUpdate(ByVal newDBO_EnvasadosControles As DBO_EnvasadosControles, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[EnvasadosControlesUpdate]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         '<Tag=[Three][Start]> -- please do not remove this line
         updateCommand.Parameters.AddWithValue("@NewResponsableID", If(newDBO_EnvasadosControles.ResponsableID.HasValue, newDBO_EnvasadosControles.ResponsableID, Convert.DBNull))
@@ -114,18 +114,18 @@ Class spEnvasadosControles
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdateEnvasadosControles" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdateEnvasadosControles" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function EnvasadosControlesDelete(ByVal EnvasadoControlID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function EnvasadosControlesDelete(ByVal EnvasadoControlID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[EnvasadosControlesDelete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         '<Tag=[Four][Start]> -- please do not remove this line
         deleteCommand.Parameters.AddWithValue("@OldEnvasadoControlID", EnvasadoControlID)
@@ -143,34 +143,31 @@ Class spEnvasadosControles
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Sub GrabarEnvasadosControles(ByVal dbo_EnvasadosControles As DBO_EnvasadosControles)
-        dbo_EnvasadosControles.FechaModificacion = System.DateTime.Now.date
+    Public Sub GrabarEnvasadosControles(ByVal dbo_EnvasadosControles As DBO_EnvasadosControles, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        dbo_EnvasadosControles.FechaModificacion = System.DateTime.Now.Date
         dbo_EnvasadosControles.UsuarioModificacion = BasesParaCompatibilidad.Config.User
         If dbo_EnvasadosControles.EnvasadoControlID = 0 Then
-            EnvasadosControlesInsert(dbo_EnvasadosControles)
+            EnvasadosControlesInsert(dbo_EnvasadosControles, dtb)
         Else
-            EnvasadosControlesUpdate(dbo_EnvasadosControles)
+            EnvasadosControlesUpdate(dbo_EnvasadosControles, dtb)
         End If
     End Sub
 
 
-    Public Function EnvasadosControlesSelecMax() As Integer
+    Public Function EnvasadosControlesSelecMax(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Dim MaxID As Integer = 0
         Try
-            BasesParaCompatibilidad.BD.Conectar()
-            Dim cmd as new System.Data.SqlClient.SqlCommand
-            cmd.CommandType = CommandType.StoredProcedure
-            cmd.Connection = BasesParaCompatibilidad.BD.Cnx
-            cmd.CommandText = "EnvasadosControlesSelecMax"
-            MaxID = (cmd.ExecuteScalar())
-            BasesParaCompatibilidad.BD.Cerrar()
+            dtb.Conectar()
+            Dim cmd As System.Data.SqlClient.SqlCommand = dtb.Comando("EnvasadosControlesSelecMax")
+            MaxID = cmd.ExecuteScalar()
+            dtb.Desconectar()
             Return MaxID
         Catch ex As Exception
-            messagebox.show("Error en EnvasadosControlesSelecMax" & Environment.NewLine & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error en EnvasadosControlesSelecMax" & Environment.NewLine & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return Nothing
         End Try
     End Function

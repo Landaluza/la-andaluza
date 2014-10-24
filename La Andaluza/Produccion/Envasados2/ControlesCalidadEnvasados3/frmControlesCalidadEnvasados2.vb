@@ -29,7 +29,7 @@ Public Class frmControlesCalidadEnvasados2
     Overrides Sub Eliminar()
         If Me.dgvGeneral.RowCount > 0 Then
             If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
-                CType(sp, spControlesCalidadEnvasados2).ControlesCalidadEnvasados2Delete(dgvGeneral.CurrentRow.Cells("ControlCalidadEnvasados2ID").Value)
+                CType(sp, spControlesCalidadEnvasados2).ControlesCalidadEnvasados2Delete(dgvGeneral.CurrentRow.Cells("ControlCalidadEnvasados2ID").Value, dtb)
                 dgvFill()
             End If
         End If
@@ -46,7 +46,7 @@ Public Class frmControlesCalidadEnvasados2
 
             If m_MaestroID <> 0 Then m_ControleCalidadEnvasado2.ControlCalidadEnvasados2ID = m_MaestroID
         Else
-            m_ControleCalidadEnvasado2 = CType(sp, spControlesCalidadEnvasados2).Select_Record(GeneralBindingSource(m_Pos).Item("ControlCalidadEnvasados2ID"))
+            m_ControleCalidadEnvasado2 = CType(sp, spControlesCalidadEnvasados2).Select_Record(GeneralBindingSource(m_Pos).Item("ControlCalidadEnvasados2ID"), dtb)
         End If
 
         frmEnt = New frmEntControlesCalidadEnvasados2(TipoAction, m_ControleCalidadEnvasado2, m_Pos, m_VerID)

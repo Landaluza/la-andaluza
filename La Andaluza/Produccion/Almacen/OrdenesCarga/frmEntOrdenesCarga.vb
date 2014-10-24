@@ -25,7 +25,7 @@ Public Class frmEntOrdenesCarga
 
     Overrides Sub SetValores(ByVal m_ID As Integer, ByVal m_SelectRecord As Boolean)
 
-        If m_SelectRecord Then m_DBO_OrdenesCarga = spOrdenesCarga.Select_Record(m_ID)
+        If m_SelectRecord Then m_DBO_OrdenesCarga = spOrdenesCarga.Select_Record(m_ID, dtb)
         If m_ID > 0 Then
             txtOrdenCargaID.Text = m_DBO_OrdenesCarga.OrdenCargaID
             dtpFecha.Text = m_DBO_OrdenesCarga.Fecha
@@ -42,7 +42,7 @@ Public Class frmEntOrdenesCarga
 
     Overrides Sub Guardar()
         GetValores()
-        spOrdenesCarga.GrabarOrdenesCarga(m_DBO_OrdenesCarga)
+        spOrdenesCarga.GrabarOrdenesCarga(m_DBO_OrdenesCarga, dtb)
         Me.Close()
     End Sub
 

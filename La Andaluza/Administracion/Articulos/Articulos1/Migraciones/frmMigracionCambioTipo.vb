@@ -4,10 +4,11 @@
 Public Class frmMigracionCambioTipo
     Private m_dbo_mantener As DBO_Articulos1
     Private m_dbo_borrar As DBO_Articulos1
-
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New(ByVal id As Integer)
         InitializeComponent()
 
+        dtb = New BasesParaCompatibilidad.DataBase
         Me.m_dbo_mantener = New DBO_Articulos1
         Me.m_dbo_mantener.ID = id
     End Sub
@@ -17,10 +18,9 @@ Public Class frmMigracionCambioTipo
     End Sub
 
     Private Sub btnAceptar_Click(sender As System.Object, e As System.EventArgs) Handles btnAceptar.Click
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
         dtb.EmpezarTransaccion()
 
-        Dim migrateCommand as System.Data.SqlClient.SqlCommand = dtb.Comando("[dbo].[ArticulosMigrarTipo]")
+        Dim migrateCommand As System.Data.SqlClient.SqlCommand = dtb.Comando("[dbo].[ArticulosMigrarTipo]")
 
         Try
             migrateCommand.Transaction = dtb.Transaccion
@@ -50,7 +50,6 @@ Public Class frmMigracionCambioTipo
     End Sub
 
     Private Sub frmMigracionEntreArticulos_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
         cboArticulo.mam_DataSource("Articulos1_ArticulosTiposCboRestringido", False, dtb)
     End Sub
 End Class

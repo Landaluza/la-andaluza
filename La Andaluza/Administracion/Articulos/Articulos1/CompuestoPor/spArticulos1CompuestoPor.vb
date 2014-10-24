@@ -1,26 +1,25 @@
 ﻿Public Class spArticulos1CompuestoPor
-    Private dtb as BasesParaCompatibilidad.Database
 
     Public Sub New()
-        dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+
     End Sub
 
-    Public Function DataTableFill(ByVal id As Integer) As DataTable
+    Public Function DataTableFill(ByVal id As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
         dtb.PrepararConsulta("select articuloid, descripcionLa, cantidad, costeUnitario, cantidad*costeunitario subtotal from articulos1_articulos1_compuestoPor, articulos1 where id_articuloCompuestopor = articuloid and id_articulo = @id")
         dtb.AñadirParametroConsulta("@id", id)
         Return dtb.Consultar
     End Function
 
-    Public Function Eliminar(ByVal id As Integer, ByVal id2 As Integer) As Boolean
+    Public Function Eliminar(ByVal id As Integer, ByVal id2 As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         dtb.EmpezarTransaccion()
         Dim spArticulos1 As New spArticulos1
         Dim spdoypack As New spdoypack
         Try
             Dim retorno As Boolean = True
-            Dim m_art_aux As DBO_Articulos1 = spArticulos1.Select_Record(id, dtb.Transaccion)
+            Dim m_art_aux As DBO_Articulos1 = spArticulos1.Select_Record(id, dtb)
 
             If m_art_aux.ArticuloTpoID = 10 Then
-                m_art_aux = spArticulos1.Select_Record(id2, dtb.Transaccion)
+                m_art_aux = spArticulos1.Select_Record(id2, dtb)
                 If m_art_aux.ArticuloTpoID = 9 Then
                     dtb.PrepararConsulta("update articulosenvasesterciarios set id_articuloenvasesecundario=null where articuloID= @id")
                     dtb.AñadirParametroConsulta("@id", id)
@@ -54,12 +53,12 @@
         End Try
     End Function
 
-    Public Function CargarCombo(ByVal id As Integer) As DataTable
+    Public Function CargarCombo(ByVal id As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
         Dim spArticulos1 As New spArticulos1
         Dim spArticulosEnvasesTerciarios1 As New spArticulosEnvasesTerciarios
-        Dim m_aux As DBO_Articulos1 = spArticulos1.Select_Record(id, dtb.Transaccion)
+        Dim m_aux As DBO_Articulos1 = spArticulos1.Select_Record(id, dtb)
         If m_aux.ArticuloTpoID = 10 Then 'ArticuloTerciario
-            Dim m_ter_aux As DBO_ArticulosEnvasesTerciarios = spArticulosEnvasesTerciarios1.Select_RecordByArticuloID(id, dtb.Transaccion)
+            Dim m_ter_aux As DBO_ArticulosEnvasesTerciarios = spArticulosEnvasesTerciarios1.Select_RecordByArticuloID(id, dtb)
             If Not IsDBNull(m_ter_aux.id_ArticuloEnvaseSecundario) Then
                 If m_ter_aux.id_ArticuloEnvaseSecundario <> 0 Then
                     dtb.PrepararConsulta("select articuloId, descripcionLA from articulos1 where articulos1.articuloID not in(select isnull(articulosenvasessecundarios.articuloID,0) from articulosenvasessecundarios)")
@@ -79,24 +78,24 @@
         Return dtb.Consultar
     End Function
 
-    Public Function CargarCombo1(ByVal id As Integer) As DataTable
+    Public Function CargarCombo1(ByVal id As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
         dtb.PrepararConsulta("select ArticuloID, DescripcionLA from Articulos1 WHERE Articulos1.ArticuloTpoID = @id")
         dtb.AñadirParametroConsulta("@id", id)
         Return dtb.Consultar
     End Function
 
     'si es secundario sobre terciario actualizar el terciario
-    Public Function Insertar(p1 As Integer, p2 As Integer, p3 As Double, Optional formato As Integer = Nothing) As Boolean
+    Public Function Insertar(p1 As Integer, p2 As Integer, p3 As Double, ByRef dtb As BasesParaCompatibilidad.DataBase, Optional formato As Integer = Nothing) As Boolean
         dtb.EmpezarTransaccion()
         Dim retorno As Boolean = True
         Dim spArticulos1 As New spArticulos1
         Try
-            Dim m_aux As DBO_Articulos1 = spArticulos1.Select_Record(p1, dtb.Transaccion)
+            Dim m_aux As DBO_Articulos1 = spArticulos1.Select_Record(p1, dtb)
             If m_aux.ArticuloTpoID = 10 Then
-                m_aux = spArticulos1.Select_Record(p2, dtb.Transaccion)
+                m_aux = spArticulos1.Select_Record(p2, dtb)
                 If m_aux.ArticuloTpoID = 9 Then
                     Dim spArticulosEnvasesSecundarios As New spArticulosEnvasesSecundarios
-                    Dim m_sec_aux As DBO_ArticulosEnvasesSecundarios = spArticulosEnvasesSecundarios.Select_RecordByArticuloID(p2, dtb.Transaccion)
+                    Dim m_sec_aux As DBO_ArticulosEnvasesSecundarios = spArticulosEnvasesSecundarios.Select_RecordByArticuloID(p2, dtb)
                     dtb.PrepararConsulta("update articulosenvasesterciarios set id_articuloenvasesecundario = @sec where articuloid = @art")
                     dtb.AñadirParametroConsulta("@sec", m_sec_aux.ID)
                     dtb.AñadirParametroConsulta("@art", p1)
@@ -132,7 +131,7 @@
         End Try
     End Function
 
-    Public Function Actualizar(p1 As Integer, p2 As Integer, p3 As Double) As Boolean
+    Public Function Actualizar(p1 As Integer, p2 As Integer, p3 As Double, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Dim retorno As Boolean = True
         dtb.EmpezarTransaccion()
 

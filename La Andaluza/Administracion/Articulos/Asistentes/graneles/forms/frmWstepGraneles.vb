@@ -13,7 +13,7 @@ Public Class frmWstepGraneles
 
         InitializeComponent()
 
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.DataBase()
         Me.m_DBO_ArticuloGranel = New DBO_ArticulosGraneles
         m_DBO_TiposProductos = New DBO_TiposProductos
         spTiposProductos = New spTiposProductos
@@ -26,12 +26,12 @@ Public Class frmWstepGraneles
 
         InitializeComponent()
 
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.DataBase()
         m_DBO_TiposProductos = New DBO_TiposProductos
         spTiposProductos = New spTiposProductos
         spArticulosGraneles = New spArticulosGraneles
         spArticulos_ArticulosCertificadosTipos = New spArticulos_ArticulosCertificadosTipos
-        Me.m_DBO_ArticuloGranel = spArticulosGraneles.Select_RecordByArticuloID(articuloid)
+        Me.m_DBO_ArticuloGranel = spArticulosGraneles.Select_RecordByArticuloID(articuloid, dtb)
         Me.cbCreartipoProducto.Visible = False
         Me.panNuevoTipoProducto.Visible = False
         EstablecerValores()
@@ -115,9 +115,9 @@ Public Class frmWstepGraneles
     End Function
 
     Public Sub EstablecerValores() Implements wizardable.EstablecerValores
-        Me.cboGranelTipoID.mam_DataSource("ArticulosGraneles_ArticulosGranelesTiposCbo", False)
-        spTiposProductos.cargar_ComboBox(Me.cboTipoProducto)
-        spTiposProductos.cargar_MedidasProductos(Me.cbMedidas)
+        Me.cboGranelTipoID.mam_DataSource("ArticulosGraneles_ArticulosGranelesTiposCbo", False, dtb)
+        spTiposProductos.cargar_ComboBox(Me.cboTipoProducto, dtb)
+        spTiposProductos.cargar_MedidasProductos(Me.cbMedidas, dtb)
 
         Dim spArticulos1 As New spArticulos1
         Dim cb As System.Windows.Forms.CheckBox
@@ -139,7 +139,7 @@ Public Class frmWstepGraneles
 
             Me.cboGranelTipoID.SelectedValue = Me.m_DBO_ArticuloGranel.GranelTipoID
 
-            dt = spArticulos1.certificadosByArticuloId(Me.m_DBO_ArticuloGranel.ArticuloID)
+            dt = spArticulos1.certificadosByArticuloId(Me.m_DBO_ArticuloGranel.ArticuloID, dtb)
 
             Me.txtDensidad.Text = Me.m_DBO_ArticuloGranel.Densidad
             Me.cboUnidad.SelectedIndex = Me.m_DBO_ArticuloGranel.UnidadID - 1
@@ -161,7 +161,7 @@ Public Class frmWstepGraneles
         If Me.cbCreartipoProducto.Checked Then
             Me.m_DBO_TiposProductos.resetKey()
 
-            If Not Me.spTiposProductos.Grabar(Me.m_DBO_TiposProductos, BasesParaCompatibilidad.BD.transaction) Then
+            If Not Me.spTiposProductos.Grabar(Me.m_DBO_TiposProductos, dtb) Then
                 Return False
             Else
                 Me.m_DBO_ArticuloGranel.TipoProductoID = dtb.Consultar("select max(tipoProductoid) from tiposProductos", False).Rows(0).Item(0)
@@ -170,8 +170,8 @@ Public Class frmWstepGraneles
             Me.m_DBO_ArticuloGranel.TipoProductoID = Me.cboTipoProducto.SelectedValue
         End If
 
-        If spArticulosGraneles.GrabarArticulosGranelesSinTransaccion(m_DBO_ArticuloGranel, BasesParaCompatibilidad.BD.transaction) Then
-            If spArticulos_ArticulosCertificadosTipos.Articulos_ArticulosCertificadosTiposDeleteByArticuloIDSinTransaccion(Me.m_DBO_ArticuloGranel.ArticuloID, BasesParaCompatibilidad.BD.transaction) Then
+        If spArticulosGraneles.GrabarArticulosGranelesSinTransaccion(m_DBO_ArticuloGranel, dtb) Then
+            If spArticulos_ArticulosCertificadosTipos.Articulos_ArticulosCertificadosTiposDeleteByArticuloIDSinTransaccion(Me.m_DBO_ArticuloGranel.ArticuloID, dtb) Then
                 Dim cb As System.Windows.Forms.CheckBox
                 Dim dbo_cert As DBO_Articulos_ArticulosCertificadosTipos
 
@@ -181,7 +181,7 @@ Public Class frmWstepGraneles
                         dbo_cert.ArticuloCertificadoTipoID = cb.Tag
                         dbo_cert.ArticuloID = Me.m_DBO_ArticuloGranel.ArticuloID
                         dbo_cert.Observaciones = String.Empty
-                        If Not spArticulos_ArticulosCertificadosTipos.Articulos_ArticulosCertificadosTiposInsertSinTransaccion(dbo_cert, BasesParaCompatibilidad.BD.transaction) Then
+                        If Not spArticulos_ArticulosCertificadosTipos.Articulos_ArticulosCertificadosTiposInsertSinTransaccion(dbo_cert, dtb) Then
                             Return False
                         End If
                     End If
@@ -216,6 +216,6 @@ Public Class frmWstepGraneles
     Private Sub butaddTProducto_Click(sender As System.Object, e As System.EventArgs) Handles butaddTProducto.Click
         Dim frm As New frmTiposProductos
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
-        spTiposProductos.cargar_ComboBox(Me.cboTipoProducto)
+        spTiposProductos.cargar_ComboBox(Me.cboTipoProducto, dtb)
     End Sub
 End Class

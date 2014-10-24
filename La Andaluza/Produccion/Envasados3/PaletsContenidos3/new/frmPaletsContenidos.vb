@@ -66,7 +66,7 @@ Public Class frmPaletsContenidos
         Me.envasadoid = envasado
         'Me.mFecha = fechaEnvasado
 
-        If Me.spMovimientos.comprobarFormatoEncajado(Me.mTipoFormatoEnvasadoID) Then
+        If Me.spMovimientos.comprobarFormatoEncajado(Me.mTipoFormatoEnvasadoID, dtb) Then
             Me.butModificar.Visible = False
         Else
             Me.butModificar.Visible = True
@@ -90,8 +90,8 @@ Public Class frmPaletsContenidos
             dboPaletsContenidos.id_formatoEnvasado = m_maestro2
         End If
 
-        If Me.spMovimientos.comprobarFormatoEncajado(Me.mTipoFormatoEnvasadoID) Then
-            If Not Me.monodosis.EsDoyPack(mTipoFormatoEnvasadoID) Then
+        If Me.spMovimientos.comprobarFormatoEncajado(Me.mTipoFormatoEnvasadoID, dtb) Then
+            If Not Me.monodosis.EsDoyPack(mTipoFormatoEnvasadoID, dtb) Then
                 Dim frm As New frmEntPaletsContenidosMonodosis(Me.mLinea, Me.mTipoFormatoEnvasadoID, Me.envasadoid, BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, sp, Me.dboPaletsContenidos)
                 AddHandler frm.afterSave, AddressOf Me.dgvFill
                 AddHandler frm.afterSave, AddressOf Me.is_complete
@@ -112,10 +112,10 @@ Public Class frmPaletsContenidos
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboPaletsContenidos = CType(sp, spPaletsContenidos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboPaletsContenidos = CType(sp, spPaletsContenidos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboPaletsContenidos Is Nothing Then
 
-            If Me.spMovimientos.comprobarFormatoEncajado(mTipoFormatoEnvasadoID) Then
+            If Me.spMovimientos.comprobarFormatoEncajado(mTipoFormatoEnvasadoID, dtb) Then
                 MessageBox.Show("No se puede modificar un encajado", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 'If Not Me.monodosis.EsDoyPack(mTipoFormatoEnvasadoID) Then
                 'MyBase.newRegForm = New frmEntPaletsContenidosMonodosis(BasesParaCompatibilidad.GridSimpleForm.ACCION_MODIFICAR, sp, Me.dboPaletsContenidos)

@@ -32,7 +32,7 @@ Public Class frmEntNoticias2
         Return False
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing)
         Me.Close()
     End Sub
 

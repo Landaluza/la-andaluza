@@ -48,7 +48,7 @@ Public Class frmEntPaletsAlmacenEntradas
 
     Overrides Sub Guardar()
         GetValores()
-        spPaletsAlmacenEntradas.GrabarPaletsAlmacenEntradas(m_DBO_PaletsAlmacenEntrada)
+        spPaletsAlmacenEntradas.GrabarPaletsAlmacenEntradas(m_DBO_PaletsAlmacenEntrada, dtb)
         Me.Close()
     End Sub
 

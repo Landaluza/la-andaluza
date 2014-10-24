@@ -13,23 +13,23 @@ Inherits BasesParaCompatibilidad.StoredProcedure
                      "[dbo].[ProtocolosMedicosSelectDgvBy]")
    End Sub
 
-   Public Overloads Function Select_Record(ByVal ProtocoloMedicoID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As DBO_ProtocolosMedicos
-       Dim dbo As New DBO_ProtocolosMedicos
-       dbo.searchKey = dbo.item("ProtocoloMedicoID")
-       dbo.searchKey.value = ProtocoloMedicoID
-       MyBase.Select_Record(dbo, trans)
-       Return dbo
-   End Function
+    Public Overloads Function Select_Record(ByVal ProtocoloMedicoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_ProtocolosMedicos
+        Dim dbo As New DBO_ProtocolosMedicos
+        dbo.searchKey = dbo.item("ProtocoloMedicoID")
+        dbo.searchKey.value = ProtocoloMedicoID
+        MyBase.Select_Record(dbo, dtb)
+        Return dbo
+    End Function
 
-   Public Overrides Function Delete(ByVal ProtocoloMedicoID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As Boolean
-       Dim dbo As New DBO_ProtocolosMedicos
-       dbo.searchKey = dbo.item("ProtocoloMedicoID")
-       dbo.searchKey.value = ProtocoloMedicoID
-       return MyBase.DeleteProcedure(dbo,  trans)
-   End Function
+    Public Overrides Function Delete(ByVal ProtocoloMedicoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        Dim dbo As New DBO_ProtocolosMedicos
+        dbo.searchKey = dbo.item("ProtocoloMedicoID")
+        dbo.searchKey.value = ProtocoloMedicoID
+        Return MyBase.DeleteProcedure(dbo, dtb)
+    End Function
 
-    Sub cargar_ProtocolosMedicos(ByRef comboBox As ComboBox)
-        comboBox.mam_DataSource("[ProtocolosMedicosSelectCbo]", False)
+    Sub cargar_ProtocolosMedicos(ByRef comboBox As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        comboBox.mam_DataSource("[ProtocolosMedicosSelectCbo]", False, dtb)
     End Sub
 
 End Class

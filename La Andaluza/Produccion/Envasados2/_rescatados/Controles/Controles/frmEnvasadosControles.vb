@@ -28,7 +28,7 @@ Public Class frmEnvasadosControles
 
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
-            If CType(sp, spEnvasadosControles).EnvasadosControlesDelete(dgvGeneral.CurrentRow.Cells("EnvasadoControlID").Value) Then
+            If CType(sp, spEnvasadosControles).EnvasadosControlesDelete(dgvGeneral.CurrentRow.Cells("EnvasadoControlID").Value, dtb) Then
                 dgvFill()
             End If
         End If
@@ -41,7 +41,7 @@ Public Class frmEnvasadosControles
         If TipoAction = ACCION_INSERTAR Then
             If m_MaestroID <> 0 Then m_EnvasadoControles.FormatoEnvasadoID = m_MaestroID
         Else
-            m_EnvasadoControles = CType(sp, spEnvasadosControles).Select_Record(GeneralBindingSource(m_Pos).Item("EnvasadoControlID"))
+            m_EnvasadoControles = CType(sp, spEnvasadosControles).Select_Record(GeneralBindingSource(m_Pos).Item("EnvasadoControlID"), dtb)
         End If
 
         'Como el Form auxiliar depende de la linea.
@@ -51,29 +51,29 @@ Public Class frmEnvasadosControles
             Case Is = 1
                 Dim spEnvasadosControles1 As New spEnvasadosControles1
                 'Hay que comentar esta linea  "DBO_EnvasadosControles1 = Nothing" en el sp correspondiente
-                m_DBO_EnvasadoControlLinea = spEnvasadosControles1.SelectByEnvasadoControlID(m_EnvasadoControles.EnvasadoControlID)
+                m_DBO_EnvasadoControlLinea = spEnvasadosControles1.SelectByEnvasadoControlID(m_EnvasadoControles.EnvasadoControlID, dtb)
                 m_FormLinea = New frmEntEnvasadosControles1(TipoAction, m_DBO_EnvasadoControlLinea)
             Case Is = 7
                 Dim spEnvasadosControles7 As New spEnvasadosControles7
                 'Hay que comentar esta linea  "DBO_EnvasadosControles1 = Nothing" en el sp correspondiente
-                m_DBO_EnvasadoControlLinea = spEnvasadosControles7.SelectByEnvasadoControlID(m_EnvasadoControles.EnvasadoControlID)
+                m_DBO_EnvasadoControlLinea = spEnvasadosControles7.SelectByEnvasadoControlID(m_EnvasadoControles.EnvasadoControlID, dtb)
                 m_FormLinea = New frmEntEnvasadosControles7(TipoAction, m_DBO_EnvasadoControlLinea)
             Case Is = 8
                 Dim spEnvasadosControles1 As New spEnvasadosControles1
                 'Hay que comentar esta linea  "DBO_EnvasadosControles1 = Nothing" en el sp correspondiente
-                m_DBO_EnvasadoControlLinea = spEnvasadosControles1.SelectByEnvasadoControlID(m_EnvasadoControles.EnvasadoControlID)
+                m_DBO_EnvasadoControlLinea = spEnvasadosControles1.SelectByEnvasadoControlID(m_EnvasadoControles.EnvasadoControlID, dtb)
                 m_FormLinea = New frmEntEnvasadosControles1(TipoAction, m_DBO_EnvasadoControlLinea)
             Case Is = 2
                 Dim spEnvasadosControles2 As New spEnvasadosControles2
-                m_DBO_EnvasadoControlLinea = spEnvasadosControles2.SelectByEnvasadoControlID(m_EnvasadoControles.EnvasadoControlID)
+                m_DBO_EnvasadoControlLinea = spEnvasadosControles2.SelectByEnvasadoControlID(m_EnvasadoControles.EnvasadoControlID, dtb)
                 m_FormLinea = New frmEntEnvasadosControles2(TipoAction, m_DBO_EnvasadoControlLinea)
             Case Is = 3 'Ulma
                 Dim spEnvasadosControlesUlma As New spEnvasadosControlesUlma
-                m_DBO_EnvasadoControlLinea = spEnvasadosControlesUlma.SelectByEnvasadoControlID(m_EnvasadoControles.EnvasadoControlID)
+                m_DBO_EnvasadoControlLinea = spEnvasadosControlesUlma.SelectByEnvasadoControlID(m_EnvasadoControles.EnvasadoControlID, dtb)
                 m_FormLinea = New frmEntEnvasadosControlesUlma(TipoAction, m_DBO_EnvasadoControlLinea)
             Case Is = 5 'Imar
                 Dim spEnvasadosControlesImar As New spEnvasadosControlesImar
-                m_DBO_EnvasadoControlLinea = spEnvasadosControlesImar.SelectByEnvasadoControlID(m_EnvasadoControles.EnvasadoControlID)
+                m_DBO_EnvasadoControlLinea = spEnvasadosControlesImar.SelectByEnvasadoControlID(m_EnvasadoControles.EnvasadoControlID, dtb)
                 m_FormLinea = New frmEntEnvasadosControlesImar(TipoAction, m_DBO_EnvasadoControlLinea)
             Case Else
                 Return

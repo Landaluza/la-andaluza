@@ -6,12 +6,12 @@ Public Class spPropuestas2
     Public Sub New()
         MyBase.New("[dbo].[Propuestas2Select]", "[dbo].[Propuestas2Insert]", "[dbo].[Propuestas2Update]", "[dbo].[Propuestas2Delete]", "Propuestas2SelectPorFormatoEnvasado ", "Propuestas2SelectPorFormatoEnvasado ")
     End Sub
-    Public Function Select_Record(ByVal PropuestaID As Int32) As DBO_Propuestas2
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal PropuestaID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_Propuestas2
+        dtb.Conectar()
         Dim DBO_Propuestas2 As DBO_Propuestas2 = DBO_Propuestas2.Instance
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[Propuestas2Select]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@PropuestaID", PropuestaID)
         Try
@@ -37,22 +37,22 @@ Public Class spPropuestas2
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_Propuestas2
     End Function
 
-    Public Function Propuestas2Insert(ByVal dbo_Propuestas2 As DBO_Propuestas2) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function Propuestas2Insert(ByVal dbo_Propuestas2 As DBO_Propuestas2, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[Propuestas2Insert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
-        insertCommand.Parameters.AddWithValue("@Descripcion", if(dbo_Propuestas2.Descripcion_IsDBNull = True, Convert.DBNull, dbo_Propuestas2.Descripcion))
-        insertCommand.Parameters.AddWithValue("@PropuestaTipoMejoraID", if(dbo_Propuestas2.PropuestaTipoMejoraID_IsDBNull = True, Convert.DBNull, dbo_Propuestas2.PropuestaTipoMejoraID))
-        insertCommand.Parameters.AddWithValue("@PropuestaUrgenciaID", if(dbo_Propuestas2.PropuestaUrgenciaID_IsDBNull = True, Convert.DBNull, dbo_Propuestas2.PropuestaUrgenciaID))
-        insertCommand.Parameters.AddWithValue("@PersonalID", if(dbo_Propuestas2.PersonalID_IsDBNull = True, Convert.DBNull, dbo_Propuestas2.PersonalID))
-        insertCommand.Parameters.AddWithValue("@FormatoEnvasadoID", if(dbo_Propuestas2.FormatoEnvasadoID_IsDBNull = True, Convert.DBNull, dbo_Propuestas2.FormatoEnvasadoID))
+        insertCommand.Parameters.AddWithValue("@Descripcion", If(dbo_Propuestas2.Descripcion_IsDBNull = True, Convert.DBNull, dbo_Propuestas2.Descripcion))
+        insertCommand.Parameters.AddWithValue("@PropuestaTipoMejoraID", If(dbo_Propuestas2.PropuestaTipoMejoraID_IsDBNull = True, Convert.DBNull, dbo_Propuestas2.PropuestaTipoMejoraID))
+        insertCommand.Parameters.AddWithValue("@PropuestaUrgenciaID", If(dbo_Propuestas2.PropuestaUrgenciaID_IsDBNull = True, Convert.DBNull, dbo_Propuestas2.PropuestaUrgenciaID))
+        insertCommand.Parameters.AddWithValue("@PersonalID", If(dbo_Propuestas2.PersonalID_IsDBNull = True, Convert.DBNull, dbo_Propuestas2.PersonalID))
+        insertCommand.Parameters.AddWithValue("@FormatoEnvasadoID", If(dbo_Propuestas2.FormatoEnvasadoID_IsDBNull = True, Convert.DBNull, dbo_Propuestas2.FormatoEnvasadoID))
         insertCommand.Parameters.AddWithValue("@FechaModificacion", dbo_Propuestas2.FechaModificacion)
         insertCommand.Parameters.AddWithValue("@UsuarioModificacion", dbo_Propuestas2.UsuarioModificacion)
         insertCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
@@ -68,21 +68,21 @@ Public Class spPropuestas2
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function Propuestas2Update(ByVal newDBO_Propuestas2 As DBO_Propuestas2) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function Propuestas2Update(ByVal newDBO_Propuestas2 As DBO_Propuestas2, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[Propuestas2Update]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
-        updateCommand.Parameters.AddWithValue("@NewDescripcion", if(newDBO_Propuestas2.Descripcion_IsDBNull = True, Convert.DBNull, newDBO_Propuestas2.Descripcion))
-        updateCommand.Parameters.AddWithValue("@NewPropuestaTipoMejoraID", if(newDBO_Propuestas2.PropuestaTipoMejoraID_IsDBNull = True, Convert.DBNull, newDBO_Propuestas2.PropuestaTipoMejoraID))
-        updateCommand.Parameters.AddWithValue("@NewPropuestaUrgenciaID", if(newDBO_Propuestas2.PropuestaUrgenciaID_IsDBNull = True, Convert.DBNull, newDBO_Propuestas2.PropuestaUrgenciaID))
-        updateCommand.Parameters.AddWithValue("@NewPersonalID", if(newDBO_Propuestas2.PersonalID_IsDBNull = True, Convert.DBNull, newDBO_Propuestas2.PersonalID))
-        updateCommand.Parameters.AddWithValue("@NewFormatoEnvasadoID", if(newDBO_Propuestas2.FormatoEnvasadoID_IsDBNull = True, Convert.DBNull, newDBO_Propuestas2.FormatoEnvasadoID))
+        updateCommand.Parameters.AddWithValue("@NewDescripcion", If(newDBO_Propuestas2.Descripcion_IsDBNull = True, Convert.DBNull, newDBO_Propuestas2.Descripcion))
+        updateCommand.Parameters.AddWithValue("@NewPropuestaTipoMejoraID", If(newDBO_Propuestas2.PropuestaTipoMejoraID_IsDBNull = True, Convert.DBNull, newDBO_Propuestas2.PropuestaTipoMejoraID))
+        updateCommand.Parameters.AddWithValue("@NewPropuestaUrgenciaID", If(newDBO_Propuestas2.PropuestaUrgenciaID_IsDBNull = True, Convert.DBNull, newDBO_Propuestas2.PropuestaUrgenciaID))
+        updateCommand.Parameters.AddWithValue("@NewPersonalID", If(newDBO_Propuestas2.PersonalID_IsDBNull = True, Convert.DBNull, newDBO_Propuestas2.PersonalID))
+        updateCommand.Parameters.AddWithValue("@NewFormatoEnvasadoID", If(newDBO_Propuestas2.FormatoEnvasadoID_IsDBNull = True, Convert.DBNull, newDBO_Propuestas2.FormatoEnvasadoID))
         updateCommand.Parameters.AddWithValue("@NewFechaModificacion", newDBO_Propuestas2.FechaModificacion)
         updateCommand.Parameters.AddWithValue("@NewUsuarioModificacion", newDBO_Propuestas2.UsuarioModificacion)
         updateCommand.Parameters.AddWithValue("@OldPropuestaID", newDBO_Propuestas2.PropuestaID)
@@ -97,18 +97,18 @@ Public Class spPropuestas2
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdatePropuestas2" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdatePropuestas2" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function Propuestas2Delete(ByVal PropuestaID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function Propuestas2Delete(ByVal PropuestaID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[Propuestas2Delete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         deleteCommand.Parameters.AddWithValue("@OldPropuestaID", PropuestaID)
         deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
@@ -124,15 +124,15 @@ Public Class spPropuestas2
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function GrabarPropuestas2(ByVal dbo_Propuestas2 As DBO_Propuestas2) As Boolean
+    Public Function GrabarPropuestas2(ByVal dbo_Propuestas2 As DBO_Propuestas2, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         If dbo_Propuestas2.PropuestaID = 0 Then
-            Return Propuestas2Insert(dbo_Propuestas2)
+            Return Propuestas2Insert(dbo_Propuestas2, dtb)
         Else
-            Return Propuestas2Update(dbo_Propuestas2)
+            Return Propuestas2Update(dbo_Propuestas2, dtb)
         End If
     End Function
 

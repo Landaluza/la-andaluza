@@ -9,14 +9,14 @@ Class spFormatosEnvasados2
                    String.Empty, "Envasados4SelectFormatos")
 
     End Sub
-    'Public Function Select_Record(ByVal FormatoEnvasadoID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As DBO_FormatosEnvasados
-    '    BasesParaCompatibilidad.BD.Conectar()
+    'Public Function Select_Record(ByVal FormatoEnvasadoID As Int32,ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_FormatosEnvasados
+    '    dtb.Conectar 
     '    Dim Dbo_FormatosEnvasados2 As New DBO_FormatosEnvasados
     '    Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
     '    Dim selectProcedure As String = "[dbo].[FormatosEnvasados2Select]"
-    '    Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+    '    Dim selectCommand As  System.Data.SqlClient.SqlCommand= dtb.comando(selectProcedure)
     '    selectCommand.CommandType = CommandType.StoredProcedure
-    '    If Not trans Is Nothing Then selectCommand.Transaction = trans
+    '    
     '    selectCommand.Parameters.AddWithValue("@FormatoEnvasadoID", FormatoEnvasadoID)
     '    Try
     '        Dim reader As System.Data.SqlClient.SqlDataReader  = selectCommand.ExecuteReader(CommandBehavior.SingleRow)
@@ -30,7 +30,7 @@ Class spFormatosEnvasados2
     '    Catch ex As System.Data.SqlClient.SqlException
     '        messagebox.show(ex.Message, "Error", MessageBoxButtons.OK , MessageBoxIcon.Error )
     '    Finally
-    '        If trans Is Nothing Then connection.Close()
+    '        dtb.Desconectar 
     '    End Try
     '    Return Dbo_FormatosEnvasados2
     'End Function
@@ -38,9 +38,9 @@ Class spFormatosEnvasados2
 
 
     'Public Function Select_Record(ByVal FormatoEnvasadoID As Int32, ByRef dbt as BasesParaCompatibilidad.Database) As DBO_FormatosEnvasados
-    '    If dbt.Transaccion Is Nothing Then dtb.Conectar()
+    '    If dtb.Transaccion Is Nothing Then dtb.Conectar()
     '    Dim Dbo_FormatosEnvasados3 As New DBO_FormatosEnvasados
-    '    Dim selectCommand As System.Data.SqlClient.SqlCommand = dbt.Comando("[dbo].[FormatosEnvasados2Select2]")
+    '    Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.Comando("[dbo].[FormatosEnvasados2Select2]")
     '    selectCommand.CommandType = CommandType.StoredProcedure
 
     '    selectCommand.Parameters.AddWithValue("@FormatoEnvasadoID", FormatoEnvasadoID)
@@ -58,16 +58,16 @@ Class spFormatosEnvasados2
     '    Catch ex As System.Data.SqlClient.SqlException
     '        messagebox.show(ex.Message, "Error", MessageBoxButtons.OK , MessageBoxIcon.Error )
     '    Finally
-    '        If dbt.Transaccion Is Nothing Then dbt.DesBasesParaCompatibilidad.BD.Conectar()
+    '        If dtb.Transaccion Is Nothing Then dtb.Desdtb.Conectar 
     '    End Try
     '    Return Dbo_FormatosEnvasados3
     'End Function
 
-    Public Function InsertFormatosEnvasados2(ByVal dbo_FormatosEnvasados2 As DBO_FormatosEnvasados) As Integer
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+    Public Function InsertFormatosEnvasados2(ByVal dbo_FormatosEnvasados2 As DBO_FormatosEnvasados, ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[FormatosEnvasados2Insert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
         insertCommand.Parameters.AddWithValue("@TipoFormatoEnvasadoID", dbo_FormatosEnvasados2.TipoFormatoEnvasadoID)
         insertCommand.Parameters.AddWithValue("@TipoFormatoLineaID", dbo_FormatosEnvasados2.TipoFormatoLineaID)
@@ -81,18 +81,18 @@ Class spFormatosEnvasados2
             Dim count As Integer = System.Convert.ToInt32(insertCommand.Parameters("@ReturnValue").Value)
             Return count
         Catch ex As System.Data.SqlClient.SqlException
-            messagebox.show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function UpdateFormatosEnvasados2(ByVal FormatosEnvasados2 As DBO_FormatosEnvasados) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+    Public Function UpdateFormatosEnvasados2(ByVal FormatosEnvasados2 As DBO_FormatosEnvasados, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[FormatosEnvasados2Update]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         updateCommand.Parameters.AddWithValue("@NewTipoFormatoEnvasadoID", FormatosEnvasados2.TipoFormatoEnvasadoID)
         updateCommand.Parameters.AddWithValue("@NewTipoFormatoLineaID", FormatosEnvasados2.TipoFormatoLineaID)
@@ -114,16 +114,16 @@ Class spFormatosEnvasados2
             MessageBox.Show("Error en UpdateFormatosEnvasados2" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function isDeleteAllowed(ByVal FormatoEnvasadoID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+    Public Function isDeleteAllowed(ByVal FormatoEnvasadoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
 
         Dim proc As String = "[dbo].[FormatosEnvasados2esPermitidoBorrar]"
-        Dim query As New System.Data.SqlClient.SqlCommand(proc, connection)
+        Dim query As System.Data.SqlClient.SqlCommand = dtb.Comando(proc)
         query.CommandType = CommandType.StoredProcedure
         query.Parameters.AddWithValue("@FormatoID", FormatoEnvasadoID)
         query.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
@@ -138,14 +138,14 @@ Class spFormatosEnvasados2
         End If
     End Function
 
-    Public Function DeleteFormatosEnvasados2(ByVal FormatoEnvasadoID As Int32, ByVal borradoCompleto As Boolean) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+    Public Function DeleteFormatosEnvasados2(ByVal FormatoEnvasadoID As Int32, ByVal borradoCompleto As Boolean, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Try
             Dim response As DialogResult = DialogResult.Cancel
 
             Dim deleteProcedure As String = "[dbo].[FormatosEnvasados4Delete]"
-            Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+            Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
             deleteCommand.CommandType = CommandType.StoredProcedure
             deleteCommand.Parameters.AddWithValue("@OldFormatoEnvasadoID", FormatoEnvasadoID)
             deleteCommand.Parameters.AddWithValue("@fechaModificacion", System.DateTime.Now)
@@ -155,7 +155,7 @@ Class spFormatosEnvasados2
             deleteCommand.Parameters.AddWithValue("@usuarioModificacion", BasesParaCompatibilidad.Config.User)
             Dim m_usuario As New DBO_Usuarios
             Dim aux As New spUsuarios
-            m_usuario = aux.Select_Record(BasesParaCompatibilidad.Config.User)
+            m_usuario = aux.Select_Record(BasesParaCompatibilidad.Config.User, dtb)
             deleteCommand.Parameters.AddWithValue("@usuarioNombre", m_usuario.Usuario)
             deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
             deleteCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
@@ -169,34 +169,34 @@ Class spFormatosEnvasados2
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            messagebox.show("Error en deleteFormatosEnvasados2 " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error en deleteFormatosEnvasados2 " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function GrabarFormatosEnvasados2(ByRef m_FormatosEnvasados As DBO_FormatosEnvasados) As Boolean
+    Public Function GrabarFormatosEnvasados2(ByRef m_FormatosEnvasados As DBO_FormatosEnvasados, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Dim retorno As Boolean = False
         If m_FormatosEnvasados.ID = 0 Then
-            m_FormatosEnvasados.ID = InsertFormatosEnvasados2(m_FormatosEnvasados)
+            m_FormatosEnvasados.ID = InsertFormatosEnvasados2(m_FormatosEnvasados, dtb)
             If m_FormatosEnvasados.ID > 0 Then retorno = True
         Else
-            If UpdateFormatosEnvasados2(m_FormatosEnvasados) Then retorno = True
+            If UpdateFormatosEnvasados2(m_FormatosEnvasados, dtb) Then retorno = True
         End If
         Dim sp As New spFormatosEnvasados
-        m_FormatosEnvasados = sp.Select_Record(m_FormatosEnvasados.ID)
+        m_FormatosEnvasados = sp.Select_Record(m_FormatosEnvasados.ID, dtb)
         Return retorno
     End Function
 
 
-    Public Function GetUltimaHoraFinPaletProducido(ByRef formato As Integer) As TimeSpan
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function GetUltimaHoraFinPaletProducido(ByRef formato As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As TimeSpan
+        dtb.Conectar()
         Dim retorno As TimeSpan
 
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[PaletsProducidos2UltimaHoraFin]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@FormatoID", formato)
 
@@ -213,19 +213,19 @@ Class spFormatosEnvasados2
             retorno = retorno.Add(New TimeSpan(0, 15, 0))
             MessageBox.Show("Error en PaletsProducidos2UltimaHoraFin" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
 
         Return retorno
     End Function
 
-    Public Function GetPrimeraHoraInicioPaletProducido(ByRef formato As Integer) As TimeSpan
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function GetPrimeraHoraInicioPaletProducido(ByRef formato As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As TimeSpan
+        dtb.Conectar()
         Dim retorno As TimeSpan
 
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[PaletsProducidos2PrimeraHoraInicio]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@FormatoID", formato)
 
@@ -241,20 +241,20 @@ Class spFormatosEnvasados2
             retorno = DateTime.Now.TimeOfDay
             MessageBox.Show("Error en PaletsProducidos2PrimeraHoraInicio" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
 
         Return retorno
     End Function
 
     'pedir m_dbo, a partir de la linea mirar el articulo que se envaso en el ultimo palet creado
-    Public Function recuperarUltimoFormatoEnvasado(ByRef envasado As DBO_Envasados2) As Integer
+    Public Function recuperarUltimoFormatoEnvasado(ByRef envasado As DBO_Envasados2, ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         If ultimoFormatoEnvasado = Nothing Then
-            BasesParaCompatibilidad.BD.Conectar()
+            dtb.Conectar()
 
-            Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+
             Dim selectProcedure As String = "[dbo].[PaletsProducidos2UltimoFormatoEnvasadoPorLinea]"
-            Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+            Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
             selectCommand.CommandType = CommandType.StoredProcedure
             selectCommand.Parameters.AddWithValue("@Linea", envasado.LineaID)
 
@@ -270,7 +270,7 @@ Class spFormatosEnvasados2
                 ultimoFormatoEnvasado = 0
                 MessageBox.Show("Error en recuperarUltimoFormatoEnvasado" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Finally
-                connection.Close()
+                dtb.Desconectar()
             End Try
         End If
 
@@ -281,8 +281,7 @@ Class spFormatosEnvasados2
         ultimoFormatoEnvasado = formato
     End Sub
 
-    Function select_ultimo_palet_por_linea(ByVal linea As Integer) As DBO_PaletsProducidos2
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+    Function select_ultimo_palet_por_linea(ByVal linea As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_PaletsProducidos2
         Return dtb.Consultar("select top 1 horaFin " & _
                              "from paletsproducidos, paletscontenidos, formatosEnvasados, tiposFormatosLineas " & _
                              "where paletsproducidos.paletproducidoid = paletscontenidos.paletcontenidoid " & _

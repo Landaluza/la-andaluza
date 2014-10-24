@@ -87,13 +87,13 @@ Public Class frmEntPaletsContenidosDoypack
     'End Sub
 
     Private Sub frmEntPaletsContenidos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Me.monodosis.CargarMonodosis(Me.PanDoypack, Me.mTipoFormatoEnvasadoID, Me)
+        Me.monodosis.CargarMonodosis(Me.PanDoypack, Me.mTipoFormatoEnvasadoID, dtb, Me)
         Me.dgvMermas.Rows.Clear()
         Me.lCajasSuperiores.Visible = False
-        palet.recuperar_datos()
+        palet.recuperar_datos(dtb)
 
         Dim spPalet As New spPaletsProducidos
-        Me.Text = Me.Text & "contenido para SSCC " & spPalet.Select_Record(Me.m_DBO_PaletsContenidos.PaletProducidoID).SCC
+        Me.Text = Me.Text & "contenido para SSCC " & spPalet.Select_Record(Me.m_DBO_PaletsContenidos.PaletProducidoID, dtb).SCC
     End Sub
 
     Overrides Sub SetValores() Implements  BasesParaCompatibilidad.savable.setValores
@@ -104,9 +104,9 @@ Public Class frmEntPaletsContenidosDoypack
 
 
             txtCantidadCajas.Text = palet.Cajas_restantes.ToString
-            dtpHoraInicio.Value = Me.spContenidos.ultima_hora(Me.mLinea, Me.envasado) 'm_DBO_PaletsContenidos.HoraInicio
+            dtpHoraInicio.Value = Me.spContenidos.ultima_hora(Me.mLinea, Me.envasado, dtb) 'm_DBO_PaletsContenidos.HoraInicio
 
-            Dim minutos As Integer = CInt(Me.spContenidos.devolver_media_creacion_contenidos(Me.mLinea, Me.mTipoFormatoEnvasadoID))
+            Dim minutos As Integer = CInt(Me.spContenidos.devolver_media_creacion_contenidos(Me.mLinea, Me.mTipoFormatoEnvasadoID, dtb))
             dtpHoraFin.Value = dtpHoraInicio.Value.AddMinutes(minutos)
 
             'If dtpHoraInicio.Value.Day <> Me.mFecha.Day Then
@@ -130,7 +130,7 @@ Public Class frmEntPaletsContenidosDoypack
         If dtpHoraInicio.Value > dtpHoraFin.Value Then
             errores = errores & "La hora de inicio no puede ser mayor que fin." & Environment.NewLine()
         Else
-            If Not Me.spContenidos.ValidarRangoHorario(Me.m_DBO_PaletsContenidos, Me.mLinea) Then
+            If Not Me.spContenidos.ValidarRangoHorario(Me.m_DBO_PaletsContenidos, Me.mLinea, dtb) Then
                 errores = errores & "La hora de produccion se suporpone con la de otro palet." & Environment.NewLine()
             End If
         End If
@@ -154,19 +154,19 @@ Public Class frmEntPaletsContenidosDoypack
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
         If Me.GetValores Then
             Dim cbo As System.Windows.Forms.ComboBox
-            BasesParaCompatibilidad.BD.EmpezarTransaccion()
+            dtb.EmpezarTransaccion()
             Try
 
 
-                If sp.Grabar(dbo, BasesParaCompatibilidad.BD.transaction) Then
+                If sp.Grabar(dbo, dtb) Then
                     evitarCerrarSinGuardar = False
                     'RaiseEvent afterSave()
 
                     For Each cbo In Me.cbo_collection
-                        monodosis.añadirMovimientoEncajado(Convert.ToInt32(Me.txtCantidadCajas.Text), Convert.ToInt32(cbo.SelectedValue), Me.m_DBO_PaletsContenidos.PaletProducidoID, Me.mTipoFormatoEnvasadoID, BasesParaCompatibilidad.BD.transaction)
+                        monodosis.añadirMovimientoEncajado(Convert.ToInt32(Me.txtCantidadCajas.Text), Convert.ToInt32(cbo.SelectedValue), Me.m_DBO_PaletsContenidos.PaletProducidoID, Me.mTipoFormatoEnvasadoID, dtb)
 
                         'Dim indice As Integer = Me.cboMonodosis.SelectedIndex
                         'Dim cont As Integer
@@ -184,19 +184,19 @@ Public Class frmEntPaletsContenidosDoypack
                         '        End If
                         '    End If
                         'Else
-                        '    BasesParaCompatibilidad.BD.CancelarTransaccion()
+                        '    dtb.CancelarTransaccion ()
                         'End If
 
                         For Each row As DataGridViewRow In Me.dgvMermas.Rows
                             'If (Not row.Cells("Mover").Value Is Nothing) Then
                             '    If CInt(row.Cells("Mover").Value) <> 0 Then
-                            '        monodosis.moverNC(row.Cells("SCC").Value, row.Cells("Mover").Value, BasesParaCompatibilidad.BD.transaction)
+                            '        monodosis.moverNC(row.Cells("SCC").Value, row.Cells("Mover").Value,dtb)
                             '    End If
                             'End If
 
                             If (CType(row.Cells("Vaciar").Value, Boolean) = True) Then
-                                If Not monodosis.realizarDiferencia(row.Cells("SCC").Value, BasesParaCompatibilidad.BD.transaction) Then
-                                    BasesParaCompatibilidad.BD.CancelarTransaccion()
+                                If Not monodosis.realizarDiferencia(row.Cells("SCC").Value, dtb) Then
+                                    dtb.CancelarTransaccion()
                                     MessageBox.Show("Error al gaurdar las diferencias", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                                     Return
                                 End If
@@ -204,15 +204,15 @@ Public Class frmEntPaletsContenidosDoypack
                         Next
                     Next
 
-                    BasesParaCompatibilidad.BD.TerminarTransaccion()
+                    dtb.TerminarTransaccion()
                     RaiseEvent afterSave(Me, Nothing)
                     Me.Close()
                 Else
-                    BasesParaCompatibilidad.BD.CancelarTransaccion()
+                    dtb.CancelarTransaccion()
                     MessageBox.Show("Error al guardar", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
             Catch ex As Exception
-                BasesParaCompatibilidad.BD.CancelarTransaccion()
+                dtb.CancelarTransaccion()
                 MessageBox.Show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             End Try
         End If

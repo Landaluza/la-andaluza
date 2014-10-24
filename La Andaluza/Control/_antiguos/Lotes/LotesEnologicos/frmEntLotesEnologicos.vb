@@ -10,11 +10,12 @@ Public Class frmEntLotesEnologicos
     Private spMedidas As spMedidasProductos
     ' Private ctlPro As ctlProveedores
     Private OldLib As OldLib
-    Dim spproveedores As spProveedores
+    Private spproveedores As spProveedores
     Public Sub New()
 
         InitializeComponent()
 
+        dtb = New BasesParaCompatibilidad.DataBase()
         dtsLot = New dtsLotes.LotesDataTable
         ctlLot = New ctlLotes
         ctlTipLot = New spTiposLotes
@@ -30,7 +31,7 @@ Public Class frmEntLotesEnologicos
     Private Sub frmEntLotesEnologicos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ModificarBindingNavigator()
         If Me.Text.Substring(0, 3) = "Ver" Then
-            ctlLot.mostrarTodosLotesEnologicos(dtsLot)
+            ctlLot.mostrarTodosLotesEnologicos(dtb, dtsLot)
             GeneralBindingSource.DataSource = dtsLot
             GeneralBindingSource.Position = Posicion
         End If
@@ -64,16 +65,16 @@ Public Class frmEntLotesEnologicos
         CodigoLoteCuadroDeTexto.Text = CodigoLote
 
         Dim spTiposLotes As New spTiposLotes
-        spTiposLotes.cargar_TiposLotes(TipoLoteIDComboMAM)
+        spTiposLotes.cargar_TiposLotes(TipoLoteIDComboMAM, dtb)
         'OldLib.RellenarComboBox(TipoLoteIDComboMAM, ctlTipLot.devolverTiposLotesPorDescripcion, False)
-        Me.spTiposPRoductos.cargar_ComboBox_Enologicos(TipoProductoIDComboMAM)
+        Me.spTiposPRoductos.cargar_ComboBox_Enologicos(TipoProductoIDComboMAM, dtb)
         'OldLib.RellenarComboBox(TipoProductoIDComboMAM, ctlTipPro.devolverTiposProductosPorDescripcionEnologicos, False)
 
 
-        spproveedores.cargar_Proveedores_Enologicos(ProveedorIDCombo)
+        spproveedores.cargar_Proveedores_Enologicos(ProveedorIDCombo, dtb)
         ' OldLib.RellenarComboBox(ProveedorIDCombo, ctlPro.devolverProveedoresEnlogicosPorNombre, False)
         'OldLib.RellenarComboBox(cbMedidas, ctlTipPro.DevolverMedidasProductos, False)
-        spMedidas.cargar_MedidasProductos(cbMedidas)
+        spMedidas.cargar_MedidasProductos(cbMedidas, dtb)
 
         TipoLoteIDComboMAM.Text = TipoLoteID
         TipoProductoIDComboMAM.Text = TipoProductoID
@@ -83,7 +84,6 @@ Public Class frmEntLotesEnologicos
 
     Overrides Sub Guardar()
         Dim strCantidadRestante As String = ""
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
         dtb.EmpezarTransaccion()
 
         Try
@@ -133,7 +133,7 @@ Public Class frmEntLotesEnologicos
         GenerarCodigoLote()
         Try
             'Medida = ctlTipPro.DevolverMedida(TipoProductoIDComboMAM.SelectedValue)
-            Medida = ctlTipPro.Select_Record(TipoProductoIDComboMAM.SelectedValue).MedidaID
+            Medida = ctlTipPro.Select_Record(TipoProductoIDComboMAM.SelectedValue, dtb).MedidaID
             cbMedidas.SelectedValue = Medida
         Catch ex As Exception
 
@@ -153,7 +153,7 @@ Public Class frmEntLotesEnologicos
             Else
                 mes = dtpFecha.Value.Month
             End If
-            CodigoLoteCuadroDeTexto.Text = dtpFecha.Value.Year & mes & dia & ctlTipPro.Select_Record(TipoProductoIDComboMAM.SelectedValue).Abreviatura & ctlTipLot.Select_Record(TipoLoteIDComboMAM.SelectedValue).Abreviatura & "1"
+            CodigoLoteCuadroDeTexto.Text = dtpFecha.Value.Year & mes & dia & ctlTipPro.Select_Record(TipoProductoIDComboMAM.SelectedValue, dtb).Abreviatura & ctlTipLot.Select_Record(TipoLoteIDComboMAM.SelectedValue, dtb).Abreviatura & "1"
         Catch ex As Exception
 
         End Try

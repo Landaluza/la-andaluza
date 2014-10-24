@@ -21,7 +21,7 @@ Public Class frmEntArticulosUnidadesMedidas
 
    Overrides Sub SetValores(ByVal m_ID As Integer, ByVal m_SelectRecord As Boolean)
        
-       If m_SelectRecord Then m_DBO_ArticulosUnidadesMedida = spArticulosUnidadesMedidas.Select_Record(m_ID)
+        If m_SelectRecord Then m_DBO_ArticulosUnidadesMedida = spArticulosUnidadesMedidas.Select_Record(m_ID, dtb)
        If m_ID > 0 Then
            txtArticuloUnidadMedidaID.Text = m_DBO_ArticulosUnidadesMedida.ArticuloUnidadMedidaID
            txtDescripcion.Text = m_DBO_ArticulosUnidadesMedida.Descripcion
@@ -40,7 +40,7 @@ Public Class frmEntArticulosUnidadesMedidas
 
    Overrides Sub Guardar()
        GetValores()
-        spArticulosUnidadesMedidas.GrabarArticulosUnidadesMedidas(m_DBO_ArticulosUnidadesMedida)
+        spArticulosUnidadesMedidas.GrabarArticulosUnidadesMedidas(m_DBO_ArticulosUnidadesMedida, dtb)
        Me.Close()
    End Sub
 

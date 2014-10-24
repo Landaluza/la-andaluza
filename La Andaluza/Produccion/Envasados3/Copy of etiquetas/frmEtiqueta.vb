@@ -10,6 +10,7 @@ Public Class frmEtiqueta0
     Private Const PREFIJO_MATRICULA As String = "08411831"
     Private barc As BarcodeLib.Barcode
     Private loteador As Loteado
+    Private dtb As BasesParaCompatibilidad.DataBase
 
     Public Sub New(ByVal paletId As Integer, Optional ByVal edicion As Boolean = False)
 
@@ -35,7 +36,7 @@ Public Class frmEtiqueta0
             If Me.dbo_etiquetasPalet.PaletID = 0 Then
                 Return
             End If
-            Me.dbo_etiquetasPalet = sp.Select_Record(Me.dbo_etiquetasPalet.PaletID)
+            Me.dbo_etiquetasPalet = sp.Select_Record(Me.dbo_etiquetasPalet.PaletID, dtb)
         Catch ex As Exception
         End Try
 
@@ -108,7 +109,6 @@ Public Class frmEtiqueta0
             Dim usuario As String = Environment.UserName
             Dim strHostName As String = System.Net.Dns.GetHostName()
             Dim ip As String = System.Net.Dns.GetHostEntry(strHostName).AddressList(0).ToString()
-            Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
 
             dtb.ConsultaAlteraciones("insert into tempInfo(scc, pc, ip, usuario) values('" & scc & "', '" & pc & "', '" & ip & "', '" & usuario & "')")
             

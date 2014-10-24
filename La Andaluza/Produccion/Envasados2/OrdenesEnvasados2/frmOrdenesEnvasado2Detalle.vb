@@ -14,7 +14,7 @@ Public Class frmOrdenesEnvasado2Detalle
         m_DBO_OrdenesEnvasado = OrdenEnvasado
         m_LineaID = LineaID
         spArticulosOrdenEnvasado2 = New spArticulosOrdenEnvasado2
-        dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)        
+        dtb = New BasesParaCompatibilidad.Database()
 
         If OrdenEnvasado.OrdenEnvasadoID = 0 Then
             Me.tsFormatos.Enabled = False
@@ -53,7 +53,7 @@ Public Class frmOrdenesEnvasado2Detalle
     End Sub
 
     Private Sub FormatoGrillas()
-      
+
         With dgvArtOrdEnv
             .Columns("ArticuloOrdenEnvasadoID").Visible = False
             .Columns("LineasEnvasado").Visible = False
@@ -114,7 +114,7 @@ Public Class frmOrdenesEnvasado2Detalle
                 m_DBO_ArticulosOrdenEnvasado.ArticuloEnvasadoID = dgvPedidos.CurrentRow.Cells("TipoFormatoID").Value
             Case Else
                 m_Pos = dgvArtOrdEnv.CurrentRow.Index
-                m_DBO_ArticulosOrdenEnvasado = spArticulosOrdenEnvasado2.Select_Record(dgvArtOrdEnv.CurrentRow.Cells("ArticuloOrdenEnvasadoID").Value, new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server))
+                m_DBO_ArticulosOrdenEnvasado = spArticulosOrdenEnvasado2.Select_Record(dgvArtOrdEnv.CurrentRow.Cells("ArticuloOrdenEnvasadoID").Value, dtb)
         End Select
         m_DBO_ArticulosOrdenEnvasado.LineaID = m_LineaID
 
@@ -143,7 +143,7 @@ Public Class frmOrdenesEnvasado2Detalle
 
     Private Sub tsEliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsEliminar.Click
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
-            If spArticulosOrdenEnvasado2.ArticulosOrdenEnvasadoDelete(dgvArtOrdEnv.CurrentRow.Cells("ArticuloOrdenEnvasadoID").Value, new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)) Then
+            If spArticulosOrdenEnvasado2.ArticulosOrdenEnvasadoDelete(dgvArtOrdEnv.CurrentRow.Cells("ArticuloOrdenEnvasadoID").Value, dtb) Then
                 ActualizarGrillas()
                 FormatoGrillas()
             End If

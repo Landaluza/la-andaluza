@@ -13,46 +13,46 @@ Inherits BasesParaCompatibilidad.StoredProcedure
                      "[dbo].[IncidenciasSelectDgvBy]")
    End Sub
 
-   Public Overloads Function Select_Record(ByVal IncidenciaID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As DBO_Incidencias
-       Dim dbo As New DBO_Incidencias
-       dbo.searchKey = dbo.item("IncidenciaID")
-       dbo.searchKey.value = IncidenciaID
-       MyBase.Select_Record(dbo, trans)
-       Return dbo
-   End Function
-
-   Public Overrides Function Delete(ByVal IncidenciaID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As Boolean
-       Dim dbo As New DBO_Incidencias
-       dbo.searchKey = dbo.item("IncidenciaID")
+    Public Overloads Function Select_Record(ByVal IncidenciaID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_Incidencias
+        Dim dbo As New DBO_Incidencias
+        dbo.searchKey = dbo.item("IncidenciaID")
         dbo.searchKey.value = IncidenciaID
-        If trans Is Nothing Then BasesParaCompatibilidad.BD.EmpezarTransaccion()
+        MyBase.Select_Record(dbo, dtb)
+        Return dbo
+    End Function
+
+    Public Overrides Function Delete(ByVal IncidenciaID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        Dim dbo As New DBO_Incidencias
+        Dim terminar As Boolean
+        dbo.searchKey = dbo.item("IncidenciaID")
+        dbo.searchKey.value = IncidenciaID
+        If dtb.Transaccion Is Nothing Then
+            dtb.EmpezarTransaccion()
+            terminar = True
+        Else
+            terminar = False
+        End If
+
         Try
-            If MyBase.DeleteProcedure(dbo, if(trans Is Nothing, BasesParaCompatibilidad.BD.transaction, trans)) Then
-                If trans Is Nothing Then BasesParaCompatibilidad.BD.TerminarTransaccion()
+            If MyBase.DeleteProcedure(dbo, dtb) Then
+                If terminar Then dtb.TerminarTransaccion()
                 Return True
             Else
-                If trans Is Nothing Then BasesParaCompatibilidad.BD.CancelarTransaccion()
+                If terminar Then dtb.CancelarTransaccion()
                 Return False
             End If
         Catch ex As Exception
-            If trans Is Nothing Then BasesParaCompatibilidad.BD.CancelarTransaccion()
+            If terminar Then dtb.CancelarTransaccion()
             Return False
         End Try
 
-   End Function
+    End Function
 
-   Public Sub cargar_Incidencias(ByRef cbo As ComboBox)
-       cbo.mam_DataSource("IncidenciasCbo", False)
-   End Sub
+    Public Sub cargar_Incidencias(ByRef cbo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        cbo.mam_DataSource("IncidenciasCbo", False, dtb)
+    End Sub
 
-    Public Function selecccionar_ultima_incidencia(Optional ByRef Cnx As SqlClient.SqlConnection = Nothing, Optional ByRef trans As SqlClient.SqlTransaction = Nothing) As Integer
-        Dim dtb As BasesParaCompatibilidad.DataBase
-
-        If Cnx Is Nothing Then
-            dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
-        Else
-            dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server, Cnx, trans)
-        End If
+    Public Function selecccionar_ultima_incidencia(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
 
         Return dtb.Consultar("select max(incidenciaid) from incidencias", False).Rows(0).Item(0)
     End Function

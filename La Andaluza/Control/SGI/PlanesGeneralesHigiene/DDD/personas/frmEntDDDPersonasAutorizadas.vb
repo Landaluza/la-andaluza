@@ -18,7 +18,7 @@ Public Class frmEntDDDPersonasAutorizadas
 
    Private Sub frmEntDDDPersonasAutorizadas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
        dim s as new spProveedores
-        s.cargar_ComboBox(Me.cboProveedor)
+        s.cargar_ComboBox(Me.cboProveedor, dtb)
        If me.mododeapertura = VISION Then
            Me.cboProveedor.enabled = False
            Me.lblProveedorID.enabled = False
@@ -68,8 +68,8 @@ Public Class frmEntDDDPersonasAutorizadas
         End IF
    End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As sqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
    Private Sub butRutaCarnetManipulador_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butRutaCarnetManipulador.Click
@@ -102,7 +102,7 @@ Public Class frmEntDDDPersonasAutorizadas
         Dim frmEnt As New frmEntProveedores(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spProveedores, DBO_Proveedores)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spProveedores
-        s.cargar_ComboBox(Me.cboProveedor)
+        s.cargar_ComboBox(Me.cboProveedor, dtb)
     End Sub
 
 End Class

@@ -46,7 +46,7 @@ Public Class frmempleados_formatosEnvasados
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboempleados_formatosEnvasados = CType(sp, spempleados_formatosEnvasados).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboempleados_formatosEnvasados = CType(sp, spempleados_formatosEnvasados).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboempleados_formatosEnvasados Is Nothing Then
             Dim frm As New frmEntempleados_formatosEnvasados(BasesParaCompatibilidad.gridsimpleform.ACCION_MODIFICAR, sp)
             MyBase.newRegForm = frm

@@ -217,9 +217,8 @@ Module Mail
     Public Class MailAutomated
         Inherits Mail
 
-        Protected Sub addAtachmentsFromDataBase(ByVal dgvGrilla As System.Windows.Forms.DataGridView)
+        Protected Sub addAtachmentsFromDataBase(ByVal dgvGrilla As System.Windows.Forms.DataGridView, ByRef dtb As BasesParaCompatibilidad.DataBase)
             Dim spPedidosProveedoresDocumentos1 As New spPedidosProveedoresDocumentos1
-            Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
             dtb.PrepararConsulta("ArticulosFichasTecnicasByMaestroIDSelect @id")
             dtb.AñadirParametroConsulta("@id", dgvGrilla.CurrentRow.Cells("PedidoProveedorMaestroID").Value)
             Dim dt As System.Data.DataTable = dtb.Consultar()
@@ -251,7 +250,7 @@ Module Mail
                                 dbo_PedidosProveedoresDocumentos.FechaModificacion = System.DateTime.Now.Date
                                 dbo_PedidosProveedoresDocumentos.UsuarioModificacion = BasesParaCompatibilidad.Config.User
 
-                                spPedidosProveedoresDocumentos1.PedidosProveedoresDocumentos1Insert(dbo_PedidosProveedoresDocumentos)
+                                spPedidosProveedoresDocumentos1.PedidosProveedoresDocumentos1Insert(dbo_PedidosProveedoresDocumentos, dtb)
                                 'Dim fs As New FileStream(Convert.ToString(dt.Rows(j).Item("Ruta")), FileMode.Open, FileAccess.Read)
                                 'Dim a As New Attachment(fs, Convert.ToString(dt.Rows(j).Item("Ruta")), MediaTypeNames.Application.Pdf)
                                 'Dim a As New Attachment(Convert.ToString(dt.Rows(j).Item("Ruta")), MediaTypeNames.Application.Pdf)
@@ -287,11 +286,11 @@ Module Mail
         Public Sub New()
         End Sub
 
-        Public Sub New(ByVal dgvGrilla As System.Windows.Forms.DataGridView, ByVal PDFFile As String)
-            Me.send(dgvGrilla, PDFFile)
+        Public Sub New(ByVal dgvGrilla As System.Windows.Forms.DataGridView, ByVal PDFFile As String, ByRef dtb As BasesParaCompatibilidad.DataBase)
+            Me.send(dgvGrilla, PDFFile, dtb)
         End Sub
 
-        Public Sub send(ByVal dgvGrilla As System.Windows.Forms.DataGridView, ByVal PDFFile As String)
+        Public Sub send(ByVal dgvGrilla As System.Windows.Forms.DataGridView, ByVal PDFFile As String, ByRef dtb As BasesParaCompatibilidad.DataBase)
             Dim m_NumeroPedido As String = dgvGrilla.CurrentRow.Cells("Numero").Value.ToString
             Dim m_Proveedor As String = dgvGrilla.CurrentRow.Cells("Nombre").Value.ToString
             Dim spPedidosProveedoresDocumentos1 As New spPedidosProveedoresDocumentos1
@@ -306,10 +305,10 @@ Module Mail
                     dbo_PedidosProveedoresDocumentos.Fecha = System.DateTime.Now
                     dbo_PedidosProveedoresDocumentos.Observaciones = String.Empty
                     dbo_PedidosProveedoresDocumentos.PedidoProveedorMaestroID = dgvGrilla.CurrentRow.Cells("PedidoProveedorMaestroID").Value
-                    dbo_PedidosProveedoresDocumentos.FechaModificacion = System.DateTime.Now.date
+                    dbo_PedidosProveedoresDocumentos.FechaModificacion = System.DateTime.Now.Date
                     dbo_PedidosProveedoresDocumentos.UsuarioModificacion = BasesParaCompatibilidad.Config.User
 
-                    spPedidosProveedoresDocumentos1.PedidosProveedoresDocumentos1Insert(dbo_PedidosProveedoresDocumentos)
+                    spPedidosProveedoresDocumentos1.PedidosProveedoresDocumentos1Insert(dbo_PedidosProveedoresDocumentos, dtb)
                     Dim sHTMLBody As String =
                        "<html>" & _
                        "   <head><title></title></head>" & _
@@ -322,14 +321,14 @@ Module Mail
                        "        </table>" & _
                        "   <body>" & _
                        "<html>"
-                    Me.addAtachmentsFromDataBase(dgvGrilla)
+                    Me.addAtachmentsFromDataBase(dgvGrilla, dtb)
                     Dim sAttachmentFile As String = PDFFile & m_NumeroPedido & ".PDF"
                     Me.SendEmail(sSubject, sHTMLBody, Nothing, "administracion@landaluza.es", "Administracion2008", "gerente@landaluza.es", "calidad@landaluza.es", Nothing, "smtp.1and1.es")
                 Else
-                    messagebox.show("El PDF File: " & m_NumeroPedido & ".PDF" & " no existe.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    MessageBox.Show("El PDF File: " & m_NumeroPedido & ".PDF" & " no existe.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
             Catch ex As Exception
-                messagebox.show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         End Sub
 
@@ -357,15 +356,15 @@ Module Mail
         Public Sub New()
         End Sub
 
-        Public Sub New(ByVal dgvGrilla As System.Windows.Forms.DataGridView, ByVal PDFFile As String)
-            Me.send(dgvGrilla, PDFFile)
+        Public Sub New(ByVal dgvGrilla As System.Windows.Forms.DataGridView, ByVal PDFFile As String, ByRef dtb As BasesParaCompatibilidad.DataBase)
+            Me.send(dgvGrilla, PDFFile, dtb)
         End Sub
 
-        Public Sub send(ByVal dgvGrilla As System.Windows.Forms.DataGridView, ByVal PDFFile As String)
+        Public Sub send(ByVal dgvGrilla As System.Windows.Forms.DataGridView, ByVal PDFFile As String, ByRef dtb As BasesParaCompatibilidad.DataBase)
             Dim m_NumeroPedido As String = dgvGrilla.CurrentRow.Cells("Numero").Value.ToString
             Dim m_Proveedor As String = dgvGrilla.CurrentRow.Cells("Nombre").Value.ToString
             Dim spPedidosProveedoresMaestros As New spPedidosProveedoresMaestros
-            Dim dt As System.Data.DataTable = spPedidosProveedoresMaestros.SelectProveedoresMailsPedidos(dgvGrilla.CurrentRow.Cells("ProveedorID").Value)
+            Dim dt As System.Data.DataTable = spPedidosProveedoresMaestros.SelectProveedoresMailsPedidos(dgvGrilla.CurrentRow.Cells("ProveedorID").Value, dtb)
             Try
                 Dim toAddress As String = Nothing
                 Dim ccAddress As String = Nothing
@@ -417,11 +416,11 @@ Module Mail
                             '                           "Cualquier variación en las condiciones economicas acordadas previamente debe ser autorizada <br>" &
                             '                           "por Vinagreria La Andaluza, S.L.</body></html>"
 
-                            Me.addAtachmentsFromDataBase(dgvGrilla)
+                            Me.addAtachmentsFromDataBase(dgvGrilla, dtb)
                             Dim sAttachmentFile As String = PDFFile & m_NumeroPedido & ".PDF"
                             Me.SendEmail(sSubject, sHTMLBody, sAttachmentFile, "administracion@landaluza.es", "Administracion2008", toAddress, ccAddress, "administracion@landaluza.es", "smtp.1and1.es")
                         Else
-                            messagebox.show("El fichero PDF: " & PDFFile & m_NumeroPedido & ".PDF" & " no existe.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                            MessageBox.Show("El fichero PDF: " & PDFFile & m_NumeroPedido & ".PDF" & " no existe.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                         End If
                     End If
                 End If
@@ -432,10 +431,10 @@ Module Mail
         End Sub
     End Class
 
-    Public Function notificarUsuario(ByVal textoNotificacion As String, ByVal usuarioNotificacion As String) As String
+    Public Function notificarUsuario(ByVal textoNotificacion As String, ByVal usuarioNotificacion As String, ByRef dtb As BasesParaCompatibilidad.DataBase) As String
         Try
             Dim spUsuarios As New spUsuarios
-            Dim dbo_usuarios As DBO_Usuarios = spUsuarios.select_record_by_usuario(usuarioNotificacion, BasesParaCompatibilidad.BD.transaction)
+            Dim dbo_usuarios As DBO_Usuarios = spUsuarios.select_record_by_usuario(usuarioNotificacion, dtb)
 
             Dim mail As New Mail1And1(True, "Error " & Convert.ToString(DateTime.Now.Date) & " Usuario: " & dbo_usuarios.Usuario, textoNotificacion, Nothing, _
                             Config.MailReportAddress, Config.MailReportPass, Config.MailReportAddress, _

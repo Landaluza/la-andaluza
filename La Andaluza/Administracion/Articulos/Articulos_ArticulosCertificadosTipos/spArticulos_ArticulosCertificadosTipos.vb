@@ -9,12 +9,12 @@ Class spArticulos_ArticulosCertificadosTipos
                    "Articulos_ArticulosCertificadosTiposSelectDgv", "Articulos_ArticulosCertificadosTiposSelectDgvByArticuloID")
     End Sub
 
-    Public Function Select_Record(ByVal Articulo_ArticuloCertificadoTipoID As Int32) As DBO_Articulos_ArticulosCertificadosTipos
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal Articulo_ArticuloCertificadoTipoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_Articulos_ArticulosCertificadosTipos
+        dtb.Conectar()
         Dim DBO_Articulos_ArticulosCertificadosTipos As New DBO_Articulos_ArticulosCertificadosTipos
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[Articulos_ArticulosCertificadosTiposSelect]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.Comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@Articulo_ArticuloCertificadoTipoID", Articulo_ArticuloCertificadoTipoID)
         Try
@@ -33,16 +33,16 @@ Class spArticulos_ArticulosCertificadosTipos
         Catch ex As System.Data.SqlClient.SqlException
 
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_Articulos_ArticulosCertificadosTipos
     End Function
 
-    Public Function Articulos_ArticulosCertificadosTiposInsert(ByVal dbo_Articulos_ArticulosCertificadosTipos As DBO_Articulos_ArticulosCertificadosTipos) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function Articulos_ArticulosCertificadosTiposInsert(ByVal dbo_Articulos_ArticulosCertificadosTipos As DBO_Articulos_ArticulosCertificadosTipos, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[Articulos_ArticulosCertificadosTiposInsert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
         insertCommand.Parameters.AddWithValue("@ArticuloID", If(dbo_Articulos_ArticulosCertificadosTipos.ArticuloID.HasValue, dbo_Articulos_ArticulosCertificadosTipos.ArticuloID, Convert.DBNull))
         insertCommand.Parameters.AddWithValue("@ArticuloCertificadoTipoID", If(dbo_Articulos_ArticulosCertificadosTipos.ArticuloCertificadoTipoID.HasValue, dbo_Articulos_ArticulosCertificadosTipos.ArticuloCertificadoTipoID, Convert.DBNull))
@@ -62,15 +62,15 @@ Class spArticulos_ArticulosCertificadosTipos
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function Articulos_ArticulosCertificadosTiposUpdate(ByVal newDBO_Articulos_ArticulosCertificadosTipos As DBO_Articulos_ArticulosCertificadosTipos) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function Articulos_ArticulosCertificadosTiposUpdate(ByVal newDBO_Articulos_ArticulosCertificadosTipos As DBO_Articulos_ArticulosCertificadosTipos, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[Articulos_ArticulosCertificadosTiposUpdate]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         updateCommand.Parameters.AddWithValue("@NewArticuloID", If(newDBO_Articulos_ArticulosCertificadosTipos.ArticuloID.HasValue, newDBO_Articulos_ArticulosCertificadosTipos.ArticuloID, Convert.DBNull))
         updateCommand.Parameters.AddWithValue("@NewArticuloCertificadoTipoID", If(newDBO_Articulos_ArticulosCertificadosTipos.ArticuloCertificadoTipoID.HasValue, newDBO_Articulos_ArticulosCertificadosTipos.ArticuloCertificadoTipoID, Convert.DBNull))
@@ -92,18 +92,18 @@ Class spArticulos_ArticulosCertificadosTipos
             MessageBox.Show("Error en UpdateArticulos_ArticulosCertificadosTipos" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function Articulos_ArticulosCertificadosTiposInsertSinTransaccion(ByVal dbo_Articulos_ArticulosCertificadosTipos As DBO_Articulos_ArticulosCertificadosTipos, ByRef mytrans As SqlClient.SqlTransaction) As Boolean
+    Public Function Articulos_ArticulosCertificadosTiposInsertSinTransaccion(ByVal dbo_Articulos_ArticulosCertificadosTipos As DBO_Articulos_ArticulosCertificadosTipos, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
 
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Try
             Dim insertProcedure As String = "[dbo].[Articulos_ArticulosCertificadosTiposInsert2]"
-            Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+            Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
             insertCommand.CommandType = CommandType.StoredProcedure
-            insertCommand.Transaction = mytrans
+
             insertCommand.Parameters.AddWithValue("@ArticuloID", If(dbo_Articulos_ArticulosCertificadosTipos.ArticuloID.HasValue, dbo_Articulos_ArticulosCertificadosTipos.ArticuloID, Convert.DBNull))
             insertCommand.Parameters.AddWithValue("@ArticuloCertificadoTipoID", If(dbo_Articulos_ArticulosCertificadosTipos.ArticuloCertificadoTipoID.HasValue, dbo_Articulos_ArticulosCertificadosTipos.ArticuloCertificadoTipoID, Convert.DBNull))
             insertCommand.Parameters.AddWithValue("@Observaciones", dbo_Articulos_ArticulosCertificadosTipos.Observaciones)
@@ -123,15 +123,15 @@ Class spArticulos_ArticulosCertificadosTipos
         End Try
     End Function
 
-    Public Function Articulos_ArticulosCertificadosTiposUpdateSinTransaccion(ByVal newDBO_Articulos_ArticulosCertificadosTipos As DBO_Articulos_ArticulosCertificadosTipos, ByRef mytrans As SqlClient.SqlTransaction) As Boolean
+    Public Function Articulos_ArticulosCertificadosTiposUpdateSinTransaccion(ByVal newDBO_Articulos_ArticulosCertificadosTipos As DBO_Articulos_ArticulosCertificadosTipos, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
 
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Try
 
             Dim updateProcedure As String = "[dbo].[Articulos_ArticulosCertificadosTiposUpdate2]"
-            Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+            Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
             updateCommand.CommandType = CommandType.StoredProcedure
-            updateCommand.Transaction = mytrans
+
             updateCommand.Parameters.AddWithValue("@NewArticuloID", If(newDBO_Articulos_ArticulosCertificadosTipos.ArticuloID.HasValue, newDBO_Articulos_ArticulosCertificadosTipos.ArticuloID, Convert.DBNull))
             updateCommand.Parameters.AddWithValue("@NewArticuloCertificadoTipoID", If(newDBO_Articulos_ArticulosCertificadosTipos.ArticuloCertificadoTipoID.HasValue, newDBO_Articulos_ArticulosCertificadosTipos.ArticuloCertificadoTipoID, Convert.DBNull))
             updateCommand.Parameters.AddWithValue("@NewObservaciones", newDBO_Articulos_ArticulosCertificadosTipos.Observaciones)
@@ -153,11 +153,11 @@ Class spArticulos_ArticulosCertificadosTipos
         End Try
     End Function
 
-    Public Function Articulos_ArticulosCertificadosTiposDelete(ByVal Articulo_ArticuloCertificadoTipoID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function Articulos_ArticulosCertificadosTiposDelete(ByVal Articulo_ArticuloCertificadoTipoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[Articulos_ArticulosCertificadosTiposDelete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         deleteCommand.Parameters.AddWithValue("@OldArticulo_ArticuloCertificadoTipoID", Articulo_ArticuloCertificadoTipoID)
         deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
@@ -174,15 +174,15 @@ Class spArticulos_ArticulosCertificadosTipos
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function Articulos_ArticulosCertificadosTiposDeleteByArticuloID(ByVal ArticuloID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function Articulos_ArticulosCertificadosTiposDeleteByArticuloID(ByVal ArticuloID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[Articulos_ArticulosCertificadosTiposDeleteByArticuloID]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         deleteCommand.Parameters.AddWithValue("@OldArticulo_ArticuloID", ArticuloID)
         deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
@@ -198,18 +198,16 @@ Class spArticulos_ArticulosCertificadosTipos
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function Articulos_ArticulosCertificadosTiposDeleteByArticuloIDSinTransaccion(ByVal ArticuloID As Int32, ByRef mytrans As SqlClient.SqlTransaction) As Boolean
+    Public Function Articulos_ArticulosCertificadosTiposDeleteByArticuloIDSinTransaccion(ByVal ArticuloID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
 
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
         Try
             Dim deleteProcedure As String = "[dbo].[Articulos_ArticulosCertificadosTiposDeleteByArticuloID2]"
-            Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+            Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
             deleteCommand.CommandType = CommandType.StoredProcedure
-            deleteCommand.Transaction = mytrans
             deleteCommand.Parameters.AddWithValue("@OldArticulo_ArticuloID", ArticuloID)
             deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
             deleteCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
@@ -219,26 +217,28 @@ Class spArticulos_ArticulosCertificadosTipos
             Return True
         Catch ex As System.Data.SqlClient.SqlException
             Return False
+        Finally
+            dtb.Desconectar()
         End Try
     End Function
 
-    Sub GrabarArticulos_ArticulosCertificadosTipos(ByVal dbo_Articulos_ArticulosCertificadosTipos As DBO_Articulos_ArticulosCertificadosTipos)
+    Sub GrabarArticulos_ArticulosCertificadosTipos(ByVal dbo_Articulos_ArticulosCertificadosTipos As DBO_Articulos_ArticulosCertificadosTipos, ByRef dtb As BasesParaCompatibilidad.DataBase)
         dbo_Articulos_ArticulosCertificadosTipos.FechaModificacion = System.DateTime.Now.Date
         dbo_Articulos_ArticulosCertificadosTipos.UsuarioModificacion = BasesParaCompatibilidad.Config.User
         If dbo_Articulos_ArticulosCertificadosTipos.Articulo_ArticuloCertificadoTipoID = 0 Then
-            Articulos_ArticulosCertificadosTiposInsert(dbo_Articulos_ArticulosCertificadosTipos)
+            Articulos_ArticulosCertificadosTiposInsert(dbo_Articulos_ArticulosCertificadosTipos, dtb)
         Else
-            Articulos_ArticulosCertificadosTiposUpdate(dbo_Articulos_ArticulosCertificadosTipos)
+            Articulos_ArticulosCertificadosTiposUpdate(dbo_Articulos_ArticulosCertificadosTipos, dtb)
         End If
     End Sub
 
-    Function GrabarArticulos_ArticulosCertificadosTiposSinTransaccion(ByVal dbo_Articulos_ArticulosCertificadosTipos As DBO_Articulos_ArticulosCertificadosTipos, ByRef mytrans As SqlClient.SqlTransaction) As Boolean
+    Function GrabarArticulos_ArticulosCertificadosTiposSinTransaccion(ByVal dbo_Articulos_ArticulosCertificadosTipos As DBO_Articulos_ArticulosCertificadosTipos, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         dbo_Articulos_ArticulosCertificadosTipos.FechaModificacion = System.DateTime.Now.Date
         dbo_Articulos_ArticulosCertificadosTipos.UsuarioModificacion = BasesParaCompatibilidad.Config.User
         If dbo_Articulos_ArticulosCertificadosTipos.Articulo_ArticuloCertificadoTipoID = 0 Then
-            Return Articulos_ArticulosCertificadosTiposInsertSinTransaccion(dbo_Articulos_ArticulosCertificadosTipos, mytrans)
+            Return Articulos_ArticulosCertificadosTiposInsertSinTransaccion(dbo_Articulos_ArticulosCertificadosTipos, dtb)
         Else
-            Return Articulos_ArticulosCertificadosTiposUpdateSinTransaccion(dbo_Articulos_ArticulosCertificadosTipos, mytrans)
+            Return Articulos_ArticulosCertificadosTiposUpdateSinTransaccion(dbo_Articulos_ArticulosCertificadosTipos, dtb)
         End If
     End Function
 

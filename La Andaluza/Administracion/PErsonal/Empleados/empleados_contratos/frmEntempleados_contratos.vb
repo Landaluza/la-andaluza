@@ -25,13 +25,13 @@ Public Class frmEntempleados_contratos
 
     Private Sub frmEntempleados_contratos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spEmpleados
-        s.cargar_Empleados(Me.cboid_empleado)
+        s.cargar_Empleados(Me.cboid_empleado, dtb)
 
         Dim s2 As New spTipos_contratos
-        s2.cargar_Tipos_contratos(Me.cboid_tipoContrato)
+        s2.cargar_Tipos_contratos(Me.cboid_tipoContrato, dtb)
 
         Dim s3 As New spPuestosTrabajos
-        s3.cargar_PuestosTrabajos(Me.cboid_puestoTrabajo)
+        s3.cargar_PuestosTrabajos(Me.cboid_puestoTrabajo, dtb)
         If Me.ModoDeApertura = VISION Then
             Me.cboid_puestoTrabajo.Enabled = False
             Me.lblid_puestoTrabajo.Enabled = False
@@ -119,8 +119,8 @@ Public Class frmEntempleados_contratos
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerid_tipoContrato_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerid_tipoContrato.Click
@@ -133,7 +133,7 @@ Public Class frmEntempleados_contratos
         Dim frmEnt As New frmEntTipos_contratos(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spTipos_contratos, DBO_Tipos_contratos)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTipos_contratos
-        s.cargar_Tipos_contratos(Me.cboid_tipoContrato)
+        s.cargar_Tipos_contratos(Me.cboid_tipoContrato, dtb)
     End Sub
 
     Private Sub butVerid_puestoTrabajo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerid_puestoTrabajo.Click
@@ -146,7 +146,7 @@ Public Class frmEntempleados_contratos
         Dim frmEnt As New frmEntPuestosTrabajos(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spPuestosTrabajos, DBO_PuestosTrabajos)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spPuestosTrabajos
-        s.cargar_PuestosTrabajos(Me.cboid_puestoTrabajo)
+        s.cargar_PuestosTrabajos(Me.cboid_puestoTrabajo, dtb)
     End Sub
 
 

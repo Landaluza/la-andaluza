@@ -4,11 +4,11 @@ Public Class frmContenidosDetallesMonodosis2
 
     Public id As Integer
     Private tipoFormato As Integer
-
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New(ByVal tipoformato As Integer)
 
         InitializeComponent()
-
+        dtb = New BasesParaCompatibilidad.DataBase
         Me.tipoFormato = tipoformato
     End Sub
 
@@ -18,7 +18,6 @@ Public Class frmContenidosDetallesMonodosis2
     End Sub
 
     Private Sub frmContenidosDetallesMonodosis_Shown(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Shown
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
         dtb.PrepararConsulta("PaletsContenidosSelectMonodosis @tipo")
         dtb.AñadirParametroConsulta("@tipo", tipoFormato)
         Dim dt As DataTable = dtb.Consultar()

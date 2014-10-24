@@ -33,7 +33,7 @@ Public Class frmEntEspecificacionesLegales
 
     Private Sub dgvFill()
         Dim spLegislacion As New spEspecificacionLegal()
-        spLegislacion.cargarParametros(Me.dgv, If(Me.ModoDeApertura = MODIFICACION, Me.m_DBO_legislacionProductos.Id, Nothing))
+        spLegislacion.cargarParametros(Me.dgv, dtb, If(Me.ModoDeApertura = MODIFICACION, Me.m_DBO_legislacionProductos.Id, Nothing))
 
         If Not dgv.DataSource Is Nothing Then
             With dgv
@@ -70,16 +70,14 @@ Public Class frmEntEspecificacionesLegales
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
 
         If Me.GetValores Then
-            Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
 
             Try
                 dtb.EmpezarTransaccion()
-                BasesParaCompatibilidad.BD.Cnx = dtb.Conexion
 
-                If sp.Grabar(dbo, dtb.Transaccion) Then
+                If sp.Grabar(dbo, dtb) Then
                     Dim splegislacionProductos As New spEspecificacionLegal
                     If Me.ModoDeApertura = MODIFICACION Then splegislacionProductos.borrarParametros(Me.m_DBO_legislacionProductos.Id, dtb)
 

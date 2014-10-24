@@ -19,7 +19,7 @@ Public Class frmEntUsuarios
 
     Private Sub frmEntUsuarios_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spTiposUsuarios
-        s.cargar_TiposUsuarios(Me.cboTipoUsuario)
+        s.cargar_TiposUsuarios(Me.cboTipoUsuario, dtb)
         If Me.mododeapertura = VISION Then
             Me.cboTipoUsuario.enabled = False
             Me.lblTipoUsuarioID.enabled = False
@@ -82,8 +82,8 @@ Public Class frmEntUsuarios
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerTipoUsuarioID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerTipoUsuarioID.Click
@@ -96,7 +96,7 @@ Public Class frmEntUsuarios
         Dim frmEnt As New frmEntTiposUsuarios(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spTiposUsuarios, DBO_TiposUsuarios)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTiposUsuarios
-        s.cargar_TiposUsuarios(Me.cboTipoUsuario)
+        s.cargar_TiposUsuarios(Me.cboTipoUsuario, dtb)
     End Sub
 
 End Class

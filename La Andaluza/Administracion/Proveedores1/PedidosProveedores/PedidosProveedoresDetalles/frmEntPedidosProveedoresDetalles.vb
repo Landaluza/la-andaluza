@@ -11,23 +11,22 @@ Public Class frmEntPedidosProveedoresDetalles
     Private spPedidosProveedoresEntregas As spPedidosProveedoresEntregas
     Private spPedidosProveedoresDetalles As spPedidosProveedoresDetalles
     Private frmEnt As frmEntPedidosProveedoresEntregas
-    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New(ByVal PedidoProveedorDetalle As DBO_PedidosProveedoresDetalles, ByVal Pos As Integer)
         InitializeComponent()
         DBO_PedidoProveedorDetalle = PedidoProveedorDetalle
         m_Pos = Pos
         spPedidosProveedoresEntregas = New spPedidosProveedoresEntregas
         spPedidosProveedoresDetalles = New spPedidosProveedoresDetalles
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.DataBase()
         Me.txtFechaServicio.activarFoco()
     End Sub
 
     Private Sub frmEntPedidosProveedoresDetalles_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spMedidasProductos
-        s.cargar_MedidasProductos(cboUnidades)
+        s.cargar_MedidasProductos(cboUnidades, dtb)
 
-        cboArticulos.mam_DataSource("PedidosProveedoresArticulosSelectCbo", False)
-        cboEstados.mam_DataSource("PedidosProveedoresEstadosSelectCbo", False)
+        cboArticulos.mam_DataSource("PedidosProveedoresArticulosSelectCbo", False, dtb)
+        cboEstados.mam_DataSource("PedidosProveedoresEstadosSelectCbo", False, dtb)
         'cboUnidades.mam_DataSource("MedidasProductosSelectCbo", False)
 
         If Me.Text.Substring(0, 3) = "Ver" Then
@@ -54,7 +53,7 @@ Public Class frmEntPedidosProveedoresDetalles
                 m_Pos = GeneralBindingSource.Count - 1
         End Select
         GeneralBindingSource.Position = m_Pos
-        DBO_PedidoProveedorEntrega = spPedidosProveedoresEntregas.Select_Record(GeneralBindingSource(m_Pos).Item("PedidoProveedorDetalleID"))
+        DBO_PedidoProveedorEntrega = spPedidosProveedoresEntregas.Select_Record(GeneralBindingSource(m_Pos).Item("PedidoProveedorDetalleID"), dtb)
         SetValores()
     End Sub
 
@@ -65,9 +64,9 @@ Public Class frmEntPedidosProveedoresDetalles
         Else
             GetValores()
             If Me.Text.Substring(0, 3) = "Ins" Then
-                spPedidosProveedoresDetalles.InsertPedidosProveedoresDetalles(DBO_PedidoProveedorDetalle)
+                spPedidosProveedoresDetalles.InsertPedidosProveedoresDetalles(DBO_PedidoProveedorDetalle, dtb)
             Else
-                spPedidosProveedoresDetalles.UpdatePedidosProveedoresDetalles(DBO_PedidoProveedorDetalle)
+                spPedidosProveedoresDetalles.UpdatePedidosProveedoresDetalles(DBO_PedidoProveedorDetalle, dtb)
             End If
             Me.Close()
         End If
@@ -131,7 +130,7 @@ Public Class frmEntPedidosProveedoresDetalles
     End Sub
 
     Private Sub bdnNivel1Delete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles bdnNivel1Delete.Click
-        If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then spPedidosProveedoresEntregas.DeletePedidosProveedoresEntregas(dgvNivel1.CurrentRow.Cells("PedidoProveedorEntregaID").Value)
+        If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then spPedidosProveedoresEntregas.DeletePedidosProveedoresEntregas(dgvNivel1.CurrentRow.Cells("PedidoProveedorEntregaID").Value, dtb)
         RellenarDgvNivel1()
 
         'Dim spSelectDgvNivel1 As String = "PedidosProveedoresDetallesSelectByMaestroIDDgv '" & DBO_PedidoProveedorDetalle.PedidoProveedorMaestroID & "'"
@@ -143,7 +142,7 @@ Public Class frmEntPedidosProveedoresDetalles
         If TipoAction = "Insertar" Then
             DBO_PedidoProveedorEntrega.PedidoProveedorDetalleID = DBO_PedidoProveedorDetalle.PedidoProveedorDetalleID
         Else
-            DBO_PedidoProveedorEntrega = spPedidosProveedoresEntregas.Select_Record(bdsNivel1(m_Pos).Item("PedidoProveedorEntregaID"))
+            DBO_PedidoProveedorEntrega = spPedidosProveedoresEntregas.Select_Record(bdsNivel1(m_Pos).Item("PedidoProveedorEntregaID"), dtb)
         End If
 
         frmEnt = New frmEntPedidosProveedoresEntregas(DBO_PedidoProveedorEntrega, m_Pos)
@@ -199,6 +198,6 @@ Public Class frmEntPedidosProveedoresDetalles
         Dim frmEnt As New frmEntMedidasProductos(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spMedidasProductos, New DBO_MedidasProductos)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spMedidasProductos
-        s.cargar_MedidasProductos(Me.cboUnidades)
+        s.cargar_MedidasProductos(Me.cboUnidades, dtb)
     End Sub
 End Class

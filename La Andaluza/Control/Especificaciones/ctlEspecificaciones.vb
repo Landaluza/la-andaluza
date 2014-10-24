@@ -2,19 +2,19 @@ Public Class ctlEspecificaciones
 
     Private clsEsp As clsEspecificaciones
     Private clsValEsp As clsValoresespecificaciones
-    Private dtb As BasesParaCompatibilidad.DataBase
+
 
     Public Sub New()
         clsEsp = New clsEspecificaciones
         clsValEsp = New clsValoresespecificaciones
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+
     End Sub
     Public Sub setEspecificacionID(ByVal EspecificacionID As Integer)
         clsEsp._EspecificacionID = EspecificacionID
     End Sub
 
 
-    Sub mostrarTodosValoresEspecificaciones(ByRef dtsValEsp As dtsEspecificaciones.ValoresEspecificacionesDataTable)
+    Sub mostrarTodosValoresEspecificaciones(ByRef dtb As BasesParaCompatibilidad.DataBase, ByRef dtsValEsp As dtsEspecificaciones.ValoresEspecificacionesDataTable)
         Dim tabla As New DataTable
 
         clsValEsp._EspecificacionID = clsEsp._EspecificacionID
@@ -61,10 +61,10 @@ Public Class ctlEspecificaciones
     End Sub
 
 
-    Public Sub mostrarTodasEspecificaciones(ByRef dtsEsp As dtsEspecificaciones.EspecificacionesDataTable)
+    Public Sub mostrarTodasEspecificaciones(ByRef dtb As BasesParaCompatibilidad.DataBase, ByRef dtsEsp As dtsEspecificaciones.EspecificacionesDataTable)
 
         Dim tabla As New DataTable
-        tabla = clsEsp.devolver()
+        tabla = clsEsp.devolver(dtb)
 
         Dim i As Integer
         Dim regPar As dtsEspecificaciones.EspecificacionesRow
@@ -108,18 +108,18 @@ Public Class ctlEspecificaciones
         Return Me.clsEsp._LegislacionID
     End Function
 
-    Public Function devolverEspecificaciones() As DataTable
-        Return clsEsp.devolver()
+    Public Function devolverEspecificaciones(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
+        Return clsEsp.devolver(dtb)
     End Function
 
-    Public Function devolverEspecificacionesPorLote(ByVal TipoLoteId As Integer, ByVal TipoProductoID As Integer) As DataTable
+    Public Function devolverEspecificacionesPorLote(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal TipoLoteId As Integer, ByVal TipoProductoID As Integer) As DataTable
         clsEsp._TipoLoteID = TipoLoteId
         clsEsp._TipoProductoID = TipoProductoID
-        Return clsEsp.devolverPorLote()
+        Return clsEsp.devolverPorLote(dtb)
     End Function
 
-    Public Function devolverEspecificacionesTodas() As DataTable
-        Return clsEsp.devolverTodo()
+    Public Function devolverEspecificacionesTodas(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
+        Return clsEsp.devolverTodo(dtb)
     End Function
 
     Public Function GuardarEspecificacion(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal Descripcion As String, ByVal qs As String, ByVal fecha As Date, ByVal lote As Integer, ByVal formato As Integer, ByVal LegislacionID As Integer) As Boolean
@@ -157,7 +157,7 @@ Public Class ctlEspecificaciones
         clsValEsp._DesviacionMaxima = desviacionMax
         clsValEsp._DesviacionMinima = desviacionMin
 
-        If clsValEsp.existe() Then
+        If clsValEsp.existe(dtb) Then
             If (obligatoriedad = True Or minimo > 0 Or maximo > 0 Or periodicidad > 0 Or MetodoAnalisisID > 0 Or desviacionMax > 0 Or desviacionMin > 0) Then
                 Return clsValEsp.Modificar(dtb)
             Else

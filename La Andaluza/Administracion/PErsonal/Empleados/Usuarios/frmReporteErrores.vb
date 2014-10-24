@@ -1,11 +1,11 @@
 ﻿Public Class frmReporteErrores
     Private bitmap As Bitmap
-
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New(ByVal image As Bitmap)
 
         ' This call is required by the designer.
         InitializeComponent()
-
+        dtb = New BasesParaCompatibilidad.DataBase
         Me.pbErrorImage.Image = image
         Me.bitmap = image
     End Sub
@@ -15,7 +15,6 @@
         Try
             Dim captura As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\temp.jpg"
             Dim file As New BasesParaCompatibilidad.File()
-            Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
             dtb.PrepararConsulta("select usuario from usuarios where usuarioid= @id")
             dtb.AñadirParametroConsulta("@id", BasesParaCompatibilidad.Config.User)
             Dim usuario As String = dtb.Consultar().Rows(0).Item(0)

@@ -5,19 +5,19 @@ Public Class frmStock2
     Private clsStock As New spStock2
     Private dt As DataTable
     Private mdtStart As DateTime
-
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New()
 
         ' This call is required by the designer.
         InitializeComponent()
-
+        dtb = New BasesParaCompatibilidad.DataBase()
 
         dtEnd.activarFoco()
     End Sub
 
     Private Sub frmStock2_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim dt As DataTable
-        dt = clsStock.SelectStock2_1
+        dt = clsStock.SelectStock2_1(dtb)
         If dt.Rows.Count > 0 Then
             For i As Integer = 0 To dt.Rows.Count - 1
                 dtStart.Items.Add(Convert.ToString(dt.Rows.Item(i).Item("Fecha")))
@@ -27,10 +27,10 @@ Public Class frmStock2
 
     Private Sub butOK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butOK.Click
         Me.Cursor = System.Windows.Forms.Cursors.WaitCursor
-        clsStock.SelectStock2_2()
-        clsStock.SelectStock2_3(mdtStart, dtEnd.Value)
-        clsStock.SelectStock2_4(mdtStart, dtEnd.Value)
-        dt = clsStock.SelectStock2_5()
+        clsStock.SelectStock2_2(dtb)
+        clsStock.SelectStock2_3(mdtStart, dtEnd.Value, dtb)
+        clsStock.SelectStock2_4(mdtStart, dtEnd.Value, dtb)
+        dt = clsStock.SelectStock2_5(dtb)
 
         If mdtStart > dtEnd.Value Then
             messagebox.show("Start-Date should not be greater than End-Date.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)

@@ -11,7 +11,7 @@ Public Class frmContenidosDetallesMonodosis
         InitializeComponent()
 
         Me.tipoFormato = tipoformato
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.DataBase()
     End Sub
 
     Private Sub dgvGeneral_CellDoubleClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvGeneral.CellDoubleClick

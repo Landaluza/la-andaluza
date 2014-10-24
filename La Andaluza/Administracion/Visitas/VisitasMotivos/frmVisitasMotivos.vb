@@ -28,7 +28,7 @@ Public Class frmVisitasMotivos
 
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
-            If CType(sp, spVisitasMotivos).VisitasMotivosDelete(dgvGeneral.CurrentRow.Cells("VisitaMotivoID").Value) Then
+            If CType(sp, spVisitasMotivos).VisitasMotivosDelete(dgvGeneral.CurrentRow.Cells("VisitaMotivoID").Value, dtb) Then
                 dgvFill()
             End If
         End If
@@ -43,7 +43,7 @@ Public Class frmVisitasMotivos
         If TipoAction = ACCION_INSERTAR Then
             If m_MaestroID <> 0 Then m_VisitaMotivo.Descripcion = m_MaestroID
         Else
-            m_VisitaMotivo = CType(sp, spVisitasMotivos).Select_Record(GeneralBindingSource(m_Pos).Item("VisitaMotivoID"))
+            m_VisitaMotivo = CType(sp, spVisitasMotivos).Select_Record(GeneralBindingSource(m_Pos).Item("VisitaMotivoID"), dtb)
         End If
 
         frmEnt = New frmEntVisitasMotivos(m_VisitaMotivo, m_Pos, m_VerID)

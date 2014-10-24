@@ -22,7 +22,7 @@ Public Class frmmarcas
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dbomarcas = CType(sp, spmarcas).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer))
+        dbomarcas = CType(sp, spmarcas).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
         If Not dbomarcas Is Nothing Then
             newRegForm.SetDataBussinesObject(CType(Me.dbomarcas, BasesParaCompatibilidad.DataBussines))
         Else

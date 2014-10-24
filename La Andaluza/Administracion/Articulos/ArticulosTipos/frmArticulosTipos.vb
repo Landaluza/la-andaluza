@@ -22,7 +22,7 @@ Public Class frmArticulosTipos
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboArticulosTipos = CType(sp, spArticulosTipos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboArticulosTipos = CType(sp, spArticulosTipos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboArticulosTipos Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboArticulosTipos)
         Else

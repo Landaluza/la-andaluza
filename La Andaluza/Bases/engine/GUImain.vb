@@ -6,6 +6,7 @@ Public Class GUImain
     Protected frmNews As frmNews
     Protected controlador As Controller
     Protected Event extras_showed()
+    Protected dtb As BasesParaCompatibilidad.DataBase
 
     'Public Sub New()
     '    MyBase.new()
@@ -24,11 +25,12 @@ Public Class GUImain
     Public Sub New()
 
         InitializeComponent()
-
+        dtb = New BasesParaCompatibilidad.DataBase
         ' Environment.Exit(69)
     End Sub
     Public Sub New(ByRef frm As FrmInicio)
         InitializeComponent()
+        dtb = New BasesParaCompatibilidad.DataBase
         'segundaSesion = False
         LAengine = New Engine_LA(Me)
         'Me.frmNews = New frmNews
@@ -268,7 +270,7 @@ Public Class GUImain
             Me.NotifyIcon1.Visible = False
             Me.NotifyIcon1.Dispose()
 
-            BasesParaCompatibilidad.BD.Cerrar()
+            dtb.Desconectar()
         Catch ex As Exception
         End Try
     End Sub
@@ -542,7 +544,6 @@ Public Class GUImain
     End Sub
 
     Protected Sub cargarAgenda()
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
         Dim dt As DataTable = dtb.Consultar("ComunicacionesSelectDgv", True)
         If Not dt Is Nothing Then
             Me.mAgenda.Items.Clear()

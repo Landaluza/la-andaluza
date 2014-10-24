@@ -18,7 +18,6 @@ Public Class frmEntProveedores
     Private spPoblaciones As spPoblaciones
     Private frmTiposMateriales_Provedores As frmTiposMateriales_Provedores
     Private spProveedores_ProveedoresTipos As spProveedores_ProveedoresTipos
-    Private dtb As BasesParaCompatibilidad.DataBase
 
     Public Sub New(ByVal modoDeApertura As String, Optional ByRef v_sp As spProveedores = Nothing, Optional ByRef v_dbo As DBO_Proveedores = Nothing)
         MyBase.New(modoDeApertura, v_sp, v_dbo)
@@ -27,7 +26,7 @@ Public Class frmEntProveedores
         m_DBO_Proveedores = If(v_dbo Is Nothing, New DBO_Proveedores, v_dbo)
         dbo = m_DBO_Proveedores
 
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.DataBase()
         Me.spProveedoresCero = New spProveedoresCero()
         spProveedores_ProveedoresTipos = New spProveedores_ProveedoresTipos
         Me.spPaises = New spPaises
@@ -48,9 +47,9 @@ Public Class frmEntProveedores
     End Sub
 
     Private Sub frmEntProveedores_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        spPaises.cargar_ComboBox(Me.cbPais)
-        'spPaises.cargar_ComboBox(Me.cbPais2)
-        sptiposProveedoresCero.cargar_ComboBox(Me.cboTipoProveedorCero)
+        spPaises.cargar_ComboBox(Me.cbPais, dtb)
+
+        sptiposProveedoresCero.cargar_ComboBox(Me.cboTipoProveedorCero, dtb)
     End Sub
 
     'Private Sub rellenarPestañas()
@@ -115,7 +114,7 @@ Public Class frmEntProveedores
         End If
 
         'm_DBO_Proveedores.proveedorCero = New DBO_ProveedoresCero
-        m_DBO_Proveedores.proveedorCero = Me.spProveedoresCero.Select_Record(Me.m_DBO_Proveedores.ProveedorID)
+        m_DBO_Proveedores.proveedorCero = Me.spProveedoresCero.Select_Record(Me.m_DBO_Proveedores.ProveedorID, dtb)
         If Not m_DBO_Proveedores.proveedorCero Is Nothing Then
             If m_DBO_Proveedores.proveedorCero.Id <> Nothing Then
                 Me.cbProveedorCero.Checked = True
@@ -257,67 +256,67 @@ Public Class frmEntProveedores
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
         If Me.GetValores Then
-            BasesParaCompatibilidad.BD.EmpezarTransaccion()
+            dtb.EmpezarTransaccion()
 
             Try
 
-                If sp.Grabar(dbo, BasesParaCompatibilidad.BD.transaction) Then
+                If sp.Grabar(dbo, dtb) Then
 
                     If Me.ModoDeApertura = INSERCION Then Me.m_DBO_Proveedores.ProveedorID = dtb.Consultar("select max(proveedorid) from proveedores", False).Rows(0).Item(0)
 
-                    If Me.grabarProveedoresTipos(BasesParaCompatibilidad.BD.transaction) Then
+                    If Me.grabarProveedoresTipos(dtb) Then
 
                         If Me.cbProveedorCero.Checked Then
                             Me.m_DBO_Proveedores.proveedorCero.Id_proveedor = Me.m_DBO_Proveedores.ProveedorID
 
-                            If Me.spProveedoresCero.Grabar(Me.m_DBO_Proveedores.proveedorCero, BasesParaCompatibilidad.BD.transaction) Then
+                            If Me.spProveedoresCero.Grabar(Me.m_DBO_Proveedores.proveedorCero, dtb) Then
 
-                                BasesParaCompatibilidad.BD.TerminarTransaccion()
+                                dtb.TerminarTransaccion()
                                 RaiseEvent afterSave(Me, Nothing)
                                 Me.Close()
                             Else
-                                BasesParaCompatibilidad.BD.CancelarTransaccion()
+                                dtb.CancelarTransaccion()
                                 MessageBox.Show("No se pudo guardar el registro. Asegurese de tener conexion a la red.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                             End If
                         Else
-                            If Not Me.spProveedoresCero.Delete(Me.m_DBO_Proveedores.ProveedorID, BasesParaCompatibilidad.BD.transaction) And Me.ModoDeApertura = MODIFICACION Then
-                                BasesParaCompatibilidad.BD.CancelarTransaccion()
+                            If Not Me.spProveedoresCero.Delete(Me.m_DBO_Proveedores.ProveedorID, dtb) And Me.ModoDeApertura = MODIFICACION Then
+                                dtb.CancelarTransaccion()
                                 MessageBox.Show("No se pudo guardar el registro. Asegurese de tener conexion a la red.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                             Else
-                                BasesParaCompatibilidad.BD.TerminarTransaccion()
+                                dtb.TerminarTransaccion()
                                 RaiseEvent afterSave(Me, Nothing)
                                 Me.Close()
                             End If
 
-                            'Me.spProveedoresCero.Delete(Me.m_DBO_Proveedores.ProveedorID, BasesParaCompatibilidad.BD.transaction)
+                            'Me.spProveedoresCero.Delete(Me.m_DBO_Proveedores.ProveedorID,dtb)
                         End If
                     Else
 
                         'MyBase.Guardar()
-                        BasesParaCompatibilidad.BD.CancelarTransaccion()
+                        dtb.CancelarTransaccion()
                         MessageBox.Show("No se pudo guardar el registro. Asegurese de tener conexion a la red.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     End If
                 Else
 
-                    BasesParaCompatibilidad.BD.CancelarTransaccion()
+                    dtb.CancelarTransaccion()
                     MessageBox.Show("No se pudo guardar el registro. Asegurese de tener conexion a la red.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
             Catch ex As Exception
-                BasesParaCompatibilidad.BD.CancelarTransaccion()
+                dtb.CancelarTransaccion()
                 MessageBox.Show("No se pudo guardar el registro. Detalles:" & Environment.NewLine & Environment.NewLine, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         End If
     End Sub
 
-    Public Function grabarProveedoresTipos(ByRef mytrans As SqlClient.SqlTransaction) As Boolean
+    Public Function grabarProveedoresTipos(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Dim retorno As Boolean = True
         Dim m_Proveedor_ProveedorTipo As New DBO_Proveedores_ProveedoresTipos
         'Dim i As Integer = 0
         dgvProveedores.EndEdit()
 
-        retorno = retorno And spProveedores_ProveedoresTipos.Proveedores_ProveedoresTiposDeleteByProveedorID(Me.m_DBO_Proveedores.ProveedorID, mytrans)
+        retorno = retorno And spProveedores_ProveedoresTipos.Proveedores_ProveedoresTiposDeleteByProveedorID(Me.m_DBO_Proveedores.ProveedorID, dtb)
 
         For Each row As DataGridViewRow In dgvProveedores.Rows
             If row.Cells(2).Value Then
@@ -325,7 +324,7 @@ Public Class frmEntProveedores
                 m_Proveedor_ProveedorTipo.ProveedorTipoID = row.Cells(0).Value.ToString
                 m_Proveedor_ProveedorTipo.FechaModificacion = System.DateTime.Now.Date
                 m_Proveedor_ProveedorTipo.UsuarioModificacion = BasesParaCompatibilidad.Config.User
-                retorno = retorno And spProveedores_ProveedoresTipos.GrabarProveedores_ProveedoresTiposSinTransaccion(m_Proveedor_ProveedorTipo, mytrans)
+                retorno = retorno And spProveedores_ProveedoresTipos.GrabarProveedores_ProveedoresTiposSinTransaccion(m_Proveedor_ProveedorTipo, dtb)
             End If
 
 
@@ -349,28 +348,28 @@ Public Class frmEntProveedores
 
     Private Sub cbPais_SelectedValueChanged(sender As System.Object, e As System.EventArgs) Handles cbPais.SelectedValueChanged
         Try
-            Me.spProvincias.cargar_ComboBox(cbProvincia, Me.cbPais.SelectedValue)
+            Me.spProvincias.cargar_ComboBox(cbProvincia, Me.cbPais.SelectedValue, dtb)
         Catch ex As Exception
         End Try
     End Sub
 
     Private Sub cbPais2_SelectedValueChanged(sender As System.Object, e As System.EventArgs) Handles cbPais2.SelectedValueChanged
         Try
-            Me.spProvincias.cargar_ComboBox(cbProvincia2, Me.cbPais2.SelectedValue)
+            Me.spProvincias.cargar_ComboBox(cbProvincia2, Me.cbPais2.SelectedValue, dtb)
         Catch ex As Exception
         End Try
     End Sub
 
     Private Sub cbProvincia_SelectedValueChanged(sender As System.Object, e As System.EventArgs) Handles cbProvincia.SelectedValueChanged
         Try
-            Me.spPoblaciones.cargar_ComboBox(Me.cbPoblacion, Me.cbProvincia.SelectedValue)
+            Me.spPoblaciones.cargar_ComboBox(Me.cbPoblacion, Me.cbProvincia.SelectedValue, dtb)
         Catch ex As Exception
         End Try
     End Sub
 
     Private Sub cbProvincia2_SelectedValueChanged(sender As System.Object, e As System.EventArgs) Handles cbProvincia2.SelectedValueChanged
         Try
-            Me.spPoblaciones.cargar_ComboBox(Me.cbPoblacion2, Me.cbProvincia2.SelectedValue)
+            Me.spPoblaciones.cargar_ComboBox(Me.cbPoblacion2, Me.cbProvincia2.SelectedValue, dtb)
         Catch ex As Exception
         End Try
     End Sub
@@ -415,7 +414,7 @@ Public Class frmEntProveedores
     Private Sub btnTipoProveedorCeroAdd_Click(sender As System.Object, e As System.EventArgs) Handles btnTipoProveedorCeroAdd.Click
         Dim frm As New frmEntTiposProveedoresCero(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spTiposProveedoresCero, New DBO_TiposProveedoresCero)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
-        sptiposProveedoresCero.cargar_ComboBox(Me.cboTipoProveedorCero)
+        sptiposProveedoresCero.cargar_ComboBox(Me.cboTipoProveedorCero, dtb)
     End Sub
 
     Private Sub butCarpeta_Click(sender As System.Object, e As System.EventArgs) Handles butCarpeta.Click
@@ -466,11 +465,11 @@ Public Class frmEntProveedores
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
 
         Try
-            Me.spPoblaciones.cargar_ComboBox(Me.cbPoblacion, Me.cbProvincia2.SelectedValue)
+            Me.spPoblaciones.cargar_ComboBox(Me.cbPoblacion, Me.cbProvincia2.SelectedValue, dtb)
         Catch ex As Exception
         End Try
         Try
-            Me.spPoblaciones.cargar_ComboBox(Me.cbPoblacion2, Me.cbProvincia2.SelectedValue)
+            Me.spPoblaciones.cargar_ComboBox(Me.cbPoblacion2, Me.cbProvincia2.SelectedValue, dtb)
         Catch ex As Exception
         End Try
     End Sub
@@ -478,8 +477,8 @@ Public Class frmEntProveedores
     Private Sub btnAddPais_Click(sender As System.Object, e As System.EventArgs) Handles btnAddPais.Click, btnAddPais2.Click
         Dim frm As New frmEntPaises
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
-        spPaises.cargar_ComboBox(Me.cbPais)
-        spPaises.cargar_ComboBox(Me.cbPais2)
+        spPaises.cargar_ComboBox(Me.cbPais, dtb)
+        spPaises.cargar_ComboBox(Me.cbPais2, dtb)
     End Sub
 
     Private Sub btnAddProvincia_Click(sender As System.Object, e As System.EventArgs) Handles btnAddProvincia.Click, btnAddProvincia2.Click
@@ -493,11 +492,11 @@ Public Class frmEntProveedores
         Dim frm As New frmEntProvincias(BasesParaCompatibilidad.DetailedSimpleForm.VISION, New spProvincias, dboProvincia)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         Try
-            Me.spProvincias.cargar_ComboBox(cbProvincia, Me.cbPais.SelectedValue)
+            Me.spProvincias.cargar_ComboBox(cbProvincia, Me.cbPais.SelectedValue, dtb)
         Catch ex As Exception
         End Try
         Try
-            Me.spProvincias.cargar_ComboBox(cbProvincia2, Me.cbPais2.SelectedValue)
+            Me.spProvincias.cargar_ComboBox(cbProvincia2, Me.cbPais2.SelectedValue, dtb)
         Catch ex As Exception
         End Try
     End Sub

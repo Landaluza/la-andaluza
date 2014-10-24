@@ -23,7 +23,7 @@ Public Class frmPedidosClientesNecesidades
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboPedidosClientesNecesidades = CType(sp, spPedidosClientesNecesidades).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer))
+        dboPedidosClientesNecesidades = CType(sp, spPedidosClientesNecesidades).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
         If Not dboPedidosClientesNecesidades Is Nothing Then
             newRegForm.SetDataBussinesObject(CType(Me.dboPedidosClientesNecesidades, BasesParaCompatibilidad.DataBussines))
         Else

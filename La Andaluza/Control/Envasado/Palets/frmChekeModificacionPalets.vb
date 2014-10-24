@@ -7,7 +7,7 @@ Public Class frmChekeModificacionPalets
     Public Sub New()
         InitializeComponent()
 
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.DataBase()
         calendar = New BasesParaCompatibilidad.Calendar
     End Sub
     Private Sub btnBuscar_Click(sender As System.Object, e As System.EventArgs) Handles btnBuscar.Click
@@ -71,7 +71,7 @@ Public Class frmChekeModificacionPalets
 
     Private Sub frmChekeModificacionPalets_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         Dim s As New spEmpleados
-        s.cargar_Empleados_usuarios(Me.cboUsuario)
+        s.cargar_Empleados_usuarios(Me.cboUsuario, dtb)
     End Sub
 
     Private Sub DataGridView1_SelectionChanged(sender As System.Object, e As System.EventArgs) Handles DataGridView1.SelectionChanged

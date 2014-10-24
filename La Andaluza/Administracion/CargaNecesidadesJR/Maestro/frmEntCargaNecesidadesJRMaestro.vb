@@ -9,11 +9,10 @@ Public Class frmEntCargaNecesidadesJRMaestro
     Private m_Posicion As Integer
     Private YaGuardado As Boolean = False
     Private sp As New spCargasNecesidades
-    Private dtb As BasesParaCompatibilidad.DataBase
 
     Public Sub New() 'Insertar
         InitializeComponent()
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.DataBase()
 
         Me.FechaDateTimePicker.activarFoco()
         Me.HoraDateTimePicker.activarFoco()
@@ -21,7 +20,7 @@ Public Class frmEntCargaNecesidadesJRMaestro
 
     Public Sub New(ByVal currentRow As DataGridViewRow) 'Modificar
         InitializeComponent()
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.DataBase()
 
         m_currentRow = currentRow
         Me.FechaDateTimePicker.activarFoco()
@@ -30,7 +29,7 @@ Public Class frmEntCargaNecesidadesJRMaestro
 
     Public Sub New(ByVal Tabla As DataTable, ByVal Posicion As Integer) 'Ver
         InitializeComponent()
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.DataBase()
 
         m_Tabla = Tabla
         m_Posicion = Posicion
@@ -92,11 +91,11 @@ Public Class frmEntCargaNecesidadesJRMaestro
                                         ObservacionesCuadroDeTexto.Text, _
                                         Now(), _
                                         1, _
-                                        Me.ServidoCheckBox.Checked)
+                                        Me.ServidoCheckBox.Checked, dtb)
             'Si entro en insertar por primer vez, busco el ultimo registro añadido y utilizo su ID 
             If dgv.RowCount = 0 Then
                 tsInsertar.Enabled = True
-                CargaNecesidadesJRMaestroIDCuadroDeTexto.Text = Me.sp.spMaxCargaNecesidadesMaestro()
+                CargaNecesidadesJRMaestroIDCuadroDeTexto.Text = Me.sp.spMaxCargaNecesidadesMaestro(dtb)
                 m_MaestroID = CargaNecesidadesJRMaestroIDCuadroDeTexto.Text
                 YaGuardado = True
             Else
@@ -135,7 +134,7 @@ Public Class frmEntCargaNecesidadesJRMaestro
         response = MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
                           "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If response = DialogResult.Yes Then
-            Me.sp.spDeleteCargaNecesidadesJRDetalle((DetalleID))
+            Me.sp.spDeleteCargaNecesidadesJRDetalle(DetalleID, dtb)
             dtb.PrepararConsulta("SelectCargaNecesidadesDetallesByMaestroID @id")
             dtb.AñadirParametroConsulta("@id", m_MaestroID)
             dgv.DataSource = dtb.Consultar

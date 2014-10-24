@@ -8,12 +8,12 @@ Class spArticulosIngredientes
                    "[dbo].[ArticulosIngredientesDelete]", String.Empty, String.Empty)
     End Sub
 
-    Public Function Select_Record(ByVal IngredienteID As Int32) As DBO_ArticulosIngredientes
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal IngredienteID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_ArticulosIngredientes
+        dtb.Conectar()
         Dim DBO_ArticulosIngredientes As New DBO_ArticulosIngredientes
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[ArticulosIngredientesSelect]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@IngredienteID", IngredienteID)
 
@@ -38,17 +38,17 @@ Class spArticulosIngredientes
         Catch ex As System.Data.SqlClient.SqlException
 
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_ArticulosIngredientes
     End Function
 
-    Public Function Select_RecordByArticuloID(ByVal ArticuloID As Int32) As DBO_ArticulosIngredientes
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_RecordByArticuloID(ByVal ArticuloID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_ArticulosIngredientes
+        dtb.Conectar()
         Dim DBO_ArticulosIngredientes As New DBO_ArticulosIngredientes
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[ArticulosIngredientesSelectByArticuloID]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@ArticuloID", ArticuloID)
 
@@ -73,16 +73,16 @@ Class spArticulosIngredientes
         Catch ex As System.Data.SqlClient.SqlException
 
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_ArticulosIngredientes
     End Function
 
-    Public Function ArticulosIngredientesInsert(ByVal dbo_ArticulosIngredientes As DBO_ArticulosIngredientes) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ArticulosIngredientesInsert(ByVal dbo_ArticulosIngredientes As DBO_ArticulosIngredientes, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[ArticulosIngredientesInsert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
         insertCommand.Parameters.AddWithValue("@ArticuloID", If(dbo_ArticulosIngredientes.ArticuloID.HasValue, dbo_ArticulosIngredientes.ArticuloID, Convert.DBNull))
         insertCommand.Parameters.AddWithValue("@IngredienteTipoID", If(dbo_ArticulosIngredientes.IngredienteTipoID.HasValue, dbo_ArticulosIngredientes.IngredienteTipoID, Convert.DBNull))
@@ -108,15 +108,15 @@ Class spArticulosIngredientes
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function ArticulosIngredientesUpdate(ByVal newDBO_ArticulosIngredientes As DBO_ArticulosIngredientes) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ArticulosIngredientesUpdate(ByVal newDBO_ArticulosIngredientes As DBO_ArticulosIngredientes, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[ArticulosIngredientesUpdate]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         updateCommand.Parameters.AddWithValue("@NewArticuloID", If(newDBO_ArticulosIngredientes.ArticuloID.HasValue, newDBO_ArticulosIngredientes.ArticuloID, Convert.DBNull))
         updateCommand.Parameters.AddWithValue("@NewIngredienteTipoID", If(newDBO_ArticulosIngredientes.IngredienteTipoID.HasValue, newDBO_ArticulosIngredientes.IngredienteTipoID, Convert.DBNull))
@@ -144,18 +144,18 @@ Class spArticulosIngredientes
             MessageBox.Show("Error en UpdateArticulosIngredientes" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function ArticulosIngredientesInsertSinTransaccion(ByVal dbo_ArticulosIngredientes As DBO_ArticulosIngredientes, ByRef mytrans As SqlClient.SqlTransaction) As Boolean
+    Public Function ArticulosIngredientesInsertSinTransaccion(ByVal dbo_ArticulosIngredientes As DBO_ArticulosIngredientes, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
 
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Try
             Dim insertProcedure As String = "[dbo].[ArticulosIngredientesInsert2]"
-            Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+            Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
             insertCommand.CommandType = CommandType.StoredProcedure
-            insertCommand.Transaction = mytrans
+
             insertCommand.Parameters.AddWithValue("@ArticuloID", If(dbo_ArticulosIngredientes.ArticuloID.HasValue, dbo_ArticulosIngredientes.ArticuloID, Convert.DBNull))
             insertCommand.Parameters.AddWithValue("@IngredienteTipoID", If(dbo_ArticulosIngredientes.IngredienteTipoID.HasValue, dbo_ArticulosIngredientes.IngredienteTipoID, Convert.DBNull))
             insertCommand.Parameters.AddWithValue("@Descripcion", dbo_ArticulosIngredientes.Descripcion)
@@ -181,14 +181,14 @@ Class spArticulosIngredientes
         End Try
     End Function
 
-    Public Function ArticulosIngredientesUpdateSinTransaccion(ByVal newDBO_ArticulosIngredientes As DBO_ArticulosIngredientes, ByRef mytrans As SqlClient.SqlTransaction) As Boolean
+    Public Function ArticulosIngredientesUpdateSinTransaccion(ByVal newDBO_ArticulosIngredientes As DBO_ArticulosIngredientes, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
 
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Try
             Dim updateProcedure As String = "[dbo].[ArticulosIngredientesUpdate2]"
-            Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+            Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
             updateCommand.CommandType = CommandType.StoredProcedure
-            updateCommand.Transaction = mytrans
+
             updateCommand.Parameters.AddWithValue("@NewArticuloID", If(newDBO_ArticulosIngredientes.ArticuloID.HasValue, newDBO_ArticulosIngredientes.ArticuloID, Convert.DBNull))
             updateCommand.Parameters.AddWithValue("@NewIngredienteTipoID", If(newDBO_ArticulosIngredientes.IngredienteTipoID.HasValue, newDBO_ArticulosIngredientes.IngredienteTipoID, Convert.DBNull))
             updateCommand.Parameters.AddWithValue("@NewDescripcion", newDBO_ArticulosIngredientes.Descripcion)
@@ -216,11 +216,11 @@ Class spArticulosIngredientes
         End Try
     End Function
 
-    Public Function ArticulosIngredientesDelete(ByVal IngredienteID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ArticulosIngredientesDelete(ByVal IngredienteID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[ArticulosIngredientesDelete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         deleteCommand.Parameters.AddWithValue("@OldIngredienteID", IngredienteID)
         deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
@@ -237,23 +237,23 @@ Class spArticulosIngredientes
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function GrabarArticulosIngredientes(ByVal dbo_ArticulosIngredientes As DBO_ArticulosIngredientes) As Boolean
+    Public Function GrabarArticulosIngredientes(ByVal dbo_ArticulosIngredientes As DBO_ArticulosIngredientes, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         If dbo_ArticulosIngredientes.IngredienteID = 0 Then
-            Return ArticulosIngredientesInsert(dbo_ArticulosIngredientes)
+            Return ArticulosIngredientesInsert(dbo_ArticulosIngredientes, dtb)
         Else
-            Return ArticulosIngredientesUpdate(dbo_ArticulosIngredientes)
+            Return ArticulosIngredientesUpdate(dbo_ArticulosIngredientes, dtb)
         End If
     End Function
 
-    Public Function GrabarArticulosIngredientesSinTransaccion(ByVal dbo_ArticulosIngredientes As DBO_ArticulosIngredientes, ByRef mytrans As SqlClient.SqlTransaction) As Boolean
+    Public Function GrabarArticulosIngredientesSinTransaccion(ByVal dbo_ArticulosIngredientes As DBO_ArticulosIngredientes, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         If dbo_ArticulosIngredientes.IngredienteID = 0 Then
-            Return ArticulosIngredientesInsertSinTransaccion(dbo_ArticulosIngredientes, mytrans)
+            Return ArticulosIngredientesInsertSinTransaccion(dbo_ArticulosIngredientes, dtb)
         Else
-            Return ArticulosIngredientesUpdateSinTransaccion(dbo_ArticulosIngredientes, mytrans)
+            Return ArticulosIngredientesUpdateSinTransaccion(dbo_ArticulosIngredientes, dtb)
         End If
     End Function
 

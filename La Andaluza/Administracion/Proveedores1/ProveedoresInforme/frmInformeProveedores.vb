@@ -8,7 +8,7 @@ Public Class frmInformeProveedores
 
         InitializeComponent()
         filterManager = New DgvFilterPopup.DgvFilterManager(Me.dgvProveedores)
-        dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.Database()
     End Sub
 
     Private Sub dgvfill()

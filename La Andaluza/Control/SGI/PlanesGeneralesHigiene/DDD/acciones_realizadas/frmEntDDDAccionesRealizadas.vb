@@ -23,13 +23,13 @@ Public Class frmEntDDDAccionesRealizadas
 
     Private Sub frmEntDDDAccionesRealizadas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spDDDPlanes
-        s.cargar_DDDPlanes(Me.cboDDDPlan)
+        s.cargar_DDDPlanes(Me.cboDDDPlan, dtb)
 
         Dim s2 As New spDDDAcciones
-        s2.cargar_DDDAcciones(Me.cboDDDAccion)
+        s2.cargar_DDDAcciones(Me.cboDDDAccion, dtb)
 
         Dim s3 As New spDDDPersonasAutorizadas
-        s3.cargar_DDDPersonasAutorizadas(Me.cboPersona)
+        s3.cargar_DDDPersonasAutorizadas(Me.cboPersona, dtb)
         If Me.ModoDeApertura = VISION Then
             Me.cboPersona.Enabled = False
             Me.lblPersonaID.Enabled = False
@@ -39,7 +39,7 @@ Public Class frmEntDDDAccionesRealizadas
             Me.lblDDDAccionID.Enabled = False
         End If
         Dim s4 As New spDDDProductos
-        s4.cargar_DDDProductos(Me.cboProducto)
+        s4.cargar_DDDProductos(Me.cboProducto, dtb)
         If Me.ModoDeApertura = VISION Then
             Me.cboProducto.Enabled = False
             Me.lblProductoID.Enabled = False
@@ -114,8 +114,8 @@ Public Class frmEntDDDAccionesRealizadas
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butRutaParteTrabajo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butRutaParteTrabajo.Click
@@ -148,7 +148,7 @@ Public Class frmEntDDDAccionesRealizadas
         Dim frmEnt As New frmEntDDDPlanes(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spDDDPlanes, DBO_DDDPlanes)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spDDDPlanes
-        s.cargar_DDDPlanes(Me.cboDDDPlan)
+        s.cargar_DDDPlanes(Me.cboDDDPlan, dtb)
     End Sub
 
     Private Sub butVerDDDAccionID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerDDDAccionID.Click
@@ -161,7 +161,7 @@ Public Class frmEntDDDAccionesRealizadas
         Dim frmEnt As New frmEntDDDAcciones(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spDDDAcciones, DBO_DDDAcciones)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spDDDAcciones
-        s.cargar_DDDAcciones(Me.cboDDDAccion)
+        s.cargar_DDDAcciones(Me.cboDDDAccion, dtb)
     End Sub
 
     Private Sub butVerPersonaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerPersonaID.Click
@@ -174,7 +174,7 @@ Public Class frmEntDDDAccionesRealizadas
         Dim frmEnt As New frmEntDDDPersonasAutorizadas(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spDDDPersonasAutorizadas, DBO_DDDPersonasAutorizadas)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spDDDPersonasAutorizadas
-        s.cargar_DDDPersonasAutorizadas(Me.cboPersona)
+        s.cargar_DDDPersonasAutorizadas(Me.cboPersona, dtb)
     End Sub
 
     Private Sub butVerProductoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerProductoID.Click
@@ -187,7 +187,7 @@ Public Class frmEntDDDAccionesRealizadas
         Dim frmEnt As New frmEntDDDProductos(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spDDDProductos, DBO_DDDProductos)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spDDDProductos
-        s.cargar_DDDProductos(Me.cboProducto)
+        s.cargar_DDDProductos(Me.cboProducto, dtb)
     End Sub
 
 End Class

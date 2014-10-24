@@ -1,7 +1,6 @@
 ﻿Public Class spREsumenDepositos
 
-    Public Function listar_depositos() As DataTable
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+    Public Function listar_depositos(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
         Return dtb.Consultar("DepositosSelectDgv", True)
     End Function
 End Class

@@ -8,11 +8,11 @@ Class spTurnosTrabajo
                    "TurnosTrabajoSelectDgv", "TurnosTrabajoSelectDgvByID")
     End Sub
     'Public Function Select_Record(ByVal TurnoTrabajoID As Int32) As DBO_TurnosTrabajo
-    '    BasesParaCompatibilidad.BD.Conectar()
+    '    dtb.Conectar 
     '    Dim DBO_TurnosTrabajo As New DBO_TurnosTrabajo
     '    Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
     '    Dim selectProcedure As String = "[dbo].[TurnosTrabajoSelect]"
-    '    Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+    '    Dim selectCommand As  System.Data.SqlClient.SqlCommand= dtb.comando(selectProcedure)
     '    selectCommand.CommandType = CommandType.StoredProcedure
     '    selectCommand.Parameters.AddWithValue("@TurnoTrabajoID", TurnoTrabajoID)
     '    Try
@@ -32,12 +32,12 @@ Class spTurnosTrabajo
     '    Catch ex As System.Data.SqlClient.SqlException
 
     '    Finally
-    '        connection.Close()
+    '        dtb.Desconectar 
     '    End Try
     '    Return DBO_TurnosTrabajo
     'End Function
 
-    Public Function Select_Record(ByVal TurnoTrabajoID As Int32, ByRef dtb as BasesParaCompatibilidad.Database) As DBO_TurnosTrabajo
+    Public Function Select_Record(ByVal TurnoTrabajoID As Int32, ByRef dtb As BasesParaCompatibilidad.Database) As DBO_TurnosTrabajo
         dtb.Conectar()
         Dim DBO_TurnosTrabajo As New DBO_TurnosTrabajo
         Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.Comando("[dbo].[TurnosTrabajoSelect]")
@@ -60,12 +60,12 @@ Class spTurnosTrabajo
         Catch ex As System.Data.SqlClient.SqlException
 
         Finally
-           dtb.Conectar()
+            dtb.Conectar()
         End Try
         Return DBO_TurnosTrabajo
     End Function
 
-    Public Function TurnosTrabajoInsert(ByVal dbo_TurnosTrabajo As DBO_TurnosTrabajo, ByRef dtb as BasesParaCompatibilidad.Database) As Boolean
+    Public Function TurnosTrabajoInsert(ByVal dbo_TurnosTrabajo As DBO_TurnosTrabajo, ByRef dtb As BasesParaCompatibilidad.Database) As Boolean
         dtb.Conectar()
         Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.Comando("[dbo].[TurnosTrabajoInsert]")
         insertCommand.CommandType = CommandType.StoredProcedure
@@ -78,7 +78,7 @@ Class spTurnosTrabajo
         insertCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         insertCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
         Try
-            
+
             insertCommand.ExecuteNonQuery()
             Dim count As Integer = System.Convert.ToInt32(insertCommand.Parameters("@ReturnValue").Value)
             If count > 0 Then
@@ -89,11 +89,11 @@ Class spTurnosTrabajo
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-           dtb.Conectar()
+            dtb.Conectar()
         End Try
     End Function
 
-    Public Function TurnosTrabajoUpdate(ByVal newDBO_TurnosTrabajo As DBO_TurnosTrabajo, ByRef dtb as BasesParaCompatibilidad.Database) As Boolean
+    Public Function TurnosTrabajoUpdate(ByVal newDBO_TurnosTrabajo As DBO_TurnosTrabajo, ByRef dtb As BasesParaCompatibilidad.Database) As Boolean
         dtb.Conectar()
         Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.Comando("[dbo].[TurnosTrabajoUpdate]")
         updateCommand.CommandType = CommandType.StoredProcedure
@@ -107,7 +107,7 @@ Class spTurnosTrabajo
         updateCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         updateCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
         Try
-            
+
             updateCommand.ExecuteNonQuery()
             Dim count As Integer = System.Convert.ToInt32(updateCommand.Parameters("@ReturnValue").Value)
             If count > 0 Then
@@ -116,18 +116,18 @@ Class spTurnosTrabajo
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdateTurnosTrabajo" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdateTurnosTrabajo" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-           dtb.Conectar()
+            dtb.Conectar()
         End Try
     End Function
 
     'Public Function TurnosTrabajoInsert(ByVal dbo_TurnosTrabajo As DBO_TurnosTrabajo) As Boolean
-    '    BasesParaCompatibilidad.BD.Conectar()
+    '    dtb.Conectar 
     '    Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
     '    Dim insertProcedure As String = "[dbo].[TurnosTrabajoInsert]"
-    '    Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+    '    Dim insertCommand As  System.Data.SqlClient.SqlCommand= dtb.comando(insertProcedure )
     '    insertCommand.CommandType = CommandType.StoredProcedure
     '    insertCommand.Parameters.AddWithValue("@Ano", dbo_TurnosTrabajo.Ano)
     '    insertCommand.Parameters.AddWithValue("@Semana", dbo_TurnosTrabajo.Semana)
@@ -149,15 +149,15 @@ Class spTurnosTrabajo
     '    Catch ex As System.Data.SqlClient.SqlException
     '         Return False
     '    Finally
-    '        connection.Close()
+    '        dtb.Desconectar 
     '    End Try
     'End Function
 
     'Public Function TurnosTrabajoUpdate(ByVal newDBO_TurnosTrabajo As DBO_TurnosTrabajo) As Boolean
-    '    BasesParaCompatibilidad.BD.Conectar()
+    '    dtb.Conectar 
     '    Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
     '    Dim updateProcedure As String = "[dbo].[TurnosTrabajoUpdate]"
-    '    Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+    '    Dim updateCommand As  System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
     '    updateCommand.CommandType = CommandType.StoredProcedure
     '    updateCommand.Parameters.AddWithValue("@NewAno", newDBO_TurnosTrabajo.Ano)
     '    updateCommand.Parameters.AddWithValue("@NewSemana", newDBO_TurnosTrabajo.Semana)
@@ -181,15 +181,15 @@ Class spTurnosTrabajo
     '         MessageBox.Show("Error en UpdateTurnosTrabajo" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
     '         Return False
     '    Finally
-    '        connection.Close()
+    '        dtb.Desconectar 
     '    End Try
     'End Function
 
     'Public Function TurnosTrabajoDelete(ByVal TurnoTrabajoID As Int32) As Boolean
-    '    BasesParaCompatibilidad.BD.Conectar()
+    '    dtb.Conectar 
     '    Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
     '    Dim deleteProcedure As String = "[dbo].[TurnosTrabajoDelete]"
-    '    Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+    '    Dim deleteCommand As  System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
     '    deleteCommand.CommandType = CommandType.StoredProcedure
     '    deleteCommand.Parameters.AddWithValue("@OldTurnoTrabajoID", TurnoTrabajoID)
     '    deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
@@ -206,7 +206,7 @@ Class spTurnosTrabajo
     '    Catch ex As System.Data.SqlClient.SqlException
     '         Return False
     '    Finally
-    '        connection.Close()
+    '        dtb.Desconectar 
     '    End Try
     'End Function
 

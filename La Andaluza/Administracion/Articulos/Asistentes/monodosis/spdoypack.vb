@@ -7,14 +7,14 @@ Class spdoypack
         MyBase.New("doypackSelectById", "[dbo].[doypackInsert]", "[dbo].[doypackUpdate]", _
             "[dbo].[doypackDelete]", String.Empty, String.Empty)
     End Sub
-    Public Function FormatoPorArticulo(ByVal p1 As Integer) As Integer
+    Public Function FormatoPorArticulo(ByVal p1 As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         dtb.PrepararConsulta("select id_tipoFormato from doypack where id_articuloPrimario = @id")
         dtb.AñadirParametroConsulta("@id", p1)
         Dim dt As DataTable = dtb.Consultar
         Return If(IsDBNull(dt.Rows(0).Item(0)), Nothing, dt.Rows(0).Item(0))
     End Function
 
-    Public Function crear_formato(ByVal nombre As String) As Integer
+    Public Function crear_formato(ByVal nombre As String, ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Dim s As String = "INSERT INTO [dbo].[TiposFormatos] (codigoqs, [Descripcion], separadores, cajaspalet, tipocajaid) " & _
         " VALUES (1, @nom , 1, 1, 1)"
         dtb.PrepararConsulta(s)
@@ -26,7 +26,7 @@ Class spdoypack
             Return 0
         End If
     End Function
-    Public Function MarcaPorArticulo(ByVal p1 As Integer) As Integer
+    Public Function MarcaPorArticulo(ByVal p1 As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         dtb.PrepararConsulta("select id_marca from doypack where id_articuloPrimario = @id")
         dtb.AñadirParametroConsulta("@id", p1)
         Dim dt As DataTable = dtb.Consultar
@@ -34,7 +34,7 @@ Class spdoypack
         Return If(IsDBNull(dt.Rows(0).Item(0)), Nothing, dt.Rows(0).Item(0))
     End Function
 
-    Public Function CajaPorArticulo(ByVal p1 As Integer) As Integer
+    Public Function CajaPorArticulo(ByVal p1 As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         dtb.PrepararConsulta("select id_tipoCaja from doypack where id_articuloPrimario = @id")
         dtb.AñadirParametroConsulta("@id", p1)
         Dim dt As DataTable = dtb.Consultar
@@ -42,7 +42,7 @@ Class spdoypack
         Return If(IsDBNull(dt.Rows(0).Item(0)), Nothing, dt.Rows(0).Item(0))
     End Function
 
-    Public Function ProductoPorArticulo(ByVal p1 As Integer) As Integer
+    Public Function ProductoPorArticulo(ByVal p1 As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         dtb.PrepararConsulta("select id_TipoProducto from doypack where id_articuloPrimario = @id")
         dtb.AñadirParametroConsulta("@id", p1)
         Dim dt As DataTable = dtb.Consultar
@@ -50,7 +50,7 @@ Class spdoypack
         Return If(IsDBNull(dt.Rows(0).Item(0)), Nothing, dt.Rows(0).Item(0))
     End Function
 
-    Public Function PaletNCPorArticulo(ByVal p1 As Integer) As Integer
+    Public Function PaletNCPorArticulo(ByVal p1 As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         dtb.PrepararConsulta("select id_PaletProducidoNoConforme from doypack where id_articuloPrimario = @id")
         dtb.AñadirParametroConsulta("@id", p1)
         Dim dt As DataTable = dtb.Consultar
@@ -58,7 +58,7 @@ Class spdoypack
         Return If(IsDBNull(dt.Rows(0).Item(0)), Nothing, dt.Rows(0).Item(0))
     End Function
 
-    Public Function EanPorArticulo(ByVal p1 As Integer) As String
+    Public Function EanPorArticulo(ByVal p1 As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As String
         dtb.PrepararConsulta("select ean13 from doypack where id_articuloPrimario = @id")
         dtb.AñadirParametroConsulta("@id", p1)
         Dim dt As DataTable = dtb.Consultar
@@ -71,7 +71,7 @@ Class spdoypack
         'Return If(dt.Rows(0).Item(0) Is Convert.DBNull, Nothing, dt.Rows(0).Item(0))
     End Function
 
-    Public Function UltimoArticuloInsertado() As Integer
+    Public Function UltimoArticuloInsertado(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Return dtb.Consultar("select max(articuloID) from articulos1", False).Rows(0).Item(0)
     End Function
 
@@ -100,7 +100,7 @@ Class spdoypack
     '    Return doys
     'End Function
 
-    Public Function selectRecordById(ByVal p1 As Integer) As Dbo_DoyPack
+    Public Function selectRecordById(ByVal p1 As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Dbo_DoyPack
 
         Dim Dbo_DoyPack As New Dbo_DoyPack
         'Dim selectProcedure As String = "exec doypackSelectById"
@@ -126,7 +126,7 @@ Class spdoypack
         Return Dbo_DoyPack
     End Function
 
-    Public Function selectRecordBy(ByVal p1 As Integer, ByVal p2 As Integer) As Dbo_DoyPack
+    Public Function selectRecordBy(ByVal p1 As Integer, ByVal p2 As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Dbo_DoyPack
 
         Dim Dbo_DoyPack As New Dbo_DoyPack
         Dim selectProcedure As String = "[dbo].[doypackSelectBy]"
@@ -154,25 +154,30 @@ Class spdoypack
     End Function
 
 
-    Public Function selectRecords(ByVal id As Integer) As DataTable
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+    Public Function selectRecords(ByVal id As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
         ', id_marca, id_paletproducidoNoConforme
         dtb.PrepararConsulta("select doypack.id,articulos1.descripcionLa, doypack.cantidad, id_monodosis from monodosis, articulos1, doypack where monodosis.id_articuloPrimario = articulos1.articuloid and monodosis.id_articuloPrimario = doypack.id_monodosis and doypack.id_articuloPrimario = @id")
         dtb.AñadirParametroConsulta("@id", id)
         Return dtb.Consultar
     End Function
 
-    Public Function actualizarFormatoPorArticulo(ByVal p1 As Integer, ByVal formato As Integer, ByVal id_marca As Integer, ByVal id_caja As Integer, id_NC As Integer, id_producto As Integer, ean As String) As Boolean
-
-        Return Deprecated.realizarConsultaAlteraciones("update doypack set id_tipoFormato = " & formato & ", id_marca=" & id_marca & ", id_tipocaja =" & id_caja & ", id_tipoproducto=" & id_producto & ", id_paletProducidoNoConforme=" & If(id_NC = 0, "null", Convert.ToString(id_NC)) & ",ean13= " & If(ean = "0" Or ean = String.Empty, "null", "'" & ean & "'") & " where id_articuloPrimario = " & p1)
+    Public Function actualizarFormatoPorArticulo(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal p1 As Integer, ByVal formato As Integer, ByVal id_marca As Integer, ByVal id_caja As Integer, id_NC As Integer, id_producto As Integer, ean As String) As Boolean
+        dtb.PrepararConsulta("update doypack set id_tipoFormato = @for , id_marca= @mar , id_tipocaja = @caj , id_tipoproducto= @pro ," & _
+                              "id_paletProducidoNoConforme= @nc , ean13= @e13 where id_articuloPrimario = @art")
+        dtb.AñadirParametroConsulta("@for", formato)
+        dtb.AñadirParametroConsulta("@mar", id_marca)
+        dtb.AñadirParametroConsulta("@caj", id_caja)
+        dtb.AñadirParametroConsulta("@pro", id_producto)
+        dtb.AñadirParametroConsulta("@nc", If(id_NC = 0, Convert.DBNull, id_NC))
+        dtb.AñadirParametroConsulta("@e13", If(ean = "0" Or ean = String.Empty, Convert.DBNull, ean))
+        dtb.AñadirParametroConsulta("@art", p1)
+        Return dtb.Consultar(True)
     End Function
 
-    Public Function esDoypack(ByVal p1 As Integer, Optional dtb as BasesParaCompatibilidad.Database = Nothing) As Boolean
+    Public Function esDoypack(ByVal p1 As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Dim dt As DataTable
 
-        If dtb Is Nothing Then
-            dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        End If
+ 
 
         dtb.PrepararConsulta("Select count(*) from doypack where id_articuloPrimario =  @id")
         dtb.AñadirParametroConsulta("@id", p1)
@@ -185,15 +190,15 @@ Class spdoypack
         End If
     End Function
 
-    Public Function modify(ByVal dbo As Dbo_DoyPack) As Boolean
-        If BasesParaCompatibilidad.BD.transaction Is Nothing Then BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+    Public Function modify(ByVal dbo As Dbo_DoyPack, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
 
         Try
             Dim updateProcedure As String = "[dbo].[doypackUpdate]"
-            Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+            Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
             updateCommand.CommandType = CommandType.StoredProcedure
-            If Not BasesParaCompatibilidad.BD.transaction Is Nothing Then updateCommand.Transaction = BasesParaCompatibilidad.BD.transaction
+
             updateCommand.Parameters.AddWithValue("@id_articuloPrimario", dbo.ArticuloPrimarioID)
             updateCommand.Parameters.AddWithValue("@id_tipoFormato", dbo.TipoFormatoID)
             updateCommand.Parameters.AddWithValue("@id_monodosis", dbo.MonodosisID)
@@ -210,23 +215,20 @@ Class spdoypack
             Return True
         Catch ex As Exception
             Return False
-        Finally
-            If BasesParaCompatibilidad.BD.transaction Is Nothing Then
-                connection.Close()
-                BasesParaCompatibilidad.BD.Cerrar()
-            End If
+        Finally            
+                dtb.Desconectar()            
         End Try
     End Function
 
-    Public Function add(ByVal dbo As Dbo_DoyPack) As Boolean
-        If BasesParaCompatibilidad.BD.transaction Is Nothing Then BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+    Public Function add(ByVal dbo As Dbo_DoyPack, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
 
         Try
             Dim insertProcedure As String = "[dbo].[doypackInsert]"
-            Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+            Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
             insertCommand.CommandType = CommandType.StoredProcedure
-            If Not BasesParaCompatibilidad.BD.transaction Is Nothing Then insertCommand.Transaction = BasesParaCompatibilidad.BD.transaction
+
             insertCommand.Parameters.AddWithValue("@id_articuloPrimario", dbo.ArticuloPrimarioID)
             insertCommand.Parameters.AddWithValue("@id_tipoFormato", dbo.TipoFormatoID)
             insertCommand.Parameters.AddWithValue("@id_monodosis", dbo.MonodosisID)
@@ -243,22 +245,19 @@ Class spdoypack
         Catch ex As Exception
             Return False
         Finally
-            If BasesParaCompatibilidad.BD.transaction Is Nothing Then
-                connection.Close()
-                BasesParaCompatibilidad.BD.Cerrar()
-            End If
+                dtb.Desconectar()
         End Try
     End Function
 
-    Public Function delete(ByVal p1 As Integer) As Boolean
-        If BasesParaCompatibilidad.BD.transaction Is Nothing Then BasesParaCompatibilidad.BD.Conectar()
+    Public Function delete(ByVal p1 As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
 
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+
         Try
             Dim deleteProcedure As String = "[dbo].[doypackDelete]"
-            Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+            Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
             deleteCommand.CommandType = CommandType.StoredProcedure
-            If Not BasesParaCompatibilidad.BD.transaction Is Nothing Then deleteCommand.Transaction = BasesParaCompatibilidad.BD.transaction
+
             deleteCommand.Parameters.AddWithValue("@id", p1)
 
             deleteCommand.ExecuteNonQuery()
@@ -266,10 +265,7 @@ Class spdoypack
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            If BasesParaCompatibilidad.BD.transaction Is Nothing Then
-                connection.Close()
-                BasesParaCompatibilidad.BD.Cerrar()
-            End If
+                dtb.Desconectar()
         End Try
     End Function
 
@@ -289,13 +285,13 @@ Class spdoypack
         End Try
     End Function
 
-    Public Function InsertarCompuestoPor(p1 As Integer, p2 As Integer, p3 As Double) As Boolean
-        Dim dtb As New BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server, BasesParaCompatibilidad.BD.Cnx, BasesParaCompatibilidad.BD.transaction)
+    Public Function InsertarCompuestoPor(p1 As Integer, p2 As Integer, p3 As Double, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+
         Dim retorno As Boolean = True
         Dim spArticulos1 As New spArticulos1
 
         Try
-            Dim m_aux As DBO_Articulos1 = spArticulos1.Select_Record(p1, dtb.Transaccion)
+            Dim m_aux As DBO_Articulos1 = spArticulos1.Select_Record(p1, dtb)
 
             dtb.PrepararConsulta("insert into articulos1_articulos1_compuestoPor(id_articulo, id_articuloCompuestoPor, cantidad) values( @p1, @p2, @p3)")
             dtb.AñadirParametroConsulta("@p1", p1)
@@ -310,10 +306,8 @@ Class spdoypack
         End Try
     End Function
 
-    Public Function seleccionar_composicion_vigente(ByVal Id_articulo As Integer, Optional ByRef dtb as BasesParaCompatibilidad.Database = Nothing) As Integer
-        If dtb Is Nothing Then
-            dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        End If
+    Public Function seleccionar_composicion_vigente(ByVal Id_articulo As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
+
 
         dtb.PrepararConsulta("select id from ComposicionesArticulos where FechaFinVigencia is null and id_articulo = @id")
         dtb.AñadirParametroConsulta("@id", Id_articulo)

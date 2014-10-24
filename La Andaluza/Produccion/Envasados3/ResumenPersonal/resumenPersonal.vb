@@ -8,7 +8,7 @@ Public Class resumenPersonal
 
         InitializeComponent()
 
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.DataBase()
         datagridViewProcedure = "resumenPersonal " & idenvasado
         Me.BackgroundWorker1.RunWorkerAsync()
     End Sub

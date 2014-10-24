@@ -20,7 +20,7 @@ Public Class frmTareasEnvasado
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboTareasEnvasado = CType(sp, spTareasEnvasado).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboTareasEnvasado = CType(sp, spTareasEnvasado).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboTareasEnvasado Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboTareasEnvasado)
         Else

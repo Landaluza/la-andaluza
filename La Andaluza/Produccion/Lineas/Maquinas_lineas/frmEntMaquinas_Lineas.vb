@@ -18,10 +18,10 @@ Public Class frmEntMaquinas_Lineas
 
     Private Sub frmEntMaquinas_Lineas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spMaquinas
-        s.cargar_Maquinas(Me.cboMaquina)
+        s.cargar_Maquinas(Me.cboMaquina, dtb)
 
         Dim s2 As New spLineasEnvasado
-        s2.cargar_LineasEnvasado(Me.cboLinea)
+        s2.cargar_LineasEnvasado(Me.cboLinea, dtb)
         If Me.mododeapertura = VISION Then
             Me.cboLinea.enabled = False
             Me.lblLineaID.enabled = False
@@ -65,8 +65,8 @@ Public Class frmEntMaquinas_Lineas
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As sqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerMaquinaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerMaquinaID.Click
@@ -79,7 +79,7 @@ Public Class frmEntMaquinas_Lineas
         Dim frmEnt As New frmEntMaquinas(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spMaquinas, DBO_Maquinas)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spMaquinas
-        s.cargar_Maquinas(Me.cboMaquina)
+        s.cargar_Maquinas(Me.cboMaquina, dtb)
     End Sub
 
     Private Sub butVerLineaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -92,7 +92,7 @@ Public Class frmEntMaquinas_Lineas
         Dim frmEnt As New frmEntLineasEnvasado(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spLineasEnvasado, DBO_LineasEnvasado)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spLineasEnvasado
-        s.cargar_LineasEnvasado(Me.cboLinea)
+        s.cargar_LineasEnvasado(Me.cboLinea, dtb)
     End Sub
 
 End Class

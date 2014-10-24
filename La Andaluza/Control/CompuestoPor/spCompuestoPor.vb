@@ -9,12 +9,12 @@ Class spCompuestoPor
                    "[dbo].[CompuestoPorDelete]", "CompuestoPorSelectDgv", "CompuestoPorSelectDgvByLotePartida")
     End Sub
 
-    Public Function Select_Record(ByVal LoteFinal As Int32, ByVal LotePartida As Int32, ByVal MovimientoID As Int32) As DBO_CompuestoPor
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal LoteFinal As Int32, ByVal LotePartida As Int32, ByVal MovimientoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_CompuestoPor
+        dtb.Conectar()
         Dim DBO_CompuestoPor As New DBO_CompuestoPor
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[CompuestoPorSelect]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@LoteFinal", LoteFinal)
         selectCommand.Parameters.AddWithValue("@LotePartida", LotePartida)
@@ -22,14 +22,14 @@ Class spCompuestoPor
         Try
             Dim reader As System.Data.SqlClient.SqlDataReader = selectCommand.ExecuteReader(CommandBehavior.SingleRow)
             If reader.Read Then
-                
+
                 DBO_CompuestoPor.LoteFinal = If(reader("LoteFinal") Is Convert.DBNull, 0, Convert.ToInt32(reader("LoteFinal")))
                 DBO_CompuestoPor.LotePartida = If(reader("LotePartida") Is Convert.DBNull, 0, Convert.ToInt32(reader("LotePartida")))
                 DBO_CompuestoPor.MovimientoID = If(reader("MovimientoID") Is Convert.DBNull, 0, Convert.ToInt32(reader("MovimientoID")))
                 DBO_CompuestoPor.Cantidad = System.Convert.ToDouble(If(reader("Cantidad") Is Convert.DBNull, 0, reader("Cantidad")))
                 DBO_CompuestoPor.FechaModificacion = If(reader("FechaModificacion") Is Convert.DBNull, System.DateTime.Now.Date, CDate(reader("FechaModificacion")))
                 DBO_CompuestoPor.UsuarioModificacion = If(reader("UsuarioModificacion") Is Convert.DBNull, 0, Convert.ToInt32(reader("UsuarioModificacion")))
-                
+
             Else
                 DBO_CompuestoPor = Nothing
             End If
@@ -37,26 +37,26 @@ Class spCompuestoPor
         Catch ex As System.Data.SqlClient.SqlException
 
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_CompuestoPor
     End Function
 
-    Public Function CompuestoPorInsert(ByVal dbo_CompuestoPor As DBO_CompuestoPor, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As Boolean
-        If trans Is Nothing Then BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function CompuestoPorInsert(ByVal dbo_CompuestoPor As DBO_CompuestoPor, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[CompuestoPorInsert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
-        If Not trans Is Nothing Then insertCommand.Transaction = trans
-        
+
+
         insertCommand.Parameters.AddWithValue("@LoteFinal", dbo_CompuestoPor.LoteFinal)
         insertCommand.Parameters.AddWithValue("@LotePartida", dbo_CompuestoPor.LotePartida)
         insertCommand.Parameters.AddWithValue("@MovimientoID", dbo_CompuestoPor.MovimientoID)
         insertCommand.Parameters.AddWithValue("@Cantidad", dbo_CompuestoPor.Cantidad)
         insertCommand.Parameters.AddWithValue("@FechaModificacion", System.DateTime.Now)
         insertCommand.Parameters.AddWithValue("@UsuarioModificacion", BasesParaCompatibilidad.Config.User)
-        
+
         insertCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         insertCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
         Try
@@ -71,15 +71,15 @@ Class spCompuestoPor
             messagebox.show(ex.Message)
             Return False
         Finally
-            If trans Is Nothing Then connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function CompuestoPorUpdate(ByVal newDBO_CompuestoPor As DBO_CompuestoPor) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function CompuestoPorUpdate(ByVal newDBO_CompuestoPor As DBO_CompuestoPor, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[CompuestoPorUpdate]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         '<Tag=[Three][Start]> -- please do not remove this line
         updateCommand.Parameters.AddWithValue("@NewCantidad", newDBO_CompuestoPor.Cantidad)
@@ -100,18 +100,18 @@ Class spCompuestoPor
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdateCompuestoPor" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdateCompuestoPor" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function CompuestoPorDelete(ByVal LoteFinal As Int32, ByVal LotePartida As Int32, ByVal MovimientoID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function CompuestoPorDelete(ByVal LoteFinal As Int32, ByVal LotePartida As Int32, ByVal MovimientoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[CompuestoPorDelete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         '<Tag=[Four][Start]> -- please do not remove this line
         deleteCommand.Parameters.AddWithValue("@OldLoteFinal", LoteFinal)
@@ -131,17 +131,17 @@ Class spCompuestoPor
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Sub GrabarCompuestoPor(ByVal dbo_CompuestoPor As DBO_CompuestoPor)
-        dbo_CompuestoPor.FechaModificacion = System.DateTime.Now.date
+    Public Sub GrabarCompuestoPor(ByVal dbo_CompuestoPor As DBO_CompuestoPor, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        dbo_CompuestoPor.FechaModificacion = System.DateTime.Now.Date
         dbo_CompuestoPor.UsuarioModificacion = BasesParaCompatibilidad.Config.User
         If dbo_CompuestoPor.LoteFinal = 0 Then
-            CompuestoPorInsert(dbo_CompuestoPor)
+            CompuestoPorInsert(dbo_CompuestoPor, dtb)
         Else
-            CompuestoPorUpdate(dbo_CompuestoPor)
+            CompuestoPorUpdate(dbo_CompuestoPor, dtb)
         End If
     End Sub
 

@@ -1,6 +1,15 @@
 ﻿Imports BasesParaCompatibilidad.ComboBoxExtension
 Public Class frmWstepEtiquetas
     Implements wizardable
+    Private dtb As BasesParaCompatibilidad.DataBase
+
+    Public Sub New()
+
+        ' Llamada necesaria para el diseñador.
+        InitializeComponent()
+
+        dtb = New BasesParaCompatibilidad.DataBase
+    End Sub
 
 
     Public Function comprobarCampos() As Boolean Implements wizardable.comprobarCampos
@@ -25,7 +34,7 @@ Public Class frmWstepEtiquetas
     End Function
 
     Public Sub EstablecerValores() Implements wizardable.EstablecerValores
-        Me.cboEtiquetaTipo.mam_DataSource("ArticulosEtiquetasTiposCbo", False)
+        Me.cboEtiquetaTipo.mam_DataSource("ArticulosEtiquetasTiposCbo", False, dtb)
     End Sub
 
     Public Function grabarDatos(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean Implements wizardable.grabarDatos

@@ -1,7 +1,6 @@
 ﻿Imports BasesParaCompatibilidad.DataGridViewExtension
 Imports BasesParaCompatibilidad.ComboBoxExtension
 Public Class spListadoDestruccion
-    Private dtb As BasesParaCompatibilidad.DataBase
     Private filtroFechaInicial As String
     Private filtroFechafinal As String
     Private filtroTipoMovimiento As String
@@ -9,7 +8,7 @@ Public Class spListadoDestruccion
 
 #Region "constructor y propiedades"
     Public Sub New()
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+
     End Sub
 
     Public Property fecha_inicial As String
@@ -50,17 +49,17 @@ Public Class spListadoDestruccion
 
 #End Region
 
-    Public Sub cargar_cbo_tiposMovimientos(ByRef cbo As ComboBox)
-        cbo.mam_DataSource("PaletsMovimientosTipos1CboNoEntrePalets", False)
+    Public Sub cargar_cbo_tiposMovimientos(ByRef cbo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        cbo.mam_DataSource("PaletsMovimientosTipos1CboNoEntrePalets", False, dtb)
     End Sub
 
-    Public Sub cargar_cbo_articulos(ByRef cbo As ComboBox)
-        cbo.mam_DataSource("TiposFormatosSelectCbo", False)
+    Public Sub cargar_cbo_articulos(ByRef cbo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        cbo.mam_DataSource("TiposFormatosSelectCbo", False, dtb)
     End Sub
 
 
 
-    Public Sub dgvFill(ByRef dgv As DataGridView)
+    Public Sub dgvFill(ByRef dgv As DataGridView, ByRef dtb As BasesParaCompatibilidad.DataBase)
         Dim query As String = Me.crearConsulta
 
         Dim dt As DataTable = dtb.Consultar(query, False)

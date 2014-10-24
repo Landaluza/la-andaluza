@@ -19,18 +19,18 @@ Public Class frmEntTiposIncidencias
 
     Private Sub frmEntTiposIncidencias_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spMaquinas
-        s.cargar_Maquinas(Me.cboMaquina)
+        s.cargar_Maquinas(Me.cboMaquina, dtb)
 
         Dim s3 As New spCategoriaIncidencias
         If Me.ModoDeApertura = INSERCION Then
-            s3.cargar_CategoriaIncidencias(Me.cboCategoriaIncidencia)
+            s3.cargar_CategoriaIncidencias(Me.cboCategoriaIncidencia, dtb)
         Else
-            s3.cargar_CategoriaIncidencias_con_retroCompatibilidad(Me.cboCategoriaIncidencia)
+            s3.cargar_CategoriaIncidencias_con_retroCompatibilidad(Me.cboCategoriaIncidencia, dtb)
         End If
 
 
         Dim s4 As New spIncidenciasCalidadGeneral
-        s4.cargar_IncidenciasCalidadGeneral(Me.cboIncidenciaCalidadGeneral)
+        s4.cargar_IncidenciasCalidadGeneral(Me.cboIncidenciaCalidadGeneral, dtb)
 
         If Me.ModoDeApertura = VISION Then
             Me.cboIncidenciaCalidadGeneral.Enabled = False
@@ -101,8 +101,8 @@ Public Class frmEntTiposIncidencias
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerMaquinaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -115,7 +115,7 @@ Public Class frmEntTiposIncidencias
         Dim frmEnt As New frmEntMaquinas(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spMaquinas, DBO_Maquinas)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spMaquinas
-        s.cargar_Maquinas(Me.cboMaquina)
+        s.cargar_Maquinas(Me.cboMaquina, dtb)
     End Sub
 
     Private Sub butVerClaseIncidenciaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerClaseIncidenciaID.Click
@@ -128,7 +128,7 @@ Public Class frmEntTiposIncidencias
         Dim frmEnt As New frmEntClasesIncidencias(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spClasesIncidencias, DBO_ClasesIncidencias)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spClasesIncidencias
-        s.cargar_ClasesIncidencias(Me.cboClaseIncidencia)
+        s.cargar_ClasesIncidencias(Me.cboClaseIncidencia, dtb)
     End Sub
 
     Private Sub butVerCategoriaIncidenciaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerCategoriaIncidenciaID.Click
@@ -141,7 +141,7 @@ Public Class frmEntTiposIncidencias
         Dim frmEnt As New frmEntCategoriaIncidencias(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spCategoriaIncidencias, DBO_CategoriaIncidencias)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spCategoriaIncidencias
-        s.cargar_CategoriaIncidencias(Me.cboCategoriaIncidencia)
+        s.cargar_CategoriaIncidencias(Me.cboCategoriaIncidencia, dtb)
     End Sub
 
     Private Sub butVerId_IncidenciaCalidadGeneral_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -154,7 +154,7 @@ Public Class frmEntTiposIncidencias
         Dim frmEnt As New frmEntIncidenciasCalidadGeneral(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spIncidenciasCalidadGeneral, DBO_IncidenciasCalidadGeneral)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spIncidenciasCalidadGeneral
-        s.cargar_IncidenciasCalidadGeneral(Me.cboIncidenciaCalidadGeneral)
+        s.cargar_IncidenciasCalidadGeneral(Me.cboIncidenciaCalidadGeneral, dtb)
     End Sub
 
     Private Sub btnLimpiarMaquina_Click(sender As System.Object, e As System.EventArgs)
@@ -182,7 +182,7 @@ Public Class frmEntTiposIncidencias
             End If
 
             Dim s2 As New spClasesIncidencias
-            s2.cargar_ClasesIncidencias_por_categoria(Me.cboClaseIncidencia, Me.cboCategoriaIncidencia.SelectedValue)
+            s2.cargar_ClasesIncidencias_por_categoria(Me.cboClaseIncidencia, Me.cboCategoriaIncidencia.SelectedValue, dtb)
         Catch ex As Exception
         End Try
     End Sub

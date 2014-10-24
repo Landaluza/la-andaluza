@@ -18,7 +18,7 @@ Public Class frmEntTiposProductos_ClasesProductos
 
    Private Sub frmEntTiposProductos_ClasesProductos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
        dim s1 as new spClasesProductos
-       s1.cargar_ClasesProductos(Me.cboClaseProducto)
+        s1.cargar_ClasesProductos(Me.cboClaseProducto, dtb)
        If (me.mododeapertura = VISION) Then
            Me.cboClaseProducto.enabled = False
            Me.lblId_ClaseProducto.enabled = False
@@ -55,9 +55,9 @@ Public Class frmEntTiposProductos_ClasesProductos
         End IF
    End Function
 
-   Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = nothing) Implements BasesParaCompatibilidad.Savable.Guardar
-       MyBase.Guardar(trans)
-   End Sub
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+        MyBase.Guardar(Me.dtb)
+    End Sub
 
     Private Sub butVerId_TipoProducto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim frmEnt As New frmTiposProductos()
@@ -80,7 +80,7 @@ Public Class frmEntTiposProductos_ClasesProductos
         Dim frmEnt As New frmEntClasesProductos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spClasesProductos, DBO_ClasesProductos)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spClasesProductos
-        s.cargar_ClasesProductos(Me.cboClaseProducto)
+        s.cargar_ClasesProductos(Me.cboClaseProducto, dtb)
     End Sub
 
    Private Sub frmEntTiposProductos_ClasesProductos_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown

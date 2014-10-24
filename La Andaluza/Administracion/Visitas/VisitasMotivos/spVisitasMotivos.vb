@@ -9,24 +9,24 @@ Class spVisitasMotivos
                    "VisitasMotivosSelectDgv", "VisitasMotivosSelectDgvByID")
     End Sub
 
-    Public Function Select_Record(ByVal VisitaMotivoID As Int32) As DBO_VisitasMotivos
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal VisitaMotivoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_VisitasMotivos
+        dtb.Conectar()
         Dim DBO_VisitasMotivos As New DBO_VisitasMotivos
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[VisitasMotivosSelect]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@VisitaMotivoID", VisitaMotivoID)
         Try
             Dim reader As System.Data.SqlClient.SqlDataReader = selectCommand.ExecuteReader(CommandBehavior.SingleRow)
             If reader.Read Then
-                
+
                 DBO_VisitasMotivos.VisitaMotivoID = If(reader("VisitaMotivoID") Is Convert.DBNull, 0, Convert.ToInt32(reader("VisitaMotivoID")))
                 DBO_VisitasMotivos.Descripcion = If(reader("Descripcion") Is Convert.DBNull, String.Empty, Convert.ToString(reader("Descripcion")))
                 DBO_VisitasMotivos.Observaciones = If(reader("Observaciones") Is Convert.DBNull, String.Empty, Convert.ToString(reader("Observaciones")))
                 DBO_VisitasMotivos.FechaModificacion = If(reader("FechaModificacion") Is Convert.DBNull, System.DateTime.Now.Date, CDate(reader("FechaModificacion")))
                 DBO_VisitasMotivos.UsuarioModificacion = If(reader("UsuarioModificacion") Is Convert.DBNull, 0, Convert.ToInt32(reader("UsuarioModificacion")))
-                
+
             Else
                 DBO_VisitasMotivos = Nothing
             End If
@@ -34,23 +34,23 @@ Class spVisitasMotivos
         Catch ex As System.Data.SqlClient.SqlException
 
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_VisitasMotivos
     End Function
 
-    Public Function VisitasMotivosInsert(ByVal dbo_VisitasMotivos As DBO_VisitasMotivos) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function VisitasMotivosInsert(ByVal dbo_VisitasMotivos As DBO_VisitasMotivos, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[VisitasMotivosInsert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
-        
+
         insertCommand.Parameters.AddWithValue("@Descripcion", dbo_VisitasMotivos.Descripcion)
         insertCommand.Parameters.AddWithValue("@Observaciones", dbo_VisitasMotivos.Observaciones)
         insertCommand.Parameters.AddWithValue("@FechaModificacion", dbo_VisitasMotivos.FechaModificacion)
         insertCommand.Parameters.AddWithValue("@UsuarioModificacion", dbo_VisitasMotivos.UsuarioModificacion)
-        
+
         insertCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         insertCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
         Try
@@ -64,15 +64,15 @@ Class spVisitasMotivos
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function VisitasMotivosUpdate(ByVal newDBO_VisitasMotivos As DBO_VisitasMotivos) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function VisitasMotivosUpdate(ByVal newDBO_VisitasMotivos As DBO_VisitasMotivos, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[VisitasMotivosUpdate]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         '<Tag=[Three][Start]> -- please do not remove this line
         updateCommand.Parameters.AddWithValue("@NewDescripcion", newDBO_VisitasMotivos.Descripcion)
@@ -92,18 +92,18 @@ Class spVisitasMotivos
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdateVisitasMotivos" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdateVisitasMotivos" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function VisitasMotivosDelete(ByVal VisitaMotivoID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function VisitasMotivosDelete(ByVal VisitaMotivoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[VisitasMotivosDelete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         '<Tag=[Four][Start]> -- please do not remove this line
         deleteCommand.Parameters.AddWithValue("@OldVisitaMotivoID", VisitaMotivoID)
@@ -121,17 +121,17 @@ Class spVisitasMotivos
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Sub GrabarVisitasMotivos(ByVal dbo_VisitasMotivos As DBO_VisitasMotivos)
-        dbo_VisitasMotivos.FechaModificacion = System.DateTime.Now.date
+    Public Sub GrabarVisitasMotivos(ByVal dbo_VisitasMotivos As DBO_VisitasMotivos, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        dbo_VisitasMotivos.FechaModificacion = System.DateTime.Now.Date
         dbo_VisitasMotivos.UsuarioModificacion = BasesParaCompatibilidad.Config.User
         If dbo_VisitasMotivos.VisitaMotivoID = 0 Then
-            VisitasMotivosInsert(dbo_VisitasMotivos)
+            VisitasMotivosInsert(dbo_VisitasMotivos, dtb)
         Else
-            VisitasMotivosUpdate(dbo_VisitasMotivos)
+            VisitasMotivosUpdate(dbo_VisitasMotivos, dtb)
         End If
     End Sub
 

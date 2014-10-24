@@ -11,10 +11,11 @@ Public Class frmWstepDatosGenerales
     Public Const CREAR_SECUNDARIO As String = "secundario"
     Public Const CREAR_FORMATO As String = "formato"
     Public Const CAJA As String = "caja"
-
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New()
 
         InitializeComponent()
+        dtb = New BasesParaCompatibilidad.DataBase
     End Sub
 
     Private Sub frmWstepDatosGenerales_Resize(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Resize
@@ -46,15 +47,15 @@ Public Class frmWstepDatosGenerales
 
 
     Public Sub establecerValores() Implements wizardable.EstablecerValores
-        Me.cboLinea.mam_DataSource("LineasEnvasadoSelectCbo", False)
+        Me.cboLinea.mam_DataSource("LineasEnvasadoSelectCbo", False, dtb)
         'Me.cboMarca.mam_DataSource("MarcasCbo", False)
         Dim s As New spmarcas
-        s.cargar_marcas(cboMarca)
+        s.cargar_marcas(cboMarca, dtb)
         Dim spt As New spArticulosEnvasadosHistoricos
-        spt.cargar_TiposFormatos_Libres(cboFormatos)
-        Me.cboPaletTipo.mam_DataSource("PaletsTiposCbo", False)
-        Me.cboProducto.mam_DataSource("TiposProductosSelectCbo", False)
-        Me.cboCaja.mam_DataSource("TiposcajasCbo", False)
+        spt.cargar_TiposFormatos_Libres(cboFormatos, dtb)
+        Me.cboPaletTipo.mam_DataSource("PaletsTiposCbo", False, dtb)
+        Me.cboProducto.mam_DataSource("TiposProductosSelectCbo", False, dtb)
+        Me.cboCaja.mam_DataSource("TiposcajasCbo", False, dtb)
     End Sub
 
     Public Function recuperarValor(ByVal nombre As String) As Object Implements wizardable.recuperarValor
@@ -100,7 +101,7 @@ Public Class frmWstepDatosGenerales
             m_DBO_TiposFormatos1.TipoProductoID = 1
             m_DBO_TiposFormatos1.TipoCajaID = cboCaja.SelectedValue
             Dim spTiposFormatos1 As New spArticulosEnvasadosHistorico1
-            If Not spTiposFormatos1.GrabarTiposFormatos1Sintransaccion(m_DBO_TiposFormatos1, BasesParaCompatibilidad.BD.transaction) Then Return False
+            If Not spTiposFormatos1.GrabarTiposFormatos1Sintransaccion(m_DBO_TiposFormatos1, dtb) Then Return False
             Dim spt As New spArticulosEnvasadosHistoricos
             Dim m_formato As Integer = spt.seleccionar_ultimo_registro(dtb)
 
@@ -113,7 +114,7 @@ Public Class frmWstepDatosGenerales
                 'dbo.LineaEnvasadoID = cboLinea.SelectedValue
                 'dbo.Descripcion = Me.cboCaja.SelectedText
                 'Dim sp As New spTiposFormatosLineas
-                'If Not sp.Grabar(dbo, BasesParaCompatibilidad.BD.transaction) Then Return False
+                'If Not sp.Grabar(dbo,dtb) Then Return False
                 ''falta grabar tiposforamtos_tiposformatoslineas
                 'm_formatoLinea = RealizarConsulta("select max(tipoformatoLineaID) from tiposformatosLineas").Rows(0).Item(0)
             Else
@@ -126,7 +127,7 @@ Public Class frmWstepDatosGenerales
                 dbo2.TipoFormatoID = m_formato
                 dbo2.TipoFormatoLineaID = m_formatoLinea
                 dbo2.Velocidad = Me.txtVelocidad.Text
-                If Not sp2.Grabar(dbo2, BasesParaCompatibilidad.BD.transaction) Then Return False
+                If Not sp2.Grabar(dbo2, dtb) Then Return False
             End If
 
 
@@ -174,13 +175,13 @@ Public Class frmWstepDatosGenerales
         Dim frm As New frmmarcas
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         Dim s As New spmarcas
-        s.cargar_marcas(cboMarca)
+        s.cargar_marcas(cboMarca, dtb)
     End Sub
 
     Private Sub cboLinea_SelectedValueChanged(sender As System.Object, e As System.EventArgs) Handles cboLinea.SelectedValueChanged
         Try
             Dim sp As New spTiposFormatosLineas_TiposFormatos
-            sp.cargarCombo_por_linea(Me.cboFormatoLinea, Me.cboLinea.SelectedValue)
+            sp.cargarCombo_por_linea(Me.cboFormatoLinea, Me.cboLinea.SelectedValue, dtb)
         Catch ex As Exception
         End Try
     End Sub
@@ -192,18 +193,18 @@ Public Class frmWstepDatosGenerales
     Private Sub btnAddProducto_Click(sender As System.Object, e As System.EventArgs) Handles btnAddProducto.Click
         Dim frm As New frmEntTiposProductos()
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
-        Me.cboProducto.mam_DataSource("TiposProductosSelectCbo", False)
+        Me.cboProducto.mam_DataSource("TiposProductosSelectCbo", False, dtb)
     End Sub
 
     Private Sub btnAddPalet_Click(sender As System.Object, e As System.EventArgs) Handles btnAddPalet.Click
         Dim frm As New frmPaletsTipos()
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
-        Me.cboPaletTipo.mam_DataSource("PaletsTiposCbo", False)
+        Me.cboPaletTipo.mam_DataSource("PaletsTiposCbo", False, dtb)
     End Sub
 
     Private Sub btnAddCaja_Click(sender As System.Object, e As System.EventArgs) Handles btnAddCaja.Click
         Dim frm As New frmTiposCajas
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
-        Me.cboCaja.mam_DataSource("TiposcajasCbo", False)
+        Me.cboCaja.mam_DataSource("TiposcajasCbo", False, dtb)
     End Sub
 End Class

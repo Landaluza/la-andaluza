@@ -23,9 +23,9 @@ Public Class frmEntConceptosGastosIncidencias
 
     Private Sub frmEntConceptosGastosIncidencias_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s0 As New spTiposConceptos
-        s0.cargar_TiposConceptos(Me.cbotiposConceptos)
+        s0.cargar_TiposConceptos(Me.cbotiposConceptos, dtb)
         Dim s1 As New spMedidasProductos
-        s1.cargar_MedidasProductos(Me.cbomedidaProducto)
+        s1.cargar_MedidasProductos(Me.cbomedidaProducto, dtb)
         If (Me.mododeapertura = VISION) Then
             Me.cbotiposConceptos.enabled = False
             Me.lblId_tiposConceptos.enabled = False
@@ -89,8 +89,8 @@ Public Class frmEntConceptosGastosIncidencias
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerId_tiposConceptos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_tiposConceptos.Click
@@ -103,7 +103,7 @@ Public Class frmEntConceptosGastosIncidencias
         Dim frmEnt As New frmEntTiposConceptos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spTiposConceptos, DBO_TiposConceptos)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTiposConceptos
-        s.cargar_TiposConceptos(Me.cbotiposConceptos)
+        s.cargar_TiposConceptos(Me.cbotiposConceptos, dtb)
     End Sub
 
     Private Sub butVerId_medidaProducto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_medidaProducto.Click
@@ -116,7 +116,7 @@ Public Class frmEntConceptosGastosIncidencias
         Dim frmEnt As New frmEntMedidasProductos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spMedidasProductos, DBO_MedidasProductos)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spMedidasProductos
-        s.cargar_MedidasProductos(Me.cbomedidaProducto)
+        s.cargar_MedidasProductos(Me.cbomedidaProducto, dtb)
     End Sub
 
     Private Sub frmEntConceptosGastosIncidencias_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown

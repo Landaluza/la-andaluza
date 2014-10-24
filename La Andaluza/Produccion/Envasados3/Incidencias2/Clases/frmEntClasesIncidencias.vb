@@ -19,14 +19,14 @@ Public Class frmEntClasesIncidencias
 
     Private Sub frmEntClasesIncidencias_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spProcesosCalidad
-        s.cargar_ProcesosCalidad(Me.cboid_procesoCalidad)
+        s.cargar_ProcesosCalidad(Me.cboid_procesoCalidad, dtb)
         If Me.mododeapertura = VISION Then
             Me.cboid_procesoCalidad.enabled = False
             Me.lblid_procesoCalidad.enabled = False
         End If
 
         Dim s2 As New spCategoriaIncidencias
-        s2.cargar_CategoriaIncidencias(Me.cboCategoria)
+        s2.cargar_CategoriaIncidencias(Me.cboCategoria, dtb)
     End Sub
 
     Overrides Sub SetValores() Implements  BasesParaCompatibilidad.savable.setValores
@@ -70,8 +70,8 @@ Public Class frmEntClasesIncidencias
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerid_procesoCalidad_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -84,7 +84,7 @@ Public Class frmEntClasesIncidencias
         Dim frmEnt As New frmEntProcesosCalidad(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spProcesosCalidad, DBO_ProcesosCalidad)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spProcesosCalidad
-        s.cargar_ProcesosCalidad(Me.cboid_procesoCalidad)
+        s.cargar_ProcesosCalidad(Me.cboid_procesoCalidad, dtb)
     End Sub
 
     Private Sub btnLimpiar_Click(sender As System.Object, e As System.EventArgs) Handles btnLimpiar.Click

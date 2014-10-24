@@ -4,10 +4,11 @@
     Private img As DataGridViewImageColumn
     Private row As DataGridViewRow
     Private c As DataGridViewImageCell
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New()
 
         InitializeComponent()
-
+        dtb = New BasesParaCompatibilidad.DataBase
         spBusqueda = New spBusquedaAdministracion
 
         img = New DataGridViewImageColumn()
@@ -21,7 +22,7 @@
     End Sub
 
     Private Sub txtBusqueda_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtBusqueda.TextChanged
-        datasource = spBusqueda.recuperarDatos(txtBusqueda.Text, Me.cbCamiones.Checked, Me.cbConductores.Checked)
+        datasource = spBusqueda.recuperarDatos(txtBusqueda.Text, dtb, Me.cbCamiones.Checked, Me.cbConductores.Checked)
 
         If Not datasource Is Nothing Then
             Me.dgvResultados.SuspendLayout()
@@ -52,13 +53,13 @@
         Select Case Convert.ToInt32(Me.dgvResultados.CurrentRow.Cells("tipo").Value)
             Case 1
                 Dim sp As New spConductores
-                Dim dbo As DBO_Conductores = sp.Select_Record(id)
+                Dim dbo As DBO_Conductores = sp.Select_Record(id, dtb)
 
                 Dim frm As New frmEntConductores(BasesParaCompatibilidad.GridSimpleForm.ACCION_MODIFICAR, sp, dbo)
                 GUImain.añadirPestaña(frm)
             Case 2
                 Dim sp As New spCamiones
-                Dim dbo As DBO_Camiones = sp.Select_Record(id)
+                Dim dbo As DBO_Camiones = sp.Select_Record(id, dtb)
 
                 Dim frm As New frmEntCamiones(BasesParaCompatibilidad.GridSimpleForm.ACCION_MODIFICAR, sp, dbo)
                 GUImain.añadirPestaña(frm)

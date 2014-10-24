@@ -13,32 +13,31 @@ Public Class spUsuarios
                         "[dbo].[UsuariosSelectDgvBy]")
     End Sub
 
-    Public Overloads Function Select_Record(ByVal UsuarioID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As DBO_Usuarios
+    Public Overloads Function Select_Record(ByVal UsuarioID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_Usuarios
         Dim dbo As New DBO_Usuarios
         dbo.searchKey = dbo.item("UsuarioID")
         dbo.searchKey.value = UsuarioID
-        MyBase.Select_Record(dbo, trans)
+        MyBase.Select_Record(dbo, dtb)
         Return dbo
     End Function
 
-    Public Overrides Function Delete(ByVal UsuarioID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As Boolean
+    Public Overrides Function Delete(ByVal UsuarioID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Dim dbo As New DBO_Usuarios
         dbo.searchKey = dbo.item("UsuarioID")
         dbo.searchKey.value = UsuarioID
-        Return MyBase.DeleteProcedure(dbo, trans)
+        Return MyBase.DeleteProcedure(dbo, dtb)
     End Function
 
-    Public Sub cargar_Usuarios(ByRef cbo As ComboBox)
-        cbo.mam_DataSource("UsuariosCbo", False)
+    Public Sub cargar_Usuarios(ByRef cbo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        cbo.mam_DataSource("UsuariosCbo", False, dtb)
     End Sub
 
-    Public Function CambiarContraseña(ByVal usuarioid As Integer, ByVal oldPass As String, ByVal newPass As String) As Boolean
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+    Public Function CambiarContraseña(ByVal usuarioid As Integer, ByVal oldPass As String, ByVal newPass As String, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         dtb.Conectar()
         Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.Comando("[dbo].[UsuariosupdateCriptedPassword]")
         'Dim connection As System.Data.SqlClient.SqlConnection  = Me.dtb.Conexion
         'Dim updateProcedure As String = "[dbo].[UsuariosupdateCriptedPassword]"
-        'Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        'Dim updateCommand As  System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         updateCommand.Parameters.AddWithValue("@UsuarioId", usuarioid)
         updateCommand.Parameters.AddWithValue("@criptedPass", newPass)
@@ -55,18 +54,17 @@ Public Class spUsuarios
         End Try
     End Function
 
-    Public Function select_record_by_usuario(ByVal usuario As String, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As DBO_Usuarios
+    Public Function select_record_by_usuario(ByVal usuario As String, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_Usuarios
         Dim dbo As New DBO_Usuarios
         dbo.searchKey = dbo.item("Usuario")
         dbo.searchKey.value = usuario
-        MyBase.Select_proc(dbo, "UsuariosSelectByUsuario", trans)
+        MyBase.Select_proc(dbo, "UsuariosSelectByUsuario", dtb)
         Return dbo
     End Function
 
-    Public Function autentificar(ByVal login As String, ByVal pass As String) As Boolean
+    Public Function autentificar(ByVal login As String, ByVal pass As String, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Dim dbo As DBO_Usuarios
         Dim dt As DataTable
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
         Dim spTiposUsuarios As New spTiposUsuarios
 
         Try
@@ -76,7 +74,7 @@ Public Class spUsuarios
             dt = dtb.Consultar
 
             If dt.Rows(0).Item(0) > 0 Then
-                dbo = select_record_by_usuario(login)
+                dbo = select_record_by_usuario(login, dtb)
 
                 BasesParaCompatibilidad.Config.User = dbo.ID
                 Config.UserType = dbo.TipoUsuarioID

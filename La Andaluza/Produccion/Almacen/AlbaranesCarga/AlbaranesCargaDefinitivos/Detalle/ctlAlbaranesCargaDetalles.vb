@@ -67,7 +67,7 @@ Public Class ctlAlbaranesCargaDetalles
         End If
     End Sub
 
-    Public Function EliminarAlbaranCargaDetalle() As Boolean
-        Return clsAlb.Eliminar()
+    Public Function EliminarAlbaranCargaDetalle(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        Return clsAlb.Eliminar(dtb)
     End Function
 End Class

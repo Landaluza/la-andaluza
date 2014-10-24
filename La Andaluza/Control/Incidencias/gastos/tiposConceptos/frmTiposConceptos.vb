@@ -17,7 +17,7 @@ Public Class frmTiposConceptos
     End Sub
 
    Private Sub modify_Before() Handles MyBase.BeforeModify
-       dboTiposConceptos =ctype(sp, spTiposConceptos).Select_Record(ctype(dgvGeneral.CurrentRow.Cells("Id").Value, integer))
+        dboTiposConceptos = CType(sp, spTiposConceptos).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
        If Not dboTiposConceptos Is Nothing Then
            newRegForm.SetDataBussinesObject(ctype(Me.dboTiposConceptos,BasesParaCompatibilidad.databussines))
        Else

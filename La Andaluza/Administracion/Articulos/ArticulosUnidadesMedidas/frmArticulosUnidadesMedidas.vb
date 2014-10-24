@@ -24,7 +24,7 @@ Public Class frmArticulosUnidadesMedidas
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
                            "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-            CType(sp, spArticulosUnidadesMedidas).ArticulosUnidadesMedidasDelete(dgvGeneral.CurrentRow.Cells("ArticuloUnidadMedidaID").Value)
+            CType(sp, spArticulosUnidadesMedidas).ArticulosUnidadesMedidasDelete(dgvGeneral.CurrentRow.Cells("ArticuloUnidadMedidaID").Value, dtb)
         End If
         dgvFill()
     End Sub
@@ -39,7 +39,7 @@ Public Class frmArticulosUnidadesMedidas
 
             If m_MaestroID <> 0 Then m_ArticuloUnidadeMedida.ArticuloUnidadMedidaID = m_MaestroID
         Else
-            m_ArticuloUnidadeMedida = CType(sp, spArticulosUnidadesMedidas).Select_Record(GeneralBindingSource(m_Pos).Item("ArticuloUnidadMedidaID"))
+            m_ArticuloUnidadeMedida = CType(sp, spArticulosUnidadesMedidas).Select_Record(GeneralBindingSource(m_Pos).Item("ArticuloUnidadMedidaID"), dtb)
         End If
 
         frmEnt = New frmEntArticulosUnidadesMedidas(m_ArticuloUnidadeMedida, m_Pos, m_VerID)

@@ -8,14 +8,13 @@ Public Class frmEntCargaNecesidadesJR2Maestro
     Private m_VerID As Boolean = False
     Private spCargaNecesidadesJR2Detalles As spCargaNecesidadesJR2Detalles
     Private spCargaNecesidadesJR2Maestro As spCargaNecesidadesJR2Maestro
-    Private dtb As BasesParaCompatibilidad.DataBase
 
     Public Sub New(ByRef CargaNecesidadesJRMaestro As DBO_CargaNecesidadesJR2Maestro, ByVal Pos As Integer, ByVal VerID As Boolean)
         InitializeComponent()
         m_DBO_CargaNecesidadesJRMaestro = CargaNecesidadesJRMaestro
         m_Pos = Pos
         m_VerID = VerID
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.DataBase()
         spCargaNecesidadesJR2Detalles = New spCargaNecesidadesJR2Detalles
         spCargaNecesidadesJR2Maestro = New spCargaNecesidadesJR2Maestro
         dtpFecha.activarFoco()
@@ -42,7 +41,7 @@ Public Class frmEntCargaNecesidadesJR2Maestro
 
     Overrides Sub SetValores(ByVal m_ID As Integer, ByVal m_SelectRecord As Boolean)
 
-        If m_SelectRecord Then m_DBO_CargaNecesidadesJRMaestro = spCargaNecesidadesJR2Maestro.Select_Record(m_ID)
+        If m_SelectRecord Then m_DBO_CargaNecesidadesJRMaestro = spCargaNecesidadesJR2Maestro.Select_Record(m_ID, dtb)
         txtCargaNecesidadesJRMaestroID.Text = m_DBO_CargaNecesidadesJRMaestro.CargaNecesidadesJRMaestroID
         dtpFecha.Text = m_DBO_CargaNecesidadesJRMaestro.Fecha
         txtObservaciones.Text = m_DBO_CargaNecesidadesJRMaestro.Observaciones
@@ -73,7 +72,7 @@ Public Class frmEntCargaNecesidadesJR2Maestro
 
     Overrides Sub Guardar()
         GetValores()
-        spCargaNecesidadesJR2Maestro.GrabarCargaNecesidadesJRMaestro(m_DBO_CargaNecesidadesJRMaestro)
+        spCargaNecesidadesJR2Maestro.GrabarCargaNecesidadesJRMaestro(m_DBO_CargaNecesidadesJRMaestro, dtb)
         Me.Close()
     End Sub
 
@@ -87,7 +86,7 @@ Public Class frmEntCargaNecesidadesJR2Maestro
                 m_DBO_CargaNecesidadesJRDetalle.CargaNecesidadesJRDetalleID = 0
             Case Else
                 m_Pos = dgvDetalles.CurrentRow.Index
-                m_DBO_CargaNecesidadesJRDetalle = spCargaNecesidadesJR2Detalles.Select_Record(dgvDetalles.CurrentRow.Cells("CargaNecesidadesJRDetalleID").Value)
+                m_DBO_CargaNecesidadesJRDetalle = spCargaNecesidadesJR2Detalles.Select_Record(dgvDetalles.CurrentRow.Cells("CargaNecesidadesJRDetalleID").Value, dtb)
         End Select
 
         Dim frmEnt As New frmEntCargaNecesidadesJR2Detalles(m_DBO_CargaNecesidadesJRDetalle, m_Pos, m_VerID)
@@ -107,7 +106,7 @@ Public Class frmEntCargaNecesidadesJR2Maestro
 
     Private Sub tsEliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsEliminar.Click
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
-                          "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then Me.spCargaNecesidadesJR2Detalles.CargaNecesidadesJRDetallesDelete(dgvDetalles.CurrentRow.Cells("CargaNecesidadesJRDetalleID").Value)
+                          "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then Me.spCargaNecesidadesJR2Detalles.CargaNecesidadesJRDetallesDelete(dgvDetalles.CurrentRow.Cells("CargaNecesidadesJRDetalleID").Value, dtb)
         ActualizarGrilla()
     End Sub
 End Class

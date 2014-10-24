@@ -2,16 +2,16 @@
 Public Class frmResumenDepositos
     Private spDepositos As spREsumenDepositos
     Private tempDataTable As DataTable
-
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New()
 
         InitializeComponent()
-
+        dtb = New BasesParaCompatibilidad.DataBase
         Me.spDepositos = New spREsumenDepositos
     End Sub
 
     Private Sub BackgroundWorker1_DoWork(sender As System.Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
-        Me.tempDataTable = Me.spDepositos.listar_depositos
+        Me.tempDataTable = Me.spDepositos.listar_depositos(dtb)
     End Sub
 
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As System.Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted

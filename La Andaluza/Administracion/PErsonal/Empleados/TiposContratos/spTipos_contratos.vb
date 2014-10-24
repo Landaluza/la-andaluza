@@ -13,23 +13,23 @@ Public Class spTipos_contratos
                       "[dbo].[Tipos_contratosSelectDgvBy]")
     End Sub
 
-   Public Overloads Function Select_Record(ByVal id As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As DBO_Tipos_contratos
-       Dim dbo As New DBO_Tipos_contratos
-       dbo.searchKey = dbo.item("id")
-       dbo.searchKey.value = id
-       MyBase.Select_Record(dbo, trans)
-       Return dbo
-   End Function
+    Public Overloads Function Select_Record(ByVal id As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_Tipos_contratos
+        Dim dbo As New DBO_Tipos_contratos
+        dbo.searchKey = dbo.item("id")
+        dbo.searchKey.value = id
+        MyBase.Select_Record(dbo, dtb)
+        Return dbo
+    End Function
 
-   Public Overrides Function Delete(ByVal id As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As Boolean
-       Dim dbo As New DBO_Tipos_contratos
-       dbo.searchKey = dbo.item("id")
-       dbo.searchKey.value = id
-       return MyBase.DeleteProcedure(dbo,  trans)
-   End Function
+    Public Overrides Function Delete(ByVal id As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        Dim dbo As New DBO_Tipos_contratos
+        dbo.searchKey = dbo.item("id")
+        dbo.searchKey.value = id
+        Return MyBase.DeleteProcedure(dbo, dtb)
+    End Function
 
-    Sub cargar_Tipos_contratos(comboBox As ComboBox)
-        comboBox.mam_DataSource("Tipos_ContratosCbo", False)
+    Sub cargar_Tipos_contratos(comboBox As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        comboBox.mam_DataSource("Tipos_ContratosCbo", False, dtb)
     End Sub
 
 End Class

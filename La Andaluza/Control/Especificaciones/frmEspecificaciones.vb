@@ -5,16 +5,17 @@ Public Class frmEspecificaciones
     Private ctlEsp As ctlEspecificaciones
     Private dtsEsp As dtsEspecificaciones.EspecificacionesDataTable
 
-
     Public Sub New()
         MyBase.New()
         InitializeComponent()
+
+        dtb = New BasesParaCompatibilidad.DataBase()
         ctlEsp = New ctlEspecificaciones
         dtsEsp = New dtsEspecificaciones.EspecificacionesDataTable
     End Sub
 
     Protected Overrides Sub cargar_datos()
-        ctlEsp.mostrarTodasEspecificaciones(dtsEsp)
+        ctlEsp.mostrarTodasEspecificaciones(dtb, dtsEsp)
     End Sub
 
     Protected Overrides Sub BindDataSource()
@@ -46,7 +47,7 @@ Public Class frmEspecificaciones
         FrmEnt.Text = "Insertar Especificacion"
         FrmEnt.CargarDatos(0, dgvGeneral, 0, "", "", Today, "", "")
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
-        ctlEsp.mostrarTodasEspecificaciones(dtsEsp)
+        ctlEsp.mostrarTodasEspecificaciones(dtb, dtsEsp)
         GeneralBindingSource.Position = 1
         GeneralBindingSource.Position = 0
     End Sub
@@ -61,7 +62,7 @@ Public Class frmEspecificaciones
                                dgvGeneral.Rows(Posicion).Cells(3).Value, dgvGeneral.Rows(Posicion).Cells(4).Value, _
                                dgvGeneral.Rows(Posicion).Cells(5).Value, dgvGeneral.Rows(Posicion).Cells("LegislacionID").Value)
             BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
-            ctlEsp.mostrarTodasEspecificaciones(dtsEsp)
+            ctlEsp.mostrarTodasEspecificaciones(dtb, dtsEsp)
             GeneralBindingSource.Position = 1
             GeneralBindingSource.Position = Posicion
         End If
@@ -84,7 +85,6 @@ Public Class frmEspecificaciones
             response = MessageBox.Show(" ¿Realmente desea eliminar este registro? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If response = DialogResult.Yes Then
                 ctlEsp.setEspecificacionID(dgvGeneral.Rows(Posicion).Cells(0).Value)
-                Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
                 dtb.EmpezarTransaccion()
                 Try
                     ctlEsp.EliminarEspecificacion(dtb)
@@ -94,7 +94,7 @@ Public Class frmEspecificaciones
                     MessageBox.Show("Error " & ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End Try
 
-                ctlEsp.mostrarTodasEspecificaciones(dtsEsp)
+                ctlEsp.mostrarTodasEspecificaciones(dtb, dtsEsp)
                 If Posicion >= 0 Then
                     GeneralBindingSource.Position = Posicion - 1
                 Else

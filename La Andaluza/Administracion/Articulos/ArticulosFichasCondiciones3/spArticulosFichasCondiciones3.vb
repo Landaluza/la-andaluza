@@ -8,12 +8,12 @@ Class spArticulosFichasCondiciones3
                    "[dbo].[ArticulosFichasCondiciones3Delete]", "ArticulosFichasCondiciones3SelectDgv", "ArticulosFichasCondiciones3SelectDgvByArticuloFichaCondicionID")
     End Sub
 
-    Public Function Select_Record(ByVal ArticuloFichaCondicionID As Int32) As DBO_ArticulosFichasCondiciones3
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal ArticuloFichaCondicionID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_ArticulosFichasCondiciones3
+        dtb.Conectar()
         Dim DBO_ArticulosFichasCondiciones3 As New DBO_ArticulosFichasCondiciones3
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[ArticulosFichasCondiciones3Select]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.Comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@ArticuloFichaCondicionID", ArticuloFichaCondicionID)
         Try
@@ -50,16 +50,16 @@ Class spArticulosFichasCondiciones3
         Catch ex As System.Data.SqlClient.SqlException
 
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_ArticulosFichasCondiciones3
     End Function
 
-    Public Function ArticulosFichasCondiciones3Insert(ByVal dbo_ArticulosFichasCondiciones3 As DBO_ArticulosFichasCondiciones3) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+    Public Function ArticulosFichasCondiciones3Insert(ByVal dbo_ArticulosFichasCondiciones3 As DBO_ArticulosFichasCondiciones3, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[ArticulosFichasCondiciones3Insert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
         insertCommand.Parameters.AddWithValue("@ArticuloID", If(dbo_ArticulosFichasCondiciones3.ArticuloID.HasValue, dbo_ArticulosFichasCondiciones3.ArticuloID, Convert.DBNull))
         insertCommand.Parameters.AddWithValue("@ProveedorID", If(dbo_ArticulosFichasCondiciones3.ProveedorID.HasValue, dbo_ArticulosFichasCondiciones3.ProveedorID, Convert.DBNull))
@@ -98,15 +98,15 @@ Class spArticulosFichasCondiciones3
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function ArticulosFichasCondiciones3Update(ByVal newDBO_ArticulosFichasCondiciones3 As DBO_ArticulosFichasCondiciones3) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+    Public Function ArticulosFichasCondiciones3Update(ByVal newDBO_ArticulosFichasCondiciones3 As DBO_ArticulosFichasCondiciones3, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[ArticulosFichasCondiciones3Update]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         updateCommand.Parameters.AddWithValue("@NewArticuloID", If(newDBO_ArticulosFichasCondiciones3.ArticuloID.HasValue, newDBO_ArticulosFichasCondiciones3.ArticuloID, Convert.DBNull))
         updateCommand.Parameters.AddWithValue("@NewProveedorID", If(newDBO_ArticulosFichasCondiciones3.ProveedorID.HasValue, newDBO_ArticulosFichasCondiciones3.ProveedorID, Convert.DBNull))
@@ -147,15 +147,15 @@ Class spArticulosFichasCondiciones3
             MessageBox.Show("Error en UpdateArticulosFichasCondiciones3" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function ArticulosFichasCondiciones3Delete(ByVal ArticuloFichaCondicionID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+    Public Function ArticulosFichasCondiciones3Delete(ByVal ArticuloFichaCondicionID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[ArticulosFichasCondiciones3Delete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         deleteCommand.Parameters.AddWithValue("@OldArticuloFichaCondicionID", ArticuloFichaCondicionID)
         deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
@@ -172,15 +172,15 @@ Class spArticulosFichasCondiciones3
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Sub GrabarArticulosFichasCondiciones3(ByVal dbo_ArticulosFichasCondiciones3 As DBO_ArticulosFichasCondiciones3)
+    Public Sub GrabarArticulosFichasCondiciones3(ByVal dbo_ArticulosFichasCondiciones3 As DBO_ArticulosFichasCondiciones3, ByRef dtb As BasesParaCompatibilidad.DataBase)
         If dbo_ArticulosFichasCondiciones3.ArticuloFichaCondicionID = 0 Then
-            ArticulosFichasCondiciones3Insert(dbo_ArticulosFichasCondiciones3)
+            ArticulosFichasCondiciones3Insert(dbo_ArticulosFichasCondiciones3, dtb)
         Else
-            ArticulosFichasCondiciones3Update(dbo_ArticulosFichasCondiciones3)
+            ArticulosFichasCondiciones3Update(dbo_ArticulosFichasCondiciones3, dtb)
         End If
     End Sub
 

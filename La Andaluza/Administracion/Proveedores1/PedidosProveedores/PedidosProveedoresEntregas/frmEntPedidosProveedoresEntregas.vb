@@ -8,12 +8,11 @@ Public Class frmEntPedidosProveedoresEntregas
     'Private m_PedidoProveedorEntregaID As Int32
     Private DBO_PedidoProveedorEntrega As DBO_PedidosProveedoresEntregas
     Private spPedidosProveedoresEntregas As spPedidosProveedoresEntregas
-    Private dtb as BasesParaCompatibilidad.Database
 
     Public Sub New(ByVal PedidoProveedorEntrega As DBO_PedidosProveedoresEntregas, ByVal Pos As Integer)
         InitializeComponent()
         DBO_PedidoProveedorEntrega = PedidoProveedorEntrega
-        dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.Database()
         m_Pos = Pos
         spPedidosProveedoresEntregas = New spPedidosProveedoresEntregas
         Me.txtFecha.activarFoco()
@@ -43,16 +42,16 @@ Public Class frmEntPedidosProveedoresEntregas
                 m_Pos = GeneralBindingSource.Count - 1
         End Select
         GeneralBindingSource.Position = m_Pos
-        DBO_PedidoProveedorEntrega = spPedidosProveedoresEntregas.Select_Record(GeneralBindingSource(m_Pos).Item("PedidoProveedorEntregaID"))
+        DBO_PedidoProveedorEntrega = spPedidosProveedoresEntregas.Select_Record(GeneralBindingSource(m_Pos).Item("PedidoProveedorEntregaID"), dtb)
         SetValores()
     End Sub
 
     Overrides Sub Guardar()
         GetValores()
         If Me.Text.Substring(0, 3) = "Ins" Then
-            spPedidosProveedoresEntregas.InsertPedidosProveedoresEntregas(DBO_PedidoProveedorEntrega)
+            spPedidosProveedoresEntregas.InsertPedidosProveedoresEntregas(DBO_PedidoProveedorEntrega, dtb)
         Else
-            spPedidosProveedoresEntregas.UpdatePedidosProveedoresEntregas(DBO_PedidoProveedorEntrega)
+            spPedidosProveedoresEntregas.UpdatePedidosProveedoresEntregas(DBO_PedidoProveedorEntrega, dtb)
         End If
         Me.Close()
     End Sub

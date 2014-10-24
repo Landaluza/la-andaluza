@@ -19,7 +19,7 @@ Public Class frmEntArticulosTipos
 
     Private Sub frmEntArticulosTipos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spEmpleados
-        s.cargar_Empleados(Me.cboResponsable)
+        s.cargar_Empleados(Me.cboResponsable, dtb)
         If Me.mododeapertura = VISION Then
             Me.cboResponsable.enabled = False
             Me.lblResponsableID.enabled = False
@@ -73,8 +73,8 @@ Public Class frmEntArticulosTipos
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerResponsableID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerResponsableID.Click
@@ -87,7 +87,7 @@ Public Class frmEntArticulosTipos
         Dim frmEnt As New frmEntEmpleados(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spEmpleados, DBO_Empleados)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spEmpleados
-        s.cargar_empleados(Me.cboResponsable)
+        s.cargar_Empleados(Me.cboResponsable, dtb)
     End Sub
 
 End Class

@@ -21,12 +21,12 @@ Public Class frmEntArticulosFichasCondiciones3
     End Sub
 
     Private Sub frmEntArticulosFichasCondiciones3_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Me.cboArticuloID.mam_DataSource("Articulos1Cbo", False)
-        Me.cboProveedorID.mam_DataSource("ProveedoresSelectCbo", False)
+        Me.cboArticuloID.mam_DataSource("Articulos1Cbo", False, dtb)
+        Me.cboProveedorID.mam_DataSource("ProveedoresSelectCbo", False, dtb)
 
-        Me.cboFormaPagoID.mam_DataSource("PagosFormasCbo", False)
-        Me.cboPlazoPagoID.mam_DataSource("PagosPlazosCbo", False)
-        Me.cboUnidadID.mam_DataSource("MedidasProductosSelectCbo", False)
+        Me.cboFormaPagoID.mam_DataSource("PagosFormasCbo", False, dtb)
+        Me.cboPlazoPagoID.mam_DataSource("PagosPlazosCbo", False, dtb)
+        Me.cboUnidadID.mam_DataSource("MedidasProductosSelectCbo", False, dtb)
 
         butVer.Visible = True
 
@@ -35,7 +35,7 @@ Public Class frmEntArticulosFichasCondiciones3
 
     Overrides Sub SetValores(ByVal m_ID As Integer, ByVal m_SelectRecord As Boolean)
 
-        If m_SelectRecord Then m_DBO_ArticulosFichasCondiciones3 = spArticulosFichasCondiciones3.Select_Record(m_ID)
+        If m_SelectRecord Then m_DBO_ArticulosFichasCondiciones3 = spArticulosFichasCondiciones3.Select_Record(m_ID, dtb)
         txtArticuloFichaCondicionID.Text = m_DBO_ArticulosFichasCondiciones3.ArticuloFichaCondicionID
         cboArticuloID.SelectedValue = If(m_DBO_ArticulosFichasCondiciones3.ArticuloID.HasValue, m_DBO_ArticulosFichasCondiciones3.ArticuloID, -1)
 
@@ -91,7 +91,7 @@ Public Class frmEntArticulosFichasCondiciones3
 
     Overrides Sub Guardar()
         GetValores()
-        spArticulosFichasCondiciones3.GrabarArticulosFichasCondiciones3(m_DBO_ArticulosFichasCondiciones3)
+        spArticulosFichasCondiciones3.GrabarArticulosFichasCondiciones3(m_DBO_ArticulosFichasCondiciones3, dtb)
         Me.Close()
     End Sub
 
@@ -120,7 +120,7 @@ Public Class frmEntArticulosFichasCondiciones3
         'Proveedores no esta generado con la ultima version de Generador
         Dim DBO_Proveedor As New DBO_Proveedores
         Dim sp As New spProveedores
-        DBO_Proveedor = sp.Select_Record(cboProveedorID.SelectedValue)
+        DBO_Proveedor = sp.Select_Record(cboProveedorID.SelectedValue, dtb)
 
         frmEntProveedores = New frmEntProveedores(VISION, sp, DBO_Proveedor)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frmEntProveedores)
@@ -129,14 +129,14 @@ Public Class frmEntArticulosFichasCondiciones3
     Private Sub butAddPagoForma_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddPagoForma.Click
         Using frmEnt As New frmPagosFormas()
             BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
-            Me.cboFormaPagoID.mam_DataSource("PagosFormasCbo", False)
+            Me.cboFormaPagoID.mam_DataSource("PagosFormasCbo", False, dtb)
         End Using
     End Sub
 
     Private Sub butVerPagoForma_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerPagoForma.Click
         Dim DBO_PagosForma As New DBO_PagosFormas
         Dim spPagosFormas As New spPagosFormas
-        DBO_PagosForma = spPagosFormas.Select_Record(cboFormaPagoID.SelectedValue)
+        DBO_PagosForma = spPagosFormas.Select_Record(cboFormaPagoID.SelectedValue, dtb)
 
         frmfrmEntPagosFormas = New frmEntPagosFormas(DBO_PagosForma, 1, False)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frmfrmEntPagosFormas)
@@ -145,7 +145,7 @@ Public Class frmEntArticulosFichasCondiciones3
     Private Sub butVerPagoPlazo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerPagoPlazo.Click
         Dim DBO_PagosPlazo As New DBO_PagosPlazos
         Dim spPagosPlazos As New spPagosPlazos
-        DBO_PagosPlazo = spPagosPlazos.Select_Record(cboPlazoPagoID.SelectedValue)
+        DBO_PagosPlazo = spPagosPlazos.Select_Record(cboPlazoPagoID.SelectedValue, dtb)
 
         frmEntPagosPlazos = New frmEntPagosPlazos(DBO_PagosPlazo, 1, False)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frmEntPagosPlazos)
@@ -154,7 +154,7 @@ Public Class frmEntArticulosFichasCondiciones3
     Private Sub butAddPagoPlazo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddPagoPlazo.Click
         Using frmEnt As New frmPagosPlazos()
             BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
-            Me.cboPlazoPagoID.mam_DataSource("PagosPlazosCbo", False)
+            Me.cboPlazoPagoID.mam_DataSource("PagosPlazosCbo", False, dtb)
 
         End Using
     End Sub
@@ -172,7 +172,7 @@ Public Class frmEntArticulosFichasCondiciones3
     Private Sub butAddUnidad_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddUnidad.Click
         Using frmEnt As New frmMedidasProductos()
             BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
-            Me.cboUnidadID.mam_DataSource("MedidasProductosSelectCbo", False)
+            Me.cboUnidadID.mam_DataSource("MedidasProductosSelectCbo", False, dtb)
         End Using
     End Sub
 End Class

@@ -27,7 +27,7 @@ Public Class frmMaterialesEnvasados2
     Overrides Sub Eliminar()
         If Me.dgvGeneral.RowCount > 0 Then
             If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
-                CType(sp, spMaterialesEnvasados2).MaterialesEnvasados2Delete(dgvGeneral.CurrentRow.Cells("MaterialEnvasadoID").Value)
+                CType(sp, spMaterialesEnvasados2).MaterialesEnvasados2Delete(dgvGeneral.CurrentRow.Cells("MaterialEnvasadoID").Value, dtb)
                 dgvFill()
             End If
         End If
@@ -45,15 +45,15 @@ Public Class frmMaterialesEnvasados2
             m_MaterialesEnvasados2.HoraInicio = DateTime.Now.TimeOfDay
             m_MaterialesEnvasados2.HoraFin = DateTime.Now.TimeOfDay
         Else
-            m_MaterialesEnvasados2 = CType(Me.sp, spMaterialesEnvasados2).Select_Record(GeneralBindingSource(m_Pos).Item("MaterialEnvasadoID"))
+            m_MaterialesEnvasados2 = CType(Me.sp, spMaterialesEnvasados2).Select_Record(GeneralBindingSource(m_Pos).Item("MaterialEnvasadoID"), dtb)
         End If
         m_MaterialesEnvasados2.FormatoEnvasadoID = Me.formatoId
 
         Dim spf As New spFormatosEnvasados
         Dim dbo As DBO_FormatosEnvasados
         Dim spAux As New spTiposFormatosLineas
-        dbo = spf.Select_Record(Me.formatoId)
-        Dim dbo_linea As DBO_TiposFormatosLineas = spAux.Select_Record(dbo.TipoFormatoLineaID)
+        dbo = spf.Select_Record(Me.formatoId, dtb)
+        Dim dbo_linea As DBO_TiposFormatosLineas = spAux.Select_Record(dbo.TipoFormatoLineaID, dtb)
 
         frmEnt = New frmEntMaterialesEnvasados2(Me.formatoId, TipoAction, m_MaterialesEnvasados2, dbo_linea.LineaEnvasadoID, m_Pos, m_VerID)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)

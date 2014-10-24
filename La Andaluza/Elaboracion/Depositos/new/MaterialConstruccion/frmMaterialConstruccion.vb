@@ -19,7 +19,7 @@ Public Class frmMaterialConstruccion
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboMaterialConstruccion = CType(sp, spMaterialConstruccion).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer))
+        dboMaterialConstruccion = CType(sp, spMaterialConstruccion).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
         If Not dboMaterialConstruccion Is Nothing Then
             newRegForm.SetDataBussinesObject(CType(Me.dboMaterialConstruccion, BasesParaCompatibilidad.DataBussines))
         Else

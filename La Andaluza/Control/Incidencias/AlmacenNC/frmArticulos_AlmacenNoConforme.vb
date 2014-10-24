@@ -29,7 +29,7 @@ Public Class frmArticulos_AlmacenNoConforme
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboArticulos_AlmacenNoConforme = CType(sp, spArticulos_AlmacenNoConforme).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboArticulos_AlmacenNoConforme = CType(sp, spArticulos_AlmacenNoConforme).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboArticulos_AlmacenNoConforme Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboArticulos_AlmacenNoConforme)
         Else

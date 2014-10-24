@@ -63,9 +63,9 @@ Public Class frmEntSistemasIndustriales
         Dim m_NewSistemasIndustriale As New DBO_SistemasIndustriales
         GetValores(m_NewSistemasIndustriale)
         If Me.Text.Substring(0, 3) = "Ins" Then
-            spSistemasIndustriales.InsertSistemasIndustriales(m_NewSistemasIndustriale)
+            spSistemasIndustriales.InsertSistemasIndustriales(m_NewSistemasIndustriale, dtb)
         Else
-            spSistemasIndustriales.UpdateSistemasIndustriales(m_SistemasIndustriale, m_NewSistemasIndustriale)
+            spSistemasIndustriales.UpdateSistemasIndustriales(m_SistemasIndustriale, m_NewSistemasIndustriale, dtb)
         End If
         Me.Close()
     End Sub
@@ -82,7 +82,7 @@ Public Class frmEntSistemasIndustriales
                 m_Pos = GeneralBindingSource.Count - 1
         End Select
         GeneralBindingSource.Position = m_Pos
-        m_SistemasIndustriale = spSistemasIndustriales.Select_Record(GeneralBindingSource(m_Pos).Item("SistemaIndustrialID"))
+        m_SistemasIndustriale = spSistemasIndustriales.Select_Record(GeneralBindingSource(m_Pos).Item("SistemaIndustrialID"), dtb)
         SetValores()
     End Sub
 

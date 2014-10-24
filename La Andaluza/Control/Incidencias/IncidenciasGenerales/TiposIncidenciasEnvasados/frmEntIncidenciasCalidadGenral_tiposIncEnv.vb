@@ -32,7 +32,7 @@
         Me.cboTipo.SelectedValue = Me.m_DBO_TiposIncidencias.ID
 
         Dim s As New spTiposIncidencias
-        s.cargar_TiposIncidenciasSinIncidenciaCalidad(Me.cboTipo, Me.m_DBO_TiposIncidencias.ID)
+        s.cargar_TiposIncidenciasSinIncidenciaCalidad(Me.cboTipo, dtb, Me.m_DBO_TiposIncidencias.ID)
 
     End Sub
 
@@ -45,7 +45,7 @@
             'm_DBO_ClasesIncidencias.ID = cboClase.SelectedValue
             Dim aux As Integer = m_DBO_TiposIncidencias.Id_IncidenciaCalidadGeneral
             Dim spTipo As New spTiposIncidencias
-            m_DBO_TiposIncidencias = spTipo.Select_Record(cboTipo.SelectedValue)
+            m_DBO_TiposIncidencias = spTipo.Select_Record(cboTipo.SelectedValue, dtb)
             m_DBO_TiposIncidencias.Id_IncidenciaCalidadGeneral = aux
             If m_DBO_TiposIncidencias.Descripcion = "" Then m_DBO_TiposIncidencias.Descripcion = " "
         End If
@@ -59,8 +59,8 @@
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerMaquinaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)

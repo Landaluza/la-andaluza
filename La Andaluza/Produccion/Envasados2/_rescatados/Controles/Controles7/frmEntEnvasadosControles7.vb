@@ -59,7 +59,7 @@ Public Class frmEntEnvasadosControles7
 
     Public Shadows Sub Guardar(ByRef m_DBO_EnvasadosControles1 As DBO_EnvasadosControles7)
         GetValores()
-        spEnvasadosControles1.GrabarEnvasadosControles1(m_DBO_EnvasadosControles1)
+        spEnvasadosControles1.GrabarEnvasadosControles1(m_DBO_EnvasadosControles1, dtb)
         Me.Close()
     End Sub
 

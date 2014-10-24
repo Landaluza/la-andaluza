@@ -8,11 +8,11 @@ Class spPaletsAlmacenEntradas
                    "[dbo].[PaletsAlmacenEntradasDelete]", "PaletsAlmacenEntradasSelectByCajas", "PaletsAlmacenEntradasSelectByCajas")
     End Sub
 
-    Public Function PaletsAlmacenEntradasUpdateVigente(ByVal Vigente As Boolean, ByVal PaletAlmacenEntradaID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function PaletsAlmacenEntradasUpdateVigente(ByVal Vigente As Boolean, ByVal PaletAlmacenEntradaID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[PaletsAlmacenEntradasUpdateVigente]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         '<Tag=[Three][Start]> -- please do not remove this line
         updateCommand.Parameters.AddWithValue("@NewVigente", Vigente)
@@ -31,19 +31,19 @@ Class spPaletsAlmacenEntradas
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdatePaletsAlmacenEntradas1" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdatePaletsAlmacenEntradas1" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function Select_RecordBySSCC(ByVal SSCC As String) As DBO_PaletsAlmacenEntradas
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_RecordBySSCC(ByVal SSCC As String, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_PaletsAlmacenEntradas
+        dtb.Conectar()
         Dim DBO_PaletsAlmacenEntradas As New DBO_PaletsAlmacenEntradas
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[PaletsAlmacenEntradasSelectDgvBySSCC]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@SSCC", SSCC)
         Try
@@ -66,17 +66,17 @@ Class spPaletsAlmacenEntradas
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_PaletsAlmacenEntradas
     End Function
 
-    Public Function Select_Record(ByVal PaletAlmacenEntradaID As Int32) As DBO_PaletsAlmacenEntradas
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal PaletAlmacenEntradaID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_PaletsAlmacenEntradas
+        dtb.Conectar()
         Dim DBO_PaletsAlmacenEntradas As New DBO_PaletsAlmacenEntradas
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[PaletsAlmacenEntradasSelect]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@PaletAlmacenEntradaID", PaletAlmacenEntradaID)
         Try
@@ -101,18 +101,18 @@ Class spPaletsAlmacenEntradas
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_PaletsAlmacenEntradas
     End Function
 
-    Public Function PaletsAlmacenEntradasInsert(ByVal dbo_PaletsAlmacenEntradas As DBO_PaletsAlmacenEntradas) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function PaletsAlmacenEntradasInsert(ByVal dbo_PaletsAlmacenEntradas As DBO_PaletsAlmacenEntradas, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[PaletsAlmacenEntradasInsert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
-        
+
         insertCommand.Parameters.AddWithValue("@SSCC", dbo_PaletsAlmacenEntradas.SSCC)
         insertCommand.Parameters.AddWithValue("@Fecha", dbo_PaletsAlmacenEntradas.Fecha)
         insertCommand.Parameters.AddWithValue("@Articulo", dbo_PaletsAlmacenEntradas.Articulo)
@@ -122,7 +122,7 @@ Class spPaletsAlmacenEntradas
         insertCommand.Parameters.AddWithValue("@Vigente", dbo_PaletsAlmacenEntradas.Vigente)
         insertCommand.Parameters.AddWithValue("@FechaModificacion", dbo_PaletsAlmacenEntradas.FechaModificacion)
         insertCommand.Parameters.AddWithValue("@UsuarioModificacion", dbo_PaletsAlmacenEntradas.UsuarioModificacion)
-        
+
         insertCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         insertCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
         Try
@@ -136,15 +136,15 @@ Class spPaletsAlmacenEntradas
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function PaletsAlmacenEntradasUpdate(ByVal newDBO_PaletsAlmacenEntradas As DBO_PaletsAlmacenEntradas) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function PaletsAlmacenEntradasUpdate(ByVal newDBO_PaletsAlmacenEntradas As DBO_PaletsAlmacenEntradas, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[PaletsAlmacenEntradasUpdate]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         '<Tag=[Three][Start]> -- please do not remove this line
         updateCommand.Parameters.AddWithValue("@NewSSCC", newDBO_PaletsAlmacenEntradas.SSCC)
@@ -169,24 +169,24 @@ Class spPaletsAlmacenEntradas
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdatePaletsAlmacenEntradas" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdatePaletsAlmacenEntradas" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function PaletsAlmacenEntradasDelete(ByVal PaletAlmacenEntradaID As Int32) As Boolean
+    Public Function PaletsAlmacenEntradasDelete(ByVal PaletAlmacenEntradaID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
 
-        Dim connection As System.Data.SqlClient.SqlConnection = Nothing
+
         Dim deleteProcedure As String
         Dim deleteCommand As New System.Data.SqlClient.SqlCommand
 
         Try
-            BasesParaCompatibilidad.BD.Conectar()
-            connection = BasesParaCompatibilidad.BD.Cnx
+            dtb.Conectar()
+
             deleteProcedure = "[dbo].[PaletsAlmacenEntradasDelete]"
-            deleteCommand = New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+            deleteCommand = dtb.Comando(deleteProcedure)
             deleteCommand.CommandType = CommandType.StoredProcedure
             '<Tag=[Four][Start]> -- please do not remove this line
             deleteCommand.Parameters.AddWithValue("@OldPaletAlmacenEntradaID", PaletAlmacenEntradaID)
@@ -204,21 +204,21 @@ Class spPaletsAlmacenEntradas
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            If Not connection Is Nothing Then connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Sub GrabarPaletsAlmacenEntradas(ByVal dbo_PaletsAlmacenEntradas As DBO_PaletsAlmacenEntradas)
-        dbo_PaletsAlmacenEntradas.FechaModificacion = System.DateTime.Now.date
+    Public Sub GrabarPaletsAlmacenEntradas(ByVal dbo_PaletsAlmacenEntradas As DBO_PaletsAlmacenEntradas, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        dbo_PaletsAlmacenEntradas.FechaModificacion = System.DateTime.Now.Date
         dbo_PaletsAlmacenEntradas.UsuarioModificacion = BasesParaCompatibilidad.Config.User
         If dbo_PaletsAlmacenEntradas.PaletAlmacenEntradaID = 0 Then
-            PaletsAlmacenEntradasInsert(dbo_PaletsAlmacenEntradas)
+            PaletsAlmacenEntradasInsert(dbo_PaletsAlmacenEntradas, dtb)
         Else
-            PaletsAlmacenEntradasUpdate(dbo_PaletsAlmacenEntradas)
+            PaletsAlmacenEntradasUpdate(dbo_PaletsAlmacenEntradas, dtb)
         End If
     End Sub
 
-    Public Function EstaEnAlmacen(ByVal scc As String) As Boolean
+    Public Function EstaEnAlmacen(ByVal scc As String, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Dim Tabla As DataTable = dtb.Consultar("select count(* ) from PaletsAlmacenEntradas where sscc=" & scc, False)
 
         If Tabla.Rows(0).Item(0) = 0 Then Return False

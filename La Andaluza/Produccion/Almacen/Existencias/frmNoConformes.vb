@@ -24,8 +24,10 @@ Public Class frmNoConformes
     Private spEcellote As String = "SumCajasEnAlmacenByCodigoLote_noconforme "
     Private spEcelAlmacen As String = "PaletsProducidosByEnAlmacen2_noconforme "
     Private FechaSeleccionada As String
+    Private dtb As BasesParaCompatibilidad.DataBase
 
     Private Sub initdgvMain()
+        dtb = New BasesParaCompatibilidad.DataBase
         tab1 = False
         mThreadFic3 = New Thread(UpdateThreadStart3)
         mThreadFic3.IsBackground = True
@@ -55,7 +57,7 @@ Public Class frmNoConformes
     Private Sub dfvFillSecondary()
         'Dim dt, dt2 As DataTable
         Try
-            Dim dtb2 As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+            Dim dtb2 As New BasesParaCompatibilidad.Database()
             dt = dtb2.Consultar(spPalet, True)
             'dt = DataTableFill(spPalet)
 
@@ -67,7 +69,7 @@ Public Class frmNoConformes
 
     Private Sub dgvFillTerciary()
         Try
-            Dim dtb3 As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+            Dim dtb3 As New BasesParaCompatibilidad.Database()
             dt2 = dtb3.Consultar(spLote, True)
             'dt2 = DataTableFill(spLote)
             Me.BeginInvoke(CallDataBindToDataGrid2)
@@ -78,7 +80,6 @@ Public Class frmNoConformes
 
     Private Sub dgvFillMain()
         Try
-            Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
             dt3 = dtb.Consultar(spArticulo, True)
 
             'dt3 = DataTableFill(spArticulo)
@@ -305,13 +306,12 @@ Public Class frmNoConformes
                                 Convert.ToString(Now.Hour) & "-" & _
                                 Convert.ToString(Now.Minute)
 
-            Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
             Dim Unidad As String
             Dim Ruta As String = "Almacen\Recuentos\"
             Dim RutaCompleta As String
             Dim NombreHoja As String
 
-            If BasesParaCompatibilidad.Config.Server Then '= "MAM1\SQLEXPRESS" Then
+            If BasesParaCompatibilidad.Config.Server = 0 Then '= "MAM1\SQLEXPRESS" Then
                 Unidad = "C:\"
             Else
                 Unidad = "Z:\"
@@ -346,7 +346,6 @@ Public Class frmNoConformes
         'dt3 = DataTableFill("PaletsProducidosByArticulo3 ")
         'dt3 = DataTableFill("PaletsProducidosByArticulo6 ")
 
-        'Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
         'dt3 = dtb.Consultar(spArticulo, True)
         'Me.DataBindToDataGrid3()
 
@@ -367,10 +366,12 @@ Public Class frmNoConformes
 
             Dim resp As DialogResult = MessageBox.Show("¿Seguro que desea marcar el palet como 'no conforme'?", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
             If resp = DialogResult.OK Then
-                deprecated.realizarConsultaAlteraciones("update paletsproducidos set id_estado=1 where scc = " & Me.dgvPalet.CurrentRow.Cells("SCC").Value)
+                dtb.PrepararConsulta("update paletsproducidos set id_estado=1 where scc = @scc")
+                dtb.AñadirParametroConsulta("@scc", Me.dgvPalet.CurrentRow.Cells("SCC").Value)
+                dtb.Consultar(True)
                 tsPalets.PerformClick()
             End If
-         
+
         Catch ex As Exception
         End Try
     End Sub
@@ -387,8 +388,8 @@ Public Class frmNoConformes
         Dim m_dbo As New DBO_PaletsProducidos2
         Dim spFormato As New spFormatosEnvasados
         Dim spPaletsProducidos2 As New spPaletsProducidos2
-        m_dbo = spPaletsProducidos2.Select_RecordBySSCC(Me.dgvPalet.CurrentRow.Cells("SCC").Value)
-        Dim f_dbo As DBO_FormatosEnvasados = spFormato.Select_Record(m_dbo.FormatoID)
+        m_dbo = spPaletsProducidos2.Select_RecordBySSCC(Me.dgvPalet.CurrentRow.Cells("SCC").Value, dtb)
+        Dim f_dbo As DBO_FormatosEnvasados = spFormato.Select_Record(m_dbo.FormatoID, dtb)
         Dim frm As New frmEntPaletsProducidos2(True)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
     End Sub

@@ -18,7 +18,7 @@ Public Class frmCargaNecesidadesJRDetalles
     End Sub
 
     Protected Overrides Sub cargar_datos()
-        ctlCar.mostrarTodosCargaNecesidadesJRDetalles(dtsCar)
+        ctlCar.mostrarTodosCargaNecesidadesJRDetalles(dtsCar, dtb)
     End Sub
 
     Protected Overrides Sub BindDataSource()
@@ -53,8 +53,8 @@ Public Class frmCargaNecesidadesJRDetalles
             response = MessageBox.Show(" Realmente desea eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If response = DialogResult.Yes Then
                 ctlCar.SetCargaNecesidadesJRDetalleID(dgvGeneral.Rows(Posicion).Cells(0).Value)
-                ctlCar.EliminarCargaNecesidadesJRDetalle()
-                ctlCar.mostrarTodosCargaNecesidadesJRDetalles(dtsCar)
+                ctlCar.EliminarCargaNecesidadesJRDetalle(dtb)
+                ctlCar.mostrarTodosCargaNecesidadesJRDetalles(dtsCar, dtb)
                 If Posicion > 0 Then
                     GeneralBindingSource.Position = Posicion - 1
                 Else

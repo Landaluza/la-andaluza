@@ -10,11 +10,11 @@ Public Class frmEntEspecificaciones
     Private dtsEsp As New dtsEspecificaciones.EspecificacionesDataTable
     Private dtsValEsp As New dtsEspecificaciones.ValoresEspecificacionesDataTable
     Private grilla As New DataGridView
-
     Public Sub New()
 
         InitializeComponent()
 
+        dtb = New BasesParaCompatibilidad.DataBase()
         dtpFechaRevisado.activarFoco()
     End Sub
     Overrides Sub guardar()
@@ -27,7 +27,6 @@ Public Class frmEntEspecificaciones
             'If dgvEspecificaciones.RowCount > 0 Then
             '    dgvEspecificaciones.CurrentCell = dgvEspecificaciones.Rows(0).Cells(1)
             'End If
-            Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
             dtb.EmpezarTransaccion()
 
             Try
@@ -82,7 +81,7 @@ Public Class frmEntEspecificaciones
         comboboxColumn.Items.Add("")
         Dim tablaMet As New DataTable
         Dim table As New DataTable
-        tablaMet = ctlMetAna.devolverMetodosAnalisis
+        tablaMet = ctlMetAna.devolverMetodosAnalisis(dtb)
 
         If dgvEspecificaciones.Columns.Contains("MetodosAnalisis") Then dgvEspecificaciones.Columns.Remove("MetodosAnalisis")
 
@@ -225,7 +224,7 @@ Public Class frmEntEspecificaciones
 
 
         dgvEspecificaciones.DataSource = dtsValEsp
-        ctlEsp.mostrarTodosValoresEspecificaciones(dtsValEsp)
+        ctlEsp.mostrarTodosValoresEspecificaciones(dtb, dtsValEsp)
 
         'messageBox.show(ctlEsp.getEspecificacionID)
 
@@ -251,7 +250,7 @@ Public Class frmEntEspecificaciones
             dgvEspecificaciones.Columns(3).ReadOnly = True
             dgvEspecificaciones.Columns(4).ReadOnly = True
             dgvEspecificaciones.Columns(5).ReadOnly = True
-            ctlEsp.mostrarTodasEspecificaciones(dtsEsp)
+            ctlEsp.mostrarTodasEspecificaciones(dtb, dtsEsp)
             GeneralBindingSource.DataSource = dtsEsp
             GeneralBindingSource.Position = Posicion
         Else
@@ -272,12 +271,12 @@ Public Class frmEntEspecificaciones
         dtpFechaRevisado.Value = fecha
         grilla = gril
         Dim spLotes As New spTiposLotes
-        spLotes.cargar_TiposLotes(cboTipoLote)
+        spLotes.cargar_TiposLotes(cboTipoLote, dtb)
         'cboTipoLote.DataSource = HacerTablaTiposLotes(ctlTipLot.devolverLotes())
         cboTipoLote.ValueMember = "TipoLoteID"
         cboTipoLote.DisplayMember = "Descripcion"
         cboTipoLote.Text = tipoLote
-        Me.spTiposProductos.cargar_ComboBox(cboTipoProducto)
+        Me.spTiposProductos.cargar_ComboBox(cboTipoProducto, dtb)
         'cboTipoProducto.DataSource = HacerTablaTiposProductos(ctlTipPro.DevolverTiposProductos())
         'cboTipoProducto.ValueMember = "TipoProductoID"
         'cboTipoProducto.DisplayMember = "Descripcion"
@@ -290,7 +289,7 @@ Public Class frmEntEspecificaciones
     Private Sub lblEspecificacionID_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lblEspecificacionID.TextChanged
         ctlEsp.setEspecificacionID(lblEspecificacionID.Text)
         dgvEspecificaciones.DataSource = dtsValEsp
-        ctlEsp.mostrarTodosValoresEspecificaciones(dtsValEsp)
+        ctlEsp.mostrarTodosValoresEspecificaciones(dtb, dtsValEsp)
     End Sub
 
 
@@ -376,7 +375,7 @@ Public Class frmEntEspecificaciones
     Private Sub frmEntEspecificaciones_Shown(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Shown
         Dim aux As New spEspecificacionLegal
         Dim legislacion As Integer = ctlEsp.getLegislacion
-        aux.cargar_ComboBox(Me.cboLegislacion)
+        aux.cargar_ComboBox(Me.cboLegislacion, dtb)
         If legislacion <> Nothing Then cboLegislacion.SelectedValue = legislacion
         'dgvFill()
     End Sub

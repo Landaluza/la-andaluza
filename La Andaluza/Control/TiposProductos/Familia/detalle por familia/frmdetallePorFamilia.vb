@@ -24,7 +24,7 @@ Public Class frmdetallePorFamilia
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dbodetallePorFamilia = CType(sp, spFamliaProductos_TiposProductos).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer))
+        dbodetallePorFamilia = CType(sp, spFamliaProductos_TiposProductos).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
         If Not dbodetallePorFamilia Is Nothing Then
             MyBase.newRegForm = CType(New frmEntdetallePorFamilia(BasesParaCompatibilidad.GridSimpleForm.ACCION_MODIFICAR), BasesParaCompatibilidad.DetailedSimpleForm)
             newRegForm.SetDataBussinesObject(CType(Me.dbodetallePorFamilia, BasesParaCompatibilidad.DataBussines))

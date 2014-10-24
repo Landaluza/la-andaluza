@@ -18,7 +18,7 @@ Public Class frmEntAguaPotableConsumos
 
     Private Sub frmEntAguaPotableConsumos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spFacturas
-        s.cargar_Facturas(Me.cboid_factura)
+        s.cargar_Facturas(Me.cboid_factura, dtb)
         If Me.ModoDeApertura = VISION Then
             Me.cboid_factura.Enabled = False
             Me.lblid_factura.Enabled = False
@@ -73,8 +73,8 @@ Public Class frmEntAguaPotableConsumos
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerid_factura_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerid_factura.Click
@@ -87,7 +87,7 @@ Public Class frmEntAguaPotableConsumos
         Dim frmEnt As New frmEntFacturas(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spFacturas, DBO_Facturas)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spFacturas
-        s.cargar_Facturas(Me.cboid_factura)
+        s.cargar_Facturas(Me.cboid_factura, dtb)
     End Sub
 
 End Class

@@ -8,7 +8,7 @@ Public Class frmLisEnvPorArticuloPrimario
     Public Sub New()
 
         InitializeComponent()
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.DataBase()
         mse = New BasesParaCompatibilidad.MicrosoftOfficeExporter
         dtpHasta.activarFoco()
         dtpDesde.activarFoco()

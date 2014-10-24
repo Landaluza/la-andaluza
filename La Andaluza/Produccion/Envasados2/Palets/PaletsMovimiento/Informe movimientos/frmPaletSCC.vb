@@ -10,9 +10,11 @@ Public Class frmPaletSCC
     Private m_PaletProducidoDestino As DBO_PaletsProducidos2
     Private spPaletsProducidos2 As spPaletsProducidos2
     Private spPaletsContenidos2 As spPaletsContenidos2
+    Private dtb As BasesParaCompatibilidad.DataBase
 
     Public Sub New()
         InitializeComponent()
+        dtb = New BasesParaCompatibilidad.DataBase
         spPaletsProducidos2 = New spPaletsProducidos2
         spPaletsContenidos2 = New spPaletsContenidos2
 
@@ -35,7 +37,6 @@ Public Class frmPaletSCC
 
     Private Sub buscar()
         Dim m_EnAlmacen As Boolean = False
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
         Dim dt As DataTable = dtb.Consultar("PaletsProducidosSCCSelect " & txtSCC.Text, True)
 
         If Not dt Is Nothing Then
@@ -46,7 +47,7 @@ Public Class frmPaletSCC
                 If m_DesdeMovimiento Then
                     'Hay que buscar el PaletID del SSCC
                     If m_OrigenDestino = "Origen" Then
-                        m_PaletProducidoOrigen = spPaletsProducidos2.Select_RecordBySSCC(txtSCC.Text)
+                        m_PaletProducidoOrigen = spPaletsProducidos2.Select_RecordBySSCC(txtSCC.Text, dtb)
                         'Compruebo si alguno de los ContenidosPalet del PaletProducido estan en Almacen.
                         Dim tbPaletsContenidos As DataTable = spPaletsContenidos2.PaletsContenidosPorPaletsProducidos(m_PaletProducidoOrigen.PaletProducidoID, dtb)
 
@@ -70,7 +71,7 @@ Public Class frmPaletSCC
                             txtSCC.Focus()
                         End If
                     Else
-                        m_PaletProducidoDestino = spPaletsProducidos2.Select_RecordBySSCC(txtSCC.Text)
+                        m_PaletProducidoDestino = spPaletsProducidos2.Select_RecordBySSCC(txtSCC.Text, dtb)
                         'Compruebo si alguno de los ContenidosPalet del PaletProducido estan en Almacen.
                         Dim tbPaletsContenidos As DataTable = spPaletsContenidos2.PaletsContenidosPorPaletsProducidos(m_PaletProducidoDestino.PaletProducidoID, dtb)
 
@@ -150,7 +151,6 @@ Public Class frmPaletSCC
             .RowTemplate.Height = 16
         End With
 
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
 
         Me.tsNoConforme.Enabled = True
 
@@ -180,7 +180,6 @@ Public Class frmPaletSCC
         Dim frm As New BasesParaCompatibilidad.frmEspera("Imprimiendo resultados")
         frm.Show()
 
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
         Dim oWord As Microsoft.Office.Interop.Word.Application
         Dim oDoc As Microsoft.Office.Interop.Word.Document
         Dim oTable As Microsoft.Office.Interop.Word.Table
@@ -287,7 +286,6 @@ Public Class frmPaletSCC
             If IsNumeric(Me.txtSCC.Text) Then
                 Dim resp As DialogResult = MessageBox.Show("¿Seguro que desea marcar el palet como 'no expedido'?", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
                 If resp = DialogResult.OK Then
-                    Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
                     dtb.ConsultaAlteraciones("update paletsproducidos set enAlmacen=1 where scc = " & Me.txtSCC.Text)
                     'deprecated.realizarConsultaAlteraciones("update paletsproducidos set enAlmacen=1 where scc = " & Me.txtSCC.Text)
                     Me.buscar()
@@ -303,7 +301,6 @@ Public Class frmPaletSCC
                     If IsNumeric(Me.txtSCC.Text) Then
                         Dim resp As DialogResult = MessageBox.Show("¿Seguro que desea marcar el palet como 'conforme'?", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
                         If resp = DialogResult.OK Then
-                            Dim dtb As New BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
                             dtb.ConsultaAlteraciones("update paletsproducidos set id_estado=1 where scc = " & Me.txtSCC.Text)
                             'deprecated.realizarConsultaAlteraciones("update paletsproducidos set id_estado=1 where scc = " & Me.txtSCC.Text)
                             Me.buscar()
@@ -315,7 +312,6 @@ Public Class frmPaletSCC
                     If IsNumeric(Me.txtSCC.Text) Then
                         Dim resp As DialogResult = MessageBox.Show("¿Seguro que desea marcar el palet como 'no conforme'?", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
                         If resp = DialogResult.OK Then
-                            Dim dtb As New BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
                             dtb.ConsultaAlteraciones("update paletsproducidos set id_estado=3 where scc = " & Me.txtSCC.Text)
                             'deprecated.realizarConsultaAlteraciones("update paletsproducidos set id_estado=3 where scc = " & Me.txtSCC.Text)
                             Me.buscar()
@@ -338,9 +334,9 @@ Public Class frmPaletSCC
                     If resp = DialogResult.Yes Then
                         Dim spForamtos As New spFormatosEnvasados
                         Dim spEnvasados2 As New spEnvasados2
-                        Dim m_p As DBO_PaletsProducidos2 = spPaletsProducidos2.Select_RecordBySSCC(Me.dgvMovimientos.CurrentRow.Cells("SCC").Value)
-                        Dim m_f As DBO_FormatosEnvasados = spForamtos.Select_Record(m_p.FormatoID)
-                        Dim m_e As DBO_Envasados2 = spEnvasados2.Select_Record(m_f.EnvasadoID)
+                        Dim m_p As DBO_PaletsProducidos2 = spPaletsProducidos2.Select_RecordBySSCC(Me.dgvMovimientos.CurrentRow.Cells("SCC").Value, dtb)
+                        Dim m_f As DBO_FormatosEnvasados = spForamtos.Select_Record(m_p.FormatoID, dtb)
+                        Dim m_e As DBO_Envasados2 = spEnvasados2.Select_Record(m_f.EnvasadoID, dtb)
 
                         Dim frm As New frmEntPaletsProducidos2(m_f.ID, True)
                         frm.Text = "Modificar palet producido"
@@ -352,7 +348,7 @@ Public Class frmPaletSCC
                     Else
                         If Not IsDBNull(Me.dgvMovimientos.CurrentRow.Cells("id_movimiento").Value) Then
                             Dim sp As New spPaletsMovimiento
-                            sp.Delete(Me.dgvMovimientos.CurrentRow.Cells("id_movimiento").Value)
+                            sp.Delete(Me.dgvMovimientos.CurrentRow.Cells("id_movimiento").Value, dtb)
                             buscar()
 
                         End If
@@ -376,9 +372,9 @@ Public Class frmPaletSCC
                 If resp = DialogResult.Yes Then
                     Dim spFormato As New spFormatosEnvasados
                     Dim spEnvasados2 As New spEnvasados2
-                    Dim m_p As DBO_PaletsProducidos2 = spPaletsProducidos2.Select_RecordBySSCC(Me.dgvMovimientos.CurrentRow.Cells("SCC").Value)
-                    Dim m_f As DBO_FormatosEnvasados = spFormato.Select_Record(m_p.FormatoID)
-                    Dim m_e As DBO_Envasados2 = spEnvasados2.Select_Record(m_f.EnvasadoID)
+                    Dim m_p As DBO_PaletsProducidos2 = spPaletsProducidos2.Select_RecordBySSCC(Me.dgvMovimientos.CurrentRow.Cells("SCC").Value, dtb)
+                    Dim m_f As DBO_FormatosEnvasados = spFormato.Select_Record(m_p.FormatoID, dtb)
+                    Dim m_e As DBO_Envasados2 = spEnvasados2.Select_Record(m_f.EnvasadoID, dtb)
 
                     Dim frm As New frmEntPaletsProducidos2(m_f.ID, True)
                     frm.Text = "Modificar palet producido"
@@ -391,8 +387,8 @@ Public Class frmPaletSCC
 
                 Dim sp As New spPaletsMovimiento
                 Dim sp2 As New spPaletsMovimientosTipos
-                Dim dbo As Dbo_PaletsMovimiento = sp.Select_Record(Me.dgvMovimientos.CurrentRow.Cells("id_movimiento").Value)
-                Dim d As DBO_PaletsMovimientosTipos = sp2.Select_Record(dbo.Tipo)
+                Dim dbo As Dbo_PaletsMovimiento = sp.Select_Record(Me.dgvMovimientos.CurrentRow.Cells("id_movimiento").Value, dtb)
+                Dim d As DBO_PaletsMovimientosTipos = sp2.Select_Record(dbo.Tipo, dtb)
 
                 If d.EntrePalets Then
                     If dbo.MovimientoEntrePaletsID = Nothing Then

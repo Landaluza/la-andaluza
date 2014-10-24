@@ -187,8 +187,11 @@ Public Class clsValoresespecificaciones
 
     End Function
 
-    Public Function existe() As Boolean
-        Return CInt(Deprecated.ConsultaVer("Count(*)", "ValoresEspecificaciones", "ParametroID = " & ParametroID.ToString & " and EspecificacionID = " & EspecificacionID.ToString).Rows(0).Item(0)) > 0
+    Public Function existe(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.PrepararConsulta("select Count(*) from ValoresEspecificaciones where ParametroID = @par and EspecificacionID = @es")
+        dtb.AñadirParametroConsulta("@par", ParametroID)
+        dtb.AñadirParametroConsulta("@es", EspecificacionID)
+        Return CInt(dtb.Consultar().Rows(0).Item(0)) > 0
     End Function
 
 

@@ -54,7 +54,7 @@ Public Class frmPaletsAlmacenEntradas
 
     Public Overrides Sub Eliminar()
         If Not Me.dgvGeneral.CurrentRow Is Nothing Then
-            If CType(sp, spPaletsAlmacenEntradas).PaletsAlmacenEntradasDelete(dgvGeneral.CurrentRow.Cells("PaletAlmacenEntradaID").Value) Then
+            If CType(sp, spPaletsAlmacenEntradas).PaletsAlmacenEntradasDelete(dgvGeneral.CurrentRow.Cells("PaletAlmacenEntradaID").Value, dtb) Then
                 dgvFill()
             Else
                 MessageBox.Show("No se pudo eliminar el registro", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information)

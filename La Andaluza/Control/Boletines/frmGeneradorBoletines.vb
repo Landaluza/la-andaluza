@@ -1,17 +1,27 @@
 ﻿Public Class frmGeneradorBoletines
     Private boletin As frmEntplantillasBoletines
     Private spBoletines As spplantillasBoletines
+    Private dtb As BasesParaCompatibilidad.DataBase
+
+    Public Sub New()
+
+        ' Llamada necesaria para el diseñador.
+        InitializeComponent()
+        dtb = New BasesParaCompatibilidad.DataBase
+        ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
+
+    End Sub
 
     Private Sub cboTipoProducto_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cboTipoProducto.SelectedValueChanged
         Try
-            spBoletines.cargarCboLotesPorTipoProducto(Me.cboLote, Me.cboTipoProducto.SelectedValue)
+            spBoletines.cargarCboLotesPorTipoProducto(Me.cboLote, Me.cboTipoProducto.SelectedValue, dtb)
         Catch ex As Exception
         End Try
     End Sub
 
     Private Sub cbLote_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cboLote.SelectedValueChanged
         Try
-            spBoletines.cargarCboPlantillasPorlotesCompatibles(Me.cboPlantilla, Me.cboLote.SelectedValue)
+            spBoletines.cargarCboPlantillasPorlotesCompatibles(Me.cboPlantilla, Me.cboLote.SelectedValue, dtb)
         Catch ex As Exception
         End Try
     End Sub
@@ -24,7 +34,7 @@
         Me.spBoletines = New spplantillasBoletines
         Me.ToolTip1.SetToolTip(Me.btnAgnadir, "Pulsa para crear una nueva plantilla")
         Try
-            spBoletines.cargarCboTiposProducto(Me.cboTipoProducto)
+            spBoletines.cargarCboTiposProducto(Me.cboTipoProducto, dtb)
         Catch ex As Exception
         End Try
     End Sub
@@ -46,7 +56,7 @@
         cboTipoProducto.Enabled = True
         cboPlantilla.Enabled = True
         Try
-            spBoletines.cargarCboTiposProducto(Me.cboTipoProducto)
+            spBoletines.cargarCboTiposProducto(Me.cboTipoProducto, dtb)
         Catch ex As Exception
         End Try
     End Sub

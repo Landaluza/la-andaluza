@@ -15,10 +15,10 @@ Public Class frmEntPaletsMovimientoSubTipo
     End Sub
 
     Private Sub frmEntPaletsMovimientoSubTipo_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        cboTipo.mam_DataSource("PaletsMovimientosTipos1Cbo", True)
+        cboTipo.mam_DataSource("PaletsMovimientosTipos1Cbo", True, dtb)
         cboTipo.SelectedValue = m_Maestro
 
-        m_RegistroActual = spPaletsMovimientoSubTipo.Select_Record(m_ID)
+        m_RegistroActual = spPaletsMovimientoSubTipo.Select_Record(m_ID, dtb)
         SetValores()
         ModificarBindingNavigator()
     End Sub
@@ -27,11 +27,11 @@ Public Class frmEntPaletsMovimientoSubTipo
         Dim m_NewRegistroActual As New DBO_PaletsMovimientoSubTipo
         GetValores(m_NewRegistroActual)
         If Me.Text.Substring(0, 3) = "Ins" Then
-            spPaletsMovimientoSubTipo.InsertPaletsMovimientoSubTipo(m_NewRegistroActual)
+            spPaletsMovimientoSubTipo.InsertPaletsMovimientoSubTipo(m_NewRegistroActual, dtb)
         Else
             GetValores(m_NewRegistroActual)
             Try
-                If Not spPaletsMovimientoSubTipo.UpdatePaletsMovimientoSubTipo(m_RegistroActual, m_NewRegistroActual) Then
+                If Not spPaletsMovimientoSubTipo.UpdatePaletsMovimientoSubTipo(m_RegistroActual, m_NewRegistroActual, dtb) Then
                     MessageBox.Show("Error", "No se ha actualizado", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Me.DialogResult = Windows.Forms.DialogResult.Retry
                 Else

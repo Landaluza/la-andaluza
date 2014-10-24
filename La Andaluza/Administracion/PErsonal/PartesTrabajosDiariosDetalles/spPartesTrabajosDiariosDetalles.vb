@@ -8,18 +8,18 @@ Class spPartesTrabajosDiariosDetalles
                    "[dbo].[PartesTrabajosDiariosDetallesDelete]", "PartesTrabajosDiariosDetallesSelectDgv", "PartesTrabajosDiariosDetallesSelectDgvByParteTrabajoDiarioMaestroID")
     End Sub
 
-    Public Function Select_Record(ByVal ParteTrabajoDiarioDetalleID As Int32) As DBO_PartesTrabajosDiariosDetalles
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal ParteTrabajoDiarioDetalleID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_PartesTrabajosDiariosDetalles
+        dtb.Conectar()
         Dim DBO_PartesTrabajosDiariosDetalles As New DBO_PartesTrabajosDiariosDetalles
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[PartesTrabajosDiariosDetallesSelect]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@ParteTrabajoDiarioDetalleID", ParteTrabajoDiarioDetalleID)
         Try
             Dim reader As System.Data.SqlClient.SqlDataReader = selectCommand.ExecuteReader(CommandBehavior.SingleRow)
             If reader.Read Then
-                
+
                 DBO_PartesTrabajosDiariosDetalles.ParteTrabajoDiarioDetalleID = If(reader("ParteTrabajoDiarioDetalleID") Is Convert.DBNull, 0, System.Convert.ToInt32(reader("ParteTrabajoDiarioDetalleID")))
                 DBO_PartesTrabajosDiariosDetalles.ParteTrabajoDiarioMaestroID = If(reader("ParteTrabajoDiarioMaestroID") Is Convert.DBNull, 0, System.Convert.ToInt32(reader("ParteTrabajoDiarioMaestroID")))
                 DBO_PartesTrabajosDiariosDetalles.TareasID = If(reader("TareasID") Is Convert.DBNull, 0, Convert.ToInt32(reader("TareasID")))
@@ -28,7 +28,7 @@ Class spPartesTrabajosDiariosDetalles
                 DBO_PartesTrabajosDiariosDetalles.Observaciones = If(reader("Observaciones") Is Convert.DBNull, String.Empty, System.Convert.ToString(reader("Observaciones")))
                 DBO_PartesTrabajosDiariosDetalles.FechaModificacion = If(reader("FechaModificacion") Is Convert.DBNull, System.DateTime.Now, System.Convert.ToDateTime(reader("FechaModificacion")))
                 DBO_PartesTrabajosDiariosDetalles.UsuarioModificacion = If(reader("UsuarioModificacion") Is Convert.DBNull, 0, System.Convert.ToInt32(reader("UsuarioModificacion")))
-                
+
             Else
                 DBO_PartesTrabajosDiariosDetalles = Nothing
             End If
@@ -36,18 +36,18 @@ Class spPartesTrabajosDiariosDetalles
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_PartesTrabajosDiariosDetalles
     End Function
 
-    Public Function PartesTrabajosDiariosDetallesInsert(ByVal dbo_PartesTrabajosDiariosDetalles As DBO_PartesTrabajosDiariosDetalles) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function PartesTrabajosDiariosDetallesInsert(ByVal dbo_PartesTrabajosDiariosDetalles As DBO_PartesTrabajosDiariosDetalles, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[PartesTrabajosDiariosDetallesInsert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
-        
+
         insertCommand.Parameters.AddWithValue("@ParteTrabajoDiarioMaestroID", If(dbo_PartesTrabajosDiariosDetalles.ParteTrabajoDiarioMaestroID.HasValue, dbo_PartesTrabajosDiariosDetalles.ParteTrabajoDiarioMaestroID, Convert.DBNull))
         insertCommand.Parameters.AddWithValue("@TareasID", If(dbo_PartesTrabajosDiariosDetalles.TareasID.HasValue, dbo_PartesTrabajosDiariosDetalles.TareasID, Convert.DBNull))
         insertCommand.Parameters.AddWithValue("@HoraInicio", dbo_PartesTrabajosDiariosDetalles.HoraInicio)
@@ -55,7 +55,7 @@ Class spPartesTrabajosDiariosDetalles
         insertCommand.Parameters.AddWithValue("@Observaciones", dbo_PartesTrabajosDiariosDetalles.Observaciones)
         insertCommand.Parameters.AddWithValue("@FechaModificacion", dbo_PartesTrabajosDiariosDetalles.FechaModificacion)
         insertCommand.Parameters.AddWithValue("@UsuarioModificacion", dbo_PartesTrabajosDiariosDetalles.UsuarioModificacion)
-        
+
         insertCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         insertCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
         Try
@@ -69,15 +69,15 @@ Class spPartesTrabajosDiariosDetalles
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function PartesTrabajosDiariosDetallesUpdate(ByVal newDBO_PartesTrabajosDiariosDetalles As DBO_PartesTrabajosDiariosDetalles) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function PartesTrabajosDiariosDetallesUpdate(ByVal newDBO_PartesTrabajosDiariosDetalles As DBO_PartesTrabajosDiariosDetalles, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[PartesTrabajosDiariosDetallesUpdate]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         '<Tag=[Three][Start]> -- please do not remove this line
         updateCommand.Parameters.AddWithValue("@NewParteTrabajoDiarioMaestroID", If(newDBO_PartesTrabajosDiariosDetalles.ParteTrabajoDiarioMaestroID.HasValue, newDBO_PartesTrabajosDiariosDetalles.ParteTrabajoDiarioMaestroID, Convert.DBNull))
@@ -100,18 +100,18 @@ Class spPartesTrabajosDiariosDetalles
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdatePartesTrabajosDiariosDetalles" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdatePartesTrabajosDiariosDetalles" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function PartesTrabajosDiariosDetallesDelete(ByVal ParteTrabajoDiarioDetalleID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function PartesTrabajosDiariosDetallesDelete(ByVal ParteTrabajoDiarioDetalleID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[PartesTrabajosDiariosDetallesDelete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         '<Tag=[Four][Start]> -- please do not remove this line
         deleteCommand.Parameters.AddWithValue("@OldParteTrabajoDiarioDetalleID", ParteTrabajoDiarioDetalleID)
@@ -129,17 +129,17 @@ Class spPartesTrabajosDiariosDetalles
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Sub GrabarPartesTrabajosDiariosDetalles(ByVal dbo_PartesTrabajosDiariosDetalles As DBO_PartesTrabajosDiariosDetalles)
-        dbo_PartesTrabajosDiariosDetalles.FechaModificacion = System.DateTime.Now.date
+    Public Sub GrabarPartesTrabajosDiariosDetalles(ByVal dbo_PartesTrabajosDiariosDetalles As DBO_PartesTrabajosDiariosDetalles, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        dbo_PartesTrabajosDiariosDetalles.FechaModificacion = System.DateTime.Now.Date
         dbo_PartesTrabajosDiariosDetalles.UsuarioModificacion = BasesParaCompatibilidad.Config.User
         If dbo_PartesTrabajosDiariosDetalles.ParteTrabajoDiarioDetalleID = 0 Then
-            PartesTrabajosDiariosDetallesInsert(dbo_PartesTrabajosDiariosDetalles)
+            PartesTrabajosDiariosDetallesInsert(dbo_PartesTrabajosDiariosDetalles, dtb)
         Else
-            PartesTrabajosDiariosDetallesUpdate(dbo_PartesTrabajosDiariosDetalles)
+            PartesTrabajosDiariosDetallesUpdate(dbo_PartesTrabajosDiariosDetalles, dtb)
         End If
     End Sub
 

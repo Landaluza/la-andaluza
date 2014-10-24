@@ -2,7 +2,7 @@
     Implements  BasesParaCompatibilidad.savable
     Public Shadows Event afterSave(sender As Object, args As EventArgs) Implements  BasesParaCompatibilidad.savable.afterSave
     Private m_DBO_PartesEnvasados_CausasPartesEnvasado As DBO_PartesEnvasados_CausasPartesEnvasado
-
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public ReadOnly Property DBO As DBO_PartesEnvasados_CausasPartesEnvasado
         Get
             Return Me.m_DBO_PartesEnvasados_CausasPartesEnvasado
@@ -18,6 +18,7 @@
     Public Sub New()
         InitializeComponent()
 
+        dtb = New BasesParaCompatibilidad.DataBase
         Me.m_DBO_PartesEnvasados_CausasPartesEnvasado = New DBO_PartesEnvasados_CausasPartesEnvasado
 
         If Config.UserType = 3 Then
@@ -28,7 +29,7 @@
 
     Public Sub SetValores() Implements  BasesParaCompatibilidad.savable.setValores
         Dim s2 As New spCausasPartesEnvasado
-        s2.cargar_CausasPartesEnvasado(Me.cboCausaParteEnvasado)
+        s2.cargar_CausasPartesEnvasado(Me.cboCausaParteEnvasado, dtb)
     End Sub
 
     Protected Function GetValores() As Boolean Implements  BasesParaCompatibilidad.savable.getValores
@@ -49,7 +50,7 @@
         End If
     End Function
 
-    Public Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
+    Public Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
         If Me.GetValores Then
             RaiseEvent afterSave(Me, Nothing)
             Me.Close()

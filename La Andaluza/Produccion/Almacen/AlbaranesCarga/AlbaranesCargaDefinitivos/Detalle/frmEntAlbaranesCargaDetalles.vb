@@ -1,15 +1,13 @@
 Public Class frmEntAlbaranesCargaDetalles
-
     inherits BasesParaCompatibilidad.FrmAHeredarEntOld
 
     Private dtsAlb As New dtsAlbaranesCargaDetalles.AlbaranesCargaDetallesDataTable
     Private ctlAlb As New ctlAlbaranesCargaDetalles
-    Private dtb As BasesParaCompatibilidad.DataBase
 
     Public Sub New()
         InitializeComponent()
 
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.DataBase()
         dtsAlb = New dtsAlbaranesCargaDetalles.AlbaranesCargaDetallesDataTable
         ctlAlb = New ctlAlbaranesCargaDetalles
     End Sub
@@ -54,7 +52,6 @@ Public Class frmEntAlbaranesCargaDetalles
     Private Sub frmEntAlbaranesCargaDetalles_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ModificarBindingNavigator()
         If Me.Text.Substring(0, 3) = "Ver" Then
-            Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
             ctlAlb.mostrarTodosAlbaranesCargaDetalles(dtb, dtsAlb)
             GeneralBindingSource.DataSource = dtsAlb
             GeneralBindingSource.Position = Posicion

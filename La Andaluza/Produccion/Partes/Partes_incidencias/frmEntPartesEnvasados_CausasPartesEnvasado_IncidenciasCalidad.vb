@@ -19,7 +19,7 @@ Public Class frmEntPartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad
 
    Private Sub frmEntPartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
        dim s as new spIncidencias
-       s.cargar_Incidencias(Me.cboIncidencia)
+        s.cargar_Incidencias(Me.cboIncidencia, dtb)
        If me.mododeapertura = VISION Then
            Me.cboIncidencia.enabled = False
            Me.lblId_Incidencia.enabled = False
@@ -62,9 +62,9 @@ Public Class frmEntPartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad
         End IF
    End Function
 
-   Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-       MyBase.Guardar(trans)
-   End Sub
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
+    End Sub
 
    Private Sub butVerId_Incidencia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_Incidencia.Click
        Dim frmEnt As New frmIncidencias()
@@ -76,7 +76,7 @@ Public Class frmEntPartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad
         Dim frmEnt As New frmEntIncidencias(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spIncidencias, DBO_Incidencias)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spIncidencias
-        s.cargar_Incidencias(Me.cboIncidencia)
+        s.cargar_Incidencias(Me.cboIncidencia, dtb)
     End Sub
 
    

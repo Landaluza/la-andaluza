@@ -64,7 +64,7 @@ Public Class frmEnvasadosProductosArticulos_NO_USAR
         If Me.dgvGrilla.RowCount > 0 Then
             If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
                           "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-                If CType(sp, spEnvasadosProductosArticulos).EnvasadosProductosArticulosDelete(dgvGrilla.CurrentRow.Cells("EnvasadoProductoArticuloID").Value) Then
+                If CType(sp, spEnvasadosProductosArticulos).EnvasadosProductosArticulosDelete(dgvGrilla.CurrentRow.Cells("EnvasadoProductoArticuloID").Value, dtb) Then
                     dgvFill()
                 Else
                     MessageBox.Show("No se pudo eliminar el registro", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -90,7 +90,7 @@ Public Class frmEnvasadosProductosArticulos_NO_USAR
                 Return
             End If
 
-            If spLotes1.CountLotesTerminadosPorTipoProducto(m_Producto) = 0 Then
+            If spLotes1.CountLotesTerminadosPorTipoProducto(m_Producto, dtb) = 0 Then
                 MessageBox.Show("No hay lotes terminados para envasar", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Return
             End If
@@ -181,14 +181,13 @@ Public Class frmEnvasadosProductosArticulos_NO_USAR
 
         If Respuesta = DialogResult.Yes Then
             dtb.EmpezarTransaccion()
-            BasesParaCompatibilidad.BD.Cnx = dtb.Conexion
-            BasesParaCompatibilidad.transaction = dtb.Transaccion
+
 
             Try
                 Dim calendar As New BasesParaCompatibilidad.Calendar
 
                 For Each row As DataGridViewRow In dgvGrilla.Rows
-                    m_DBO_LoteTerminado = spLotes1.Select_Record(row.Cells("LoteID").Value, dtb.Transaccion) 'dgvGrilla.CurrentRow.Cells("LoteID").Value, BasesParaCompatibilidad.BD.transaction)
+                    m_DBO_LoteTerminado = spLotes1.Select_Record(row.Cells("LoteID").Value, dtb) 'dgvGrilla.CurrentRow.Cells("LoteID").Value,dtb)
 
                     'Grabar movimiento
                     Dim m_DBO_Movimientos1 As New DBO_Movimientos1
@@ -202,7 +201,7 @@ Public Class frmEnvasadosProductosArticulos_NO_USAR
                     m_DBO_Movimientos1.FiltroID = vbNull
                     m_DBO_Movimientos1.Suma = 1
                     m_DBO_Movimientos1.NuevoLote = 1 'Si generamos nuevo Lote.
-                    guardado = guardado And spMovimientos1.GrabarMovimientos1(m_DBO_Movimientos1, dtb.Transaccion)
+                    guardado = guardado And spMovimientos1.GrabarMovimientos1(m_DBO_Movimientos1, dtb)
 
                     'Crear Lote envasado para que luego podamos sumar sumar todos los componentes del Lote terminado y asi saber la cantidad inicial preparada.
                     m_DBO_LoteEnvasado.Descripcion = "L-" & calendar.DevuelveFechaJuliana(m_DBO_Envasado.Fecha) 'RECUPERAR JULIANO
@@ -229,11 +228,11 @@ Public Class frmEnvasadosProductosArticulos_NO_USAR
                     Else
                         mes = m_DBO_Envasado.Fecha.Month
                     End If
-                    m_DBO_LoteEnvasado.CodigoLote = m_DBO_Envasado.Fecha.Year & mes & dia & spTiposProductos.Select_Record(m_Producto, dtb.Transaccion).Abreviatura & "Env"
-                    m_DBO_LoteEnvasado.CodigoLote = spLotes1.devolverproximocodigoLote(m_DBO_LoteEnvasado.CodigoLote, BasesParaCompatibilidad.BD.transaction)
+                    m_DBO_LoteEnvasado.CodigoLote = m_DBO_Envasado.Fecha.Year & mes & dia & spTiposProductos.Select_Record(m_Producto, dtb).Abreviatura & "Env"
+                    m_DBO_LoteEnvasado.CodigoLote = spLotes1.devolverproximocodigoLote(m_DBO_LoteEnvasado.CodigoLote, dtb)
 
                     m_DBO_LoteEnvasado.Revisar = False
-                    guardado = guardado And spLotes1.GrabarLotes1(m_DBO_LoteEnvasado, dtb.Transaccion)
+                    guardado = guardado And spLotes1.GrabarLotes1(m_DBO_LoteEnvasado, dtb)
 
                     'Guardar Lote creado en tabla CompuestoPor asignado al Lote envasado creado
 
@@ -245,18 +244,18 @@ Public Class frmEnvasadosProductosArticulos_NO_USAR
                     dtb.PrepararConsulta("select max(MovimientoID) from Movimientos")
                     m_DBO_CompuestoPor.MovimientoID = dtb.Consultar().Rows(0).Item(0)
                     m_DBO_CompuestoPor.Cantidad = row.Cells("Cantidad").Value
-                    guardado = guardado And spCompuestoPor.CompuestoPorInsert(m_DBO_CompuestoPor, dtb.Transaccion)
+                    guardado = guardado And spCompuestoPor.CompuestoPorInsert(m_DBO_CompuestoPor, dtb)
 
 
                     'Descontar los litros del lote terminado
                     Dim m_CantidadRestante As Integer = System.Convert.ToInt32(m_DBO_LoteTerminado.CantidadRestante) - row.Cells("Cantidad").Value
 
-                    guardado = guardado And spLotes1.Lotes1UpdateCantidadRestante(m_DBO_LoteTerminado.LoteID, m_CantidadRestante, dtb.Transaccion)
+                    guardado = guardado And spLotes1.Lotes1UpdateCantidadRestante(m_DBO_LoteTerminado.LoteID, m_CantidadRestante, dtb)
 
                     If Not row.Cells("Merma").Value Is Nothing And row.Cells("Merma").Value <> 0 Then ''añadir al mdbo el campo merma, que es el que se guardara en el frment
                         Dim spFormato As New spFormatosEnvasados
-                        Dim m_dbo_FormatosEnvasados As DBO_FormatosEnvasados = spFormato.Select_Record(row.Cells("FormatoEnvasadoID").Value, dtb.Transaccion)
-                        Dim m_dbo_Envasado As DBO_Envasados2 = spEnvasados2.Select_Record(m_dbo_FormatosEnvasados.EnvasadoID, dtb.Transaccion)
+                        Dim m_dbo_FormatosEnvasados As DBO_FormatosEnvasados = spFormato.Select_Record(row.Cells("FormatoEnvasadoID").Value, dtb)
+                        Dim m_dbo_Envasado As DBO_Envasados2 = spEnvasados2.Select_Record(m_dbo_FormatosEnvasados.EnvasadoID, dtb)
 
                         m_dbo_diferencias.CantidadRestante = row.Cells("Merma").Value
                         m_dbo_diferencias.CodigoLote = row.Cells("Lote").Value
@@ -298,8 +297,8 @@ Public Class frmEnvasadosProductosArticulos_NO_USAR
 
     Private Function comprobarTrasiegos() As Boolean
         If Me.dgvGrilla.RowCount > 0 Then
-            m_DBO_LoteTerminado = spLotes1.Select_Record(dgvGrilla.CurrentRow.Cells("LoteID").Value, BasesParaCompatibilidad.BD.transaction)
-            If CType(sp, spEnvasadosProductosArticulos).ExistenTrasiegos(m_DBO_LoteTerminado.LoteID) Then
+            m_DBO_LoteTerminado = spLotes1.Select_Record(dgvGrilla.CurrentRow.Cells("LoteID").Value, dtb)
+            If CType(sp, spEnvasadosProductosArticulos).ExistenTrasiegos(m_DBO_LoteTerminado.LoteID, dtb) Then
                 Return True
             Else
                 Return False

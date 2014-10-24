@@ -18,10 +18,10 @@ Public Class frmEntTareasEnvasado_LineasEnvasado
 
     Private Sub frmEntTareasEnvasado_LineasEnvasado_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spTareasEnvasado
-        s.cargar_TareasEnvasado(Me.cboTareaEnvasado)
+        s.cargar_TareasEnvasado(Me.cboTareaEnvasado, dtb)
 
         Dim s2 As New spLineasEnvasado
-        s2.cargar_LineasEnvasado(Me.cboLineaEnvasado)
+        s2.cargar_LineasEnvasado(Me.cboLineaEnvasado, dtb)
         If Me.ModoDeApertura = VISION Then
             Me.cboLineaEnvasado.Enabled = False
             Me.lblId_LineaEnvasado.Enabled = False
@@ -63,8 +63,8 @@ Public Class frmEntTareasEnvasado_LineasEnvasado
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerId_TareaEnvasado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_TareaEnvasado.Click
@@ -77,7 +77,7 @@ Public Class frmEntTareasEnvasado_LineasEnvasado
         Dim frmEnt As New frmEntTareasEnvasado(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spTareasEnvasado, DBO_TareasEnvasado)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTareasEnvasado
-        s.cargar_TareasEnvasado(Me.cboTareaEnvasado)
+        s.cargar_TareasEnvasado(Me.cboTareaEnvasado, dtb)
     End Sub
 
     Private Sub butVerId_LineaEnvasado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -90,7 +90,7 @@ Public Class frmEntTareasEnvasado_LineasEnvasado
         Dim frmEnt As New frmEntLineasEnvasado(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spLineasEnvasado, DBO_LineasEnvasado)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spLineasEnvasado
-        s.cargar_LineasEnvasado(Me.cboLineaEnvasado)
+        s.cargar_LineasEnvasado(Me.cboLineaEnvasado, dtb)
     End Sub
 
 End Class

@@ -23,11 +23,11 @@ Public Class frmEntCamiones
 
     Private Sub frmEntCamiones_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s0 As New spAgenciasTransportes
-        s0.cargar_AgenciasTransportes(Me.cboAgenciaTransporte)
+        s0.cargar_AgenciasTransportes(Me.cboAgenciaTransporte, dtb)
         Dim s1 As New spConductores
-        s1.cargar_Conductores(Me.cboConductorHabitual)
+        s1.cargar_Conductores(Me.cboConductorHabitual, dtb)
         Dim s2 As New spCamionesTipos
-        s2.cargar_CamionesTipos(Me.cboCamionTipo)
+        s2.cargar_CamionesTipos(Me.cboCamionTipo, dtb)
         If Me.mododeapertura = VISION Then
             Me.cboAgenciaTransporte.enabled = False
             Me.lblAgenciaTransporteID.enabled = False
@@ -108,8 +108,8 @@ Public Class frmEntCamiones
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerAgenciaTransporteID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerAgenciaTransporteID.Click
@@ -122,7 +122,7 @@ Public Class frmEntCamiones
         Dim frmEnt As New frmEntAgenciasTransportes(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spAgenciasTransportes, DBO_AgenciasTransportes)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spAgenciasTransportes
-        s.cargar_AgenciasTransportes(Me.cboAgenciaTransporte)
+        s.cargar_AgenciasTransportes(Me.cboAgenciaTransporte, dtb)
     End Sub
 
     Private Sub butVerConductorHabitualID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerConductorHabitualID.Click
@@ -135,7 +135,7 @@ Public Class frmEntCamiones
         Dim frmEnt As New frmEntConductores(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spConductores, DBO_Conductores)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spConductores
-        s.cargar_Conductores(Me.cboConductorHabitual)
+        s.cargar_Conductores(Me.cboConductorHabitual, dtb)
     End Sub
 
     Private Sub butVerCamionTipoID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerCamionTipoID.Click
@@ -148,7 +148,7 @@ Public Class frmEntCamiones
         Dim frmEnt As New frmEntCamionesTipos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spCamionesTipos, DBO_CamionesTipos)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spCamionesTipos
-        s.cargar_CamionesTipos(Me.cboCamionTipo)
+        s.cargar_CamionesTipos(Me.cboCamionTipo, dtb)
     End Sub
 
     Private Sub frmEntCamiones_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown

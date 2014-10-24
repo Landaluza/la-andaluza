@@ -43,9 +43,9 @@ Public Class frmEntEpisTipos
        Dim m_NewEpisTipo As New DBO_EpisTipos
        GetValores(m_NewEpisTipo)
        If Me.Text.Substring(0, 3) = "Ins" Then
-            spEpisTipos.InsertEpisTipos(m_NewEpisTipo)
+            spEpisTipos.InsertEpisTipos(m_NewEpisTipo, dtb)
        Else
-            spEpisTipos.UpdateEpisTipos(m_EpisTipo, m_NewEpisTipo)
+            spEpisTipos.UpdateEpisTipos(m_EpisTipo, m_NewEpisTipo, dtb)
        End If
        Me.Close()
    End Sub
@@ -62,7 +62,7 @@ Public Class frmEntEpisTipos
                m_Pos = GeneralBindingSource.Count - 1
        End Select
        GeneralBindingSource.Position = m_Pos
-       m_EpisTipo = spEpisTipos.Select_Record(GeneralBindingSource(m_Pos).Item("EpiTipoID"))
+        m_EpisTipo = spEpisTipos.Select_Record(GeneralBindingSource(m_Pos).Item("EpiTipoID"), dtb)
        SetValores()
    End Sub
 

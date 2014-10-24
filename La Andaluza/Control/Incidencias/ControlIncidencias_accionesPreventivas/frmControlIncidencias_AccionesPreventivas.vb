@@ -28,7 +28,7 @@ Public Class frmControlIncidencias_AccionesPreventivas
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboControlIncidencias_AccionesPreventivas = CType(sp, spControlIncidencias_AccionesPreventivas).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboControlIncidencias_AccionesPreventivas = CType(sp, spControlIncidencias_AccionesPreventivas).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboControlIncidencias_AccionesPreventivas Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboControlIncidencias_AccionesPreventivas)
         Else

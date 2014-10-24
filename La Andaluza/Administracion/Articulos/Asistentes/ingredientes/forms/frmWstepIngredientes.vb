@@ -27,7 +27,7 @@ Public Class frmWstepIngredientes
         spArticulos_ArticulosCertificadosTipos = New spArticulos_ArticulosCertificadosTipos
         Me.m_IDI = IDI
 
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.DataBase()
         m_DBO_TiposProductos = New DBO_TiposProductos
         spTiposProductos = New spTiposProductos
 
@@ -46,12 +46,12 @@ Public Class frmWstepIngredientes
         spArticulosIngredientes = New spArticulosIngredientes
         spArticulosIngredientesIDI = New spArticulosIngredientesIDI
         spArticulos_ArticulosCertificadosTipos = New spArticulos_ArticulosCertificadosTipos
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.DataBase()
 
         If Me.m_IDI Then
-            Me.m_DBO_ArticuloIngrediente = spArticulosIngredientesIDI.Select_RecordByArticuloID(articuloid)
+            Me.m_DBO_ArticuloIngrediente = spArticulosIngredientesIDI.Select_RecordByArticuloID(dtb, articuloid)
         Else
-            Me.m_DBO_ArticuloIngrediente = spArticulosIngredientes.Select_RecordByArticuloID(articuloid)
+            Me.m_DBO_ArticuloIngrediente = spArticulosIngredientes.Select_RecordByArticuloID(articuloid, dtb)
         End If
 
         Me.cbCreartipoProducto.Visible = False
@@ -137,8 +137,8 @@ Public Class frmWstepIngredientes
         Dim dt As DataTable = dtb.Consultar("ArticulosCertificadosTiposSelectDgv", True)
 
         If Not Me.m_IDI Then
-            spTiposProductos.cargar_ComboBox(Me.cboTipoProducto)
-            spTiposProductos.cargar_MedidasProductos(Me.cbMedidas)
+            spTiposProductos.cargar_ComboBox(Me.cboTipoProducto, dtb)
+            spTiposProductos.cargar_MedidasProductos(Me.cbMedidas, dtb)
         End If
 
         For Each row As System.Data.DataRow In dt.Rows
@@ -163,7 +163,7 @@ Public Class frmWstepIngredientes
                 Me.cboUnidad.SelectedIndex = m_DBO_ArticuloIngrediente.UnidadID - 1
             End If
 
-            dt = spArticulos1.certificadosByArticuloId(Me.m_DBO_ArticuloIngrediente.ArticuloID)
+            dt = spArticulos1.certificadosByArticuloId(Me.m_DBO_ArticuloIngrediente.ArticuloID, dtb)
 
             For Each row As System.Data.DataRow In dt.Rows
                 For Each cb In gbCertificados.Controls
@@ -189,9 +189,9 @@ Public Class frmWstepIngredientes
 
     Private Sub cargartipos()
         If Me.m_IDI Then
-            Me.cboIngredienteTipoID.mam_DataSource("ArticulosIngredientesIDI_ArticulosIngredientesIDITiposCbo", False)
+            Me.cboIngredienteTipoID.mam_DataSource("ArticulosIngredientesIDI_ArticulosIngredientesIDITiposCbo", False, dtb)
         Else
-            Me.cboIngredienteTipoID.mam_DataSource("ArticulosIngredientes_ArticulosIngredientesTiposCbo", False)
+            Me.cboIngredienteTipoID.mam_DataSource("ArticulosIngredientes_ArticulosIngredientesTiposCbo", False, dtb)
         End If
     End Sub
 
@@ -202,16 +202,16 @@ Public Class frmWstepIngredientes
             If Me.cbCreartipoProducto.Checked Then
                 Me.m_DBO_TiposProductos.resetKey()
 
-                If Not Me.spTiposProductos.Grabar(Me.m_DBO_TiposProductos, BasesParaCompatibilidad.BD.transaction) Then
+                If Not Me.spTiposProductos.Grabar(Me.m_DBO_TiposProductos, dtb) Then
                     Return False
                 Else
                     Me.m_DBO_ArticuloIngrediente.TipoProductoID = dtb.Consultar("select max(tipoProductoid) from tiposProductos", False).Rows(0).Item(0)
                 End If
             End If
 
-            If Not spArticulosIngredientes.GrabarArticulosIngredientesSinTransaccion(m_DBO_ArticuloIngrediente, BasesParaCompatibilidad.BD.transaction) Then Return False
+            If Not spArticulosIngredientes.GrabarArticulosIngredientesSinTransaccion(m_DBO_ArticuloIngrediente, dtb) Then Return False
 
-            If spArticulos_ArticulosCertificadosTipos.Articulos_ArticulosCertificadosTiposDeleteByArticuloIDSinTransaccion(Me.m_DBO_ArticuloIngrediente.ArticuloID, BasesParaCompatibilidad.BD.transaction) Then
+            If spArticulos_ArticulosCertificadosTipos.Articulos_ArticulosCertificadosTiposDeleteByArticuloIDSinTransaccion(Me.m_DBO_ArticuloIngrediente.ArticuloID, dtb) Then
                 Dim cb As System.Windows.Forms.CheckBox
                 Dim dbo_cert As DBO_Articulos_ArticulosCertificadosTipos
 
@@ -221,7 +221,7 @@ Public Class frmWstepIngredientes
                         dbo_cert.ArticuloCertificadoTipoID = cb.Tag
                         dbo_cert.ArticuloID = Me.m_DBO_ArticuloIngrediente.ArticuloID
                         dbo_cert.Observaciones = String.Empty
-                        If Not spArticulos_ArticulosCertificadosTipos.Articulos_ArticulosCertificadosTiposInsertSinTransaccion(dbo_cert, BasesParaCompatibilidad.BD.transaction) Then
+                        If Not spArticulos_ArticulosCertificadosTipos.Articulos_ArticulosCertificadosTiposInsertSinTransaccion(dbo_cert, dtb) Then
                             Return False
                         End If
                     End If
@@ -241,9 +241,9 @@ Public Class frmWstepIngredientes
 
         If comprobarCampos() Then
 
-            If Not spArticulosIngredientesIDI.GrabarArticulosIngredientesIDISinTransaccion(m_DBO_ArticuloIngrediente, BasesParaCompatibilidad.BD.transaction) Then Return False
+            If Not spArticulosIngredientesIDI.GrabarArticulosIngredientesIDISinTransaccion(m_DBO_ArticuloIngrediente, dtb) Then Return False
 
-            If spArticulos_ArticulosCertificadosTipos.Articulos_ArticulosCertificadosTiposDeleteByArticuloIDSinTransaccion(Me.m_DBO_ArticuloIngrediente.ArticuloID, BasesParaCompatibilidad.BD.transaction) Then
+            If spArticulos_ArticulosCertificadosTipos.Articulos_ArticulosCertificadosTiposDeleteByArticuloIDSinTransaccion(Me.m_DBO_ArticuloIngrediente.ArticuloID, dtb) Then
                 Dim cb As System.Windows.Forms.CheckBox
                 Dim dbo_cert As DBO_Articulos_ArticulosCertificadosTipos
 
@@ -253,7 +253,7 @@ Public Class frmWstepIngredientes
                         dbo_cert.ArticuloCertificadoTipoID = cb.Tag
                         dbo_cert.ArticuloID = Me.m_DBO_ArticuloIngrediente.ArticuloID
                         dbo_cert.Observaciones = String.Empty
-                        If Not spArticulos_ArticulosCertificadosTipos.Articulos_ArticulosCertificadosTiposInsertSinTransaccion(dbo_cert, BasesParaCompatibilidad.BD.transaction) Then
+                        If Not spArticulos_ArticulosCertificadosTipos.Articulos_ArticulosCertificadosTiposInsertSinTransaccion(dbo_cert, dtb) Then
                             Return False
                         End If
                     End If
@@ -300,6 +300,6 @@ Public Class frmWstepIngredientes
     Private Sub btnAddTProducto_Click(sender As System.Object, e As System.EventArgs) Handles btnAddTProducto.Click
         Dim frm As New frmTiposProductos
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
-        spTiposProductos.cargar_ComboBox(Me.cboTipoProducto)
+        spTiposProductos.cargar_ComboBox(Me.cboTipoProducto, dtb)
     End Sub
 End Class

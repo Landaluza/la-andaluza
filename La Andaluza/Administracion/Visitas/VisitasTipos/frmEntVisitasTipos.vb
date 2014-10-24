@@ -19,7 +19,7 @@ Public Class frmEntVisitasTipos
     End Sub
 
     Overrides Sub SetValores(ByVal m_ID As Integer, ByVal m_SelectRecord As Boolean)
-        If m_SelectRecord Then m_DBO_VisitasTipo = spVisitasTipos.Select_Record(m_ID)
+        If m_SelectRecord Then m_DBO_VisitasTipo = spVisitasTipos.Select_Record(m_ID, dtb)
         If m_ID > 0 Then
             
             txtVisitaTipoID.Text = m_DBO_VisitasTipo.VisitaTipoID
@@ -38,7 +38,7 @@ Public Class frmEntVisitasTipos
 
     Overrides Sub Guardar()
         GetValores()
-        spVisitasTipos.GrabarVisitasTipos(m_DBO_VisitasTipo)
+        spVisitasTipos.GrabarVisitasTipos(m_DBO_VisitasTipo, dtb)
         Me.Close()
     End Sub
 

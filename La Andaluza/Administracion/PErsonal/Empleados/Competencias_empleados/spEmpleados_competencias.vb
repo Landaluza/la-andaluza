@@ -12,19 +12,19 @@ Public Class spEmpleados_competencias
                       "[dbo].[Empleados_competenciasSelectDgvBy]")
     End Sub
 
-   Public Overloads Function Select_Record(ByVal id As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As DBO_Empleados_competencias
-       Dim dbo As New DBO_Empleados_competencias
-       dbo.searchKey = dbo.item("id")
-       dbo.searchKey.value = id
-       MyBase.Select_Record(dbo, trans)
-       Return dbo
-   End Function
+    Public Overloads Function Select_Record(ByVal id As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_Empleados_competencias
+        Dim dbo As New DBO_Empleados_competencias
+        dbo.searchKey = dbo.item("id")
+        dbo.searchKey.value = id
+        MyBase.Select_Record(dbo, dtb)
+        Return dbo
+    End Function
 
-   Public Overrides Function Delete(ByVal id As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As Boolean
-       Dim dbo As New DBO_Empleados_competencias
-       dbo.searchKey = dbo.item("id")
-       dbo.searchKey.value = id
-       return MyBase.DeleteProcedure(dbo,  trans)
-   End Function
+    Public Overrides Function Delete(ByVal id As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        Dim dbo As New DBO_Empleados_competencias
+        dbo.searchKey = dbo.item("id")
+        dbo.searchKey.value = id
+        Return MyBase.DeleteProcedure(dbo, dtb)
+    End Function
 
 End Class

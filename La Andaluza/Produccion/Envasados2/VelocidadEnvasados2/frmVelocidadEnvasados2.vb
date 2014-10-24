@@ -30,7 +30,7 @@ Public Class frmVelocidadEnvasados2
     Overrides Sub Eliminar()
         If Me.dgvGeneral.RowCount > 0 Then
             If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
-                CType(sp, spVelocidadEnvasados2).VelocidadEnvasados2Delete(dgvGeneral.CurrentRow.Cells("VelocidadEnvasadoID").Value)
+                CType(sp, spVelocidadEnvasados2).VelocidadEnvasados2Delete(dgvGeneral.CurrentRow.Cells("VelocidadEnvasadoID").Value, dtb)
                 dgvFill()
             End If
         End If
@@ -47,7 +47,7 @@ Public Class frmVelocidadEnvasados2
             m_VelocidadEnvasados2.VelocidadEnvasadoID = 0
             m_VelocidadEnvasados2.HoraInicio = Now.Date.TimeOfDay
         Else
-            m_VelocidadEnvasados2 = CType(sp, spVelocidadEnvasados2).Select_Record(GeneralBindingSource(m_Pos).Item("VelocidadEnvasadoID"))
+            m_VelocidadEnvasados2 = CType(sp, spVelocidadEnvasados2).Select_Record(GeneralBindingSource(m_Pos).Item("VelocidadEnvasadoID"), dtb)
         End If
         m_VelocidadEnvasados2.FormatoEnvasadoID = Me.formatoId
 

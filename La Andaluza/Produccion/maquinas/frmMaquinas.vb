@@ -23,7 +23,7 @@ Public Class frmMaquinas
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboMaquinas = CType(sp, spMaquinas).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboMaquinas = CType(sp, spMaquinas).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboMaquinas Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboMaquinas)
         Else

@@ -28,7 +28,7 @@ Public Class frmArticulos_AlmacenNoConforme_PaletsProducidos
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboArticulos_AlmacenNoConforme_PaletsProducidos = CType(sp, spArticulos_AlmacenNoConforme_PaletsProducidos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboArticulos_AlmacenNoConforme_PaletsProducidos = CType(sp, spArticulos_AlmacenNoConforme_PaletsProducidos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboArticulos_AlmacenNoConforme_PaletsProducidos Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboArticulos_AlmacenNoConforme_PaletsProducidos)
         Else
@@ -37,7 +37,7 @@ Public Class frmArticulos_AlmacenNoConforme_PaletsProducidos
         End If
     End Sub
     Protected Overrides Sub cargar_datos()
-        dataSource = sp.select_DgvBy(Me.m_MaestroID)
+        dataSource = sp.select_DgvBy(Me.m_MaestroID, dtb)
     End Sub
 
     Protected Overrides Sub BindDataSource()

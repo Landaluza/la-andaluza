@@ -18,9 +18,9 @@ Public Class frmEntProveedores_Articulos
 
     Private Sub frmEntProveedores_Articulos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spProveedores
-        s.cargar_Proveedores(Me.cboProveedor) 
+        s.cargar_Proveedores(Me.cboProveedor, dtb)
         Dim s2 As New spArticulos1
-        s2.cargar_Articulos(Me.cboArticulo)
+        s2.cargar_Articulos(Me.cboArticulo, dtb)
         's.cargar_Articulos1(Me.cboArticulo)
         If Me.mododeapertura = VISION Then
             Me.cboArticulo.enabled = False
@@ -96,7 +96,7 @@ Public Class frmEntProveedores_Articulos
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
         MyBase.Guardar()
     End Sub
 

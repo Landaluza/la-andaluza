@@ -49,7 +49,7 @@ Public Class frmSistemasIndustriales
 
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
-            If CType(sp, spSistemasIndustriales).DeleteSistemasIndustriales(dgvGeneral.CurrentRow.Cells("SistemaIndustrialID").Value) Then
+            If CType(sp, spSistemasIndustriales).DeleteSistemasIndustriales(dgvGeneral.CurrentRow.Cells("SistemaIndustrialID").Value, dtb) Then
                 dgvFill()
             End If
             ' GeneralBindingSource. dataSource = dtb.Consultar(spSelectDgv)
@@ -65,7 +65,7 @@ Public Class frmSistemasIndustriales
         If TipoAction = ACCION_INSERTAR Then
             'Asignar las propiedades del objeto creado cuyos valores se obtengan en este Form.
         Else
-            m_SistemasIndustriale = CType(sp, spSistemasIndustriales).Select_Record(GeneralBindingSource(m_Pos).Item("SistemaIndustrialID"))
+            m_SistemasIndustriale = CType(sp, spSistemasIndustriales).Select_Record(GeneralBindingSource(m_Pos).Item("SistemaIndustrialID"), dtb)
         End If
 
         Dim frmEnt As New frmEntSistemasIndustriales(m_SistemasIndustriale, m_Pos)

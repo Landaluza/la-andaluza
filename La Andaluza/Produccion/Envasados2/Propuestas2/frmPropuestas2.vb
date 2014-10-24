@@ -19,7 +19,7 @@ Public Class frmPropuestas2
     Overrides Sub Eliminar()
         If Me.dgvGeneral.RowCount > 0 Then
             If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
-                CType(sp, spPropuestas2).Propuestas2Delete(dgvGeneral.CurrentRow.Cells("PropuestaID").Value)
+                CType(sp, spPropuestas2).Propuestas2Delete(dgvGeneral.CurrentRow.Cells("PropuestaID").Value, dtb)
                 dgvFill()
             End If
         End If
@@ -35,7 +35,7 @@ Public Class frmPropuestas2
             m_Propuestas2.Limpiar()
             m_Propuestas2.FormatoEnvasadoID = Me.formatoId
         Else
-            m_Propuestas2 = CType(sp, spPropuestas2).Select_Record(GeneralBindingSource(m_Pos).Item("PropuestaID"))
+            m_Propuestas2 = CType(sp, spPropuestas2).Select_Record(GeneralBindingSource(m_Pos).Item("PropuestaID"), dtb)
         End If
 
         frmEnt = New frmEntPropuestas2(TipoAction, Me.formatoId)

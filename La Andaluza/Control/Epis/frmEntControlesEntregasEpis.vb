@@ -6,10 +6,9 @@ Public Class frmEntControlesEntregasEpis
     Private m_Pos As Integer
     Private m_ControlesEntregasEpi As DBO_ControlesEntregasEpis
     Private spControlesEntregasEpis As New spControlesEntregasEpis
-    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New(ByRef ControlesEntregasEpi As DBO_ControlesEntregasEpis, ByVal Pos As Integer)
         InitializeComponent()
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.DataBase()
         m_ControlesEntregasEpi = ControlesEntregasEpi
         m_Pos = Pos
         txtFechaEntrega.activarFoco()
@@ -17,8 +16,8 @@ Public Class frmEntControlesEntregasEpis
 
     Private Sub frmEntControlesEntregasEpis_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ModificarBindingNavigator()
-        CboEpis.mam_DataSource("EpisSelectCbo", False)
-        CboEmpleados.mam_DataSource("EmpleadosSelectCbo", False)
+        CboEpis.mam_DataSource("EpisSelectCbo", False, dtb)
+        CboEmpleados.mam_DataSource("EmpleadosSelectCbo", False, dtb)
 
         If Me.Text.Substring(0, 3) = "Ver" Then
             GeneralBindingSource.DataSource = dtb.Consultar("ControlesEntregasEpisSelectAll", True)
@@ -58,9 +57,9 @@ Public Class frmEntControlesEntregasEpis
         Dim m_NewControlesEntregasEpi As New DBO_ControlesEntregasEpis
         GetValores(m_NewControlesEntregasEpi)
         If Me.Text.Substring(0, 3) = "Ins" Then
-            spControlesEntregasEpis.InsertControlesEntregasEpis(m_NewControlesEntregasEpi)
+            spControlesEntregasEpis.InsertControlesEntregasEpis(m_NewControlesEntregasEpi, dtb)
         Else
-            spControlesEntregasEpis.UpdateControlesEntregasEpis(m_ControlesEntregasEpi, m_NewControlesEntregasEpi)
+            spControlesEntregasEpis.UpdateControlesEntregasEpis(m_ControlesEntregasEpi, m_NewControlesEntregasEpi, dtb)
         End If
         Me.Close()
     End Sub
@@ -77,7 +76,7 @@ Public Class frmEntControlesEntregasEpis
                 m_Pos = GeneralBindingSource.Count - 1
         End Select
         GeneralBindingSource.Position = m_Pos
-        m_ControlesEntregasEpi = spControlesEntregasEpis.Select_Record(GeneralBindingSource(m_Pos).Item("ControlEntregaEpiID"))
+        m_ControlesEntregasEpi = spControlesEntregasEpis.Select_Record(GeneralBindingSource(m_Pos).Item("ControlEntregaEpiID"), dtb)
         SetValores()
     End Sub
 

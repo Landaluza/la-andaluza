@@ -9,12 +9,12 @@ Class spArticulosFichasPaletizados1
                   "ArticulosFichasPaletizados1SelectDgv", "ArticulosFichasPaletizados1SelectDgvByArticuloID")
     End Sub
 
-    Public Function Select_Record(ByVal ArticuloFichaPaletizadoID As Int32) As DBO_ArticulosFichasPaletizados1
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal ArticuloFichaPaletizadoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_ArticulosFichasPaletizados1
+        dtb.Conectar()
         Dim DBO_ArticulosFichasPaletizados1 As New DBO_ArticulosFichasPaletizados1
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[ArticulosFichasPaletizados1Select]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.Comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@ArticuloFichaPaletizadoID", ArticuloFichaPaletizadoID)
         Try
@@ -37,16 +37,16 @@ Class spArticulosFichasPaletizados1
         Catch ex As System.Data.SqlClient.SqlException
 
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_ArticulosFichasPaletizados1
     End Function
 
-    Public Function ArticulosFichasPaletizados1Insert(ByVal dbo_ArticulosFichasPaletizados1 As DBO_ArticulosFichasPaletizados1) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ArticulosFichasPaletizados1Insert(ByVal dbo_ArticulosFichasPaletizados1 As DBO_ArticulosFichasPaletizados1, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[ArticulosFichasPaletizados1Insert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
         insertCommand.Parameters.AddWithValue("@ArticuloID", If(dbo_ArticulosFichasPaletizados1.ArticuloID.HasValue, dbo_ArticulosFichasPaletizados1.ArticuloID, Convert.DBNull))
         insertCommand.Parameters.AddWithValue("@Descripcion", dbo_ArticulosFichasPaletizados1.Descripcion)
@@ -70,15 +70,15 @@ Class spArticulosFichasPaletizados1
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function ArticulosFichasPaletizados1Update(ByVal newDBO_ArticulosFichasPaletizados1 As DBO_ArticulosFichasPaletizados1) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ArticulosFichasPaletizados1Update(ByVal newDBO_ArticulosFichasPaletizados1 As DBO_ArticulosFichasPaletizados1, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[ArticulosFichasPaletizados1Update]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         updateCommand.Parameters.AddWithValue("@NewArticuloID", If(newDBO_ArticulosFichasPaletizados1.ArticuloID.HasValue, newDBO_ArticulosFichasPaletizados1.ArticuloID, Convert.DBNull))
         updateCommand.Parameters.AddWithValue("@NewDescripcion", newDBO_ArticulosFichasPaletizados1.Descripcion)
@@ -101,18 +101,18 @@ Class spArticulosFichasPaletizados1
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdateArticulosFichasPaletizados1" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdateArticulosFichasPaletizados1" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function ArticulosFichasPaletizados1Delete(ByVal ArticuloFichaPaletizadoID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ArticulosFichasPaletizados1Delete(ByVal ArticuloFichaPaletizadoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[ArticulosFichasPaletizados1Delete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         deleteCommand.Parameters.AddWithValue("@OldArticuloFichaPaletizadoID", ArticuloFichaPaletizadoID)
         deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
@@ -128,15 +128,15 @@ Class spArticulosFichasPaletizados1
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Sub GrabarArticulosFichasPaletizados1(ByVal dbo_ArticulosFichasPaletizados1 As DBO_ArticulosFichasPaletizados1)
+    Public Sub GrabarArticulosFichasPaletizados1(ByVal dbo_ArticulosFichasPaletizados1 As DBO_ArticulosFichasPaletizados1, ByRef dtb As BasesParaCompatibilidad.DataBase)
         If dbo_ArticulosFichasPaletizados1.ArticuloFichaPaletizadoID = 0 Then
-            ArticulosFichasPaletizados1Insert(dbo_ArticulosFichasPaletizados1)
+            ArticulosFichasPaletizados1Insert(dbo_ArticulosFichasPaletizados1, dtb)
         Else
-            ArticulosFichasPaletizados1Update(dbo_ArticulosFichasPaletizados1)
+            ArticulosFichasPaletizados1Update(dbo_ArticulosFichasPaletizados1, dtb)
         End If
     End Sub
 

@@ -50,7 +50,7 @@ Public Class frmEpis
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
 
-            If CType(sp, spEpis).DeleteEpis(dgvGeneral.CurrentRow.Cells("EpiID").Value) Then
+            If CType(sp, spEpis).DeleteEpis(dgvGeneral.CurrentRow.Cells("EpiID").Value, dtb) Then
                 dgvFill()
             End If
             'GeneralBindingSource. dataSource = dtb.consultar(spSelectDgv)
@@ -67,7 +67,7 @@ Public Class frmEpis
             'Asignar las propiedades del objeto creado cuyos valores se obtengan en este Form.
         Else
             Dim spEpis As New spEpis
-            m_Epi = spEpis.Select_Record(GeneralBindingSource(m_Pos).Item("EpiID"))
+            m_Epi = spEpis.Select_Record(GeneralBindingSource(m_Pos).Item("EpiID"), dtb)
         End If
 
         Dim frmEnt As New frmEntEpis(m_Epi, m_Pos)

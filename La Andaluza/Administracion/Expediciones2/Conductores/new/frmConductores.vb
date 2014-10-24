@@ -20,7 +20,7 @@ Public Class frmConductores
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboConductores = CType(sp, spConductores).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer))
+        dboConductores = CType(sp, spConductores).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
         If Not dboConductores Is Nothing Then
             newRegForm.SetDataBussinesObject(CType(Me.dboConductores, BasesParaCompatibilidad.DataBussines))
         Else

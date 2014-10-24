@@ -9,12 +9,12 @@ Class spArticulosGraneles
                    "[dbo].[ArticulosGranelesDelete]", String.Empty, String.Empty)
     End Sub
 
-    Public Function Select_Record(ByVal GranelID As Int32) As DBO_ArticulosGraneles
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal GranelID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_ArticulosGraneles
+        dtb.Conectar()
         Dim DBO_ArticulosGraneles As New DBO_ArticulosGraneles
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[ArticulosGranelesSelect]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@GranelID", GranelID)
 
@@ -38,17 +38,17 @@ Class spArticulosGraneles
         Catch ex As System.Data.SqlClient.SqlException
 
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_ArticulosGraneles
     End Function
 
-    Public Function Select_RecordByArticuloID(ByVal ArticuloID As Int32) As DBO_ArticulosGraneles
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_RecordByArticuloID(ByVal ArticuloID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_ArticulosGraneles
+        dtb.Conectar()
         Dim DBO_ArticulosGraneles As New DBO_ArticulosGraneles
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[ArticulosGranelesSelectByArticuloID]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@ArticuloID", ArticuloID)
 
@@ -73,16 +73,16 @@ Class spArticulosGraneles
         Catch ex As System.Data.SqlClient.SqlException
 
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_ArticulosGraneles
     End Function
 
-    Public Function ArticulosGranelesInsert(ByVal dbo_ArticulosGraneles As DBO_ArticulosGraneles) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ArticulosGranelesInsert(ByVal dbo_ArticulosGraneles As DBO_ArticulosGraneles, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[ArticulosGranelesInsert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
         insertCommand.Parameters.AddWithValue("@ArticuloID", If(dbo_ArticulosGraneles.ArticuloID.HasValue, dbo_ArticulosGraneles.ArticuloID, Convert.DBNull))
         insertCommand.Parameters.AddWithValue("@GranelTipoID", If(dbo_ArticulosGraneles.GranelTipoID.HasValue, dbo_ArticulosGraneles.GranelTipoID, Convert.DBNull))
@@ -106,15 +106,15 @@ Class spArticulosGraneles
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function ArticulosGranelesUpdate(ByVal newDBO_ArticulosGraneles As DBO_ArticulosGraneles) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ArticulosGranelesUpdate(ByVal newDBO_ArticulosGraneles As DBO_ArticulosGraneles, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[ArticulosGranelesUpdate]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         updateCommand.Parameters.AddWithValue("@NewArticuloID", If(newDBO_ArticulosGraneles.ArticuloID.HasValue, newDBO_ArticulosGraneles.ArticuloID, Convert.DBNull))
         updateCommand.Parameters.AddWithValue("@NewGranelTipoID", If(newDBO_ArticulosGraneles.GranelTipoID.HasValue, newDBO_ArticulosGraneles.GranelTipoID, Convert.DBNull))
@@ -140,18 +140,18 @@ Class spArticulosGraneles
             MessageBox.Show("Error en UpdateArticulosGraneles" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function ArticulosGranelesInsertSinTransaccion(ByVal dbo_ArticulosGraneles As DBO_ArticulosGraneles, ByRef mytrans As SqlClient.SqlTransaction) As Boolean
+    Public Function ArticulosGranelesInsertSinTransaccion(ByVal dbo_ArticulosGraneles As DBO_ArticulosGraneles, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
 
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Try
             Dim insertProcedure As String = "[dbo].[ArticulosGranelesInsert2]"
-            Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+            Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
             insertCommand.CommandType = CommandType.StoredProcedure
-            insertCommand.Transaction = mytrans
+
             insertCommand.Parameters.AddWithValue("@ArticuloID", If(dbo_ArticulosGraneles.ArticuloID.HasValue, dbo_ArticulosGraneles.ArticuloID, Convert.DBNull))
             insertCommand.Parameters.AddWithValue("@GranelTipoID", If(dbo_ArticulosGraneles.GranelTipoID.HasValue, dbo_ArticulosGraneles.GranelTipoID, Convert.DBNull))
             insertCommand.Parameters.AddWithValue("@FechaModificacion", dbo_ArticulosGraneles.FechaModificacion)
@@ -175,14 +175,14 @@ Class spArticulosGraneles
         End Try
     End Function
 
-    Public Function ArticulosGranelesUpdateSinTransaccion(ByVal newDBO_ArticulosGraneles As DBO_ArticulosGraneles, ByRef mytrans As SqlClient.SqlTransaction) As Boolean
+    Public Function ArticulosGranelesUpdateSinTransaccion(ByVal newDBO_ArticulosGraneles As DBO_ArticulosGraneles, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
 
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Try 'cantidad_elaborar_defecto
             Dim updateProcedure As String = "[dbo].[ArticulosGranelesUpdate2]"
-            Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+            Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
             updateCommand.CommandType = CommandType.StoredProcedure
-            updateCommand.Transaction = mytrans
+
             updateCommand.Parameters.AddWithValue("@NewArticuloID", If(newDBO_ArticulosGraneles.ArticuloID.HasValue, newDBO_ArticulosGraneles.ArticuloID, Convert.DBNull))
             updateCommand.Parameters.AddWithValue("@NewGranelTipoID", If(newDBO_ArticulosGraneles.GranelTipoID.HasValue, newDBO_ArticulosGraneles.GranelTipoID, Convert.DBNull))
             updateCommand.Parameters.AddWithValue("@NewFechaModificacion", newDBO_ArticulosGraneles.FechaModificacion)
@@ -208,11 +208,11 @@ Class spArticulosGraneles
         End Try
     End Function
 
-    Public Function ArticulosGranelesDelete(ByVal GranelID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function ArticulosGranelesDelete(ByVal GranelID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[ArticulosGranelesDelete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         deleteCommand.Parameters.AddWithValue("@OldGranelID", GranelID)
         deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
@@ -229,28 +229,28 @@ Class spArticulosGraneles
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Sub GrabarArticulosGraneles(ByVal dbo_ArticulosGraneles As DBO_ArticulosGraneles)
+    Public Sub GrabarArticulosGraneles(ByVal dbo_ArticulosGraneles As DBO_ArticulosGraneles, ByRef dtb As BasesParaCompatibilidad.DataBase)
         If dbo_ArticulosGraneles.GranelID = 0 Then
-            ArticulosGranelesInsert(dbo_ArticulosGraneles)
+            ArticulosGranelesInsert(dbo_ArticulosGraneles, dtb)
         Else
-            ArticulosGranelesUpdate(dbo_ArticulosGraneles)
+            ArticulosGranelesUpdate(dbo_ArticulosGraneles, dtb)
         End If
     End Sub
 
-    Public Function GrabarArticulosGranelesSinTransaccion(ByVal dbo_ArticulosGraneles As DBO_ArticulosGraneles, ByRef mytrans As SqlClient.SqlTransaction) As Boolean
+    Public Function GrabarArticulosGranelesSinTransaccion(ByVal dbo_ArticulosGraneles As DBO_ArticulosGraneles, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         If dbo_ArticulosGraneles.GranelID = 0 Then
-            Return ArticulosGranelesInsertSinTransaccion(dbo_ArticulosGraneles, mytrans)
+            Return ArticulosGranelesInsertSinTransaccion(dbo_ArticulosGraneles, dtb)
         Else
-            Return ArticulosGranelesUpdateSinTransaccion(dbo_ArticulosGraneles, mytrans)
+            Return ArticulosGranelesUpdateSinTransaccion(dbo_ArticulosGraneles, dtb)
         End If
     End Function
 
-    Sub cargar_ArticulosGraneles(comboBox As ComboBox)
-        comboBox.mam_DataSource("ArticulosGranelesCbo", False)
+    Sub cargar_ArticulosGraneles(comboBox As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        comboBox.mam_DataSource("ArticulosGranelesCbo", False, dtb)
     End Sub
 
 End Class

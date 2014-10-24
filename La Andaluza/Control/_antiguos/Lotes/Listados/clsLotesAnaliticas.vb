@@ -13,7 +13,6 @@ Public Class clsLotesAnaliticas
     Private AzucarTotal As String
     Private Sulfuroso As String
     Private Densidad As String
-    Private dtb as BasesParaCompatibilidad.Database
 #End Region
 
   
@@ -142,7 +141,6 @@ Public Class clsLotesAnaliticas
         _AzucarTotal = AzucarTotal
         _Sulfuroso = Sulfuroso
         _Densidad = Densidad
-        dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
 
     End Sub
 
@@ -156,18 +154,16 @@ Public Class clsLotesAnaliticas
         _AzucarTotal = NuevaCls.AzucarTotal
         _Sulfuroso = NuevaCls.Sulfuroso
         _Densidad = NuevaCls.Densidad
-        dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
 
     End Sub
 
     Public Sub New()
-        dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
 
     End Sub
 #End Region
 
 #Region "Funciones"
-    Public Function comprobar_disponibilidad_boletin_envasado(ByVal m_CodigoLote As String) As Boolean
+    Public Function comprobar_disponibilidad_boletin_envasado(ByVal m_CodigoLote As String, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         dtb.PrepararConsulta("LotesAnalizadosByCodigoLote @cod")
         dtb.AñadirParametroConsulta("@cod", m_CodigoLote)
         Dim tab As System.Data.DataTable = dtb.Consultar()

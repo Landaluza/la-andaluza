@@ -6,12 +6,12 @@ Public Class spVelocidadEnvasados2
     Public Sub New()
         MyBase.New("", "", "", "", "", "")
     End Sub
-    Public Function Select_Record(ByVal VelocidadEnvasadoID As Int32) As DBO_VelocidadEnvasados2
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal VelocidadEnvasadoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_VelocidadEnvasados2
+        dtb.Conectar()
         Dim DBO_VelocidadEnvasados2 As New DBO_VelocidadEnvasados2
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[VelocidadEnvasados2Select]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.Comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@VelocidadEnvasadoID", VelocidadEnvasadoID)
         Try
@@ -32,16 +32,16 @@ Public Class spVelocidadEnvasados2
         Catch ex As System.Data.SqlClient.SqlException
 
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_VelocidadEnvasados2
     End Function
 
-    Public Function VelocidadEnvasados2Insert(ByVal dbo_VelocidadEnvasados2 As DBO_VelocidadEnvasados2) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function VelocidadEnvasados2Insert(ByVal dbo_VelocidadEnvasados2 As DBO_VelocidadEnvasados2, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[VelocidadEnvasados2Insert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.Comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
         insertCommand.Parameters.AddWithValue("@HoraInicio", If(dbo_VelocidadEnvasados2.HoraInicio.HasValue, dbo_VelocidadEnvasados2.HoraInicio, Convert.DBNull))
         insertCommand.Parameters.AddWithValue("@Velocidad", If(dbo_VelocidadEnvasados2.Velocidad.HasValue, dbo_VelocidadEnvasados2.Velocidad, Convert.DBNull))
@@ -63,15 +63,15 @@ Public Class spVelocidadEnvasados2
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function VelocidadEnvasados2Update(ByVal newDBO_VelocidadEnvasados2 As DBO_VelocidadEnvasados2) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function VelocidadEnvasados2Update(ByVal newDBO_VelocidadEnvasados2 As DBO_VelocidadEnvasados2, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[VelocidadEnvasados2Update]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.Comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         updateCommand.Parameters.AddWithValue("@NewHoraInicio", If(newDBO_VelocidadEnvasados2.HoraInicio.HasValue, newDBO_VelocidadEnvasados2.HoraInicio, Convert.DBNull))
         updateCommand.Parameters.AddWithValue("@NewVelocidad", If(newDBO_VelocidadEnvasados2.Velocidad.HasValue, newDBO_VelocidadEnvasados2.Velocidad, Convert.DBNull))
@@ -92,18 +92,18 @@ Public Class spVelocidadEnvasados2
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdateVelocidadEnvasados2" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdateVelocidadEnvasados2" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function VelocidadEnvasados2Delete(ByVal VelocidadEnvasadoID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function VelocidadEnvasados2Delete(ByVal VelocidadEnvasadoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[VelocidadEnvasados2Delete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         deleteCommand.Parameters.AddWithValue("@OldVelocidadEnvasadoID", VelocidadEnvasadoID)
         deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
@@ -119,15 +119,15 @@ Public Class spVelocidadEnvasados2
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function GrabarVelocidadEnvasados2(ByVal dbo_VelocidadEnvasados2 As DBO_VelocidadEnvasados2) As Boolean
+    Public Function GrabarVelocidadEnvasados2(ByVal dbo_VelocidadEnvasados2 As DBO_VelocidadEnvasados2, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         If dbo_VelocidadEnvasados2.VelocidadEnvasadoID = 0 Then
-            Return VelocidadEnvasados2Insert(dbo_VelocidadEnvasados2)
+            Return VelocidadEnvasados2Insert(dbo_VelocidadEnvasados2, dtb)
         Else
-            Return VelocidadEnvasados2Update(dbo_VelocidadEnvasados2)
+            Return VelocidadEnvasados2Update(dbo_VelocidadEnvasados2, dtb)
         End If
     End Function
 

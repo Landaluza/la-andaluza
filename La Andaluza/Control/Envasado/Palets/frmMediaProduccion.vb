@@ -10,9 +10,9 @@ Public Class frmMediaProduccion
     Public Sub New()
         InitializeComponent()
         Dim spLineasEnvasado As New spLineasEnvasado
-        spLineasEnvasado.cargar_LineasEnvasado(Me.cboLinea)
+        spLineasEnvasado.cargar_LineasEnvasado(Me.cboLinea, dtb)
         Me.dtpEnvasado.activarFoco()
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.DataBase()
     End Sub
 
     Private Sub chbArticulo_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles chbArticulo.CheckedChanged
@@ -75,7 +75,6 @@ Public Class frmMediaProduccion
         Me.articulo = Me.cboArticulo.SelectedValue
         Me.filtro = If(Me.txtFiltro.Text = "" Or Not IsNumeric(Me.txtFiltro.Text), 0, Convert.ToInt32(Me.txtFiltro.Text))
 
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
 
         If Me.chbArticulo.Checked Then
             dtb.PrepararConsulta("select isnull(avg(datediff(minute, horainicio, horafin)), 1) " & _
@@ -91,7 +90,7 @@ Public Class frmMediaProduccion
             dtb.AñadirParametroConsulta("@envasado", Me.envasado)
 
             Me.txtMedia.Text = dtb.Consultar().Rows(0).Item(0)
-         
+
 
             dtb.PrepararConsulta("select isnull(avg(datediff(minute, horainicio, horafin)), 1) " & _
                                                 "from paletsContenidos, paletsproducidos, formatosEnvasados, tiposformatosLineas " & _

@@ -8,80 +8,84 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         MyBase.New("[dbo].[plantillasBoletinesSelect]", "[dbo].[plantillasBoletinesInsert]", "[dbo].[plantillasBoletinesUpdate]", "[dbo].[plantillasBoletinesDelete]", "[dbo].[plantillasBoletinesSelectDgv]", "[dbo].[plantillasBoletinesSelectDgvBy]")
    End Sub
 
-   Public Overloads Function Select_Record(ByVal id As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As DBO_plantillasBoletines
-       Dim dbo As New DBO_plantillasBoletines
-       dbo.searchKey = dbo.item("id")
-       dbo.searchKey.value = id
-       MyBase.Select_Record(dbo, trans)
-       Return dbo
-   End Function
-
-   Public Overrides Function Delete(ByVal id As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As Boolean
-        Dim dbo As New DBO_plantillasBoletines        
-
-       dbo.searchKey = dbo.item("id")
+    Public Overloads Function Select_Record(ByVal id As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_plantillasBoletines
+        Dim dbo As New DBO_plantillasBoletines
+        dbo.searchKey = dbo.item("id")
         dbo.searchKey.value = id
-        If trans Is Nothing Then
-            BasesParaCompatibilidad.BD.EmpezarTransaccion()            
+        MyBase.Select_Record(dbo, dtb)
+        Return dbo
+    End Function
+
+    Public Overrides Function Delete(ByVal id As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        Dim dbo As New DBO_plantillasBoletines
+        Dim terminar As Boolean
+
+        dbo.searchKey = dbo.item("id")
+        dbo.searchKey.value = id
+        If dtb.Transaccion Is Nothing Then
+            dtb.EmpezarTransaccion()
         End If
 
-        If deleteParameters(id, BasesParaCompatibilidad.BD.transaction) And MyBase.DeleteProcedure(dbo, BasesParaCompatibilidad.BD.transaction) Then
-            If trans Is Nothing Then BasesParaCompatibilidad.BD.TerminarTransaccion()
+        If deleteParameters(id, dtb) And MyBase.DeleteProcedure(dbo, dtb) Then
+            If terminar Then dtb.TerminarTransaccion()
             Return True
         Else
-            If trans Is Nothing Then BasesParaCompatibilidad.BD.CancelarTransaccion()
+            If terminar Then dtb.CancelarTransaccion()
             Return False
         End If
     End Function
 
-   Public Sub cargar_ComboBox(ByRef cbo As ComboBox)
-       cbo.mam_DataSource("plantillasBoletinesSelectCbo", False)
-   End Sub
+    Public Sub cargar_ComboBox(ByRef cbo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        cbo.mam_DataSource("plantillasBoletinesSelectCbo", False, dtb)
+    End Sub
 
-    Public Function GrabarBoletin(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal m_dbo As DBO_plantillasBoletines, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As Boolean
+    Public Function GrabarBoletin(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal m_dbo As DBO_plantillasBoletines) As Boolean
         Dim retorno As Boolean = True
-        If trans Is Nothing Then
-            BasesParaCompatibilidad.BD.EmpezarTransaccion()
-            dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server, BasesParaCompatibilidad.BD.Cnx, BasesParaCompatibilidad.BD.transaction)
+        Dim terminar As Boolean
+        If dtb.Transaccion Is Nothing Then
+            dtb.EmpezarTransaccion()
+            terminar = True
         End If
         Try
             If m_dbo.id = Nothing Then
-                retorno = retorno And MyBase.InsertProcedure(m_dbo, BasesParaCompatibilidad.BD.transaction)
+                retorno = retorno And MyBase.InsertProcedure(m_dbo, dtb)
                 dtb.PrepararConsulta("select top 1 id from PlantillasBoletines order by id desc")
                 m_dbo.id = dtb.Consultar().Rows(0).Item(0) 'Deprecated.ConsultaVer("IDENT_CURRENT('plantillasboletines')", String.Empty).Rows(0).Item(0) '("max(id)", "PlantillasBoletines").Rows(0).Item(0) + 1            
             Else
-                retorno = retorno And MyBase.UpdateProcedure(m_dbo, BasesParaCompatibilidad.BD.transaction)
-                retorno = retorno And deleteParameters(m_dbo, BasesParaCompatibilidad.BD.transaction)
+                retorno = retorno And MyBase.UpdateProcedure(m_dbo, dtb)
+                retorno = retorno And deleteParameters(m_dbo, dtb)
             End If
 
-            retorno = retorno And insertParametros(m_dbo, BasesParaCompatibilidad.BD.transaction)
+            retorno = retorno And insertParametros(m_dbo, dtb)
 
             If retorno Then
-                If trans Is Nothing Then BasesParaCompatibilidad.BD.TerminarTransaccion()
+                If terminar Then dtb.TerminarTransaccion()
             Else
-                If trans Is Nothing Then BasesParaCompatibilidad.BD.CancelarTransaccion()
+                If terminar Then dtb.CancelarTransaccion()
             End If
         Catch ex As Exception
-            If trans Is Nothing Then BasesParaCompatibilidad.BD.CancelarTransaccion()
+            If terminar Then dtb.CancelarTransaccion()
             retorno = False
             MessageBox.Show("No se pudo guardar. Detalles: " & Environment.NewLine & Environment.NewLine & ex.Message, "Error al guardar", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            dtb.Desconectar()
         End Try
 
         Return retorno
     End Function
 
-    Private Function insertParametros(ByVal m_dbo As DBO_plantillasBoletines, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As Boolean
+    Private Function insertParametros(ByVal m_dbo As DBO_plantillasBoletines, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Dim m_aux As New Dbo_BoletinesParametros
-        If trans Is Nothing Then BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+        dtb.Conectar()
+
 
         Try
             For Each m_aux In m_dbo.Parametros
 
                 Dim insertProcedure As String = "[dbo].[PlantillasBoletinesInsertParametros]"
-                Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+                Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
                 insertCommand.CommandType = CommandType.StoredProcedure
-                If Not trans Is Nothing Then insertCommand.Transaction = trans
+
 
                 insertCommand.Parameters.AddWithValue("@IdBoletin", m_dbo.ID)
                 insertCommand.Parameters.AddWithValue("@IdParametro", m_aux.IdParametro)
@@ -95,23 +99,23 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            If trans Is Nothing Then connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Private Function deleteParameters(ByVal m_dbo As DBO_plantillasBoletines, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As Boolean
+    Private Function deleteParameters(ByVal m_dbo As DBO_plantillasBoletines, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         'Dim m_aux As New Dbo_BoletinesParametros
-        'If trans Is Nothing Then BasesParaCompatibilidad.BD.Conectar()
+        'dtb.Conectar 
         'Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
         'TO DO: EDITAR
-        Return deleteParameters(m_dbo.id, trans)
+        Return deleteParameters(m_dbo.id, dtb)
         'Try
         '    For Each m_aux In m_dbo.Parametros
 
         '        Dim deleteProcedure As String = "[dbo].[PlantillasBoletinesDeleteParametros]"
-        '        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        '        Dim deleteCommand As  System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         '        deleteCommand.CommandType = CommandType.StoredProcedure
-        '        If Not trans Is Nothing Then deleteCommand.Transaction = trans
+        '        
 
         '        deleteCommand.Parameters.AddWithValue("@Id", m_dbo.id)
 
@@ -122,19 +126,19 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         'Catch ex As System.Data.SqlClient.SqlException
         '    Return False
         'Finally
-        '    If trans Is Nothing Then connection.Close()
+        '    dtb.Desconectar 
         'End Try
     End Function
 
-    Private Function deleteParameters(ByVal id As String, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As Boolean
-        If trans Is Nothing Then BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+    Private Function deleteParameters(ByVal id As String, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         'TO DO: EDITAR
         Try
             Dim deleteProcedure As String = "[dbo].[PlantillasBoletinesDeleteParametros]"
-            Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+            Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
             deleteCommand.CommandType = CommandType.StoredProcedure
-            If Not trans Is Nothing Then deleteCommand.Transaction = trans
+
 
             deleteCommand.Parameters.AddWithValue("@Id", id)
 
@@ -144,49 +148,49 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            If trans Is Nothing Then connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Sub cargarCboTiposProducto(ByRef cbo As System.Windows.Forms.ComboBox)
-        cargarCombo(cbo, "TiposProductosSelectCbo")
+    Public Sub cargarCboTiposProducto(ByRef cbo As System.Windows.Forms.ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        cargarCombo(cbo, "TiposProductosSelectCbo", dtb)
     End Sub
 
-    Public Sub cargarCboLotesPorTipoProducto(ByRef cbo As System.Windows.Forms.ComboBox, ByVal tipoProducto As Integer)
-        cargarCombo(cbo, "LotesAnalizadosByTipoProducto " & tipoProducto)
+    Public Sub cargarCboLotesPorTipoProducto(ByRef cbo As System.Windows.Forms.ComboBox, ByVal tipoProducto As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        cargarCombo(cbo, "LotesAnalizadosByTipoProducto " & tipoProducto, dtb)
         'cbo.mam_DataSource(spLotes1.DgvFillLotesTerminadosPorTipoProducto(tipoProducto), False)
     End Sub
 
-    Public Sub cargarCboPlantillasPorlotesCompatibles(ByRef cbo As System.Windows.Forms.ComboBox, ByVal lote As Integer)
-        cargarCombo(cbo, "PlantillasSelectCboPorLote " & lote)
+    Public Sub cargarCboPlantillasPorlotesCompatibles(ByRef cbo As System.Windows.Forms.ComboBox, ByVal lote As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        cargarCombo(cbo, "PlantillasSelectCboPorLote " & lote, dtb)
     End Sub
 
-    Private Sub cargarCombo(ByRef cbo As System.Windows.Forms.ComboBox, ByVal sp As String)
-        cbo.mam_DataSource(dtb.Consultar(sp), False)
+    Private Sub cargarCombo(ByRef cbo As System.Windows.Forms.ComboBox, ByVal sp As String, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        cbo.mam_DataSource(sp, False, dtb)
     End Sub
 
-    Public Sub cargaComboAnalistas(ByRef cbo As System.Windows.Forms.ComboBox)
+    Public Sub cargaComboAnalistas(ByRef cbo As System.Windows.Forms.ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
         'Dim ctlPer As New ctlPersonal
         'RellenarComboBox(cbo, ctlPer.devolverAnalistas(), False)
         Dim spAux As New spEmpleados
-        spAux.cargar_Empleados_Analistas(cbo)
+        spAux.cargar_Empleados_Analistas(cbo, dtb)
     End Sub
 
-    Public Function cargo(ByVal personalId As Integer) As String
+    Public Function cargo(ByVal personalId As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As String
         'Dim ctlPer As New ctlPersonal
         'Return ctlPer.devolverCargo(personalId)
         Try
             Dim spAux As New spempleados_contratos
             Dim spPuestosTrabajos As New spPuestosTrabajos
-            Dim dbo As DBO_empleados_contratos = spAux.select_ultimo_contrato(personalId)
-            Dim dbo_puesto As DBO_PuestosTrabajos = spPuestosTrabajos.Select_Record(dbo.id_puestoTrabajo)
+            Dim dbo As DBO_empleados_contratos = spAux.select_ultimo_contrato(personalId, dtb)
+            Dim dbo_puesto As DBO_PuestosTrabajos = spPuestosTrabajos.Select_Record(dbo.id_puestoTrabajo, dtb)
             Return dbo_puesto.Descripcion
         Catch ex As Exception
             Return String.Empty
         End Try
     End Function
 
-    Public Function SeleccionarTodos() As DataTable
+    Public Function SeleccionarTodos(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
         Return dtb.Consultar("SelectAllBoletinesPlantillas", True)
     End Function
 End Class

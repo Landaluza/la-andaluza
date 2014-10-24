@@ -25,7 +25,7 @@ Public Class frmempleados_contratos
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboempleados_contratos = CType(sp, spempleados_contratos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboempleados_contratos = CType(sp, spempleados_contratos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboempleados_contratos Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboempleados_contratos)
         Else
@@ -35,7 +35,7 @@ Public Class frmempleados_contratos
     End Sub
 
     Protected Overrides Sub cargar_datos()
-        dataSource = sp.select_DgvBy(Me.m_MaestroID)
+        dataSource = sp.select_DgvBy(Me.m_MaestroID, dtb)
     End Sub
     Protected Overrides Sub BindDataSource()
 

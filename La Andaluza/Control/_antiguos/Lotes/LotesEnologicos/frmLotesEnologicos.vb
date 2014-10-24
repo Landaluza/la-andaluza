@@ -16,7 +16,7 @@ Public Class frmLotesEnologico
 
     End Sub
     Protected Overrides Sub cargar_datos()
-        ctlLot.mostrarTodosLotesEnologicos(dtsLot)
+        ctlLot.mostrarTodosLotesEnologicos(dtb, dtsLot)
     End Sub
 
     Protected Overrides Sub BindDataSource()

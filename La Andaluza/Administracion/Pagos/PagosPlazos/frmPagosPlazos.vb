@@ -22,7 +22,7 @@ Public Class frmPagosPlazos
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
                            "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-            If CType(sp, spPagosPlazos).PagosPlazosDelete(dgvGeneral.CurrentRow.Cells("PagoPlazoID").Value) Then
+            If CType(sp, spPagosPlazos).PagosPlazosDelete(dgvGeneral.CurrentRow.Cells("PagoPlazoID").Value, dtb) Then
                 dgvFill()
             End If
         End If
@@ -36,7 +36,7 @@ Public Class frmPagosPlazos
 
             If m_MaestroID <> 0 Then m_PagosPlazos.Descripcion = m_MaestroID
         Else
-            m_PagosPlazos = CType(sp, spPagosPlazos).Select_Record(GeneralBindingSource(m_Pos).Item("PagoPlazoID"))
+            m_PagosPlazos = CType(sp, spPagosPlazos).Select_Record(GeneralBindingSource(m_Pos).Item("PagoPlazoID"), dtb)
         End If
 
         frmEnt = New frmEntPagosPlazos(m_PagosPlazos, m_Pos, m_VerID)

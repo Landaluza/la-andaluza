@@ -8,12 +8,12 @@ Class spCargaNecesidadesJR2Detalles
                    "[dbo].[CargaNecesidadesJRDetallesDelete]", String.Empty, String.Empty)
     End Sub
 
-    Public Function Select_Record(ByVal CargaNecesidadesJRDetalleID As Int32) As DBO_CargaNecesidadesJR2Detalles
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal CargaNecesidadesJRDetalleID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_CargaNecesidadesJR2Detalles
+        dtb.Conectar()
         Dim DBO_CargaNecesidadesJRDetalles As New DBO_CargaNecesidadesJR2Detalles
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[CargaNecesidadesJRDetallesSelect]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@CargaNecesidadesJRDetalleID", CargaNecesidadesJRDetalleID)
         Try
@@ -37,19 +37,19 @@ Class spCargaNecesidadesJR2Detalles
         Catch ex As System.Data.SqlClient.SqlException
 
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_CargaNecesidadesJRDetalles
     End Function
 
-    Public Function CargaNecesidadesJRDetallesInsert(ByVal dbo_CargaNecesidadesJRDetalles As DBO_CargaNecesidadesJR2Detalles) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function CargaNecesidadesJRDetallesInsert(ByVal dbo_CargaNecesidadesJRDetalles As DBO_CargaNecesidadesJR2Detalles, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[CargaNecesidadesJRDetallesInsert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
         insertCommand.Parameters.AddWithValue("@CargaNecesidadesJRMaestroID", dbo_CargaNecesidadesJRDetalles.CargaNecesidadesJRMaestroID)
-        insertCommand.Parameters.AddWithValue("@ArticuloID", if(dbo_CargaNecesidadesJRDetalles.ArticuloID = 0, Convert.DBNull, dbo_CargaNecesidadesJRDetalles.ArticuloID))
+        insertCommand.Parameters.AddWithValue("@ArticuloID", If(dbo_CargaNecesidadesJRDetalles.ArticuloID = 0, Convert.DBNull, dbo_CargaNecesidadesJRDetalles.ArticuloID))
         insertCommand.Parameters.AddWithValue("@Carga", dbo_CargaNecesidadesJRDetalles.Carga)
         insertCommand.Parameters.AddWithValue("@Stock", dbo_CargaNecesidadesJRDetalles.Stock)
         insertCommand.Parameters.AddWithValue("@Observaciones", dbo_CargaNecesidadesJRDetalles.Observaciones)
@@ -61,7 +61,7 @@ Class spCargaNecesidadesJR2Detalles
         insertCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         insertCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
         Try
-            
+
             insertCommand.ExecuteNonQuery()
             Dim count As Integer = System.Convert.ToInt32(insertCommand.Parameters("@ReturnValue").Value)
             If count > 0 Then
@@ -72,18 +72,18 @@ Class spCargaNecesidadesJR2Detalles
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function CargaNecesidadesJRDetallesUpdate(ByVal newDBO_CargaNecesidadesJRDetalles As DBO_CargaNecesidadesJR2Detalles) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function CargaNecesidadesJRDetallesUpdate(ByVal newDBO_CargaNecesidadesJRDetalles As DBO_CargaNecesidadesJR2Detalles, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[CargaNecesidadesJRDetallesUpdate]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         updateCommand.Parameters.AddWithValue("@NewCargaNecesidadesJRMaestroID", newDBO_CargaNecesidadesJRDetalles.CargaNecesidadesJRMaestroID)
-        updateCommand.Parameters.AddWithValue("@NewArticuloID", if(newDBO_CargaNecesidadesJRDetalles.ArticuloID = 0, Convert.DBNull, newDBO_CargaNecesidadesJRDetalles.ArticuloID))
+        updateCommand.Parameters.AddWithValue("@NewArticuloID", If(newDBO_CargaNecesidadesJRDetalles.ArticuloID = 0, Convert.DBNull, newDBO_CargaNecesidadesJRDetalles.ArticuloID))
         updateCommand.Parameters.AddWithValue("@NewCarga", newDBO_CargaNecesidadesJRDetalles.Carga)
         updateCommand.Parameters.AddWithValue("@NewStock", newDBO_CargaNecesidadesJRDetalles.Stock)
         updateCommand.Parameters.AddWithValue("@NewObservaciones", newDBO_CargaNecesidadesJRDetalles.Observaciones)
@@ -96,7 +96,7 @@ Class spCargaNecesidadesJR2Detalles
         updateCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         updateCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
         Try
-            
+
             updateCommand.ExecuteNonQuery()
             Dim count As Integer = System.Convert.ToInt32(updateCommand.Parameters("@ReturnValue").Value)
             If count > 0 Then
@@ -105,24 +105,24 @@ Class spCargaNecesidadesJR2Detalles
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdateCargaNecesidadesJRDetalles" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdateCargaNecesidadesJRDetalles" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function CargaNecesidadesJRDetallesDelete(ByVal CargaNecesidadesJRDetalleID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function CargaNecesidadesJRDetallesDelete(ByVal CargaNecesidadesJRDetalleID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[CargaNecesidadesJRDetallesDelete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         deleteCommand.Parameters.AddWithValue("@OldCargaNecesidadesJRDetalleID", CargaNecesidadesJRDetalleID)
         deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         deleteCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
         Try
-            
+
             deleteCommand.ExecuteNonQuery()
             Dim count As Integer = System.Convert.ToInt32(deleteCommand.Parameters("@ReturnValue").Value)
             If count > 0 Then
@@ -133,15 +133,15 @@ Class spCargaNecesidadesJR2Detalles
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Sub GrabarCargaNecesidadesJRDetalles(ByVal dbo_CargaNecesidadesJRDetalles As DBO_CargaNecesidadesJR2Detalles)
+    Public Sub GrabarCargaNecesidadesJRDetalles(ByVal dbo_CargaNecesidadesJRDetalles As DBO_CargaNecesidadesJR2Detalles, ByRef dtb As BasesParaCompatibilidad.DataBase)
         If dbo_CargaNecesidadesJRDetalles.CargaNecesidadesJRDetalleID = 0 Then
-            CargaNecesidadesJRDetallesInsert(dbo_CargaNecesidadesJRDetalles)
+            CargaNecesidadesJRDetallesInsert(dbo_CargaNecesidadesJRDetalles, dtb)
         Else
-            CargaNecesidadesJRDetallesUpdate(dbo_CargaNecesidadesJRDetalles)
+            CargaNecesidadesJRDetallesUpdate(dbo_CargaNecesidadesJRDetalles, dtb)
         End If
     End Sub
 

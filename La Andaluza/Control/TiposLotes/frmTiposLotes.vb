@@ -20,7 +20,7 @@ Public Class frmTiposLotes
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboTiposLotes = CType(sp, spTiposLotes).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboTiposLotes = CType(sp, spTiposLotes).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboTiposLotes Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboTiposLotes)
         Else

@@ -9,7 +9,7 @@ Public Class frmWstepMateriasPrimas
 
         InitializeComponent()
 
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.DataBase()
         Me.m_DBO_MateriaPrima = New DBO_ArticulosMateriasPrimas
         spArticulos_ArticulosCertificadosTipos = New spArticulos_ArticulosCertificadosTipos
         spArticulosMateriasPrimas = New spArticulosMateriasPrimas
@@ -20,7 +20,7 @@ Public Class frmWstepMateriasPrimas
 
         spArticulos_ArticulosCertificadosTipos = New spArticulos_ArticulosCertificadosTipos
         spArticulosMateriasPrimas = New spArticulosMateriasPrimas
-        Me.m_DBO_MateriaPrima = spArticulosMateriasPrimas.Select_RecordByArticuloID(articuloId)
+        Me.m_DBO_MateriaPrima = spArticulosMateriasPrimas.Select_RecordByArticuloID(articuloId, dtb)
         EstablecerValores()
     End Sub
 
@@ -45,7 +45,7 @@ Public Class frmWstepMateriasPrimas
     End Function
 
     Public Sub EstablecerValores() Implements wizardable.EstablecerValores
-        Me.cboMateriaPrimaTipoID.mam_DataSource("ArticulosMateriasPrimas_ArticulosMateriasPrimasTiposCbo", False)
+        Me.cboMateriaPrimaTipoID.mam_DataSource("ArticulosMateriasPrimas_ArticulosMateriasPrimasTiposCbo", False, dtb)
 
         Dim spArticulos1 As New spArticulos1
         Dim cb As System.Windows.Forms.CheckBox
@@ -64,7 +64,7 @@ Public Class frmWstepMateriasPrimas
         If Not Me.m_DBO_MateriaPrima.ArticuloID Is Nothing Then
             Me.cboMateriaPrimaTipoID.SelectedValue = Me.m_DBO_MateriaPrima.MateriaPrimaTipoID
 
-            dt = spArticulos1.certificadosByArticuloId(Me.m_DBO_MateriaPrima.ArticuloID)
+            dt = spArticulos1.certificadosByArticuloId(Me.m_DBO_MateriaPrima.ArticuloID, dtb)
 
             For Each row As System.Data.DataRow In dt.Rows
                 For Each cb In gbCertificados.Controls
@@ -79,8 +79,8 @@ Public Class frmWstepMateriasPrimas
     Public Function grabarDatos(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean Implements wizardable.grabarDatos
         If Me.m_DBO_MateriaPrima.ArticuloID Is Nothing Then Me.m_DBO_MateriaPrima.ArticuloID = dtb.Consultar("select max(articuloID) from Articulos1", False).Rows(0).Item(0)
 
-        If spArticulosMateriasPrimas.GrabarArticulosMateriasPrimasSinTransaccion(m_DBO_MateriaPrima, BasesParaCompatibilidad.BD.transaction) Then
-            If spArticulos_ArticulosCertificadosTipos.Articulos_ArticulosCertificadosTiposDeleteByArticuloIDSinTransaccion(Me.m_DBO_MateriaPrima.ArticuloID, BasesParaCompatibilidad.BD.transaction) Then
+        If spArticulosMateriasPrimas.GrabarArticulosMateriasPrimasSinTransaccion(m_DBO_MateriaPrima, dtb) Then
+            If spArticulos_ArticulosCertificadosTipos.Articulos_ArticulosCertificadosTiposDeleteByArticuloIDSinTransaccion(Me.m_DBO_MateriaPrima.ArticuloID, dtb) Then
                 Dim cb As System.Windows.Forms.CheckBox
                 Dim dbo_cert As DBO_Articulos_ArticulosCertificadosTipos
 
@@ -90,7 +90,7 @@ Public Class frmWstepMateriasPrimas
                         dbo_cert.ArticuloCertificadoTipoID = cb.Tag
                         dbo_cert.ArticuloID = Me.m_DBO_MateriaPrima.ArticuloID
                         dbo_cert.Observaciones = String.Empty
-                        If Not spArticulos_ArticulosCertificadosTipos.Articulos_ArticulosCertificadosTiposInsertSinTransaccion(dbo_cert, BasesParaCompatibilidad.BD.transaction) Then
+                        If Not spArticulos_ArticulosCertificadosTipos.Articulos_ArticulosCertificadosTiposInsertSinTransaccion(dbo_cert, dtb) Then
                             Return False
                         End If
                     End If

@@ -66,11 +66,11 @@ Public Class frmEntPaletsContenidos
 
     Private Sub frmEntPaletsContenidos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Me.lCajasSuperiores.Visible = False
-        palet.recuperar_datos()
+        palet.recuperar_datos(dtb)
 
         
         Dim spPalet As New spPaletsProducidos
-        Me.Text = Me.Text & "contenido para SSCC " & spPalet.Select_Record(Me.m_DBO_PaletsContenidos.PaletProducidoID).SCC
+        Me.Text = Me.Text & "contenido para SSCC " & spPalet.Select_Record(Me.m_DBO_PaletsContenidos.PaletProducidoID, dtb).SCC
     End Sub
 
     Overrides Sub SetValores() Implements  BasesParaCompatibilidad.savable.setValores
@@ -81,9 +81,9 @@ Public Class frmEntPaletsContenidos
            
 
             txtCantidadCajas.Text = palet.Cajas_restantes.ToString
-            dtpHoraInicio.Value = Me.spContenidos.ultima_hora(Me.mLinea, Me.envasado) 'm_DBO_PaletsContenidos.HoraInicio
+            dtpHoraInicio.Value = Me.spContenidos.ultima_hora(Me.mLinea, Me.envasado, dtb) 'm_DBO_PaletsContenidos.HoraInicio
 
-            Dim minutos As Integer = CInt(Me.spContenidos.devolver_media_creacion_contenidos(Me.mLinea, Me.mTipoFormatoEnvasadoID))
+            Dim minutos As Integer = CInt(Me.spContenidos.devolver_media_creacion_contenidos(Me.mLinea, Me.mTipoFormatoEnvasadoID, dtb))
             dtpHoraFin.Value = dtpHoraInicio.Value.AddMinutes(minutos)
 
             'If dtpHoraInicio.Value.Day <> Me.mFecha.Day Then
@@ -109,7 +109,7 @@ Public Class frmEntPaletsContenidos
         If dtpHoraInicio.Value > dtpHoraFin.Value Then
             errores = errores & "La hora de inicio no puede ser mayor que fin." & Environment.NewLine()
         Else
-            If Not Me.spContenidos.ValidarRangoHorario(Me.m_DBO_PaletsContenidos, Me.mLinea) Then
+            If Not Me.spContenidos.ValidarRangoHorario(Me.m_DBO_PaletsContenidos, Me.mLinea, dtb) Then
                 errores = errores & "La hora de produccion se suporpone con la de otro palet." & Environment.NewLine()
             End If
         End If
@@ -134,10 +134,10 @@ Public Class frmEntPaletsContenidos
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
         If Me.GetValores Then
             Try
-                If sp.Grabar(dbo, trans) Then
+                If sp.Grabar(dbo, dtb) Then
                     evitarCerrarSinGuardar = False
                     RaiseEvent afterSave(Me, Nothing)
 

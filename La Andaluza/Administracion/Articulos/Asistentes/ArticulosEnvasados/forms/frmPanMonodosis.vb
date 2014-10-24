@@ -9,25 +9,25 @@
     Public Sub New(ByVal id As Integer, Optional asistente As Boolean = False)
         InitializeComponent()
 
-        dtb = New BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.Database()
         spMonodosis = New spMonodosis
         dbo = New DBO_Monodosis
         dbo.ArticuloId = id
         Me.asistente = asistente
         Dim s As New spArticulosEnvasadosHistoricos
-        s.cargar_TiposFormatos_SinLinea(Me.cboformato)
+        s.cargar_TiposFormatos_SinLinea(Me.cboformato, dtb)
         Dim sp As New spmarcas
-        sp.cargar_marcas(Me.cboMarca)
+        sp.cargar_marcas(Me.cboMarca, dtb)
         Dim s2 As New spTiposCajas
-        s2.cargar_TiposCajas(Me.cboCaja)
+        s2.cargar_TiposCajas(Me.cboCaja, dtb)
         Dim s3 As New spTiposProductos
-        s3.cargar_ComboBox(Me.cboProducto)
+        s3.cargar_ComboBox(Me.cboProducto, dtb)
 
         If id = 0 Then
             Me.mododeapertura = BasesParaCompatibilidad.DetailedSimpleForm.INSERCION
         Else
             Me.mododeapertura = BasesParaCompatibilidad.DetailedSimpleForm.MODIFICACION
-            Me.dbo = spMonodosis.selectRecord(Me.dbo.ArticuloId)
+            Me.dbo = spMonodosis.selectRecord(Me.dbo.ArticuloId, dtb)
             If dbo Is Nothing Then
                 dbo = New DBO_Monodosis
                 dbo.ArticuloId = id
@@ -91,15 +91,15 @@
                 m_DBO_TiposFormatos1.TipoProductoID = 1
                 m_DBO_TiposFormatos1.TipoCajaID = cboCaja.SelectedValue
                 Dim spTiposFormatos1 As New spArticulosEnvasadosHistorico1
-                If Not spTiposFormatos1.GrabarTiposFormatos1Sintransaccion(m_DBO_TiposFormatos1, BasesParaCompatibilidad.BD.transaction) Then Return False
+                If Not spTiposFormatos1.GrabarTiposFormatos1Sintransaccion(m_DBO_TiposFormatos1, dtb) Then Return False
                 Dim spt As New spArticulosEnvasadosHistoricos
                 Dim m_formato As Integer = spt.seleccionar_ultimo_registro(dtb)
                 dbo.TipoFormatoId = m_formato
             End If
 
-            Return spMonodosis.guardarMonodosis(Me.dbo)
+            Return spMonodosis.guardarMonodosis(Me.dbo, dtb)
         Else
-            Return spMonodosis.updateMonodosis(Me.dbo)
+            Return spMonodosis.updateMonodosis(Me.dbo, dtb)
         End If
     End Function
 
@@ -114,13 +114,13 @@
     Private Sub cboformato_SelectedValueChanged(sender As System.Object, e As System.EventArgs) Handles cboformato.SelectedValueChanged
         Try
             Dim spPalets As New spPaletsProducidos
-            spPalets.cargar_PaletsProducidosNC_byArticulo(Me.cboSccNC, Me.cboformato.SelectedValue)
+            spPalets.cargar_PaletsProducidosNC_byArticulo(Me.cboSccNC, Me.cboformato.SelectedValue, dtb)
         Catch ex As Exception
         End Try
 
         Try
             Dim sp As New spArticulosEnvasadosHistoricos
-            Dim dbo As DBO_ArticulosEnvasadoHistorico = sp.Select_Record(Me.cboformato.SelectedValue)
+            Dim dbo As DBO_ArticulosEnvasadoHistorico = sp.Select_Record(Me.cboformato.SelectedValue, dtb)
             Me.cboProducto.SelectedValue = dbo.TipoProductoID
         Catch ex As Exception
         End Try
@@ -134,13 +134,13 @@
         Dim frm As New frmmarcas
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         Dim sp As New spmarcas
-        sp.cargar_marcas(Me.cboMarca)
+        sp.cargar_marcas(Me.cboMarca, dtb)
     End Sub
 
     Private Sub btnaddMarcas_Click(sender As System.Object, e As System.EventArgs) Handles btnaddMarcas.Click
         Dim frm As New frmEntmarcas
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         Dim sp As New spmarcas
-        sp.cargar_marcas(Me.cboMarca)
+        sp.cargar_marcas(Me.cboMarca, dtb)
     End Sub
 End Class

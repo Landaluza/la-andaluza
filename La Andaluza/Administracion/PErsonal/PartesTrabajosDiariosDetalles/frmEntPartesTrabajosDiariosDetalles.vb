@@ -21,7 +21,7 @@ Public Class frmEntPartesTrabajosDiariosDetalles
     End Sub
 
     Private Sub frmEntPartesTrabajosDiariosDetalles_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Me.cboTareasID.mam_DataSource("PartesTrabajosDiariosDetalles_TareasCbo", False)
+        Me.cboTareasID.mam_DataSource("PartesTrabajosDiariosDetalles_TareasCbo", False, dtb)
 
 
         SetValores()
@@ -44,7 +44,7 @@ Public Class frmEntPartesTrabajosDiariosDetalles
 
     Overrides Sub Guardar()
         GetValores()
-        spPartesTrabajosDiariosDetalles.GrabarPartesTrabajosDiariosDetalles(m_DBO_PartesTrabajosDiariosDetalle)
+        spPartesTrabajosDiariosDetalles.GrabarPartesTrabajosDiariosDetalles(m_DBO_PartesTrabajosDiariosDetalle, dtb)
         Me.Close()
     End Sub
 
@@ -59,7 +59,7 @@ Public Class frmEntPartesTrabajosDiariosDetalles
         frmEnt = New frmEntTareas(DBO_Tareas, 1, False)
         frmEnt.Text = "Insertar"
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
-        Me.cboTareasID.mam_DataSource("PartesTrabajosDiariosDetalles_TareasCbo", False)
+        Me.cboTareasID.mam_DataSource("PartesTrabajosDiariosDetalles_TareasCbo", False, dtb)
     End Sub
 
 

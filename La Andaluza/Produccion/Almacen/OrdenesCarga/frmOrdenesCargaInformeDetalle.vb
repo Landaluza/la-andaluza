@@ -4,9 +4,11 @@ Public Class frmOrdenesCargaInformeDetalle
     Private dtAlbaranes As DataTable
     Private dtLineas As DataTable
     Public FechaSeleccionada As String
+    Private dtb As BasesParaCompatibilidad.DataBase
 
     Public Sub New(ByVal dgv As DataGridView, ByVal dt As DataTable)
         InitializeComponent()
+        dtb = New BasesParaCompatibilidad.DataBase()
         Me.dtLineas = dt
         ''importarDatos(dgv)
         Me.dgvDetalle.DataSource = dt
@@ -111,11 +113,11 @@ Public Class frmOrdenesCargaInformeDetalle
         Dim spOrdenesCarga As New spOrdenesCarga
         If dtLineas.Columns.Count > 0 Then
             'guardamos el registro maestro
-            BasesParaCompatibilidad.BD.EmpezarTransaccion()
+            dtb.EmpezarTransaccion()
 
 
             Try
-                If Not spOrdenesCarga.AddOrdenCarga(NombreHoja, BasesParaCompatibilidad.BD.transaction) Then Throw New Exception("No se pudo guardar la orden de carga")
+                If Not spOrdenesCarga.AddOrdenCarga(NombreHoja, dtb) Then Throw New Exception("No se pudo guardar la orden de carga")
                 'Header
                 Dim DataArrayHead(0, 0 To dtLineas.Columns.Count - 2) As Object
                 For s As Integer = 0 To dtLineas.Columns.Count - 2
@@ -131,7 +133,7 @@ Public Class frmOrdenesCargaInformeDetalle
                 For mRow As Integer = 0 To dtLineas.Rows.Count - 1
                     For mColumn As Integer = 0 To dtLineas.Columns.Count - 2
                         DataArray(mRow, mColumn) = dtLineas.Rows.Item(mRow).Item(mColumn + 1)
-                        'If Not spOrdenesCarga.OrdenesCargaInsertDetail(m_detalles, BasesParaCompatibilidad.BD.transaction) Then Throw New Exception("Error guardando los detalles")
+                        'If Not spOrdenesCarga.OrdenesCargaInsertDetail(m_detalles,dtb) Then Throw New Exception("Error guardando los detalles")
                     Next
                 Next
 
@@ -149,11 +151,11 @@ Public Class frmOrdenesCargaInformeDetalle
                 'oExcel.Visible = True
 
                 oSheet.SaveAs(NombreHoja) ', Excel.XlFileFormat.xlExcel8)
-                BasesParaCompatibilidad.BD.CancelarTransaccion()
-                'BasesParaCompatibilidad.BD.TerminarTransaccion()
+                dtb.CancelarTransaccion()
+                'dtb.TerminarTransaccion ()
             Catch ex As Exception
-                messagebox.show(ex.Message, "", MessageBoxButtons.OK , MessageBoxIcon.Error )
-                BasesParaCompatibilidad.BD.CancelarTransaccion()
+                messagebox.show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                dtb.CancelarTransaccion()
             Finally
                 oExcel.Quit()
                 oExcel = Nothing

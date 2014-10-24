@@ -29,7 +29,6 @@ Public Class frmEntplantillasBoletines
     Private m_Descripcion As String
     Private m_boletin As DBO_plantillasBoletines    
     Private v_Parametros As Collection
-    Private dtb as BasesParaCompatibilidad.Database
 
     Public Sub New(ByVal modoDeApertura As String, Optional ByRef v_sp As spplantillasBoletines = Nothing, Optional ByRef v_dbo As DBO_plantillasBoletines = Nothing)
         MyBase.new(modoDeApertura, v_sp, v_dbo)
@@ -39,19 +38,19 @@ Public Class frmEntplantillasBoletines
         m_boletin = if(v_dbo Is Nothing, New DBO_plantillasBoletines, v_dbo)
         dbo = m_boletin        
         'Me.m_plantilla = m_boletin.id
-        dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.Database()
         Me.dtpFecha.activarFoco()
     End Sub
 
     Public Sub New(Optional ByVal id_plantilla As Integer = Nothing)
         InitializeComponent()
-        dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.Database()
         Me.dtpFecha.activarFoco()
     End Sub
 
     Public Sub New(ByVal CodigoLote As String, ByVal stub As Boolean)
         InitializeComponent()
-        dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.Database()
         Me.dtpFecha.activarFoco()
 
         m_CodigoLote = CodigoLote
@@ -60,13 +59,13 @@ Public Class frmEntplantillasBoletines
         m_boletin = New DBO_plantillasBoletines
         dbo = m_boletin
 
-        Me.butGuardar.Visible = False        
+        Me.butGuardar.Visible = False
     End Sub
 
     Public Sub New(ByRef padre As frmGeneradorBoletines)
         InitializeComponent()
         m_BoletinTipo = TIPO_BOLETIN_ENVASADO
-        dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.Database()
         'RellenarComboBox(cboAnalistas, ctlPer.devolverAnalistas(), False)        
         spBoletin = New spplantillasBoletines
         sp = spBoletin
@@ -79,7 +78,7 @@ Public Class frmEntplantillasBoletines
 
     Public Sub New(ByVal CodigoLote As String, ByVal plantilla As Integer, Optional ByRef padre As frmGeneradorBoletines = Nothing)
         InitializeComponent()
-        dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.Database()
         spBoletin = New spplantillasBoletines
         sp = spBoletin
         m_boletin = New DBO_plantillasBoletines
@@ -109,7 +108,7 @@ Public Class frmEntplantillasBoletines
     Private Sub frmEntplantillasBoletines_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Me.v_Parametros = New Collection
         spBoletin = New spplantillasBoletines
-        spBoletin.cargaComboAnalistas(cboAnalistas)
+        spBoletin.cargaComboAnalistas(cboAnalistas, dtb)
         Me.ToolTip1.SetToolTip(butCancelar, "Pulsa para cancelar la edicion y volver al formulario")
         Me.ToolTip1.SetToolTip(Button1, "Pulsa para guardar la plantilla y volver al formulario")
         Me.ToolTip1.SetToolTip(btnImprimir, "Crea un archivo Word a partir de los datos de la plantilla")
@@ -155,7 +154,7 @@ Public Class frmEntplantillasBoletines
         If Me.m_boletin.id <> Nothing Then
             Dim m_dbo As New DBO_plantillasBoletines
             'm_dbo = spBoletines.selectRecord(m_plantilla)
-            m_dbo = spBoletin.Select_Record(Me.m_boletin.id)
+            m_dbo = spBoletin.Select_Record(Me.m_boletin.id, dtb)
 
             If m_dbo.id_empresa = 1 Then
                 Me.rdbLA.Checked = True
@@ -370,7 +369,7 @@ Public Class frmEntplantillasBoletines
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
         'recuperar los parametros y almacenarlos en un dbo o coleccion
         If Me.GetValores Then
             Try
@@ -849,7 +848,7 @@ Public Class frmEntplantillasBoletines
             oPara6 = oDoc.Content.Paragraphs.Add
             oPara6.Format.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphRight
             oPara6.Range.Text = cboAnalistas.Text & Environment.NewLine & _
-                                Me.spBoletin.cargo(Me.cboAnalistas.SelectedValue) '"Responsable de " & Me.spBoletin.cargoAnalista(Me.cboAnalistas.SelectedValue)
+                                Me.spBoletin.cargo(Me.cboAnalistas.SelectedValue, dtb) '"Responsable de " & Me.spBoletin.cargoAnalista(Me.cboAnalistas.SelectedValue)
 
             Try
                 oDoc.FitToPages()

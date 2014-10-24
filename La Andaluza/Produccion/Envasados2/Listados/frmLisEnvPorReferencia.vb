@@ -13,13 +13,13 @@ Public Class frmLisEnvPorReferencia
     Public Sub New()
         InitializeComponent()
 
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.DataBase()
         dtpDesde.activarFoco()
         dtpHasta.activarFoco()
     End Sub
 
     Private Sub frmLisEnvPorReferencia_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        cboReferencia.mam_DataSource("TiposFormatosSelectCbo", True, "Todas")
+        cboReferencia.mam_DataSource("TiposFormatosSelectCbo", True, dtb, "Todas")
     End Sub
 
     Private Sub btnPorDias_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPorDias.Click

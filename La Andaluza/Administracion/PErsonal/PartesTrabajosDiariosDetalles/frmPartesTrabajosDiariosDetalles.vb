@@ -26,7 +26,7 @@ Public Class frmPartesTrabajosDiariosDetalles
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
                   " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-            If CType(sp, spPartesTrabajosDiariosDetalles).PartesTrabajosDiariosDetallesDelete(dgvGeneral.CurrentRow.Cells("ParteTrabajoDiarioDetalleID").Value) Then
+            If CType(sp, spPartesTrabajosDiariosDetalles).PartesTrabajosDiariosDetallesDelete(dgvGeneral.CurrentRow.Cells("ParteTrabajoDiarioDetalleID").Value, dtb) Then
                 dgvFill()
             End If
         End If
@@ -41,7 +41,7 @@ Public Class frmPartesTrabajosDiariosDetalles
         If TipoAction = ACCION_INSERTAR Then
             If m_MaestroID <> 0 Then m_ParteTrabajoDiarioDetalle.ParteTrabajoDiarioMaestroID = m_MaestroID
         Else
-            m_ParteTrabajoDiarioDetalle = CType(sp, spPartesTrabajosDiariosDetalles).Select_Record(dgvGeneral.CurrentRow.Cells("ParteTrabajoDiarioDetalleID").Value)
+            m_ParteTrabajoDiarioDetalle = CType(sp, spPartesTrabajosDiariosDetalles).Select_Record(dgvGeneral.CurrentRow.Cells("ParteTrabajoDiarioDetalleID").Value, dtb)
         End If
 
         frmEnt = New frmEntPartesTrabajosDiariosDetalles(m_ParteTrabajoDiarioDetalle, m_Pos, m_VerID)

@@ -31,7 +31,7 @@ Public Class frmEmpleados
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboEmpleados = CType(sp, spEmpleados).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboEmpleados = CType(sp, spEmpleados).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboEmpleados Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboEmpleados)
         Else
@@ -50,7 +50,7 @@ Public Class frmEmpleados
     End Sub
 
     Protected Sub dgvFillInactivos()
-        dataSource = CType(Me.sp, spEmpleados).devolver_empleados_inactivos
+        dataSource = CType(Me.sp, spEmpleados).devolver_empleados_inactivos(dtb)
         BindDataSource()
     End Sub
 

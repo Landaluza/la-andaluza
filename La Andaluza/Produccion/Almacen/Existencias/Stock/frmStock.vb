@@ -4,29 +4,29 @@ Public Class frmStock
 
     Private clsStock As New spStock
     Private dt As DataTable
-
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New()
 
         ' This call is required by the designer.
         InitializeComponent()
-
+        dtb = New BasesParaCompatibilidad.DataBase
         dtStart.activarFoco()
         dtEnd.activarFoco()
     End Sub
     Private Sub butOK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butOK.Click
         Me.Cursor = System.Windows.Forms.Cursors.WaitCursor
         ''create TempStocks table
-        clsStock.SelectStock0()
+        clsStock.SelectStock0(dtb)
         ''calculate stock from previous period
-        clsStock.SelectStock1(DateAdd(DateInterval.Year, -100, dtStart.Value), DateAdd(DateInterval.Day, -1, dtStart.Value))
-        clsStock.SelectStock2(DateAdd(DateInterval.Year, -100, dtStart.Value), DateAdd(DateInterval.Day, -1, dtStart.Value))
-        clsStock.SelectStock3()
+        clsStock.SelectStock1(DateAdd(DateInterval.Year, -100, dtStart.Value), DateAdd(DateInterval.Day, -1, dtStart.Value), dtb)
+        clsStock.SelectStock2(DateAdd(DateInterval.Year, -100, dtStart.Value), DateAdd(DateInterval.Day, -1, dtStart.Value), dtb)
+        clsStock.SelectStock3(dtb)
         ''Copy previous stock as current opening
-        clsStock.SelectStock4()
+        clsStock.SelectStock4(dtb)
         ''calculate stock of current period
-        clsStock.SelectStock1(dtStart.Value, dtEnd.Value)
-        clsStock.SelectStock2(dtStart.Value, dtEnd.Value)
-        dt = clsStock.SelectStock3()
+        clsStock.SelectStock1(dtStart.Value, dtEnd.Value, dtb)
+        clsStock.SelectStock2(dtStart.Value, dtEnd.Value, dtb)
+        dt = clsStock.SelectStock3(dtb)
 
         If dtStart.Value > dtEnd.Value Then
             messagebox.show("Start-Date should not be greater than End-Date.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)

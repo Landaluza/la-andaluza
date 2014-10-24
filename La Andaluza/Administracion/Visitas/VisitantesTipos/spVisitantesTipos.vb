@@ -9,12 +9,12 @@ Class spVisitantesTipos
                    "VisitantesTiposSelectDgv", String.Empty)
     End Sub
 
-    Public Function Select_Record(ByVal VisitanteTipoID As Int32) As DBO_VisitantesTipos
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal VisitanteTipoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_VisitantesTipos
+        dtb.Conectar()
         Dim DBO_VisitantesTipos As New DBO_VisitantesTipos
-        Dim connection As System.Data.SqlClient.SqlConnection = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[VisitantesTiposSelect]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
         selectCommand.Parameters.AddWithValue("@VisitanteTipoID", VisitanteTipoID)
         Try
@@ -34,23 +34,23 @@ Class spVisitantesTipos
         Catch ex As System.Data.SqlClient.SqlException
 
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_VisitantesTipos
     End Function
 
-    Public Function VisitantesTiposInsert(ByVal dbo_VisitantesTipos As DBO_VisitantesTipos) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function VisitantesTiposInsert(ByVal dbo_VisitantesTipos As DBO_VisitantesTipos, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[VisitantesTiposInsert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
-        
+
         insertCommand.Parameters.AddWithValue("@Descripcion", dbo_VisitantesTipos.Descripcion)
         insertCommand.Parameters.AddWithValue("@Observaciones", dbo_VisitantesTipos.Observaciones)
         insertCommand.Parameters.AddWithValue("@FechaModificacion", dbo_VisitantesTipos.FechaModificacion)
         insertCommand.Parameters.AddWithValue("@UsuarioModificacion", dbo_VisitantesTipos.UsuarioModificacion)
-        
+
         insertCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         insertCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
         Try
@@ -64,15 +64,15 @@ Class spVisitantesTipos
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function VisitantesTiposUpdate(ByVal newDBO_VisitantesTipos As DBO_VisitantesTipos) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function VisitantesTiposUpdate(ByVal newDBO_VisitantesTipos As DBO_VisitantesTipos, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim updateProcedure As String = "[dbo].[VisitantesTiposUpdate]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+        Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
         updateCommand.CommandType = CommandType.StoredProcedure
         '<Tag=[Three][Start]> -- please do not remove this line
         updateCommand.Parameters.AddWithValue("@NewDescripcion", newDBO_VisitantesTipos.Descripcion)
@@ -92,18 +92,18 @@ Class spVisitantesTipos
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdateVisitantesTipos" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdateVisitantesTipos" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function VisitantesTiposDelete(ByVal VisitanteTipoID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function VisitantesTiposDelete(ByVal VisitanteTipoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[VisitantesTiposDelete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         '<Tag=[Four][Start]> -- please do not remove this line
         deleteCommand.Parameters.AddWithValue("@OldVisitanteTipoID", VisitanteTipoID)
@@ -121,17 +121,17 @@ Class spVisitantesTipos
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Sub GrabarVisitantesTipos(ByVal dbo_VisitantesTipos As DBO_VisitantesTipos)
-        dbo_VisitantesTipos.FechaModificacion = System.DateTime.Now.date
+    Public Sub GrabarVisitantesTipos(ByVal dbo_VisitantesTipos As DBO_VisitantesTipos, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        dbo_VisitantesTipos.FechaModificacion = System.DateTime.Now.Date
         dbo_VisitantesTipos.UsuarioModificacion = BasesParaCompatibilidad.Config.User
         If dbo_VisitantesTipos.VisitanteTipoID = 0 Then
-            VisitantesTiposInsert(dbo_VisitantesTipos)
+            VisitantesTiposInsert(dbo_VisitantesTipos, dtb)
         Else
-            VisitantesTiposUpdate(dbo_VisitantesTipos)
+            VisitantesTiposUpdate(dbo_VisitantesTipos, dtb)
         End If
     End Sub
 

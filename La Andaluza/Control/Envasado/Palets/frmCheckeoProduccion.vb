@@ -1,12 +1,12 @@
 ﻿Imports BasesParaCompatibilidad.DataGridViewExtension
 Imports BasesParaCompatibilidad.dtpExtension
 Public Class frmCheckeoProduccion
-
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New()
 
         ' This call is required by the designer.
         InitializeComponent()
-
+        dtb = New BasesParaCompatibilidad.DataBase
         dtpInicio.activarFoco()
         dtpFin.activarFoco()
     End Sub
@@ -15,7 +15,6 @@ Public Class frmCheckeoProduccion
     End Sub
 
     Private Sub dgvFill()
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
         dtb.PrepararConsulta("comparacion_produccion_entradas @desde, @hasta")
         dtb.AñadirParametroConsulta("@desde", Me.dtpInicio.Value)
         dtb.AñadirParametroConsulta("@hasta", Me.dtpFin.Value)

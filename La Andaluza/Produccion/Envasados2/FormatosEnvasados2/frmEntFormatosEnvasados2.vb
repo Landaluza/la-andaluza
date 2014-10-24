@@ -57,7 +57,6 @@ Public Class frmEntFormatosEnvasados2
         spArticulosEnvasadosHistoricos = New spArticulosEnvasadosHistoricos
     End Sub
 
-    Private Property dtb As Object
 
 
     Private Sub añadirMenu()
@@ -123,7 +122,7 @@ Public Class frmEntFormatosEnvasados2
         End If
 
         Dim s4 As New spTiposProductos
-        s4.cargar_ComboBox_para_envasado_por_Linea(Me.cboTipoProducto, Me.m_DBO_Envasado.LineaID)
+        s4.cargar_ComboBox_para_envasado_por_Linea(Me.cboTipoProducto, Me.m_DBO_Envasado.LineaID, dtb)
 
 
         SetValores()
@@ -196,7 +195,6 @@ Public Class frmEntFormatosEnvasados2
         Dim m_Tabla As DataTable
         Dim m_TipoProductoID As Integer
         Dim m_Descripcion As String = ""
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
         Try
             dtb.PrepararConsulta("TiposFormatosSelectDgvByTipoFormatoEnvasadoID @id")
             dtb.AñadirParametroConsulta("@id", m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID)
@@ -248,7 +246,7 @@ Public Class frmEntFormatosEnvasados2
                 If Config.UserType = 4 Or Config.UserType = 9 Then
                     GetValores()
                     m_DBO_FormatoEnvasado.EnvasadoID = m_DBO_Envasado.EnvasadoID
-                    spFormatosEnvasados2.GrabarFormatosEnvasados2(m_DBO_FormatoEnvasado)
+                    spFormatosEnvasados2.GrabarFormatosEnvasados2(m_DBO_FormatoEnvasado, dtb)
                 End If
                 Me.Close()
             Else
@@ -257,7 +255,7 @@ Public Class frmEntFormatosEnvasados2
                         GetValores()
                         m_DBO_FormatoEnvasado.EnvasadoID = m_DBO_Envasado.EnvasadoID
 
-                        spFormatosEnvasados2.GrabarFormatosEnvasados2(m_DBO_FormatoEnvasado)
+                        spFormatosEnvasados2.GrabarFormatosEnvasados2(m_DBO_FormatoEnvasado, dtb)
 
                         MyBase.Guardar()
                         frmPersonal.guardar(m_DBO_FormatoEnvasado.ID)
@@ -270,7 +268,7 @@ Public Class frmEntFormatosEnvasados2
                         Me.habilitarAcciones()
                         Me.añadirMenu()
 
-                        Dim formato As Integer = spFormatosEnvasados2.recuperarUltimoFormatoEnvasado(Me.m_DBO_Envasado)
+                        Dim formato As Integer = spFormatosEnvasados2.recuperarUltimoFormatoEnvasado(Me.m_DBO_Envasado, dtb)
 
 
                         If formato <> Me.m_DBO_FormatoEnvasado.TipoFormatoLineaID Then
@@ -313,12 +311,12 @@ Public Class frmEntFormatosEnvasados2
     End Sub
 
     Overrides Sub SetValores()
-        m_DBO_FormatoEnvasado = spFormatosEnvasados.Select_Record(m_DBO_FormatoEnvasado.ID)
+        m_DBO_FormatoEnvasado = spFormatosEnvasados.Select_Record(m_DBO_FormatoEnvasado.ID, dtb)
 
         If Not m_DBO_FormatoEnvasado Is Nothing Then
             If Not (m_DBO_FormatoEnvasado.TipoFormatoLineaID = Nothing Or m_DBO_FormatoEnvasado.TipoFormatoLineaID = 0) Then
 
-                Dim dboPFormato As DBO_ArticulosEnvasadoHistorico = spArticulosEnvasadosHistoricos.Select_Record(m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID)
+                Dim dboPFormato As DBO_ArticulosEnvasadoHistorico = spArticulosEnvasadosHistoricos.Select_Record(m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID, dtb)
                 If Not dboPFormato Is Nothing Then
                     cboTipoProducto.SelectedValue = dboPFormato.TipoProductoID
                     cboTipoFormatoLinea.SelectedValue = m_DBO_FormatoEnvasado.TipoFormatoLineaID
@@ -374,9 +372,9 @@ Public Class frmEntFormatosEnvasados2
     Private Sub cboTipoFormatoLinea_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cboTipoFormatoLinea.SelectedIndexChanged
         Try
             If Convert.ToString(cboTipoFormatoLinea.SelectedValue) <> "System.Data.DataRowView" Then
-                spArticulosEnvasadosHistoricos.cargar_comboByTipoFormatoLineaYtipoProducto(cboTipoFormatoID, cboTipoFormatoLinea.SelectedValue, cboTipoProducto.SelectedValue)
+                spArticulosEnvasadosHistoricos.cargar_comboByTipoFormatoLineaYtipoProducto(cboTipoFormatoID, cboTipoFormatoLinea.SelectedValue, cboTipoProducto.SelectedValue, dtb)
                 Dim spFormatosEnvasados As New spFormatosEnvasados
-                cboTipoFormatoID.SelectedValue = spFormatosEnvasados.FormatoHabitualPorEncajadoLinea(Me.m_DBO_Envasado.LineaID, Me.cboTipoFormatoLinea.SelectedValue)
+                cboTipoFormatoID.SelectedValue = spFormatosEnvasados.FormatoHabitualPorEncajadoLinea(Me.m_DBO_Envasado.LineaID, Me.cboTipoFormatoLinea.SelectedValue, dtb)
             End If
         Catch ex As Exception
             cboTipoFormatoID.SelectedValue = 0
@@ -411,7 +409,7 @@ Public Class frmEntFormatosEnvasados2
     Private Sub cboTipoProducto_SelectedValueChanged(sender As System.Object, e As System.EventArgs) Handles cboTipoProducto.SelectedValueChanged
         Try
             If Convert.ToString(cboTipoProducto.SelectedValue) <> "System.Data.DataRowView" Then                
-                spTiposFormatosLineas.cargar_TiposFormatosLineas_por_linea_envasado_tipoProducto(cboTipoFormatoLinea, m_DBO_Envasado.LineaID.ToString, cboTipoProducto.SelectedValue)
+                spTiposFormatosLineas.cargar_TiposFormatosLineas_por_linea_envasado_tipoProducto(cboTipoFormatoLinea, m_DBO_Envasado.LineaID.ToString, cboTipoProducto.SelectedValue, dtb)
             End If
         Catch ex As Exception
             cboTipoProducto.SelectedValue = 0

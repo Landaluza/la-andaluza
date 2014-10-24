@@ -9,9 +9,10 @@
     Public Sub New(ByVal articuloid As Integer)
 
         InitializeComponent()
+        dtb = New BasesParaCompatibilidad.DataBase()
         Dim spArticulos1 As New spArticulos1
 
-        Me.m_dbo_articulos1 = spArticulos1.Select_Record(articuloid)
+        Me.m_dbo_articulos1 = spArticulos1.Select_Record(articuloid, dtb)
         Me.frmGeneral = New frmWstepArticulos1(m_dbo_articulos1.ID)
         Me.frmDetalle = New frmModDetalle(m_dbo_articulos1.ID, m_dbo_articulos1.ArticuloTpoID)
         Me.frmExtras = New frmModDetExtras(articuloid, m_dbo_articulos1.ArticuloTpoID)
@@ -47,10 +48,10 @@
     '    aux.ShowDialog()
     'End Sub
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing)
 
         'Dim retorno As Boolean = True
-        'BasesParaCompatibilidad.BD.EmpezarTransaccion()
+        'dtb.EmpezarTransaccion()
 
         'Try
         '    If Me.frmGeneral.comprobarCampos Then
@@ -63,31 +64,31 @@
         '                retorno = retorno And Me.frmDetalle.grabarDatos()
 
         '                If retorno Then
-        '                    BasesParaCompatibilidad.BD.TerminarTransaccion()
+        '                    dtb.TerminarTransaccion ()
         '                    Me.Close()
         '                Else
-        '                    BasesParaCompatibilidad.BD.CancelarTransaccion()
+        '                    dtb.CancelarTransaccion ()
         '                    messagebox.show("Ocurrio un error al grabar el registro.","", MessageBoxButtons.OK, MessageBoxIcon.Error )
         '                End If
         '            Else
-        '                BasesParaCompatibilidad.BD.CancelarTransaccion()
+        '                dtb.CancelarTransaccion ()
         '            End If
 
         '        Else
 
         '            If Me.frmGeneral.grabarDatos() Then
-        '                BasesParaCompatibilidad.BD.TerminarTransaccion()
+        '                dtb.TerminarTransaccion ()
         '                Me.Close()
         '            Else
-        '                BasesParaCompatibilidad.BD.CancelarTransaccion()
+        '                dtb.CancelarTransaccion ()
         '                messagebox.show("Ocurrio un error al grabar el registro.","", MessageBoxButtons.OK, MessageBoxIcon.Error )
         '            End If
         '        End If
         '    Else
-        '        BasesParaCompatibilidad.BD.CancelarTransaccion()
+        '        dtb.CancelarTransaccion ()
         '    End If
         'Catch ex As Exception
-        '    BasesParaCompatibilidad.BD.CancelarTransaccion()
+        '    dtb.CancelarTransaccion ()
         '    messagebox.show("Ocurrio un error al grabar el registro. Detalles: " & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         'End Try
         Dim retorno As Boolean = True
@@ -102,8 +103,8 @@
         End If
 
         If comprobado Then
-            BasesParaCompatibilidad.BD.EmpezarTransaccion()
-            Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server, BasesParaCompatibilidad.BD.Cnx, BasesParaCompatibilidad.BD.transaction)
+            dtb.EmpezarTransaccion()
+
 
             If Not Me.slGeneral_detalles.Panel2Collapsed Then
                 retorno = retorno And Me.frmGeneral.grabarDatos(dtb)
@@ -111,22 +112,22 @@
                 retorno = retorno And Me.frmDetalle.grabarDatos()
 
                 If retorno Then
-                    BasesParaCompatibilidad.BD.TerminarTransaccion()
+                    dtb.TerminarTransaccion()
                     RaiseEvent afterSave()
                     Me.Close()
                 Else
-                    BasesParaCompatibilidad.BD.CancelarTransaccion()
+                    dtb.CancelarTransaccion()
                     MessageBox.Show("Ocurrio un error al grabar el registro.", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
 
             Else
 
                 If Me.frmGeneral.grabarDatos(dtb) Then
-                    BasesParaCompatibilidad.BD.TerminarTransaccion()
+                    dtb.TerminarTransaccion()
                     RaiseEvent afterSave()
                     Me.Close()
                 Else
-                    BasesParaCompatibilidad.BD.CancelarTransaccion()
+                    dtb.CancelarTransaccion()
                     MessageBox.Show("Ocurrio un error al grabar el registro.", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
             End If
@@ -154,8 +155,5 @@
         End If
     End Sub
 
-    Private Sub tsbEstructura_Click(sender As System.Object, e As System.EventArgs) Handles tsbEstructura.Click
-        Dim frm As New frmModCompuestoPorMAM(129)
-        BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
-    End Sub
+ 
 End Class

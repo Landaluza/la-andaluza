@@ -19,7 +19,7 @@ Public Class frmEntVelocidadEnvasados2
     Private Sub frmEntVelocidadEnvasados2_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'Me.cboPersonalID.mam_DataSource("VelocidadEnvasados2_PersonalCbo"), False)        
         Dim spEmpleados As New spEmpleados
-        spEmpleados.cargar_empleados_envasados(cboPersonalID)
+        spEmpleados.cargar_empleados_envasados(cboPersonalID, dtb)
 
         spVelocidadEnvasados2 = New spVelocidadEnvasados2
         SetValores()
@@ -32,7 +32,7 @@ Public Class frmEntVelocidadEnvasados2
             cboPersonalID.SelectedValue = 0
             'Dim m_aux As DBO_FormatosEnvasados2 = DBO_FormatosEnvasados2.Instance
         Else
-            m_DBO_VelocidadEnvasados2 = spVelocidadEnvasados2.Select_Record(m_DBO_VelocidadEnvasados2.VelocidadEnvasadoID)
+            m_DBO_VelocidadEnvasados2 = spVelocidadEnvasados2.Select_Record(m_DBO_VelocidadEnvasados2.VelocidadEnvasadoID, dtb)
             dtpHoraInicio.Value = DateTime.Now.Date.Add(m_DBO_VelocidadEnvasados2.HoraInicio)
             cboPersonalID.SelectedValue = If(m_DBO_VelocidadEnvasados2.PersonalID.HasValue, m_DBO_VelocidadEnvasados2.PersonalID, -1)
         End If
@@ -72,7 +72,7 @@ Public Class frmEntVelocidadEnvasados2
 
     Overrides Sub Guardar()
         If GetValores() Then
-            If spVelocidadEnvasados2.GrabarVelocidadEnvasados2(m_DBO_VelocidadEnvasados2) Then
+            If spVelocidadEnvasados2.GrabarVelocidadEnvasados2(m_DBO_VelocidadEnvasados2, dtb) Then
                 Me.Close()
             End If
         End If

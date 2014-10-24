@@ -1,6 +1,6 @@
 ﻿Public Class frmPartesEnvasadoCausasIns
     Private m_DBO_PartesEnvasados_CausasPartesEnvasado As DBO_PartesEnvasados_CausasPartesEnvasado
-
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public WriteOnly Property MaestroID As Integer
         Set(value As Integer)
             Me.m_DBO_PartesEnvasados_CausasPartesEnvasado.Id_ParteEnvasado = value
@@ -9,7 +9,7 @@
 
     Public Sub New()
         InitializeComponent()
-
+        dtb = New BasesParaCompatibilidad.DataBase
         Me.m_DBO_PartesEnvasados_CausasPartesEnvasado = New DBO_PartesEnvasados_CausasPartesEnvasado
     End Sub
 
@@ -27,7 +27,7 @@
             Next
 
             Dim sp As New spCausasPartesEnvasado
-            Dim dbocausa As DBO_CausasPartesEnvasado = sp.Select_Record(dbo.Id_CausaParteEnvasado)
+            Dim dbocausa As DBO_CausasPartesEnvasado = sp.Select_Record(dbo.Id_CausaParteEnvasado, dtb)
 
             Dim dgvRow As New DataGridViewRow
             Dim dgvCell As DataGridViewCell
@@ -52,13 +52,13 @@
         End Try
     End Sub
 
-    Public Function Grabar(ByRef trans As SqlClient.SqlTransaction) As Boolean
+    Public Function Grabar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Dim sp As New spPartesEnvasados_CausasPartesEnvasado
         Dim retorno As Boolean = True
 
         For Each row As DataGridViewRow In dgv.Rows
             Me.m_DBO_PartesEnvasados_CausasPartesEnvasado.Id_CausaParteEnvasado = row.Cells("Id_causa").Value()
-            retorno = retorno And sp.Grabar(Me.m_DBO_PartesEnvasados_CausasPartesEnvasado, trans)
+            retorno = retorno And sp.Grabar(Me.m_DBO_PartesEnvasados_CausasPartesEnvasado, dtb)
         Next
 
         Return retorno

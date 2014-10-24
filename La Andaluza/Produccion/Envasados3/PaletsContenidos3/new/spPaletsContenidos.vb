@@ -13,23 +13,22 @@ Inherits BasesParaCompatibilidad.StoredProcedure
                         "[dbo].[PaletsContenidos2ByPaletProducidoID]")
     End Sub
 
-    Public Overloads Function Select_Record(ByVal PaletContenidoID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As DBO_PaletsContenidos
+    Public Overloads Function Select_Record(ByVal PaletContenidoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_PaletsContenidos
         Dim dbo As New DBO_PaletsContenidos
         dbo.searchKey = dbo.item("PaletContenidoID")
         dbo.searchKey.value = PaletContenidoID
-        MyBase.Select_Record(CType(dbo, BasesParaCompatibilidad.databussines), trans)
+        MyBase.Select_Record(CType(dbo, BasesParaCompatibilidad.databussines), dtb)
         Return dbo
     End Function
 
-    Public Overrides Function Delete(ByVal PaletContenidoID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As Boolean
+    Public Overrides Function Delete(ByVal PaletContenidoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Dim dbo As New DBO_PaletsContenidos
         dbo.searchKey = dbo.item("PaletContenidoID")
         dbo.searchKey.value = PaletContenidoID
-        Return MyBase.DeleteProcedure(CType(dbo, BasesParaCompatibilidad.databussines), trans)
+        Return MyBase.DeleteProcedure(CType(dbo, BasesParaCompatibilidad.databussines), dtb)
     End Function
 
-    Public Function ValidarRangoHorario(ByVal PaletContenido As DBO_PaletsContenidos, ByVal linea As Integer) As Boolean
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+    Public Function ValidarRangoHorario(ByVal PaletContenido As DBO_PaletsContenidos, ByVal linea As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         dtb.Conectar()
         Try
             Dim res As Integer = 0
@@ -50,20 +49,19 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-           dtb.Conectar()
+            dtb.Conectar()
         End Try
     End Function
 
-    Public Sub cargarComboDetallesMonodosis(ByRef combo As ComboBox, ByVal tipoFormato As Integer)
-        combo.mam_DataSource("PaletsContenidosSelectMonodosis2 " & tipoFormato, False)
+    Public Sub cargarComboDetallesMonodosis(ByRef combo As ComboBox, ByVal tipoFormato As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        combo.mam_DataSource("PaletsContenidosSelectMonodosis2 " & tipoFormato, False, dtb)
     End Sub
 
     'Public Sub cargarDgvMonodosis(ByRef dgv As ComboBox)
     '    dgv.mam_DataSource("PaletsContenidosSelectDvgMonodosis", False)
     'End Sub
 
-    Public Function devolver_media_creacion_contenidos(ByVal linea As Integer, ByVal tipo_formato As Integer) As Double
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+    Public Function devolver_media_creacion_contenidos(ByVal linea As Integer, ByVal tipo_formato As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Double
 
         dtb.PrepararConsulta("select isnull(avg(datediff(minute, horainicio, horafin)), 1) from paletsContenidos, paletsproducidos, formatosEnvasados, tiposformatosLineas where paletsproducidos.paletproducidoid = paletscontenidos.paletproducidoid and formatoid = formatoEnvasadoid and formatosEnvasados.tipoformatoLineaid = tiposformatosLineas.tipoformatoLineaid and lineaEnvasadoid = @linea and tipoformatoEnvasadoID = @tf")
         dtb.AñadirParametroConsulta("@linea", linea)
@@ -79,8 +77,7 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         Return CType(dt.Rows(0).Item(0), Double)
     End Function
 
-    Public Function devolver_monodosis_para_doypack(ByVal FormatoEnvasado As Integer) As DataTable
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+    Public Function devolver_monodosis_para_doypack(ByVal FormatoEnvasado As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
         dtb.PrepararConsulta("select descripcionLa, monodosis.id_tipoFormato, cantidad " & _
                                             "from doypack, monodosis, articulos1  " & _
                                             "where  " & _
@@ -93,8 +90,7 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         Return dtb.Consultar
     End Function
 
-    Public Function ultima_hora(ByVal linea As Integer, ByVal envasado As String) As DateTime
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+    Public Function ultima_hora(ByVal linea As Integer, ByVal envasado As String, ByRef dtb As BasesParaCompatibilidad.DataBase) As DateTime
         dtb.PrepararConsulta("PaletsProducidos2GetUltimaHoraProduccionPorLinea2 @linea, @env")
         dtb.AñadirParametroConsulta("@linea", linea)
         dtb.AñadirParametroConsulta("@env", envasado)
@@ -107,8 +103,7 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         Return dt.Rows(0).Item(0)
     End Function
 
-    Public Function PaletsContenidosPorPaletsProducidos(ByVal PaletProducidoID As Integer) As DataTable
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+    Public Function PaletsContenidosPorPaletsProducidos(ByVal PaletProducidoID As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
         dtb.PrepararConsulta("PaletsContenidos2ByPaletProducidoID @id")
         dtb.AñadirParametroConsulta("@id", PaletProducidoID)
         Return dtb.Consultar()

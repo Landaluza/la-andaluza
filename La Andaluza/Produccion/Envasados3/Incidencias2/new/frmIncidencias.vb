@@ -33,12 +33,12 @@ Public Class frmIncidencias
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboIncidencias = CType(sp, spIncidencias).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboIncidencias = CType(sp, spIncidencias).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboIncidencias Is Nothing Then
             If Config.UserType <> 4 Then
                 Dim spTipos As New spTiposIncidencias
                 Dim c As Object = newRegForm
-                c.ClaseIncidencia = spTipos.Select_Record(dboIncidencias.TipoIncidenciaID).CategoriaIncidenciaID
+                c.ClaseIncidencia = spTipos.Select_Record(dboIncidencias.TipoIncidenciaID, dtb).CategoriaIncidenciaID
             End If
             newRegForm.SetDataBussinesObject(Me.dboIncidencias)
         Else

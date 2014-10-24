@@ -42,20 +42,18 @@ Public Class spCargasNecesidades
                                            ByVal ValorObservaciones As String, _
                                            ByVal ValorFechaModificacion As Date, _
                                            ByVal ValorUsuarioModificacion As Integer, _
-                                           ByVal ValorServido As Boolean)
+                                           ByVal ValorServido As Boolean, ByRef dtb As BasesParaCompatibilidad.DataBase)
         Try
-            BasesParaCompatibilidad.BD.Conectar()
-            Dim cmd As New System.Data.SqlClient.SqlCommand
-            cmd.CommandType = CommandType.StoredProcedure
-            cmd.Connection = BasesParaCompatibilidad.BD.Cnx
+            dtb.Conectar()
+            Dim cmd As System.Data.SqlClient.SqlCommand
 
             If Action = _Insert Then
-                cmd.CommandText = "InsertCargaNecesidadesJRMaestro"
+                cmd = dtb.comando("InsertCargaNecesidadesJRMaestro")
             ElseIf Action = _Update Then
-                cmd.CommandText = "UpdateCargaNecesidadesJRMaestro"
+                cmd = dtb.comando("UpdateCargaNecesidadesJRMaestro")
                 cmd.Parameters.AddWithValue("@MaestroID", ValorMaestroID)
-            ElseIf Action = _Delete Then
-                cmd.CommandText = "DeleteCargaNecesidadesJRMaestro"
+            Else : Action = _Delete
+                cmd = dtb.Comando("DeleteCargaNecesidadesJRMaestro")
                 cmd.Parameters.AddWithValue("@MaestroID", ValorMaestroID)
             End If
 
@@ -69,43 +67,42 @@ Public Class spCargasNecesidades
             End If
 
             cmd.ExecuteNonQuery()
-            BasesParaCompatibilidad.BD.Cerrar()
+
         Catch ex As Exception
             MessageBox.Show("Error en BD.spCargaNecesidadesJRMaestro" & Environment.NewLine & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            dtb.Desconectar()
         End Try
     End Sub
 
-    Public Sub spDeleteCargaNecesidadesJRMaestro(ByVal ValorMaestroID As Integer)
+    Public Sub spDeleteCargaNecesidadesJRMaestro(ByVal ValorMaestroID As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase)
         Try
-            BasesParaCompatibilidad.BD.Conectar()
-            Dim cmd As New System.Data.SqlClient.SqlCommand
-            cmd.CommandType = CommandType.StoredProcedure
-            cmd.Connection = BasesParaCompatibilidad.BD.Cnx
-            cmd.CommandText = "DeleteCargaNecesidadesJRMaestro"
+            dtb.Conectar()
+            Dim cmd As System.Data.SqlClient.SqlCommand = dtb.Comando("DeleteCargaNecesidadesJRMaestro")
             cmd.Parameters.AddWithValue("@MaestroID", ValorMaestroID)
             cmd.ExecuteNonQuery()
-            BasesParaCompatibilidad.BD.Cerrar()
         Catch ex As Exception
             MessageBox.Show("Error en BD.spDeleteCargaNecesidadesJRMaestro" & Environment.NewLine & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            dtb.Desconectar()
         End Try
     End Sub
 
-    Public Function spMaxCargaNecesidadesMaestro() As Integer
+    Public Function spMaxCargaNecesidadesMaestro(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Dim MaxID As Integer = 0
         Try
-            BasesParaCompatibilidad.BD.Conectar()
-            Dim cmd As New System.Data.SqlClient.SqlCommand
-            cmd.CommandType = CommandType.StoredProcedure
-            cmd.Connection = BasesParaCompatibilidad.BD.Cnx
-            cmd.CommandText = "MaxCargaNecesidadesMaestro"
+            dtb.Conectar()
+            Dim cmd As System.Data.SqlClient.SqlCommand = dtb.Comando("MaxCargaNecesidadesMaestro")
             MaxID = (cmd.ExecuteScalar())
-            BasesParaCompatibilidad.BD.Cerrar()
+
             Return MaxID
         Catch ex As Exception
             MessageBox.Show("Error en BD.spMaxCargaNecesidadesMaestro" & Environment.NewLine & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             'messagebox.show(String.Format("Error en BD.spMaxCargaNecesidadesMaestro Mensaje: {0}", ex.Message))
             'Leandro dice: el string.Format para armar los mensajes es mejor que el & para unir el string
             Return MaxID
+        Finally
+            dtb.Desconectar()
         End Try
     End Function
 
@@ -120,22 +117,20 @@ Public Class spCargasNecesidades
                                            ByVal ValorReserva2 As String, _
                                            ByVal ValorReserva3 As String, _
                                            ByVal ValorFechaModificacion As Date, _
-                                           ByVal ValorUsuarioModificacion As Integer)
+                                           ByVal ValorUsuarioModificacion As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase)
 
 
-        BasesParaCompatibilidad.BD.Conectar()
+        dtb.Conectar()
         Try
-            Dim cmd As New System.Data.SqlClient.SqlCommand
-            cmd.CommandType = CommandType.StoredProcedure
-            cmd.Connection = BasesParaCompatibilidad.BD.Cnx
+            Dim cmd As System.Data.SqlClient.SqlCommand
 
             If Action = _Insert Then
-                cmd.CommandText = "InsertCargaNecesidadesJRDetalle"
+                cmd = dtb.Comando("InsertCargaNecesidadesJRDetalle")
             ElseIf Action = _Update Then
-                cmd.CommandText = "UpdateCargaNecesidadesJRDetalle"
+                cmd = dtb.Comando("UpdateCargaNecesidadesJRDetalle")
                 cmd.Parameters.AddWithValue("@CargaNecesidadesJRDetalleID", ValorCargaNecesidadesJRDetalleID)
-            ElseIf Action = _Delete Then
-                cmd.CommandText = "DeleteCargaNecesidadesJRDetalle"
+            Else : Action = _Delete
+                cmd = dtb.Comando("DeleteCargaNecesidadesJRDetalle")
                 cmd.Parameters.AddWithValue("@DetalleID", ValorCargaNecesidadesJRDetalleID)
             End If
 
@@ -157,23 +152,21 @@ Public Class spCargasNecesidades
             MessageBox.Show("Error en BD.spCargaNecesidadesJRDetalle" & Environment.NewLine & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
-        BasesParaCompatibilidad.BD.Cerrar()
+        dtb.Desconectar()
     End Sub
 
-    Public Sub spDeleteCargaNecesidadesJRDetalle(ByVal ValorCargaNecesidadesJRDetalleID As Integer)
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Sub spDeleteCargaNecesidadesJRDetalle(ByVal ValorCargaNecesidadesJRDetalleID As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        dtb.Conectar()
         Try
-            Dim cmd As New System.Data.SqlClient.SqlCommand
-            cmd.CommandType = CommandType.StoredProcedure
-            cmd.Connection = BasesParaCompatibilidad.BD.Cnx
-            cmd.CommandText = "DeleteCargaNecesidadesJRDetalle"
+            Dim cmd As System.Data.SqlClient.SqlCommand = dtb.Comando("DeleteCargaNecesidadesJRDetalle")
             cmd.Parameters.AddWithValue("@DetalleID", ValorCargaNecesidadesJRDetalleID)
             cmd.ExecuteNonQuery()
         Catch ex As Exception
             MessageBox.Show("Error en BD.spDeleteCargaNecesidadesJRDetalle" & Environment.NewLine & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            dtb.Desconectar()
         End Try
 
-        BasesParaCompatibilidad.BD.Cerrar()
     End Sub
 #End Region
 End Class

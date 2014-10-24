@@ -14,7 +14,7 @@ Public Class frmWstepArticuloSecundario
 
         Me.m_DBO_ArticulosEnvasesSecundario = New DBO_ArticulosEnvasesSecundarios
         m_DBO_TiposFormatos1 = New DBO_ArticulosEnvasadosHistorico
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.DataBase()
         no_crear = True
         spArticulosEnvasesSecundarios = New spArticulosEnvasesSecundarios
         modoDeApertura = BasesParaCompatibilidad.DetailedSimpleForm.INSERCION
@@ -24,10 +24,10 @@ Public Class frmWstepArticuloSecundario
         InitializeComponent()
 
         modoDeApertura = BasesParaCompatibilidad.DetailedSimpleForm.MODIFICACION
-        dtb = New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.DataBase()
         no_crear = True
         spArticulosEnvasesSecundarios = New spArticulosEnvasesSecundarios
-        Me.m_DBO_ArticulosEnvasesSecundario = spArticulosEnvasesSecundarios.Select_RecordByArticuloID(articuloid)
+        Me.m_DBO_ArticulosEnvasesSecundario = spArticulosEnvasesSecundarios.Select_RecordByArticuloID(articuloid, dtb)
         establecerValores()
     End Sub
 
@@ -72,12 +72,12 @@ Public Class frmWstepArticuloSecundario
     End Sub
 
     Public Sub establecerValores() Implements wizardable.EstablecerValores
-        Me.cboCajaID.mam_DataSource("ArticulosEnvasesSecundarios_TiposCajasCbo", False)
+        Me.cboCajaID.mam_DataSource("ArticulosEnvasesSecundarios_TiposCajasCbo", False, dtb)
         Dim spArticulos1 As New spArticulos1
 
         Try
             Dim spProductos As New spTiposProductos
-            spProductos.cargar_ComboBox(cboProducto)
+            spProductos.cargar_ComboBox(cboProducto, dtb)
         Catch ex As Exception
         End Try
 
@@ -94,7 +94,7 @@ Public Class frmWstepArticuloSecundario
             Try
                 If Me.modoDeApertura = BasesParaCompatibilidad.DetailedSimpleForm.MODIFICACION Then
                     Dim d As DBO_Articulos1
-                    d = spArticulos1.Select_Record(m_DBO_ArticulosEnvasesSecundario.id_articuloPrimario)
+                    d = spArticulos1.Select_Record(m_DBO_ArticulosEnvasesSecundario.id_articuloPrimario, dtb)
                     txtDescripcionPrimario.Text = d.DescripcionLA
                 End If
             Catch ex As Exception
@@ -124,7 +124,6 @@ Public Class frmWstepArticuloSecundario
                 If Me.m_DBO_ArticulosEnvasesSecundario.ID = Nothing Then Me.m_DBO_ArticulosEnvasesSecundario.ArticuloID = dtb.Consultar("select max(articuloID) from Articulos1", True).Rows(0).Item(0)
                 'If Me.m_DBO_TiposFormatos1.TipoFormatoID = Nothing Then
                 '    Dim spt As New spArticulosEnvasadosHistoricos
-                '    Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server, BasesParaCompatibilidad.BD.Cnx, BasesParaCompatibilidad.BD.transaction)
                 '    m_DBO_TiposFormatos1.TipoFormatoID = spt.seleccionar_ultimo_registro(dtb)
                 'End If
 
@@ -139,7 +138,7 @@ Public Class frmWstepArticuloSecundario
                 'm_DBO_TiposFormatos1.TipoProductoID = m_DBO_ArticulosEnvasesSecundario.ProductoID
 
                 'Dim spTiposFormatos1 As New spArticulosEnvasadosHistorico1
-                'If Not spTiposFormatos1.GrabarTiposFormatos1Sintransaccion(m_DBO_TiposFormatos1, BasesParaCompatibilidad.BD.transaction) Then Return False
+                'If Not spTiposFormatos1.GrabarTiposFormatos1Sintransaccion(m_DBO_TiposFormatos1,dtb) Then Return False
 
 
 
@@ -152,7 +151,7 @@ Public Class frmWstepArticuloSecundario
                 m_DBO_TiposFormatos1.TipoProductoID = m_DBO_ArticulosEnvasesSecundario.ProductoID
 
                 Dim spTiposFormatos1 As New spArticulosEnvasadosHistorico1
-                If Not spTiposFormatos1.GrabarTiposFormatos1Sintransaccion(m_DBO_TiposFormatos1, BasesParaCompatibilidad.BD.transaction) Then Return False
+                If Not spTiposFormatos1.GrabarTiposFormatos1Sintransaccion(m_DBO_TiposFormatos1, dtb) Then Return False
 
                 If Me.m_DBO_TiposFormatos1.TipoFormatoID = Nothing Then
                     Dim spt As New spArticulosEnvasadosHistoricos
@@ -164,7 +163,7 @@ Public Class frmWstepArticuloSecundario
 
         If Me.no_crear Then
             Dim spArticulosEnvasesSecundarios As New spArticulosEnvasesSecundarios
-            If Not spArticulosEnvasesSecundarios.Grabar(m_DBO_ArticulosEnvasesSecundario, BasesParaCompatibilidad.BD.transaction) Then Return False
+            If Not spArticulosEnvasesSecundarios.Grabar(m_DBO_ArticulosEnvasesSecundario, dtb) Then Return False
         End If
 
         Return True
@@ -237,9 +236,9 @@ Public Class frmWstepArticuloSecundario
     Public Sub ActualizarDatos()
         Dim spArticulos1 As New spArticulos1
         Try
-            Me.m_DBO_ArticulosEnvasesSecundario = spArticulosEnvasesSecundarios.Select_RecordByArticuloID(m_DBO_ArticulosEnvasesSecundario.ArticuloID)
+            Me.m_DBO_ArticulosEnvasesSecundario = spArticulosEnvasesSecundarios.Select_RecordByArticuloID(m_DBO_ArticulosEnvasesSecundario.ArticuloID, dtb)
 
-            Dim m_art_aux As DBO_Articulos1 = spArticulos1.Select_Record(m_DBO_ArticulosEnvasesSecundario.id_articuloPrimario)
+            Dim m_art_aux As DBO_Articulos1 = spArticulos1.Select_Record(m_DBO_ArticulosEnvasesSecundario.id_articuloPrimario, dtb)
             Me.txtDescripcionPrimario.Text = m_art_aux.DescripcionLA
         Catch ex As Exception
             Me.txtDescripcionPrimario.Text = ""

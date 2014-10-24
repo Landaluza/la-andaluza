@@ -16,7 +16,7 @@ Public Class frmPendientes
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboPendientes = CType(sp, spPendientes).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer))
+        dboPendientes = CType(sp, spPendientes).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
         If Not dboPendientes Is Nothing Then
             newRegForm.SetDataBussinesObject(CType(Me.dboPendientes, BasesParaCompatibilidad.DataBussines))
         Else

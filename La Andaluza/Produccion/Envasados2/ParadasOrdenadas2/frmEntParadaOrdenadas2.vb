@@ -22,14 +22,14 @@ Public Class frmEntParadaOrdenadas2
     End Sub
 
     Private Sub frmEntParadaOrdenadas2_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Me.cboParadaOrdenadaMotivoID.mam_DataSource("ParadaOrdenadas2_ParadaOrdenadasMotivosCbo", False)
+        Me.cboParadaOrdenadaMotivoID.mam_DataSource("ParadaOrdenadas2_ParadaOrdenadasMotivosCbo", False, dtb)
         If Not m_VerID Then
             Me.cboParadaOrdenadaMotivoID.Visible = False
             Me.lblParadaOrdenadaMotivoID.Visible = False
             Me.cboPersonalID.Visible = False
             Me.lblPersonalID.Visible = False
         End If
-        Me.cboPersonalID.mam_DataSource("ParadaOrdenadas2_PersonalCbo", False)
+        Me.cboPersonalID.mam_DataSource("ParadaOrdenadas2_PersonalCbo", False, dtb)
 
 
 
@@ -46,7 +46,7 @@ Public Class frmEntParadaOrdenadas2
             dtpHoraInicio.Value = DateTime.Now
             Me.dtpHoraFinal.Value = Me.dtpHoraInicio.Value.AddMinutes(15)
         Else
-            m_DBO_ParadaOrdenadas2 = spParadaOrdenadas2.Select_Record(m_DBO_ParadaOrdenadas2.ParadaOrdenadaID)
+            m_DBO_ParadaOrdenadas2 = spParadaOrdenadas2.Select_Record(m_DBO_ParadaOrdenadas2.ParadaOrdenadaID, dtb)
 
             dtpHoraInicio.Value = DateTime.Now.Date.Add(m_DBO_ParadaOrdenadas2.HoraInicio)
             dtpHoraFinal.Value = DateTime.Now.Date.Add(m_DBO_ParadaOrdenadas2.HoraFinal)
@@ -100,7 +100,7 @@ Public Class frmEntParadaOrdenadas2
 
     Overrides Sub Guardar()
         If GetValores() Then
-            If spParadaOrdenadas2.GrabarParadaOrdenadas2(m_DBO_ParadaOrdenadas2) Then
+            If spParadaOrdenadas2.GrabarParadaOrdenadas2(m_DBO_ParadaOrdenadas2, dtb) Then
                 Me.Close()
             End If
         End If

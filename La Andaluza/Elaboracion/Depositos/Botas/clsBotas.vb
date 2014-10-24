@@ -76,7 +76,7 @@ Public Class clsBotas
 
         Try
             dtb.ConsultaAlteraciones("insert into Botas values( " & Convert.ToString(BotaTaponID) & "," & _
-                             Convert.ToString(PosicionID) & " ," & BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)) + "'," + BasesParaCompatibilidad.Config.User.ToString + ")")
+                             Convert.ToString(PosicionID) & " ,'" & BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)) + "'," + BasesParaCompatibilidad.Config.User.ToString + ")")
 
 
             dtb.PrepararConsulta("select max(BotaID) from Botas")
@@ -87,8 +87,7 @@ Public Class clsBotas
         End Try
     End Function
 
-    Public Function Eliminar() As Integer
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+    Public Function Eliminar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
 
         Try
             dtb.PrepararConsulta("delete from Botas where BotaID = @id")

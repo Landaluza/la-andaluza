@@ -21,10 +21,10 @@ Public Class frmEntTiposProductos
 
     Private Sub frmEntTiposProductos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spMedidasProductos
-        s.cargar_MedidasProductos(Me.cboMedida)
+        s.cargar_MedidasProductos(Me.cboMedida, dtb)
 
         Dim s1 As New spPaletsProducidos
-        s1.cargar_PaletsProducidos(Me.cboid_palet_no_conforme)
+        s1.cargar_PaletsProducidos(Me.cboid_palet_no_conforme, dtb)
 
         If Me.mododeapertura = VISION Then
             Me.cboMedida.enabled = False
@@ -105,8 +105,8 @@ Public Class frmEntTiposProductos
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerMedidaID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerMedidaID.Click
@@ -119,7 +119,7 @@ Public Class frmEntTiposProductos
         Dim frmEnt As New frmEntMedidasProductos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spMedidasProductos, DBO_MedidasProductos)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spMedidasProductos
-        s.cargar_MedidasProductos(Me.cboMedida)
+        s.cargar_MedidasProductos(Me.cboMedida, dtb)
     End Sub
 
   

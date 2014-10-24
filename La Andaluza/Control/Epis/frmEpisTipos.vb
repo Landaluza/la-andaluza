@@ -44,7 +44,7 @@ Public Class frmEpisTipos
     'End Sub
 
     Overrides Sub Eliminar()
-        If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then CType(sp, spEpisTipos).DeleteEpisTipos(dgvGeneral.CurrentRow.Cells("EpiTipoID").Value)
+        If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then CType(sp, spEpisTipos).DeleteEpisTipos(dgvGeneral.CurrentRow.Cells("EpiTipoID").Value, dtb)
         dgvFill() ' GeneralBindingSource. dataSource = dtb.consultar(spSelectDgv)
     End Sub
 
@@ -57,7 +57,7 @@ Public Class frmEpisTipos
         If TipoAction = ACCION_INSERTAR Then
             'Asignar las propiedades del objeto creado cuyos valores se obtengan en este Form.
         Else
-            m_EpisTipo = CType(sp, spEpisTipos).Select_Record(GeneralBindingSource(m_Pos).Item("EpiTipoID"))
+            m_EpisTipo = CType(sp, spEpisTipos).Select_Record(GeneralBindingSource(m_Pos).Item("EpiTipoID"), dtb)
         End If
 
         Dim frmEnt As New frmEntEpisTipos(m_EpisTipo, m_Pos)

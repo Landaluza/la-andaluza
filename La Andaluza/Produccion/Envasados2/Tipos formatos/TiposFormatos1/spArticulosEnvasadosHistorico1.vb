@@ -2,24 +2,22 @@ Imports BasesParaCompatibilidad.ComboBoxExtension
 
 
 Public Class spArticulosEnvasadosHistorico1
-    Private dtb as BasesParaCompatibilidad.Database
 
     Public Sub New()
-        dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
     End Sub
-    Public Function Select_Record(ByVal TipoFormatoID As Int32) As DBO_ArticulosEnvasadosHistorico
-        If BasesParaCompatibilidad.BD.transaction Is Nothing Then BasesParaCompatibilidad.BD.Conectar()
+    Public Function Select_Record(ByVal TipoFormatoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_ArticulosEnvasadosHistorico
+        dtb.Conectar()
         Dim DBO_TiposFormatos1 As New DBO_ArticulosEnvasadosHistorico
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim selectProcedure As String = "[dbo].[TiposFormatos1Select]"
-        Dim selectCommand As New System.Data.SqlClient.SqlCommand(selectProcedure, connection)
+        Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.comando(selectProcedure)
         selectCommand.CommandType = CommandType.StoredProcedure
-        If Not BasesParaCompatibilidad.BD.transaction Is Nothing Then selectCommand.Transaction = BasesParaCompatibilidad.BD.transaction
+
         selectCommand.Parameters.AddWithValue("@TipoFormatoID", TipoFormatoID)
         Try
             Dim reader As System.Data.SqlClient.SqlDataReader = selectCommand.ExecuteReader(CommandBehavior.SingleRow)
             If reader.Read Then
-                
+
                 DBO_TiposFormatos1.TipoFormatoID = If(reader("TipoFormatoID") Is Convert.DBNull, 0, Convert.ToInt32(reader("TipoFormatoID")))
                 DBO_TiposFormatos1.CodigoQS = If(reader("CodigoQS") Is Convert.DBNull, 0, Convert.ToInt32(reader("CodigoQS")))
                 DBO_TiposFormatos1.Descripcion = If(reader("Descripcion") Is Convert.DBNull, String.Empty, Convert.ToString(reader("Descripcion")))
@@ -31,7 +29,7 @@ Public Class spArticulosEnvasadosHistorico1
                 DBO_TiposFormatos1.TipoCajaID = If(reader("TipoCajaID") Is Convert.DBNull, 0, Convert.ToInt32(reader("TipoCajaID")))
                 DBO_TiposFormatos1.FechaModificacion = If(reader("FechaModificacion") Is Convert.DBNull, System.DateTime.Now.Date, CDate(reader("FechaModificacion")))
                 DBO_TiposFormatos1.UsuarioModificacion = If(reader("UsuarioModificacion") Is Convert.DBNull, 0, Convert.ToInt32(reader("UsuarioModificacion")))
-                
+
             Else
                 DBO_TiposFormatos1 = Nothing
             End If
@@ -39,18 +37,18 @@ Public Class spArticulosEnvasadosHistorico1
         Catch ex As System.Data.SqlClient.SqlException
 
         Finally
-            If BasesParaCompatibilidad.BD.transaction Is Nothing Then connection.Close()
+            dtb.Desconectar()
         End Try
         Return DBO_TiposFormatos1
     End Function
 
-    Public Function TiposFormatos1Insert(ByVal dbo_TiposFormatos1 As DBO_ArticulosEnvasadosHistorico) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function TiposFormatos1Insert(ByVal dbo_TiposFormatos1 As DBO_ArticulosEnvasadosHistorico, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim insertProcedure As String = "[dbo].[TiposFormatos1Insert]"
-        Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+        Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
         insertCommand.CommandType = CommandType.StoredProcedure
-        
+
         insertCommand.Parameters.AddWithValue("@CodigoQS", dbo_TiposFormatos1.CodigoQS)
         insertCommand.Parameters.AddWithValue("@Descripcion", dbo_TiposFormatos1.Descripcion)
         insertCommand.Parameters.AddWithValue("@Separadores", dbo_TiposFormatos1.Separadores)
@@ -61,7 +59,7 @@ Public Class spArticulosEnvasadosHistorico1
         insertCommand.Parameters.AddWithValue("@TipoCajaID", dbo_TiposFormatos1.TipoCajaID)
         insertCommand.Parameters.AddWithValue("@FechaModificacion", dbo_TiposFormatos1.FechaModificacion)
         insertCommand.Parameters.AddWithValue("@UsuarioModificacion", dbo_TiposFormatos1.UsuarioModificacion)
-        
+
         insertCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         insertCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
         Try
@@ -75,48 +73,11 @@ Public Class spArticulosEnvasadosHistorico1
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function TiposFormatos1Update(ByVal newDBO_TiposFormatos1 As DBO_ArticulosEnvasadosHistorico) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
-        Dim updateProcedure As String = "[dbo].[TiposFormatos1Update]"
-        Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
-        updateCommand.CommandType = CommandType.StoredProcedure
-        '<Tag=[Three][Start]> -- please do not remove this line
-        updateCommand.Parameters.AddWithValue("@NewCodigoQS", newDBO_TiposFormatos1.CodigoQS)
-        updateCommand.Parameters.AddWithValue("@NewDescripcion", newDBO_TiposFormatos1.Descripcion)
-        updateCommand.Parameters.AddWithValue("@NewSeparadores", newDBO_TiposFormatos1.Separadores)
-        updateCommand.Parameters.AddWithValue("@NewCajasPalet", newDBO_TiposFormatos1.CajasPalet)
-        updateCommand.Parameters.AddWithValue("@NewGenericas", newDBO_TiposFormatos1.Genericas)
-        updateCommand.Parameters.AddWithValue("@NewParticulares", newDBO_TiposFormatos1.Particulares)
-        updateCommand.Parameters.AddWithValue("@NewTipoProductoID", If(newDBO_TiposFormatos1.TipoProductoID.HasValue, newDBO_TiposFormatos1.TipoProductoID, Convert.DBNull))
-        updateCommand.Parameters.AddWithValue("@NewTipoCajaID", newDBO_TiposFormatos1.TipoCajaID)
-        updateCommand.Parameters.AddWithValue("@NewFechaModificacion", newDBO_TiposFormatos1.FechaModificacion)
-        updateCommand.Parameters.AddWithValue("@NewUsuarioModificacion", newDBO_TiposFormatos1.UsuarioModificacion)
-        updateCommand.Parameters.AddWithValue("@OldTipoFormatoID", newDBO_TiposFormatos1.TipoFormatoID)
-        '<Tag=[Three][End]> -- please do not remove this line
-        updateCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
-        updateCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
-        Try
-            updateCommand.ExecuteNonQuery()
-            Dim count As Integer = System.Convert.ToInt32(updateCommand.Parameters("@ReturnValue").Value)
-            If count > 0 Then
-                Return True
-            Else
-                Return False
-            End If
-        Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdateTiposFormatos1" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
-            Return False
-        Finally
-            connection.Close()
-        End Try
-    End Function
-
-    Public Function TiposFormatos1Update(ByVal newDBO_TiposFormatos1 As DBO_ArticulosEnvasadosHistorico, ByRef dtb as BasesParaCompatibilidad.Database) As Boolean
+    Public Function TiposFormatos1Update(ByVal newDBO_TiposFormatos1 As DBO_ArticulosEnvasadosHistorico, ByRef dtb As BasesParaCompatibilidad.Database) As Boolean
 
         Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.Comando("[dbo].[TiposFormatos1Update]")
         updateCommand.CommandType = CommandType.StoredProcedure
@@ -147,19 +108,19 @@ Public Class spArticulosEnvasadosHistorico1
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-           dtb.Conectar()
+            dtb.Conectar()
         End Try
     End Function
 
-    Public Function TiposFormatos1InsertSinTransaccion(ByVal dbo_TiposFormatos1 As DBO_ArticulosEnvasadosHistorico, ByRef mytrans As SqlClient.SqlTransaction) As Boolean
+    Public Function TiposFormatos1InsertSinTransaccion(ByVal dbo_TiposFormatos1 As DBO_ArticulosEnvasadosHistorico, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
 
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim insertProcedure As String = "[dbo].[TiposFormatos1Insert2]"
         Try
-            Dim insertCommand As New System.Data.SqlClient.SqlCommand(insertProcedure, connection)
+            Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.comando(insertProcedure)
             insertCommand.CommandType = CommandType.StoredProcedure
-            insertCommand.Transaction = mytrans
-            
+
+
             insertCommand.Parameters.AddWithValue("@CodigoQS", dbo_TiposFormatos1.CodigoQS)
             insertCommand.Parameters.AddWithValue("@Descripcion", dbo_TiposFormatos1.Descripcion)
             insertCommand.Parameters.AddWithValue("@Separadores", dbo_TiposFormatos1.Separadores)
@@ -170,7 +131,7 @@ Public Class spArticulosEnvasadosHistorico1
             insertCommand.Parameters.AddWithValue("@TipoCajaID", dbo_TiposFormatos1.TipoCajaID)
             insertCommand.Parameters.AddWithValue("@FechaModificacion", dbo_TiposFormatos1.FechaModificacion)
             insertCommand.Parameters.AddWithValue("@UsuarioModificacion", dbo_TiposFormatos1.UsuarioModificacion)
-            
+
             insertCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
             insertCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
 
@@ -186,14 +147,14 @@ Public Class spArticulosEnvasadosHistorico1
         End Try
     End Function
 
-    Public Function TiposFormatos1UpdateSinTransaccion(ByVal newDBO_TiposFormatos1 As DBO_ArticulosEnvasadosHistorico, ByRef mytrans As SqlClient.SqlTransaction) As Boolean
+    Public Function TiposFormatos1UpdateSinTransaccion(ByVal newDBO_TiposFormatos1 As DBO_ArticulosEnvasadosHistorico, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
 
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim updateProcedure As String = "[dbo].[TiposFormatos1Update2]"
         Try
-            Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
+            Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.comando(updateProcedure)
             updateCommand.CommandType = CommandType.StoredProcedure
-            updateCommand.Transaction = mytrans
+
             '<Tag=[Three][Start]> -- please do not remove this line
             updateCommand.Parameters.AddWithValue("@NewCodigoQS", newDBO_TiposFormatos1.CodigoQS)
             updateCommand.Parameters.AddWithValue("@NewDescripcion", If(newDBO_TiposFormatos1.Descripcion Is Nothing, " ", newDBO_TiposFormatos1.Descripcion))
@@ -217,16 +178,16 @@ Public Class spArticulosEnvasadosHistorico1
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
-            MessageBox.Show("Error en UpdateTiposFormatos1" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
+            MessageBox.Show("Error en UpdateTiposFormatos1" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         End Try
     End Function
 
-    Public Function TiposFormatos1Delete(ByVal TipoFormatoID As Int32) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+    Public Function TiposFormatos1Delete(ByVal TipoFormatoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
+
         Dim deleteProcedure As String = "[dbo].[TiposFormatos1Delete]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
         '<Tag=[Four][Start]> -- please do not remove this line
         deleteCommand.Parameters.AddWithValue("@OldTipoFormatoID", TipoFormatoID)
@@ -244,17 +205,17 @@ Public Class spArticulosEnvasadosHistorico1
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            connection.Close()
+            dtb.Desconectar()
         End Try
     End Function
 
-    Public Function TiposFormatos1DeleteSinTransaccion(ByVal TipoFormatoID As Int32, ByRef mytrans as System.Data.SqlClient.SqlTransaction) As Boolean
+    Public Function TiposFormatos1DeleteSinTransaccion(ByVal TipoFormatoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
 
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
+
         Dim deleteProcedure As String = "[dbo].[TiposFormatos1Delete2]"
-        Dim deleteCommand As New System.Data.SqlClient.SqlCommand(deleteProcedure, connection)
+        Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
         deleteCommand.CommandType = CommandType.StoredProcedure
-        deleteCommand.Transaction = mytrans
+
         '<Tag=[Four][Start]> -- please do not remove this line
         deleteCommand.Parameters.AddWithValue("@OldTipoFormatoID", TipoFormatoID)
         '<Tag=[Four][End]> -- please do not remove this line
@@ -268,108 +229,51 @@ Public Class spArticulosEnvasadosHistorico1
         End Try
     End Function
 
-    Public Function TiposFormatos1SelecMax() As Integer
-        Dim MaxID As Integer = 0
-        Try
-            BasesParaCompatibilidad.BD.Conectar()
-            Dim cmd as new System.Data.SqlClient.SqlCommand
-            cmd.CommandType = CommandType.StoredProcedure
-            cmd.Connection = BasesParaCompatibilidad.BD.Cnx
-            cmd.CommandText = "TiposFormatos1SelectMax"
-            MaxID = (cmd.ExecuteScalar())
-            BasesParaCompatibilidad.BD.Cerrar()
-            Return MaxID
-        Catch ex As Exception
-            messagebox.show("Error en TiposFormatos1SelectMax" & Environment.NewLine & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return Nothing
-        End Try
-    End Function
 
-    Public Function TiposFormatos1SelecMax(ByRef mytrans as System.Data.SqlClient.SqlTransaction) As Integer
+    Public Function TiposFormatos1SelecMax(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Dim MaxID As Integer = 0
 
-        Dim cmd as new System.Data.SqlClient.SqlCommand
-        cmd.CommandType = CommandType.StoredProcedure
-        cmd.Connection = BasesParaCompatibilidad.BD.Cnx
-        cmd.CommandText = "TiposFormatos1SelectMax"
-        cmd.Transaction = mytrans
-        MaxID = (cmd.ExecuteScalar())
+        Dim cmd As System.Data.SqlClient.SqlCommand = dtb.comando("TiposFormatos1SelectMax")
+
+        MaxID = cmd.ExecuteScalar()
 
         Return MaxID
     End Function
 
-    Public Sub GrabarTiposFormatos1(ByVal dbo_TiposFormatos1 As DBO_ArticulosEnvasadosHistorico)
-        dbo_TiposFormatos1.FechaModificacion = System.DateTime.Now.date
+    Public Sub GrabarTiposFormatos1(ByVal dbo_TiposFormatos1 As DBO_ArticulosEnvasadosHistorico, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        dbo_TiposFormatos1.FechaModificacion = System.DateTime.Now.Date
         dbo_TiposFormatos1.UsuarioModificacion = BasesParaCompatibilidad.Config.User
         If dbo_TiposFormatos1.TipoFormatoID = 0 Then
-            TiposFormatos1Insert(dbo_TiposFormatos1)
+            TiposFormatos1Insert(dbo_TiposFormatos1, dtb)
         Else
-            TiposFormatos1Update(dbo_TiposFormatos1)
+            TiposFormatos1Update(dbo_TiposFormatos1, dtb)
         End If
     End Sub
 
 
-    Public Function GrabarTiposFormatos1Sintransaccion(ByVal dbo_TiposFormatos1 As DBO_ArticulosEnvasadosHistorico, ByRef mytrans As SqlClient.SqlTransaction) As Boolean
+    Public Function GrabarTiposFormatos1Sintransaccion(ByVal dbo_TiposFormatos1 As DBO_ArticulosEnvasadosHistorico, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         dbo_TiposFormatos1.FechaModificacion = System.DateTime.Now.date
         dbo_TiposFormatos1.UsuarioModificacion = BasesParaCompatibilidad.Config.User
         If dbo_TiposFormatos1.TipoFormatoID = 0 Then
-            Return TiposFormatos1InsertSinTransaccion(dbo_TiposFormatos1, mytrans)
+            Return TiposFormatos1InsertSinTransaccion(dbo_TiposFormatos1, dtb)
         Else
-            Return TiposFormatos1UpdateSinTransaccion(dbo_TiposFormatos1, mytrans)
+            Return TiposFormatos1UpdateSinTransaccion(dbo_TiposFormatos1, dtb)
         End If
     End Function
 
-    Public Sub cargarComboBox(ByRef combo As ComboBox)
+    Public Sub cargarComboBox(ByRef combo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
         combo.mam_DataSource(dtb.Consultar("TiposFormatosCbo", True), False)
     End Sub
 
-    Public Sub cargarComboBoxTodos(ByRef combo As ComboBox)
+    Public Sub cargarComboBoxTodos(ByRef combo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
         combo.mam_DataSource(dtb.Consultar("TiposFormatosCboAll", True), False)
     End Sub
 
-    Public Sub cargarComboBoxTodosSinLinea(ByRef combo As ComboBox)
+    Public Sub cargarComboBoxTodosSinLinea(ByRef combo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
         combo.mam_DataSource(dtb.Consultar("TiposFormatosCboAllSinLinea", True), False)
     End Sub
 
-    Public Function migrar(ByVal dbo_tf_conservar As DBO_ArticulosEnvasadosHistorico, ByVal dbo_tf_borrar As DBO_ArticulosEnvasadosHistorico) As Boolean
-        Dim retorno As Boolean = True
-        If BasesParaCompatibilidad.BD.transaction Is Nothing Then BasesParaCompatibilidad.BD.EmpezarTransaccion()
-        Dim connection As System.Data.SqlClient.SqlConnection  = BasesParaCompatibilidad.BD.Cnx
-
-        retorno = retorno And TiposFormatos1UpdateSinTransaccion(dbo_tf_conservar, BasesParaCompatibilidad.BD.transaction)
-
-        Try
-
-
-            Dim updateProcedure As String = "[dbo].[tiposFormatosSustituir]"
-            Dim updateCommand As New System.Data.SqlClient.SqlCommand(updateProcedure, connection)
-            updateCommand.CommandType = CommandType.StoredProcedure
-            updateCommand.Transaction = BasesParaCompatibilidad.BD.transaction
-
-            updateCommand.Parameters.AddWithValue("@TipoformatoIdMantener", dbo_tf_conservar.TipoFormatoID)
-            updateCommand.Parameters.AddWithValue("@TipoFormatoIdSustituir", dbo_tf_borrar.TipoFormatoID)
-
-
-            updateCommand.ExecuteNonQuery()
-
-            retorno = retorno And TiposFormatos1DeleteSinTransaccion(dbo_tf_borrar.TipoFormatoID, BasesParaCompatibilidad.BD.transaction)
-
-            If retorno Then
-                If BasesParaCompatibilidad.BD.transaction Is Nothing Then BasesParaCompatibilidad.BD.TerminarTransaccion()
-                Return True
-            Else
-                If BasesParaCompatibilidad.BD.transaction Is Nothing Then BasesParaCompatibilidad.BD.CancelarTransaccion()
-                Return False
-            End If
-        Catch ex As Exception
-            If BasesParaCompatibilidad.BD.transaction Is Nothing Then
-                BasesParaCompatibilidad.BD.CancelarTransaccion()
-                messagebox.show("Error al relizar la migracion. Detalles: " & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            End If
-
-            Return False
-        End Try
-    End Function
+  
 
 
 

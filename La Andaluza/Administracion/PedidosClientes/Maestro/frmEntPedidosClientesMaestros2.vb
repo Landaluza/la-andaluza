@@ -21,10 +21,10 @@ Public Class frmEntPedidosClientesMaestros2
 
     Private Sub frmEntPedidosClientesMaestros2_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim spClientes As New spClientes
-        spClientes.cargar_Clientes(cboClienteID)
+        spClientes.cargar_Clientes(cboClienteID, dtb)
         'Me.cboClienteID.mam_DataSource("PedidosClientesMaestros2_ClientesCbo"), False)
         Dim spLugares As New spLugaresEntregas
-        spLugares.cargar_LugaresEntregas(cboPedidoClienteLugarEntregaID)
+        spLugares.cargar_LugaresEntregas(cboPedidoClienteLugarEntregaID, dtb)
 
         If Not m_VerID Then
             Me.cboClienteID.Visible = False
@@ -42,7 +42,7 @@ Public Class frmEntPedidosClientesMaestros2
     End Sub
 
     Overrides Sub SetValores(ByVal m_ID As Integer, ByVal m_SelectRecord As Boolean)
-        If m_SelectRecord Then m_DBO_PedidosClientesMaestros2 = spPedidosClientesMaestros2.Select_Record(m_ID)
+        If m_SelectRecord Then m_DBO_PedidosClientesMaestros2 = spPedidosClientesMaestros2.Select_Record(m_ID, dtb)
 
         If m_ID > 0 Then
             txtPedidoClienteMaestroID.Text = m_DBO_PedidosClientesMaestros2.PedidoClienteMaestroID
@@ -88,7 +88,7 @@ Public Class frmEntPedidosClientesMaestros2
 
     Overrides Sub Guardar()
         If GetValores() Then
-            If spPedidosClientesMaestros2.GrabarPedidosClientesMaestros2(m_DBO_PedidosClientesMaestros2) Then
+            If spPedidosClientesMaestros2.GrabarPedidosClientesMaestros2(m_DBO_PedidosClientesMaestros2, dtb) Then
                 Me.Close()
             End If
         End If

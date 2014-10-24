@@ -26,7 +26,7 @@ Public Class frmEntMaterialesEnvasados2
     End Sub
 
     Private Sub frmEntMaterialesEnvasados2_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Me.cboTipoMaterialID.mam_DataSource("MaterialesEnvasados2_TiposMaterialesCbo", False)
+        Me.cboTipoMaterialID.mam_DataSource("MaterialesEnvasados2_TiposMaterialesCbo", False, dtb)
         If Not m_VerID Then
             Me.cboTipoMaterialID.Visible = False
             Me.lblTipoMaterialID.Visible = False
@@ -35,9 +35,9 @@ Public Class frmEntMaterialesEnvasados2
             Me.cboFormatoEnvasadoID.Visible = False
             Me.lblFormatoEnvasadoID.Visible = False
         End If
-        Me.cboProveedorID.mam_DataSource("MaterialesEnvasados2_ProveedoresCbo", False)
+        Me.cboProveedorID.mam_DataSource("MaterialesEnvasados2_ProveedoresCbo", False, dtb)
 
-        Me.cboFormatoEnvasadoID.mam_DataSource("MaterialesEnvasados2_FormatosEnvasadosCbo", False)
+        Me.cboFormatoEnvasadoID.mam_DataSource("MaterialesEnvasados2_FormatosEnvasadosCbo", False, dtb)
 
 
         SetValores(m_DBO_MaterialesEnvasados2.MaterialEnvasadoID)
@@ -45,7 +45,7 @@ Public Class frmEntMaterialesEnvasados2
     End Sub
 
     Private Shadows Sub SetValores(ByVal m_ID As Integer)
-        If m_ID > 0 Then m_DBO_MaterialesEnvasados2 = spMaterialesEnvasados2.Select_Record(m_ID)
+        If m_ID > 0 Then m_DBO_MaterialesEnvasados2 = spMaterialesEnvasados2.Select_Record(m_ID, dtb)
 
         txtMaterialEnvasadoID.Text = m_DBO_MaterialesEnvasados2.MaterialEnvasadoID
         txtObservaciones.Text = If(m_DBO_MaterialesEnvasados2.Observaciones_IsDBNull = True, "", m_DBO_MaterialesEnvasados2.Observaciones)
@@ -58,9 +58,9 @@ Public Class frmEntMaterialesEnvasados2
             'Dim m_aux As DBO_FormatosEnvasados2 = DBO_FormatosEnvasados2.Instance
             cboFormatoEnvasadoID.SelectedValue = Me.FormatoId
 
-            dtpHoraFin.Value = DateTime.Now.Date.Add(spFormatosEnvasados2.GetUltimaHoraFinPaletProducido(Me.FormatoId))
+            dtpHoraFin.Value = DateTime.Now.Date.Add(spFormatosEnvasados2.GetUltimaHoraFinPaletProducido(Me.FormatoId, dtb))
             'dtpHoraInicio.Value = dtpHoraFin.Value.AddMinutes(-15)
-            dtpHoraInicio.Value = DateTime.Now.Date.Add(spFormatosEnvasados2.GetPrimeraHoraInicioPaletProducido(Me.FormatoId))
+            dtpHoraInicio.Value = DateTime.Now.Date.Add(spFormatosEnvasados2.GetPrimeraHoraInicioPaletProducido(Me.FormatoId, dtb))
 
             'If dtpHoraFin.Value.Day <> Now().Date.Day Then
             '    dtpHoraFin.Value = New DateTime(Now().Date.Year, Now().Date.Month, Now().Date.Day, 0, 0, 0)
@@ -137,7 +137,7 @@ Public Class frmEntMaterialesEnvasados2
 
     Overrides Sub Guardar()
         If GetValores() Then
-            If spMaterialesEnvasados2.GrabarMaterialesEnvasados2(m_DBO_MaterialesEnvasados2) Then
+            If spMaterialesEnvasados2.GrabarMaterialesEnvasados2(m_DBO_MaterialesEnvasados2, dtb) Then
                 Me.Close()
             End If
         End If
@@ -159,8 +159,8 @@ Public Class frmEntMaterialesEnvasados2
         Me.Cursor = Cursors.WaitCursor
         Try
             Dim spAux As New spProveedores
-            spAux.cargar_Proveedores_Por_Tipo_Material(Me.cboProveedorID, Me.cboTipoMaterialID.SelectedValue)
-            Me.cboProveedorID.SelectedValue = spMaterialesEnvasados2.selectProveedorMasUsado(Me.cboTipoMaterialID.SelectedValue, Me.linea)
+            spAux.cargar_Proveedores_Por_Tipo_Material(Me.cboProveedorID, Me.cboTipoMaterialID.SelectedValue, dtb)
+            Me.cboProveedorID.SelectedValue = spMaterialesEnvasados2.selectProveedorMasUsado(Me.cboTipoMaterialID.SelectedValue, Me.linea, dtb)
         Catch ex As Exception
         Finally
             Me.Cursor = Cursors.Default

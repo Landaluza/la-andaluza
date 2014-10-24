@@ -1,6 +1,14 @@
 ﻿Imports BasesParaCompatibilidad.ComboBoxExtension
 Public Class frmSelectorAsistente
+    Private dtb As BasesParaCompatibilidad.DataBase
 
+    Public Sub New()
+
+        ' Llamada necesaria para el diseñador.
+        InitializeComponent()
+
+        dtb = New BasesParaCompatibilidad.DataBase
+    End Sub
     Private Sub btnCancelar_Click(sender As System.Object, e As System.EventArgs) Handles btnCancelar.Click
         Me.Close()
     End Sub
@@ -121,7 +129,7 @@ Public Class frmSelectorAsistente
     End Sub
 
     Private Sub frmSelectorAsistente_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        Me.cboArticulo.mam_DataSource("Articulos1_ArticulosTiposCbo", False)
+        Me.cboArticulo.mam_DataSource("Articulos1_ArticulosTiposCbo", False, dtb)
     End Sub
 
     Private Sub frmSelectorAsistente_KeyDown(sender As System.Object, e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown

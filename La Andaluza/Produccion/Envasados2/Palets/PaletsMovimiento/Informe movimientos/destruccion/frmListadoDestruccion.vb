@@ -1,10 +1,11 @@
 ﻿Imports BasesParaCompatibilidad.dtpExtension
 Public Class frmListadoDestruccion
     Private sp As spListadoDestruccion
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New()
 
         InitializeComponent()
-
+        dtb = New BasesParaCompatibilidad.DataBase
         sp = New spListadoDestruccion
         tpfFinal.activarFoco()
         tpfFinal.activarFoco()
@@ -16,7 +17,7 @@ Public Class frmListadoDestruccion
         Try
             Me.sp.articulo = Me.cboArticulo.SelectedValue
             Me.cbArticulo.Checked = True
-            sp.dgvFill(Me.dgvListado)
+            sp.dgvFill(Me.dgvListado, dtb)
         Catch ex As Exception
         End Try
     End Sub
@@ -26,7 +27,7 @@ Public Class frmListadoDestruccion
         Try
             Me.sp.tipo_movimiento = Me.cboMovimiento.SelectedValue
             Me.cbMovimiento.Checked = True
-            sp.dgvFill(Me.dgvListado)
+            sp.dgvFill(Me.dgvListado, dtb)
         Catch ex As Exception
 
         End Try
@@ -35,8 +36,8 @@ Public Class frmListadoDestruccion
 
 
     Private Sub frmListadoDestruccion_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        Me.sp.cargar_cbo_articulos(Me.cboArticulo)
-        Me.sp.cargar_cbo_tiposMovimientos(Me.cboMovimiento)
+        Me.sp.cargar_cbo_articulos(Me.cboArticulo, dtb)
+        Me.sp.cargar_cbo_tiposMovimientos(Me.cboMovimiento, dtb)
     End Sub
 
 
@@ -58,7 +59,7 @@ Public Class frmListadoDestruccion
             Me.sp.fecha_inicial = Me.tpfInicial.Value
         End If
 
-        sp.dgvFill(Me.dgvListado)
+        sp.dgvFill(Me.dgvListado, dtb)
     End Sub
 
     Private Sub cbfFinal_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles cbfFinal.CheckedChanged
@@ -68,7 +69,7 @@ Public Class frmListadoDestruccion
             Me.sp.fecha_final = Me.tpfFinal.Value
         End If
 
-        sp.dgvFill(Me.dgvListado)
+        sp.dgvFill(Me.dgvListado, dtb)
     End Sub
 
     Private Sub cbArticulo_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles cbArticulo.CheckedChanged
@@ -79,7 +80,7 @@ Public Class frmListadoDestruccion
         End If
 
         Try
-            sp.dgvFill(Me.dgvListado)
+            sp.dgvFill(Me.dgvListado, dtb)
         Catch ex As Exception
 
         End Try
@@ -93,7 +94,7 @@ Public Class frmListadoDestruccion
         End If
 
         Try
-            sp.dgvFill(Me.dgvListado)
+            sp.dgvFill(Me.dgvListado, dtb)
         Catch ex As Exception
 
         End Try

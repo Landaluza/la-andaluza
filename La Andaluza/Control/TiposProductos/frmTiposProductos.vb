@@ -20,7 +20,7 @@ Public Class frmTiposProductos
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboTiposProductos = CType(sp, spTiposProductos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, BasesParaCompatibilidad.BD.transaction)
+        dboTiposProductos = CType(sp, spTiposProductos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboTiposProductos Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboTiposProductos)
         Else

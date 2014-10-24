@@ -2,13 +2,15 @@
     Private ctlDep As ctlDepositos
     Private OldLib As OldLib
     Private loteID As Integer
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New(ByVal loteid As Integer, ByVal depositoid As String)
         InitializeComponent()
 
+        dtb = New BasesParaCompatibilidad.DataBase()
         Me.loteID = loteid
         ctlDep = New ctlDepositos
         OldLib = New OldLib
-        Dim tabdep As DataTable = ctlDep.devolverDepositosporCodigo()
+        Dim tabdep As DataTable = ctlDep.devolverDepositosporCodigo(dtb)
         cboDeposito.DataSource = OldLib.HacerTablasNoObligatorias(tabdep)
         cboDeposito.ValueMember = "ID"
         cboDeposito.DisplayMember = "Display"
@@ -28,7 +30,6 @@
     End Sub
 
     Private Function guardar() As Boolean
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
         Dim dep As String
         If chbSinDeposito.Checked Then
             dep = "null"

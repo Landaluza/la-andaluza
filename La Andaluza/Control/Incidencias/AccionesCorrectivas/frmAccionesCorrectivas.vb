@@ -23,7 +23,7 @@ Public Class frmAccionesCorrectivas
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboAccionesCorrectivas = CType(sp, spAccionesCorrectivas).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboAccionesCorrectivas = CType(sp, spAccionesCorrectivas).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboAccionesCorrectivas Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboAccionesCorrectivas)
         Else

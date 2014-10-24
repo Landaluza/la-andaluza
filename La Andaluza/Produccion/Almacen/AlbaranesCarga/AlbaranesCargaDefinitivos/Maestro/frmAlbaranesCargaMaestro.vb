@@ -139,7 +139,7 @@ Public Class frmAlbaranesCargaMaestro
             response = MessageBox.Show(" Realmente desea eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If response = DialogResult.Yes Then
                 ctlAlb.SetAlbaranCargaMaestroID(dgvGeneral.CurrentRow.Cells(0).Value)
-                ctlAlb.EliminarAlbaranCargaMaestro()
+                ctlAlb.EliminarAlbaranCargaMaestro(dtb)
                 dgvFill()
             End If
         Else

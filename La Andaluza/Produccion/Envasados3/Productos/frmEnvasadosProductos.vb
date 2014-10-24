@@ -25,7 +25,7 @@ Public Class frmEnvasadosProductos
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboEnvasadosProductos = CType(sp, spEnvasadosProductos).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer))
+        dboEnvasadosProductos = CType(sp, spEnvasadosProductos).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
         If Not dboEnvasadosProductos Is Nothing Then
             MyBase.newRegForm = CType(New frmEntEnvasadosProductos(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, sp), BasesParaCompatibilidad.DetailedSimpleForm)
             AddHandler newRegForm.afterSave, AddressOf dgvFill

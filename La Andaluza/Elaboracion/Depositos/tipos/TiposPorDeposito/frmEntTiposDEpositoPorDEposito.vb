@@ -18,7 +18,7 @@ Public Class frmEntTiposDEpositoPorDEposito
 
     Private Sub frmEntDepositos_TiposDepositos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s1 As New spTiposDepositos
-        s1.cargar_TiposDepositos(Me.cboTipoDeposito)
+        s1.cargar_TiposDepositos(Me.cboTipoDeposito, dtb)
         If (Me.mododeapertura = VISION) Then
 
             Me.cboTipoDeposito.enabled = False
@@ -56,8 +56,8 @@ Public Class frmEntTiposDEpositoPorDEposito
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
 
@@ -66,7 +66,7 @@ Public Class frmEntTiposDEpositoPorDEposito
         Dim frmEnt As New frmEntTiposDepositos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spTiposDepositos, DBO_TiposDepositos)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTiposDepositos
-        s.cargar_TiposDepositos(Me.cboTipoDeposito)
+        s.cargar_TiposDepositos(Me.cboTipoDeposito, dtb)
     End Sub
 
     Private Sub frmEntDepositos_TiposDepositos_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown

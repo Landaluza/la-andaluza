@@ -36,7 +36,7 @@ Public Class frmEntTareas
 
     Overrides Sub Guardar()
         GetValores()
-        spTareas.GrabarTareas(m_DBO_Tarea)
+        spTareas.GrabarTareas(m_DBO_Tarea, dtb)
         Me.Close()
     End Sub
 

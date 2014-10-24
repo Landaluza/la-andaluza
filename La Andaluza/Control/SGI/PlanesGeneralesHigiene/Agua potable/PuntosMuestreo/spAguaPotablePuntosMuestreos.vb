@@ -13,23 +13,23 @@ Inherits BasesParaCompatibilidad.StoredProcedure
                      "[dbo].[AguaPotablePuntosMuestreosSelectDgvBy]")
    End Sub
 
-   Public Overloads Function Select_Record(ByVal PuntoMuestreoID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As DBO_AguaPotablePuntosMuestreos
-       Dim dbo As New DBO_AguaPotablePuntosMuestreos
-       dbo.searchKey = dbo.item("PuntoMuestreoID")
-       dbo.searchKey.value = PuntoMuestreoID
-       MyBase.Select_Record(dbo, trans)
-       Return dbo
-   End Function
+    Public Overloads Function Select_Record(ByVal PuntoMuestreoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_AguaPotablePuntosMuestreos
+        Dim dbo As New DBO_AguaPotablePuntosMuestreos
+        dbo.searchKey = dbo.item("PuntoMuestreoID")
+        dbo.searchKey.value = PuntoMuestreoID
+        MyBase.Select_Record(dbo, dtb)
+        Return dbo
+    End Function
 
-   Public Overrides Function Delete(ByVal PuntoMuestreoID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As Boolean
-       Dim dbo As New DBO_AguaPotablePuntosMuestreos
-       dbo.searchKey = dbo.item("PuntoMuestreoID")
-       dbo.searchKey.value = PuntoMuestreoID
-       return MyBase.DeleteProcedure(dbo,  trans)
-   End Function
+    Public Overrides Function Delete(ByVal PuntoMuestreoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        Dim dbo As New DBO_AguaPotablePuntosMuestreos
+        dbo.searchKey = dbo.item("PuntoMuestreoID")
+        dbo.searchKey.value = PuntoMuestreoID
+        Return MyBase.DeleteProcedure(dbo, dtb)
+    End Function
 
-    Sub cargar_ComboBox(ByRef comboBox As ComboBox)
-        comboBox.mam_DataSource("AguaPotableAnaliticasCloro_AguaPotablePuntosMuestreosCbo", False)
+    Sub cargar_ComboBox(ByRef comboBox As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        comboBox.mam_DataSource("AguaPotableAnaliticasCloro_AguaPotablePuntosMuestreosCbo", False, dtb)
     End Sub
 
 End Class

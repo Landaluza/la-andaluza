@@ -12,19 +12,19 @@ Inherits BasesParaCompatibilidad.StoredProcedure
                      "[dbo].[AguaPotableAnaliticasCloroSelectDgvBy]")
    End Sub
 
-   Public Overloads Function Select_Record(ByVal AnaliticaCloroID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As DBO_AguaPotableAnaliticasCloro
-       Dim dbo As New DBO_AguaPotableAnaliticasCloro
-       dbo.searchKey = dbo.item("AnaliticaCloroID")
-       dbo.searchKey.value = AnaliticaCloroID
-       MyBase.Select_Record(dbo, trans)
-       Return dbo
-   End Function
+    Public Overloads Function Select_Record(ByVal AnaliticaCloroID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_AguaPotableAnaliticasCloro
+        Dim dbo As New DBO_AguaPotableAnaliticasCloro
+        dbo.searchKey = dbo.item("AnaliticaCloroID")
+        dbo.searchKey.value = AnaliticaCloroID
+        MyBase.Select_Record(dbo, dtb)
+        Return dbo
+    End Function
 
-   Public Overrides Function Delete(ByVal AnaliticaCloroID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As Boolean
-       Dim dbo As New DBO_AguaPotableAnaliticasCloro
-       dbo.searchKey = dbo.item("AnaliticaCloroID")
-       dbo.searchKey.value = AnaliticaCloroID
-       return MyBase.DeleteProcedure(dbo,  trans)
-   End Function
+    Public Overrides Function Delete(ByVal AnaliticaCloroID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        Dim dbo As New DBO_AguaPotableAnaliticasCloro
+        dbo.searchKey = dbo.item("AnaliticaCloroID")
+        dbo.searchKey.value = AnaliticaCloroID
+        Return MyBase.DeleteProcedure(dbo, dtb)
+    End Function
 
 End Class

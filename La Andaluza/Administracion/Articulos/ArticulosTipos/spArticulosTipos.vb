@@ -13,23 +13,23 @@ Public Class spArticulosTipos
                       "[dbo].[ArticulosTiposSelectDgvBy]")
     End Sub
 
-    Public Overloads Function Select_Record(ByVal ArticuloTipoID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As DBO_ArticulosTipos
+    Public Overloads Function Select_Record(ByVal ArticuloTipoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_ArticulosTipos
         Dim dbo As New DBO_ArticulosTipos
         dbo.searchKey = dbo.item("ArticuloTipoID")
         dbo.searchKey.value = ArticuloTipoID
-        MyBase.Select_Record(dbo, trans)
+        MyBase.Select_Record(dbo, dtb)
         Return dbo
     End Function
 
-    Public Overrides Function Delete(ByVal ArticuloTipoID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction = Nothing) As Boolean
+    Public Overrides Function Delete(ByVal ArticuloTipoID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Dim dbo As New DBO_ArticulosTipos
         dbo.searchKey = dbo.item("ArticuloTipoID")
         dbo.searchKey.value = ArticuloTipoID
-        Return MyBase.DeleteProcedure(dbo, trans)
+        Return MyBase.DeleteProcedure(dbo, dtb)
     End Function
 
-   Public Sub cargar_ArticulosTipos(ByRef cbo As ComboBox)
-       cbo.mam_DataSource("ArticulosTiposCbo", False)
-   End Sub
+    Public Sub cargar_ArticulosTipos(ByRef cbo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        cbo.mam_DataSource("ArticulosTiposCbo", False, dtb)
+    End Sub
 
 End Class

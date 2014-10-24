@@ -22,7 +22,7 @@ Public Class frmPaises
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboPaises = CType(sp, spPaises).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboPaises = CType(sp, spPaises).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboPaises Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboPaises)
         Else

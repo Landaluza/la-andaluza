@@ -1,107 +1,92 @@
 ﻿
 
 Public Class spAlbaranesCarga
-    Public Function spDeleteAlbaranCargaSeguridadAllPedido(ByVal pedido As Integer) As Boolean
-        Return spDeleteAlbaranCargaSeguridadAll(pedido, Nothing)
+    Public Function spDeleteAlbaranCargaSeguridadAllPedido(ByVal pedido As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        Return spDeleteAlbaranCargaSeguridadAll(pedido, Nothing, dtb)
     End Function
 
-    Public Function spDeleteAlbaranCargaSeguridadAllOrdenCarga(ByVal OrdenCarga As Integer) As Boolean
-        Return spDeleteAlbaranCargaSeguridadAll(Nothing, OrdenCarga)
+    Public Function spDeleteAlbaranCargaSeguridadAllOrdenCarga(ByVal OrdenCarga As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        Return spDeleteAlbaranCargaSeguridadAll(Nothing, OrdenCarga, dtb)
     End Function
 
-    Public Sub spDeleteAlbaranCargaSeguridad(ByVal ValorSCC As Integer)
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Sub spDeleteAlbaranCargaSeguridad(ByVal ValorSCC As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        dtb.Conectar()
         Try
-            Dim cmd as new System.Data.SqlClient.SqlCommand
-            cmd.CommandType = CommandType.StoredProcedure
-            cmd.Connection = BasesParaCompatibilidad.BD.Cnx
-            cmd.CommandText = "DeleteAlbaranCargaSeguridad"
+            Dim cmd As System.Data.SqlClient.SqlCommand = dtb.Comando("DeleteAlbaranCargaSeguridad")
 
             cmd.Parameters.AddWithValue("@SCC", ValorSCC)
             cmd.ExecuteNonQuery()
         Catch ex As Exception
-            messagebox.show("Error en BD.spDeleteAlbaranCargaSeguridad" & Environment.NewLine & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error en BD.spDeleteAlbaranCargaSeguridad" & Environment.NewLine & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
-        BasesParaCompatibilidad.BD.Cerrar()
+        dtb.Desconectar()
     End Sub
 
-    Public Function spDeleteAlbaranCargaDetalle(ByVal ValorSCC As Integer) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function spDeleteAlbaranCargaDetalle(ByVal ValorSCC As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
         Try
-            Dim cmd as new System.Data.SqlClient.SqlCommand
-            cmd.CommandType = CommandType.StoredProcedure
-            cmd.Connection = BasesParaCompatibilidad.BD.Cnx
-            cmd.CommandText = "DeleteAlbaranCargaDetalle"
+            Dim cmd As System.Data.SqlClient.SqlCommand = dtb.Comando("DeleteAlbaranCargaDetalle")
 
             cmd.Parameters.AddWithValue("@SCC", ValorSCC)
             cmd.ExecuteNonQuery()
             Return True
         Catch ex As Exception
-            messagebox.show("Error en BD.DeleteAlbaranCargaDetalle" & Environment.NewLine & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error en BD.DeleteAlbaranCargaDetalle" & Environment.NewLine & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         Finally
-            BasesParaCompatibilidad.BD.Cerrar()
+            dtb.Desconectar()
         End Try
 
     End Function
 
-    Public Function devolverPalet(ByVal ValorSCC As Integer) As Boolean
-        BasesParaCompatibilidad.BD.Conectar()
+    Public Function devolverPalet(ByVal ValorSCC As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
         Try
-            Dim cmd as new System.Data.SqlClient.SqlCommand
-            cmd.CommandType = CommandType.StoredProcedure
-            cmd.Connection = BasesParaCompatibilidad.BD.Cnx
-            cmd.CommandText = "DeleteAlbaranCargaDevolverPalet"
+            Dim cmd As System.Data.SqlClient.SqlCommand = dtb.Comando("DeleteAlbaranCargaDevolverPalet")
 
             cmd.Parameters.AddWithValue("@SCC", ValorSCC)
             cmd.ExecuteNonQuery()
             Return True
         Catch ex As Exception
-            messagebox.show("Error en BD.DeleteAlbaranCargaDevolverPalet" & Environment.NewLine & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error en BD.DeleteAlbaranCargaDevolverPalet" & Environment.NewLine & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         Finally
-            BasesParaCompatibilidad.BD.Cerrar()
+            dtb.Desconectar()
         End Try
 
     End Function
 
-    Private Function spDeleteAlbaranCargaSeguridadAll(ByVal pedido As Integer, ByVal ordenCarga As Integer) As Boolean
+    Private Function spDeleteAlbaranCargaSeguridadAll(ByVal pedido As Integer, ByVal ordenCarga As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         If ordenCarga = Nothing Then
-            If BasesParaCompatibilidad.BD.transaction Is Nothing Then BasesParaCompatibilidad.BD.Conectar()
+            dtb.Conectar()
             Try
-                Dim cmd as new System.Data.SqlClient.SqlCommand
-                cmd.CommandType = CommandType.StoredProcedure
-                cmd.Connection = BasesParaCompatibilidad.BD.Cnx
-                cmd.CommandText = "DeleteAlbaranCargaSeguridadAllPedido"
-                If Not BasesParaCompatibilidad.BD.transaction Is Nothing Then cmd.Transaction = BasesParaCompatibilidad.BD.transaction
+                Dim cmd As System.Data.SqlClient.SqlCommand = dtb.Comando("DeleteAlbaranCargaSeguridadAllPedido")
+
                 cmd.Parameters.AddWithValue("@pedido", pedido)
 
                 cmd.ExecuteNonQuery()
                 Return True
             Catch ex As Exception
-                messagebox.show("Error en BD.spDeleteAlbaranCargaSeguridadAllPedido" & Environment.NewLine & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("Error en BD.spDeleteAlbaranCargaSeguridadAllPedido" & Environment.NewLine & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Return False
             Finally
-                If BasesParaCompatibilidad.BD.transaction Is Nothing Then BasesParaCompatibilidad.BD.Cerrar()
+                dtb.Desconectar()
             End Try
         Else
-            If BasesParaCompatibilidad.BD.transaction Is Nothing Then BasesParaCompatibilidad.BD.Conectar()
+            dtb.Conectar()
             Try
-                Dim cmd as new System.Data.SqlClient.SqlCommand
-                cmd.CommandType = CommandType.StoredProcedure
-                cmd.Connection = BasesParaCompatibilidad.BD.Cnx
-                cmd.CommandText = "DeleteAlbaranCargaSeguridadAllOC"
-                If Not BasesParaCompatibilidad.BD.transaction Is Nothing Then cmd.Transaction = BasesParaCompatibilidad.BD.transaction
+                Dim cmd As System.Data.SqlClient.SqlCommand = dtb.Comando("DeleteAlbaranCargaSeguridadAllOC")
+
                 cmd.Parameters.AddWithValue("@orden", pedido)
 
                 cmd.ExecuteNonQuery()
                 Return True
             Catch ex As Exception
-                messagebox.show("Error en BD.spDeleteAlbaranCargaSeguridadAllOC" & Environment.NewLine & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("Error en BD.spDeleteAlbaranCargaSeguridadAllOC" & Environment.NewLine & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Return False
             Finally
-                If BasesParaCompatibilidad.BD.transaction Is Nothing Then BasesParaCompatibilidad.BD.Cerrar()
+                dtb.Desconectar()
             End Try
         End If
     End Function
@@ -123,15 +108,12 @@ Public Class spAlbaranesCarga
                                            ByVal pedido As Integer, _
                                            ByVal ordenCarga As Integer, _
                                            ByVal loteAlternativo As String,
-                                           ByVal sinpalet As Boolean)
+                                           ByVal sinpalet As Boolean, ByRef dtb As BasesParaCompatibilidad.DataBase)
 
-        BasesParaCompatibilidad.BD.Conectar()
+        dtb.Conectar()
         Try
-            Dim cmd as new System.Data.SqlClient.SqlCommand
-            cmd.CommandType = CommandType.StoredProcedure
-            cmd.Connection = BasesParaCompatibilidad.BD.Cnx
-            cmd.CommandText = "InsertAlbaranCargaSeguridad4"
-            cmd.Parameters.AddWithValue("@pedido", if(pedido = 0, Convert.DBNull, pedido))
+            Dim cmd As System.Data.SqlClient.SqlCommand = dtb.Comando("InsertAlbaranCargaSeguridad4")
+            cmd.Parameters.AddWithValue("@pedido", If(pedido = 0, Convert.DBNull, pedido))
             cmd.Parameters.AddWithValue("@ordenCarga", ordenCarga)
             cmd.Parameters.AddWithValue("@SCC", ValorSCC)
             cmd.Parameters.AddWithValue("@CodigoQS", ValorCodigoQS)
@@ -152,27 +134,27 @@ Public Class spAlbaranesCarga
 
             cmd.ExecuteNonQuery()
         Catch ex As Exception
-            messagebox.show("Error en BD.spInsertAlbaranCargaSeguridad" & Environment.NewLine & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error en BD.spInsertAlbaranCargaSeguridad" & Environment.NewLine & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
-        BasesParaCompatibilidad.BD.Cerrar()
+        dtb.Desconectar()
     End Sub
 
-    Public Function spMaxAlbaranCargaProMaestro() As Integer
-        Dim MaxID As Integer = 0
-        Try
-            If BasesParaCompatibilidad.BD.transaction Is Nothing Then BasesParaCompatibilidad.BD.Conectar()
-            Dim cmd as new System.Data.SqlClient.SqlCommand
-            cmd.CommandType = CommandType.StoredProcedure
-            cmd.Connection = BasesParaCompatibilidad.BD.Cnx
-            cmd.CommandText = "MaxAlbaranCargaProMaestro"
-            If Not BasesParaCompatibilidad.BD.transaction Is Nothing Then cmd.Transaction = BasesParaCompatibilidad.BD.transaction
+    'Public Function spMaxAlbaranCargaProMaestro() As Integer
+    '    Dim MaxID As Integer = 0
+    '    Try
+    '        dtb.Conectar()
+    '        Dim cmd As New System.Data.SqlClient.SqlCommand
+    '        cmd.CommandType = CommandType.StoredProcedure
+    '        cmd.Connection = BasesParaCompatibilidad.BD.Cnx
+    '        cmd.CommandText = "MaxAlbaranCargaProMaestro"
+    '        If Not BasesParaCompatibilidad.BD.transaction Is Nothing Then cmd.Transaction = BasesParaCompatibilidad.BD.transaction
 
-            MaxID = (cmd.ExecuteScalar())
-            If BasesParaCompatibilidad.BD.transaction Is Nothing Then BasesParaCompatibilidad.BD.Cerrar()
-            Return MaxID
-        Catch ex As Exception
-            messagebox.show("Error en BD.spMaxAlbaranCargaProMaestroID" & Environment.NewLine & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return Nothing
-        End Try
-    End Function
+    '        MaxID = (cmd.ExecuteScalar())
+    '        dtb.Desconectar()
+    '        Return MaxID
+    '    Catch ex As Exception
+    '        messagebox.show("Error en BD.spMaxAlbaranCargaProMaestroID" & Environment.NewLine & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+    '        Return Nothing
+    '    End Try
+    'End Function
 End Class

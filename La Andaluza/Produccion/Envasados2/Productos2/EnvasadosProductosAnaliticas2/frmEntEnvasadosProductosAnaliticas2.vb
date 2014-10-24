@@ -17,9 +17,9 @@ Public Class frmEntEnvasadosProductosAnaliticas2
     End Sub
 
     Private Sub frmEntEnvasadosProductosAnaliticas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Me.cboParametroID.mam_DataSource("ListaParametrosEnvasadosCbo", False)
+        Me.cboParametroID.mam_DataSource("ListaParametrosEnvasadosCbo", False, dtb)
 
-        Me.cboAnalistaID.mam_DataSource("EmpleadosAnalistasSelectCbo", False)
+        Me.cboAnalistaID.mam_DataSource("EmpleadosAnalistasSelectCbo", False, dtb)
 
 
         SetValores(m_DBO_EnvasadosProductosAnalitica.EnvasadoProductoAnaliticaID, False)
@@ -91,7 +91,7 @@ Public Class frmEntEnvasadosProductosAnaliticas2
 
     Overrides Sub Guardar()
         If GetValores() Then
-            If spEnvasadosProductosAnaliticas2.GrabarEnvasadosProductosAnaliticas(m_DBO_EnvasadosProductosAnalitica) Then
+            If spEnvasadosProductosAnaliticas2.GrabarEnvasadosProductosAnaliticas(m_DBO_EnvasadosProductosAnalitica, dtb) Then
                 Me.Close()
             End If
         End If

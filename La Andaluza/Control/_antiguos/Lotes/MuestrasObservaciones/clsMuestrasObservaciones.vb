@@ -40,8 +40,11 @@ Public Class clsMuestrasObservaciones
 #Region "Propiedades"
 
 
-    Public Function existe() As Boolean
-        Return Deprecated.ConsultaVer("Count(*)", "MuestrasObservaciones", "AnaliticaID = " & Convert.ToString(AnaliticaID) & " and ObservacionID = " & Convert.ToString(ObservacionID)).Rows(0).Item(0) > 0
+    Public Function existe(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.PrepararConsulta("select Count(*) from MuestrasObservaciones where AnaliticaID = @ana and ObservacionID = @obs")
+        dtb.AñadirParametroConsulta("@ana", AnaliticaID)
+        dtb.AñadirParametroConsulta("@obs", ObservacionID)
+        Return dtb.Consultar().Rows(0).Item(0) > 0
     End Function
 
     Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean

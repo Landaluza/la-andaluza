@@ -21,7 +21,7 @@ Public Class frmEntArticulos_ArticulosCertificadosTipos
 
    Overrides Sub SetValores(ByVal m_ID As Integer, ByVal m_SelectRecord As Boolean)
        
-       If m_SelectRecord Then m_DBO_Articulos_ArticulosCertificadosTipo = spArticulos_ArticulosCertificadosTipos.Select_Record(m_ID)
+        If m_SelectRecord Then m_DBO_Articulos_ArticulosCertificadosTipo = spArticulos_ArticulosCertificadosTipos.Select_Record(m_ID, dtb)
        If m_ID > 0 Then
            txtArticulo_ArticuloCertificadoTipoID.Text = m_DBO_Articulos_ArticulosCertificadosTipo.Articulo_ArticuloCertificadoTipoID
             txtArticuloID.Text = If(m_DBO_Articulos_ArticulosCertificadosTipo.ArticuloID.HasValue, m_DBO_Articulos_ArticulosCertificadosTipo.ArticuloID, Convert.DBNull)
@@ -38,7 +38,7 @@ Public Class frmEntArticulos_ArticulosCertificadosTipos
 
    Overrides Sub Guardar()
        GetValores()
-        spArticulos_ArticulosCertificadosTipos.GrabarArticulos_ArticulosCertificadosTipos(m_DBO_Articulos_ArticulosCertificadosTipo)
+        spArticulos_ArticulosCertificadosTipos.GrabarArticulos_ArticulosCertificadosTipos(m_DBO_Articulos_ArticulosCertificadosTipo, dtb)
        Me.Close()
    End Sub
 

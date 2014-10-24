@@ -55,29 +55,29 @@ Public Class frmEntPaletsProducidos
 
     Private Sub frmEntPaletsProducidos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         If Me.ModoDeApertura = INSERCION Then
-            BasesParaCompatibilidad.BD.EmpezarTransaccion()
+            dtb.EmpezarTransaccion()
             Try
                 Me.m_DBO_PaletsProducidos = dbo
                 GetValores()
-                If sp.Grabar(dbo, BasesParaCompatibilidad.BD.transaction) Then
+                If sp.Grabar(dbo, dtb) Then
                     evitarCerrarSinGuardar = False
                     RaiseEvent afterSave(Me, Nothing)
 
                     Dim spPaletsProducidos As New spPaletsProducidos
-                    Me.m_DBO_PaletsProducidos.ID = spPaletsProducidos.devolver_ultimo_palet(BasesParaCompatibilidad.BD.transaction, BasesParaCompatibilidad.BD.Cnx)
-                    Me.dbo = spPaletsProducidos.Select_Record(Me.m_DBO_PaletsProducidos.ID, BasesParaCompatibilidad.BD.transaction)
+                    Me.m_DBO_PaletsProducidos.ID = spPaletsProducidos.devolver_ultimo_palet(dtb)
+                    Me.dbo = spPaletsProducidos.Select_Record(Me.m_DBO_PaletsProducidos.ID, dtb)
 
-                    BasesParaCompatibilidad.BD.TerminarTransaccion()
+                    dtb.TerminarTransaccion()
                     Me.ModoDeApertura = MODIFICACION
                     SetValores()
 
                 Else
                     Me.m_DBO_PaletsProducidos.ID = 0
-                    BasesParaCompatibilidad.BD.CancelarTransaccion()
+                    dtb.CancelarTransaccion()
                 End If
             Catch ex As Exception
                 Me.m_DBO_PaletsProducidos.ID = 0
-                BasesParaCompatibilidad.BD.CancelarTransaccion()
+                dtb.CancelarTransaccion()
             End Try
         End If
 
@@ -86,7 +86,7 @@ Public Class frmEntPaletsProducidos
         Engine_LA.FormEnPestaña(Me.frmPaletsContenidos, Me.Panel2)
 
         Dim spTipoFormato As New spFormatosArticulos
-        Me.Text = Me.Text & "palet " & Me.m_DBO_PaletsProducidos.SCC & ", " & spTipoFormato.Select_Record(Me.mTipoFormatoEnvasadoID).Descripcion
+        Me.Text = Me.Text & "palet " & Me.m_DBO_PaletsProducidos.SCC & ", " & spTipoFormato.Select_Record(Me.mTipoFormatoEnvasadoID, dtb).Descripcion
     End Sub
 
     Overrides Sub SetValores() Implements BasesParaCompatibilidad.Savable.setValores
@@ -126,8 +126,8 @@ Public Class frmEntPaletsProducidos
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
-        MyBase.Guardar(trans)        
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub frmEntPaletsProducidos_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
@@ -154,7 +154,7 @@ Public Class frmEntPaletsProducidos
             Else
                 If Me.txtObservacionesPalets.Text = "" Then Me.txtObservacionesPalets.Text = "Generado sin contenidos por usuario " & Config.UserName
                 GetValores()
-                sp.Grabar(dbo)
+                sp.Grabar(dbo, dtb)
                 Return True
             End If
         Else
@@ -170,7 +170,7 @@ Public Class frmEntPaletsProducidos
         Me.chbTerminado.Checked = True
         If Me.GetValores Then
             Try
-                If sp.Grabar(dbo) Then
+                If sp.Grabar(dbo, dtb) Then
                     evitarCerrarSinGuardar = False
                     RaiseEvent afterSave(Me, Nothing)
                 End If
@@ -196,10 +196,10 @@ Public Class frmEntPaletsProducidos
         If Me.chbTerminado.Checked Then
             Dim spp As spPaletsProducidos = CType(Me.sp, spPaletsProducidos)
 
-            If Not spp.estaEtiquetado(Me.m_DBO_PaletsProducidos.ID) Then
+            If Not spp.estaEtiquetado(Me.m_DBO_PaletsProducidos.ID, dtb) Then
                 If MessageBox.Show("¿Desea imprimir etiqueta?", "Etiqueta palet " & Me.m_DBO_PaletsProducidos.SCC, _
                                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
-                    If spp.Etiquetar(Me.m_DBO_PaletsProducidos.ID) Then
+                    If spp.Etiquetar(Me.m_DBO_PaletsProducidos.ID, dtb) Then
                         'Dim frm As New frmEtiqueta0(Me.m_DBO_PaletProducido.PaletProducidoID, False)
                         'frm.Show()
                     Else

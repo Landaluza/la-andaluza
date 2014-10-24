@@ -12,7 +12,7 @@
         Me.sp_poblaciones = New spPoblaciones
     End Sub
 
-    Public Sub Añadir_poblacion_para_combo(ByRef combo As ComboBox, ByVal id_provincia As Integer)
+    Public Sub Añadir_poblacion_para_combo(ByRef combo As ComboBox, ByVal id_provincia As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase)
         Dim dboPoblacion As New DBO_Poblaciones
         dboPoblacion.Id_provincia = id_provincia
 
@@ -20,7 +20,7 @@
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
 
         Try
-            sp_poblaciones.cargar_ComboBox(combo, id_provincia)
+            sp_poblaciones.cargar_ComboBox(combo, id_provincia, dtb)
         Catch ex As Exception
         End Try
     End Sub

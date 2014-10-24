@@ -37,7 +37,7 @@ Public Class frmPedidosProveedoresDetalles
         response = MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
                           "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If response = DialogResult.Yes Then
-            If CType(sp, spPedidosProveedoresDetalles).DeletePedidosProveedoresDetalles(dgvGeneral.CurrentRow.Cells("PedidoProveedorDetalleID").Value) Then
+            If CType(sp, spPedidosProveedoresDetalles).DeletePedidosProveedoresDetalles(dgvGeneral.CurrentRow.Cells("PedidoProveedorDetalleID").Value, dtb) Then
                 dgvFill()
             End If
             'GeneralBindingSource. dataSource = dtb.Consultar(spSelectDgv)
@@ -52,7 +52,7 @@ Public Class frmPedidosProveedoresDetalles
         If TipoAction = ACCION_INSERTAR Then
             'Asignar las propiedades del objeto creado cuyos valores se obtengan en este Form.
         Else
-            DBO_PedidoProveedorDetalle = CType(sp, spPedidosProveedoresDetalles).Select_Record(GeneralBindingSource(m_Pos).Item("PedidoProveedorDetalleID"))
+            DBO_PedidoProveedorDetalle = CType(sp, spPedidosProveedoresDetalles).Select_Record(GeneralBindingSource(m_Pos).Item("PedidoProveedorDetalleID"), dtb)
         End If
 
         frmEnt = New frmEntPedidosProveedoresDetalles(DBO_PedidoProveedorDetalle, m_Pos)

@@ -4,7 +4,7 @@
         MyBase.New("", "", "", "", "", "")
     End Sub
 
-    Public Function comprobar(ByVal dbo As DBO_Lotes1) As Boolean
+    Public Function comprobar(ByVal dbo As DBO_Lotes1, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         dtb.PrepararConsulta("SELECT count(*) " & _
    "     FROM dbo.Lotes " & _
   "WHERE LoteID = @LoteId " & _

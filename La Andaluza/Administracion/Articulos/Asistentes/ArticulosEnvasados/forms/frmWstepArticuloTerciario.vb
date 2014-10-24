@@ -5,10 +5,11 @@ Public Class frmWstepArticuloTerciario
     Private spArticulosEnvasesTerciarios As spArticulosEnvasesTerciarios
     Private mododeApertura As Integer
     Public Event actualizarExtras()
-
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New()
 
         InitializeComponent()
+        dtb = New BasesParaCompatibilidad.DataBase
         spArticulosEnvasesTerciarios = New spArticulosEnvasesTerciarios
         Me.m_DBO_ArticulosEnvasesTerciarios1 = New DBO_ArticulosEnvasesTerciarios
         Me.mododeApertura = BasesParaCompatibilidad.DetailedSimpleForm.INSERCION
@@ -17,8 +18,9 @@ Public Class frmWstepArticuloTerciario
 
     Public Sub New(ByVal articuloid As Integer)
         InitializeComponent()
+        dtb = New BasesParaCompatibilidad.DataBase
         spArticulosEnvasesTerciarios = New spArticulosEnvasesTerciarios
-        Me.m_DBO_ArticulosEnvasesTerciarios1 = spArticulosEnvasesTerciarios.Select_RecordByArticuloID(articuloid)
+        Me.m_DBO_ArticulosEnvasesTerciarios1 = spArticulosEnvasesTerciarios.Select_RecordByArticuloID(articuloid, dtb)
         establecerValores()
         Me.mododeApertura = BasesParaCompatibilidad.DetailedSimpleForm.MODIFICACION
         Me.panSecundario.Visible = True
@@ -57,26 +59,26 @@ Public Class frmWstepArticuloTerciario
 
         Try
             Dim spPalets As New spPaletsProducidos
-            spPalets.cargar_PaletsProducidosNC_byArticulo(Me.cboSccNC, Me.m_DBO_ArticulosEnvasesTerciarios1.SccEtiquetaID)
+            spPalets.cargar_PaletsProducidosNC_byArticulo(Me.cboSccNC, Me.m_DBO_ArticulosEnvasesTerciarios1.SccEtiquetaID, dtb)
         Catch ex As Exception
         End Try
 
         Try
             Dim spMarca As New spmarcas
-            spMarca.cargar_marcas(Me.cboMarca)
+            spMarca.cargar_marcas(Me.cboMarca, dtb)
         Catch ex As Exception
         End Try
 
         Try
             Dim spPalet As New spPaletsTipos
-            spPalet.cargar_PaletsTipos(cboPalet)
-            Me.cboPalet.mam_DataSource("PaletsTiposCbo", False)
+            spPalet.cargar_PaletsTipos(cboPalet, dtb)
+            Me.cboPalet.mam_DataSource("PaletsTiposCbo", False, dtb)
         Catch ex As Exception
         End Try
 
         Try
             Dim spcabecera As New spcabecerasEtiquetas
-            spcabecera.cargar_cabecerasEtiquetas(Me.cboCabeceraEtiqueta)
+            spcabecera.cargar_cabecerasEtiquetas(Me.cboCabeceraEtiqueta, dtb)
         Catch ex As Exception
         End Try
 
@@ -101,8 +103,8 @@ Public Class frmWstepArticuloTerciario
 
             Try
                 Dim spArticulosEnvasesSecundarios As New spArticulosEnvasesSecundarios
-                Dim m_sec_aux As DBO_ArticulosEnvasesSecundarios = spArticulosEnvasesSecundarios.Select_Record(m_DBO_ArticulosEnvasesTerciarios1.id_ArticuloEnvaseSecundario)
-                Dim m_art_aux As DBO_Articulos1 = spArticulos1.Select_Record(m_sec_aux.ArticuloID)
+                Dim m_sec_aux As DBO_ArticulosEnvasesSecundarios = spArticulosEnvasesSecundarios.Select_Record(m_DBO_ArticulosEnvasesTerciarios1.id_ArticuloEnvaseSecundario, dtb)
+                Dim m_art_aux As DBO_Articulos1 = spArticulos1.Select_Record(m_sec_aux.ArticuloID, dtb)
                 Me.txtSecundario.Text = m_art_aux.DescripcionLA
             Catch ex As Exception
                 Me.txtSecundario.Text = ""
@@ -126,14 +128,13 @@ Public Class frmWstepArticuloTerciario
         '    If Me.mododeApertura = BasesParaCompatibilidad.DetailedSimpleForm.INSERCION Then
         '        If Me.m_DBO_ArticulosEnvasesTerciarios1.ArticuloID Is Nothing Then Me.m_DBO_ArticulosEnvasesTerciarios1.ArticuloID = RealizarConsulta("select max(articuloID) from Articulos1").Rows(0).Item(0)
         '        If Me.m_DBO_ArticulosEnvasesTerciarios1.SccEtiquetaID = 0 Or Me.m_DBO_ArticulosEnvasesTerciarios1.SccEtiquetaID Is Nothing Then
-        '            Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server, BasesParaCompatibilidad.BD.Cnx, BasesParaCompatibilidad.BD.transaction)
         '            Dim spt As New spArticulosEnvasadosHistoricos
         '            Me.m_DBO_ArticulosEnvasesTerciarios1.SccEtiquetaID = spt.seleccionar_ultimo_registro(dtb)
         '        End If
         '        If Me.m_DBO_ArticulosEnvasesTerciarios1.ArticuloEnvaseSecundarioID = Nothing Then Me.m_DBO_ArticulosEnvasesTerciarios1.ArticuloEnvaseSecundarioID = RealizarConsulta("select max(Envasesecundarioid) from articulosenvasesSecundarios").Rows(0).Item(0)
         '    End If
 
-        '    Return GrabarArticulosEnvasesTerciarios1sintransaccion(m_DBO_ArticulosEnvasesTerciarios1, BasesParaCompatibilidad.BD.transaction)
+        '    Return GrabarArticulosEnvasesTerciarios1sintransaccion(m_DBO_ArticulosEnvasesTerciarios1,dtb)
         '    End If
 
         If Me.m_DBO_ArticulosEnvasesTerciarios1.PaletTipoID = Nothing Then
@@ -148,7 +149,7 @@ Public Class frmWstepArticuloTerciario
                 If Me.m_DBO_ArticulosEnvasesTerciarios1.id_ArticuloEnvaseSecundario = Nothing Then Me.m_DBO_ArticulosEnvasesTerciarios1.id_ArticuloEnvaseSecundario = dtb.Consultar("select max(Envasesecundarioid) from articulosenvasesSecundarios", True).Rows(0).Item(0)
             End If
 
-            Return spArticulosEnvasesTerciarios.Grabar(m_DBO_ArticulosEnvasesTerciarios1, BasesParaCompatibilidad.BD.transaction)
+            Return spArticulosEnvasesTerciarios.Grabar(m_DBO_ArticulosEnvasesTerciarios1, dtb)
         End If
     End Function
 
@@ -214,13 +215,13 @@ Public Class frmWstepArticuloTerciario
 
         If Me.panSecundario.Visible Then
             Try
-                Me.m_DBO_ArticulosEnvasesTerciarios1 = spArticulosEnvasesTerciarios.Select_RecordByArticuloID(m_DBO_ArticulosEnvasesTerciarios1.ArticuloID)
+                Me.m_DBO_ArticulosEnvasesTerciarios1 = spArticulosEnvasesTerciarios.Select_RecordByArticuloID(m_DBO_ArticulosEnvasesTerciarios1.ArticuloID, dtb)
                 Dim spArticulosEnvasesSecundarios As New spArticulosEnvasesSecundarios
-                Dim m_sec_aux As DBO_ArticulosEnvasesSecundarios = spArticulosEnvasesSecundarios.Select_Record(m_DBO_ArticulosEnvasesTerciarios1.id_ArticuloEnvaseSecundario)
-                Dim m_art_aux As DBO_Articulos1 = spArticulos1.Select_Record(m_sec_aux.ArticuloID)
+                Dim m_sec_aux As DBO_ArticulosEnvasesSecundarios = spArticulosEnvasesSecundarios.Select_Record(m_DBO_ArticulosEnvasesTerciarios1.id_ArticuloEnvaseSecundario, dtb)
+                Dim m_art_aux As DBO_Articulos1 = spArticulos1.Select_Record(m_sec_aux.ArticuloID, dtb)
                 Me.txtSecundario.Text = m_art_aux.DescripcionLA
                 Dim spPalets As New spPaletsProducidos
-                spPalets.cargar_PaletsProducidosNC_byArticulo(Me.cboSccNC, Me.m_DBO_ArticulosEnvasesTerciarios1.SccEtiquetaID)
+                spPalets.cargar_PaletsProducidosNC_byArticulo(Me.cboSccNC, Me.m_DBO_ArticulosEnvasesTerciarios1.SccEtiquetaID, dtb)
             Catch ex As Exception
                 Me.txtSecundario.Text = ""
                 Me.m_DBO_ArticulosEnvasesTerciarios1.id_ArticuloEnvaseSecundario = 0
@@ -232,14 +233,14 @@ Public Class frmWstepArticuloTerciario
         Dim frm As New frmmarcas
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         Dim sp As New spmarcas
-        sp.cargar_marcas(Me.cboMarca)
+        sp.cargar_marcas(Me.cboMarca, dtb)
     End Sub
 
     Private Sub btnaddMarcas_Click(sender As System.Object, e As System.EventArgs) Handles Button1.Click
         Dim frm As New frmEntmarcas
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         Dim sp As New spmarcas
-        sp.cargar_marcas(Me.cboMarca)
+        sp.cargar_marcas(Me.cboMarca, dtb)
     End Sub
 
     Private Sub btnAdCabecera_Click(sender As System.Object, e As System.EventArgs) Handles butAdCabecera.Click
@@ -247,7 +248,7 @@ Public Class frmWstepArticuloTerciario
         If BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm) = Windows.Forms.DialogResult.OK Then
             Try
                 Dim spcabecera As New spcabecerasEtiquetas
-                spcabecera.cargar_cabecerasEtiquetas(Me.cboCabeceraEtiqueta)
+                spcabecera.cargar_cabecerasEtiquetas(Me.cboCabeceraEtiqueta, dtb)
             Catch ex As Exception
             End Try
         End If

@@ -39,7 +39,7 @@ Public Class frmEntIncidencias_SU
     Overrides Sub SetValores() Implements BasesParaCompatibilidad.Savable.setValores
         Me.m_DBO_Incidencias = dbo
 
-        spTiposIncidencias.cargar_TiposIncidencias(Me.cboTipoIncidencia)
+        spTiposIncidencias.cargar_TiposIncidencias(Me.cboTipoIncidencia, dtb)
         If Me.ModoDeApertura = VISION Then
             Me.cboTipoIncidencia.Enabled = False
             Me.lblTipoIncidenciaID.Enabled = False
@@ -48,11 +48,11 @@ Public Class frmEntIncidencias_SU
         Dim s3 As New spMaquinas
         If Me.m_DBO_Incidencias.FormatoEnvasadoID <> Nothing Then
             Dim sformato As New spFormatosEnvasados
-            Dim linea As Integer = sformato.select_lineaPorformato(Me.m_DBO_Incidencias.FormatoEnvasadoID)
-            s3.cargar_MaquinasporLinea(Me.cboMaquina, linea)
+            Dim linea As Integer = sformato.select_lineaPorformato(Me.m_DBO_Incidencias.FormatoEnvasadoID, dtb)
+            s3.cargar_MaquinasporLinea(Me.cboMaquina, linea, dtb)
             Me.linea = linea
         Else
-            s3.cargar_Maquinas(Me.cboMaquina)
+            s3.cargar_Maquinas(Me.cboMaquina, dtb)
         End If
 
         Dim s2 As New spCategoriaIncidencias
@@ -60,13 +60,13 @@ Public Class frmEntIncidencias_SU
         If Me.ModoDeApertura = MODIFICACION Then
             If Config.UserType = 4 Then
                 Me.cboClase.Enabled = True
-                s2.cargar_CategoriaIncidencias(Me.cboClase)
+                s2.cargar_CategoriaIncidencias(Me.cboClase, dtb)
             Else
                 Me.cboClase.Enabled = False
-                s2.cargar_CategoriaIncidencias_con_retroCompatibilidad(Me.cboClase)
+                s2.cargar_CategoriaIncidencias_con_retroCompatibilidad(Me.cboClase, dtb)
             End If
 
-            Dim mTipo As DBO_TiposIncidencias = Me.spTiposIncidencias.Select_Record(m_DBO_Incidencias.TipoIncidenciaID)
+            Dim mTipo As DBO_TiposIncidencias = Me.spTiposIncidencias.Select_Record(m_DBO_Incidencias.TipoIncidenciaID, dtb)
             Me.cboClase.SelectedValue = mTipo.CategoriaIncidenciaID
 
 
@@ -78,15 +78,14 @@ Public Class frmEntIncidencias_SU
             dtpHoraInicio.Value = DateTime.Now.Date.Add(Me.m_DBO_Incidencias.HoraInicio)
             dtpHoraFin.Value = DateTime.Now.Date.Add(Me.m_DBO_Incidencias.HoraFin)
         Else
-            s2.cargar_CategoriaIncidencias(Me.cboClase)
+            s2.cargar_CategoriaIncidencias(Me.cboClase, dtb)
             Me.cboClase.Enabled = True
 
             If Me.ModoDeApertura = INSERCION Then
-                Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
                 Dim spFormatosEnvasados As New spFormatosEnvasados
                 Dim spEnvasados2 As New spEnvasados2
-                Dim dboFormato As DBO_FormatosEnvasados = spFormatosEnvasados.Select_Record(m_DBO_Incidencias.FormatoEnvasadoID)
-                Dim dboEnvasado As DBO_Envasados3 = spEnvasados2.Select_Record(dboFormato.EnvasadoID, dtb)
+                Dim dboFormato As DBO_FormatosEnvasados = spFormatosEnvasados.Select_Record(m_DBO_Incidencias.FormatoEnvasadoID, dtb)
+                Dim dboEnvasado As DBO_Envasados3 = spEnvasados2.Select_Record(dboFormato.EnvasadoID, dtb, True)
 
                 'dtpHoraInicio.Text = New DateTime(dboEnvasado.Fecha.Year, dboEnvasado.Fecha.Month, dboEnvasado.Fecha.Day)
                 'dtpHoraFin.Text = New DateTime(dboEnvasado.Fecha.Year, dboEnvasado.Fecha.Month, dboEnvasado.Fecha.Day)
@@ -119,7 +118,7 @@ Public Class frmEntIncidencias_SU
         cboTipoIncidencia.SelectedValue = m_DBO_Incidencias.TipoIncidenciaID
 
         Dim spformato As New spFormatosEnvasados
-        Me.linea = spformato.select_lineaPorformato(Me.m_DBO_Incidencias.FormatoEnvasadoID)
+        Me.linea = spformato.select_lineaPorformato(Me.m_DBO_Incidencias.FormatoEnvasadoID, dtb)
     End Sub
 
     Protected Overrides Function GetValores() As Boolean Implements BasesParaCompatibilidad.Savable.getValores
@@ -153,8 +152,8 @@ Public Class frmEntIncidencias_SU
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
-        'MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+        'MyBase.Guardar(me.dtb)
         If Me.GetValores Then
             If Not Me.SplitContainer1.Panel2Collapsed Then
                 If Not Me.frmIncidenciasCalidad.Comprobar Then
@@ -162,12 +161,12 @@ Public Class frmEntIncidencias_SU
                 End If
             End If
 
-            BasesParaCompatibilidad.BD.EmpezarTransaccion()
+            dtb.EmpezarTransaccion()
             Try
-                If sp.Grabar(dbo, BasesParaCompatibilidad.BD.transaction) Then
+                If sp.Grabar(dbo, dtb) Then
                     Me.evitarCerrarSinGuardar = False
                     Dim s As New spIncidencias
-                    Dim incidenciaId As Integer = s.selecccionar_ultima_incidencia(BasesParaCompatibilidad.BD.Cnx, BasesParaCompatibilidad.BD.transaction)
+                    Dim incidenciaId As Integer = s.selecccionar_ultima_incidencia(dtb)
                     frmIncidenciasEmpleados.Incidencia = incidenciaId
 
                     If Not Me.SplitContainer1.Panel2Collapsed Then
@@ -177,21 +176,21 @@ Public Class frmEntIncidencias_SU
 
                         End If
 
-                        Me.frmIncidenciasCalidad.Guardar(BasesParaCompatibilidad.BD.transaction)
+                        Me.frmIncidenciasCalidad.Guardar(dtb)
 
                     End If
 
-                    Me.frmIncidenciasEmpleados.guardar(BasesParaCompatibilidad.BD.transaction)
+                    Me.frmIncidenciasEmpleados.guardar(dtb)
 
-                    BasesParaCompatibilidad.BD.TerminarTransaccion()
+                    dtb.TerminarTransaccion()
                     MyBase.saved()
                     Me.Close()
                 Else
-                    BasesParaCompatibilidad.BD.CancelarTransaccion()
+                    dtb.CancelarTransaccion()
                     MessageBox.Show("No se pudo guardar el registro. Asegurese de tener conexion a la red.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
             Catch ex As Exception
-                BasesParaCompatibilidad.BD.CancelarTransaccion()
+                dtb.CancelarTransaccion()
                 MessageBox.Show("No se pudo guardar el registro. Detalles:" & Environment.NewLine & Environment.NewLine, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         End If
@@ -207,12 +206,12 @@ Public Class frmEntIncidencias_SU
         Dim frmEnt As New frmEntTiposIncidencias(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, spTiposIncidencias, DBO_TiposIncidencias)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 
-        Me.spTiposIncidencias.cargar_TiposIncidencias(Me.cboTipoIncidencia)
+        Me.spTiposIncidencias.cargar_TiposIncidencias(Me.cboTipoIncidencia, dtb)
     End Sub
 
     Private Sub cboClase_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles cboClase.SelectedIndexChanged
         Try
-            spTiposIncidencias.cargar_TiposIncidenciasporCategoria(Me.cboTipoIncidencia, Me.cboClase.SelectedValue)
+            spTiposIncidencias.cargar_TiposIncidenciasporCategoria(Me.cboTipoIncidencia, Me.cboClase.SelectedValue, dtb)
 
             If Me.ModoDeApertura = INSERCION Then
                 If Me.cboClase.SelectedValue = 3 Or Me.cboClase.SelectedValue = 12 Then
@@ -258,7 +257,7 @@ Public Class frmEntIncidencias_SU
                 End If
             End If
 
-            Me.cboTipoIncidencia.SelectedValue = spTiposIncidencias.Select_Mas_Usado_Por_Categoria_Y_Linea(Me.cboClase.SelectedValue, linea)
+            Me.cboTipoIncidencia.SelectedValue = spTiposIncidencias.Select_Mas_Usado_Por_Categoria_Y_Linea(Me.cboClase.SelectedValue, linea, dtb)
         Catch ex As Exception
         End Try
 
@@ -269,9 +268,9 @@ Public Class frmEntIncidencias_SU
     Private Sub cboMaquina_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles cboMaquina.SelectedIndexChanged
         Try
             If Me.cboMaquina.Enabled Then
-                Me.spTiposIncidencias.cargar_TiposIncidenciasporMaquina(Me.cboTipoIncidencia, Me.cboMaquina.SelectedValue)
+                Me.spTiposIncidencias.cargar_TiposIncidenciasporMaquina(Me.cboTipoIncidencia, Me.cboMaquina.SelectedValue, dtb)
 
-                Me.cboTipoIncidencia.SelectedValue = spTiposIncidencias.Select_Mas_Usado_Por_Maquina_Y_Linea(Me.cboMaquina.SelectedValue, linea)
+                Me.cboTipoIncidencia.SelectedValue = spTiposIncidencias.Select_Mas_Usado_Por_Maquina_Y_Linea(Me.cboMaquina.SelectedValue, linea, dtb)
             End If
         Catch ex As Exception
         End Try

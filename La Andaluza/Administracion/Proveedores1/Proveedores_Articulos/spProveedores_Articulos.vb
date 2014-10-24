@@ -13,23 +13,22 @@ Inherits BasesParaCompatibilidad.StoredProcedure
                         If(procedure2, "Proveedores_ArticulosSelectDgvByArticulo", "[dbo].[Proveedores_ArticulosSelectDgvBy]"))
     End Sub
 
-    Public Overloads Function Select_Record(ByVal ProveedorArticuloID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As DBO_Proveedores_Articulos
+    Public Overloads Function Select_Record(ByVal ProveedorArticuloID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_Proveedores_Articulos
         Dim dbo As New DBO_Proveedores_Articulos
         dbo.searchKey = dbo.item("ProveedorArticuloID")
         dbo.searchKey.value = ProveedorArticuloID
-        MyBase.Select_Record(dbo, trans)
+        MyBase.Select_Record(dbo, dtb)
         Return dbo
     End Function
 
-    Public Overrides Function Delete(ByVal ProveedorArticuloID As Int32, Optional ByRef trans As System.Data.SqlClient.SqlTransaction= Nothing) As Boolean
+    Public Overrides Function Delete(ByVal ProveedorArticuloID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Dim dbo As New DBO_Proveedores_Articulos
         dbo.searchKey = dbo.item("ProveedorArticuloID")
         dbo.searchKey.value = ProveedorArticuloID
-        Return MyBase.DeleteProcedure(dbo, trans)
+        Return MyBase.DeleteProcedure(dbo, dtb)
     End Function
 
-    Public Function SelectDgvByArticulo(ByVal articulo As Integer) As DataTable
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
+    Public Function SelectDgvByArticulo(ByVal articulo As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
         dtb.PrepararConsulta("[dbo].[Proveedores_ArticulosSelectDgvByArticulo] @id")
         dtb.AñadirParametroConsulta("@id", articulo)
         Return dtb.Consultar

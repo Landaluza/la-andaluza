@@ -51,7 +51,7 @@ Public Class frmEntEnvasadosProductosArticulos
     Overrides Sub SetValores()
 
         With dgvLotes
-            .DataSource = spLotes1.DgvFillLotesTerminadosPorTipoProductoYLote(m_Producto, If(Me.ModoDeApertura = MODIFICACION, m_DBO_EnvasadosProductosArticulo.LoteTerminadoID, 0))
+            .DataSource = spLotes1.DgvFillLotesTerminadosPorTipoProductoYLote(m_Producto, If(Me.ModoDeApertura = MODIFICACION, m_DBO_EnvasadosProductosArticulo.LoteTerminadoID, 0), dtb)
 
             .Columns("LoteID").Visible = False
             .FormatoColumna("CodigoLote", "Lote", BasesParaCompatibilidad.TiposColumna.Lote, 100)
@@ -151,7 +151,7 @@ Public Class frmEntEnvasadosProductosArticulos
     Overrides Sub Guardar()
         If GetValores() Then
             Try
-                If spEnvasadosProductosArticulos.GrabarEnvasadosProductosArticulos(m_DBO_EnvasadosProductosArticulo) Then Me.Close()
+                If spEnvasadosProductosArticulos.GrabarEnvasadosProductosArticulos(m_DBO_EnvasadosProductosArticulo, dtb) Then Me.Close()
             Catch ex As Exception
                 MessageBox.Show("Error al guardar el registro. Detalles" & Environment.NewLine & Environment.NewLine & ex.Message, "Error al guardar", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
@@ -177,7 +177,7 @@ Public Class frmEntEnvasadosProductosArticulos
         Dim m_Densidad As Double
 
         If m_CodigoLote.Substring(8, 3) = "Crb" Then
-            m_Densidad = spLotes1.calcularDensidad(m_LoteID)
+            m_Densidad = spLotes1.calcularDensidad(m_LoteID, dtb)
 
             If m_Densidad = 0 Then
                 MessageBox.Show("Densidad no analizada", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -223,7 +223,6 @@ Public Class frmEntEnvasadosProductosArticulos
         Try
             Dim m_CantidadInicial As Integer = 0
             Dim m_CantidadEnvasadaAnterior As Integer = 0
-            Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
             dtb.PrepararConsulta("CompuestoPorSelectByLoteFinal @lote")
             dtb.AñadirParametroConsulta("@lote", m_LoteID)
             m_CantidadInicial = dtb.Consultar().Rows(0).Item(0)

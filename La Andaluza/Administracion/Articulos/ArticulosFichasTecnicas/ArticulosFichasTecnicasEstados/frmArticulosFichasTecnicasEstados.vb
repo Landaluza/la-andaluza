@@ -24,7 +24,7 @@ Public Class frmArticulosFichasTecnicasEstados
 
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
-                           "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then CType(sp, spArticulosFichasTecnicasEstados).ArticulosFichasTecnicasEstadosDelete(dgvGeneral.CurrentRow.Cells("ArticuloFichaTecnicaEstadoID").Value)
+                           "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then CType(sp, spArticulosFichasTecnicasEstados).ArticulosFichasTecnicasEstadosDelete(dgvGeneral.CurrentRow.Cells("ArticuloFichaTecnicaEstadoID").Value, dtb)
         dgvFill()
     End Sub
 
@@ -37,7 +37,7 @@ Public Class frmArticulosFichasTecnicasEstados
 
             'if m_maestroid <> 0 Then m_ArticulosFichasTecnicasEstados.Proveedores_ProveedorID = m_MaestroID
         Else
-            m_ArticulosFichasTecnicasEstado = CType(sp, spArticulosFichasTecnicasEstados).Select_Record(GeneralBindingSource(m_Pos).Item("ArticuloFichaTecnicaEstadoID"))
+            m_ArticulosFichasTecnicasEstado = CType(sp, spArticulosFichasTecnicasEstados).Select_Record(GeneralBindingSource(m_Pos).Item("ArticuloFichaTecnicaEstadoID"), dtb)
         End If
 
         frmEnt = New frmEntArticulosFichasTecnicasEstados(m_ArticulosFichasTecnicasEstado, m_Pos, m_VerID)

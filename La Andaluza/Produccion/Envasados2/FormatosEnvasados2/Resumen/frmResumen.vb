@@ -26,7 +26,7 @@ Public Class frmResumen
     End Sub
 
     Private Sub recargarMedias()
-        CType(sp, spResumen).MediasEnvasado(Me.m_DBO_Resumen)
+        CType(sp, spResumen).MediasEnvasado(Me.m_DBO_Resumen, dtb)
 
         Me.lblTiempoMedioProduccion.Text = Me.m_DBO_Resumen.MediasEnvasado_MinutosPorPalet
         Me.lblMediaBotellasHoras.Text = Me.m_DBO_Resumen.MediasEnvasado_Velocidad
@@ -34,7 +34,7 @@ Public Class frmResumen
     End Sub
 
     Private Sub recargarTotales()
-        CType(sp, spResumen).TotalesEnvasado(Me.m_DBO_Resumen)
+        CType(sp, spResumen).TotalesEnvasado(Me.m_DBO_Resumen, dtb)
 
         Me.lblTotalBotellas.Text = Me.m_DBO_Resumen.TotalesIncidencias_CalidadNumero
         Me.lblTotalCajasCompletadas.Text = Me.m_DBO_Resumen.TotalesIncidencias_CalidadMinutos
@@ -45,7 +45,7 @@ Public Class frmResumen
     End Sub
 
     Private Sub recargarIncidencias()
-        CType(sp, spResumen).DetallesIncidencias(Me.m_DBO_Resumen)
+        CType(sp, spResumen).DetallesIncidencias(Me.m_DBO_Resumen, dtb)
 
         Me.lblIncCalNumero.Text = Me.m_DBO_Resumen.TotalesIncidencias_CalidadNumero
         Me.lblIncCalTiempo.Text = Me.m_DBO_Resumen.TotalesIncidencias_CalidadMinutos
@@ -61,7 +61,7 @@ Public Class frmResumen
     End Sub
 
     Private Sub recargarTiempos()
-        CType(sp, spResumen).TotalesTiempo(Me.m_DBO_Resumen)
+        CType(sp, spResumen).TotalesTiempo(Me.m_DBO_Resumen, dtb)
 
         Me.lblTiemposAsignado.Text = Me.m_DBO_Resumen.TotalesIncidencias_CalidadNumero
         Me.lblTiemposIncidenciasEvitables.Text = Me.m_DBO_Resumen.TotalesIncidencias_CalidadMinutos

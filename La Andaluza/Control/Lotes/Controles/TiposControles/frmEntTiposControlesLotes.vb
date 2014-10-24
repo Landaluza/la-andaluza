@@ -23,7 +23,7 @@ Public Class frmEntTiposControlesLotes
 
    Private Sub frmEntTiposControlesLotes_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
        dim s0 as new spProcedimientos
-       s0.cargar_Procedimientos(Me.cboprocedimiento)
+        s0.cargar_Procedimientos(Me.cboprocedimiento, dtb)
        If Me.mododeapertura = VISION Then
            Me.cboprocedimiento.enabled = False
            Me.lblId_procedimiento.enabled = False
@@ -77,9 +77,9 @@ Public Class frmEntTiposControlesLotes
         End IF
    End Function
 
-   Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-       MyBase.Guardar(trans)
-   End Sub
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
+    End Sub
 
    Private Sub butRutaControles_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butRutaControles.Click
        Dim arch As String
@@ -112,7 +112,7 @@ Public Class frmEntTiposControlesLotes
         Dim frmEnt As New frmEntProcedimientos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spProcedimientos, DBO_Procedimientos)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spProcedimientos
-        s.cargar_Procedimientos(Me.cboprocedimiento)
+        s.cargar_Procedimientos(Me.cboprocedimiento, dtb)
     End Sub
 
    Private Sub frmEntTiposControlesLotes_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown

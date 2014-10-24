@@ -6,9 +6,11 @@ Public Class frmelaboraciones_fases
     Private idGranel As Integer
     Private spelaboraciones_fases As spelaboraciones_fases
     Private dboelaboraciones_fases As DBO_elaboraciones_fases
+    Private dtb As BasesParaCompatibilidad.DataBase
 
     Public Sub New(ByVal MaestroID As Integer)
         InitializeComponent()
+        dtb = New BasesParaCompatibilidad.DataBase()
         Me.idGranel = MaestroID
         Me.spelaboraciones_fases = New spelaboraciones_fases
         Me.dboelaboraciones_fases = New DBO_elaboraciones_fases
@@ -32,12 +34,12 @@ Public Class frmelaboraciones_fases
     End Sub
 
     Private Sub eliminar()
-        Me.spelaboraciones_fases.Delete(Me.dgvGrilla.CurrentRow.Cells("id").Value)
+        Me.spelaboraciones_fases.Delete(Me.dgvGrilla.CurrentRow.Cells("id").Value, dtb)
         dgvFill()
     End Sub
 
     Protected Sub dgvFill(Optional ByVal Repaint As Boolean = True)
-        Dim dt As DataTable = Me.spelaboraciones_fases.select_DgvBy(Me.idGranel)
+        Dim dt As DataTable = Me.spelaboraciones_fases.select_DgvBy(Me.idGranel, dtb)
 
         If Not dt Is Nothing Then
             If Repaint Then

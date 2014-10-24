@@ -49,7 +49,7 @@ Public Class frmPedidosProveedoresEntregas
         response = MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
                           "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If response = DialogResult.Yes Then
-            If CType(sp, spPedidosProveedoresEntregas).DeletePedidosProveedoresEntregas(dgvGeneral.CurrentRow.Cells("PedidoProveedorEntregaID").Value) Then
+            If CType(sp, spPedidosProveedoresEntregas).DeletePedidosProveedoresEntregas(dgvGeneral.CurrentRow.Cells("PedidoProveedorEntregaID").Value, dtb) Then
                 dgvFill()
             End If
             'GeneralBindingSource. dataSource = dtb.Consultar(spSelectDgv)

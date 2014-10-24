@@ -3,11 +3,12 @@ Public Class frmArticulosGranelescompuestoPor
     Private spArticulosGranelesCompuestoPor As spArticulosGranelesCompuestoPor
     Private articuloId As Integer
     Public Event actualizarDatos()
+    Private dtb As BasesParaCompatibilidad.DataBase
 
     Public Sub New(ByVal articuloid As Integer)
 
         InitializeComponent()
-
+        dtb = New BasesParaCompatibilidad.DataBase()
         spArticulosGranelesCompuestoPor = New spArticulosGranelesCompuestoPor
         Me.articuloId = articuloid
     End Sub
@@ -17,7 +18,7 @@ Public Class frmArticulosGranelescompuestoPor
     End Sub
 
     Private Sub DgvFill()
-        Me.DataGridView1.DataSource = Me.spArticulosGranelesCompuestoPor.DataTableFill(Me.articuloId)
+        Me.DataGridView1.DataSource = Me.spArticulosGranelesCompuestoPor.DataTableFill(Me.articuloId, dtb)
 
         If Not Me.DataGridView1.DataSource Is Nothing Then
             DataGridView1.Columns("articuloid").Visible = False
@@ -56,12 +57,12 @@ Public Class frmArticulosGranelescompuestoPor
         Try
             If Not Me.DataGridView1.CurrentRow Is Nothing Then
                 Dim mdbo As New DBO_articulosGranelesCompuestoPor
-                mdbo.ArticuloPrincipal = Me.articuloId
-                mdbo.ArticuloComponente = DataGridView1.CurrentRow.Cells("articuloid").Value
+                mdbo.Set_ArticuloPrincipal(Me.articuloId, dtb)
+                mdbo.Set_ArticuloComponente(DataGridView1.CurrentRow.Cells("articuloid").Value, dtb)
                 mdbo.Fase = DataGridView1.CurrentRow.Cells("id_fase").Value
-                spArticulosGranelesCompuestoPor.select_record(mdbo)
+                spArticulosGranelesCompuestoPor.select_record(mdbo, dtb)
 
-                If Me.spArticulosGranelesCompuestoPor.Eliminar(mdbo) Then
+                If Me.spArticulosGranelesCompuestoPor.Eliminar(mdbo, dtb) Then
                     RaiseEvent actualizarDatos()
                     DgvFill()
                 Else

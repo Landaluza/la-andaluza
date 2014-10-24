@@ -16,14 +16,14 @@ Public Class frmEntCargaNecesidadesJR2Detalles
 
     Private Sub frmEntCargaNecesidadesJRDetalles_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim spArticulosEnvasadosHistoricos As New spArticulosEnvasadosHistoricos
-        spArticulosEnvasadosHistoricos.cargar_TiposFormatos_Todos(cboArticuloID)
+        spArticulosEnvasadosHistoricos.cargar_TiposFormatos_Todos(cboArticuloID, dtb)
         'cboArticuloID.mam_DataSource(DataTable("CargaNecesidadesJRDetallesSelectTiposFormatos"), False)
         SetValores(m_DBO_CargaNecesidadesJRDetalle.CargaNecesidadesJRDetalleID, False)
     End Sub
 
     Overrides Sub SetValores(ByVal m_ID As Integer, ByVal m_SelectRecord As Boolean)
         
-        If m_SelectRecord Then m_DBO_CargaNecesidadesJRDetalle = spCargaNecesidadesJR2Detalles.Select_Record(m_ID)
+        If m_SelectRecord Then m_DBO_CargaNecesidadesJRDetalle = spCargaNecesidadesJR2Detalles.Select_Record(m_ID, dtb)
         txtCargaNecesidadesJRDetalleID.Text = m_DBO_CargaNecesidadesJRDetalle.CargaNecesidadesJRDetalleID.ToString
         txtCargaNecesidadesJRMaestroID.Text = m_DBO_CargaNecesidadesJRDetalle.CargaNecesidadesJRMaestroID.ToString
         txtArticuloID.Text = m_DBO_CargaNecesidadesJRDetalle.ArticuloID.ToString
@@ -51,7 +51,7 @@ Public Class frmEntCargaNecesidadesJR2Detalles
 
     Overrides Sub Guardar()
         GetValores()
-        spCargaNecesidadesJR2Detalles.GrabarCargaNecesidadesJRDetalles(m_DBO_CargaNecesidadesJRDetalle)
+        spCargaNecesidadesJR2Detalles.GrabarCargaNecesidadesJRDetalles(m_DBO_CargaNecesidadesJRDetalle, dtb)
         Me.Close()
     End Sub
 

@@ -2,21 +2,23 @@
 Public Class frmModCompuestoPor
     Private m_dbo As DBO_Articulos1CompuestoPor
     Private sp As spArticulos1CompuestoPor
+    Private dtb As BasesParaCompatibilidad.DataBase
 
     Public Sub New(ByVal id As Integer, Optional ByVal idCompuesto As Integer = 0)
         InitializeComponent()
 
+        dtb = New BasesParaCompatibilidad.DataBase()
         sp = New spArticulos1CompuestoPor
         m_dbo = New DBO_Articulos1CompuestoPor
-        m_dbo.ArticuloPrincipal = id
+        m_dbo.Set_ArticuloPrincipal(id, dtb)
 
-        Me.cboArticulo.mam_DataSource(sp.CargarCombo(id), False)
+        Me.cboArticulo.mam_DataSource(sp.CargarCombo(id, dtb), False)
 
 
 
         If idCompuesto <> 0 Then
             Me.cboArticulo.Enabled = False
-            m_dbo.ArticuloComponente = idCompuesto
+            m_dbo.Set_ArticuloComponente(idCompuesto, dtb)
         End If
 
     End Sub
@@ -27,7 +29,7 @@ Public Class frmModCompuestoPor
         If Me.cboArticulo.SelectedValue Is Nothing Then
             errores &= "Seleccione un articulo en el desplegable. " & Environment.NewLine
         Else
-            Me.m_dbo.ArticuloComponente = Me.cboArticulo.SelectedValue
+            Me.m_dbo.Set_ArticuloComponente(Me.cboArticulo.SelectedValue, dtb)
         End If
 
         If Not IsNumeric(Me.txtcantidad.Text) Then
@@ -52,8 +54,8 @@ Public Class frmModCompuestoPor
                 Dim spdoypack As New spdoypack
                 Dim spMonodosis As New spMonodosis
 
-                If spdoypack.esDoypack(Me.m_dbo.ArticuloPrincipal) And spMonodosis.esMonodosis(Me.m_dbo.ArticuloComponente) Then
-                    formato = spdoypack.FormatoPorArticulo(Me.m_dbo.ArticuloPrincipal)
+                If spdoypack.esDoypack(Me.m_dbo.ArticuloPrincipal, dtb) And spMonodosis.esMonodosis(Me.m_dbo.ArticuloComponente, dtb) Then
+                    formato = spdoypack.FormatoPorArticulo(Me.m_dbo.ArticuloPrincipal, dtb)
 
                     If formato = Nothing Then
                         Dim frm As New frmDoyPackInfoExtra
@@ -68,13 +70,13 @@ Public Class frmModCompuestoPor
                     End If
                 End If
 
-                If Me.sp.Insertar(Me.m_dbo.ArticuloPrincipal, Me.m_dbo.ArticuloComponente, Me.m_dbo.Cantidad, formato) Then
+                If Me.sp.Insertar(Me.m_dbo.ArticuloPrincipal, Me.m_dbo.ArticuloComponente, Me.m_dbo.Cantidad, dtb, formato) Then
                     Me.Close()
                 Else
                     MessageBox.Show("No se pudo guardar el registro", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End If
             Else
-                If Me.sp.Actualizar(Me.m_dbo.ArticuloPrincipal, Me.m_dbo.ArticuloComponente, Me.m_dbo.Cantidad) Then
+                If Me.sp.Actualizar(Me.m_dbo.ArticuloPrincipal, Me.m_dbo.ArticuloComponente, Me.m_dbo.Cantidad, dtb) Then
                     Me.Close()
                 Else
                     MessageBox.Show("No se pudo guardar el registro", "", MessageBoxButtons.OK, MessageBoxIcon.Information)

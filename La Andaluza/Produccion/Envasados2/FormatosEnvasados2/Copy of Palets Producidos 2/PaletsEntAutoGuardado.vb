@@ -1,9 +1,10 @@
 ﻿Public Class PaletsEntAutoGuardado
     Private frmPadre As frmEntPaletsProducidos2
     Private spPaletsProducidos2 As spPaletsProducidos2
-
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New(ByRef frm As frmEntPaletsProducidos2)
         InitializeComponent()
+        dtb = New BasesParaCompatibilidad.DataBase
         spPaletsProducidos2 = New spPaletsProducidos2
         Me.frmPadre = frm
     End Sub
@@ -20,7 +21,7 @@
             Me.lMensaje.Text = "Guardando el palet"
 
             Try
-                PaletProducidoID = spPaletsProducidos2.InsertPaletsProducidos2(frmPadre.m_DBO_PaletProducido)
+                PaletProducidoID = spPaletsProducidos2.InsertPaletsProducidos2(frmPadre.m_DBO_PaletProducido, dtb)
             Catch ex As Exception
             End Try
 

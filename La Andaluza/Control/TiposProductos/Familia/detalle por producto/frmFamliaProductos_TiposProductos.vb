@@ -22,7 +22,7 @@ Public Class frmFamliaProductos_TiposProductos
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboFamliaProductos_TiposProductos = CType(sp, spFamliaProductos_TiposProductos).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer))
+        dboFamliaProductos_TiposProductos = CType(sp, spFamliaProductos_TiposProductos).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
 
         If Not dboFamliaProductos_TiposProductos Is Nothing Then
             MyBase.newRegForm = CType(New frmEntDetallePorProducto(BasesParaCompatibilidad.gridsimpleform.ACCION_MODIFICAR), BasesParaCompatibilidad.DetailedSimpleForm)

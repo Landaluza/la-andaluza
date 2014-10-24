@@ -18,10 +18,10 @@ Public Class frmEntEmpleados_LineasEnvasado
 
     Private Sub frmEntEmpleados_LineasEnvasado_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spEmpleados
-        s.cargar_empleados_envasados(Me.cboEmpleado)
+        s.cargar_empleados_envasados(Me.cboEmpleado, dtb)
      
         Dim s2 As New spLineasEnvasado
-        s2.cargar_LineasEnvasado(Me.cboLineaEnvasado)
+        s2.cargar_LineasEnvasado(Me.cboLineaEnvasado, dtb)
         If Me.mododeapertura = VISION Then
             Me.cboLineaEnvasado.enabled = False
             Me.lblId_LineaEnvasado.enabled = False
@@ -64,8 +64,8 @@ Public Class frmEntEmpleados_LineasEnvasado
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As sqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerId_Empleado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -78,7 +78,7 @@ Public Class frmEntEmpleados_LineasEnvasado
         Dim frmEnt As New frmEntEmpleados(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spEmpleados, DBO_Empleados)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spEmpleados
-        s.cargar_Empleados(Me.cboEmpleado)
+        s.cargar_Empleados(Me.cboEmpleado, dtb)
     End Sub
 
     Private Sub butVerId_LineaEnvasado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -91,7 +91,7 @@ Public Class frmEntEmpleados_LineasEnvasado
         Dim frmEnt As New frmEntLineasEnvasado(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spLineasEnvasado, DBO_LineasEnvasado)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spLineasEnvasado
-        s.cargar_LineasEnvasado(Me.cboLineaEnvasado)
+        s.cargar_LineasEnvasado(Me.cboLineaEnvasado, dtb)
     End Sub
 
 End Class

@@ -6,14 +6,16 @@
     Private dtProductos As DataTable
     Private spTiposControlesLotesPlantilla As spTiposControlesLotesPlantilla
     Private dbo As DBO_TiposControlesLotesPlantilla
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New(ByVal id_plantilla As Integer)
 
         InitializeComponent()
 
+        dtb = New BasesParaCompatibilidad.DataBase
         spTiposLotes = New spTiposLotes
         spTiposProductos = New spTiposProductos
         spTiposControlesLotesPlantilla = New spTiposControlesLotesPlantilla
-        dbo = Me.spTiposControlesLotesPlantilla.Select_Record(id_plantilla)
+        dbo = Me.spTiposControlesLotesPlantilla.Select_Record(id_plantilla, dtb)
     End Sub
 
 
@@ -22,7 +24,7 @@
         dgvProducto.EndEdit()
         dgvLote.EndEdit()
 
-        BasesParaCompatibilidad.BD.EmpezarTransaccion()
+        dtb.EmpezarTransaccion()
 
         Try
             For Each rowProducto As DataGridViewRow In Me.dgvProducto.Rows
@@ -37,8 +39,8 @@
 
                                     dbo.Id_TipoLote = Convert.ToInt32(rowLote.Cells("TipoLoteID").Value)
 
-                                    If Not Me.spTiposControlesLotesPlantilla.Grabar(dbo, BasesParaCompatibilidad.BD.transaction) Then
-                                        BasesParaCompatibilidad.BD.CancelarTransaccion()
+                                    If Not Me.spTiposControlesLotesPlantilla.Grabar(dbo, dtb) Then
+                                        dtb.CancelarTransaccion()
                                         MessageBox.Show("Error al guardar los datos, en posible que exista un registro duplicado", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                                     End If
                                 End If
@@ -48,10 +50,10 @@
                 End If
             Next
 
-            BasesParaCompatibilidad.BD.TerminarTransaccion()
+            dtb.TerminarTransaccion()
             RaiseEvent afterSave()
         Catch ex As Exception
-            BasesParaCompatibilidad.BD.CancelarTransaccion()
+            dtb.CancelarTransaccion()
             MessageBox.Show("Error al guardar, detalles:" & Environment.NewLine & ex.Message, "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         Finally
             Me.Close()
@@ -64,8 +66,8 @@
     End Sub
 
     Private Sub cargar_datos() Handles BackgroundWorker1.DoWork
-        dtProductos = spTiposProductos.devolver_TiposProductos_Cbo
-        dtLotes = spTiposLotes.devolver_tiposLotes()
+        dtProductos = spTiposProductos.devolver_TiposProductos_Cbo(dtb)
+        dtLotes = spTiposLotes.devolver_TiposLotes(dtb)
     End Sub
 
     Private Sub bindDatasource() Handles BackgroundWorker1.RunWorkerCompleted

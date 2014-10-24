@@ -36,9 +36,9 @@ Public Class frmEntArticulosIngredientesTipos
    Overrides Sub Guardar()
         GetValores()
         If Me.m_IDI Then
-            spArticulosIngredientesTipos.GrabarArticulosIngredientesIDITipos(m_DBO_ArticulosIngredientesTipo, new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server))
+            spArticulosIngredientesTipos.GrabarArticulosIngredientesIDITipos(m_DBO_ArticulosIngredientesTipo, dtb)
         Else
-            spArticulosIngredientesTipos.GrabarArticulosIngredientesTipos(m_DBO_ArticulosIngredientesTipo, new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server))
+            spArticulosIngredientesTipos.GrabarArticulosIngredientesTipos(m_DBO_ArticulosIngredientesTipo, dtb)
         End If
        Me.Close()
    End Sub

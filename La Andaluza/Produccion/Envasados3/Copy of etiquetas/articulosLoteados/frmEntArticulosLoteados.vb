@@ -24,7 +24,7 @@ Public Class frmEntArticulosLoteados
     Private Sub frmEntArticulosLoteados_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
   
         Dim s1 As New spTiposLoteados
-        s1.cargar_TiposLoteados(Me.cboid_tipoLoteado)
+        s1.cargar_TiposLoteados(Me.cboid_tipoLoteado, dtb)
 
         If Config.UserType <> 4 And Config.UserType <> 9 Then
             butAddid_tipoLoteado.enabled = False
@@ -53,8 +53,8 @@ Public Class frmEntArticulosLoteados
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerid_tipoLoteado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerid_tipoLoteado.Click
@@ -67,7 +67,7 @@ Public Class frmEntArticulosLoteados
         Dim frmEnt As New frmEntTiposLoteados(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spTiposLoteados, DBO_TiposLoteados)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTiposLoteados
-        s.cargar_TiposLoteados(Me.cboid_tipoLoteado)
+        s.cargar_TiposLoteados(Me.cboid_tipoLoteado, dtb)
     End Sub
 
     Private Sub frmEntArticulosLoteados_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown

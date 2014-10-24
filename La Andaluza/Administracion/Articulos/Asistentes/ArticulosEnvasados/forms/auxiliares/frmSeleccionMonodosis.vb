@@ -3,6 +3,7 @@ Public Class frmSeleccionMonodosis
     Private dbo As Dbo_DoyPack
     Private descripcionMonodosis As String
     Private spMonodosis As spMonodosis
+    Private dtb As BasesParaCompatibilidad.DataBase
 
     Public ReadOnly Property Descripcion As String
         Get
@@ -20,7 +21,7 @@ Public Class frmSeleccionMonodosis
 
         ' This call is required by the designer.
         InitializeComponent()
-
+        dtb = New BasesParaCompatibilidad.DataBase
         spMonodosis = New spMonodosis
 
     End Sub
@@ -30,7 +31,7 @@ Public Class frmSeleccionMonodosis
     End Sub
 
     Private Sub dgvFill()
-        Dim dt As DataTable = spMonodosis.selectDgv
+        Dim dt As DataTable = spMonodosis.selectDgv(dtb)
         If Not dt Is Nothing Then
             Me.DataGridView1.DataSource = dt
             Me.DataGridView1.Columns("ArticuloId").Visible = False

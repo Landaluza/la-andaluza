@@ -23,7 +23,7 @@ Public Class frmEntPiernas
 
     Private Sub frmEntPiernas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s0 As New spNaves
-        s0.cargar_Naves(Me.cboNave)
+        s0.cargar_Naves(Me.cboNave, dtb)
         If Me.mododeapertura = VISION Then
             Me.cboNave.enabled = False
             Me.lblNaveID.enabled = False
@@ -75,8 +75,8 @@ Public Class frmEntPiernas
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerNaveID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerNaveID.Click
@@ -89,7 +89,7 @@ Public Class frmEntPiernas
         Dim frmEnt As New frmEntNaves(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spNaves, DBO_Naves)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spNaves
-        s.cargar_Naves(Me.cboNave)
+        s.cargar_Naves(Me.cboNave, dtb)
     End Sub
 
     Private Sub frmEntPiernas_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown

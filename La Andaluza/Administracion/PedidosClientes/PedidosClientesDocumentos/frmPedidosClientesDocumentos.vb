@@ -33,7 +33,7 @@ Public Class frmPedidosClientesDocumentos
 
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
-            CType(sp, spPedidosClientesDocumentos).PedidosClientesDocumentosDelete(dgvGeneral.CurrentRow.Cells("PedidoClienteDocumentoID").Value)
+            CType(sp, spPedidosClientesDocumentos).PedidosClientesDocumentosDelete(dgvGeneral.CurrentRow.Cells("PedidoClienteDocumentoID").Value, dtb)
         End If
         dgvFill()
     End Sub
@@ -45,7 +45,7 @@ Public Class frmPedidosClientesDocumentos
         If TipoAction = ACCION_INSERTAR Then
             If m_MaestroID <> 0 Then m_PedidoClienteDocumento.PedidoClienteMaestroID = m_MaestroID
         Else
-            m_PedidoClienteDocumento = CType(sp, spPedidosClientesDocumentos).Select_Record(GeneralBindingSource(m_Pos).Item("PedidoClienteDocumentoID"))
+            m_PedidoClienteDocumento = CType(sp, spPedidosClientesDocumentos).Select_Record(GeneralBindingSource(m_Pos).Item("PedidoClienteDocumentoID"), dtb)
         End If
 
         frmEnt = New frmEntPedidosClientesDocumentos(m_PedidoClienteDocumento, m_Pos, m_VerID)

@@ -40,9 +40,9 @@ Public Class frmAlmacenExistencias
         spEcellote = "SumCajasEnAlmacenByCodigoLote "
         spEcelAlmacen = "PaletsProducidosByEnAlmacen2 "
 
-        dtb2 = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        dtb3 = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
-        dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+        dtb2 = New BasesParaCompatibilidad.Database()
+        dtb3 = New BasesParaCompatibilidad.Database()
+        dtb = New BasesParaCompatibilidad.Database()
 
         UpdateThreadStart = New ThreadStart(AddressOf dfvFillSecondary)
         UpdateThreadStart2 = New ThreadStart(AddressOf dgvFillTerciary)
@@ -60,7 +60,6 @@ Public Class frmAlmacenExistencias
                                 Convert.ToString(Now.Hour) & "-" & _
                                 Convert.ToString(Now.Minute)
 
-            Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
             Dim Unidad As String
             Dim Ruta As String = "Almacen\Recuentos\"
             Dim RutaCompleta As String
@@ -78,7 +77,7 @@ Public Class frmAlmacenExistencias
 
             If tabDatos.SelectedTab Is tpTotales Then
                 NombreHoja = RutaCompleta & FechaSeleccionada & " Existencias totales por referencia-conformes.xls"
-                mse.ExportarTablaExcel(dtb.Consultar(spEcelCajas, True), "C:\DataTable.txt", "Existencias", NombreHoja, "DataTable.txt")              
+                mse.ExportarTablaExcel(dtb.Consultar(spEcelCajas, True), "C:\DataTable.txt", "Existencias", NombreHoja, "DataTable.txt")
             ElseIf tabDatos.SelectedTab Is tabPagAcumulados Then
                 NombreHoja = RutaCompleta & FechaSeleccionada & " Existencias por lotes por referencia-conformes.xls"
                 mse.ExportarTablaExcel(dtb.Consultar(spEcellote, True), "C:\DataTable.txt", "Existencias", NombreHoja, "DataTable.txt")
@@ -86,7 +85,7 @@ Public Class frmAlmacenExistencias
                 NombreHoja = RutaCompleta & FechaSeleccionada & " Existencias por palets-conformes.xls"
                 mse.ExportarTablaExcel(dtb.Consultar(spEcelAlmacen, True), "C:\DataTable.txt", "Existencias", NombreHoja, "DataTable.txt")
             End If
-                'IO.File.Delete("C:\DataTable.txt")
+            'IO.File.Delete("C:\DataTable.txt")
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -96,7 +95,7 @@ Public Class frmAlmacenExistencias
         Me.Close()
     End Sub
 
-  
+
 
     Private Sub frmAlmacenExistencias_Shown(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Shown
         Me.Cursor = Cursors.WaitCursor
@@ -107,7 +106,6 @@ Public Class frmAlmacenExistencias
         'initdgvMain()
         'dt3 = DataTableFill("PaletsProducidosByArticulo3 ")
         'dt3 = DataTableFill("PaletsProducidosByArticulo6 ")
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
         dt3 = dtb.Consultar(spArticulo, True)
         Me.DataBindToDataGrid3()
         'dt2 = DataTableFill("PaletsProducidosByLote ")
@@ -402,7 +400,9 @@ Public Class frmAlmacenExistencias
 
             Dim resp As DialogResult = MessageBox.Show("¿Seguro que desea marcar el palet como 'no conforme'?", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
             If resp = DialogResult.OK Then
-                deprecated.realizarConsultaAlteraciones("update paletsproducidos set id_estado=3 where scc = " & Me.dgvPalet.CurrentRow.Cells("SCC").Value)
+                dtb.PrepararConsulta("update paletsproducidos set id_estado=3 where scc = @scc")
+                dtb.AñadirParametroConsulta("@scc", Me.dgvPalet.CurrentRow.Cells("SCC").Value)
+                dtb.Consultar(True)
                 tsPalets.PerformClick()
             End If
 
@@ -421,8 +421,8 @@ Public Class frmAlmacenExistencias
     Private Sub dgvPalet_CellDoubleClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvPalet.CellDoubleClick
         Dim m_dbo As New DBO_PaletsProducidos2
         Dim spFormato As New spFormatosEnvasados
-        m_dbo = spPaletsProducidos2.Select_RecordBySSCC(Me.dgvPalet.CurrentRow.Cells("SCC").Value)
-        Dim f_dbo As DBO_FormatosEnvasados = spFormato.Select_Record(m_dbo.FormatoID)
+        m_dbo = spPaletsProducidos2.Select_RecordBySSCC(Me.dgvPalet.CurrentRow.Cells("SCC").Value, dtb)
+        Dim f_dbo As DBO_FormatosEnvasados = spFormato.Select_Record(m_dbo.FormatoID, dtb)
         Dim frm As New frmEntPaletsProducidos2(True)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
     End Sub

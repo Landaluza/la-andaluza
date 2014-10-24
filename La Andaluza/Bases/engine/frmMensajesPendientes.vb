@@ -3,10 +3,12 @@ Public Class frmMensajesPendientes
     Private notificador As Notificador
     Private ico As Label
     Private frm As GUIstandar
+    Private dtb As BasesParaCompatibilidad.DataBase
 
     Public Sub New(ByRef ico As Label, ByRef frm As GUIstandar)
         InitializeComponent()
 
+        dtb = New BasesParaCompatibilidad.DataBase
         Me.ico = ico
         Me.frm = frm
         notificador = New Notificador
@@ -15,7 +17,7 @@ Public Class frmMensajesPendientes
 
     Private Sub frmMensajesPendientes_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
         Dim notificacion As DataTable
-        notificacion = Me.notificador.comprobarNotificaciones
+        notificacion = Me.notificador.comprobarNotificaciones(dtb)
 
 
 
@@ -41,7 +43,7 @@ Public Class frmMensajesPendientes
     Private Sub DataGridView1_CellClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellClick
 
         If e.ColumnIndex = 2 Then
-            If notificador.borrarNotificacion(Me.DataGridView1.CurrentRow.Cells("id").Value) Then
+            If notificador.borrarNotificacion(Me.DataGridView1.CurrentRow.Cells("id").Value, dtb) Then
                 If Me.DataGridView1.Rows.Count > 1 Then
                     DataGridView1.Rows.Remove(Me.DataGridView1.CurrentRow)
                 Else

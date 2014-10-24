@@ -24,10 +24,10 @@ Public Class frmEntSegumientosIncidencias
     Private Sub frmEntSegumientosIncidencias_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
         Dim s2 As New spTiposSeguimientos
-        s2.cargar_TiposSeguimientos(Me.cbotipoSeguimiento)
+        s2.cargar_TiposSeguimientos(Me.cbotipoSeguimiento, dtb)
 
         Dim s3 As New spEmpleados
-        s3.cargar_Empleados(Me.cboResponsable)
+        s3.cargar_Empleados(Me.cboResponsable, dtb)
         If Me.ModoDeApertura = VISION Then
             Me.cboResponsable.Enabled = False
             Me.lblResponsable.Enabled = False
@@ -79,8 +79,8 @@ Public Class frmEntSegumientosIncidencias
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerId_tipoSeguimiento_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_tipoSeguimiento.Click
@@ -93,7 +93,7 @@ Public Class frmEntSegumientosIncidencias
         Dim frmEnt As New frmEntTiposSeguimientos(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spTiposSeguimientos, DBO_TiposSeguimientos)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTiposSeguimientos
-        s.cargar_TiposSeguimientos(Me.cbotipoSeguimiento)
+        s.cargar_TiposSeguimientos(Me.cbotipoSeguimiento, dtb)
     End Sub
 
     Private Sub butVerResponsable_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerResponsable.Click
@@ -106,7 +106,7 @@ Public Class frmEntSegumientosIncidencias
         Dim frmEnt As New frmEntEmpleados(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spEmpleados, DBO_Empleados)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spEmpleados
-        s.cargar_Empleados(Me.cboResponsable)
+        s.cargar_Empleados(Me.cboResponsable, dtb)
     End Sub
 
 End Class

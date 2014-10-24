@@ -4,7 +4,7 @@ Public Class frmSelectorArticulo
     Private tipoArticulo As String
     Private subtipoArticulo As String
     Private idExcluido As Integer
-
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New(ByVal tipoArticulo As String, ByVal subtipoArticulo As String, ByVal idExcluido As Integer)
         InitializeComponent()
 
@@ -27,7 +27,6 @@ Public Class frmSelectorArticulo
     End Property
 
     Private Sub dgvFill()
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
         dtb.PrepararConsulta("Articulos1SelectDgvBy @idexcluido")
         dtb.AñadirParametroConsulta("@idexcluido", idExcluido)
         Dim dt As DataTable = dtb.Consultar()

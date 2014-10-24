@@ -18,7 +18,7 @@ Public Class frmEntControlIncidencias_Clientes
 
    Private Sub frmEntControlIncidencias_Clientes_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spClientes2
-       s.cargar_Clientes(Me.cbocliente)
+        s.cargar_Clientes(Me.cbocliente, dtb)
        If me.mododeapertura = VISION Then
            Me.cbocliente.enabled = False
            Me.lblId_cliente.enabled = False
@@ -53,8 +53,8 @@ Public Class frmEntControlIncidencias_Clientes
         End IF
    End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As sqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerId_control_incidencias_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -72,7 +72,7 @@ Public Class frmEntControlIncidencias_Clientes
         Dim frmEnt As New frmEntClientes(0, 0)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spClientes2
-        s.cargar_Clientes(Me.cbocliente)
+        s.cargar_Clientes(Me.cbocliente, dtb)
     End Sub
 
     Private Sub frmEntControlIncidencias_Clientes_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize

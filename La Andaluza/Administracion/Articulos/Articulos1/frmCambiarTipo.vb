@@ -1,12 +1,13 @@
 ﻿Imports BasesParaCompatibilidad.ComboBoxExtension
 Public Class frmCambiarTipo
     Private id As Integer
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New(ByVal articuloid As Integer)
 
         InitializeComponent()
-
+        dtb = New BasesParaCompatibilidad.DataBase
         Me.id = articuloid
-        Me.cboTipo.mam_DataSource("Articulos1_ArticulosTiposCbo", False)
+        Me.cboTipo.mam_DataSource("Articulos1_ArticulosTiposCbo", False, dtb)
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click
         Me.DialogResult = Windows.Forms.DialogResult.Cancel
@@ -14,7 +15,6 @@ Public Class frmCambiarTipo
     End Sub
 
     Private Sub btnAceptar_Click(sender As Object, e As EventArgs) Handles btnAceptar.Click
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
         dtb.EmpezarTransaccion()
         Try
             dtb.PrepararConsulta("DeleteArticulos1Detalles @tipo")

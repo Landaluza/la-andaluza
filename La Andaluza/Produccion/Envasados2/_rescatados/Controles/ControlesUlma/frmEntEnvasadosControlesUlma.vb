@@ -48,7 +48,7 @@ Public Class frmEntEnvasadosControlesUlma
     Public Shadows Sub Guardar(ByRef m_DBO_EnvasadosControlesUlma As DBO_EnvasadosControlesUlma)
         Dim spEnvasadosControlesUlma As New spEnvasadosControlesUlma
         GetValores()
-        spEnvasadosControlesUlma.GrabarEnvasadosControlesUlma(m_DBO_EnvasadosControlesUlma)
+        spEnvasadosControlesUlma.GrabarEnvasadosControlesUlma(m_DBO_EnvasadosControlesUlma, dtb)
         Me.Close()
     End Sub
 

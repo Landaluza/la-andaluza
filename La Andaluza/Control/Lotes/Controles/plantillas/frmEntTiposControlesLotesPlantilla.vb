@@ -24,15 +24,15 @@ Public Class frmEntTiposControlesLotesPlantilla
 
     Private Sub frmEntTiposControlesLotesPlantilla_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s0 As New spTiposControlesLotes
-        s0.cargar_TiposControlesLotes(Me.cboTipoControl)
+        s0.cargar_TiposControlesLotes(Me.cboTipoControl, dtb)
         Dim s1 As New spTiposLotes
-        s1.cargar_TiposLotes(Me.cboTipoLote)
+        s1.cargar_TiposLotes(Me.cboTipoLote, dtb)
         Dim s2 As New spTiposProductos
-        s2.cargar_ComboBox(Me.cboTipoProducto)
+        s2.cargar_ComboBox(Me.cboTipoProducto, dtb)
         Dim s3 As New spFrecuenciasTiposControlesLotes
-        s3.cargar_FrecuenciasTiposControlesLotes(Me.cbofrecuencia)
+        s3.cargar_FrecuenciasTiposControlesLotes(Me.cbofrecuencia, dtb)
         Dim s4 As New spProcedimientos
-        s4.cargar_Procedimientos(Me.cboprocedimiento)
+        s4.cargar_Procedimientos(Me.cboprocedimiento, dtb)
         If Me.mododeapertura = VISION Then
             Me.cboTipoControl.enabled = False
             Me.lblId_TipoControl.enabled = False
@@ -120,8 +120,8 @@ Public Class frmEntTiposControlesLotesPlantilla
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements  BasesParaCompatibilidad.savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerId_TipoControl_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_TipoControl.Click
@@ -134,7 +134,7 @@ Public Class frmEntTiposControlesLotesPlantilla
         Dim frmEnt As New frmEntTiposControlesLotes(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spTiposControlesLotes, DBO_TiposControlesLotes)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTiposControlesLotes
-        s.cargar_TiposControlesLotes(Me.cboTipoControl)
+        s.cargar_TiposControlesLotes(Me.cboTipoControl, dtb)
     End Sub
 
     Private Sub butVerId_TipoLote_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_TipoLote.Click
@@ -147,7 +147,7 @@ Public Class frmEntTiposControlesLotesPlantilla
         Dim frmEnt As New frmEntTiposLotes(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spTiposLotes, DBO_TiposLotes)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTiposLotes
-        s.cargar_TiposLotes(Me.cboTipoLote)
+        s.cargar_TiposLotes(Me.cboTipoLote, dtb)
     End Sub
 
     Private Sub butVerId_TipoProducto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_TipoProducto.Click
@@ -160,7 +160,7 @@ Public Class frmEntTiposControlesLotesPlantilla
         Dim frmEnt As New frmEntTiposProductos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spTiposProductos, DBO_TiposProductos)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spTiposProductos
-        s.cargar_ComboBox(Me.cboTipoProducto)
+        s.cargar_ComboBox(Me.cboTipoProducto, dtb)
     End Sub
 
     Private Sub butVerId_frecuencia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_frecuencia.Click
@@ -173,7 +173,7 @@ Public Class frmEntTiposControlesLotesPlantilla
         Dim frmEnt As New frmEntFrecuenciasTiposControlesLotes(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spFrecuenciasTiposControlesLotes, DBO_FrecuenciasTiposControlesLotes)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spFrecuenciasTiposControlesLotes
-        s.cargar_FrecuenciasTiposControlesLotes(Me.cbofrecuencia)
+        s.cargar_FrecuenciasTiposControlesLotes(Me.cbofrecuencia, dtb)
     End Sub
 
     Private Sub butVerId_procedimiento_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerId_procedimiento.Click
@@ -186,7 +186,7 @@ Public Class frmEntTiposControlesLotesPlantilla
         Dim frmEnt As New frmEntProcedimientos(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spProcedimientos, DBO_Procedimientos)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spProcedimientos
-        s.cargar_Procedimientos(Me.cboprocedimiento)
+        s.cargar_Procedimientos(Me.cboprocedimiento, dtb)
     End Sub
 
     Private Sub frmEntTiposControlesLotesPlantilla_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown

@@ -23,7 +23,7 @@ Public Class frmEntProtocolosMedicos
 
     Private Sub frmEntProtocolosMedicos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim s As New spMedicos
-        s.cargar_Medicos(Me.cboMedico)
+        s.cargar_Medicos(Me.cboMedico, dtb)
         If Me.ModoDeApertura = VISION Then
             Me.cboMedico.Enabled = False
             Me.lblMedico.Enabled = False
@@ -84,8 +84,8 @@ Public Class frmEntProtocolosMedicos
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butVerMedico_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerMedico.Click
@@ -98,7 +98,7 @@ Public Class frmEntProtocolosMedicos
         Dim frmEnt As New frmEntMedicos(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spMedicos, DBO_Medicos)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spMedicos
-        s.cargar_Medicos(Me.cboMedico)
+        s.cargar_Medicos(Me.cboMedico, dtb)
     End Sub
 
 End Class

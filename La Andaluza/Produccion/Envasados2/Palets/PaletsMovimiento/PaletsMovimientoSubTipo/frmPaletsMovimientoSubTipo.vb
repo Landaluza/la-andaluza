@@ -55,7 +55,7 @@ Public Class frmPaletsMovimientoSubTipo
         response = MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
                           "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If response = DialogResult.Yes Then
-            CType(sp, spPaletsMovimientoSubTipo).DeletePaletsMovimientoSubTipo(dgvGeneral.CurrentRow.Cells("ID").Value)
+            CType(sp, spPaletsMovimientoSubTipo).DeletePaletsMovimientoSubTipo(dgvGeneral.CurrentRow.Cells("ID").Value, dtb)
             GeneralBindingSource.DataSource = dtb.Consultar(spSelectDgv, True)
         End If
     End Sub

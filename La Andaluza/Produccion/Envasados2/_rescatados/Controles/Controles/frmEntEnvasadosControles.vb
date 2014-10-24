@@ -31,7 +31,7 @@ Public Class frmEntEnvasadosControles
     Private Sub frmEntEnvasadosControles_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'cboResponsableID.mam_DataSource("EmpleadosSelectCbo"), False)
         Dim spEmple As New spEmpleados
-        spEmple.cargar_empleados_envasados(cboResponsableID)
+        spEmple.cargar_empleados_envasados(cboResponsableID, dtb)
         SetValores()
         RellenarDatosAuxiliares()
         Me.ModificarBindingNavigator()
@@ -78,10 +78,10 @@ Public Class frmEntEnvasadosControles
             cboResponsableID.Focus()
         Else
             GetValores()
-            spEnvasadosControles.GrabarEnvasadosControles(m_DBO_EnvasadosControles)
+            spEnvasadosControles.GrabarEnvasadosControles(m_DBO_EnvasadosControles, dtb)
 
             'Tengo que obtener el ID del ultimo registro
-            If Me.Text.Substring(0, 3) = "Ins" Then m_DBO_EnvasadoControlLinea.EnvasadoControlID = spEnvasadosControles.EnvasadosControlesSelecMax()
+            If Me.Text.Substring(0, 3) = "Ins" Then m_DBO_EnvasadoControlLinea.EnvasadoControlID = spEnvasadosControles.EnvasadosControlesSelecMax(dtb)
 
             'Grabo los valores de la tabla auxiliar
             m_FormLinea.guardar(m_DBO_EnvasadoControlLinea)

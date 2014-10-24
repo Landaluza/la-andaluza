@@ -18,7 +18,7 @@ Public Class frmEntArticulosTiposDocumentos
     End Sub
 
     Private Sub frmEntArticulosTiposDocumentos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Me.cboArticuloTipoID.mam_DataSource("ArticulosTiposDocumentos_ArticulosTiposCbo", False)
+        Me.cboArticuloTipoID.mam_DataSource("ArticulosTiposDocumentos_ArticulosTiposCbo", False, dtb)
         If Not m_VerID Then
             Me.cboArticuloTipoID.Visible = False
             Me.lblArticuloTipoID.Visible = False
@@ -28,7 +28,7 @@ Public Class frmEntArticulosTiposDocumentos
     End Sub
 
     Overrides Sub SetValores(ByVal m_ID As Integer, ByVal m_SelectRecord As Boolean)
-        If m_SelectRecord Then m_DBO_ArticulosTiposDocumento = spArticulosTiposDocumentos.Select_Record(m_ID)
+        If m_SelectRecord Then m_DBO_ArticulosTiposDocumento = spArticulosTiposDocumentos.Select_Record(m_ID, dtb)
         txtArticuloTipoDocumentoID.Text = m_DBO_ArticulosTiposDocumento.ArticuloTipoDocumentoID
         cboArticuloTipoID.SelectedValue = If(m_DBO_ArticulosTiposDocumento.ArticuloTipoID.HasValue, m_DBO_ArticulosTiposDocumento.ArticuloTipoID, -1)
         txtDescripcion.Text = m_DBO_ArticulosTiposDocumento.Descripcion
@@ -51,7 +51,7 @@ Public Class frmEntArticulosTiposDocumentos
 
     Overrides Sub Guardar()
         GetValores()
-        spArticulosTiposDocumentos.GrabarArticulosTiposDocumentos(m_DBO_ArticulosTiposDocumento)
+        spArticulosTiposDocumentos.GrabarArticulosTiposDocumentos(m_DBO_ArticulosTiposDocumento, dtb)
         Me.Close()
     End Sub
 

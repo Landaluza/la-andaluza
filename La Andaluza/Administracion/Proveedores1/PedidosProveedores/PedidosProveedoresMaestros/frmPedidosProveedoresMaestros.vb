@@ -66,7 +66,7 @@ Public Class frmPedidosProveedoresMaestros
         Dim resp As DialogResult = MessageBox.Show("¿Enviar correo a gerencia?", "Correo pedido", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If resp = Windows.Forms.DialogResult.Yes Then
             Dim mail As New Mail.MailGerente()
-            mail.send(dgvGeneral, PDFFile)
+            mail.send(dgvGeneral, PDFFile, dtb)
         End If
     End Sub
 
@@ -79,7 +79,7 @@ Public Class frmPedidosProveedoresMaestros
         response = MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
                           "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If response = DialogResult.Yes Then
-            If CType(sp, spPedidosProveedoresMaestros).DeletePedidosProveedoresMaestros(dgvGeneral.CurrentRow.Cells("PedidoProveedorMaestroID").Value) Then
+            If CType(sp, spPedidosProveedoresMaestros).DeletePedidosProveedoresMaestros(dgvGeneral.CurrentRow.Cells("PedidoProveedorMaestroID").Value, dtb) Then
                 dgvFill()
             End If
             'GeneralBindingSource. dataSource = dtb.Consultar(spSelectDgv)
@@ -96,7 +96,7 @@ Public Class frmPedidosProveedoresMaestros
             DBO_PedidoProveedor.Numero = Me.dtb.Consultar.Rows(0).Item(0) + 1
             DBO_PedidoProveedor.EstadoID = 1 'Solicitado
         Else
-            DBO_PedidoProveedor = CType(sp, spPedidosProveedoresMaestros).Select_Record(GeneralBindingSource(m_Pos).Item("PedidoProveedorMaestroID"))
+            DBO_PedidoProveedor = CType(sp, spPedidosProveedoresMaestros).Select_Record(GeneralBindingSource(m_Pos).Item("PedidoProveedorMaestroID"), dtb)
         End If
 
         frmEnt = New frmEntPedidosProveedoresMaestros(DBO_PedidoProveedor, m_Pos)
@@ -397,7 +397,7 @@ Public Class frmPedidosProveedoresMaestros
             End Try
 
             Try
-                CType(sp, spPedidosProveedoresMaestros).UpdatePedidosProveedoresMaestros_RutaPDF(dgvGeneral.CurrentRow.Cells("PedidoProveedorMaestroID").Value, PDFFile & Convert.ToString(dgvGeneral.CurrentRow.Cells("Numero").Value) & ".PDF")
+                CType(sp, spPedidosProveedoresMaestros).UpdatePedidosProveedoresMaestros_RutaPDF(dgvGeneral.CurrentRow.Cells("PedidoProveedorMaestroID").Value, PDFFile & Convert.ToString(dgvGeneral.CurrentRow.Cells("Numero").Value) & ".PDF", dtb)
             Catch ex As Exception
                 MessageBox.Show("Error actualizando tabla. Detalles: " & ex.Message.Substring(1, 20) & Environment.NewLine & "Fallo al grabar el fichero como PDF")
             End Try
@@ -427,7 +427,7 @@ Public Class frmPedidosProveedoresMaestros
     End Sub
 
     Private Sub CopiarPedido()
-        CType(sp, spPedidosProveedoresMaestros).CopyPedidosProveedores(dgvGeneral.CurrentRow.Cells("PedidoProveedorMaestroID").Value)
+        CType(sp, spPedidosProveedoresMaestros).CopyPedidosProveedores(dgvGeneral.CurrentRow.Cells("PedidoProveedorMaestroID").Value, dtb)
         GeneralBindingSource.DataSource = dtb.Consultar(spSelectDgv, True)
         GeneralBindingSource.MoveLast()
         Modificar()
@@ -437,7 +437,7 @@ Public Class frmPedidosProveedoresMaestros
         Dim resp As DialogResult = MessageBox.Show("¿Enviar correo al proveedor?", "Correo pedido", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If resp = Windows.Forms.DialogResult.Yes Then
             Dim mail As New Mail.MailProveedores
-            mail.send(dgvGeneral, PDFFile)
+            mail.send(dgvGeneral, PDFFile, dtb)
         End If
     End Sub
 

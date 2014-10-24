@@ -24,7 +24,7 @@ Public Class frmPartesTrabajosDiariosMaestros
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
                             "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-            If CType(sp, spPartesTrabajosDiariosMaestros).PartesTrabajosDiariosMaestrosDelete(dgvGeneral.CurrentRow.Cells("ParteTrabajoDiarioMaestroID").Value) Then
+            If CType(sp, spPartesTrabajosDiariosMaestros).PartesTrabajosDiariosMaestrosDelete(dgvGeneral.CurrentRow.Cells("ParteTrabajoDiarioMaestroID").Value, dtb) Then
                 dgvFill()
             End If
         End If
@@ -36,10 +36,15 @@ Public Class frmPartesTrabajosDiariosMaestros
         If TipoAction = ACCION_INSERTAR Then
             If m_MaestroID <> 0 Then m_DBO_ParteTrabajoDiarioMaestro.EmpleadoID = m_MaestroID
         Else
-            m_DBO_ParteTrabajoDiarioMaestro = CType(sp, spPartesTrabajosDiariosMaestros).Select_Record(dgvGeneral.CurrentRow.Cells("ParteTrabajoDiarioMaestroID").Value)
+            m_DBO_ParteTrabajoDiarioMaestro = CType(sp, spPartesTrabajosDiariosMaestros).Select_Record(dgvGeneral.CurrentRow.Cells("ParteTrabajoDiarioMaestroID").Value, dtb)
         End If
 
         frmEnt = New frmEntPartesTrabajosDiariosMaestros(m_DBO_ParteTrabajoDiarioMaestro)
+        If dgvGeneral.RowCount > 0 Then
+            frmEnt.OcultarBotonGrabar(True)
+        Else
+            frmEnt.OcultarBotonGrabar(False)
+        End If
         frmEnt.Text = String.Format("{0} {1}", TipoAction, Me.Text)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 
@@ -54,13 +59,6 @@ Public Class frmPartesTrabajosDiariosMaestros
     Protected Overrides Sub BindDataSource()
         If Not dataSource Is Nothing Then
             GeneralBindingSource.DataSource = dataSource
-
-            If dgvGeneral.RowCount > 0 Then
-                frmEnt.OcultarBotonGrabar(True)
-            Else
-                frmEnt.OcultarBotonGrabar(False)
-            End If
-
 
             With dgvGeneral
                 .DataSource = GeneralBindingSource

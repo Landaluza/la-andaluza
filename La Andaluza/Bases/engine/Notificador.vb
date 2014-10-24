@@ -1,8 +1,7 @@
 ﻿Public Class Notificador
     
 
-    Function comprobarNotificaciones() As DataTable
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+    Function comprobarNotificaciones(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
         Dim dt As DataTable
 
         Try
@@ -19,8 +18,7 @@
         Return dt
     End Function
 
-    Public Function borrarNotificacion(ByVal id As Integer) As Boolean
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+    Public Function borrarNotificacion(ByVal id As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
 
         Try
             dtb.PrepararConsulta("delete from notificaciones where id = @id")
@@ -32,8 +30,7 @@
     End Function
 
 
-    Function comprobarNumeroPedidos() As Integer
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+    Function comprobarNumeroPedidos(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
 
 
         Dim dt As DataTable = dtb.Consultar("PedidosClientesCountByDiaServicio2", True)
@@ -44,8 +41,7 @@
         Return dt.Rows(0).Item(0)
     End Function
 
-    Function comprobarNumeroOC() As Integer
-        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+    Function comprobarNumeroOC(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
 
 
         Dim dt As DataTable = dtb.Consultar("OrdenesDeCargaCountByDiaServicio", True)

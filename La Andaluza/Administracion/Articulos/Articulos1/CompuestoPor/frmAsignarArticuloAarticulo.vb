@@ -5,11 +5,11 @@ Public Class frmAsignarArticuloAarticulo
     Public descripcion As String
     Private AsignarSecundario As Boolean
     Private guardar As Boolean
-
+    Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New(ByVal id As Integer, Optional asignaciondeprimario As Boolean = False, Optional ByVal guardar As Boolean = True)
 
         InitializeComponent()
-
+        dtb = New BasesParaCompatibilidad.DataBase
         id_articulo = id
         Me.AsignarSecundario = Not asignaciondeprimario
         Me.guardar = guardar
@@ -17,7 +17,6 @@ Public Class frmAsignarArticuloAarticulo
 
 
     Private Sub frmAsignarSecundario_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
         Dim dt As DataTable
 
         If Me.AsignarSecundario Then
@@ -50,7 +49,6 @@ Public Class frmAsignarArticuloAarticulo
         Me.id = Me.DataGridView1.CurrentRow.Cells("articuloid").Value
         Me.descripcion = Me.DataGridView1.CurrentRow.Cells("descripcionLa").Value
 
-        Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server)
         dtb.EmpezarTransaccion()
         Try
             If Me.AsignarSecundario Then
@@ -64,7 +62,7 @@ Public Class frmAsignarArticuloAarticulo
                 If Not dtb.Consultar(True) Then Throw New Exception("No se pudo guardar la composicion")
 
                 Dim spArticulosEnvasesSecundarios As New spArticulosEnvasesSecundarios
-                Dim m_aux As DBO_ArticulosEnvasesSecundarios = spArticulosEnvasesSecundarios.Select_RecordByArticuloID(id, dtb.Transaccion)
+                Dim m_aux As DBO_ArticulosEnvasesSecundarios = spArticulosEnvasesSecundarios.Select_RecordByArticuloID(id, dtb)
                 Me.id = m_aux.ID
 
                 dtb.PrepararConsulta("update articulosenvasessecundarios set id_articuloPrimario = @pri where articuloid = @art")

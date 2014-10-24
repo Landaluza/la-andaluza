@@ -25,8 +25,8 @@ Public Class frmEntReuniones
     End Sub
 
     Private Sub frmEntReuniones_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Me.cboId_proveedor.mam_DataSource("Proveedores1Cbo", False)
-        Me.cboId_TipoReunion.mam_DataSource("TiposReunionesCbo", False)
+        Me.cboId_proveedor.mam_DataSource("Proveedores1Cbo", False, dtb)
+        Me.cboId_TipoReunion.mam_DataSource("TiposReunionesCbo", False, dtb)
 
 
         butVer.Visible = True
@@ -81,8 +81,8 @@ Public Class frmEntReuniones
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef trans As SqlClient.SqlTransaction = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
-        MyBase.Guardar(trans)
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
+        MyBase.Guardar(Me.dtb)
     End Sub
 
     Private Sub butRutaDocumento_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butRutaDocumento.Click
@@ -114,7 +114,7 @@ Public Class frmEntReuniones
         Dim DBO_Proveedores As New DBO_Proveedores
         Dim frmEnt As New frmEntProveedores(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spProveedores, DBO_Proveedores)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
-        Me.cboId_proveedor.mam_DataSource("Proveedores1Cbo", False)
+        Me.cboId_proveedor.mam_DataSource("Proveedores1Cbo", False, dtb)
     End Sub
 
     Private Sub butVerId_TipoReunion_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -126,7 +126,7 @@ Public Class frmEntReuniones
         Dim DBO_TiposReuniones As New DBO_TiposReuniones
         Dim frmEnt As New frmEntTiposReuniones(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spTiposReuniones, DBO_TiposReuniones)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
-        Me.cboId_TipoReunion.mam_DataSource("TiposReunionesCbo", False)
+        Me.cboId_TipoReunion.mam_DataSource("TiposReunionesCbo", False, dtb)
     End Sub
 
 End Class

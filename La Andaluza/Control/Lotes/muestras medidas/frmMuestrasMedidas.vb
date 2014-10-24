@@ -23,7 +23,7 @@ Public Class frmMuestrasMedidas
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboMuestrasMedidas = CType(sp, spMuestrasMedidas).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer))
+        dboMuestrasMedidas = CType(sp, spMuestrasMedidas).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
         If Not dboMuestrasMedidas Is Nothing Then
             newRegForm.SetDataBussinesObject(CType(Me.dboMuestrasMedidas, BasesParaCompatibilidad.DataBussines))
         Else

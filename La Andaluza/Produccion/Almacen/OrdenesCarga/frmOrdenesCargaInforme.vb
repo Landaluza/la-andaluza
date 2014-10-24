@@ -13,12 +13,13 @@ Public Class frmOrdenesCargaInforme
     Private dt As DataTable
     Public FechaSeleccionada As String
     Private spOrdenesCarga As spOrdenesCarga
+    Private dtb As BasesParaCompatibilidad.DataBase
 
     Public Sub New()
 
         ' This call is required by the designer.
         InitializeComponent()
-
+        dtb = New BasesParaCompatibilidad.DataBase
         spOrdenesCarga = New spOrdenesCarga
 
     End Sub
@@ -29,7 +30,7 @@ Public Class frmOrdenesCargaInforme
         Dim spInformePedidos As New spInformePedidos
         intentosConexion = 0
 
-        dgvAlbaranes.DataSource = spInformePedidos.SelectInformePedidos_AlbaranesCarga(new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server))
+        dgvAlbaranes.DataSource = spInformePedidos.SelectInformePedidos_AlbaranesCarga(dtb)
         dtAlbaranes = dgvAlbaranes.DataSource
         Me.dgvAlbaranes.ClearSelection()
         If (Me.dgvAlbaranes.Columns.Count > 0) Then
@@ -56,7 +57,6 @@ Public Class frmOrdenesCargaInforme
         Dim spInformePedidos As New spInformePedidos
         Dim i As Integer
         Dim chColumn As DataColumn
-        Dim dtb As New BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
         i = 0
         dt = dtb.Consultar("OrdenesCargasInformeNew6", True)
 
@@ -231,12 +231,12 @@ Public Class frmOrdenesCargaInforme
                 exportar()
                 'frm.Close()
             Else
-                messagebox.show("No hay filas seleccionadas para crear la orden de carga", "Atención", MessageBoxButtons.OK , MessageBoxIcon.Exclamation )
+                messagebox.show("No hay filas seleccionadas para crear la orden de carga", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             End If
         End If
     End Sub
 
-    Private Function AddOrdenCarga(ByVal Ruta As String, ByRef dtb as BasesParaCompatibilidad.Database) As Boolean
+    Private Function AddOrdenCarga(ByVal Ruta As String, ByRef dtb As BasesParaCompatibilidad.Database) As Boolean
         Dim m_DBO_OrdenesCarga As New DBO_OrdenesCarga
         m_DBO_OrdenesCarga.Fecha = Now.Date
         m_DBO_OrdenesCarga.Ruta = Ruta
@@ -244,7 +244,7 @@ Public Class frmOrdenesCargaInforme
         Return spOrdenesCarga.GrabarOrdenesCarga(m_DBO_OrdenesCarga, dtb, True)
     End Function
 
-    Private Sub dgv_CellDoubleClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgv.CellDoubleClick        
+    Private Sub dgv_CellDoubleClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgv.CellDoubleClick
         ActualizarCelda()
     End Sub
 
@@ -451,7 +451,6 @@ Public Class frmOrdenesCargaInforme
 
             If dgv.Columns.Count > 0 Then
                 'guardamos el registro maestro
-                Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
                 dtb.EmpezarTransaccion()
 
                 Try
@@ -527,7 +526,7 @@ Public Class frmOrdenesCargaInforme
                     End Try
 
                     oSheet.SaveAs(NombreHoja)
-                    ''BasesParaCompatibilidad.BD.CancelarTransaccion()
+                    ''dtb.CancelarTransaccion ()
                     dtb.TerminarTransaccion()
                     '''If Not Me.WinSockCliente Is Nothing Then If Me.WinSockCliente.conected Then WinSockCliente.EnviarDatos("99")
                     oExcel.DisplayFullScreen = True
@@ -608,7 +607,7 @@ Public Class frmOrdenesCargaInforme
 
     '    If dgv.Columns.Count > 0 Then
     '        'guardamos el registro maestro
-    '        BasesParaCompatibilidad.BD.EmpezarTransaccion()
+    '        dtb.EmpezarTransaccion()
 
 
     '        Try
@@ -636,7 +635,7 @@ Public Class frmOrdenesCargaInforme
     '                If Me.dgv.Rows(mRow).Visible Then
     '                    'For mColumn As Integer = 0 To dgv.Columns.Count - 2
     '                    '    DataArray(mRow, mColumn) = dgv.Rows(mRow).Cells(mColumn + 1).Value
-    '                    '    'If Not spOrdenesCarga.OrdenesCargaInsertDetail(m_detalles, BasesParaCompatibilidad.BD.transaction) Then Throw New Exception("Error guardando los detalles")
+    '                    '    'If Not spOrdenesCarga.OrdenesCargaInsertDetail(m_detalles,dtb) Then Throw New Exception("Error guardando los detalles")
     '                    'Next
 
     '                    DataArray(mRow, 0) = dgv.Rows(mRow).Cells("Descripcion").Value
@@ -662,11 +661,11 @@ Public Class frmOrdenesCargaInforme
     '            'oExcel.Visible = True
 
     '            oSheet.SaveAs(NombreHoja) ', Excel.XlFileFormat.xlExcel8)
-    '            BasesParaCompatibilidad.BD.CancelarTransaccion()
-    '            'BasesParaCompatibilidad.BD.TerminarTransaccion()
+    '            dtb.CancelarTransaccion ()
+    '            'dtb.TerminarTransaccion ()
     '        Catch ex As Exception
     '            messagebox.show(ex.Message, "", MessageBoxButtons.OK , MessageBoxIcon.Error )
-    '            BasesParaCompatibilidad.BD.CancelarTransaccion()
+    '            dtb.CancelarTransaccion ()
     '        Finally
     '            oExcel.Quit()
     '            oExcel = Nothing
@@ -730,7 +729,7 @@ Public Class frmOrdenesCargaInforme
 
     '    If dtLineas.Columns.Count > 0 Then
     '        'guardamos el registro maestro
-    '        BasesParaCompatibilidad.BD.EmpezarTransaccion()
+    '        dtb.EmpezarTransaccion()
 
 
     '        Try
@@ -750,7 +749,7 @@ Public Class frmOrdenesCargaInforme
     '            For mRow As Integer = 0 To dtLineas.Rows.Count - 1
     '                For mColumn As Integer = 0 To dtLineas.Columns.Count - 2
     '                    DataArray(mRow, mColumn) = dtLineas.Rows.Item(mRow).Item(mColumn + 1)
-    '                    'If Not spOrdenesCarga.OrdenesCargaInsertDetail(m_detalles, BasesParaCompatibilidad.BD.transaction) Then Throw New Exception("Error guardando los detalles")
+    '                    'If Not spOrdenesCarga.OrdenesCargaInsertDetail(m_detalles,dtb) Then Throw New Exception("Error guardando los detalles")
     '                Next
     '            Next
 
@@ -768,11 +767,11 @@ Public Class frmOrdenesCargaInforme
     '            'oExcel.Visible = True
 
     '            oSheet.SaveAs(NombreHoja) ', Excel.XlFileFormat.xlExcel8)
-    '            BasesParaCompatibilidad.BD.CancelarTransaccion()
-    '            'BasesParaCompatibilidad.BD.TerminarTransaccion()
+    '            dtb.CancelarTransaccion ()
+    '            'dtb.TerminarTransaccion ()
     '        Catch ex As Exception
     '            messagebox.show(ex.Message, "", MessageBoxButtons.OK , MessageBoxIcon.Error )
-    '            BasesParaCompatibilidad.BD.CancelarTransaccion()
+    '            dtb.CancelarTransaccion ()
     '        Finally
     '            oExcel.Quit()
     '            oExcel = Nothing

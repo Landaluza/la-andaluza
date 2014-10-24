@@ -19,12 +19,12 @@
         spAlamacen = New spAlmacenPalets
         Me.codigoMaestro = MaestroProID
         spPaletsProducidos2 = New spPaletsProducidos2
-        dtb = new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
+        dtb = New BasesParaCompatibilidad.Database()
     End Sub
 
     Private Sub EscaneoSCC_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim spTipos As New spPaletsTipos
-        spTipos.cargar_PaletsTipos(Me.cboTipoPalet)
+        spTipos.cargar_PaletsTipos(Me.cboTipoPalet, dtb)
 
         txtSCCEscaneado.Focus()
     End Sub
@@ -40,8 +40,8 @@
                 'Compruebo que no supere el maximo de palets o kilos que admite el camión.
 
 
-                BasesParaCompatibilidad.BD.EmpezarTransaccion()
-                Dim dtb As New BasesParaCompatibilidad.DataBase(BasesParaCompatibilidad.Config.Server, BasesParaCompatibilidad.BD.Cnx, BasesParaCompatibilidad.BD.transaction)
+                dtb.EmpezarTransaccion()
+
                 Try
 
                     Dim Linea As String = "PaletsProducidosSelectArticuloCodigoQSBySCC " & txtSCC.Text
@@ -68,22 +68,22 @@
                                                               "Reserva2", _
                                                               "Reserva3", "") Then
                         Dim sp As New spPaletsProducidos
-                        Dim DBO_PaletsProducidos As DBO_PaletsProducidos = sp.Select_RecordBySSCC(txtSCC.Text, BasesParaCompatibilidad.BD.transaction)
+                        Dim DBO_PaletsProducidos As DBO_PaletsProducidos = sp.Select_RecordBySSCC(txtSCC.Text, dtb)
                         DBO_PaletsProducidos.EnAlmacen = 0
-                        sp.Grabar(DBO_PaletsProducidos, BasesParaCompatibilidad.BD.transaction)
-                        BasesParaCompatibilidad.BD.TerminarTransaccion()
+                        sp.Grabar(DBO_PaletsProducidos, dtb)
+                        dtb.TerminarTransaccion()
                         RaiseEvent AfterSave(Me)
                         Me.Close()
                     Else
-                        BasesParaCompatibilidad.BD.CancelarTransaccion()
+                        dtb.CancelarTransaccion()
                         MessageBox.Show("No se pudo completar la operación. Vuelva a intentarlo en unos segundos", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     End If
                 Catch ex As Exception
-                    BasesParaCompatibilidad.BD.CancelarTransaccion()
+                    dtb.CancelarTransaccion()
                     messagebox.show("Hubo un problema al realizar las operaciones. Detalles:" & Environment.NewLine & Environment.NewLine, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End Try
             Else
-                messagebox.show("Este SSCC esta repetido", "Alerta", MessageBoxButtons.OK , MessageBoxIcon.Exclamation )
+                messagebox.show("Este SSCC esta repetido", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 borrarTextos()
             End If
         End If
@@ -102,7 +102,7 @@
 
     Private Sub txtSCCEscaneado_Validated(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtSCCEscaneado.Validating
 
-       
+
 
         rellenarForm()
     End Sub
@@ -161,7 +161,7 @@
                     If Tabla.Rows.Count > 0 Then
                         'Compruebo que el palets este en almacen, es decir que le campo EnAlmacen = True, por si se ha dado salida anteriormente.
                         If Tabla.Rows(0).Item(4) Then
-                            If spPaletsProducidos2.estaCargado(txtSCC.Text) Then
+                            If spPaletsProducidos2.estaCargado(txtSCC.Text, dtb) Then
                                 btnOK.Enabled = False
                                 MessageBox.Show("Este palet figura en una carga. AVISAR A MIGUEL ANGEL", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                                 txtObsCarga.Text = "Palet Cargado."
@@ -177,7 +177,6 @@
                                     Else
                                         Me.Cursor = Cursors.WaitCursor
 
-                                        Dim dtb As new BasesParaCompatibilidad.Database(BasesParaCompatibilidad.Config.Server)
                                         If Not dtb.ConsultaAlteraciones("insert into notificaciones(texto, id_tipousuario, leido) values('El palet " & txtSCC.Text & " se ha expedido sin contenidos el " & Convert.ToString(Now.Date) & "' , 4, 0)") Then
                                             MessageBox.Show("No se pudo notificar a control. Vuelva a intentarlo en unos segundos.", "Error al notificar", MessageBoxButtons.OK, MessageBoxIcon.Error)
                                             Me.Cursor = Cursors.Default
@@ -257,7 +256,9 @@
                             Dim resp As DialogResult = MessageBox.Show("Este palet no se encuentra en el almacen. ¿Desea marcalo como 'en almacen' y continuar?" & Environment.NewLine & _
                                                               "(Pulse 'No' si la información es correcta y no esta en almacen)", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                             If resp = DialogResult.Yes Then
-                                deprecated.realizarConsultaAlteraciones("update paletsproducidos set enalmacen=1 where scc = " & txtSCCEscaneado.Text)
+                                dtb.PrepararConsulta("update paletsproducidos set enalmacen=1 where scc = @scc")
+                                dtb.AñadirParametroConsulta("@scc", txtSCCEscaneado.Text)
+                                If Not dtb.Consultar(True) Then Throw New Exception("Error actualizando el palet")
                                 rellenarForm()
                             Else
                                 btnOK.Enabled = False
@@ -307,12 +308,16 @@
     End Sub
 
     Private Sub btnNoMultilote_Click(sender As System.Object, e As System.EventArgs) Handles btnNoMultilote.Click
-        deprecated.realizarConsultaAlteraciones("update paletsproducidos set multilote = 0 where scc = " & txtSCCEscaneado.Text)
+        dtb.PrepararConsulta("update paletsproducidos set multilote = 0 where scc = @scc")
+        dtb.AñadirParametroConsulta("@scc", txtSCCEscaneado.Text)
+        dtb.Consultar(True)
         rellenarForm()
     End Sub
 
     Private Sub btnMultilote_Click(sender As System.Object, e As System.EventArgs) Handles btnMultilote.Click
-        deprecated.realizarConsultaAlteraciones("update paletsproducidos set multilote = 1 where scc = " & txtSCCEscaneado.Text)
+        dtb.PrepararConsulta("update paletsproducidos set multilote = 1 where scc = @scc")
+        dtb.AñadirParametroConsulta("@scc", txtSCCEscaneado.Text)
+        dtb.Consultar(True)
         rellenarForm()
     End Sub
 

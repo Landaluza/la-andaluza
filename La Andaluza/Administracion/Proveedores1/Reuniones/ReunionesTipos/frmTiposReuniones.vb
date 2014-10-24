@@ -26,7 +26,7 @@ Public Class frmTiposReuniones
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
-        dboTiposReuniones = CType(sp, spTiposReuniones).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value)
+        dboTiposReuniones = CType(sp, spTiposReuniones).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboTiposReuniones Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboTiposReuniones)
         Else
