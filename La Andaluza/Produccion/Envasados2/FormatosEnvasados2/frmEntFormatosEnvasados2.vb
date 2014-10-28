@@ -48,7 +48,8 @@ Public Class frmEntFormatosEnvasados2
     End Sub
 
     Public Sub New(ByVal modo As String, ByVal CantidadEnvasada As Integer, ByVal m_dbo As DBO_FormatosEnvasados, ByVal linea As Integer)
-        Me.new(modo, linea)
+        Me.New(modo, linea)
+        InitializeComponent()
         m_CantidadEnvasada = CantidadEnvasada
         m_DBO_FormatoEnvasado = m_dbo
         spFormatosEnvasados = New spFormatosEnvasados
@@ -240,14 +241,22 @@ Public Class frmEntFormatosEnvasados2
     End Sub
 
     Overrides Sub Guardar()
+        dtb.EmpezarTransaccion()
+        Dim cargar As Boolean = False
+        Dim formato As Integer
+
         Try
             If Me.ModoDeApertura = MODIFICACION Then
 
                 If Config.UserType = 4 Or Config.UserType = 9 Then
                     GetValores()
                     m_DBO_FormatoEnvasado.EnvasadoID = m_DBO_Envasado.EnvasadoID
-                    spFormatosEnvasados2.GrabarFormatosEnvasados2(m_DBO_FormatoEnvasado, dtb)
+                    If Not spFormatosEnvasados2.GrabarFormatosEnvasados2(m_DBO_FormatoEnvasado, dtb) Then
+                        Throw New Exception("no se pudo grabar el formato")
+                    End If
                 End If
+
+                dtb.TerminarTransaccion()
                 Me.Close()
             Else
                 If Convert.ToString(cboTipoFormatoLinea.SelectedValue) <> "System.Data.DataRowView" And cboTipoFormatoID.SelectedValue.ToString <> "System.Data.DataRowView" Then
@@ -255,54 +264,69 @@ Public Class frmEntFormatosEnvasados2
                         GetValores()
                         m_DBO_FormatoEnvasado.EnvasadoID = m_DBO_Envasado.EnvasadoID
 
-                        spFormatosEnvasados2.GrabarFormatosEnvasados2(m_DBO_FormatoEnvasado, dtb)
+                        If Not spFormatosEnvasados2.GrabarFormatosEnvasados2(m_DBO_FormatoEnvasado, dtb) Then
+                            Throw New Exception("No se pudo grabar el formato")
+                        End If
 
                         MyBase.Guardar()
-                        frmPersonal.guardar(m_DBO_FormatoEnvasado.ID)
-
-                        SetValores()
-                        SplitContainer2.Panel1Collapsed = False
-                        SplitContainer2.Panel2Collapsed = True
-                        Me.tpgProduccion.Visible = True
-                        Me.añadirFormularios()
-                        Me.habilitarAcciones()
-                        Me.añadirMenu()
-
-                        Dim formato As Integer = spFormatosEnvasados2.recuperarUltimoFormatoEnvasado(Me.m_DBO_Envasado, dtb)
-
-
-                        If formato <> Me.m_DBO_FormatoEnvasado.TipoFormatoLineaID Then
-                            Dim Respuesta As DialogResult
-                            Respuesta = MessageBox.Show(" El formato no coincide con el ultimo envasado" & Environment.NewLine & _
-                                                "¿Desea crear un cambio de formato?", _
-                                                "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                            If Respuesta = DialogResult.Yes Then
-                                Dim m_CambiosFormatosEnvasados2 As New DBO_CambiosFormatosEnvasados2
-                                m_CambiosFormatosEnvasados2.CambioFormatoEnvasadoId = 0
-                                m_CambiosFormatosEnvasados2.HoraInicio = DateTime.Now.TimeOfDay
-                                m_CambiosFormatosEnvasados2.HoraFin = DateTime.Now.TimeOfDay
-                                m_CambiosFormatosEnvasados2.FormatoEnvasadoAID = Me.m_DBO_FormatoEnvasado.ID
-
-                                'Dim m_CambiosFormatosEnvasados2 As New DBO_CambiosFormatosEnvasados
-                                'm_CambiosFormatosEnvasados2.ID = 0
-                                'm_CambiosFormatosEnvasados2.HoraInicio = Me.m_DBO_Envasado.Fecha
-                                'm_CambiosFormatosEnvasados2.HoraFin = Me.m_DBO_Envasado.Fecha
-                                'm_CambiosFormatosEnvasados2.FormatoEnvasadoAID = Me.m_DBO_FormatoEnvasado.ID
-
-                                frmEntCambiosFormatosEnvasados2 = New frmEntCambiosFormatosEnvasados2(BasesParaCompatibilidad.FrmAheredarOld.ACCION_INSERTAR, m_CambiosFormatosEnvasados2, 0, 0, Me.m_DBO_FormatoEnvasado.ID)
-                                'frmEnt = New frmEntCambiosFormatosEnvasados(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spCambiosFormatosEnvasados, m_CambiosFormatosEnvasados2)
-
-                                frmEntCambiosFormatosEnvasados2.ShowDialog()
-                            End If
+                        If Not frmPersonal.guardar(m_DBO_FormatoEnvasado.ID, dtb) Then
+                            Throw New Exception("No se pudo grabar el personal")
                         End If
+
+                        formato = spFormatosEnvasados2.recuperarUltimoFormatoEnvasado(Me.m_DBO_Envasado, dtb)
+                        dtb.TerminarTransaccion()
+
+                        cargar = True
+                       
                     Else
+                        dtb.CancelarTransaccion()
                         MessageBox.Show("Revise los datos del personal", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     End If
+                Else
+                    dtb.CancelarTransaccion()
                 End If
             End If
         Catch ex As Exception
-            messagebox.show("Asegurese de seleccionar antes el formato" & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            dtb.CancelarTransaccion()
+            MessageBox.Show("Asegurese de seleccionar antes el formato" & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+
+        If cargar Then
+            SetValores()
+            SplitContainer2.Panel1Collapsed = False
+            SplitContainer2.Panel2Collapsed = True
+            Me.tpgProduccion.Visible = True
+            Me.añadirFormularios()
+            Me.habilitarAcciones()
+            Me.añadirMenu()
+
+
+
+            If formato <> Me.m_DBO_FormatoEnvasado.TipoFormatoLineaID Then
+                Dim Respuesta As DialogResult
+                Respuesta = MessageBox.Show(" El formato no coincide con el ultimo envasado" & Environment.NewLine & _
+                                    "¿Desea crear un cambio de formato?", _
+                                    "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                If Respuesta = DialogResult.Yes Then
+                    Dim m_CambiosFormatosEnvasados2 As New DBO_CambiosFormatosEnvasados2
+                    m_CambiosFormatosEnvasados2.CambioFormatoEnvasadoId = 0
+                    m_CambiosFormatosEnvasados2.HoraInicio = DateTime.Now.TimeOfDay
+                    m_CambiosFormatosEnvasados2.HoraFin = DateTime.Now.TimeOfDay
+                    m_CambiosFormatosEnvasados2.FormatoEnvasadoAID = Me.m_DBO_FormatoEnvasado.ID
+
+                    'Dim m_CambiosFormatosEnvasados2 As New DBO_CambiosFormatosEnvasados
+                    'm_CambiosFormatosEnvasados2.ID = 0
+                    'm_CambiosFormatosEnvasados2.HoraInicio = Me.m_DBO_Envasado.Fecha
+                    'm_CambiosFormatosEnvasados2.HoraFin = Me.m_DBO_Envasado.Fecha
+                    'm_CambiosFormatosEnvasados2.FormatoEnvasadoAID = Me.m_DBO_FormatoEnvasado.ID
+
+                    frmEntCambiosFormatosEnvasados2 = New frmEntCambiosFormatosEnvasados2(BasesParaCompatibilidad.FrmAheredarOld.ACCION_INSERTAR, m_CambiosFormatosEnvasados2, 0, 0, Me.m_DBO_FormatoEnvasado.ID)
+                    'frmEnt = New frmEntCambiosFormatosEnvasados(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spCambiosFormatosEnvasados, m_CambiosFormatosEnvasados2)
+
+                    frmEntCambiosFormatosEnvasados2.ShowDialog()
+                End If
+            End If
+        End If
     End Sub
 
     Friend Sub GetValores()

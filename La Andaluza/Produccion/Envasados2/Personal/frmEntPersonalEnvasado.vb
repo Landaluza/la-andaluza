@@ -174,7 +174,7 @@ Public Class frmEntPersonalEnvasado
 
     End Function
 
-    Public Function guardar(ByVal formatoEnvasado As Integer) As Boolean
+    Public Function guardar(ByVal formatoEnvasado As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         If Me.dgvEnLinea.Rows.Count > 0 Then
             Dim sp As New spempleados_formatosEnvasados
             Dim dbo As New DBO_empleados_formatosEnvasados
@@ -185,7 +185,7 @@ Public Class frmEntPersonalEnvasado
             'Try
             For Each row As DataGridViewRow In Me.dgvEnLinea.Rows
                 dbo.id_empleado = row.Cells(0).Value
-                If Not sp.Grabar(dbo, Nothing) Then
+                If Not sp.Grabar(dbo, dtb) Then
                     '        dtb.CancelarTransaccion ()
                     MessageBox.Show("No se pudo guardar los datos. Introduzca el personal que arranca la linea manualmente.", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     '        Me.Close()
