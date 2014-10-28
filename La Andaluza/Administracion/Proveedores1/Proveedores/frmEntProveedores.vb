@@ -293,7 +293,7 @@ Public Class frmEntProveedores
                                 End If
                             End If
                         Else
-                            If Not Me.spProveedoresCero.Delete(Me.m_DBO_Proveedores.ProveedorID, dtb) And Me.ModoDeApertura = MODIFICACION Then
+                            If Not Me.spProveedoresCero.Delete(Me.m_DBO_Proveedores.ProveedorID, Me.dtb) And Me.ModoDeApertura = MODIFICACION Then
                                 If terminar Then
                                     Me.dtb.CancelarTransaccion()
                                     MessageBox.Show("No se pudo guardar el registro. Asegurese de tener conexion a la red.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)

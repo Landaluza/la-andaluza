@@ -45,6 +45,8 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         If dtb.Transaccion Is Nothing Then
             dtb.EmpezarTransaccion()
             terminar = True
+        Else
+            terminar = False
         End If
         Try
             If m_dbo.id = Nothing Then

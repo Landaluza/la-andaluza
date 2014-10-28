@@ -42,20 +42,22 @@ Public Class frmEntplantillasBoletines
         Me.dtpFecha.activarFoco()
     End Sub
 
-    Public Sub New(Optional ByVal id_plantilla As Integer = Nothing)
-        InitializeComponent()
-        dtb = New BasesParaCompatibilidad.Database()
-        Me.dtpFecha.activarFoco()
-    End Sub
+    'Public Sub New(Optional ByVal id_plantilla As Integer = Nothing)
+    '    MyBase.New()
+    '    InitializeComponent()
+    '    dtb = New BasesParaCompatibilidad.Database()
+    '    Me.dtpFecha.activarFoco()
+    'End Sub
 
     Public Sub New(ByVal CodigoLote As String, ByVal stub As Boolean)
+        MyBase.New(BasesParaCompatibilidad.gridsimpleform.ACCION_VER, New spplantillasBoletines, Nothing)
         InitializeComponent()
-        dtb = New BasesParaCompatibilidad.Database()
+        dtb = New BasesParaCompatibilidad.DataBase()
         Me.dtpFecha.activarFoco()
 
         m_CodigoLote = CodigoLote
         Me.m_BoletinTipo = TIPO_BOLETIN_ENVASADO
-        sp = New spplantillasBoletines
+        ' sp = New spplantillasBoletines
         m_boletin = New DBO_plantillasBoletines
         dbo = m_boletin
 
@@ -63,9 +65,10 @@ Public Class frmEntplantillasBoletines
     End Sub
 
     Public Sub New(ByRef padre As frmGeneradorBoletines)
+        MyBase.New(BasesParaCompatibilidad.gridsimpleform.ACCION_VER, New spplantillasBoletines, Nothing)
         InitializeComponent()
         m_BoletinTipo = TIPO_BOLETIN_ENVASADO
-        dtb = New BasesParaCompatibilidad.Database()
+        dtb = New BasesParaCompatibilidad.DataBase()
         'RellenarComboBox(cboAnalistas, ctlPer.devolverAnalistas(), False)        
         spBoletin = New spplantillasBoletines
         sp = spBoletin
@@ -77,8 +80,9 @@ Public Class frmEntplantillasBoletines
     End Sub
 
     Public Sub New(ByVal CodigoLote As String, ByVal plantilla As Integer, Optional ByRef padre As frmGeneradorBoletines = Nothing)
+        MyBase.New(BasesParaCompatibilidad.gridsimpleform.ACCION_VER, New spplantillasBoletines, Nothing)
         InitializeComponent()
-        dtb = New BasesParaCompatibilidad.Database()
+        dtb = New BasesParaCompatibilidad.DataBase()
         spBoletin = New spplantillasBoletines
         sp = spBoletin
         m_boletin = New DBO_plantillasBoletines
@@ -89,7 +93,7 @@ Public Class frmEntplantillasBoletines
         Me.padre = padre
         '''cargarParametros()
         habilitarControles()
-        setValores()
+        SetValores()
         MyBase.bdnGeneral.Visible = False
         m_BoletinTipo = TIPO_BOLETIN_ENVASADO
         'RellenarComboBox(cboAnalistas, ctlPer.devolverAnalistas(), False)
@@ -373,7 +377,7 @@ Public Class frmEntplantillasBoletines
         'recuperar los parametros y almacenarlos en un dbo o coleccion
         If Me.GetValores Then
             Try
-                If spBoletin.GrabarBoletin(dtb, dbo) Then
+                If spBoletin.GrabarBoletin(If(dtb Is Nothing, Me.dtb, dtb), dbo) Then
                     RaiseEvent afterSave(Me, Nothing)
                     Me.Close()
                 Else

@@ -110,9 +110,9 @@ Public Class FrmLotesEnologicos
         Dim TipLot As Integer = cboTipoLoteID.SelectedValue
 
         'If MessageBox.Show("¿Recargar la tabla?", "Refrescar", MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
-        If MessageBox.Show("¿Recargar la tabla?", "Refrescar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-            toolStripRefresh100_Click(Nothing, Nothing)
-        End If
+        ' If MessageBox.Show("¿Recargar la tabla?", "Refrescar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+        toolStripRefresh100_Click(Nothing, Nothing)
+        ' End If
 
         'GeneralBindingSource.DataSource = dtsMue
         GeneralBindingSource.Position = 1
@@ -133,9 +133,9 @@ Public Class FrmLotesEnologicos
                            chbConEnologicos.Checked)
             BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
 
-            If MessageBox.Show("¿Recargar la tabla?", "Refrescar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-                toolStripRefresh100_Click(Nothing, Nothing)
-            End If
+            'If MessageBox.Show("¿Recargar la tabla?", "Refrescar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+            toolStripRefresh100_Click(Nothing, Nothing)
+            'End If
 
             GeneralBindingSource.Position = 1
             GeneralBindingSource.Position = Posicion

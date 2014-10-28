@@ -27,7 +27,7 @@ Public Class frmEspecificacionesLegales
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
         dbolegislacionProductos = New DBO_EspecificacionLegal
-        If m_MaestroID <> 0 Then dbolegislacionProductos.Nombre = m_MaestroID
+        If m_MaestroID <> "0" Or m_MaestroID = "" Then dbolegislacionProductos.Nombre = m_MaestroID
         newRegForm.SetDataBussinesObject(CType(Me.dbolegislacionProductos, BasesParaCompatibilidad.DataBussines))
     End Sub
 

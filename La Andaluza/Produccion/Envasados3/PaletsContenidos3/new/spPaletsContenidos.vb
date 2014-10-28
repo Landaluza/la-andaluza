@@ -28,23 +28,24 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         Return MyBase.DeleteProcedure(CType(dbo, BasesParaCompatibilidad.databussines), dtb)
     End Function
 
-    Public Function ValidarRangoHorario(ByVal PaletContenido As DBO_PaletsContenidos, ByVal linea As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+    Public Function ValidarRangoHorario(ByVal PaletContenido As DBO_PaletsContenidos, ByVal linea As Integer, envasadoid As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         dtb.Conectar()
         Try
-            Dim res As Integer = 0
-            Dim selectCommand As System.Data.SqlClient.SqlCommand = dtb.Comando("[dbo].[PaletsContenidos2ValidarRangoHorario2]")
-            selectCommand.CommandType = CommandType.StoredProcedure
-            selectCommand.Parameters.AddWithValue("@HoraInicio", PaletContenido.HoraInicio)
-            selectCommand.Parameters.AddWithValue("@HoraFin", PaletContenido.HoraFin)
-            selectCommand.Parameters.AddWithValue("@PaletContenidoID", PaletContenido.ID)
-            selectCommand.Parameters.AddWithValue("@LineaEnvasadoID", linea)
+            '  Dim res As Integer = 0
+            dtb.PrepararConsulta("[dbo].[PaletsContenidos2ValidarRangoHorario2] 	@HoraInicio , @HoraFin , @PaletContenidoID , @LineaEnvasadoID , @envasadoid")
+            dtb.AñadirParametroConsulta("@HoraInicio", PaletContenido.HoraInicio)
+            dtb.AñadirParametroConsulta("@HoraFin", PaletContenido.HoraFin)
+            dtb.AñadirParametroConsulta("@PaletContenidoID", PaletContenido.ID)
+            dtb.AñadirParametroConsulta("@LineaEnvasadoID", linea)
+            dtb.AñadirParametroConsulta("@envasadoid", envasadoid)
 
-            Dim reader As System.Data.SqlClient.SqlDataReader = selectCommand.ExecuteReader(CommandBehavior.SingleRow)
-            If reader.Read Then
-                res = System.Convert.ToInt32(If(reader(0) Is Convert.DBNull, 0, reader(0)))
-            End If
-            reader.Close()
-            Return If(res > 0, False, True)
+            Return If(dtb.Consultar().Rows(0).Item(0) = 0, False, True)
+            'Dim reader As System.Data.SqlClient.SqlDataReader = selectCommand.ExecuteReader(CommandBehavior.SingleRow)
+            'If reader.Read Then
+            '    res = System.Convert.ToInt32(If(reader(0) Is Convert.DBNull, 0, reader(0)))
+            'End If
+            'reader.Close()
+            'Return If(res > 0, False, True)
 
         Catch ex As System.Data.SqlClient.SqlException
             Return False

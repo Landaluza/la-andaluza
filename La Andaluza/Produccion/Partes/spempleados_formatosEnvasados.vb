@@ -56,7 +56,7 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         Catch ex As System.Data.SqlClient.SqlException
             retorno = True
         Finally
-            dtb.Conectar()
+            dtb.Desconectar()
         End Try
 
         Return retorno

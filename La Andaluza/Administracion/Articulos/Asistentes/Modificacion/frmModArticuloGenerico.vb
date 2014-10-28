@@ -1,5 +1,5 @@
 ﻿Public Class frmModArticuloGenerico
-    inherits BasesParaCompatibilidad.DetailedSimpleForm
+    Inherits BasesParaCompatibilidad.DetailedSimpleForm
 
     Private m_dbo_articulos1 As DBO_Articulos1
     Private frmGeneral As frmWstepArticulos1
@@ -131,22 +131,24 @@
                         Throw New Exception("Error 1 al guardar el registro")
                     End If
                 End If
-            End If
 
-        Else
 
-            If Me.frmGeneral.grabarDatos(dtb) Then
-                If terminar Then Me.dtb.TerminarTransaccion()
-                RaiseEvent afterSave()
-                Me.Close()
             Else
-                If terminar Then
-                    Me.dtb.CancelarTransaccion()
-                    MessageBox.Show("Ocurrio un error al grabar el registro.", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+                If Me.frmGeneral.grabarDatos(Me.dtb) Then
+                    If terminar Then Me.dtb.TerminarTransaccion()
+                    RaiseEvent afterSave()
+                    Me.Close()
                 Else
-                    Throw New Exception("Error al guardar los datos genericos")
+                    If terminar Then
+                        Me.dtb.CancelarTransaccion()
+                        MessageBox.Show("Ocurrio un error al grabar el registro.", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Else
+                        Throw New Exception("Error al guardar los datos genericos")
+                    End If
                 End If
             End If
+
         End If
     End Sub
 

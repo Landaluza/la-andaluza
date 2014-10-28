@@ -152,14 +152,14 @@ Public Class clsEspecificaciones
 
 
     Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
-        dtb.PrepararConsulta("insert into Especificaciones '" & Descripcion & _
+        dtb.PrepararConsulta("insert into Especificaciones values('" & Descripcion & _
                                                            "','" & CodigoQS.ToString & _
                                                            "','" & BasesParaCompatibilidad.Calendar.ArmarFecha(FechaRevisado) & _
                                                            "'," & TipoLoteID.ToString & _
                                                            "," & TipoProductoID.ToString & _
                                                            ",'" & BasesParaCompatibilidad.Calendar.ArmarFecha(DateTime.Now) & _
                                                            "'," & BasesParaCompatibilidad.Config.User & _
-                                                           ", " & LegislacionID)
+                                                           ", " & LegislacionID & ")")
         Return dtb.Consultar(True)
 
         'Try

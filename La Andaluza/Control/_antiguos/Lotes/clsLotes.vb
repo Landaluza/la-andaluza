@@ -437,14 +437,14 @@ Public Class clsLotes
         Return dtb.Consultar
     End Function
 
-    Public Function devolverTodosNoEnologicos2(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal top100 As Boolean, Optional ByVal id As Integer = Nothing) As DataTable
+    Public Function devolverTodosNoEnologicos2(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal top100 As Boolean, Optional ByVal id As Integer = 0) As DataTable
         Dim query As String
         If top100 Then
             query = "select top 100 "
         Else
             query = "select "
         End If
-        If id = Nothing Then
+        If id = 0 Then
             dtb.PrepararConsulta(query & "Lotes.LoteID, isnull(Lotes.Descripcion, '') Descripcion, Lotes.Fecha, case when (select isnull(max(merma),0) from envasadosProductosArticulos epa where epa.loteterminadoID = Lotes.LoteID) > 0 then 0 else Lotes.CantidadRestante end as CantidadRestante , isnull( Lotes.Observacion, '') Observacion, isnull(Lotes.CantidadID, 0) CantidadID, Lotes.CodigoLote, isnull(Depositos.Codigo,'-')  DepositoID, isnull(lotes.referencia, 0) referencia " & _
                                   " from Lotes LEFT OUTER JOIN Depositos ON Lotes.DepositoID = Depositos.DepositoID LEFT OUTER JOIN TiposProductos ON Lotes.TipoProductoID = TiposProductos.TipoProductoID  " & _
                                   " where TiposProductos.Enologico = 'False'  order by Lotes.Fecha desc, referencia desc")

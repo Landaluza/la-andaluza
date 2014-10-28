@@ -35,45 +35,47 @@ Public Class spCargasNecesidades
     End Property
 
 #Region "spCargaNecesidades"
-    Public Sub spCargaNecesidadesJRMaestro(ByVal Action As Integer, _
+    Public Function spCargaNecesidadesJRMaestro(ByVal Action As Integer, _
                                            ByVal ValorMaestroID As Integer, _
                                            ByVal ValorFecha As Date, _
                                            ByVal ValorHora As Date, _
                                            ByVal ValorObservaciones As String, _
                                            ByVal ValorFechaModificacion As Date, _
                                            ByVal ValorUsuarioModificacion As Integer, _
-                                           ByVal ValorServido As Boolean, ByRef dtb As BasesParaCompatibilidad.DataBase)
+                                           ByVal ValorServido As Boolean, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Try
             dtb.Conectar()
-            Dim cmd As System.Data.SqlClient.SqlCommand
+            'Dim cmd As System.Data.SqlClient.SqlCommand
 
             If Action = _Insert Then
-                cmd = dtb.comando("InsertCargaNecesidadesJRMaestro")
+                dtb.PrepararConsulta("InsertCargaNecesidadesJRMaestro @Fecha , @Hora , @Observaciones , @FechaModificacion , @UsuarioModificacion , @Servido")
             ElseIf Action = _Update Then
-                cmd = dtb.comando("UpdateCargaNecesidadesJRMaestro")
-                cmd.Parameters.AddWithValue("@MaestroID", ValorMaestroID)
+                dtb.PrepararConsulta("UpdateCargaNecesidadesJRMaestro @MaestroID , @Fecha , @Hora , @Observaciones , @FechaModificacion , @UsuarioModificacion , @Servido")
+                dtb.AñadirParametroConsulta("@MaestroID", ValorMaestroID)
             Else : Action = _Delete
-                cmd = dtb.Comando("DeleteCargaNecesidadesJRMaestro")
-                cmd.Parameters.AddWithValue("@MaestroID", ValorMaestroID)
+                dtb.PrepararConsulta("DeleteCargaNecesidadesJRMaestro @MaestroID")
+                dtb.AñadirParametroConsulta("@MaestroID", ValorMaestroID)
             End If
 
             If Action = _Insert Or Action = _Update Then
-                cmd.Parameters.AddWithValue("@Fecha", ValorFecha)
-                cmd.Parameters.AddWithValue("@Hora", ValorHora)
-                cmd.Parameters.AddWithValue("@Observaciones", ValorObservaciones)
-                cmd.Parameters.AddWithValue("@FechaModificacion", ValorFechaModificacion)
-                cmd.Parameters.AddWithValue("@UsuarioModificacion", BasesParaCompatibilidad.Config.User)
-                cmd.Parameters.AddWithValue("@Servido", ValorServido)
+                dtb.AñadirParametroConsulta("@Fecha", ValorFecha)
+                dtb.AñadirParametroConsulta("@Hora", ValorHora)
+                dtb.AñadirParametroConsulta("@Observaciones", ValorObservaciones)
+                dtb.AñadirParametroConsulta("@FechaModificacion", ValorFechaModificacion)
+                dtb.AñadirParametroConsulta("@UsuarioModificacion", BasesParaCompatibilidad.Config.User)
+                dtb.AñadirParametroConsulta("@Servido", ValorServido)
             End If
 
-            cmd.ExecuteNonQuery()
+            'cmd.ExecuteNonQuery()
+            Return dtb.Consultar(True)
 
         Catch ex As Exception
             MessageBox.Show("Error en BD.spCargaNecesidadesJRMaestro" & Environment.NewLine & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
         Finally
             dtb.Desconectar()
         End Try
-    End Sub
+    End Function
 
     Public Sub spDeleteCargaNecesidadesJRMaestro(ByVal ValorMaestroID As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase)
         Try
@@ -106,7 +108,7 @@ Public Class spCargasNecesidades
         End Try
     End Function
 
-    Public Sub spCargaNecesidadesJRDetalle(ByVal Action As Integer, _
+    Public Function spCargaNecesidadesJRDetalle(ByVal Action As Integer, _
                                            ByVal ValorCargaNecesidadesJRDetalleID As Integer, _
                                            ByVal ValorCargaNecesidadesJRMaestroID As Integer, _
                                            ByVal ValorArticuloID As Integer, _
@@ -117,43 +119,45 @@ Public Class spCargasNecesidades
                                            ByVal ValorReserva2 As String, _
                                            ByVal ValorReserva3 As String, _
                                            ByVal ValorFechaModificacion As Date, _
-                                           ByVal ValorUsuarioModificacion As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase)
+                                           ByVal ValorUsuarioModificacion As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
 
 
         dtb.Conectar()
         Try
-            Dim cmd As System.Data.SqlClient.SqlCommand
+            'Dim cmd As System.Data.SqlClient.SqlCommand
 
             If Action = _Insert Then
-                cmd = dtb.Comando("InsertCargaNecesidadesJRDetalle")
+                dtb.PrepararConsulta("InsertCargaNecesidadesJRDetalle @CargaNecesidadesJRMaestroID , @ArticuloID , @Carga , @Stock , @Observaciones , @Reserva1 , @Reserva2 , @Reserva3 , @FechaModificacion , @UsuarioModificacion")
             ElseIf Action = _Update Then
-                cmd = dtb.Comando("UpdateCargaNecesidadesJRDetalle")
-                cmd.Parameters.AddWithValue("@CargaNecesidadesJRDetalleID", ValorCargaNecesidadesJRDetalleID)
+                dtb.PrepararConsulta("UpdateCargaNecesidadesJRDetalle  @CargaNecesidadesJRDetalleID, @CargaNecesidadesJRMaestroID , @ArticuloID , @Carga , @Stock , @Observaciones , @Reserva1 , @Reserva2 , @Reserva3 , @FechaModificacion , @UsuarioModificacion")
+                dtb.AñadirParametroConsulta("@CargaNecesidadesJRDetalleID", ValorCargaNecesidadesJRDetalleID)
             Else : Action = _Delete
-                cmd = dtb.Comando("DeleteCargaNecesidadesJRDetalle")
-                cmd.Parameters.AddWithValue("@DetalleID", ValorCargaNecesidadesJRDetalleID)
+                dtb.PrepararConsulta("DeleteCargaNecesidadesJRDetalle @DetalleID")
+                dtb.AñadirParametroConsulta("@DetalleID", ValorCargaNecesidadesJRDetalleID)
             End If
 
             If Action = _Insert Or Action = _Update Then
-                cmd.Parameters.AddWithValue("@CargaNecesidadesJRMaestroID", ValorCargaNecesidadesJRMaestroID)
-                cmd.Parameters.AddWithValue("@ArticuloID", ValorArticuloID)
-                cmd.Parameters.AddWithValue("@Carga ", ValorCarga)
-                cmd.Parameters.AddWithValue("@Stock", ValorStock)
-                cmd.Parameters.AddWithValue("@Observaciones", ValorObservaciones)
-                cmd.Parameters.AddWithValue("@Reserva1", ValorReserva1)
-                cmd.Parameters.AddWithValue("@Reserva2", ValorReserva2)
-                cmd.Parameters.AddWithValue("@Reserva3", ValorReserva3)
-                cmd.Parameters.AddWithValue("@FechaModificacion", ValorFechaModificacion)
-                cmd.Parameters.AddWithValue("@UsuarioModificacion", BasesParaCompatibilidad.Config.User)
+                dtb.AñadirParametroConsulta("@CargaNecesidadesJRMaestroID", ValorCargaNecesidadesJRMaestroID)
+                dtb.AñadirParametroConsulta("@ArticuloID", ValorArticuloID)
+                dtb.AñadirParametroConsulta("@Carga ", ValorCarga)
+                dtb.AñadirParametroConsulta("@Stock", ValorStock)
+                dtb.AñadirParametroConsulta("@Observaciones", ValorObservaciones)
+                dtb.AñadirParametroConsulta("@Reserva1", ValorReserva1)
+                dtb.AñadirParametroConsulta("@Reserva2", ValorReserva2)
+                dtb.AñadirParametroConsulta("@Reserva3", ValorReserva3)
+                dtb.AñadirParametroConsulta("@FechaModificacion", ValorFechaModificacion)
+                dtb.AñadirParametroConsulta("@UsuarioModificacion", BasesParaCompatibilidad.Config.User)
             End If
 
-            cmd.ExecuteNonQuery()
+            Return dtb.Consultar(True)
         Catch ex As Exception
             MessageBox.Show("Error en BD.spCargaNecesidadesJRDetalle" & Environment.NewLine & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        Finally
+            dtb.Desconectar()
         End Try
 
-        dtb.Desconectar()
-    End Sub
+    End Function
 
     Public Sub spDeleteCargaNecesidadesJRDetalle(ByVal ValorCargaNecesidadesJRDetalleID As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase)
         dtb.Conectar()

@@ -89,7 +89,7 @@ Public Class frmEntEnvasadosProductos
         If Me.GetValores Then
             Dim terminar As Boolean
 
-            If dtb.Transaccion Is Nothing Then
+            If dtb Is Nothing Then
                 Me.dtb.EmpezarTransaccion()
                 terminar = True
             Else

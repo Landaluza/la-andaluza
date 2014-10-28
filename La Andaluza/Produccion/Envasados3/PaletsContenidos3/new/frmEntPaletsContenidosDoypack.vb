@@ -130,7 +130,7 @@ Public Class frmEntPaletsContenidosDoypack
         If dtpHoraInicio.Value > dtpHoraFin.Value Then
             errores = errores & "La hora de inicio no puede ser mayor que fin." & Environment.NewLine()
         Else
-            If Not Me.spContenidos.ValidarRangoHorario(Me.m_DBO_PaletsContenidos, Me.mLinea, dtb) Then
+            If Not Me.spContenidos.ValidarRangoHorario(Me.m_DBO_PaletsContenidos, Me.mLinea, Me.envasado, dtb) Then
                 errores = errores & "La hora de produccion se suporpone con la de otro palet." & Environment.NewLine()
             End If
         End If

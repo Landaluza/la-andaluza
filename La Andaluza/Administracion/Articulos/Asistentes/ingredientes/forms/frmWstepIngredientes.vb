@@ -177,9 +177,9 @@ Public Class frmWstepIngredientes
 
     Public Function grabarDatos(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean Implements wizardable.grabarDatos
         If Me.m_IDI Then
-            Return GuardarIngredienteIDI()
+            Return GuardarIngredienteIDI(dtb)
         Else
-            Return GuardarIngrediente()
+            Return GuardarIngrediente(dtb)
         End If
     End Function
 
@@ -195,7 +195,7 @@ Public Class frmWstepIngredientes
         End If
     End Sub
 
-    Private Function GuardarIngrediente() As Boolean
+    Private Function GuardarIngrediente(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         If Me.m_DBO_ArticuloIngrediente.ArticuloID Is Nothing Then Me.m_DBO_ArticuloIngrediente.ArticuloID = dtb.Consultar("select max(articuloID) from Articulos1", False).Rows(0).Item(0)
 
         If comprobarCampos() Then
@@ -236,7 +236,7 @@ Public Class frmWstepIngredientes
         End If
     End Function
 
-    Private Function GuardarIngredienteIDI() As Boolean
+    Private Function GuardarIngredienteIDI(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         If Me.m_DBO_ArticuloIngrediente.ArticuloID Is Nothing Then Me.m_DBO_ArticuloIngrediente.ArticuloID = dtb.Consultar("select max(articuloID) from Articulos1", False).Rows(0).Item(0)
 
         If comprobarCampos() Then

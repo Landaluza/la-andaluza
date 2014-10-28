@@ -24,6 +24,7 @@
     Public Sub New(ByVal articuloid As Integer)
         InitializeComponent()
 
+        dtb = New BasesParaCompatibilidad.DataBase
         Me.id = articuloid
         Me.modoDeApertura = BasesParaCompatibilidad.DetailedSimpleForm.MODIFICACION
         EstablecerValores()

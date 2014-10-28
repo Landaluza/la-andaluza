@@ -22,6 +22,7 @@ Public Class frmPaletSCC
 
     Public Sub New(ByVal DesdeMovimiento As Boolean, ByVal OrigenDestino As String)
         InitializeComponent()
+        dtb = New BasesParaCompatibilidad.DataBase
         spPaletsProducidos2 = New spPaletsProducidos2
         spPaletsContenidos2 = New spPaletsContenidos2
 

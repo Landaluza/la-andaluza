@@ -84,14 +84,17 @@ Public Class frmEntCargaNecesidadesJRMaestro
                 m_currentRow.Cells("Servido").Value = Me.ServidoCheckBox.Checked
             End If
 
-            Me.sp.spCargaNecesidadesJRMaestro(Action, _
+            If Not Me.sp.spCargaNecesidadesJRMaestro(Action, _
                                         m_MaestroID, _
                                         FechaDateTimePicker.Value, _
                                         HoraDateTimePicker.Value, _
                                         ObservacionesCuadroDeTexto.Text, _
                                         Now(), _
                                         1, _
-                                        Me.ServidoCheckBox.Checked, dtb)
+                                        Me.ServidoCheckBox.Checked, dtb) Then
+                MessageBox.Show("No se pudo realizar la operacion", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return
+            End If
             'Si entro en insertar por primer vez, busco el ultimo registro añadido y utilizo su ID 
             If dgv.RowCount = 0 Then
                 tsInsertar.Enabled = True

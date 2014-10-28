@@ -48,7 +48,7 @@ Public Class frmMediaProduccion
     Private Sub cargar_lineas()
         Try
             dtb.PrepararConsulta("select envasadoid from envasados where fecha = @fecha")
-            dtb.AñadirParametroConsulta("@fecha", Me.dtpEnvasado.Value.ToShortDateString)
+            dtb.AñadirParametroConsulta("@fecha", Me.dtpEnvasado.Value.Date)
             Me.envasado = dtb.Consultar().Rows(0).Item(0)
             '            Me.envasado = dtb.Consultar("select envasadoid from envasados where convert(varchar(10), fecha, 103) ='" & Me.dtpEnvasado.Value.ToShortDateString & "'", False).Rows(0).Item(0)
             If Not Me.cboLinea.Enabled Then Me.cboLinea.Enabled = True

@@ -111,7 +111,7 @@ Public Class frmEntempleados_formatosEnvasados
             'If Me.cbApoyo.Checked Then
             If GetValores() Then
                 Dim terminar As Boolean
-                If dtb.Transaccion Is Nothing Then
+                If dtb Is Nothing Then
                     terminar = True
                     Me.dtb.EmpezarTransaccion()
                 Else
@@ -170,7 +170,7 @@ Public Class frmEntempleados_formatosEnvasados
             If GetValores() Then
 
                 Dim terminar As Boolean
-                If dtb.Transaccion Is Nothing Then
+                If dtb Is Nothing Then
                     terminar = True
                     Me.dtb.EmpezarTransaccion()
                 Else

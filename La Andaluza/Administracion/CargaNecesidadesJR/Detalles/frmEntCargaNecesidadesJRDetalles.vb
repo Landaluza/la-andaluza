@@ -71,7 +71,7 @@ Public Class frmEntCargaNecesidadesJRDetalles
             Action = Me.sp.Update
         End If
 
-        Me.sp.spCargaNecesidadesJRDetalle(Action, _
+        If Not Me.sp.spCargaNecesidadesJRDetalle(Action, _
                  CargaNecesidadesJRDetalleIDCuadroDeTexto.Text, _
                  CargaNecesidadesJRMaestroIDCuadroDeTexto.Text, _
                  cboArticulos.SelectedValue, _
@@ -82,7 +82,11 @@ Public Class frmEntCargaNecesidadesJRDetalles
                  Reserva2CuadroDeTexto.Text, _
                  Reserva3CuadroDeTexto.Text, _
                  Now(), _
-                 1, dtb)
+                 1, dtb) Then
+
+            MessageBox.Show("No se pudo completar la operacion", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End If
 
         If CerrarForm Then
             Me.Close()
