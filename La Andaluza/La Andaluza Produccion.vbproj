@@ -6611,6 +6611,7 @@
     <None Include="Bases\ZLibrerias\Incidencias entre fechas.dll" />
     <None Include="Bases\ZLibrerias\InformesCalidad.dll" />
     <None Include="Bases\ZLibrerias\Envasados entre fechas.dll" />
+    <Content Include="Bases\ZLibrerias\BarcodeLib.dll" />
     <Content Include="Bases\ZLibrerias\BasesParaCompatibilidad.dll" />
     <Content Include="Resources\window_new.ico" />
     <Content Include="Resources\window_new_3.ico" />
@@ -6620,7 +6621,6 @@
     <None Include="Resources\page_white_word_16.png" />
     <None Include="Resources\vcard.png" />
     <None Include="Bases\ZLibrerias\referencias\Microsoft.Office.Interop.Outlook.xml" />
-    <None Include="Bases\ZLibrerias\BarcodeLib.dll" />
     <None Include="Resources\printer_laser_64.png" />
     <None Include="Resources\folder-magnify.png" />
     <None Include="Resources\view-choose.png" />

@@ -138,7 +138,7 @@ Public Class frmEtiqueta0
         Barcode1.Image = temp
 
         barc.Alignment = BarcodeLib.AlignmentPositions.LEFT
-        barc.IncludeLabel = False
+        barc.IncludeLabel = True
         barc.LabelPosition = BarcodeLib.LabelPositions.BOTTOMLEFT        
         Barcode1.Image = barc.Encode(BarcodeLib.TYPE.CODE128, texto, Color.Black, Color.White, 350, 120)
 
@@ -158,7 +158,7 @@ Public Class frmEtiqueta0
         Barcode2.Image = temp
 
         barc.Alignment = BarcodeLib.AlignmentPositions.LEFT
-        barc.IncludeLabel = False
+        barc.IncludeLabel = True
         barc.LabelPosition = BarcodeLib.LabelPositions.BOTTOMLEFT
         Barcode2.Image = barc.Encode(BarcodeLib.TYPE.CODE128, texto, Color.Black, Color.White, Me.Width - 20, 120)
 

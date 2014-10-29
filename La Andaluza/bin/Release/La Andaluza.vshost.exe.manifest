@@ -105,19 +105,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>+uKmxOB23AkkUT0Mg1JRSVYhC7H16H/SG5YnZ1Pniao=</dsig:DigestValue>
+        <dsig:DigestValue>PUfW2ZecRNoo9xzvlLH3m8XNdh05EKduvTFPUGvpJFM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BarcodeLib.dll" size="113152">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BarcodeLib.dll" size="124416">
       <assemblyIdentity name="BarcodeLib" version="1.0.0.16" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>BmsP+/+LVG0swZ1H7sbMPZ/vbyfCVfHdMRfENh6vEzw=</dsig:DigestValue>
+        <dsig:DigestValue>G+Q1zrmvUdZrTBy/wa8HjlrG8rzoVecaR0CUrxJ9wso=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -321,7 +321,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>xvkHTILTUAGhXumyLPnP4/i5pz3zIW6soMFUEtAEC6I=</dsig:DigestValue>
+        <dsig:DigestValue>sbrsoWjfBI3gp/XpEr/Jh3KPQfGCN7p0cSCIhFjThmU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -333,7 +333,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>sZ1RLCXQZCAR6ZrF1QoVUfQMeXoPxMOVdlvMj/IyVus=</dsig:DigestValue>
+        <dsig:DigestValue>/WQpuoWFi2kBCbvjX9gvwcF/ISgVWf/5xumj8d9YVhc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -469,6 +469,15 @@
       </hash>
     </dependentAssembly>
   </dependency>
+  <file name="Bases\ZLibrerias\BarcodeLib.dll" size="124416">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>G+Q1zrmvUdZrTBy/wa8HjlrG8rzoVecaR0CUrxJ9wso=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="Bases\ZLibrerias\BasesParaCompatibilidad.dll" size="1926656">
     <hash>
       <dsig:Transforms>
