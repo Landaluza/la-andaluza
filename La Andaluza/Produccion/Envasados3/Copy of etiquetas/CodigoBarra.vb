@@ -1,6 +1,7 @@
 ﻿Public Class CodigoBarra
     Private Const CODIGO_EMPRESA As String = "08411831"
-    Private Const LONGITUD_BARCODE_2 As Integer = 18
+    Private Const LONGITUD_BARCODE_2 As Integer = 17 '18
+
 
     'Public codigo1 As String
     'Public codigo2 As String
@@ -31,14 +32,20 @@
         Return res - menor
     End Function
 
-    Public Function calcular_codigo_barras_1(ByVal ean14 As String, ByVal lote As String) As String
+    Public Function calcular_codigo_barras_1(ByVal ean14 As String, ByVal lote As String) As GS1
         'Return "(01)" & ean14 & "(10)" & lote
         'Me.codigo1 = "(01)" & ean14 & "(10)" & lote
-        Return "(01)" & ean14 & "(10)" & lote
+        Dim gs As New GS1
+        gs.Codigo1 = "(01)" & ean14
+        gs.Codugo2 = "(10)" & lote
+        Return gs
+        'Return "(01)" & ean14 & "(10)" & lote
+
+
         '"{CODE C}{FNC1}0118411831520015{CODE B}10" & Var0'
     End Function
 
-    Public Function calcular_codigoBarras2(ByVal scc As String, ByVal caducidad As String) As String
+    Public Function calcular_codigoBarras2(ByVal scc As String, ByVal caducidad As String) As GS1
         'Dim Campo As String = if(caducidad = "", scc, caducidad)
         'Dim cod As String = "[00]" & CODIGO_EMPRESA
         'Dim cont As Integer = Len(cod) - 4
@@ -50,7 +57,7 @@
         'End While
 
         'cod = cod & Campo
-
+        Dim gs As New GS1
         Dim cadena As String = caducidad.Replace("/", "")
         'Dim Campo As String = If(caducidad = "", scc, scc & "[17]" & cadena.Substring(0, 4) & cadena.Substring(6, 2))
         Dim Campo As String = scc
@@ -64,12 +71,21 @@
         End While
         If caducidad = "" Then
             cod = cod & scc
-
+            gs.Codigo1 = cod
+            gs.Codugo2 = ""
         Else
+
+            gs.Codigo1 = cod
+            gs.Codugo2 = "(17)" & cadena
+
             'cod = cod & scc & "[17]" & cadena.Substring(0, 4) & cadena.Substring(6, 2)
             cod = cod & scc & "(17)" & cadena
+
         End If
 
+        ' cod = cod & digito_control_ean(cod)
+
+        gs.control = digito_control_ean(gs.Codigo1.Replace("(00)", ""))
         'Dim cod As String = "[00]" & CODIGO_EMPRESA
 
         'If caducidad = "" Then
@@ -87,7 +103,10 @@
         '    cod = cod & scc & "(17)" & caducidad
         'End If
         'Me.codigo2 = cod
-        Return cod
+
+
+        Return gs
+        'Return cod
     End Function
 
     Public Function ajustarSCC(ByVal scc As String) As String

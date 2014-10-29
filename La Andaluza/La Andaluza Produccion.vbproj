@@ -2366,6 +2366,7 @@
     <Compile Include="Produccion\Envasados3\Copy of etiquetas\frmEtiqueta.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Produccion\Envasados3\Copy of etiquetas\GS1.vb" />
     <Compile Include="Produccion\Envasados3\Copy of etiquetas\Loteado.vb" />
     <Compile Include="Produccion\Envasados3\Copy of etiquetas\spEtiquetasPalets.vb" />
     <Compile Include="Produccion\Envasados3\Copy of etiquetas\TiposLoteados\DBO_TiposLoteados.vb" />

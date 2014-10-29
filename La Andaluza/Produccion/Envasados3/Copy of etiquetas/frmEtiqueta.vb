@@ -16,6 +16,7 @@ Public Class frmEtiqueta0
 
         InitializeComponent()
 
+        dtb = New BasesParaCompatibilidad.DataBase
         barc = New BarcodeLib.Barcode
         Me.EtiquetadoraPalets = New Etiquetador
         Me.loteador = New Loteado
@@ -128,8 +129,10 @@ Public Class frmEtiqueta0
     End Function
 
     Public Sub calcular_codigoBarras1()
-        Dim texto As String = Me.barCode.calcular_codigo_barras_1(Me.lean14.Text, llote.Text)  '"(01)" & Me.lean14.Text & "(10)" & llote.Text
-
+        'Dim texto As String = Me.barCode.calcular_codigo_barras_1(Me.lean14.Text, llote.Text)  '"(01)" & Me.lean14.Text & "(10)" & llote.Text
+        Dim gs As GS1 = Me.barCode.calcular_codigo_barras_1(Me.lean14.Text, llote.Text)
+        Dim texto As String = gs.Empresa
+        
         Dim temp As New Bitmap(1, 1)
         temp.SetPixel(0, 0, Me.BackColor)
         Barcode1.Image = temp
@@ -146,7 +149,9 @@ Public Class frmEtiqueta0
     End Sub
 
     Public Sub calcular_codigoBarras2()
-        Dim texto As String = Me.barCode.calcular_codigoBarras2(Me.dbo_etiquetasPalet.SCC, Me.lCaducidad.Text)
+        Dim gs As GS1 = Me.barCode.calcular_codigoBarras2(Me.dbo_etiquetasPalet.SCC, Me.lCaducidad.Text)
+        Dim texto As String = gs.SSCC
+
 
         Dim temp As New Bitmap(1, 1)
         temp.SetPixel(0, 0, Me.BackColor)
