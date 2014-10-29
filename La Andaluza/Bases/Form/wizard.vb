@@ -143,7 +143,7 @@
 
         Try
             For Each frm As Object In Me.forms
-                retorno = retorno And frm.grabarDatos()
+                retorno = retorno And frm.grabarDatos(dtb)
             Next
 
             If retorno Then
