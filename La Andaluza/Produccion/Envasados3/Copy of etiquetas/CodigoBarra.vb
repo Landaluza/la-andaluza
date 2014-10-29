@@ -85,7 +85,7 @@
 
         ' cod = cod & digito_control_ean(cod)
 
-        gs.control = digito_control_ean(gs.Codigo1.Replace("(00)", ""))
+        'gs.control = digito_control_ean(gs.Codigo1.Replace("(00)", ""))
         'Dim cod As String = "[00]" & CODIGO_EMPRESA
 
         'If caducidad = "" Then
@@ -120,6 +120,9 @@
             cont = cont + 1
         End While
 
-        Return sccCorregido & scc
+        Dim matricula As String = sccCorregido & scc
+        Dim control As String = digito_control_ean(matricula.Replace("(00)", ""))
+
+        Return matricula & control
     End Function
 End Class
