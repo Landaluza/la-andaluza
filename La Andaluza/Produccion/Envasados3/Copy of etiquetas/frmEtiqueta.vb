@@ -58,8 +58,8 @@ Public Class frmEtiqueta0
                 Me.llote.Text = loteador.Loteado_cubos(Convert.ToDateTime(Me.dbo_etiquetasPalet.Lote).AddYears(dbo_etiquetasPalet.Anos_caducidad))
             End If
 
-            Me.lscc.Text = Me.barCode.ajustarSCC(Me.dbo_etiquetasPalet.SCC)
-
+            Me.lscc.Text = Me.barCode.ajustarSCC(Me.dbo_etiquetasPalet.SCC, Me.dbo_etiquetasPalet.EAN13)
+            Me.dbo_etiquetasPalet.SCC = Me.lscc.Text
 
 
             If dbo_etiquetasPalet.Cabecera = "" Then
@@ -122,11 +122,11 @@ Public Class frmEtiqueta0
         ' Me.panBotones.Visible = False
     End Sub
 
-    Public Function check_code() As Boolean
-        'Dim ctrl As New BarCodes.EAN13Encoder()
-        ' revisar las opciones de usar el control apra generar el ean 14
-        Return True
-    End Function
+    'Public Function check_code() As Boolean
+    '    'Dim ctrl As New BarCodes.EAN13Encoder()
+    '    ' revisar las opciones de usar el control apra generar el ean 14
+    '    Return True
+    'End Function
 
     Public Sub calcular_codigoBarras1()
         'Dim texto As String = Me.barCode.calcular_codigo_barras_1(Me.lean14.Text, llote.Text)  '"(01)" & Me.lean14.Text & "(10)" & llote.Text
@@ -149,7 +149,7 @@ Public Class frmEtiqueta0
     End Sub
 
     Public Sub calcular_codigoBarras2()
-        Dim gs As GS1 = Me.barCode.calcular_codigoBarras2(Me.dbo_etiquetasPalet.SCC, Me.lCaducidad.Text)
+        Dim gs As GS1 = Me.barCode.calcular_codigoBarras2(lscc.Text, Me.lCaducidad.Text)
         Dim texto As String = gs.SSCC
 
 
