@@ -76,8 +76,10 @@ Public Class frmPaletsProducidos
                                                            BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, sp, dboPaletsProducidos)
             MyBase.newRegForm = frm
             AddHandler frm.afterSave, AddressOf dgvFill
+        Else
+            EventHandeld = True
         End If
-        newRegForm.SetDataBussinesObject(CType(Me.dboPaletsProducidos, BasesParaCompatibilidad.databussines))
+
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify

@@ -58,7 +58,7 @@ Public Class frmEntPaletsProducidos
                     dtb.TerminarTransaccion()
                     ' Me.ModoDeApertura = MODIFICACION
                     'SetValores()
-
+                    dbo = Me.m_DBO_PaletsProducidos
                 Else
                     Me.m_DBO_PaletsProducidos.ID = 0
                     dtb.CancelarTransaccion()
@@ -73,7 +73,7 @@ Public Class frmEntPaletsProducidos
             End Try
         End If
 
-        dbo = Me.m_DBO_PaletsProducidos
+
 
         Me.frmPaletsContenidos = New frmPaletsContenidos(Me.mLinea, Me.mTipoFormatoEnvasadoID, Me.envasado, m_DBO_PaletsProducidos.ID)
         AddHandler frmPaletsContenidos.completado, AddressOf Me.contenido_completo
@@ -103,7 +103,7 @@ Public Class frmEntPaletsProducidos
 
     Overrides Sub SetValores() Implements BasesParaCompatibilidad.Savable.setValores
 
-        Me.m_DBO_PaletsProducidos = dbo
+        'Me.m_DBO_PaletsProducidos = dbo
 
 
         txtScc.Text = m_DBO_PaletsProducidos.SCC
