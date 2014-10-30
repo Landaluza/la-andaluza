@@ -6,7 +6,7 @@ Public Class frmGestionesPendientes
 
     Private dboGestionesPendientes As DBO_GestionesPendientes
     Private frmDetallesGestionesPendientes As frmDetallesGestionesPendientes
-    Public Event ValueChanged()
+    Public Event ValueChanged(sender As Object, e As EventArgs)
 
     Public ReadOnly Property Id As Integer
         Get
@@ -27,7 +27,7 @@ Public Class frmGestionesPendientes
     End Sub
 
     Private Sub changing()
-        RaiseEvent ValueChanged()
+        RaiseEvent ValueChanged(Nothing, Nothing)
     End Sub
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert

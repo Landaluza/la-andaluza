@@ -36,6 +36,7 @@ Public Class frmPaletsProducidos
 
         MyBase.sp = sp
 
+        dboPaletsProducidos = New DBO_PaletsProducidos
         Me.linea = linea
         Me.envasado = envasado
         sp.DataGridViewStoredProcedure= If(m_MaestroID = Nothing, sp.DataGridViewStoredProcedureForSelect, sp.DataGridViewStoredProcedureForFilteredSelect & " '" & Me.m_MaestroID & "'")
@@ -53,6 +54,8 @@ Public Class frmPaletsProducidos
             btnEtiqueta2.TextAlign = ContentAlignment.MiddleRight
             AddHandler btnEtiqueta2.Click, AddressOf mostrarEtiqueta
         End If
+
+        Me.dgvPicos.BackgroundColor = Color.White
     End Sub
 
 
@@ -60,26 +63,28 @@ Public Class frmPaletsProducidos
         If Me.m_MaestroID <> Nothing Then
             AddHandler newRegForm.afterSave, AddressOf dgvFill
             MyBase.newRegForm.ModoDeAperturaCadena = TipoAction
-            GUImain.añadirPestaña(newRegForm)
+            'GUImain.añadirPestaña(newRegForm)
+            newRegForm.ShowDialog()
         End If
     End Sub
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
-        dboPaletsProducidos = New DBO_PaletsProducidos
-
-        If m_MaestroID <> 0 Then
+        If m_maestroid <> 0 Then
+            dboPaletsProducidos = New DBO_PaletsProducidos
             dboPaletsProducidos.FormatoID = m_MaestroID
-            MyBase.newRegForm = New frmEntPaletsProducidos(Me.linea, Me.TipoFormato, Me.envasado, _
+            Dim frm As New frmEntPaletsProducidos(Me.linea, Me.TipoFormato, Me.envasado, _
                                                            BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, sp, dboPaletsProducidos)
-            AddHandler newRegForm.afterSave, AddressOf dgvFill
+            MyBase.newRegForm = frm
+            AddHandler frm.afterSave, AddressOf dgvFill
         End If
-        newRegForm.SetDataBussinesObject(CType(Me.dboPaletsProducidos, BasesParaCompatibilidad.DataBussines))
+        newRegForm.SetDataBussinesObject(CType(Me.dboPaletsProducidos, BasesParaCompatibilidad.databussines))
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
         dboPaletsProducidos = CType(sp, spPaletsProducidos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboPaletsProducidos Is Nothing Then
-            MyBase.newRegForm = New frmEntPaletsProducidos(Me.linea, Me.TipoFormato, Me.envasado, BasesParaCompatibilidad.gridsimpleform.ACCION_MODIFICAR, sp, dboPaletsProducidos)
+            Dim frm As New frmEntPaletsProducidos(Me.linea, Me.TipoFormato, Me.envasado, BasesParaCompatibilidad.gridsimpleform.ACCION_MODIFICAR, sp, dboPaletsProducidos)
+            MyBase.newRegForm = frm
             AddHandler newRegForm.afterSave, AddressOf dgvFill
         Else
             MyBase.EventHandeld = True
@@ -88,6 +93,7 @@ Public Class frmPaletsProducidos
     End Sub
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(Me.sp.DataGridViewStoredProcedure, True)
 
         datasourceIncompletos = CType(Me.sp, spPaletsProducidos).devolver_palets_incompletos_por_TipoFormato(Me.TipoFormato, dtb)
@@ -186,7 +192,7 @@ Public Class frmPaletsProducidos
         Me.ToolStripMostrar.Enabled = False
         Me.ToolStripOcultar.Enabled = True
 
-        Me.SplitContainer1.SplitterDistance = Me.Height - 343
+        Me.SplitContainer1.SplitterDistance = 273
     End Sub
 
 
@@ -220,7 +226,8 @@ Public Class frmPaletsProducidos
                 frmCompletar.ModoDeApertura = frmPaletsProducidos.COMPLETAR
                 frmCompletar.Formato = Me.m_MaestroID
                 frmCompletar.Text = "Completar "
-                GUImain.añadirPestaña(frmCompletar)
+                'GUImain.añadirPestaña(frmCompletar)
+                frmCompletar.ShowDialog()
             End If
         End If
         'newRegForm.SetDataBussinesObject(CType(Me.dboPaletsProducidos, BasesParaCompatibilidad.databussines))

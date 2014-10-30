@@ -12,7 +12,7 @@ Public Class frmAlmacenExistencias
     Private CallDataBindToDataGrid2 As MethodInvoker
     Private CallDataBindToDataGrid3 As MethodInvoker
     Private tab1, tab2, tab3 As Boolean
-    Public Event FinishedFill()
+    Public Event FinishedFill(sender As Object, e As EventArgs)
     Private dt, dt2, dt3 As DataTable
     Private extracolumns As Collection
 
@@ -264,7 +264,7 @@ Public Class frmAlmacenExistencias
                 Me.dgvTotales.EndEdit()
 
             End If
-            RaiseEvent FinishedFill()
+            RaiseEvent FinishedFill(Nothing, Nothing)
         Catch ex As Exception
             messagebox.show("Error al cargar grilla. Vuelva a recargarla en unos segundos" & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
@@ -301,7 +301,7 @@ Public Class frmAlmacenExistencias
                 'Me.StatusStrip1.Hide()
                 tab2 = True
             End If
-            RaiseEvent FinishedFill()
+            RaiseEvent FinishedFill(Nothing, Nothing)
         Catch ex As Exception
             messagebox.show("Error al cargar grilla. Vuelva a recargarla en unos segundos", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
@@ -338,7 +338,7 @@ Public Class frmAlmacenExistencias
 
                 tab3 = True
             End If
-            RaiseEvent FinishedFill()
+            RaiseEvent FinishedFill(Nothing, Nothing)
         Catch ex As Exception
             messagebox.show("Error al cargar grilla. Vuelva a recargarla en unos segundos", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try

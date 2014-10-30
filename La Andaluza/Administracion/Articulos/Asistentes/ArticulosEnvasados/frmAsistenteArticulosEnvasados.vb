@@ -36,7 +36,9 @@
         Me.titles.Add("Detalles especificos del articulo terciario (Cajas)")
     End Sub
 
-    Private Sub cambioPanel(ByRef panel As Windows.Forms.Form) Handles Me.PanelChanged        
+    Private Sub cambioPanel(ByRef sender As Object, e As EventArgs) Handles Me.PanelChanged
+        Dim panel As Form = CType(sender, Form)
+
         If panel.GetType = Me.frmArticulos1.GetType And Me.wizardStep = 1 Then
             Me.frmArticulos1.Descripcion = Me.frmdatos.recuperarValor(frmWstepDatosGenerales.DESCRIPCION)
             Me.frmArticulos1.TipoArticulo = 9
@@ -74,7 +76,7 @@
             End If
 
         ElseIf panel.GetType = Me.frmArticulos1.GetType And Me.wizardStep = 3 Then
-            Me.frmArticulos1b.Descripcion = Me.frmdatos.recuperarValor(frmWstepDatosGenerales.DESCRIPCION)            
+            Me.frmArticulos1b.Descripcion = Me.frmdatos.recuperarValor(frmWstepDatosGenerales.DESCRIPCION)
             Me.frmArticulos1b.Datos = Me.frmArticulos1.Datos
             Me.frmArticulos1b.TipoArticulo = 10
         ElseIf panel.GetType = Me.frmTerciario.GetType Then

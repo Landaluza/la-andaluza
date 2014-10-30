@@ -17,7 +17,7 @@ Public Class frmEntFormatosEnvasados2
     Private tsIncidencias6 As ToolStripItem
     Private tsEspecificaciones As ToolStripItem
 
-    Private frPalets As frmPaletsProducidos2
+    Private frPalets As frmPaletsProducidos
     Private frmControlesCalidadEnvasados2 As frmEnvasadosControles
     Private frmIncidencias2 As frmIncidencias
     Private frmPropuestas2 As frmPropuestas2
@@ -39,12 +39,18 @@ Public Class frmEntFormatosEnvasados2
         MyBase.New(modo)
         InitializeComponent()
         m_DBO_Envasado = DBO_Envasados2.Instance
-        m_DBO_FormatoEnvasado = New DBO_FormatosEnvasados
+        m_DBO_FormatoEnvasado = Nothing
         Me.m_linea = linea
         spFormatosEnvasados = New spFormatosEnvasados
         spFormatosEnvasados2 = New spFormatosEnvasados2
         spTiposFormatosLineas = New spTiposFormatosLineas
         spArticulosEnvasadosHistoricos = New spArticulosEnvasadosHistoricos
+
+        Dim s4 As New spTiposProductos
+        s4.cargar_ComboBox_para_envasado_por_Linea(Me.cboTipoProducto, Me.m_DBO_Envasado.LineaID, dtb)
+
+        tpgProduccion.Controls.Remove(tpgProduccion.TabPages("tpEspecificaciones"))
+        tpgProduccion.Controls.Remove(tpgProduccion.TabPages("tpSeguimientos"))
     End Sub
 
     Public Sub New(ByVal modo As String, ByVal CantidadEnvasada As Integer, ByVal m_dbo As DBO_FormatosEnvasados, ByVal linea As Integer)
@@ -52,10 +58,27 @@ Public Class frmEntFormatosEnvasados2
         InitializeComponent()
         m_CantidadEnvasada = CantidadEnvasada
         m_DBO_FormatoEnvasado = m_dbo
-        spFormatosEnvasados = New spFormatosEnvasados
-        spFormatosEnvasados2 = New spFormatosEnvasados2
-        spTiposFormatosLineas = New spTiposFormatosLineas
-        spArticulosEnvasadosHistoricos = New spArticulosEnvasadosHistoricos
+
+        m_DBO_FormatoEnvasado = spFormatosEnvasados.Select_Record(m_DBO_FormatoEnvasado.ID, dtb)
+
+        If Config.UserType = 4 Or Config.UserType = 9 Then
+            Me.Panel2.Visible = True
+            Me.cboTipoFormatoID.Enabled = True
+            Me.cboTipoFormatoLinea.Enabled = True
+            Me.cboTipoProducto.Enabled = True
+
+        Else
+            Me.Panel2.Visible = False
+            Me.cboTipoFormatoID.Enabled = False
+            Me.cboTipoFormatoLinea.Enabled = False
+            Me.cboTipoProducto.Enabled = False
+
+        End If
+
+        Me.tpgProduccion.Visible = True
+        Me.tpgProduccion.Enabled = True
+        Me.cargar_formularios()
+        Me.añadirMenu()
     End Sub
 
 
@@ -122,8 +145,9 @@ Public Class frmEntFormatosEnvasados2
             Return
         End If
 
-        Dim s4 As New spTiposProductos
-        s4.cargar_ComboBox_para_envasado_por_Linea(Me.cboTipoProducto, Me.m_DBO_Envasado.LineaID, dtb)
+        If Me.ModoDeApertura = MODIFICACION Then
+            añadirFormularios()
+        End If
 
 
         SetValores()
@@ -133,66 +157,27 @@ Public Class frmEntFormatosEnvasados2
             'Me.deshabilitarAcciones()
             Me.tpgProduccion.Enabled = False
             Me.tpgProduccion.Visible = False
-            SplitContainer2.Panel1Collapsed = True
 
             frmPersonal = New frmEntPersonalEnvasado(Me.m_DBO_Envasado.LineaID, Me.m_DBO_Envasado.EnvasadoID, True)
             frmPersonal.Formato_Envasado = Me.m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID
-            Engine_LA.FormEnPestaña(frmPersonal, Me.SplitContainer2.Panel2)
-        Else
-            If Config.UserType = 4 Or Config.UserType = 9 Then
-                Me.Panel2.Visible = True
-                Me.cboTipoFormatoID.Enabled = True
-                Me.cboTipoFormatoLinea.Enabled = True
-                Me.cboTipoProducto.Enabled = True
-
-            Else
-                Me.Panel2.Visible = False
-                Me.cboTipoFormatoID.Enabled = False
-                Me.cboTipoFormatoLinea.Enabled = False
-                Me.cboTipoProducto.Enabled = False
-
-            End If
-
-            SplitContainer2.Panel1Collapsed = False
-            SplitContainer2.Panel2Collapsed = True
-            Me.tpgProduccion.Visible = True
-            Me.tpgProduccion.Enabled = True
-            Me.añadirFormularios()
-            Me.añadirMenu()
+            frmPersonal.ShowDialog()
         End If
 
         System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.Default
     End Sub
 
-    Private Sub añadirFormularios()
-        tpgProduccion.Controls.Remove(tpgProduccion.TabPages("tpEspecificaciones"))
-        tpgProduccion.Controls.Remove(tpgProduccion.TabPages("tpSeguimientos"))
-
-
-        frPalets = New frmPaletsProducidos2(Me.m_DBO_FormatoEnvasado.ID, True)
-        Engine_LA.FormEnPestaña(frPalets, tpPalets)
-
+    Private Sub cargar_formularios()
+        'frPalets = New frmPaletsProducidos2(Me.m_DBO_FormatoEnvasado.ID, True)
+        frPalets = New frmPaletsProducidos(Me.m_linea, Me.m_DBO_FormatoEnvasado.ID, Me.m_DBO_FormatoEnvasado.EnvasadoID)
 
         frmControlesCalidadEnvasados2 = New frmEnvasadosControles(Me.m_DBO_FormatoEnvasado.ID, Me.m_DBO_Envasado.LineaID, True, Me)
-        Engine_LA.FormEnPestaña(frmControlesCalidadEnvasados2, tpControlesCalidad)
-
 
         frmIncidencias2 = New frmIncidencias(Me.m_DBO_FormatoEnvasado.ID)  '(1, Me.m_DBO_FormatoEnvasado.FormatoEnvasadoID, Me.m_DBO_Envasado.EnvasadoID, m_linea, True, Me) '1 = Categoria Mecanica
-        Engine_LA.FormEnPestaña(frmIncidencias2, tpIncidencias)
-
 
         frmPropuestas2 = New frmPropuestas2(Me.m_DBO_FormatoEnvasado.ID, True, Me)
-        Engine_LA.FormEnPestaña(frmPropuestas2, tpPropuestas)
-
 
         frmVelocidadEnvasados2 = New frmVelocidadEnvasados2(Me.m_DBO_FormatoEnvasado.ID, True, Me)
-        Engine_LA.FormEnPestaña(frmVelocidadEnvasados2, tpVelocidad)
 
-
-        'Tengo que pasar:
-        'TipoProductoID()
-        'Descripcion
-        'Cantidad envasada, que viene del Form anterior
         Dim m_Tabla As DataTable
         Dim m_TipoProductoID As Integer
         Dim m_Descripcion As String = ""
@@ -204,30 +189,44 @@ Public Class frmEntFormatosEnvasados2
             m_Descripcion = m_Tabla.Rows(0).Item("Descripcion")
         Catch ex As Exception
         End Try
-
         frmEnvasadosProductosArticulos = New frmEnvasadosProductosArticulos_NO_USAR(m_DBO_FormatoEnvasado.ID, m_TipoProductoID, m_Descripcion, m_CantidadEnvasada, True, Me)
-        Engine_LA.FormEnPestaña(frmEnvasadosProductosArticulos, tpProducto)
-
 
         frmParadaOrdenadas2 = New frmParadaOrdenadas2(Me.m_DBO_FormatoEnvasado.ID, True, Me)
-        Engine_LA.FormEnPestaña(frmParadaOrdenadas2, tpTiempoAsignado)
-
 
         frmMaterialesEnvasados2 = New frmMaterialesEnvasados2(Me.m_DBO_FormatoEnvasado.ID, True, Me)
-        Engine_LA.FormEnPestaña(frmMaterialesEnvasados2, tpTrazabilidadMatAux)
-
 
         frmCambiosFormatosEnvasados2 = New frmCambiosFormatosEnvasados2(Me.m_DBO_FormatoEnvasado.ID, True, Me) 'Me.m_DBO_FormatoEnvasado.ID, Me.m_linea)
-        Engine_LA.FormEnPestaña(frmCambiosFormatosEnvasados2, tpCambiosFormatos)
 
-
-        frmResumen = New frmResumen(Me, True)
-        Engine_LA.FormEnPestaña(frmResumen, tpResumen)
+        ' frmResumen = New frmResumen(Me, True)
 
         frmempleados_formatosEnvasados = New frmempleados_formatosEnvasados(Me.m_DBO_FormatoEnvasado.ID)
-        Engine_LA.FormEnPestaña(Me.frmempleados_formatosEnvasados, panEmpleados) 'tpFormatos_empleados)
 
         Me.frmPersonalOcupado = New frmPersonalEnvasadoOcupado(Me.m_DBO_FormatoEnvasado.EnvasadoID)
+    End Sub
+
+    Private Sub añadirFormularios()
+        Engine_LA.FormEnPestaña(frPalets, tpPalets)
+
+        Engine_LA.FormEnPestaña(frmControlesCalidadEnvasados2, tpControlesCalidad)
+
+        Engine_LA.FormEnPestaña(frmIncidencias2, tpIncidencias)
+
+        Engine_LA.FormEnPestaña(frmPropuestas2, tpPropuestas)
+
+        Engine_LA.FormEnPestaña(frmVelocidadEnvasados2, tpVelocidad)
+
+        Engine_LA.FormEnPestaña(frmEnvasadosProductosArticulos, tpProducto)
+
+        Engine_LA.FormEnPestaña(frmParadaOrdenadas2, tpTiempoAsignado)
+
+        Engine_LA.FormEnPestaña(frmMaterialesEnvasados2, tpTrazabilidadMatAux)
+
+        Engine_LA.FormEnPestaña(frmCambiosFormatosEnvasados2, tpCambiosFormatos)
+
+        'Engine_LA.FormEnPestaña(frmResumen, tpResumen)
+
+        Engine_LA.FormEnPestaña(Me.frmempleados_formatosEnvasados, panEmpleados) 'tpFormatos_empleados)
+
         Engine_LA.FormEnPestaña(Me.frmPersonalOcupado, PanPersonalOcupados)
     End Sub
 
@@ -293,8 +292,6 @@ Public Class frmEntFormatosEnvasados2
 
         If cargar Then
             SetValores()
-            SplitContainer2.Panel1Collapsed = False
-            SplitContainer2.Panel2Collapsed = True
             Me.tpgProduccion.Visible = True
             Me.añadirFormularios()
             Me.habilitarAcciones()
@@ -335,7 +332,7 @@ Public Class frmEntFormatosEnvasados2
     End Sub
 
     Overrides Sub SetValores()
-        m_DBO_FormatoEnvasado = spFormatosEnvasados.Select_Record(m_DBO_FormatoEnvasado.ID, dtb)
+
 
         If Not m_DBO_FormatoEnvasado Is Nothing Then
             If Not (m_DBO_FormatoEnvasado.TipoFormatoLineaID = Nothing Or m_DBO_FormatoEnvasado.TipoFormatoLineaID = 0) Then

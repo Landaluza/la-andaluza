@@ -21,6 +21,7 @@ Partial Class frmEntPaletsContenidosDoypack
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmEntPaletsContenidosDoypack))
         Me.dtpHoraInicio = New System.Windows.Forms.DateTimePicker()
         Me.dtpHoraFin = New System.Windows.Forms.DateTimePicker()
         Me.txtCantidadCajas = New System.Windows.Forms.TextBox()
@@ -29,7 +30,6 @@ Partial Class frmEntPaletsContenidosDoypack
         Me.lblHoraFin = New System.Windows.Forms.Label()
         Me.lblCantidadCajas = New System.Windows.Forms.Label()
         Me.lblObservaciones = New System.Windows.Forms.Label()
-
         Me.SplitDoypack = New System.Windows.Forms.SplitContainer()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.lCajasSuperiores = New System.Windows.Forms.Label()
@@ -44,6 +44,8 @@ Partial Class frmEntPaletsContenidosDoypack
         Me.Mover = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Combo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Indice = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.chbVaciar = New System.Windows.Forms.CheckBox()
         Me.Label3 = New System.Windows.Forms.Label()
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitDoypack, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,6 +59,7 @@ Partial Class frmEntPaletsContenidosDoypack
         Me.SplitMermas.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.dgvMermas, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel3.SuspendLayout()
         Me.SuspendLayout()
         '
         'dtpHoraInicio
@@ -64,11 +67,11 @@ Partial Class frmEntPaletsContenidosDoypack
         Me.dtpHoraInicio.BackColor = System.Drawing.SystemColors.Window
         Me.dtpHoraInicio.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtpHoraInicio.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.dtpHoraInicio.Location = New System.Drawing.Point(101, 18)
-        Me.dtpHoraInicio.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.dtpHoraInicio.Location = New System.Drawing.Point(76, 15)
+        Me.dtpHoraInicio.Margin = New System.Windows.Forms.Padding(2)
         Me.dtpHoraInicio.Name = "dtpHoraInicio"
         Me.dtpHoraInicio.ShowUpDown = True
-        Me.dtpHoraInicio.Size = New System.Drawing.Size(113, 24)
+        Me.dtpHoraInicio.Size = New System.Drawing.Size(86, 21)
         Me.dtpHoraInicio.TabIndex = 0
         '
         'dtpHoraFin
@@ -76,85 +79,84 @@ Partial Class frmEntPaletsContenidosDoypack
         Me.dtpHoraFin.BackColor = System.Drawing.SystemColors.Window
         Me.dtpHoraFin.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtpHoraFin.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.dtpHoraFin.Location = New System.Drawing.Point(101, 54)
-        Me.dtpHoraFin.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.dtpHoraFin.Location = New System.Drawing.Point(76, 44)
+        Me.dtpHoraFin.Margin = New System.Windows.Forms.Padding(2)
         Me.dtpHoraFin.Name = "dtpHoraFin"
         Me.dtpHoraFin.ShowUpDown = True
-        Me.dtpHoraFin.Size = New System.Drawing.Size(113, 24)
+        Me.dtpHoraFin.Size = New System.Drawing.Size(86, 21)
         Me.dtpHoraFin.TabIndex = 1
         '
         'txtCantidadCajas
         '
         Me.txtCantidadCajas.BackColor = System.Drawing.SystemColors.Window
+        Me.txtCantidadCajas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtCantidadCajas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCantidadCajas.Location = New System.Drawing.Point(397, 21)
-        Me.txtCantidadCajas.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.txtCantidadCajas.Location = New System.Drawing.Point(298, 17)
+        Me.txtCantidadCajas.Margin = New System.Windows.Forms.Padding(2)
         Me.txtCantidadCajas.MaxLength = 9
         Me.txtCantidadCajas.Name = "txtCantidadCajas"
-        Me.txtCantidadCajas.Size = New System.Drawing.Size(160, 24)
+        Me.txtCantidadCajas.Size = New System.Drawing.Size(121, 21)
         Me.txtCantidadCajas.TabIndex = 2
         Me.txtCantidadCajas.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtObservaciones
         '
         Me.txtObservaciones.BackColor = System.Drawing.SystemColors.Window
+        Me.txtObservaciones.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtObservaciones.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtObservaciones.Location = New System.Drawing.Point(43, 126)
-        Me.txtObservaciones.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.txtObservaciones.Location = New System.Drawing.Point(32, 102)
+        Me.txtObservaciones.Margin = New System.Windows.Forms.Padding(2)
         Me.txtObservaciones.MaxLength = 400
         Me.txtObservaciones.Multiline = True
         Me.txtObservaciones.Name = "txtObservaciones"
-        Me.txtObservaciones.Size = New System.Drawing.Size(515, 61)
+        Me.txtObservaciones.Size = New System.Drawing.Size(387, 50)
         Me.txtObservaciones.TabIndex = 4
         '
         'lblHoraInicio
         '
-        Me.lblHoraInicio.Location = New System.Drawing.Point(39, 17)
+        Me.lblHoraInicio.Location = New System.Drawing.Point(29, 14)
+        Me.lblHoraInicio.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblHoraInicio.Name = "lblHoraInicio"
-        Me.lblHoraInicio.Size = New System.Drawing.Size(56, 34)
+        Me.lblHoraInicio.Size = New System.Drawing.Size(42, 28)
         Me.lblHoraInicio.TabIndex = 0
         Me.lblHoraInicio.Text = "Inicio"
         Me.lblHoraInicio.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lblHoraFin
         '
-        Me.lblHoraFin.Location = New System.Drawing.Point(39, 52)
+        Me.lblHoraFin.Location = New System.Drawing.Point(29, 42)
+        Me.lblHoraFin.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblHoraFin.Name = "lblHoraFin"
-        Me.lblHoraFin.Size = New System.Drawing.Size(56, 34)
+        Me.lblHoraFin.Size = New System.Drawing.Size(42, 28)
         Me.lblHoraFin.TabIndex = 1
         Me.lblHoraFin.Text = "Fin"
         Me.lblHoraFin.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lblCantidadCajas
         '
-        Me.lblCantidadCajas.Location = New System.Drawing.Point(347, 17)
+        Me.lblCantidadCajas.Location = New System.Drawing.Point(260, 14)
+        Me.lblCantidadCajas.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblCantidadCajas.Name = "lblCantidadCajas"
-        Me.lblCantidadCajas.Size = New System.Drawing.Size(52, 34)
+        Me.lblCantidadCajas.Size = New System.Drawing.Size(39, 28)
         Me.lblCantidadCajas.TabIndex = 2
         Me.lblCantidadCajas.Text = "Cajas"
         Me.lblCantidadCajas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lblObservaciones
         '
-        Me.lblObservaciones.Location = New System.Drawing.Point(39, 94)
+        Me.lblObservaciones.Location = New System.Drawing.Point(29, 76)
+        Me.lblObservaciones.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblObservaciones.Name = "lblObservaciones"
-        Me.lblObservaciones.Size = New System.Drawing.Size(111, 34)
+        Me.lblObservaciones.Size = New System.Drawing.Size(83, 28)
         Me.lblObservaciones.TabIndex = 6
         Me.lblObservaciones.Text = "Observaciones"
         Me.lblObservaciones.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'tlpTop
-        '
-
-
-
-
         '
         'SplitDoypack
         '
         Me.SplitDoypack.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitDoypack.Location = New System.Drawing.Point(0, 0)
-        Me.SplitDoypack.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.SplitDoypack.Margin = New System.Windows.Forms.Padding(2)
         Me.SplitDoypack.Name = "SplitDoypack"
         '
         'SplitDoypack.Panel1
@@ -165,8 +167,9 @@ Partial Class frmEntPaletsContenidosDoypack
         '
         Me.SplitDoypack.Panel2.Controls.Add(Me.PanDoypack)
         Me.SplitDoypack.Panel2.Controls.Add(Me.Label2)
-        Me.SplitDoypack.Size = New System.Drawing.Size(1049, 347)
-        Me.SplitDoypack.SplitterDistance = 630
+        Me.SplitDoypack.Size = New System.Drawing.Size(787, 279)
+        Me.SplitDoypack.SplitterDistance = 471
+        Me.SplitDoypack.SplitterWidth = 3
         Me.SplitDoypack.TabIndex = 1000000004
         '
         'Panel1
@@ -180,10 +183,10 @@ Partial Class frmEntPaletsContenidosDoypack
         Me.Panel1.Controls.Add(Me.lblHoraInicio)
         Me.Panel1.Controls.Add(Me.lblHoraFin)
         Me.Panel1.Controls.Add(Me.dtpHoraInicio)
-        Me.Panel1.Location = New System.Drawing.Point(21, 60)
-        Me.Panel1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Panel1.Location = New System.Drawing.Point(16, 49)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(595, 203)
+        Me.Panel1.Size = New System.Drawing.Size(446, 165)
         Me.Panel1.TabIndex = 1000000005
         '
         'lCajasSuperiores
@@ -191,9 +194,10 @@ Partial Class frmEntPaletsContenidosDoypack
         Me.lCajasSuperiores.AutoSize = True
         Me.lCajasSuperiores.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lCajasSuperiores.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.lCajasSuperiores.Location = New System.Drawing.Point(395, 48)
+        Me.lCajasSuperiores.Location = New System.Drawing.Point(296, 39)
+        Me.lCajasSuperiores.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lCajasSuperiores.Name = "lCajasSuperiores"
-        Me.lCajasSuperiores.Size = New System.Drawing.Size(137, 13)
+        Me.lCajasSuperiores.Size = New System.Drawing.Size(100, 9)
         Me.lCajasSuperiores.TabIndex = 8
         Me.lCajasSuperiores.Text = "Las cajas superan lo normal"
         Me.lCajasSuperiores.Visible = False
@@ -201,10 +205,10 @@ Partial Class frmEntPaletsContenidosDoypack
         'PanDoypack
         '
         Me.PanDoypack.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanDoypack.Location = New System.Drawing.Point(0, 17)
-        Me.PanDoypack.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.PanDoypack.Location = New System.Drawing.Point(0, 13)
+        Me.PanDoypack.Margin = New System.Windows.Forms.Padding(2)
         Me.PanDoypack.Name = "PanDoypack"
-        Me.PanDoypack.Size = New System.Drawing.Size(415, 330)
+        Me.PanDoypack.Size = New System.Drawing.Size(313, 266)
         Me.PanDoypack.TabIndex = 1
         '
         'Label2
@@ -212,8 +216,9 @@ Partial Class frmEntPaletsContenidosDoypack
         Me.Label2.AutoSize = True
         Me.Label2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Label2.Location = New System.Drawing.Point(0, 0)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(63, 17)
+        Me.Label2.Size = New System.Drawing.Size(50, 13)
         Me.Label2.TabIndex = 0
         Me.Label2.Text = "Doypack"
         '
@@ -221,7 +226,7 @@ Partial Class frmEntPaletsContenidosDoypack
         '
         Me.SplitMermas.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitMermas.Location = New System.Drawing.Point(0, 25)
-        Me.SplitMermas.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.SplitMermas.Margin = New System.Windows.Forms.Padding(2)
         Me.SplitMermas.Name = "SplitMermas"
         Me.SplitMermas.Orientation = System.Windows.Forms.Orientation.Horizontal
         '
@@ -233,18 +238,20 @@ Partial Class frmEntPaletsContenidosDoypack
         '
         Me.SplitMermas.Panel2.Controls.Add(Me.Panel2)
         Me.SplitMermas.Panel2.Controls.Add(Me.Label3)
-        Me.SplitMermas.Size = New System.Drawing.Size(1049, 732)
-        Me.SplitMermas.SplitterDistance = 347
+        Me.SplitMermas.Size = New System.Drawing.Size(787, 590)
+        Me.SplitMermas.SplitterDistance = 279
+        Me.SplitMermas.SplitterWidth = 3
         Me.SplitMermas.TabIndex = 1000000006
         '
         'Panel2
         '
         Me.Panel2.Controls.Add(Me.dgvMermas)
+        Me.Panel2.Controls.Add(Me.Panel3)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel2.Location = New System.Drawing.Point(0, 17)
-        Me.Panel2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Panel2.Location = New System.Drawing.Point(0, 13)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1049, 364)
+        Me.Panel2.Size = New System.Drawing.Size(787, 295)
         Me.Panel2.TabIndex = 1
         '
         'dgvMermas
@@ -254,13 +261,13 @@ Partial Class frmEntPaletsContenidosDoypack
         Me.dgvMermas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvMermas.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.SCC, Me.Existencias, Me.Vaciar, Me.Mover, Me.Combo, Me.Indice})
         Me.dgvMermas.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgvMermas.Location = New System.Drawing.Point(0, 0)
-        Me.dgvMermas.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.dgvMermas.Location = New System.Drawing.Point(0, 24)
+        Me.dgvMermas.Margin = New System.Windows.Forms.Padding(2)
         Me.dgvMermas.Name = "dgvMermas"
         Me.dgvMermas.RowHeadersVisible = False
         Me.dgvMermas.RowTemplate.Height = 24
         Me.dgvMermas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvMermas.Size = New System.Drawing.Size(1049, 364)
+        Me.dgvMermas.Size = New System.Drawing.Size(787, 271)
         Me.dgvMermas.TabIndex = 1
         '
         'SCC
@@ -297,24 +304,48 @@ Partial Class frmEntPaletsContenidosDoypack
         Me.Indice.Name = "Indice"
         Me.Indice.Visible = False
         '
+        'Panel3
+        '
+        Me.Panel3.Controls.Add(Me.chbVaciar)
+        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel3.Location = New System.Drawing.Point(0, 0)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(787, 24)
+        Me.Panel3.TabIndex = 2
+        '
+        'chbVaciar
+        '
+        Me.chbVaciar.Checked = True
+        Me.chbVaciar.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chbVaciar.Dock = System.Windows.Forms.DockStyle.Right
+        Me.chbVaciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.chbVaciar.Location = New System.Drawing.Point(671, 0)
+        Me.chbVaciar.Name = "chbVaciar"
+        Me.chbVaciar.Size = New System.Drawing.Size(116, 24)
+        Me.chbVaciar.TabIndex = 0
+        Me.chbVaciar.Text = "Vaciar"
+        Me.chbVaciar.UseVisualStyleBackColor = True
+        '
         'Label3
         '
         Me.Label3.AutoSize = True
         Me.Label3.Dock = System.Windows.Forms.DockStyle.Top
         Me.Label3.Location = New System.Drawing.Point(0, 0)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(58, 17)
+        Me.Label3.Size = New System.Drawing.Size(44, 13)
         Me.Label3.TabIndex = 0
         Me.Label3.Text = "Mermas"
         '
         'frmEntPaletsContenidosDoypack
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
-        Me.ClientSize = New System.Drawing.Size(1049, 757)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.ClientSize = New System.Drawing.Size(787, 615)
         Me.Controls.Add(Me.SplitMermas)
         Me.Cursor = System.Windows.Forms.Cursors.Default
-        Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.MinimumSize = New System.Drawing.Size(0, 0)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Margin = New System.Windows.Forms.Padding(2)
+        Me.MinimumSize = New System.Drawing.Size(431, 236)
         Me.Name = "frmEntPaletsContenidosDoypack"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = " "
@@ -334,6 +365,7 @@ Partial Class frmEntPaletsContenidosDoypack
         Me.SplitMermas.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         CType(Me.dgvMermas, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel3.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -363,4 +395,6 @@ Partial Class frmEntPaletsContenidosDoypack
     Friend WithEvents Mover As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Combo As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Indice As System.Windows.Forms.DataGridViewTextBoxColumn
+    Private WithEvents Panel3 As System.Windows.Forms.Panel
+    Private WithEvents chbVaciar As System.Windows.Forms.CheckBox
 End Class

@@ -3,7 +3,7 @@
     Private pan As Object
     Private id As Integer
     Private modoDeApertura As Integer
-    Public Event actualizarExtras()
+    Public Event actualizarExtras(sender As Object, e As EventArgs)
 
     Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New(ByVal mode As Integer, ByVal stub As Byte)
@@ -55,7 +55,7 @@
     End Sub
 
     Private Sub raiseRefresh()
-        RaiseEvent actualizarExtras()
+        RaiseEvent actualizarExtras(Nothing, Nothing)
     End Sub
 
     Public Sub actualizarDatos()

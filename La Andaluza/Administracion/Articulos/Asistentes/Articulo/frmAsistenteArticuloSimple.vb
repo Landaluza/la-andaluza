@@ -14,11 +14,11 @@
         Me.titles.Add("Detalles del artículo")
     End Sub
 
-    Private Sub cambioPanel(ByRef panel As Windows.Forms.Form) Handles Me.PanelChanged
-        
+    Private Sub cambioPanel(ByRef panel As Object, e As EventArgs) Handles Me.PanelChanged
+
     End Sub
 
-    Private Sub finished() Handles Me.FinishWizard
+    Private Sub finished(ByRef sender As Object, e As EventArgs) Handles Me.FinishWizard
         If MyBase.guardar(Me.dtb) Then
             Me.Close()
         Else

@@ -29,28 +29,44 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Function
 
     Public Function ValidarRangoHorario(ByVal PaletContenido As DBO_PaletsContenidos, ByVal linea As Integer, envasadoid As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
-        dtb.Conectar()
-        Try
-            '  Dim res As Integer = 0
-            dtb.PrepararConsulta("[dbo].[PaletsContenidos2ValidarRangoHorario2] 	@HoraInicio , @HoraFin , @PaletContenidoID , @LineaEnvasadoID , @envasadoid")
-            dtb.AñadirParametroConsulta("@HoraInicio", PaletContenido.HoraInicio)
-            dtb.AñadirParametroConsulta("@HoraFin", PaletContenido.HoraFin)
-            dtb.AñadirParametroConsulta("@PaletContenidoID", PaletContenido.ID)
-            dtb.AñadirParametroConsulta("@LineaEnvasadoID", linea)
-            dtb.AñadirParametroConsulta("@envasadoid", envasadoid)
+        'dtb.Conectar()
+        'Try
+        '    '  Dim res As Integer = 0
+        '    dtb.PrepararConsulta("[dbo].[PaletsContenidos2ValidarRangoHorario2] 	@HoraInicio , @HoraFin , @PaletContenidoID , @LineaEnvasadoID , @envasadoid")
+        '    dtb.AñadirParametroConsulta("@HoraInicio", PaletContenido.HoraInicio)
+        '    dtb.AñadirParametroConsulta("@HoraFin", PaletContenido.HoraFin)
+        '    dtb.AñadirParametroConsulta("@PaletContenidoID", PaletContenido.ID)
+        '    dtb.AñadirParametroConsulta("@LineaEnvasadoID", linea)
+        '    dtb.AñadirParametroConsulta("@envasadoid", envasadoid)
 
-            Return If(dtb.Consultar().Rows(0).Item(0) = 0, False, True)
-            'Dim reader As System.Data.SqlClient.SqlDataReader = selectCommand.ExecuteReader(CommandBehavior.SingleRow)
-            'If reader.Read Then
-            '    res = System.Convert.ToInt32(If(reader(0) Is Convert.DBNull, 0, reader(0)))
-            'End If
-            'reader.Close()
-            'Return If(res > 0, False, True)
+        '    Return If(dtb.Consultar().Rows(0).Item(0) = 0, False, True)
+        '    'Dim reader As System.Data.SqlClient.SqlDataReader = selectCommand.ExecuteReader(CommandBehavior.SingleRow)
+        '    'If reader.Read Then
+        '    '    res = System.Convert.ToInt32(If(reader(0) Is Convert.DBNull, 0, reader(0)))
+        '    'End If
+        '    'reader.Close()
+        '    'Return If(res > 0, False, True)
+
+        'Catch ex As System.Data.SqlClient.SqlException
+        '    Return False
+        'Finally
+        '    dtb.Conectar()
+        'End Try
+        Try
+            Dim res As Integer = 0
+            dtb.PrepararConsulta("[dbo].[PaletsContenidos2ValidarRangoHorario2] @inicio, @fin, @contenidoId, @lineaID, @envasado")
+            dtb.AñadirParametroConsulta("@inicio", PaletContenido.HoraInicio)
+            dtb.AñadirParametroConsulta("@fin", PaletContenido.HoraFin)
+            dtb.AñadirParametroConsulta("@contenidoId", PaletContenido.ID)
+            dtb.AñadirParametroConsulta("@lineaID", linea)
+            dtb.AñadirParametroConsulta("@envasado", envasadoid)
+
+            Dim dt As DataTable = dtb.Consultar()
+
+            Return If(dt.Rows(0).Item(0) > 0, False, True)
 
         Catch ex As System.Data.SqlClient.SqlException
             Return False
-        Finally
-            dtb.Conectar()
         End Try
     End Function
 
@@ -101,12 +117,18 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         If dt.Rows(0) Is Nothing Then Return DateTime.Now
         If dt.Rows(0).Item(0) Is Convert.DBNull Then Return DateTime.Now
 
-        Return dt.Rows(0).Item(0)
+        Return Convert.ToDateTime(dt.Rows(0).Item(0).ToString)
     End Function
 
     Public Function PaletsContenidosPorPaletsProducidos(ByVal PaletProducidoID As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
         dtb.PrepararConsulta("PaletsContenidos2ByPaletProducidoID @id")
         dtb.AñadirParametroConsulta("@id", PaletProducidoID)
         Return dtb.Consultar()
+    End Function
+
+    Function seleccionar_linea_por_formato(mFormatoEnvasadoID As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
+        dtb.PrepararConsulta("select Linea  from formatosenvasados, ArticulosEnvasadosHistorico where TipoFormatoEnvasadoID = tipoFormato and FormatoEnvasadoID =  @id")
+        dtb.AñadirParametroConsulta("@id", mFormatoEnvasadoID)
+        Return Convert.ToInt32(dtb.Consultar().Rows(0).Item(0))
     End Function
 End Class

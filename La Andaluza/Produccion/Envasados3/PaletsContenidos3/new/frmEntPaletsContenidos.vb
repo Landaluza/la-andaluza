@@ -1,13 +1,14 @@
+Imports BasesParaCompatibilidad.dtpExtension
+
 Public Class frmEntPaletsContenidos
-    inherits BasesParaCompatibilidad.DetailedSimpleForm
-    Implements  BasesParaCompatibilidad.savable, PaletContenido
+    Inherits BasesParaCompatibilidad.DetailedSimpleForm
+    Implements BasesParaCompatibilidad.Savable, PaletContenido
     Private m_DBO_PaletsContenidos As DBO_PaletsContenidos
-    Public Shadows Event afterSave(sender As System.Object, e As System.EventArgs) Implements  BasesParaCompatibilidad.savable.afterSave
+    Public Shadows Event afterSave(sender As System.Object, e As System.EventArgs) Implements BasesParaCompatibilidad.Savable.afterSave
     Private spContenidos As New spPaletsContenidos
-    Private palet As Palet    
+    Private palet As Palet
     Private mLinea As Integer
     Private mTipoFormatoEnvasadoID As Integer
-    'Private mFecha As Date
     Private mTerminado As Boolean
     Private envasado As Integer
 
@@ -20,38 +21,14 @@ Public Class frmEntPaletsContenidos
         End Get
     End Property
 
-    'Public ReadOnly Property Terminado As Boolean
-    '    Get
-    '        Return Me.mTerminado
-    '    End Get
-    'End Property
-
     Public WriteOnly Property Formato As Integer
         Set(value As Integer)
             Me.m_DBO_PaletsContenidos.id_formatoEnvasado = value
         End Set
     End Property
 
-    'Public WriteOnly Property Linea As Integer
-    '    Set(value As Integer)
-    '        Me.mLinea = value
-    '    End Set
-    'End Property
-
-    'Public WriteOnly Property Tipo_formato_envasado As Integer
-    '    Set(value As Integer)
-    '        Me.mTipoFormatoEnvasadoID = value
-    '    End Set
-    'End Property
-
-    'Public WriteOnly Property Fecha_envasado As Date
-    '    Set(value As Date)
-    '        Me.mFecha = value
-    '    End Set
-    'End Property
-
     Public Sub New(ByVal lineaEnvasado As Integer, ByVal tipoformato As Integer, ByVal envasado As Integer, ByVal modoDeApertura As String, Optional ByRef v_sp As spPaletsContenidos = Nothing, Optional ByRef v_dbo As DBO_PaletsContenidos = Nothing)
-        MyBase.new(modoDeApertura, v_sp, v_dbo)
+        MyBase.New(modoDeApertura, v_sp, v_dbo)
         InitializeComponent()
         sp = If(v_sp Is Nothing, New spPaletsContenidos, v_sp)
         m_DBO_PaletsContenidos = If(v_dbo Is Nothing, New DBO_PaletsContenidos, v_dbo)
@@ -60,36 +37,32 @@ Public Class frmEntPaletsContenidos
         palet = New Palet(Me.m_DBO_PaletsContenidos.PaletProducidoID)
         Me.mLinea = lineaEnvasado
         Me.mTipoFormatoEnvasadoID = tipoformato
-        'Me.mFecha = fechaEnvasado
         Me.envasado = envasado
+
+        Me.dtpHoraInicio.activarFoco()
+        Me.dtpHoraFin.activarFoco()
     End Sub
 
     Private Sub frmEntPaletsContenidos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Me.lCajasSuperiores.Visible = False
         palet.recuperar_datos(dtb)
 
-        
+
         Dim spPalet As New spPaletsProducidos
         Me.Text = Me.Text & "contenido para SSCC " & spPalet.Select_Record(Me.m_DBO_PaletsContenidos.PaletProducidoID, dtb).SCC
     End Sub
 
-    Overrides Sub SetValores() Implements  BasesParaCompatibilidad.savable.setValores
+    Overrides Sub SetValores() Implements BasesParaCompatibilidad.Savable.setValores
         Me.m_DBO_PaletsContenidos = dbo
 
         If Me.ModoDeApertura = INSERCION Or Me.ModoDeApertura = frmPaletsProducidos.COMPLETAR Then
-            'dtpHoraInicio.Value = New DateTime(datetime.now.Year, datetime.now.Month, datetime.now.Day, datetime.now.Hour, datetime.now.Minute, datetime.now.Second)
-           
 
             txtCantidadCajas.Text = palet.Cajas_restantes.ToString
-            dtpHoraInicio.Value = Me.spContenidos.ultima_hora(Me.mLinea, Me.envasado, dtb) 'm_DBO_PaletsContenidos.HoraInicio
+            dtpHoraInicio.Value = Me.spContenidos.ultima_hora(Me.mLinea, Me.envasado, dtb)  'm_DBO_PaletsContenidos.HoraInicio
 
             Dim minutos As Integer = CInt(Me.spContenidos.devolver_media_creacion_contenidos(Me.mLinea, Me.mTipoFormatoEnvasadoID, dtb))
             dtpHoraFin.Value = dtpHoraInicio.Value.AddMinutes(minutos)
 
-            'If dtpHoraInicio.Value.Day <> Me.mFecha.Day Then
-            '    messageBox.show("El siguiente contenido debe envasarse en nuevo Lote.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation) 'No se permiten mas contenidos hoy")
-            '    Me.Close()
-            'End If
         Else
             txtCantidadCajas.Text = m_DBO_PaletsContenidos.CantidadCajas.ToString
             dtpHoraInicio.Value = DateTime.Now.Add(m_DBO_PaletsContenidos.HoraInicio)
@@ -99,8 +72,8 @@ Public Class frmEntPaletsContenidos
         txtObservaciones.Text = m_DBO_PaletsContenidos.Observaciones
     End Sub
 
-    Protected Overrides Function GetValores() As Boolean Implements  BasesParaCompatibilidad.savable.getValores
-        Dim errores As String = String.empty
+    Protected Overrides Function GetValores() As Boolean Implements BasesParaCompatibilidad.Savable.getValores
+        Dim errores As String = String.Empty
 
 
         m_DBO_PaletsContenidos.HoraInicio = New TimeSpan(dtpHoraInicio.Value.Hour, dtpHoraInicio.Value.Minute, 0)
@@ -129,16 +102,18 @@ Public Class frmEntPaletsContenidos
             dbo = m_DBO_PaletsContenidos
             Return True
         Else
-            messageBox.show("Rellene correctamente el formulario, se han encontrado os siguientes errores:" & Environment.NewLine() & Environment.NewLine() & errores, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation) 'Error")
+            MessageBox.Show("Rellene correctamente el formulario, se han encontrado os siguientes errores:" & Environment.NewLine() & Environment.NewLine() & errores, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation) 'Error")
             Return False
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
         If Me.GetValores Then
+            If dtb Is Nothing Then dtb = Me.dtb
             Try
-                If sp.Grabar(dbo, dtb) Then
+                If sp.Grabar(dbo, Me.dtb) Then
                     evitarCerrarSinGuardar = False
+
                     RaiseEvent afterSave(Me, Nothing)
 
                     Me.Close()
@@ -153,7 +128,7 @@ Public Class frmEntPaletsContenidos
 
 
     Private Sub frmEntPaletsContenidos_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-        BasesParaCompatibilidad.pantalla.centerIn(Me.Panel1, Me)
+        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.Panel1, Me)
         'If Me.ModoDeApertura = frmPaletsProducidos.COMPLETAR Then
         '    Me.Text.Replace("Ver ", "")
         '    Me.butGuardar.Visible = True
@@ -162,7 +137,7 @@ Public Class frmEntPaletsContenidos
 
     Private Sub txtCantidadCajas_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtCantidadCajas.TextChanged
         Try
-            If Convert.ToInt32(txtCantidadCajas.Text) > if(Me.ModoDeApertura = INSERCION, Me.palet.Cajas_restantes, Me.palet.Cajas_restantes + Me.m_DBO_PaletsContenidos.CantidadCajas) Then
+            If Convert.ToInt32(txtCantidadCajas.Text) > If(Me.ModoDeApertura = INSERCION, Me.palet.Cajas_restantes, Me.palet.Cajas_restantes + Me.m_DBO_PaletsContenidos.CantidadCajas) Then
                 Me.mTerminado = False
                 Me.lCajasSuperiores.Visible = True
             Else
@@ -170,7 +145,7 @@ Public Class frmEntPaletsContenidos
                 Me.lCajasSuperiores.Visible = False
             End If
         Catch ex As Exception
-            messageBox.show("Error. " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error. " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 End Class

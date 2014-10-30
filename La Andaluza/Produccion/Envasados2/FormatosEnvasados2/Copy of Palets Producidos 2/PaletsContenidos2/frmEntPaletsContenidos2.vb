@@ -63,7 +63,7 @@ Public Class frmEntPaletsContenidos2
             If Not padre Is Nothing Then
                 modoAntesDeCambios = padre.ModoDeApertura
                 If padre.ModoDeApertura = frmEntPaletsProducidos2.INSERCION Or padre.ModoDeApertura = frmEntPaletsProducidos2.INSERTAR_PRIMER_PALET And Me.ModoDeApertura <> COMPLETAR Then
-                    padre.guardado()
+                    padre.guardado(dtb)
                 End If
             End If
 

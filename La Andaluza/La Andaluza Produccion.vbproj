@@ -2541,6 +2541,12 @@
     <Compile Include="Produccion\Envasados3\PaletsProducidos3\new\frmPaletsProducidos.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Produccion\Envasados3\PaletsProducidos3\new\frmSinContenidos.Designer.vb">
+      <DependentUpon>frmSinContenidos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Produccion\Envasados3\PaletsProducidos3\new\frmSinContenidos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Produccion\Envasados3\PaletsProducidos3\new\spPaletsProducidos.vb" />
     <Compile Include="Produccion\Envasados3\PersonalEnLinea\frmPersonalEnvasadoSinFin.Designer.vb">
       <DependentUpon>frmPersonalEnvasadoSinFin.vb</DependentUpon>
@@ -5591,6 +5597,9 @@
     <EmbeddedResource Include="Produccion\Envasados3\PaletsProducidos3\new\frmPaletsProducidos.resx">
       <DependentUpon>frmPaletsProducidos.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Produccion\Envasados3\PaletsProducidos3\new\frmSinContenidos.resx">
+      <DependentUpon>frmSinContenidos.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Produccion\Envasados3\PersonalEnLinea\frmPersonalEnvasadoSinFin.resx">
       <DependentUpon>frmPersonalEnvasadoSinFin.vb</DependentUpon>
     </EmbeddedResource>
@@ -6611,8 +6620,8 @@
     <None Include="Bases\ZLibrerias\Incidencias entre fechas.dll" />
     <None Include="Bases\ZLibrerias\InformesCalidad.dll" />
     <None Include="Bases\ZLibrerias\Envasados entre fechas.dll" />
-    <Content Include="Bases\ZLibrerias\BarcodeLib.dll" />
-    <Content Include="Bases\ZLibrerias\BasesParaCompatibilidad.dll" />
+    <None Include="Bases\ZLibrerias\BarcodeLib.dll" />
+    <None Include="Bases\ZLibrerias\BasesParaCompatibilidad.dll" />
     <Content Include="Resources\window_new.ico" />
     <Content Include="Resources\window_new_3.ico" />
     <None Include="Resources\text-x-makefile.png" />

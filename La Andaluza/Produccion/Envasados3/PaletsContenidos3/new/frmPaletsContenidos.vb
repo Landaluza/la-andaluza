@@ -9,26 +9,9 @@ Public Class frmPaletsContenidos
     Private spMovimientos As spPaletsMovimiento
     Private mLinea As Integer
     Private mTipoFormatoEnvasadoID As Integer
-    'Private mFecha As Date
     Private envasadoid As Integer
     Public Event completado()
-    'Public WriteOnly Property Linea As Integer
-    '    Set(value As Integer)
-    '        Me.mLinea = value
-    '    End Set
-    'End Property
 
-    'Public WriteOnly Property Tipo_formato_envasado As Integer
-    '    Set(value As Integer)
-    '        Me.mTipoFormatoEnvasadoID = value
-    '    End Set
-    'End Property
-
-    'Public WriteOnly Property Fecha_envasado As Date
-    '    Set(value As Date)
-    '        Me.mFecha = value
-    '    End Set
-    'End Property
 
     Public WriteOnly Property Palet As Integer
         Set(value As Integer)
@@ -65,6 +48,7 @@ Public Class frmPaletsContenidos
         Me.mTipoFormatoEnvasadoID = tipoformato
         Me.envasadoid = envasado
         'Me.mFecha = fechaEnvasado
+        Me.sp.DataGridViewStoredProcedure = sp.DataGridViewStoredProcedureForFilteredSelect & "'" & MaestroID & "'"
 
         If Me.spMovimientos.comprobarFormatoEncajado(Me.mTipoFormatoEnvasadoID, dtb) Then
             Me.butModificar.Visible = False
@@ -72,6 +56,7 @@ Public Class frmPaletsContenidos
             Me.butModificar.Visible = True
         End If
         butExcel.Visible = True
+        
     End Sub
 
     'Public Overrides Sub Action(TipoAction As String)
@@ -86,25 +71,28 @@ Public Class frmPaletsContenidos
         dboPaletsContenidos = New DBO_PaletsContenidos
 
         If m_MaestroID <> 0 Then
+            dboPaletsContenidos = New DBO_PaletsContenidos
             dboPaletsContenidos.PaletProducidoID = m_MaestroID
             dboPaletsContenidos.id_formatoEnvasado = m_maestro2
+        End If
+
+        If Me.mLinea = 0 Then
+            Dim s As New spPaletsContenidos
+            mLinea = s.seleccionar_linea_por_formato(Me.dboPaletsContenidos.id_formatoEnvasado, dtb)
         End If
 
         If Me.spMovimientos.comprobarFormatoEncajado(Me.mTipoFormatoEnvasadoID, dtb) Then
             If Not Me.monodosis.EsDoyPack(mTipoFormatoEnvasadoID, dtb) Then
                 Dim frm As New frmEntPaletsContenidosMonodosis(Me.mLinea, Me.mTipoFormatoEnvasadoID, Me.envasadoid, BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, sp, Me.dboPaletsContenidos)
-                AddHandler frm.afterSave, AddressOf Me.dgvFill
                 AddHandler frm.afterSave, AddressOf Me.is_complete
                 MyBase.newRegForm = frm
             Else
                 Dim frm As New frmEntPaletsContenidosDoypack(Me.m_MaestroID, Me.mLinea, Me.mTipoFormatoEnvasadoID, Me.envasadoid, BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, sp, Me.dboPaletsContenidos)
-                AddHandler frm.afterSave, AddressOf Me.dgvFill
                 AddHandler frm.afterSave, AddressOf Me.is_complete
                 MyBase.newRegForm = frm
             End If
         Else
             Dim frm As New frmEntPaletsContenidos(Me.mLinea, Me.mTipoFormatoEnvasadoID, Me.envasadoid, BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, sp, Me.dboPaletsContenidos)
-            AddHandler frm.afterSave, AddressOf Me.dgvFill
             AddHandler frm.afterSave, AddressOf Me.is_complete
             MyBase.newRegForm = frm
         End If
@@ -136,39 +124,58 @@ Public Class frmPaletsContenidos
 
     Protected Overrides Sub BindDataSource() Implements BasesParaCompatibilidad.Queriable.dataGridViewFill
         'Dim dt As DataTable = DataTableFill(Me.sp.DataGridViewStoredProcedure)
+        If Me.m_MaestroID <> 0 Then
 
-        If Not dataSource Is Nothing Then
-            GeneralBindingSource.DataSource = dataSource
-            With dgvGeneral
-                .DataSource = GeneralBindingSource
-                '.Columns("Id").Visible = False
-                '.FormatoColumna("HoraInicio", BasesParaCompatibilidad.TiposColumna.FechaCorta, 80)
-                '.FormatoColumna("HoraFin", BasesParaCompatibilidad.TiposColumna.FechaCorta, 80)
-                '.FormatoColumna("CantidadCajas", BasesParaCompatibilidad.TiposColumna.Miles, 50)
+            If Not dataSource Is Nothing Then
+                If dgvGeneral.Visible = False Then dgvGeneral.Visible = True
 
-                If .Columns.Contains("PaletContenidoID") Then .Columns("PaletContenidoID").Name = "Id"
-                .Columns("Id").Visible = False
-                .Columns("PaletProducidoID").Visible = False
-                .Columns("EnAlmacen").Visible = False
-                .Columns("Completo").Visible = False
-                .Columns("gregoriano").Visible = False
-                .FormatoColumna("Fecha", BasesParaCompatibilidad.TiposColumna.FechaCorta, 75)
-                .FormatoColumna("Inicio", BasesParaCompatibilidad.TiposColumna.Hora, 48)
-                .FormatoColumna("Fin", BasesParaCompatibilidad.TiposColumna.Hora, 44)
-                .FormatoColumna("Cajas", BasesParaCompatibilidad.TiposColumna.Miles, 45)
-                .FormatoColumna("Observaciones", BasesParaCompatibilidad.TiposColumna.Observaciones, True)
+                GeneralBindingSource.DataSource = dataSource
+                With dgvGeneral
+                    .DataSource = GeneralBindingSource
+                    '.Columns("Id").Visible = False
+                    '.FormatoColumna("HoraInicio", BasesParaCompatibilidad.TiposColumna.FechaCorta, 80)
+                    '.FormatoColumna("HoraFin", BasesParaCompatibilidad.TiposColumna.FechaCorta, 80)
+                    '.FormatoColumna("CantidadCajas", BasesParaCompatibilidad.TiposColumna.Miles, 50)
 
-            End With
+                    If .Columns.Contains("PaletContenidoID") Then .Columns("PaletContenidoID").Name = "Id"
+                    .Columns("Id").Visible = False
+                    .Columns("PaletProducidoID").Visible = False
+                    .Columns("EnAlmacen").Visible = False
+                    .Columns("Completo").Visible = False
+                    .Columns("gregoriano").Visible = False
+                    .FormatoColumna("Fecha", BasesParaCompatibilidad.TiposColumna.FechaCorta, 75)
+                    .FormatoColumna("Inicio", BasesParaCompatibilidad.TiposColumna.Hora, 48)
+                    .FormatoColumna("Fin", BasesParaCompatibilidad.TiposColumna.Hora, 44)
+                    .FormatoColumna("Cajas", BasesParaCompatibilidad.TiposColumna.Miles, 45)
+                    .FormatoColumna("Observaciones", BasesParaCompatibilidad.TiposColumna.Observaciones, True)
+
+                End With
+            End If
+
+        Else
+            dgvGeneral.Visible = False
+
         End If
-
-
 
     End Sub
 
     Public Sub is_complete(sender As System.Object, e As Object)
+        dgvFill()
+
         Dim frm As PaletContenido
         frm = sender
-        If frm.Completado Then RaiseEvent completado()
+
+        If frm.Completado Then
+            If MyBase.BackgroundWorker1.IsBusy Then
+                AddHandler MyBase.BackgroundWorker1.RunWorkerCompleted, AddressOf completed
+            Else
+                RaiseEvent completado()
+            End If
+        End If
+    End Sub
+
+    Private Sub completed()
+        RaiseEvent completado()
     End Sub
 End Class
 

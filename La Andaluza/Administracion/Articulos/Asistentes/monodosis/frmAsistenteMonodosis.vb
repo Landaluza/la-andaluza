@@ -19,7 +19,7 @@
         Me.titles.Add("Detalles del artículo primario")
     End Sub
 
-    Private Sub cambioPanel(ByRef panel As Windows.Forms.Form) Handles Me.PanelChanged
+    Private Sub cambioPanel(ByRef sender As Object, e As EventArgs) Handles Me.PanelChanged
 
     End Sub
 

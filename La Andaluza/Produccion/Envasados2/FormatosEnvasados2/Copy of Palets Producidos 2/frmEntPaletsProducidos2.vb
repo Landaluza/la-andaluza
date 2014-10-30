@@ -136,7 +136,8 @@ Public Class frmEntPaletsProducidos2
 
     End Sub
 
-    Public Sub guardado()
+    Public Sub guardado(ByRef dtb As BasesParaCompatibilidad.DataBase)
+        Me.dtb = dtb
         GetValores()
         If (Me.ModoDeApertura = MODIFICACION) Or (Me.ModoDeApertura = VISION) Then
             If checkPaletContents(frmEntPaletsProducidos2.MODIFICACION) Then

@@ -638,7 +638,7 @@ Public Class frmEntplantillasBoletines
         oPara3.Format.SpaceAfter = 36
 
         oPara4 = oDoc.Content.Paragraphs.Add
-        oPara4.Range.Text = "Jerez,  " & String.Format("D", Me.dtpFecha.Value)
+        oPara4.Range.Text = "Jerez,  " & String.Format("D".ToString, Me.dtpFecha.Value)
         oPara4.Format.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphRight
 
         oPara5 = oDoc.Content.Paragraphs.Add
@@ -887,7 +887,7 @@ Public Class frmEntplantillasBoletines
     End Sub
 
     Private Function esCategoriaImprimible(ByRef tabAnaliticas As System.Data.DataTable) As Boolean
-        Dim imprimir As Boolean
+        Dim imprimir As Boolean = False
         Dim j As Integer = 0
         Dim cbAux As System.Windows.Forms.CheckBox
 
@@ -896,7 +896,7 @@ Public Class frmEntplantillasBoletines
             For Each cbAux In Me.v_Parametros
                 If cbAux.Text = tabAnaliticas.Rows(j).Item("Nombre") Then
                     If cbAux.Checked Then
-                        imprimir = True
+                        Return True
                     End If
                 End If
             Next

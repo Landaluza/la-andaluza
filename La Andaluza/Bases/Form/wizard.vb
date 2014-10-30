@@ -4,8 +4,9 @@
     Protected wizardStep As Integer
     Protected forms As Collection
     Protected titles As Collection
-    Public Event FinishWizard()
-    Public Event PanelChanged(ByRef panel As Windows.Forms.Form)
+    Public Event FinishWizard(ByRef sender As Object, e As EventArgs)
+    'Public Event PanelChanged(ByRef panel As Windows.Forms.Form)
+    Public Event PanelChanged(ByRef sender As Object, e As EventArgs)
     Protected title As String
     Protected dtb As BasesParaCompatibilidad.DataBase
     Public Sub New()
@@ -90,7 +91,7 @@
                         Me.btnNext.Image = My.Resources.dialog_apply
                         Me.btnNext.Text = "Finalizar"
                     Case forms.Count
-                        RaiseEvent FinishWizard()
+                        RaiseEvent FinishWizard(Nothing, Nothing)
                 End Select
 
                 If actualstep < Me.forms.Count Then Me.wizardStep += way
@@ -129,7 +130,7 @@
                 Me.btnPrev.Text = "Anterior"
         End Select
         Me.CenterToParent()
-        RaiseEvent PanelChanged(Me.forms.Item(actualstep))
+        RaiseEvent PanelChanged(Me.forms.Item(actualstep), Nothing)
     End Sub
 
     Public Function guardar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean

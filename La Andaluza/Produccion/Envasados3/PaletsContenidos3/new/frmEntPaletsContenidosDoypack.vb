@@ -1,8 +1,10 @@
+Imports BasesParaCompatibilidad.dtpExtension
+
 Public Class frmEntPaletsContenidosDoypack
-    inherits BasesParaCompatibilidad.DetailedSimpleForm
-    Implements  BasesParaCompatibilidad.savable, PaletContenido
+    Inherits BasesParaCompatibilidad.DetailedSimpleForm
+    Implements BasesParaCompatibilidad.Savable, PaletContenido
     Private m_DBO_PaletsContenidos As DBO_PaletsContenidos
-    Public Shadows Event afterSave(sender As Object, e As EventArgs) Implements  BasesParaCompatibilidad.savable.afterSave
+    Public Shadows Event afterSave(sender As Object, e As EventArgs) Implements BasesParaCompatibilidad.Savable.afterSave
     Private monodosis As Monodosis 'DispensadorMonodosis
     Private cbo_collection As Collection
     Private spContenidos As New spPaletsContenidos
@@ -21,29 +23,7 @@ Public Class frmEntPaletsContenidosDoypack
             Return palet.Cajas_restantes <= CInt(Me.txtCantidadCajas.Text)
         End Get
     End Property
-    'Public ReadOnly Property Terminado As Boolean
-    '    Get
-    '        Return Me.mTerminado
-    '    End Get
-    'End Property
 
-    'Public WriteOnly Property Linea As Integer
-    '    Set(value As Integer)
-    '        Me.mLinea = value
-    '    End Set
-    'End Property
-
-    'Public WriteOnly Property Tipo_formato_envasado As Integer
-    '    Set(value As Integer)
-    '        Me.mTipoFormatoEnvasadoID = value
-    '    End Set
-    'End Property
-
-    'Public WriteOnly Property Fecha_envasado As Date
-    '    Set(value As Date)
-    '        Me.mFecha = value
-    '    End Set
-    'End Property
 
     Public WriteOnly Property Fuentes As Collection
         Set(value As Collection)
@@ -58,7 +38,7 @@ Public Class frmEntPaletsContenidosDoypack
     End Property
 
     Public Sub New(ByVal formatoEnvasado As Integer, ByVal lineaEnvasado As Integer, ByVal tipoformato As Integer, ByVal envasado As Integer, ByVal modoDeApertura As String, Optional ByRef v_sp As spPaletsContenidos = Nothing, Optional ByRef v_dbo As DBO_PaletsContenidos = Nothing)
-        MyBase.new(modoDeApertura, v_sp, v_dbo)
+        MyBase.New(modoDeApertura, v_sp, v_dbo)
         InitializeComponent()
 
         sp = If(v_sp Is Nothing, New spPaletsContenidos, v_sp)
@@ -74,17 +54,11 @@ Public Class frmEntPaletsContenidosDoypack
         Me.mTipoFormatoEnvasadoID = tipoformato
         Me.envasado = envasado
         Me.mFormatoEnvasadoID = formatoEnvasado
+
+        Me.dtpHoraInicio.activarFoco()
+        Me.dtpHoraFin.activarFoco()
     End Sub
 
-    'Public Sub New(ByVal lineaEnvasado As Integer, ByVal tipoformato As Integer, ByVal fechaEnvasado As Date)
-    '    MyBase.new(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, New spPaletsContenidos, New DBO_PaletsContenidos)
-    '    InitializeComponent()
-    '    spContenidos = New spPaletsContenidos
-    '    palet = New Palet(Me.m_DBO_PaletsContenidos.PaletProducidoID)
-    '    Me.mLinea = lineaEnvasado
-    '    Me.mTipoFormatoEnvasadoID = tipoformato
-    '    Me.mFecha = fechaEnvasado
-    'End Sub
 
     Private Sub frmEntPaletsContenidos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Me.monodosis.CargarMonodosis(Me.PanDoypack, Me.mTipoFormatoEnvasadoID, dtb, Me)
@@ -96,7 +70,7 @@ Public Class frmEntPaletsContenidosDoypack
         Me.Text = Me.Text & "contenido para SSCC " & spPalet.Select_Record(Me.m_DBO_PaletsContenidos.PaletProducidoID, dtb).SCC
     End Sub
 
-    Overrides Sub SetValores() Implements  BasesParaCompatibilidad.savable.setValores
+    Overrides Sub SetValores() Implements BasesParaCompatibilidad.Savable.setValores
         Me.m_DBO_PaletsContenidos = dbo
 
         If Me.ModoDeApertura = INSERCION Or Me.ModoDeApertura = frmPaletsProducidos.COMPLETAR Then
@@ -116,12 +90,12 @@ Public Class frmEntPaletsContenidosDoypack
         Else
             dtpHoraInicio.Text = m_DBO_PaletsContenidos.HoraInicio.ToString
             dtpHoraFin.Text = m_DBO_PaletsContenidos.HoraFin.ToString
-            txtCantidadCajas.Text = m_DBO_PaletsContenidos.CantidadCajas            
+            txtCantidadCajas.Text = m_DBO_PaletsContenidos.CantidadCajas
         End If
         txtObservaciones.Text = m_DBO_PaletsContenidos.Observaciones
     End Sub
 
-    Protected Overrides Function GetValores() As Boolean Implements  BasesParaCompatibilidad.savable.getValores
+    Protected Overrides Function GetValores() As Boolean Implements BasesParaCompatibilidad.Savable.getValores
         Dim errores As String = String.Empty
 
         m_DBO_PaletsContenidos.HoraInicio = New TimeSpan(dtpHoraInicio.Value.Date.Hour, dtpHoraInicio.Value.Date.Minute, 0)
@@ -149,33 +123,25 @@ Public Class frmEntPaletsContenidosDoypack
             dbo = m_DBO_PaletsContenidos
             Return True
         Else
-            messageBox.show("Rellene correctamente el formulario, se han encontrado os siguientes errores:" & Environment.NewLine() & Environment.NewLine() & errores, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation) 'Error")
+            MessageBox.Show("Rellene correctamente el formulario, se han encontrado os siguientes errores:" & Environment.NewLine() & Environment.NewLine() & errores, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation) 'Error")
             Return False
         End If
     End Function
 
-    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.savable.Guardar
+    Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
         If Me.GetValores Then
             Dim cbo As System.Windows.Forms.ComboBox
-
-            Dim terminar As Boolean
-            If Not dtb Is Nothing Then
-                Me.dtb = dtb
-                terminar = False
-            Else
-                terminar = True
-            End If
-
-            If terminar Then Me.dtb.EmpezarTransaccion()
+            If dtb Is Nothing Then dtb = Me.dtb
+            dtb.EmpezarTransaccion()
             Try
 
 
-                If sp.Grabar(dbo, Me.dtb) Then
+                If sp.Grabar(dbo, dtb) Then
                     evitarCerrarSinGuardar = False
                     'RaiseEvent afterSave()
 
                     For Each cbo In Me.cbo_collection
-                        monodosis.añadirMovimientoEncajado(Convert.ToInt32(Me.txtCantidadCajas.Text), Convert.ToInt32(cbo.SelectedValue), Me.m_DBO_PaletsContenidos.PaletProducidoID, Me.mTipoFormatoEnvasadoID, Me.dtb)
+                        monodosis.añadirMovimientoEncajado(Convert.ToInt32(Me.txtCantidadCajas.Text), Convert.ToInt32(cbo.SelectedValue), Me.m_DBO_PaletsContenidos.PaletProducidoID, Me.mTipoFormatoEnvasadoID, dtb)
 
                         'Dim indice As Integer = Me.cboMonodosis.SelectedIndex
                         'Dim cont As Integer
@@ -193,48 +159,36 @@ Public Class frmEntPaletsContenidosDoypack
                         '        End If
                         '    End If
                         'Else
-                        '    dtb.CancelarTransaccion ()
+                        '    BasesParaCompatibilidad.BD.CancelarTransaccion()
                         'End If
 
                         For Each row As DataGridViewRow In Me.dgvMermas.Rows
                             'If (Not row.Cells("Mover").Value Is Nothing) Then
                             '    If CInt(row.Cells("Mover").Value) <> 0 Then
-                            '        monodosis.moverNC(row.Cells("SCC").Value, row.Cells("Mover").Value,dtb)
+                            '        monodosis.moverNC(row.Cells("SCC").Value, row.Cells("Mover").Value, BasesParaCompatibilidad.BD.transaction)
                             '    End If
                             'End If
 
                             If (CType(row.Cells("Vaciar").Value, Boolean) = True) Then
-                                If Not monodosis.realizarDiferencia(row.Cells("SCC").Value, Me.dtb) Then
-                                    If terminar Then
-                                        dtb.CancelarTransaccion()
-                                        MessageBox.Show("Error al gaurdar las diferencias", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                                        Return
-                                    Else
-                                        Throw New Exception("Error al gaurdar las diferencias")
-                                    End If
+                                If Not monodosis.realizarDiferencia(row.Cells("SCC").Value, dtb) Then
+                                    dtb.CancelarTransaccion()
+                                    MessageBox.Show("Error al gaurdar las diferencias", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                                    Return
                                 End If
-                                End If
+                            End If
                         Next
                     Next
 
-                    If terminar Then Me.dtb.TerminarTransaccion()
+                    dtb.TerminarTransaccion()
                     RaiseEvent afterSave(Me, Nothing)
                     Me.Close()
                 Else
-                    If terminar Then
-                        Me.dtb.CancelarTransaccion()
-                        MessageBox.Show("Error al guardar", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                    Else
-                        Throw New Exception("Erro 1 al guardar el registro")
-                    End If
+                    dtb.CancelarTransaccion()
+                    MessageBox.Show("Error al guardar", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
             Catch ex As Exception
-                If terminar Then
-                    Me.dtb.CancelarTransaccion()
-                    MessageBox.Show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                Else
-                    Throw New Exception("Error 2 al guardar el registro")
-                End If
+                dtb.CancelarTransaccion()
+                MessageBox.Show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             End Try
         End If
     End Sub
@@ -255,7 +209,7 @@ Public Class frmEntPaletsContenidosDoypack
         Dim sw As Boolean
         Dim cad As String
 
-        For j As Integer = 0 To cbo.items.count - 1
+        For j As Integer = 0 To cbo.Items.Count - 1
             sw = False
 
             For Each row As DataGridViewRow In Me.dgvMermas.Rows
@@ -279,12 +233,12 @@ Public Class frmEntPaletsContenidosDoypack
 
 
     Private Sub frmEntPaletsContenidosDoypack_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-        BasesParaCompatibilidad.pantalla.centerIn(Me.Panel1, Me.SplitDoypack.Panel1)
+        BasesParaCompatibilidad.DetailedSimpleForm.centerIn(Me.Panel1, Me.SplitDoypack.Panel1)
     End Sub
 
     Private Sub txtCantidadCajas_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtCantidadCajas.TextChanged
         Try
-            If Convert.ToInt32(txtCantidadCajas.Text) > if(Me.ModoDeApertura = INSERCION, Me.palet.Cajas_restantes, Me.palet.Cajas_restantes + Me.m_DBO_PaletsContenidos.CantidadCajas) Then
+            If Convert.ToInt32(txtCantidadCajas.Text) > If(Me.ModoDeApertura = INSERCION, Me.palet.Cajas_restantes, Me.palet.Cajas_restantes + Me.m_DBO_PaletsContenidos.CantidadCajas) Then
                 Me.mTerminado = False
                 Me.lCajasSuperiores.Visible = True
             Else
@@ -292,7 +246,14 @@ Public Class frmEntPaletsContenidosDoypack
                 Me.lCajasSuperiores.Visible = False
             End If
         Catch ex As Exception
-            messageBox.show("Error. " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error. " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+    End Sub
+
+    Private Sub chbVaciar_CheckedChanged(sender As Object, e As EventArgs) Handles chbVaciar.CheckedChanged
+        For Each row As DataGridViewRow In Me.dgvMermas.Rows
+
+            row.Cells("Vaciar").Value = chbVaciar.Checked
+        Next
     End Sub
 End Class

@@ -23,7 +23,8 @@
 
     End Sub
 
-    Private Sub cambioPanel(ByRef panel As Windows.Forms.Form) Handles Me.PanelChanged
+    Private Sub cambioPanel(ByRef sender As Object, e As EventArgs) Handles Me.PanelChanged
+
         If Me.wizardStep = 1 Then
             Me.frmArticulos1.TipoArticulo = 26
         End If

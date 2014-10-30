@@ -33,8 +33,6 @@ Partial Class frmEntFormatosEnvasados2
         Me.lblTipoFormatoEnvasadoID = New System.Windows.Forms.Label()
         Me.lblTipoFormatoLineaID = New System.Windows.Forms.Label()
         Me.lblEnvasadoID = New System.Windows.Forms.Label()
-
-        Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
         Me.tpgProduccion = New System.Windows.Forms.TabControl()
         Me.tpPalets = New System.Windows.Forms.TabPage()
         Me.tpIncidencias = New System.Windows.Forms.TabPage()
@@ -67,9 +65,6 @@ Partial Class frmEntFormatosEnvasados2
         GenericasLabel = New System.Windows.Forms.Label()
         ParticularesLabel = New System.Windows.Forms.Label()
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SplitContainer2.Panel1.SuspendLayout()
-        Me.SplitContainer2.SuspendLayout()
         Me.tpgProduccion.SuspendLayout()
         Me.tpSeguimientos.SuspendLayout()
         CType(Me.dgvSeguimientoProduccion, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -177,29 +172,6 @@ Partial Class frmEntFormatosEnvasados2
         Me.lblEnvasadoID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.lblEnvasadoID.Visible = False
         '
-        'tlpTop
-        '
-
-
-
-
-        '
-        'SplitContainer2
-        '
-        Me.SplitContainer2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitContainer2.Location = New System.Drawing.Point(0, 101)
-        Me.SplitContainer2.Margin = New System.Windows.Forms.Padding(2)
-        Me.SplitContainer2.Name = "SplitContainer2"
-        '
-        'SplitContainer2.Panel1
-        '
-        Me.SplitContainer2.Panel1.Controls.Add(Me.tpgProduccion)
-        Me.SplitContainer2.Panel2Collapsed = True
-        Me.SplitContainer2.Size = New System.Drawing.Size(957, 505)
-        Me.SplitContainer2.SplitterDistance = 425
-        Me.SplitContainer2.SplitterWidth = 3
-        Me.SplitContainer2.TabIndex = 3
-        '
         'tpgProduccion
         '
         Me.tpgProduccion.Controls.Add(Me.tpPalets)
@@ -216,7 +188,7 @@ Partial Class frmEntFormatosEnvasados2
         Me.tpgProduccion.Controls.Add(Me.tpResumen)
         Me.tpgProduccion.Controls.Add(Me.tpFormatos_empleados)
         Me.tpgProduccion.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tpgProduccion.Location = New System.Drawing.Point(0, 0)
+        Me.tpgProduccion.Location = New System.Drawing.Point(0, 101)
         Me.tpgProduccion.Multiline = True
         Me.tpgProduccion.Name = "tpgProduccion"
         Me.tpgProduccion.SelectedIndex = 0
@@ -509,7 +481,7 @@ Partial Class frmEntFormatosEnvasados2
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(957, 606)
         Me.ControlBox = True
-        Me.Controls.Add(Me.SplitContainer2)
+        Me.Controls.Add(Me.tpgProduccion)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.lblFormatoEnvasadoID)
         Me.Controls.Add(Me.lblTipoFormatoLineaID)
@@ -520,7 +492,6 @@ Partial Class frmEntFormatosEnvasados2
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.MaximizeBox = True
-        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntFormatosEnvasados2"
         Me.Text = "FormatosEnvasados2"
         Me.Controls.SetChildIndex(Me.lblTipoFormatoEnvasadoID, 0)
@@ -529,11 +500,8 @@ Partial Class frmEntFormatosEnvasados2
         Me.Controls.SetChildIndex(Me.lblFormatoEnvasadoID, 0)
         Me.Controls.SetChildIndex(Me.txtTodoCorrecto, 0)
         Me.Controls.SetChildIndex(Me.Panel2, 0)
-        Me.Controls.SetChildIndex(Me.SplitContainer2, 0)
+        Me.Controls.SetChildIndex(Me.tpgProduccion, 0)
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SplitContainer2.Panel1.ResumeLayout(False)
-        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SplitContainer2.ResumeLayout(False)
         Me.tpgProduccion.ResumeLayout(False)
         Me.tpSeguimientos.ResumeLayout(False)
         CType(Me.dgvSeguimientoProduccion, System.ComponentModel.ISupportInitialize).EndInit()
@@ -554,7 +522,6 @@ Partial Class frmEntFormatosEnvasados2
     Private WithEvents lblTipoFormatoLineaID As System.Windows.Forms.Label
     Private WithEvents lblEnvasadoID As System.Windows.Forms.Label
 
-    Private WithEvents SplitContainer2 As System.Windows.Forms.SplitContainer
     Private WithEvents tpgProduccion As System.Windows.Forms.TabControl
     Private WithEvents tpPalets As System.Windows.Forms.TabPage
     Private WithEvents tpIncidencias As System.Windows.Forms.TabPage
@@ -576,9 +543,9 @@ Partial Class frmEntFormatosEnvasados2
     Private WithEvents tpResumen As System.Windows.Forms.TabPage
     Private WithEvents tpFormatos_empleados As System.Windows.Forms.TabPage
     Private WithEvents PanPersonalOcupados As System.Windows.Forms.Panel
-    Private WithEvents Panel2 As System.Windows.Forms.Panel
     Private WithEvents cboTipoProducto As System.Windows.Forms.ComboBox
     Private WithEvents cboTipoFormatoID As System.Windows.Forms.ComboBox
     Private WithEvents cboTipoFormatoLinea As System.Windows.Forms.ComboBox
     Private WithEvents panEmpleados As System.Windows.Forms.Panel
+    Private WithEvents Panel2 As System.Windows.Forms.Panel
 End Class

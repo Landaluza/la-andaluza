@@ -1,8 +1,8 @@
 Public Class frmEntPaletsProducidos
     Inherits BasesParaCompatibilidad.DetailedSimpleForm
-    Implements BasesParaCompatibilidad.savable
+    Implements BasesParaCompatibilidad.Savable
 
-    Public Shadows Event afterSave(sender As System.Object, e As System.EventArgs) Implements BasesParaCompatibilidad.savable.afterSave
+    Public Shadows Event afterSave(sender As System.Object, e As System.EventArgs) Implements BasesParaCompatibilidad.Savable.afterSave
     Private m_DBO_PaletsProducidos As DBO_PaletsProducidos
     Private frmPaletsContenidos As frmPaletsContenidos
     Private mLinea As Integer
@@ -40,6 +40,41 @@ Public Class frmEntPaletsProducidos
         Me.mTipoFormatoEnvasadoID = tipoformato
         'Me.mFecha = fechaEnvasado
         Me.envasado = envasado
+
+
+        If Me.ModoDeApertura = INSERCION Then
+            dtb.EmpezarTransaccion()
+            Try
+                'Me.m_DBO_PaletsProducidos = dbo
+                GetValores()
+                If sp.Grabar(dbo, dtb) Then
+                    evitarCerrarSinGuardar = False
+                    'RaiseEvent afterSave(Me, Nothing)
+
+                    Dim spPaletsProducidos As New spPaletsProducidos
+                    Me.m_DBO_PaletsProducidos.ID = spPaletsProducidos.devolver_ultimo_palet(dtb)
+                    Me.m_DBO_PaletsProducidos = spPaletsProducidos.Select_Record(Me.m_DBO_PaletsProducidos.ID, dtb)
+
+                    dtb.TerminarTransaccion()
+                    ' Me.ModoDeApertura = MODIFICACION
+                    'SetValores()
+
+                Else
+                    Me.m_DBO_PaletsProducidos.ID = 0
+                    dtb.CancelarTransaccion()
+                    MessageBox.Show("No se pudo grabar el palet. Si el problema persiste reportelo.", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Me.Close()
+                End If
+            Catch ex As Exception
+                Me.m_DBO_PaletsProducidos.ID = 0
+                dtb.CancelarTransaccion()
+                MessageBox.Show("No se pudo grabar el palet. Si el problema persiste reportelo.", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Me.Close()
+            End Try
+        End If
+
+        dbo = Me.m_DBO_PaletsProducidos
+
         Me.frmPaletsContenidos = New frmPaletsContenidos(Me.mLinea, Me.mTipoFormatoEnvasadoID, Me.envasado, m_DBO_PaletsProducidos.ID)
         AddHandler frmPaletsContenidos.completado, AddressOf Me.contenido_completo
     End Sub
@@ -54,35 +89,12 @@ Public Class frmEntPaletsProducidos
     'End Sub
 
     Private Sub frmEntPaletsProducidos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        If Me.ModoDeApertura = INSERCION Then
-            dtb.EmpezarTransaccion()
-            Try
-                Me.m_DBO_PaletsProducidos = dbo
-                GetValores()
-                If sp.Grabar(dbo, dtb) Then
-                    evitarCerrarSinGuardar = False
-                    RaiseEvent afterSave(Me, Nothing)
-
-                    Dim spPaletsProducidos As New spPaletsProducidos
-                    Me.m_DBO_PaletsProducidos.ID = spPaletsProducidos.devolver_ultimo_palet(dtb)
-                    Me.dbo = spPaletsProducidos.Select_Record(Me.m_DBO_PaletsProducidos.ID, dtb)
-
-                    dtb.TerminarTransaccion()
-                    Me.ModoDeApertura = MODIFICACION
-                    SetValores()
-
-                Else
-                    Me.m_DBO_PaletsProducidos.ID = 0
-                    dtb.CancelarTransaccion()
-                End If
-            Catch ex As Exception
-                Me.m_DBO_PaletsProducidos.ID = 0
-                dtb.CancelarTransaccion()
-            End Try
-        End If
+        SetValores()
 
         Me.frmPaletsContenidos.Palet = m_DBO_PaletsProducidos.ID
         frmPaletsContenidos.Formato = m_DBO_PaletsProducidos.FormatoID
+
+
         Engine_LA.FormEnPestaña(Me.frmPaletsContenidos, Me.Panel2)
 
         Dim spTipoFormato As New spFormatosArticulos
@@ -98,7 +110,7 @@ Public Class frmEntPaletsProducidos
         txtObservacionesPalets.Text = m_DBO_PaletsProducidos.ObservacionesPalets
         chbTerminado.Checked = m_DBO_PaletsProducidos.Terminado
         chbMultilote.Checked = m_DBO_PaletsProducidos.Multilote
-        chbalamcen .checked = m_DBO_PaletsProducidos.EnAlmacen
+        chbalamcen.checked = m_DBO_PaletsProducidos.EnAlmacen
     End Sub
 
     Protected Overrides Function GetValores() As Boolean Implements BasesParaCompatibilidad.Savable.getValores
@@ -127,7 +139,11 @@ Public Class frmEntPaletsProducidos
     End Function
 
     Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing) Implements BasesParaCompatibilidad.Savable.Guardar
-        MyBase.Guardar(Me.dtb)
+        If dtb Is Nothing Then
+            MyBase.Guardar(Me.dtb)
+        Else
+            MyBase.Guardar(dtb)
+        End If
     End Sub
 
     Private Sub frmEntPaletsProducidos_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
@@ -135,14 +151,41 @@ Public Class frmEntPaletsProducidos
             MessageBox.Show("No se ha podido crear el palet, vuelva a intentarlo en unos segundos", "Error guardando el palet", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Me.Close()
         End If
+
+        'Ya estarian lso datos grabados, solo resta abrir la ventana de añadir cotenido para comodidad del envasado
+        If Me.ModoDeApertura = INSERCION Then
+            Me.ModoDeApertura = MODIFICACION
+            Me.frmPaletsContenidos.Insertar()
+        End If
     End Sub
 
 
     Private Sub frmEntPaletsProducidos_FormClosing(sender As System.Object, e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
-        If Not checkar_contenidos() Then
-            e.Cancel = True
+        'If Not checkar_contenidos() Then
+        '    e.Cancel = True
+        'End If
+        If Me.frmPaletsContenidos.Contenidos < 1 Then
+            Dim msg As New frmSinContenidos
+
+            Dim resp As DialogResult = BasesParaCompatibilidad.Pantalla.mostrarDialogo(msg)
+            If resp = Windows.Forms.DialogResult.Cancel Then
+                e.Cancel = True
+
+            ElseIf resp = Windows.Forms.DialogResult.OK Then
+                If Me.txtObservacionesPalets.Text = "" Then Me.txtObservacionesPalets.Text = "Generado sin contenidos por usuario " & Config.UserName
+                GetValores()
+                sp.Grabar(dbo, dtb)
+                RaiseEvent afterSave(Nothing, Nothing)
+            Else
+                Dim s As New spPaletsProducidos
+                s.Delete(Me.m_DBO_PaletsProducidos.ID, dtb)
+                RaiseEvent afterSave(Nothing, Nothing)
+            End If
+        Else
+            RaiseEvent afterSave(Nothing, Nothing)
         End If
     End Sub
+
 
     Private Function checkar_contenidos() As Boolean
         If Me.frmPaletsContenidos.Contenidos < 1 Then
@@ -172,7 +215,8 @@ Public Class frmEntPaletsProducidos
             Try
                 If sp.Grabar(dbo, dtb) Then
                     evitarCerrarSinGuardar = False
-                    RaiseEvent afterSave(Me, Nothing)
+                    'RaiseEvent afterSave(Me, Nothing)
+                    Me.Close()
                 End If
             Catch ex As Exception
             End Try

@@ -105,7 +105,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>PUfW2ZecRNoo9xzvlLH3m8XNdh05EKduvTFPUGvpJFM=</dsig:DigestValue>
+        <dsig:DigestValue>Grwx13m496H9FgidgVgSJNY4gYlVhn33EE9IrscZ4i8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -321,19 +321,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>sbrsoWjfBI3gp/XpEr/Jh3KPQfGCN7p0cSCIhFjThmU=</dsig:DigestValue>
+        <dsig:DigestValue>JhzTJFlfeYNsFccehHV/H1tE7UmM+FY3LItYZJ6zIxg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="La Andaluza.exe" size="10215424">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="La Andaluza.exe" size="10251776">
       <assemblyIdentity name="La Andaluza" version="2014.2.1.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>/WQpuoWFi2kBCbvjX9gvwcF/ISgVWf/5xumj8d9YVhc=</dsig:DigestValue>
+        <dsig:DigestValue>GlET3VD9W53h04kLmv9Ayj1TscOVPrvFnfNFJXpQ2vU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -469,24 +469,6 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="Bases\ZLibrerias\BarcodeLib.dll" size="124416">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>G+Q1zrmvUdZrTBy/wa8HjlrG8rzoVecaR0CUrxJ9wso=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Bases\ZLibrerias\BasesParaCompatibilidad.dll" size="1926656">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>YKkxaqcGBfzuhs4ZB6avhVMs/gVEJ6mPZMA4WEemXsE=</dsig:DigestValue>
-    </hash>
-  </file>
   <file name="Bases\ZLibrerias\twaincontrolxtrial.exe" size="901096">
     <hash>
       <dsig:Transforms>

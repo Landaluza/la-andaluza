@@ -1,6 +1,6 @@
 ﻿Public Class CodigoBarra
     Private Const CODIGO_EMPRESA As String = "08411831"
-    Private Const LONGITUD_BARCODE_2 As Integer = 17 '18
+    Private Const LONGITUD_BARCODE_2 As Integer = 18 '17 '18
 
 
     'Public codigo1 As String
@@ -153,8 +153,8 @@
         End While
 
         Dim matricula As String = sccCorregido & scc
-        Dim control As String = digito_control_ean(matricula.Replace("(00)", ""), g13)
+        'Dim control As String = digito_control_ean(matricula.Replace("(00)", ""), g13)
 
-        Return matricula & control
+        Return matricula '& control
     End Function
 End Class
