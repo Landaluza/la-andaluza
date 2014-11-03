@@ -128,7 +128,7 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         dtb.AñadirParametroConsulta("@scc", scc)
         cuenta = dtb.Consultar().Rows(0).Item(0)
         'cuenta = dtb.Consultar("exec [dbo].[PaletsProducidos4CalcularCajas] " & scc, False).Rows(0).Item(0)
-        'dtb.Conectar()
+        dtb.Conectar()
 
         Return cuenta
     End Function
