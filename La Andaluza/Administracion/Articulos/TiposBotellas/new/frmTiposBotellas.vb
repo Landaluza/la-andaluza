@@ -22,6 +22,7 @@ Public Class frmTiposBotellas
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboTiposBotellas = CType(sp, spTiposBotellas).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
         If Not dboTiposBotellas Is Nothing Then
             newRegForm.SetDataBussinesObject(CType(Me.dboTiposBotellas, BasesParaCompatibilidad.DataBussines))

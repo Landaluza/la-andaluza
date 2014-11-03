@@ -83,6 +83,7 @@ Public Class frmPaletsProducidos
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboPaletsProducidos = CType(sp, spPaletsProducidos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboPaletsProducidos Is Nothing Then
             Dim frm As New frmEntPaletsProducidos(Me.linea, Me.TipoFormato, Me.envasado, BasesParaCompatibilidad.gridsimpleform.ACCION_MODIFICAR, sp, dboPaletsProducidos)
@@ -176,6 +177,7 @@ Public Class frmPaletsProducidos
         If Me.m_MaestroID <> Nothing Then
             sp.DataGridViewStoredProcedure= If(m_MaestroID = Nothing, "", sp.DataGridViewStoredProcedureForFilteredSelect & "'" & Me.m_MaestroID & "'")
             Dim spformato As New spFormatosEnvasados
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             Dim dboformato As DBO_FormatosEnvasados = spformato.Select_Record(Me.dboPaletsProducidos.FormatoID, dtb)
             Me.TipoFormato = dboformato.TipoFormatoEnvasadoID
         End If
@@ -214,6 +216,7 @@ Public Class frmPaletsProducidos
 
 
 
+                Dim dtb As New BasesParaCompatibilidad.DataBase
                 dboPalet = CType(Me.sp, spPaletsProducidos).Select_Record(CType(Me.dgvPicos.CurrentRow.Cells("PaletProducidoID").Value, Integer), dtb)
                 'dboFormato = spFormatos.Select_Record(dboPalet.FormatoID)
 
@@ -239,6 +242,7 @@ Public Class frmPaletsProducidos
     Private Sub mostrarEtiqueta()
         If Not Me.dgvGeneral.CurrentRow Is Nothing Then
             Dim spPaletsProducidos As New spPaletsProducidos
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             Dim dbo As DBO_PaletsProducidos = spPaletsProducidos.Select_Record(Me.dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
             If Not dbo Is Nothing Then
                 If MessageBox.Show("¿Desea imprimir etiqueta?", "Etiqueta palet " & dbo.SCC, _

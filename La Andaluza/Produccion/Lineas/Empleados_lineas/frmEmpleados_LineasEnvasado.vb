@@ -25,6 +25,7 @@ Public Class frmEmpleados_LineasEnvasado
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboEmpleados_LineasEnvasado = CType(sp, spEmpleados_LineasEnvasado).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboEmpleados_LineasEnvasado Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboEmpleados_LineasEnvasado)

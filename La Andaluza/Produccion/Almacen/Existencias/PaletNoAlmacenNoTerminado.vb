@@ -19,6 +19,7 @@ Public Class PaletNoAlmacenNoTerminado
     End Sub
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar("PaletsContenidosNoAlmacenNoTerminado ", True)
     End Sub
 

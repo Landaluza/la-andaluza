@@ -23,6 +23,7 @@ Public Class frmProcedimientos
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboProcedimientos = CType(sp, spProcedimientos).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
         If Not dboProcedimientos Is Nothing Then
             newRegForm.SetDataBussinesObject(CType(Me.dboProcedimientos, BasesParaCompatibilidad.DataBussines))

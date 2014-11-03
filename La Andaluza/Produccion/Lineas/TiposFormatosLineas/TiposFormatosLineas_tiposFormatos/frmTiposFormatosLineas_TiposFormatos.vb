@@ -31,6 +31,7 @@ Public Class frmTiposFormatosLineas_TiposFormatos
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboTiposFormatosLineas_TiposFormatos = CType(sp, spTiposFormatosLineas_TiposFormatos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboTiposFormatosLineas_TiposFormatos Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboTiposFormatosLineas_TiposFormatos)
@@ -66,6 +67,8 @@ Public Class frmTiposFormatosLineas_TiposFormatos
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
 
         If frm.retorno = DialogResult.OK Then
+            Dim dtb As New BasesParaCompatibilidad.DataBase
+
             dtb.EmpezarTransaccion()
             Try
                 If frm.velocidad_modificada And frm.personal_modificado Then

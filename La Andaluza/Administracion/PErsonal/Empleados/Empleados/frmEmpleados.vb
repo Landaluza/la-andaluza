@@ -31,6 +31,7 @@ Public Class frmEmpleados
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboEmpleados = CType(sp, spEmpleados).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboEmpleados Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboEmpleados)
@@ -50,6 +51,7 @@ Public Class frmEmpleados
     End Sub
 
     Protected Sub dgvFillInactivos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = CType(Me.sp, spEmpleados).devolver_empleados_inactivos(dtb)
         BindDataSource()
     End Sub

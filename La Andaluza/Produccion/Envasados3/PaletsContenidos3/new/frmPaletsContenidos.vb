@@ -50,6 +50,7 @@ Public Class frmPaletsContenidos
         'Me.mFecha = fechaEnvasado
         Me.sp.DataGridViewStoredProcedure = sp.DataGridViewStoredProcedureForFilteredSelect & "'" & MaestroID & "'"
 
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         If Me.spMovimientos.comprobarFormatoEncajado(Me.mTipoFormatoEnvasadoID, dtb) Then
             Me.butModificar.Visible = False
         Else
@@ -76,6 +77,8 @@ Public Class frmPaletsContenidos
             dboPaletsContenidos.id_formatoEnvasado = m_maestro2
         End If
 
+        Dim dtb As New BasesParaCompatibilidad.DataBase
+
         If Me.mLinea = 0 Then
             Dim s As New spPaletsContenidos
             mLinea = s.seleccionar_linea_por_formato(Me.dboPaletsContenidos.id_formatoEnvasado, dtb)
@@ -100,6 +103,7 @@ Public Class frmPaletsContenidos
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboPaletsContenidos = CType(sp, spPaletsContenidos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboPaletsContenidos Is Nothing Then
 

@@ -24,6 +24,7 @@ Public Class frmPoblaciones
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboPoblaciones = CType(sp, spPoblaciones).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboPoblaciones Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboPoblaciones)

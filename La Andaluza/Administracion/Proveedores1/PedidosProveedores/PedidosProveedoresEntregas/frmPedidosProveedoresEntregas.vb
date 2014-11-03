@@ -12,6 +12,7 @@ Public Class frmPedidosProveedoresEntregas
     End Sub
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
     Protected Overrides Sub BindDataSource()
@@ -49,6 +50,7 @@ Public Class frmPedidosProveedoresEntregas
         response = MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
                           "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If response = DialogResult.Yes Then
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             If CType(sp, spPedidosProveedoresEntregas).DeletePedidosProveedoresEntregas(dgvGeneral.CurrentRow.Cells("PedidoProveedorEntregaID").Value, dtb) Then
                 dgvFill()
             End If

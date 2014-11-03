@@ -9,6 +9,7 @@ Public Class frmEpis
     End Sub
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 
@@ -50,6 +51,7 @@ Public Class frmEpis
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
 
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             If CType(sp, spEpis).DeleteEpis(dgvGeneral.CurrentRow.Cells("EpiID").Value, dtb) Then
                 dgvFill()
             End If
@@ -67,6 +69,7 @@ Public Class frmEpis
             'Asignar las propiedades del objeto creado cuyos valores se obtengan en este Form.
         Else
             Dim spEpis As New spEpis
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             m_Epi = spEpis.Select_Record(GeneralBindingSource(m_Pos).Item("EpiID"), dtb)
         End If
 

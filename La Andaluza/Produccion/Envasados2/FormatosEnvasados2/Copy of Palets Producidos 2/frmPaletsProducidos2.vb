@@ -44,7 +44,7 @@ Public Class frmPaletsProducidos2
         AddHandler btnEtiqueta2.Click, AddressOf mostrarEtiqueta
 
         Me.dgvGeneral.BringToFront()
-        dtb.TimeOut = 300
+
     End Sub
 
     Private Sub frmPaletsProducidos2_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -71,6 +71,8 @@ Public Class frmPaletsProducidos2
             'AddHandler print.Click, AddressOf PrintDocument1_PrintPage
 
             Dim sp As New spPaletsProducidos
+            Dim dtb As New BasesParaCompatibilidad.DataBase
+
             sp.cargar_PaletsProducidosEstados(Me.cboEstado, dtb)
         Else
             Me.Panel1.Visible = False
@@ -110,6 +112,7 @@ Public Class frmPaletsProducidos2
             Dim multiopcion As Boolean
 
 
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             If CType(sp, spPaletsProducidos2).isDeleteAllowed(dgvGeneral.CurrentRow.Cells("PaletProducidoID").Value, dtb) Then
                 response = MessageBox.Show("El palet seleccionado se encuentra entre los ultimos 15 producidos" & Environment.NewLine & _
                                   "y , por tanto, puede eliminar completamente" & Environment.NewLine & _
@@ -149,6 +152,7 @@ Public Class frmPaletsProducidos2
         System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
         Dim frmEnt As frmEntPaletsProducidos2
         Dim m_DBO_PaletsProducidos2 As DBO_PaletsProducidos2 = DBO_PaletsProducidos2.Instance
+        Dim dtb As New BasesParaCompatibilidad.DataBase
 
         frmEnt = New frmEntPaletsProducidos2(Me.formatoId, Me.Embebido)
         Dim resp As Long = vbYes
@@ -208,6 +212,7 @@ Public Class frmPaletsProducidos2
 
 
     Protected Overrides Sub dgvFill()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
 
         ' Protected Overrides Sub cargar_datos()
         If Me.Embebido Then
@@ -302,6 +307,7 @@ Public Class frmPaletsProducidos2
     Private Sub mostrarEtiqueta()
         If Not Me.dgvGeneral.CurrentRow Is Nothing Then
             Dim sp As New spPaletsProducidos
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             Dim dbo As DBO_PaletsProducidos = sp.Select_Record(Me.dgvGeneral.CurrentRow.Cells("PaletProducidoID").Value, dtb)
             If Not dbo Is Nothing Then
                 If MessageBox.Show("¿Desea imprimir etiqueta?", "Etiqueta palet " & dbo.SCC, _
@@ -310,6 +316,7 @@ Public Class frmPaletsProducidos2
                     frm.Show()
                     Try
                         Dim spPalet As New spPaletsProducidos
+
                         spPalet.anadir_impresion_etiqueta(Me.dgvGeneral.CurrentRow.Cells("PaletProducidoID").Value, dtb)
                         Dim textNotificar As String = "Se ha vuelto a imprimir la etiqueta de la matricula  " & Environment.NewLine & Me.dgvGeneral.CurrentRow.Cells("SCC").Value & " el día " & Now.Date.ToString
                         Dim mail As New Mail.Mail1And1(True, "Reimpresion de etiqueta " & Me.dgvGeneral.CurrentRow.Cells("SCC").Value & _

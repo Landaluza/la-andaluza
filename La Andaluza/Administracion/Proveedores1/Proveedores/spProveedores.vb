@@ -47,11 +47,11 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         cbo.mam_DataSource("ProveedoresSelectCbo", False, dtb)
     End Sub
 
-    Sub MarcarInactivo(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal proveedorID As Integer)
+    Function MarcarInactivo(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal proveedorID As Integer) As Boolean
         dtb.PrepararConsulta("update proveedores set activo = 0 where proveedorID= @id")
         dtb.AñadirParametroConsulta("@scc", proveedorID)
-        dtb.Consultar(True)
-    End Sub
+        Return dtb.Consultar(True)
+    End Function
 
     Sub cargar_Proveedores(ByRef comboBox As ComboBox, ByRef dtb As BasesParaCompatibilidad.database)
         comboBox.mam_DataSource("ProveedoresCbo", False, dtb)

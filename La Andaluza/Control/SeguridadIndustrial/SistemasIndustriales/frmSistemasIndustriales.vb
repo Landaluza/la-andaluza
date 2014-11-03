@@ -9,6 +9,7 @@ Public Class frmSistemasIndustriales
         spSelectDgv = "SistemasIndustrialesSelectDgv"
     End Sub
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 
@@ -49,6 +50,7 @@ Public Class frmSistemasIndustriales
 
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             If CType(sp, spSistemasIndustriales).DeleteSistemasIndustriales(dgvGeneral.CurrentRow.Cells("SistemaIndustrialID").Value, dtb) Then
                 dgvFill()
             End If
@@ -65,6 +67,7 @@ Public Class frmSistemasIndustriales
         If TipoAction = ACCION_INSERTAR Then
             'Asignar las propiedades del objeto creado cuyos valores se obtengan en este Form.
         Else
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             m_SistemasIndustriale = CType(sp, spSistemasIndustriales).Select_Record(GeneralBindingSource(m_Pos).Item("SistemaIndustrialID"), dtb)
         End If
 

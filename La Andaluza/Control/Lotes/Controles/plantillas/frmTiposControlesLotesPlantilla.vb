@@ -26,6 +26,7 @@ Public Class frmTiposControlesLotesPlantilla
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboTiposControlesLotesPlantilla = CType(sp, spTiposControlesLotesPlantilla).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
         If Not dboTiposControlesLotesPlantilla Is Nothing Then
             Dim f As New frmEntTiposControlesLotesPlantilla(BasesParaCompatibilidad.gridsimpleform.ACCION_MODIFICAR, sp)

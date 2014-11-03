@@ -19,6 +19,7 @@ Public Class frmFrecuenciasTiposControlesLotes
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboFrecuenciasTiposControlesLotes = CType(sp, spFrecuenciasTiposControlesLotes).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
         If Not dboFrecuenciasTiposControlesLotes Is Nothing Then
             newRegForm.SetDataBussinesObject(CType(Me.dboFrecuenciasTiposControlesLotes, BasesParaCompatibilidad.DataBussines))

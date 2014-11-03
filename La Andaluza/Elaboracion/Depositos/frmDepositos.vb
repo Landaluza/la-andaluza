@@ -15,6 +15,7 @@ Public Class frmDepositos
     End Sub
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         ctlDep.mostrarTodosDepositos(dtb, dtsDep)
         'dataSource = dtsDep
     End Sub
@@ -52,6 +53,7 @@ Public Class frmDepositos
 
     Overrides Sub Insertar()
         LlamarCargar(ACCION_INSERTAR)
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         ctlDep.mostrarTodosDepositos(dtb, dtsDep)
         GeneralBindingSource.Position = 1
         GeneralBindingSource.Position = 0
@@ -59,6 +61,7 @@ Public Class frmDepositos
 
     Overrides Sub Modificar()
         LlamarCargar(ACCION_MODIFICAR)
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         ctlDep.mostrarTodosDepositos(dtb, dtsDep)
         GeneralBindingSource.Position = 1
         GeneralBindingSource.Position = Posicion
@@ -75,12 +78,14 @@ Public Class frmDepositos
             response = MessageBox.Show(" ¿Realmente desea eliminar este registro? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
             If response = DialogResult.Yes Then
                 ctlDep.SetDepositoID(dgvGeneral.Rows(Posicion).Cells(0).Value)
-                ctlDep.EliminarDeposito(dtb)
-                ctlDep.mostrarTodosDepositos(dtb, dtsDep)
-                If Posicion > 0 Then
-                    GeneralBindingSource.Position = Posicion - 1
-                Else
-                    GeneralBindingSource.Position = 0
+                Dim dtb As New BasesParaCompatibilidad.DataBase
+                If ctlDep.EliminarDeposito(dtb) Then
+                    ctlDep.mostrarTodosDepositos(dtb, dtsDep)
+                    If Posicion > 0 Then
+                        GeneralBindingSource.Position = Posicion - 1
+                    Else
+                        GeneralBindingSource.Position = 0
+                    End If
                 End If
             End If
         Else

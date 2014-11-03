@@ -22,6 +22,7 @@ Public Class frmPeriodosServicio
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboPeriodosServicio = CType(sp, spPeriodosServicio).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
         If Not dboPeriodosServicio Is Nothing Then
             newRegForm.SetDataBussinesObject(CType(Me.dboPeriodosServicio, BasesParaCompatibilidad.DataBussines))

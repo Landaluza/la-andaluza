@@ -28,9 +28,12 @@ Public Class frmProveedoresDocumentos
 
 
     Overrides Sub Eliminar()
-        If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then _
-                   CType(sp, spProveedoresDocumentos).ProveedoresDocumentosDelete(dgvGeneral.CurrentRow.Cells("ProveedorDocumentoID").Value, dtb)
-        dgvFill()
+        If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+            Dim dtb As New BasesParaCompatibilidad.DataBase
+            If CType(sp, spProveedoresDocumentos).ProveedoresDocumentosDelete(dgvGeneral.CurrentRow.Cells("ProveedorDocumentoID").Value, dtb) Then
+                dgvFill()
+            End If
+        End If
     End Sub
 
 
@@ -44,6 +47,7 @@ Public Class frmProveedoresDocumentos
             If m_MaestroID <> 0 Then m_ProveedorDocumento.ProveedorID = m_MaestroID
             frmEnt = New frmEntProveedoresDocumentos(m_ProveedorDocumento, m_Pos, m_VerID, Me.m_ruta)
         Else
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             m_ProveedorDocumento = CType(sp, spProveedoresDocumentos).Select_Record(GeneralBindingSource(m_Pos).Item("ProveedorDocumentoID"), dtb)
             frmEnt = New frmEntProveedoresDocumentos(m_ProveedorDocumento, m_Pos, m_VerID)
         End If
@@ -58,6 +62,7 @@ Public Class frmProveedoresDocumentos
 
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 

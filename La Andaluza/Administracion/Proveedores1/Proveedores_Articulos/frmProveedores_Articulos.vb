@@ -31,6 +31,7 @@ Public Class frmProveedores_Articulos
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboProveedores_Articulos = CType(sp, spProveedores_Articulos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboProveedores_Articulos Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboProveedores_Articulos)
@@ -41,6 +42,7 @@ Public Class frmProveedores_Articulos
     End Sub
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(Me.sp.DataGridViewStoredProcedure, True)
     End Sub
     Protected Overrides Sub BindDataSource()

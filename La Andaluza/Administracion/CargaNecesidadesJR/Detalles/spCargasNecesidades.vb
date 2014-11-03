@@ -77,18 +77,19 @@ Public Class spCargasNecesidades
         End Try
     End Function
 
-    Public Sub spDeleteCargaNecesidadesJRMaestro(ByVal ValorMaestroID As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase)
+    Public Function spDeleteCargaNecesidadesJRMaestro(ByVal ValorMaestroID As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Try
-            dtb.Conectar()
-            Dim cmd As System.Data.SqlClient.SqlCommand = dtb.Comando("DeleteCargaNecesidadesJRMaestro")
-            cmd.Parameters.AddWithValue("@MaestroID", ValorMaestroID)
-            cmd.ExecuteNonQuery()
+            dtb.PrepararConsulta("DeleteCargaNecesidadesJRMaestro @MaestroID")
+
+            dtb.AñadirParametroConsulta("@MaestroID", ValorMaestroID)
+            Return dtb.Consultar(True)
         Catch ex As Exception
             MessageBox.Show("Error en BD.spDeleteCargaNecesidadesJRMaestro" & Environment.NewLine & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
         Finally
             dtb.Desconectar()
         End Try
-    End Sub
+    End Function
 
     Public Function spMaxCargaNecesidadesMaestro(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Dim MaxID As Integer = 0

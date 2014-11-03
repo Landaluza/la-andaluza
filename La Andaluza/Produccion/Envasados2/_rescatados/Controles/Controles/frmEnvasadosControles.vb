@@ -28,6 +28,7 @@ Public Class frmEnvasadosControles
 
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             If CType(sp, spEnvasadosControles).EnvasadosControlesDelete(dgvGeneral.CurrentRow.Cells("EnvasadoControlID").Value, dtb) Then
                 dgvFill()
             End If
@@ -37,6 +38,7 @@ Public Class frmEnvasadosControles
     Overrides Sub Action(ByVal TipoAction As String)
         Dim m_EnvasadoControles As New DBO_EnvasadosControles
         Dim m_Pos As Integer = GeneralBindingSource.Position
+        Dim dtb As New BasesParaCompatibilidad.DataBase
 
         If TipoAction = ACCION_INSERTAR Then
             If m_MaestroID <> 0 Then m_EnvasadoControles.FormatoEnvasadoID = m_MaestroID

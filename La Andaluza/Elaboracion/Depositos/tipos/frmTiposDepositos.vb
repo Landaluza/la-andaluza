@@ -18,6 +18,7 @@ Public Class frmTiposDepositos
     End Sub
 
    Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboTiposDepositos = CType(sp, spTiposDepositos).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
        If Not dboTiposDepositos Is Nothing Then
            newRegForm.SetDataBussinesObject(ctype(Me.dboTiposDepositos,BasesParaCompatibilidad.databussines))

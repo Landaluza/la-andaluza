@@ -40,6 +40,7 @@ Public Class frmGestionesPendientes
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
         'MyBase.newRegForm = CType(New frmEntGestionesPendientes(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, sp), BasesParaCompatibilidad.DetailedSimpleForm)
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboGestionesPendientes = CType(sp, spGestionesPendientes).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
         If Not dboGestionesPendientes Is Nothing Then
             MyBase.newRegForm = CType(New frmEntGestionesPendientes(BasesParaCompatibilidad.gridsimpleform.ACCION_MODIFICAR, sp), BasesParaCompatibilidad.DetailedSimpleForm)

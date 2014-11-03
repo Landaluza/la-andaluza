@@ -19,6 +19,7 @@ Public Class frmPaletsMovimientoSubTipo
     End Sub
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 
@@ -37,12 +38,14 @@ Public Class frmPaletsMovimientoSubTipo
 
     Overrides Sub Insertar()
         Action(ACCION_INSERTAR)
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         GeneralBindingSource.DataSource = dtb.Consultar(spSelectDgv, True)
 
     End Sub
 
     Overrides Sub Modificar()
         Action(ACCION_MODIFICAR)
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         GeneralBindingSource.DataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 
@@ -55,8 +58,10 @@ Public Class frmPaletsMovimientoSubTipo
         response = MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
                           "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If response = DialogResult.Yes Then
-            CType(sp, spPaletsMovimientoSubTipo).DeletePaletsMovimientoSubTipo(dgvGeneral.CurrentRow.Cells("ID").Value, dtb)
-            GeneralBindingSource.DataSource = dtb.Consultar(spSelectDgv, True)
+            Dim dtb As New BasesParaCompatibilidad.DataBase
+            If CType(sp, spPaletsMovimientoSubTipo).DeletePaletsMovimientoSubTipo(dgvGeneral.CurrentRow.Cells("ID").Value, dtb) Then
+                GeneralBindingSource.DataSource = dtb.Consultar(spSelectDgv, True)
+            End If
         End If
     End Sub
 

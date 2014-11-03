@@ -21,6 +21,7 @@ Public Class frmGastosIncidencias
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboGastosIncidencias = CType(sp, spGastosIncidencias).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
         If Not dboGastosIncidencias Is Nothing Then
             MyBase.newRegForm = CType(New frmEntGastosIncidencias(BasesParaCompatibilidad.GridSimpleForm.ACCION_MODIFICAR), BasesParaCompatibilidad.DetailedSimpleForm)

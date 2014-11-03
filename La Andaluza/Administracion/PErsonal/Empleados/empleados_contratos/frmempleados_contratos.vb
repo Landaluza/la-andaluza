@@ -25,6 +25,7 @@ Public Class frmempleados_contratos
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboempleados_contratos = CType(sp, spempleados_contratos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboempleados_contratos Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboempleados_contratos)
@@ -35,6 +36,7 @@ Public Class frmempleados_contratos
     End Sub
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = sp.select_DgvBy(Me.m_MaestroID, dtb)
     End Sub
     Protected Overrides Sub BindDataSource()

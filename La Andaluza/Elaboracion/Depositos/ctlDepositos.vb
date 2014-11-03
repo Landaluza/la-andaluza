@@ -132,7 +132,7 @@ Public Class ctlDepositos
         End If
     End Sub
 
-    Public Sub EliminarDeposito(ByRef dtb As BasesParaCompatibilidad.DataBase)
+    Public Function EliminarDeposito(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         clsDep.Cargar(dtb)
 
         If clsDep._BotaID > 0 Then
@@ -152,8 +152,9 @@ Public Class ctlDepositos
             LimpiarDeposito(dtb)
             EliminarTransicuba(dtb)
         End If
-        clsDep.Eliminar(dtb)
-    End Sub
+
+        Return clsDep.Eliminar(dtb)
+    End Function
 
     '--------------------------------BOTAS---------------------------------------------
     Dim clsBot As New clsBotas

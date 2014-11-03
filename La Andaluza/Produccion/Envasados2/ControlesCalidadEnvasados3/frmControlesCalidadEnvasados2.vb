@@ -29,8 +29,10 @@ Public Class frmControlesCalidadEnvasados2
     Overrides Sub Eliminar()
         If Me.dgvGeneral.RowCount > 0 Then
             If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
-                CType(sp, spControlesCalidadEnvasados2).ControlesCalidadEnvasados2Delete(dgvGeneral.CurrentRow.Cells("ControlCalidadEnvasados2ID").Value, dtb)
-                dgvFill()
+                Dim dtb As New BasesParaCompatibilidad.DataBase
+                If CType(sp, spControlesCalidadEnvasados2).ControlesCalidadEnvasados2Delete(dgvGeneral.CurrentRow.Cells("ControlCalidadEnvasados2ID").Value, dtb) Then
+                    dgvFill()
+                End If
             End If
         End If
     End Sub
@@ -46,6 +48,7 @@ Public Class frmControlesCalidadEnvasados2
 
             If m_MaestroID <> 0 Then m_ControleCalidadEnvasado2.ControlCalidadEnvasados2ID = m_MaestroID
         Else
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             m_ControleCalidadEnvasado2 = CType(sp, spControlesCalidadEnvasados2).Select_Record(GeneralBindingSource(m_Pos).Item("ControlCalidadEnvasados2ID"), dtb)
         End If
 
@@ -57,6 +60,7 @@ Public Class frmControlesCalidadEnvasados2
     End Sub
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 

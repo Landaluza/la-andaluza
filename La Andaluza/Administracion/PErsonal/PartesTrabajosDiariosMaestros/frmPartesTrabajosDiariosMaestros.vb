@@ -24,6 +24,7 @@ Public Class frmPartesTrabajosDiariosMaestros
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
                             "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             If CType(sp, spPartesTrabajosDiariosMaestros).PartesTrabajosDiariosMaestrosDelete(dgvGeneral.CurrentRow.Cells("ParteTrabajoDiarioMaestroID").Value, dtb) Then
                 dgvFill()
             End If
@@ -36,6 +37,7 @@ Public Class frmPartesTrabajosDiariosMaestros
         If TipoAction = ACCION_INSERTAR Then
             If m_MaestroID <> 0 Then m_DBO_ParteTrabajoDiarioMaestro.EmpleadoID = m_MaestroID
         Else
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             m_DBO_ParteTrabajoDiarioMaestro = CType(sp, spPartesTrabajosDiariosMaestros).Select_Record(dgvGeneral.CurrentRow.Cells("ParteTrabajoDiarioMaestroID").Value, dtb)
         End If
 
@@ -53,6 +55,7 @@ Public Class frmPartesTrabajosDiariosMaestros
     End Sub
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 

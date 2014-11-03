@@ -22,6 +22,7 @@ Public Class frmPagosFormas
 
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             If CType(sp, spPagosFormas).PagosFormasDelete(dgvGeneral.CurrentRow.Cells("PagoFormaID").Value, dtb) Then
                 dgvFill()
             End If
@@ -34,6 +35,7 @@ Public Class frmPagosFormas
         If TipoAction = ACCION_INSERTAR Then
             If m_MaestroID <> 0 Then m_PagosFormas.Descripcion = m_MaestroID
         Else
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             m_PagosFormas = CType(sp, spPagosFormas).Select_Record(GeneralBindingSource(m_Pos).Item("PagoFormaID"), dtb)
         End If
 
@@ -46,6 +48,7 @@ Public Class frmPagosFormas
     End Sub
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
     Protected Overrides Sub BindDataSource()

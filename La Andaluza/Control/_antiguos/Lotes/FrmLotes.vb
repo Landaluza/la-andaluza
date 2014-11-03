@@ -58,6 +58,7 @@ Public Class FrmLotesEnologicos
     End Sub
 
     Private Sub FrmLotes_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         spTiposLotes.cargar_TiposLotes(CType(cboTipoLoteID, ComboBox), dtb, "Todos")
         cboTipoLoteID.MaxDropDownItems = cboTipoLoteID.Items.Count
 
@@ -66,6 +67,7 @@ Public Class FrmLotesEnologicos
     End Sub
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = ctlMue.mostrarTodosLotesPorTipoLoteoProducto(dtb, Me.tipolote, Me.tipoproduto, Me.conenologico, top100)
     End Sub
 
@@ -164,6 +166,7 @@ Public Class FrmLotesEnologicos
             If response = DialogResult.Yes Then
 
                 'eliminar muestra
+                Dim dtb As New BasesParaCompatibilidad.DataBase
                 ctlMue.EliminarLote(dgvGeneral.Rows(Posicion).Cells(0).Value, dtb)
                 toolStripRefresh100_Click(Nothing, Nothing)
                 'ctlMue.mostrarTodosLotesPorTipoLoteoProducto((cboTipoLoteID.SelectedValue), (cboTipoProducto.SelectedValue), dtsMue, chbConEnologicos.Checked, True)
@@ -193,6 +196,7 @@ Public Class FrmLotesEnologicos
     End Sub
 
     Private Sub CheckBox1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chbConEnologicos.CheckedChanged
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         If chbConEnologicos.Checked Then
             spTiposProductos.cargar_ComboBox_Enologicos(CType(cboTipoProducto, ComboBox), dtb, "Todos")
             'Oldlib.RellenarComboBox(cboTipoProducto, ctlTipPro.devolverTiposProductosPorDescripcionEnologicos, True, "Todos")

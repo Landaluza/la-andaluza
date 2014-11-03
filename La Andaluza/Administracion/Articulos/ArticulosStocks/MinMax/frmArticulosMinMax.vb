@@ -23,6 +23,7 @@ Public Class frmArticulosMinMax
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboArticulosMinMax = CType(sp, spArticulosMinMax).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
         If Not dboArticulosMinMax Is Nothing Then
             newRegForm.SetDataBussinesObject(CType(Me.dboArticulosMinMax, BasesParaCompatibilidad.DataBussines))

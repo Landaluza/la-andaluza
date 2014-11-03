@@ -28,6 +28,7 @@ Public Class frmControlIncidencias_AccionesCorrectivas
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboControlIncidencias_AccionesCorrectivas = CType(sp, spControlIncidencias_AccionesCorrectivas).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboControlIncidencias_AccionesCorrectivas Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboControlIncidencias_AccionesCorrectivas)

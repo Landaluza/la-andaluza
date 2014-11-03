@@ -17,9 +17,12 @@ Public Class frmOrdenesEnvasado2
 
     Overrides Sub Eliminar()
         'TO DO: Da error porq la eliminacion no se hace en cascada
-        If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then _
-                     CType(sp, spOrdenesEnvasado2).OrdenesEnvasadoDelete(dgvGeneral.CurrentRow.Cells("OrdenEnvasadoID").Value, dtb)
-        dgvFill()
+        If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+            Dim dtb As New BasesParaCompatibilidad.DataBase
+            If CType(sp, spOrdenesEnvasado2).OrdenesEnvasadoDelete(dgvGeneral.CurrentRow.Cells("OrdenEnvasadoID").Value, dtb) Then
+                dgvFill()
+            End If
+        End If
     End Sub
 
     Overrides Sub Action(ByVal TipoAction As String)
@@ -29,6 +32,7 @@ Public Class frmOrdenesEnvasado2
         If TipoAction = ACCION_INSERTAR Then
             If m_MaestroID <> 0 Then m_OrdenesEnvasado.OrdenEnvasadoID = m_MaestroID
         Else
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             m_OrdenesEnvasado = CType(sp, spOrdenesEnvasado2).Select_Record(GeneralBindingSource(m_Pos).Item("OrdenEnvasadoID"), dtb)
         End If
 
@@ -42,6 +46,7 @@ Public Class frmOrdenesEnvasado2
     End Sub
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 

@@ -24,6 +24,7 @@ Public Class frmUsuarios
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboUsuarios = CType(sp, spUsuarios).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboUsuarios Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboUsuarios)

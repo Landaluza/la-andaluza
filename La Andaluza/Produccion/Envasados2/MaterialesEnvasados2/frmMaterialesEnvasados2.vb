@@ -27,8 +27,10 @@ Public Class frmMaterialesEnvasados2
     Overrides Sub Eliminar()
         If Me.dgvGeneral.RowCount > 0 Then
             If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
-                CType(sp, spMaterialesEnvasados2).MaterialesEnvasados2Delete(dgvGeneral.CurrentRow.Cells("MaterialEnvasadoID").Value, dtb)
-                dgvFill()
+                Dim dtb As New BasesParaCompatibilidad.DataBase
+                If CType(sp, spMaterialesEnvasados2).MaterialesEnvasados2Delete(dgvGeneral.CurrentRow.Cells("MaterialEnvasadoID").Value, dtb) Then
+                    dgvFill()
+                End If
             End If
         End If
     End Sub
@@ -37,6 +39,7 @@ Public Class frmMaterialesEnvasados2
     Overrides Sub Action(ByVal TipoAction As String)
         System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
 
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         Dim m_MaterialesEnvasados2 As New DBO_MaterialesEnvasados2
         Dim m_Pos As Integer = GeneralBindingSource.Position
 

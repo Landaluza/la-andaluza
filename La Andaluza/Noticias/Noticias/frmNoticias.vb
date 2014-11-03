@@ -28,6 +28,7 @@ Public Class frmNoticias
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboNoticias = CType(sp, spNoticias).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboNoticias Is Nothing Then
             newRegForm.SetDataBussinesObject(CType(Me.dboNoticias, BasesParaCompatibilidad.DataBussines))
@@ -52,6 +53,7 @@ Public Class frmNoticias
     End Sub
 
     Private Sub cambiarVigencia(sender As Object, e As EventArgs)
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         If CType(sp, spNoticias).CambiarVigencia(dgvGeneral.CurrentRow.Cells("Id").Value, dtb) Then
             dgvFill()
         End If

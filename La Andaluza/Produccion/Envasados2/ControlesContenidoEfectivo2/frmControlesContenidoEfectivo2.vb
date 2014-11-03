@@ -25,8 +25,10 @@ Public Class frmControlesContenidoEfectivo2
     Overrides Sub Eliminar()
         If Me.dgvGeneral.RowCount > 0 Then
             If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
-                CType(sp, spControlesContenidoEfectivo2).ControlesContenidoEfectivoDelete(dgvGeneral.CurrentRow.Cells("ControlContenidoEfectivoID").Value, dtb)
-                dgvFill()
+                Dim dtb As New BasesParaCompatibilidad.DataBase
+                If CType(sp, spControlesContenidoEfectivo2).ControlesContenidoEfectivoDelete(dgvGeneral.CurrentRow.Cells("ControlContenidoEfectivoID").Value, dtb) Then
+                    dgvFill()
+                End If
             End If
         End If
     End Sub
@@ -40,6 +42,7 @@ Public Class frmControlesContenidoEfectivo2
         If TipoAction = ACCION_INSERTAR Then
             If m_MaestroID <> 0 Then m_ControleContenidoEfectivo.EnvasadoID = m_MaestroID
         Else
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             m_ControleContenidoEfectivo = CType(sp, spControlesContenidoEfectivo2).Select_Record(Me.dgvGeneral.CurrentRow.Cells("ControlContenidoEfectivoID").Value, dtb)
         End If
 
@@ -50,6 +53,7 @@ Public Class frmControlesContenidoEfectivo2
     End Sub
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 

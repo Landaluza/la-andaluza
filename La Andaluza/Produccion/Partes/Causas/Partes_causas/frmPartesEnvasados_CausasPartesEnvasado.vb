@@ -24,6 +24,7 @@ Public Class frmPartesEnvasados_CausasPartesEnvasado
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboPartesEnvasados_CausasPartesEnvasado = CType(sp, spPartesEnvasados_CausasPartesEnvasado).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboPartesEnvasados_CausasPartesEnvasado Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboPartesEnvasados_CausasPartesEnvasado)

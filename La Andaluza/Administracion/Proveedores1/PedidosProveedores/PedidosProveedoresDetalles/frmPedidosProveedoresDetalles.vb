@@ -11,6 +11,7 @@ Public Class frmPedidosProveedoresDetalles
         spSelectDgv = "PedidosProveedoresDetallesSelectDgv"
     End Sub
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 
@@ -37,6 +38,7 @@ Public Class frmPedidosProveedoresDetalles
         response = MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
                           "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If response = DialogResult.Yes Then
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             If CType(sp, spPedidosProveedoresDetalles).DeletePedidosProveedoresDetalles(dgvGeneral.CurrentRow.Cells("PedidoProveedorDetalleID").Value, dtb) Then
                 dgvFill()
             End If
@@ -52,6 +54,7 @@ Public Class frmPedidosProveedoresDetalles
         If TipoAction = ACCION_INSERTAR Then
             'Asignar las propiedades del objeto creado cuyos valores se obtengan en este Form.
         Else
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             DBO_PedidoProveedorDetalle = CType(sp, spPedidosProveedoresDetalles).Select_Record(GeneralBindingSource(m_Pos).Item("PedidoProveedorDetalleID"), dtb)
         End If
 

@@ -66,6 +66,7 @@ Public Class frmPedidosProveedoresMaestros
         Dim resp As DialogResult = MessageBox.Show("¿Enviar correo a gerencia?", "Correo pedido", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If resp = Windows.Forms.DialogResult.Yes Then
             Dim mail As New Mail.MailGerente()
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             mail.send(dgvGeneral, PDFFile, dtb)
         End If
     End Sub
@@ -79,6 +80,7 @@ Public Class frmPedidosProveedoresMaestros
         response = MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
                           "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If response = DialogResult.Yes Then
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             If CType(sp, spPedidosProveedoresMaestros).DeletePedidosProveedoresMaestros(dgvGeneral.CurrentRow.Cells("PedidoProveedorMaestroID").Value, dtb) Then
                 dgvFill()
             End If
@@ -89,11 +91,12 @@ Public Class frmPedidosProveedoresMaestros
     Public Overrides Sub Action(ByVal TipoAction As String)
         Dim DBO_PedidoProveedor As New DBO_PedidosProveedoresMaestros
         Dim m_Pos As Integer = GeneralBindingSource.Position
+        Dim dtb As New BasesParaCompatibilidad.DataBase
 
         If TipoAction = ACCION_INSERTAR Then
-            'Asignar las propiedades del objeto creado cuyos valores se obtengan en este Form.
-            Me.dtb.PrepararConsulta("select max(Numero) from PedidosProveedoresMaestros")
-            DBO_PedidoProveedor.Numero = Me.dtb.Consultar.Rows(0).Item(0) + 1
+            'Asignar las propiedades del objeto creado cuyos valores se obtengan en este Form.            
+            dtb.PrepararConsulta("select max(Numero) from PedidosProveedoresMaestros")
+            DBO_PedidoProveedor.Numero = dtb.Consultar.Rows(0).Item(0) + 1
             DBO_PedidoProveedor.EstadoID = 1 'Solicitado
         Else
             DBO_PedidoProveedor = CType(sp, spPedidosProveedoresMaestros).Select_Record(GeneralBindingSource(m_Pos).Item("PedidoProveedorMaestroID"), dtb)
@@ -155,6 +158,8 @@ Public Class frmPedidosProveedoresMaestros
         Dim bmp As Bitmap = My.Resources.LogoLA
         Dim spSelectDgv As String
         Dim tb As System.Data.DataTable
+        Dim dtb As New BasesParaCompatibilidad.DataBase
+
         Try
             spSelectDgv = "PedidosProveedoresDetallesSelectByMaestroIDDgv '" & dgvGeneral.CurrentRow.Cells("PedidoProveedorMaestroID").Value & "'"
             tb = dtb.Consultar(spSelectDgv, True)
@@ -427,6 +432,7 @@ Public Class frmPedidosProveedoresMaestros
     End Sub
 
     Private Sub CopiarPedido()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         CType(sp, spPedidosProveedoresMaestros).CopyPedidosProveedores(dgvGeneral.CurrentRow.Cells("PedidoProveedorMaestroID").Value, dtb)
         GeneralBindingSource.DataSource = dtb.Consultar(spSelectDgv, True)
         GeneralBindingSource.MoveLast()
@@ -437,6 +443,7 @@ Public Class frmPedidosProveedoresMaestros
         Dim resp As DialogResult = MessageBox.Show("¿Enviar correo al proveedor?", "Correo pedido", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If resp = Windows.Forms.DialogResult.Yes Then
             Dim mail As New Mail.MailProveedores
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             mail.send(dgvGeneral, PDFFile, dtb)
         End If
     End Sub
@@ -450,6 +457,7 @@ Public Class frmPedidosProveedoresMaestros
     End Sub
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         If spSelectDgv = "PedidosProveedoresMaestrosSelectDgvByEstado" Then
             spSelectDgv = "PedidosProveedoresMaestrosSelectDgv"
         Else

@@ -22,6 +22,7 @@ Public Class frmTiposFormatosLineas
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboTiposFormatosLineas = CType(sp, spTiposFormatosLineas).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboTiposFormatosLineas Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboTiposFormatosLineas)

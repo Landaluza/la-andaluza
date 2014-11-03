@@ -66,6 +66,7 @@
     End Sub
 
     Private Sub cargar_datos() Handles BackgroundWorker1.DoWork
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dtProductos = spTiposProductos.devolver_TiposProductos_Cbo(dtb)
         dtLotes = spTiposLotes.devolver_TiposLotes(dtb)
     End Sub

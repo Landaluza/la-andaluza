@@ -80,6 +80,7 @@ Public Class frmArticulos1
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboArticulos1 = CType(sp, spArticulos1).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
         If Not dboArticulos1 Is Nothing Then
             Dim frm As New frmModArticuloGenerico(dgvGeneral.CurrentRow.Cells("Id").Value)

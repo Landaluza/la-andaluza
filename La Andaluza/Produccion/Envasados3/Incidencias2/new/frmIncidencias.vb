@@ -33,6 +33,7 @@ Public Class frmIncidencias
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboIncidencias = CType(sp, spIncidencias).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboIncidencias Is Nothing Then
             If Config.UserType <> 4 Then

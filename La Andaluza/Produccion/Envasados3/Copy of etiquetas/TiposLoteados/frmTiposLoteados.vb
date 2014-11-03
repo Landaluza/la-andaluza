@@ -21,6 +21,7 @@ Public Class frmTiposLoteados
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboTiposLoteados = CType(sp, spTiposLoteados).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
         If Not dboTiposLoteados Is Nothing Then
             newRegForm.SetDataBussinesObject(CType(Me.dboTiposLoteados, BasesParaCompatibilidad.DataBussines))

@@ -22,6 +22,7 @@ Public Class frmClasesProductosPorClase
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboTiposProductos_ClasesProductos = CType(sp, spTiposProductos_ClasesProductos).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
         If Not dboTiposProductos_ClasesProductos Is Nothing Then
             MyBase.newRegForm = CType(New frmEntClasesProductosPorClase(BasesParaCompatibilidad.GridSimpleForm.ACCION_MODIFICAR), BasesParaCompatibilidad.DetailedSimpleForm)

@@ -23,6 +23,7 @@ Public Class frmFacturas
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboFacturas = CType(sp, spFacturas).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboFacturas Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboFacturas)

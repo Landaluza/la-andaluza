@@ -13,6 +13,7 @@ Public Class frmAlbaranesCargaDetalles
         dtsAlb = New dtsAlbaranesCargaDetalles.AlbaranesCargaDetallesDataTable
     End Sub
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         ctlAlb.mostrarTodosAlbaranesCargaDetalles(dtb, dtsAlb)
     End Sub
 
@@ -47,6 +48,7 @@ Public Class frmAlbaranesCargaDetalles
         FrmEnt.Text = ACCION_INSERTAR & " AlbaranesCargaDetalles"
         FrmEnt.CargarDatos(0, 0, 0, 0, 0, "", 0, "", "", "", "", "", "", "")
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         ctlAlb.mostrarTodosAlbaranesCargaDetalles(dtb, dtsAlb)
         GeneralBindingSource.Position = 1
         GeneralBindingSource.Position = 0
@@ -72,6 +74,7 @@ Public Class frmAlbaranesCargaDetalles
                                dgvGeneral.Rows(Posicion).Cells(11).Value, _
                                dgvGeneral.Rows(Posicion).Cells(12).Value)
             BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             ctlAlb.mostrarTodosAlbaranesCargaDetalles(dtb, dtsAlb)
             GeneralBindingSource.Position = 1
             GeneralBindingSource.Position = Posicion
@@ -112,6 +115,7 @@ Public Class frmAlbaranesCargaDetalles
             response = MessageBox.Show(" Realmente desea eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If response = DialogResult.Yes Then
                 ctlAlb.SetAlbaranCargaDetalleID(dgvGeneral.Rows(Posicion).Cells(0).Value)
+                Dim dtb As New BasesParaCompatibilidad.DataBase
                 If ctlAlb.EliminarAlbaranCargaDetalle(dtb) Then
                     ctlAlb.mostrarTodosAlbaranesCargaDetalles(dtb, dtsAlb)
                     If Posicion > 0 Then

@@ -22,6 +22,7 @@ Public Class frmTiposPendientes
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboTiposPendientes = CType(sp, spTiposPendientes).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
         If Not dboTiposPendientes Is Nothing Then
             newRegForm.SetDataBussinesObject(CType(Me.dboTiposPendientes, BasesParaCompatibilidad.DataBussines))

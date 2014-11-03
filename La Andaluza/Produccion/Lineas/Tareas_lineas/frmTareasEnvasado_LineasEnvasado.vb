@@ -21,6 +21,7 @@ Public Class frmTareasEnvasado_LineasEnvasado
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboTareasEnvasado_LineasEnvasado = CType(sp, spTareasEnvasado_LineasEnvasado).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboTareasEnvasado_LineasEnvasado Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboTareasEnvasado_LineasEnvasado)

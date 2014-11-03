@@ -28,6 +28,7 @@ Public Class frmplantillasBoletines
 
 
         If Not dboplantillasBoletines Is Nothing Then
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             dboplantillasBoletines = CType(sp, spplantillasBoletines).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
             MyBase.newRegForm = New frmEntplantillasBoletines(ACCION_MODIFICAR, sp, Me.dboplantillasBoletines)
         Else

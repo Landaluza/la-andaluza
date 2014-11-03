@@ -66,9 +66,12 @@ Public Class frmArticulosDocumentos
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
                            "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-            CType(sp, spArticulosDocumentos).ArticulosDocumentosDelete(dtb, dgvGeneral.CurrentRow.Cells("ArticuloDocumentoID").Value)
+            Dim dtb As New BasesParaCompatibilidad.DataBase
+            If CType(sp, spArticulosDocumentos).ArticulosDocumentosDelete(dtb, dgvGeneral.CurrentRow.Cells("ArticuloDocumentoID").Value) Then
+                dgvFill()
+            End If
         End If
-        dgvFill()
+
     End Sub
 
     Overrides Sub Action(ByVal TipoAction As String)
@@ -80,6 +83,7 @@ Public Class frmArticulosDocumentos
                 m_ArticulosDocumento.ArticuloID = m_MaestroID
             End If
         Else
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             m_ArticulosDocumento = CType(sp, spArticulosDocumentos).Select_Record(dtb, GeneralBindingSource(m_Pos).Item("ArticuloDocumentoID"))
         End If
 
@@ -91,6 +95,7 @@ Public Class frmArticulosDocumentos
     End Sub
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 

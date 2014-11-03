@@ -12,6 +12,7 @@ Public Class frmBotasTapones
     End Sub
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         ctlBot.mostrarTodosBotasTapones(dtb, dtsBot)
     End Sub
     Protected Overrides Sub BindDataSource()
@@ -30,6 +31,7 @@ Public Class frmBotasTapones
         FrmEnt.Text = "Insertar Botas Tapones"
         FrmEnt.CargarDatos(0, 0, "")
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         ctlBot.mostrarTodosBotasTapones(dtb, dtsBot)
         GeneralBindingSource.Position = 1
         GeneralBindingSource.Position = 0
@@ -44,6 +46,7 @@ Public Class frmBotasTapones
                                 (dgvGeneral.Rows(Posicion).Cells(0).Value), _
                                 Convert.ToString(dgvGeneral.Rows(Posicion).Cells(1).Value))
             BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             ctlBot.mostrarTodosBotasTapones(dtb, dtsBot)
             GeneralBindingSource.Position = 1
             GeneralBindingSource.Position = Posicion
@@ -73,16 +76,18 @@ Public Class frmBotasTapones
             response = messageBox.show(" ¿Realmente desea eliminar este registro? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
             If response = DialogResult.Yes Then
                 ctlBot.SetBotaTaponID((dgvGeneral.Rows(Posicion).Cells(0).Value))
-                ctlBot.EliminarBotaTapon(dtb)
-                ctlBot.mostrarTodosBotasTapones(dtb, dtsBot)
-                If Posicion > 0 Then
-                    GeneralBindingSource.Position = Posicion - 1
-                Else
-                    GeneralBindingSource.Position = 0
+                Dim dtb As New BasesParaCompatibilidad.DataBase
+                If ctlBot.EliminarBotaTapon(dtb) Then
+                    ctlBot.mostrarTodosBotasTapones(dtb, dtsBot)
+                    If Posicion > 0 Then
+                        GeneralBindingSource.Position = Posicion - 1
+                    Else
+                        GeneralBindingSource.Position = 0
+                    End If
                 End If
             End If
         Else
-            messageBox.show("Seleccionar alguna celda", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            MessageBox.Show("Seleccionar alguna celda", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End If
     End Sub
 #End Region

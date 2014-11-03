@@ -21,12 +21,16 @@ Public Class frmVisitantesTipos
     End Sub
 
     Overrides Sub Eliminar()
-        If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then _
-                    CType(sp, spVisitantesTipos).VisitantesTiposDelete(dgvGeneral.CurrentRow.Cells("VisitanteTipoID").Value, dtb)
-        dgvFill()
+        If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+            Dim dtb As New BasesParaCompatibilidad.DataBase
+            If CType(sp, spVisitantesTipos).VisitantesTiposDelete(dgvGeneral.CurrentRow.Cells("VisitanteTipoID").Value, dtb) Then
+                dgvFill()
+            End If
+        End If
     End Sub
 
     Overrides Sub Action(ByVal TipoAction As String)
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         If TipoAction <> ACCION_INSERTAR Then m_VisitanteTipo = CType(sp, spVisitantesTipos).Select_Record(dgvGeneral.CurrentRow.Cells("VisitanteTipoID").Value, dtb)
         'FormEntradaDatos(frmEntVisitantesTipos, m_VisitanteTipo, TipoAction, Titulo)
 
@@ -39,6 +43,7 @@ Public Class frmVisitantesTipos
     End Sub
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 

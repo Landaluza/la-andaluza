@@ -24,8 +24,13 @@ Public Class frmArticulosFichasTecnicasEstados
 
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
-                           "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then CType(sp, spArticulosFichasTecnicasEstados).ArticulosFichasTecnicasEstadosDelete(dgvGeneral.CurrentRow.Cells("ArticuloFichaTecnicaEstadoID").Value, dtb)
-        dgvFill()
+                           "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+            Dim dtb As New BasesParaCompatibilidad.DataBase
+            If CType(sp, spArticulosFichasTecnicasEstados).ArticulosFichasTecnicasEstadosDelete(dgvGeneral.CurrentRow.Cells("ArticuloFichaTecnicaEstadoID").Value, dtb) Then
+                dgvFill()
+            End If
+        End If
+
     End Sub
 
 
@@ -37,6 +42,7 @@ Public Class frmArticulosFichasTecnicasEstados
 
             'if m_maestroid <> 0 Then m_ArticulosFichasTecnicasEstados.Proveedores_ProveedorID = m_MaestroID
         Else
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             m_ArticulosFichasTecnicasEstado = CType(sp, spArticulosFichasTecnicasEstados).Select_Record(GeneralBindingSource(m_Pos).Item("ArticuloFichaTecnicaEstadoID"), dtb)
         End If
 
@@ -50,6 +56,7 @@ Public Class frmArticulosFichasTecnicasEstados
 
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 

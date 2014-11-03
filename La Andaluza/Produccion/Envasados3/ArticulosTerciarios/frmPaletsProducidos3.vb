@@ -52,8 +52,8 @@ Public Class frmPaletsProducidos3
         bdnGeneral.BringToFront()
         Me.dgvGeneral.BringToFront()
 
-        CType(sp, spPaletsProducidos).cargar_PaletsProducidosEstados(Me.cboEstado, dtb)
-        dtb.TimeOut = 300
+        Dim dtb As New BasesParaCompatibilidad.DataBase
+        CType(sp, spPaletsProducidos).cargar_PaletsProducidosEstados(Me.cboEstado, dtb)        
     End Sub
 
 
@@ -63,6 +63,7 @@ Public Class frmPaletsProducidos3
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboPaletsProducidos = CType(sp, spPaletsProducidos).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
 
 
@@ -107,6 +108,7 @@ Public Class frmPaletsProducidos3
     Private Sub mostrarEtiqueta()
         If Not Me.dgvGeneral.CurrentRow Is Nothing Then
             Dim spPaletsProducidos As New spPaletsProducidos
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             Dim dbo As DBO_PaletsProducidos = spPaletsProducidos.Select_Record(Me.dgvGeneral.CurrentRow.Cells("PaletProducidoID").Value, dtb)
             If Not dbo Is Nothing Then
                 Dim frm As New frmEtiqueta0(dbo.ID, If(Config.UserType = 1 Or Config.UserType = 9 Or Config.UserType = 4, True, False))

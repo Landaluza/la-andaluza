@@ -20,6 +20,7 @@ Public Class frmOrdenesCarga
 
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             If CType(sp, spOrdenesCarga).OrdenesCargaDelete(dgvGeneral.CurrentRow.Cells("OrdenCargaID").Value, dtb) Then
                 dgvFill()
             End If
@@ -31,6 +32,7 @@ Public Class frmOrdenesCarga
         Dim m_Pos As Integer = GeneralBindingSource.Position
 
         If Not TipoAction = ACCION_INSERTAR Then
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             m_OrdeneCarga = CType(sp, spOrdenesCarga).Select_Record(GeneralBindingSource(m_Pos).Item("OrdenCargaID"), dtb)
         End If
 
@@ -42,6 +44,7 @@ Public Class frmOrdenesCarga
     End Sub
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 

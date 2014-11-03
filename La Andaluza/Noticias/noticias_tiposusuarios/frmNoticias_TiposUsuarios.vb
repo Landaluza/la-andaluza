@@ -21,6 +21,7 @@ Public Class frmNoticias_TiposUsuarios
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboNoticias_TiposUsuarios = CType(sp, spNoticias_TiposUsuarios).Select_Record(Convert.ToInt32(dgvGeneral.CurrentRow.Cells("Id").Value), dtb)
         If Not dboNoticias_TiposUsuarios Is Nothing Then
             newRegForm.SetDataBussinesObject(CType(Me.dboNoticias_TiposUsuarios, BasesParaCompatibilidad.DataBussines))

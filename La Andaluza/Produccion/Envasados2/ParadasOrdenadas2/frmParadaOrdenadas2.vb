@@ -27,8 +27,10 @@ Public Class frmParadaOrdenadas2
     Overrides Sub Eliminar()
         If Me.dgvGeneral.RowCount > 0 Then
             If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
-                CType(sp, spParadaOrdenadas2).ParadaOrdenadas2Delete(dgvGeneral.CurrentRow.Cells("ParadaOrdenadaID").Value, dtb)
-                dgvFill()
+                Dim dtb As New BasesParaCompatibilidad.DataBase
+                If CType(sp, spParadaOrdenadas2).ParadaOrdenadas2Delete(dgvGeneral.CurrentRow.Cells("ParadaOrdenadaID").Value, dtb) Then
+                    dgvFill()
+                End If
             End If
         End If
     End Sub
@@ -45,6 +47,7 @@ Public Class frmParadaOrdenadas2
             m_ParadaOrdenadas2.HoraInicio = DateTime.Now.TimeOfDay
             m_ParadaOrdenadas2.HoraFinal = DateTime.Now.TimeOfDay
         Else
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             m_ParadaOrdenadas2 = CType(sp, spParadaOrdenadas2).Select_Record(GeneralBindingSource(m_Pos).Item("ParadaOrdenadaID"), dtb)
         End If
         m_ParadaOrdenadas2.FormatoEnvasadoID = Me.formatoId

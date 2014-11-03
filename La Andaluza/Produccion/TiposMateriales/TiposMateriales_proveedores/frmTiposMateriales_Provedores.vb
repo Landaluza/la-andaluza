@@ -52,6 +52,7 @@ Public Class frmTiposMateriales_Provedores
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboTiposMateriales_Provedores = CType(sp, spTiposMateriales_Provedores).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboTiposMateriales_Provedores Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboTiposMateriales_Provedores)

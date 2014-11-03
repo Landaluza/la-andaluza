@@ -21,6 +21,7 @@ Public Class frmAlturas
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboAlturas = CType(sp, spAlturas).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
         If Not dboAlturas Is Nothing Then
             newRegForm.SetDataBussinesObject(CType(Me.dboAlturas, BasesParaCompatibilidad.DataBussines))

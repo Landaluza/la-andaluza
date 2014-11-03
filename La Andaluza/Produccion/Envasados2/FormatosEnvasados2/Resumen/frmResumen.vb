@@ -26,6 +26,7 @@ Public Class frmResumen
     End Sub
 
     Private Sub recargarMedias()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         CType(sp, spResumen).MediasEnvasado(Me.m_DBO_Resumen, dtb)
 
         Me.lblTiempoMedioProduccion.Text = Me.m_DBO_Resumen.MediasEnvasado_MinutosPorPalet
@@ -34,6 +35,7 @@ Public Class frmResumen
     End Sub
 
     Private Sub recargarTotales()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         CType(sp, spResumen).TotalesEnvasado(Me.m_DBO_Resumen, dtb)
 
         Me.lblTotalBotellas.Text = Me.m_DBO_Resumen.TotalesIncidencias_CalidadNumero
@@ -45,6 +47,7 @@ Public Class frmResumen
     End Sub
 
     Private Sub recargarIncidencias()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         CType(sp, spResumen).DetallesIncidencias(Me.m_DBO_Resumen, dtb)
 
         Me.lblIncCalNumero.Text = Me.m_DBO_Resumen.TotalesIncidencias_CalidadNumero
@@ -61,6 +64,7 @@ Public Class frmResumen
     End Sub
 
     Private Sub recargarTiempos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         CType(sp, spResumen).TotalesTiempo(Me.m_DBO_Resumen, dtb)
 
         Me.lblTiemposAsignado.Text = Me.m_DBO_Resumen.TotalesIncidencias_CalidadNumero

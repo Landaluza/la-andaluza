@@ -24,6 +24,7 @@ Public Class frmCompuestoPor
 
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             If CType(sp, spCompuestoPor).CompuestoPorDelete(dgvGeneral.CurrentRow.Cells("LoteFinal").Value, dgvGeneral.CurrentRow.Cells("LotePartida").Value, dgvGeneral.CurrentRow.Cells("MovimientoID").Value, dtb) Then
                 dgvFill()
             End If
@@ -37,6 +38,7 @@ Public Class frmCompuestoPor
         If TipoAction = ACCION_INSERTAR Then
             If m_MaestroID <> 0 Then m_DBO_CompuestoPor.LotePartida = m_MaestroID
         Else
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             m_DBO_CompuestoPor = CType(sp, spCompuestoPor).Select_Record(dgvGeneral.CurrentRow.Cells("LoteFinal").Value, dgvGeneral.CurrentRow.Cells("LotePartida").Value, dgvGeneral.CurrentRow.Cells("MovimientoID").Value, dtb)
         End If
 
@@ -48,6 +50,7 @@ Public Class frmCompuestoPor
     End Sub
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 

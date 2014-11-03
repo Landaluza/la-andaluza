@@ -26,6 +26,7 @@ Public Class frmEmpleados_competencias
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboEmpleados_competencias = CType(sp, spEmpleados_competencias).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboEmpleados_competencias Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboEmpleados_competencias)

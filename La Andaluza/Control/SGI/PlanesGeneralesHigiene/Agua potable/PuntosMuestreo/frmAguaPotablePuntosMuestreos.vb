@@ -23,6 +23,7 @@ Public Class frmAguaPotablePuntosMuestreos
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboAguaPotablePuntosMuestreos = CType(sp, spAguaPotablePuntosMuestreos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboAguaPotablePuntosMuestreos Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboAguaPotablePuntosMuestreos)

@@ -23,8 +23,13 @@ Public Class frmArticulosCertificadosTipos
 
 
     Overrides Sub Eliminar()
-        If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then CType(sp, spArticulosCertificadosTipos).ArticulosCertificadosTiposDelete(dgvGeneral.CurrentRow.Cells("ArticuloCertificadoTipoID").Value, dtb)
-        dgvFill()
+        If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+            Dim dtb As New BasesParaCompatibilidad.DataBase
+            If CType(sp, spArticulosCertificadosTipos).ArticulosCertificadosTiposDelete(dgvGeneral.CurrentRow.Cells("ArticuloCertificadoTipoID").Value, dtb) Then
+                dgvFill()
+            End If
+        End If
+
     End Sub
 
 
@@ -36,6 +41,7 @@ Public Class frmArticulosCertificadosTipos
 
             If m_MaestroID <> 0 Then m_ArticuloCertificadoTipo.Descripcion = Convert.ToString(m_MaestroID)
         Else
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             m_ArticuloCertificadoTipo = CType(sp, spArticulosCertificadosTipos).Select_Record(GeneralBindingSource(m_Pos).Item("ArticuloCertificadoTipoID"), dtb)
         End If
 
@@ -50,6 +56,7 @@ Public Class frmArticulosCertificadosTipos
 
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 

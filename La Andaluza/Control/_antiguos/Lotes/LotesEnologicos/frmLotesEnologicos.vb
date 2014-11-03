@@ -16,6 +16,7 @@ Public Class frmLotesEnologico
 
     End Sub
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         ctlLot.mostrarTodosLotesEnologicos(dtb, dtsLot)
     End Sub
 

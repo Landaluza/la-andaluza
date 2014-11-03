@@ -37,6 +37,7 @@ Public Class frmDetallelIncidencias
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboControlIncidencias = CType(sp, spControlIncidencias).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboControlIncidencias Is Nothing Then
             newRegForm.SetDataBussinesObject(CType(Me.dboControlIncidencias, BasesParaCompatibilidad.DataBussines))

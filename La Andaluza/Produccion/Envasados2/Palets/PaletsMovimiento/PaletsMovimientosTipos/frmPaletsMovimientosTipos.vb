@@ -20,6 +20,7 @@ Public Class frmPaletsMovimientosTipos
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboPaletsMovimientosTipos = CType(sp, spPaletsMovimientosTipos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboPaletsMovimientosTipos Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboPaletsMovimientosTipos)

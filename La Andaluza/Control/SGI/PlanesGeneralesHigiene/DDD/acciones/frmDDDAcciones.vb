@@ -19,6 +19,7 @@ Public Class frmDDDAcciones
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboDDDAcciones = CType(sp, spDDDAcciones).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboDDDAcciones Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboDDDAcciones)

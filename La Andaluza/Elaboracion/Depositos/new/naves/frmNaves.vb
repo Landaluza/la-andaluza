@@ -21,6 +21,7 @@ Public Class frmNaves
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboNaves = CType(sp, spNaves).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
         If Not dboNaves Is Nothing Then
             newRegForm.SetDataBussinesObject(CType(Me.dboNaves, BasesParaCompatibilidad.DataBussines))

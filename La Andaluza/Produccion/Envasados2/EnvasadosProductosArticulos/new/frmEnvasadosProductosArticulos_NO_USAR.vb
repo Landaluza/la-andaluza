@@ -64,6 +64,7 @@ Public Class frmEnvasadosProductosArticulos_NO_USAR
         If Me.dgvGrilla.RowCount > 0 Then
             If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
                           "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+                Dim dtb As New BasesParaCompatibilidad.DataBase
                 If CType(sp, spEnvasadosProductosArticulos).EnvasadosProductosArticulosDelete(dgvGrilla.CurrentRow.Cells("EnvasadoProductoArticuloID").Value, dtb) Then
                     dgvFill()
                 Else
@@ -90,6 +91,7 @@ Public Class frmEnvasadosProductosArticulos_NO_USAR
                 Return
             End If
 
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             If spLotes1.CountLotesTerminadosPorTipoProducto(m_Producto, dtb) = 0 Then
                 MessageBox.Show("No hay lotes terminados para envasar", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Return
@@ -112,6 +114,7 @@ Public Class frmEnvasadosProductosArticulos_NO_USAR
     End Sub
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 
@@ -121,7 +124,8 @@ Public Class frmEnvasadosProductosArticulos_NO_USAR
             GeneralBindingSource.DataSource = dataSource
 
             'If keepReg Then Me.dgvGrilla.guardarColumnaSeleccionada()
-            GeneralBindingSource.DataSource = dtb.Consultar(spSelectDgv, True)
+            Dim dtb As New BasesParaCompatibilidad.DataBase
+            ' GeneralBindingSource.DataSource = dtb.Consultar(spSelectDgv, True)
 
 
             With dgvGrilla
@@ -180,6 +184,7 @@ Public Class frmEnvasadosProductosArticulos_NO_USAR
                    "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
         If Respuesta = DialogResult.Yes Then
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             dtb.EmpezarTransaccion()
 
 
@@ -297,6 +302,7 @@ Public Class frmEnvasadosProductosArticulos_NO_USAR
 
     Private Function comprobarTrasiegos() As Boolean
         If Me.dgvGrilla.RowCount > 0 Then
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             m_DBO_LoteTerminado = spLotes1.Select_Record(dgvGrilla.CurrentRow.Cells("LoteID").Value, dtb)
             If CType(sp, spEnvasadosProductosArticulos).ExistenTrasiegos(m_DBO_LoteTerminado.LoteID, dtb) Then
                 Return True

@@ -19,6 +19,7 @@ Public Class frmRecuentoMaterialesAuxiliares
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboRecuentoMaterialesAuxiliares = CType(sp, spRecuentoMaterialesAuxiliares).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboRecuentoMaterialesAuxiliares Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboRecuentoMaterialesAuxiliares)

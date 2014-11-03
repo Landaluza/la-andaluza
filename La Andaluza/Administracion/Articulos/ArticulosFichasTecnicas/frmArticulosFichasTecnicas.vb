@@ -66,8 +66,13 @@ Public Class frmArticulosFichasTecnicas
 
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
-                          "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then CType(sp, spArticulosFichasTecnicas).ArticulosFichasTecnicasDelete(dgvGeneral.CurrentRow.Cells("ArticuloFichaTecnicaID").Value, dtb)
-        dgvFill()
+                          "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+            Dim dtb As New BasesParaCompatibilidad.DataBase
+            If CType(sp, spArticulosFichasTecnicas).ArticulosFichasTecnicasDelete(dgvGeneral.CurrentRow.Cells("ArticuloFichaTecnicaID").Value, dtb) Then
+                dgvFill()
+            End If
+        End If
+
     End Sub
 
     Overrides Sub Action(ByVal TipoAction As String)
@@ -77,6 +82,7 @@ Public Class frmArticulosFichasTecnicas
         If TipoAction = ACCION_INSERTAR Then
             If m_MaestroID <> 0 Then m_ArticulosFichasTecnica.ArticuloID = m_MaestroID
         Else
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             m_ArticulosFichasTecnica = CType(sp, spArticulosFichasTecnicas).Select_Record(GeneralBindingSource(m_Pos).Item("ArticuloFichaTecnicaID"), dtb)
         End If
 
@@ -89,6 +95,7 @@ Public Class frmArticulosFichasTecnicas
 
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 

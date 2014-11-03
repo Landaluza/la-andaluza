@@ -9,12 +9,12 @@ Public Class frmEspecificaciones
         MyBase.New()
         InitializeComponent()
 
-        dtb = New BasesParaCompatibilidad.DataBase()
         ctlEsp = New ctlEspecificaciones
         dtsEsp = New dtsEspecificaciones.EspecificacionesDataTable
     End Sub
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         ctlEsp.mostrarTodasEspecificaciones(dtb, dtsEsp)
     End Sub
 
@@ -47,6 +47,7 @@ Public Class frmEspecificaciones
         FrmEnt.Text = "Insertar Especificacion"
         FrmEnt.CargarDatos(0, dgvGeneral, 0, "", "", Today, "", "")
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         ctlEsp.mostrarTodasEspecificaciones(dtb, dtsEsp)
         GeneralBindingSource.Position = 1
         GeneralBindingSource.Position = 0
@@ -62,6 +63,7 @@ Public Class frmEspecificaciones
                                dgvGeneral.Rows(Posicion).Cells(3).Value, dgvGeneral.Rows(Posicion).Cells(4).Value, _
                                dgvGeneral.Rows(Posicion).Cells(5).Value, dgvGeneral.Rows(Posicion).Cells("LegislacionID").Value)
             BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             ctlEsp.mostrarTodasEspecificaciones(dtb, dtsEsp)
             GeneralBindingSource.Position = 1
             GeneralBindingSource.Position = Posicion
@@ -85,6 +87,7 @@ Public Class frmEspecificaciones
             response = MessageBox.Show(" ¿Realmente desea eliminar este registro? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If response = DialogResult.Yes Then
                 ctlEsp.setEspecificacionID(dgvGeneral.Rows(Posicion).Cells(0).Value)
+                Dim dtb As New BasesParaCompatibilidad.DataBase
                 dtb.EmpezarTransaccion()
                 Try
                     ctlEsp.EliminarEspecificacion(dtb)

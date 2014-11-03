@@ -26,8 +26,10 @@ Public Class frmArticulosIngredientesTipos
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
                           "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-            CType(sp, spArticulosIngredientesTipos).ArticulosIngredientesTiposDelete(dgvGeneral.CurrentRow.Cells("IngredienteTipoID").Value, dtb)
-            dgvFill()
+            Dim dtb As New BasesParaCompatibilidad.DataBase
+            If CType(sp, spArticulosIngredientesTipos).ArticulosIngredientesTiposDelete(dgvGeneral.CurrentRow.Cells("IngredienteTipoID").Value, dtb) Then
+                dgvFill()
+            End If
         End If
     End Sub
 
@@ -41,7 +43,8 @@ Public Class frmArticulosIngredientesTipos
 
             If m_MaestroID <> 0 Then m_ArticuloIngredienteTipo.Descripcion = m_MaestroID
         Else
-            m_ArticuloIngredienteTipo = CType(sp, spArticulosIngredientesTipos).Select_Record(GeneralBindingSource(m_Pos).Item("IngredienteTipoID"), Me.dtb)
+            Dim dtb As New BasesParaCompatibilidad.DataBase
+            m_ArticuloIngredienteTipo = CType(sp, spArticulosIngredientesTipos).Select_Record(GeneralBindingSource(m_Pos).Item("IngredienteTipoID"), dtb)
         End If
 
         frmEnt = New frmEntArticulosIngredientesTipos(m_ArticuloIngredienteTipo, m_Pos, m_VerID)
@@ -55,6 +58,7 @@ Public Class frmArticulosIngredientesTipos
 
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dtb.PrepararConsulta(spSelectDgv)
         dataSource = dtb.Consultar()
         '        dataSource = dtb.Consultar(spSelectDgv, True)

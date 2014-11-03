@@ -24,6 +24,7 @@ Public Class frmPaletsIncompletos
         butSalir.Visible = True
         butImprimir.Visible = True
 
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         GeneralBindingSource.DataSource = dtb.Consultar(spSelectDgv, True)
         With dgvPalet
             .Width = 605

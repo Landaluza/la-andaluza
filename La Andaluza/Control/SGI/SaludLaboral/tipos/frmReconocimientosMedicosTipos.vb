@@ -22,6 +22,7 @@ Public Class frmReconocimientosMedicosTipos
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboReconocimientosMedicosTipos = CType(sp, spReconocimientosMedicosTipos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboReconocimientosMedicosTipos Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboReconocimientosMedicosTipos)

@@ -30,6 +30,7 @@ Public Class frmVisitasTipos
 
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             If CType(sp, spVisitasTipos).VisitasTiposDelete(dgvGeneral.CurrentRow.Cells("VisitaTipoID").Value, dtb) Then
                 dgvFill()
             End If
@@ -44,6 +45,7 @@ Public Class frmVisitasTipos
         If TipoAction = ACCION_INSERTAR Then
             If m_MaestroID <> 0 Then m_VisitaTipo.Descripcion = m_MaestroID
         Else
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             m_VisitaTipo = CType(sp, spVisitasTipos).Select_Record(GeneralBindingSource(m_Pos).Item("VisitaTipoID"), dtb)
         End If
 
@@ -55,6 +57,7 @@ Public Class frmVisitasTipos
     End Sub
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 

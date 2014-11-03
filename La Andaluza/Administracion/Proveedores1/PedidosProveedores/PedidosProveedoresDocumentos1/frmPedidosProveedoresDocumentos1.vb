@@ -43,6 +43,7 @@ Public Class frmPedidosProveedoresDocumentos1
 
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             If CType(sp, spPedidosProveedoresDocumentos1).PedidosProveedoresDocumentos1Delete(dgvGeneral.CurrentRow.Cells("PedidoProveedorDocumentoID").Value, dtb) Then
                 dgvFill()
 
@@ -65,6 +66,7 @@ Public Class frmPedidosProveedoresDocumentos1
         If TipoAction = ACCION_INSERTAR Then
             If m_MaestroID <> 0 Then m_PedidosProveedoresDocumentos1.PedidoProveedorMaestroID = m_MaestroID
         Else
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             m_PedidosProveedoresDocumentos1 = CType(sp, spPedidosProveedoresDocumentos1).Select_Record(GeneralBindingSource(m_Pos).Item("PedidoProveedorDocumentoID"), dtb)
         End If
 
@@ -76,6 +78,7 @@ Public Class frmPedidosProveedoresDocumentos1
     End Sub
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
     Protected Overrides Sub dgvFill()

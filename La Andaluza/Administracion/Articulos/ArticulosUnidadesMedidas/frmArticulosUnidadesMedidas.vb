@@ -24,9 +24,12 @@ Public Class frmArticulosUnidadesMedidas
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
                            "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-            CType(sp, spArticulosUnidadesMedidas).ArticulosUnidadesMedidasDelete(dgvGeneral.CurrentRow.Cells("ArticuloUnidadMedidaID").Value, dtb)
+            Dim dtb As New BasesParaCompatibilidad.DataBase
+            If CType(sp, spArticulosUnidadesMedidas).ArticulosUnidadesMedidasDelete(dgvGeneral.CurrentRow.Cells("ArticuloUnidadMedidaID").Value, dtb) Then
+                dgvFill()
+            End If
         End If
-        dgvFill()
+
     End Sub
 
 
@@ -39,6 +42,7 @@ Public Class frmArticulosUnidadesMedidas
 
             If m_MaestroID <> 0 Then m_ArticuloUnidadeMedida.ArticuloUnidadMedidaID = m_MaestroID
         Else
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             m_ArticuloUnidadeMedida = CType(sp, spArticulosUnidadesMedidas).Select_Record(GeneralBindingSource(m_Pos).Item("ArticuloUnidadMedidaID"), dtb)
         End If
 
@@ -52,6 +56,7 @@ Public Class frmArticulosUnidadesMedidas
 
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 

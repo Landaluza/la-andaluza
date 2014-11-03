@@ -22,6 +22,7 @@ Public Class frmPagosPlazos
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
                            "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             If CType(sp, spPagosPlazos).PagosPlazosDelete(dgvGeneral.CurrentRow.Cells("PagoPlazoID").Value, dtb) Then
                 dgvFill()
             End If
@@ -36,6 +37,7 @@ Public Class frmPagosPlazos
 
             If m_MaestroID <> 0 Then m_PagosPlazos.Descripcion = m_MaestroID
         Else
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             m_PagosPlazos = CType(sp, spPagosPlazos).Select_Record(GeneralBindingSource(m_Pos).Item("PagoPlazoID"), dtb)
         End If
 
@@ -47,6 +49,7 @@ Public Class frmPagosPlazos
     End Sub
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
     Protected Overrides Sub dgvFill()

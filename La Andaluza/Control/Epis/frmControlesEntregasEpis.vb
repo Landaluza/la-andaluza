@@ -9,6 +9,7 @@ Public Class frmControlesEntregasEpis
         spSelectDgv = "ControlesEntregasEpisSelectDgv"
     End Sub
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 
@@ -44,6 +45,7 @@ Public Class frmControlesEntregasEpis
 
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             If CType(sp, spControlesEntregasEpis).DeleteControlesEntregasEpis(dgvGeneral.CurrentRow.Cells("ControlEntregaEpiID").Value, dtb) Then
                 dgvFill()
             End If
@@ -60,7 +62,7 @@ Public Class frmControlesEntregasEpis
         If TipoAction = ACCION_INSERTAR Then
             'Asignar las propiedades del objeto creado cuyos valores se obtengan en este Form.
         Else
-
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             m_ControlesEntregasEpi = CType(sp, spControlesEntregasEpis).Select_Record(GeneralBindingSource(m_Pos).Item("ControlEntregaEpiID"), dtb)
         End If
 

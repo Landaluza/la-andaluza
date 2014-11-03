@@ -19,6 +19,7 @@ Public Class frmListaParametros
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboListaParametros = CType(sp, spListaParametros).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboListaParametros Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboListaParametros)

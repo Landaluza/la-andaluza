@@ -73,6 +73,7 @@ Public Class frmPaletsContenidos2
     End Sub
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 
@@ -128,6 +129,7 @@ Public Class frmPaletsContenidos2
 
 
     Protected Overrides Sub dgvFill()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
 
         If Not dataSource Is Nothing Then
@@ -208,8 +210,10 @@ Public Class frmPaletsContenidos2
                                   "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 If response = DialogResult.Yes Then
                     Dim m_Pos As Integer = GeneralBindingSource.Position
-                    CType(sp, spPaletsContenidos2).EliminarPaletContenido(GeneralBindingSource(m_Pos).Item("PaletContenidoID"), dtb)
-                    actualizarTrasAccion()
+                    Dim dtb As New BasesParaCompatibilidad.DataBase
+                    If CType(sp, spPaletsContenidos2).EliminarPaletContenido(GeneralBindingSource(m_Pos).Item("PaletContenidoID"), dtb) Then
+                        actualizarTrasAccion()
+                    End If
                 End If
             Catch ex As Exception
                 MessageBox.Show("Error al eliminar", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -223,6 +227,7 @@ Public Class frmPaletsContenidos2
 
     Public Overrides Sub Action(ByVal TipoAction As String)
         System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         Dim m_Pos As Integer = GeneralBindingSource.Position
         If Not Me.padre Is Nothing Then Me.padre.TimerSSCC.Stop()
 

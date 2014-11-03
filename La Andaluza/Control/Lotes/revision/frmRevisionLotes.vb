@@ -36,10 +36,11 @@ Public Class frmRevisionLotes
 
     Private Sub Revisado(sender As Object, e As EventArgs)
         If Not Me.dgvGeneral.CurrentRow Is Nothing Then
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             dtb.PrepararConsulta("update lotes set revisar = null where loteid= @id")
             dtb.AñadirParametroConsulta("@id", Me.dgvGeneral.CurrentRow.Cells("Id").Value.ToString)
 
-            If Me.dtb.Consultar(True) Then
+            If dtb.Consultar(True) Then
                 dgvFill()
             Else
                 MessageBox.Show("No se pudo marcar como revisado", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information)

@@ -23,8 +23,13 @@ Public Class frmArticulosFichasPaletizados1
 
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
-                           "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then CType(sp, spArticulosFichasPaletizados1).ArticulosFichasPaletizados1Delete(dgvGeneral.CurrentRow.Cells("ArticuloFichaPaletizadoID").Value, dtb)
-        dgvFill()
+                           "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+            Dim dtb As New BasesParaCompatibilidad.DataBase
+            If CType(sp, spArticulosFichasPaletizados1).ArticulosFichasPaletizados1Delete(dgvGeneral.CurrentRow.Cells("ArticuloFichaPaletizadoID").Value, dtb) Then
+                dgvFill()
+            End If
+        End If
+
     End Sub
 
 
@@ -37,6 +42,7 @@ Public Class frmArticulosFichasPaletizados1
 
             If m_MaestroID <> 0 Then m_ArticulosFichasPaletizados1.ArticuloID = m_MaestroID
         Else
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             m_ArticulosFichasPaletizados1 = CType(sp, spArticulosFichasPaletizados1).Select_Record(GeneralBindingSource(m_Pos).Item("ArticuloFichaPaletizadoID"), dtb)
         End If
 
@@ -49,6 +55,7 @@ Public Class frmArticulosFichasPaletizados1
     End Sub
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 

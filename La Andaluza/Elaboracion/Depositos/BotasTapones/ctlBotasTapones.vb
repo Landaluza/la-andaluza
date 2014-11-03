@@ -35,9 +35,9 @@ Public Class ctlBotasTapones
         End If
     End Sub
 
-    Public Sub EliminarBotaTapon(ByRef dtb As BasesParaCompatibilidad.DataBase)
-        clsbotTap.Eliminar(dtb)
-    End Sub
+    Public Function EliminarBotaTapon(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        Return clsbotTap.Eliminar(dtb)
+    End Function
 
 
     Public Function devolverBotasTaponesPorDescripcion(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable

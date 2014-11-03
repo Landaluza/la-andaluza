@@ -20,6 +20,7 @@ Public Class frmPersonalCompetencias
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboPersonalCompetencias = CType(sp, spPersonalCompetencias).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboPersonalCompetencias Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboPersonalCompetencias)

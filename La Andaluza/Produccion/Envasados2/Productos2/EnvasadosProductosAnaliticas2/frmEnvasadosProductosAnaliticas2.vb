@@ -36,8 +36,11 @@ Public Class frmEnvasadosProductosAnaliticas2
     Overrides Sub Eliminar()
         If Me.dgvGeneral.RowCount > 0 Then
             If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
-                CType(sp, spEnvasadosProductosAnaliticas2).EnvasadosProductosAnaliticasDelete(dgvGeneral.CurrentRow.Cells("EnvasadoProductoAnaliticaID").Value, dtb)
-                dgvFill()
+                Dim dtb As New BasesParaCompatibilidad.DataBase
+                If CType(sp, spEnvasadosProductosAnaliticas2).EnvasadosProductosAnaliticasDelete(dgvGeneral.CurrentRow.Cells("EnvasadoProductoAnaliticaID").Value, dtb) Then
+                    dgvFill()
+
+                End If
             End If
         End If
     End Sub
@@ -52,6 +55,7 @@ Public Class frmEnvasadosProductosAnaliticas2
 
             If m_MaestroID <> 0 Then m_EnvasadoProductoAnalitica.EnvasadoProductoID = m_MaestroID
         Else
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             m_EnvasadoProductoAnalitica = CType(sp, spEnvasadosProductosAnaliticas2).Select_Record(GeneralBindingSource(m_Pos).Item("EnvasadoProductoAnaliticaID"), dtb)
         End If
 
@@ -63,6 +67,7 @@ Public Class frmEnvasadosProductosAnaliticas2
     End Sub
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 

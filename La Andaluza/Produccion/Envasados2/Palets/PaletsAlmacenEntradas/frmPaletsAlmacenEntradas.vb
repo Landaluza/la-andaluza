@@ -21,6 +21,7 @@ Public Class frmPaletsAlmacenEntradas
     End Sub
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 
@@ -54,6 +55,7 @@ Public Class frmPaletsAlmacenEntradas
 
     Public Overrides Sub Eliminar()
         If Not Me.dgvGeneral.CurrentRow Is Nothing Then
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             If CType(sp, spPaletsAlmacenEntradas).PaletsAlmacenEntradasDelete(dgvGeneral.CurrentRow.Cells("PaletAlmacenEntradaID").Value, dtb) Then
                 dgvFill()
             Else

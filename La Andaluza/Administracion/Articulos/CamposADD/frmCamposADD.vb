@@ -22,9 +22,12 @@ Public Class frmCamposADD
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
                           "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-            CType(sp, spCamposADD).CamposADDDelete(dgvGeneral.CurrentRow.Cells("ID").Value, dtb)
+            Dim dtb As New BasesParaCompatibilidad.DataBase
+            If CType(sp, spCamposADD).CamposADDDelete(dgvGeneral.CurrentRow.Cells("ID").Value, dtb) Then
+                dgvFill()
+            End If
         End If
-        dgvFill()
+
     End Sub
 
 
@@ -37,6 +40,7 @@ Public Class frmCamposADD
 
             If m_MaestroID <> 0 Then m_CampoADD.ArticuloTipoID = m_MaestroID
         Else
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             m_CampoADD = CType(sp, spCamposADD).Select_Record(GeneralBindingSource(m_Pos).Item("ID"), dtb)
         End If
 
@@ -52,6 +56,7 @@ Public Class frmCamposADD
 
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 

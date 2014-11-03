@@ -27,6 +27,7 @@ Public Class frmArticulos_AlmacenNoConforme_seguimiento
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboArticulos_AlmacenNoConforme_seguimiento = CType(sp, spArticulos_AlmacenNoConforme_seguimiento).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboArticulos_AlmacenNoConforme_seguimiento Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboArticulos_AlmacenNoConforme_seguimiento)
@@ -36,6 +37,7 @@ Public Class frmArticulos_AlmacenNoConforme_seguimiento
         End If
     End Sub
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = sp.select_DgvBy(Me.m_MaestroID, dtb)
     End Sub
 

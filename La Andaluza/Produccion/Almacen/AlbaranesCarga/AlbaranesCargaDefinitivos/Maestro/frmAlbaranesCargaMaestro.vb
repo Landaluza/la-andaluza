@@ -14,6 +14,7 @@ Public Class frmAlbaranesCargaMaestro
         dtsAlb = New dtsAlbaranesCargaMaestro.AlbaranesCargaMaestroDataTable
     End Sub
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar("select AlbaranesCargaMaestro.AlbaranCargaMaestroID,AlbaranesCargaMaestro.AlbaranCargaProMaestroID,AlbaranesCargaMaestro.Fecha,AlbaranesCargaMaestro.ClienteID,AlbaranesCargaMaestro.SerieQSID,AlbaranesCargaMaestro.NumeroQS,AlbaranesCargaMaestro.AlmacenSalidaQSID,AlbaranesCargaMaestro.AgenciaID,AlbaranesCargaMaestro.PorteFormaPagoID,AlbaranesCargaMaestro.PorteImporte,AlbaranesCargaMaestro.Matricula,AlbaranesCargaMaestro.Conductor,AlbaranesCargaMaestro.ConductorDNI,AlbaranesCargaMaestro.ResponsableCargaID,AlbaranesCargaMaestro.ResponsableAdministracionID,AlbaranesCargaMaestro.HoraLlegada,AlbaranesCargaMaestro.HoraSalida,AlbaranesCargaMaestro.Observaciones,AlbaranesCargaMaestro.Reserva1,AlbaranesCargaMaestro.Reserva2,AlbaranesCargaMaestro.Reserva3 from AlbaranesCargaMaestro order by fecha asc, NumeroQS asc", False)
     End Sub
 
@@ -139,6 +140,7 @@ Public Class frmAlbaranesCargaMaestro
             response = MessageBox.Show(" Realmente desea eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If response = DialogResult.Yes Then
                 ctlAlb.SetAlbaranCargaMaestroID(dgvGeneral.CurrentRow.Cells(0).Value)
+                Dim dtb As New BasesParaCompatibilidad.DataBase
                 ctlAlb.EliminarAlbaranCargaMaestro(dtb)
                 dgvFill()
             End If

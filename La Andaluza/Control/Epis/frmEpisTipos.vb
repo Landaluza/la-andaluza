@@ -10,6 +10,7 @@ Public Class frmEpisTipos
         spSelectDgv = "EpisTiposSelectDgv"
     End Sub
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 
@@ -44,8 +45,13 @@ Public Class frmEpisTipos
     'End Sub
 
     Overrides Sub Eliminar()
-        If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then CType(sp, spEpisTipos).DeleteEpisTipos(dgvGeneral.CurrentRow.Cells("EpiTipoID").Value, dtb)
-        dgvFill() ' GeneralBindingSource. dataSource = dtb.consultar(spSelectDgv)
+        If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+            Dim dtb As New BasesParaCompatibilidad.DataBase
+            If CType(sp, spEpisTipos).DeleteEpisTipos(dgvGeneral.CurrentRow.Cells("EpiTipoID").Value, dtb) Then
+                dgvFill() ' GeneralBindingSource. dataSource = dtb.consultar(spSelectDgv)
+            End If
+        End If
+
     End Sub
 
 
@@ -57,6 +63,7 @@ Public Class frmEpisTipos
         If TipoAction = ACCION_INSERTAR Then
             'Asignar las propiedades del objeto creado cuyos valores se obtengan en este Form.
         Else
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             m_EpisTipo = CType(sp, spEpisTipos).Select_Record(GeneralBindingSource(m_Pos).Item("EpiTipoID"), dtb)
         End If
 

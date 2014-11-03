@@ -21,6 +21,7 @@ Public Class frmDepositosPorTipo
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboDepositos_TiposDepositos = CType(sp, spDepositos_TiposDepositos).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
         If Not dboDepositos_TiposDepositos Is Nothing Then
             MyBase.newRegForm = CType(New frmEntDepositosPorTIpo(BasesParaCompatibilidad.GridSimpleForm.ACCION_MODIFICAR), BasesParaCompatibilidad.DetailedSimpleForm)

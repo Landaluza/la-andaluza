@@ -25,9 +25,12 @@ Public Class frmCargaNecesidadesJR2Maestro
     Overrides Sub Eliminar()
         'Hay que hacer la eliminacion en cascada
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
-            CType(sp, spCargaNecesidadesJR2Maestro).CargaNecesidadesJRMaestroDelete(dgvGeneral.CurrentRow.Cells("CargaNecesidadesJRMaestroID").Value, dtb)
+            Dim dtb As New BasesParaCompatibilidad.DataBase
+            If CType(sp, spCargaNecesidadesJR2Maestro).CargaNecesidadesJRMaestroDelete(dgvGeneral.CurrentRow.Cells("CargaNecesidadesJRMaestroID").Value, dtb) Then
+                dgvFill()
+            End If
         End If
-        dgvFill()
+
     End Sub
 
 
@@ -39,6 +42,7 @@ Public Class frmCargaNecesidadesJR2Maestro
 
             If m_MaestroID <> 0 Then m_CargaNecesidadesJRMaestro.CargaNecesidadesJRMaestroID = m_MaestroID
         Else
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             m_CargaNecesidadesJRMaestro = CType(sp, spCargaNecesidadesJR2Maestro).Select_Record(GeneralBindingSource(m_Pos).Item("CargaNecesidadesJRMaestroID"), dtb)
         End If
 
@@ -51,6 +55,7 @@ Public Class frmCargaNecesidadesJR2Maestro
 
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dtb.PrepararConsulta(spSelectDgv)
         dataSource = dtb.Consultar
         'dataSource = dtb.Consultar(spSelectDgv, True)

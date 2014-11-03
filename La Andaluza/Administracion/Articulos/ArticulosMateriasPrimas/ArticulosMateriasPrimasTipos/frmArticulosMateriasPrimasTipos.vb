@@ -23,6 +23,7 @@ Public Class frmArticulosMateriasPrimasTipos
 
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", " Eliminar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             If CType(sp, spArticulosMateriasPrimasTipos).ArticulosMateriasPrimasTiposDelete(dgvGeneral.CurrentRow.Cells("MateriaPrimaTipoID").Value, dtb) Then
                 dgvFill()
             End If
@@ -39,6 +40,7 @@ Public Class frmArticulosMateriasPrimasTipos
 
             If m_MaestroID <> 0 Then m_ArticuloMateriaPrimaTipo.MateriaPrimaTipoID = m_MaestroID
         Else
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             m_ArticuloMateriaPrimaTipo = CType(sp, spArticulosMateriasPrimasTipos).Select_Record(GeneralBindingSource(m_Pos).Item("MateriaPrimaTipoID"), dtb)
         End If
 
@@ -52,6 +54,7 @@ Public Class frmArticulosMateriasPrimasTipos
     End Sub
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dtb.PrepararConsulta(spSelectDgv)
         dataSource = dtb.Consultar
         'dataSource = dtb.Consultar(spSelectDgv, True)

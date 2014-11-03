@@ -21,6 +21,7 @@ Public Class frmTipos_contratos
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboTipos_contratos = CType(sp, spTipos_contratos).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboTipos_contratos Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboTipos_contratos)

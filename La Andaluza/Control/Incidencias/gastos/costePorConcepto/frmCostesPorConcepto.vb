@@ -20,6 +20,7 @@ Public Class frmCostesPorConcepto
     End Sub
 
    Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboCostesPorConcepto = CType(sp, spCostesPorConcepto).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
        If Not dboCostesPorConcepto Is Nothing Then
            MyBase.newRegForm = ctype(New frmEntCostesPorConcepto(BasesParaCompatibilidad.GridSimpleForm.ACCION_MODIFICAR), BasesParaCompatibilidad.DetailedSimpleForm)

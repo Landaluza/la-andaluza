@@ -47,6 +47,7 @@ Public Class frmEnvasados2
             If Not DateSelected.Equals(MonthCalendar.SelectionStart) Then
                 DateSelected = MonthCalendar.SelectionRange.Start
             End If
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             m_Envasado.EnvasadoID = CType(sp, spEnvasados2).GetEnvasadoIDPorFecha(m_Envasado.Fecha, dtb)
             If m_Envasado.EnvasadoID <> 0 Then
                 m_Envasado = CType(sp, spEnvasados2).Select_Record(m_Envasado.EnvasadoID, dtb)
@@ -69,6 +70,7 @@ Public Class frmEnvasados2
         MonthCalendar.BoldedDates = Nothing
 
         Dim i As Integer = 0
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         Dim dtfechas As DataTable = dtb.Consultar(spSelectDgv, True)
 
         While i < dtfechas.Rows.Count 'And Convert.ToDateTime(dtfechas.Rows(i).Item("Fecha")) <= Now.Date
@@ -86,6 +88,7 @@ Public Class frmEnvasados2
         If Not DateSelected.Equals(MonthCalendar.SelectionStart) Then
             DateSelected = MonthCalendar.SelectionRange.Start
         End If
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         m_Envasado.EnvasadoID = CType(sp, spEnvasados2).GetEnvasadoIDPorFecha(m_Envasado.Fecha, dtb)
         If m_Envasado.EnvasadoID <> 0 Then
             Modificar()

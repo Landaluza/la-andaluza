@@ -22,6 +22,7 @@ Public Class frmDDDPlanes
     End Sub
 
     Private Sub modify_Before() Handles MyBase.BeforeModify
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dboDDDPlanes = CType(sp, spDDDPlanes).Select_Record(dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
         If Not dboDDDPlanes Is Nothing Then
             newRegForm.SetDataBussinesObject(Me.dboDDDPlanes)

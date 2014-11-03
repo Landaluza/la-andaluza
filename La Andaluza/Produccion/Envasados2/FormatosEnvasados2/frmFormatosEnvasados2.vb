@@ -45,6 +45,7 @@ Public Class frmFormatosEnvasados2
         Try
             Dim response As DialogResult = DialogResult.Cancel
             Dim multiopcion As Boolean
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             If CType(sp, spFormatosEnvasados2).isDeleteAllowed(dgvGeneral.CurrentRow.Cells("FormatoEnvasadoID").Value, dtb) Then
                 response = MessageBox.Show("El formato seleccionado se puede eliminar completamente" & Environment.NewLine & _
                                     "(sus palets estan entre los ultimos 15 producidos o esta vacio)" & Environment.NewLine & _
@@ -60,17 +61,21 @@ Public Class frmFormatosEnvasados2
                 multiopcion = False
             End If
 
+
+
             If response = DialogResult.Yes And multiopcion Then
                 System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
-                CType(sp, spFormatosEnvasados2).DeleteFormatosEnvasados2(dgvGeneral.CurrentRow.Cells("FormatoEnvasadoID").Value, True, dtb)
-                dgvFill()
+                If CType(sp, spFormatosEnvasados2).DeleteFormatosEnvasados2(dgvGeneral.CurrentRow.Cells("FormatoEnvasadoID").Value, True, dtb) Then
+                    dgvFill()
+                End If
             ElseIf (response = DialogResult.No And multiopcion = True) Or (response = DialogResult.Yes And multiopcion = False) Then
                 System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
-                CType(sp, spFormatosEnvasados2).DeleteFormatosEnvasados2(dgvGeneral.CurrentRow.Cells("FormatoEnvasadoID").Value, False, dtb)
-                dgvFill()
-            End If
+                If CType(sp, spFormatosEnvasados2).DeleteFormatosEnvasados2(dgvGeneral.CurrentRow.Cells("FormatoEnvasadoID").Value, False, dtb) Then
+                    dgvFill()
+                End If
+                End If
 
-            System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.Default
+                System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.Default
         Catch ex As Exception
             MessageBox.Show("Error al eliminar", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -94,6 +99,8 @@ Public Class frmFormatosEnvasados2
             Else
                 Dim spAux As New spempleados_formatosEnvasados
                 Dim result As DialogResult = DialogResult.OK
+                Dim dtb As New BasesParaCompatibilidad.DataBase
+
                 If spAux.hay_empleados_pendientes(Me.m_Envasado.EnvasadoID, Me.linea, dtb) Then
                     Dim frm As New frmEntPersonalEnvasadoFinArticulo(Me.m_Envasado.EnvasadoID, Me.linea)
                     BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
@@ -136,6 +143,7 @@ Public Class frmFormatosEnvasados2
     End Sub
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 

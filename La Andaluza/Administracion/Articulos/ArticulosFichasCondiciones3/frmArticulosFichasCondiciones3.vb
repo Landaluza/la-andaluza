@@ -58,6 +58,7 @@ Public Class frmArticulosFichasCondiciones3
     Overrides Sub Eliminar()
         If MessageBox.Show(" ¿Realmente quieres eliminar este registro ? ", _
                           "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             If CType(sp, spArticulosFichasCondiciones3).ArticulosFichasCondiciones3Delete((dgvGeneral.CurrentRow.Cells("ArticuloFichaCondicionID").Value), dtb) Then
                 dgvFill()
             End If
@@ -71,6 +72,7 @@ Public Class frmArticulosFichasCondiciones3
         If TipoAction = ACCION_INSERTAR Then
             If m_MaestroID <> 0 Then m_ArticulosFichasCondiciones3.ArticuloID = m_MaestroID
         Else
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             m_ArticulosFichasCondiciones3 = CType(sp, spArticulosFichasCondiciones3).Select_Record(GeneralBindingSource(m_Pos).Item("ArticuloFichaCondicionID"), dtb)
         End If
 
@@ -83,6 +85,7 @@ Public Class frmArticulosFichasCondiciones3
     End Sub
 
     Protected Overrides Sub cargar_datos()
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
 

@@ -39,7 +39,7 @@ Public Class ctlCargaNecesidadesJRDetalles
 
  
 
-    Public Sub EliminarCargaNecesidadesJRDetalle(ByRef dtb As BasesParaCompatibilidad.DataBase)
-        clsCar.Eliminar(dtb)
-    End Sub
+    Public Function EliminarCargaNecesidadesJRDetalle(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        Return clsCar.Eliminar(dtb)
+    End Function
 End Class
