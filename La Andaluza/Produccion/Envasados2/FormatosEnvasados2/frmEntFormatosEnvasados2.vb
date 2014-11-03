@@ -55,7 +55,7 @@ Public Class frmEntFormatosEnvasados2
 
     Public Sub New(ByVal modo As String, ByVal CantidadEnvasada As Integer, ByVal m_dbo As DBO_FormatosEnvasados, ByVal linea As Integer)
         Me.New(modo, linea)
-        InitializeComponent()
+
         m_CantidadEnvasada = CantidadEnvasada
         m_DBO_FormatoEnvasado = m_dbo
 
@@ -157,10 +157,12 @@ Public Class frmEntFormatosEnvasados2
             'Me.deshabilitarAcciones()
             Me.tpgProduccion.Enabled = False
             Me.tpgProduccion.Visible = False
+            SplitContainer1.Panel1Collapsed = True
+            SplitContainer1.Panel2Collapsed = False
 
             frmPersonal = New frmEntPersonalEnvasado(Me.m_DBO_Envasado.LineaID, Me.m_DBO_Envasado.EnvasadoID, True)
             frmPersonal.Formato_Envasado = Me.m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID
-            frmPersonal.ShowDialog()
+            Engine_LA.FormEnPestaña(frmPersonal, Me.SplitContainer1.Panel2)
         End If
 
         System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.Default
@@ -293,6 +295,7 @@ Public Class frmEntFormatosEnvasados2
         If cargar Then
             SetValores()
             Me.tpgProduccion.Visible = True
+            cargar_formularios()
             Me.añadirFormularios()
             Me.habilitarAcciones()
             Me.añadirMenu()
@@ -363,7 +366,10 @@ Public Class frmEntFormatosEnvasados2
                 Me.cboTipoFormatoID.Enabled = False
                 Me.cboTipoFormatoLinea.Enabled = False
                 Me.cboTipoProducto.Enabled = False
+
             End If
+            SplitContainer1.Panel1Collapsed = False
+            SplitContainer1.Panel2Collapsed = True
         End If
 
         Me.Text = Me.Text & " | " & cboTipoFormatoID.Text
