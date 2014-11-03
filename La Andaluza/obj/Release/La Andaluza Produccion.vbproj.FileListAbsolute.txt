@@ -1306,6 +1306,7 @@ C:\Users\Migue\Desktop\git\La andaluza\La Andaluza\obj\Release\La Andaluza.exe.m
 C:\Users\Migue\Desktop\git\La andaluza\La Andaluza\obj\Release\La Andaluza.application
 C:\Users\Migue\Desktop\git\La andaluza\La Andaluza\obj\Release\La Andaluza.exe
 C:\Users\Migue\Desktop\git\La andaluza\La Andaluza\obj\Release\La Andaluza.pdb
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza.pdb
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Bases\ZLibrerias\wiaaut.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\La Andaluza.exe.config
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\La Andaluza.exe.manifest
@@ -1970,4 +1971,3 @@ C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andalu
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza.exe.manifest
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza.application
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza.exe
-C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza.pdb

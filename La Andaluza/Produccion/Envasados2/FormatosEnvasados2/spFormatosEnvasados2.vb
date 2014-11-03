@@ -139,40 +139,70 @@ Class spFormatosEnvasados2
     End Function
 
     Public Function DeleteFormatosEnvasados2(ByVal FormatoEnvasadoID As Int32, ByVal borradoCompleto As Boolean, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
-        dtb.Conectar()
+        ' dtb.Conectar()
+
+        'Try
+        'Dim response As DialogResult = DialogResult.Cancel
+        ''       ALTER PROCEDURE [dbo].[FormatosEnvasados4Delete] 
+        '' @OldFormatoEnvasadoID int
+        '' ,@usuarioModificacion int
+        '' ,@fechaModificacion smalldatetime
+        '' ,@usuarioNombre varchar(99)
+        '' ,@borradoCompleto int
+        '',@ReturnValue int OUTPUT
+        'Dim deleteProcedure As String = "[dbo].[FormatosEnvasados4Delete] @OldFormatoEnvasadoID, @usuarioModificacion, @fechaModificacion, @usuarioNombre, @borradoCompleto"
+        'Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
+        'deleteCommand.CommandType = CommandType.StoredProcedure
+        'deleteCommand.Parameters.AddWithValue("@OldFormatoEnvasadoID", FormatoEnvasadoID)
+        'deleteCommand.Parameters.AddWithValue("@fechaModificacion", System.DateTime.Now)
+
+        'deleteCommand.Parameters.AddWithValue("@borradoCompleto", If(borradoCompleto = True, 1, 0))
+
+        'deleteCommand.Parameters.AddWithValue("@usuarioModificacion", BasesParaCompatibilidad.Config.User)
+        'Dim m_usuario As New DBO_Usuarios
+        'Dim aux As New spUsuarios
+        'm_usuario = aux.Select_Record(BasesParaCompatibilidad.Config.User, dtb)
+        'deleteCommand.Parameters.AddWithValue("@usuarioNombre", m_usuario.Usuario)
+        'deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
+        'deleteCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
+
+        'deleteCommand.ExecuteNonQuery()
+
+        'Dim count As Integer = System.Convert.ToInt32(deleteCommand.Parameters("@ReturnValue").Value)
+        'If count > 0 Then
+        '    Return True
+        'Else
+        '    Return False
+        'End If
+        dtb.EmpezarTransaccion()
 
         Try
             Dim response As DialogResult = DialogResult.Cancel
 
-            Dim deleteProcedure As String = "[dbo].[FormatosEnvasados4Delete]"
-            Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.comando(deleteProcedure)
-            deleteCommand.CommandType = CommandType.StoredProcedure
-            deleteCommand.Parameters.AddWithValue("@OldFormatoEnvasadoID", FormatoEnvasadoID)
-            deleteCommand.Parameters.AddWithValue("@fechaModificacion", System.DateTime.Now)
+            Dim deleteProcedure As String = "[dbo].[FormatosEnvasados5Delete] @OldFormatoEnvasadoID, @usuarioModificacion, @fechaModificacion, @usuarioNombre, @borradoCompleto"
+            dtb.PrepararConsulta(deleteProcedure)
+            dtb.AñadirParametroConsulta("@OldFormatoEnvasadoID", FormatoEnvasadoID)
+            dtb.AñadirParametroConsulta("@fechaModificacion", System.DateTime.Now)
 
-            deleteCommand.Parameters.AddWithValue("@borradoCompleto", If(borradoCompleto = True, 1, 0))
+            dtb.AñadirParametroConsulta("@borradoCompleto", If(borradoCompleto = True, 1, 0))
 
-            deleteCommand.Parameters.AddWithValue("@usuarioModificacion", BasesParaCompatibilidad.Config.User)
+            dtb.AñadirParametroConsulta("@usuarioModificacion", BasesParaCompatibilidad.Config.User)
             Dim m_usuario As New DBO_Usuarios
             Dim aux As New spUsuarios
             m_usuario = aux.Select_Record(BasesParaCompatibilidad.Config.User, dtb)
-            deleteCommand.Parameters.AddWithValue("@usuarioNombre", m_usuario.Usuario)
-            deleteCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
-            deleteCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
+            dtb.AñadirParametroConsulta("@usuarioNombre", m_usuario.Usuario)
 
-            deleteCommand.ExecuteNonQuery()
-
-            Dim count As Integer = System.Convert.ToInt32(deleteCommand.Parameters("@ReturnValue").Value)
-            If count > 0 Then
+            If dtb.Consultar(True) Then
+                dtb.TerminarTransaccion()
                 Return True
             Else
+                dtb.CancelarTransaccion()
                 Return False
             End If
         Catch ex As System.Data.SqlClient.SqlException
+            dtb.CancelarTransaccion()
             MessageBox.Show("Error en deleteFormatosEnvasados2 " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
-        Finally
-            dtb.Desconectar()
         End Try
     End Function
 
