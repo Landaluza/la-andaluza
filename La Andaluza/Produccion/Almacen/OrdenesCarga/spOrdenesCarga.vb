@@ -78,7 +78,7 @@ Class spOrdenesCarga
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            dtb.Conectar()
+            dtb.Desconectar()
         End Try
     End Function
 
@@ -109,7 +109,7 @@ Class spOrdenesCarga
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            dtb.Conectar()
+            dtb.Desconectar()
         End Try
     End Function
 
@@ -156,7 +156,7 @@ Class spOrdenesCarga
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            dtb.Conectar()
+            dtb.Desconectar()
         End Try
     End Function
 

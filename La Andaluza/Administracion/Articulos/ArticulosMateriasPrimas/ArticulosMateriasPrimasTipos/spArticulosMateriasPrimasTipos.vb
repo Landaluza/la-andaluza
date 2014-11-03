@@ -31,7 +31,7 @@ Class spArticulosMateriasPrimasTipos
         Catch ex As System.Data.SqlClient.SqlException
 
         Finally
-           dtb.Conectar()
+            dtb.Desconectar()
         End Try
         Return DBO_ArticulosMateriasPrimasTipos
     End Function
@@ -60,7 +60,7 @@ Class spArticulosMateriasPrimasTipos
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-           dtb.Conectar()
+            dtb.Desconectar()
         End Try
     End Function
 
@@ -91,7 +91,7 @@ Class spArticulosMateriasPrimasTipos
             MessageBox.Show("Error en UpdateArticulosMateriasPrimasTipos" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-           dtb.Conectar()
+            dtb.Desconectar()
         End Try
     End Function
 
@@ -115,7 +115,7 @@ Class spArticulosMateriasPrimasTipos
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-           dtb.Conectar()
+            dtb.Desconectar()
         End Try
     End Function
 

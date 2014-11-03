@@ -26,7 +26,7 @@ Public Class spPaletsMovimiento
             reader.Close()
         Catch ex As System.Data.SqlClient.SqlException
         Finally
-            dtb.Conectar()
+            dtb.Desconectar()
         End Try
         Return dt
     End Function

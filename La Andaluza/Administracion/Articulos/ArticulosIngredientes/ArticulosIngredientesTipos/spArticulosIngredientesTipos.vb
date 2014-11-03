@@ -62,7 +62,7 @@ Class spArticulosIngredientesTipos
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            dtb.Conectar()
+            dtb.Desconectar()
         End Try
     End Function
 
@@ -90,7 +90,7 @@ Class spArticulosIngredientesTipos
             MessageBox.Show("Error en UpdateArticulosIngredientesTipos" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            dtb.Conectar()
+            dtb.Desconectar()
         End Try
     End Function
 
@@ -203,7 +203,7 @@ Class spArticulosIngredientesTipos
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            dtb.Conectar()
+            dtb.Desconectar()
         End Try
     End Function
 
@@ -231,7 +231,7 @@ Class spArticulosIngredientesTipos
             MessageBox.Show("Error en UpdateArticulosIngredientesTipos" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            dtb.Conectar()
+            dtb.Desconectar()
         End Try
     End Function
 

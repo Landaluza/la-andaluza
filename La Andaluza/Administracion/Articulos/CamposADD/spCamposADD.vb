@@ -33,7 +33,7 @@ Class spCamposADD
         Catch ex As System.Data.SqlClient.SqlException
 
         Finally
-           dtb.Conectar()
+            dtb.Desconectar()
         End Try
         Return DBO_CamposADD
     End Function
@@ -63,7 +63,7 @@ Class spCamposADD
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-           dtb.Conectar()
+            dtb.Desconectar()
         End Try
     End Function
 
@@ -93,7 +93,7 @@ Class spCamposADD
             MessageBox.Show("Error en UpdateCamposADD" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString (ex.GetType))
             Return False
         Finally
-           dtb.Conectar()
+            dtb.Desconectar()
         End Try
     End Function
 
@@ -178,7 +178,7 @@ Class spCamposADD
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-           dtb.Conectar()
+            dtb.Desconectar()
         End Try
     End Function
 

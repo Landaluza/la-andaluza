@@ -62,7 +62,7 @@ Public Class spInformePedidos
         Catch ex As System.Data.SqlClient.SqlException
             Throw
         Finally
-            dtb.Conectar()
+            dtb.Desconectar()
         End Try
     End Sub
 

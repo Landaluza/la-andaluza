@@ -43,8 +43,9 @@ Public Class spCargasNecesidades
                                            ByVal ValorFechaModificacion As Date, _
                                            ByVal ValorUsuarioModificacion As Integer, _
                                            ByVal ValorServido As Boolean, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.Conectar()
         Try
-            dtb.Conectar()
+
             'Dim cmd As System.Data.SqlClient.SqlCommand
 
             If Action = _Insert Then
@@ -93,8 +94,8 @@ Public Class spCargasNecesidades
 
     Public Function spMaxCargaNecesidadesMaestro(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Dim MaxID As Integer = 0
+        dtb.Conectar()
         Try
-            dtb.Conectar()
             Dim cmd As System.Data.SqlClient.SqlCommand = dtb.Comando("MaxCargaNecesidadesMaestro")
             MaxID = (cmd.ExecuteScalar())
 

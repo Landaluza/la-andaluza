@@ -68,7 +68,7 @@ Class spArticulosOrdenEnvasado2
         Catch ex As System.Data.SqlClient.SqlException
             messagebox.show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
-            dtb.Conectar()
+            dtb.Desconectar()
         End Try
         Return DBO_ArticulosOrdenEnvasado
     End Function
@@ -99,7 +99,7 @@ Class spArticulosOrdenEnvasado2
             messagebox.show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         Finally
-            dtb.Conectar()
+            dtb.Desconectar()
         End Try
     End Function
 
@@ -130,7 +130,7 @@ Class spArticulosOrdenEnvasado2
             MessageBox.Show("Error en UpdateArticulosOrdenEnvasado" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            dtb.Conectar()
+            dtb.Desconectar()
         End Try
     End Function
 
@@ -245,7 +245,7 @@ Class spArticulosOrdenEnvasado2
             messagebox.show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         Finally
-            dtb.Conectar()
+            dtb.Desconectar()
         End Try
     End Function
 

@@ -60,7 +60,7 @@ Class spTurnosTrabajo
         Catch ex As System.Data.SqlClient.SqlException
 
         Finally
-            dtb.Conectar()
+            dtb.Desconectar()
         End Try
         Return DBO_TurnosTrabajo
     End Function
@@ -89,7 +89,7 @@ Class spTurnosTrabajo
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            dtb.Conectar()
+            dtb.Desconectar()
         End Try
     End Function
 
@@ -119,7 +119,7 @@ Class spTurnosTrabajo
             MessageBox.Show("Error en UpdateTurnosTrabajo" & Environment.NewLine & Environment.NewLine & ex.Message, Convert.ToString(ex.GetType))
             Return False
         Finally
-            dtb.Conectar()
+            dtb.Desconectar()
         End Try
     End Function
 
@@ -229,7 +229,7 @@ Class spTurnosTrabajo
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-           dtb.Conectar()
+            dtb.Desconectar()
         End Try
     End Function
 

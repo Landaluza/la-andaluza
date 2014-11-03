@@ -23,7 +23,7 @@ Public Class spAutorizacion
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-            dtb.Conectar()
+            dtb.Desconectar()
         End Try
         Return If(resultado > 0, True, False)
     End Function
