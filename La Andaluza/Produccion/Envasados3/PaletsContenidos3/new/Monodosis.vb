@@ -253,11 +253,11 @@ Public Class Monodosis
         Dim dbo_MovimientoDB As New spPaletsMovimiento
         Dim paletNC As Integer
         Try
-            paletNC = spPalet.No_conforme_por_formato(dboFormato.TipoFormatoEnvasadoID, trans)
+            paletNC = spPalet.No_conforme_por_formato(dboFormato.TipoFormatoEnvasadoID, dtb)
         Catch ex As Exception
             Throw New Exception("No existe palet no conforme para este producto. Contactar con control.")
         End Try
-        Dim m_paletNC As DBO_PaletsProducidos = spPalet.Select_Record(paletNC)
+        Dim m_paletNC As DBO_PaletsProducidos = spPalet.Select_Record(paletNC, dtb)
         Dim ultimoMovimiento As Integer
 
         If m_palet.Id_Estado <> 3 Then

@@ -244,8 +244,8 @@ Public Class frmEntPaletsProducidos
                 If MessageBox.Show("¿Desea imprimir etiqueta?", "Etiqueta palet " & Me.m_DBO_PaletsProducidos.SCC, _
                                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
                     If spp.Etiquetar(Me.m_DBO_PaletsProducidos.ID, dtb) Then
-                        'Dim frm As New frmEtiqueta0(Me.m_DBO_PaletProducido.PaletProducidoID, False)
-                        'frm.Show()
+                        Dim frm As New frmEtiqueta0(Me.m_DBO_PaletsProducidos.ID, False)
+                        frm.Show()
                     Else
                         MessageBox.Show("No se pudo imprimir la etiqueta, vuelva a intentarlo manualmente", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     End If

@@ -6621,7 +6621,7 @@
     <None Include="Bases\ZLibrerias\InformesCalidad.dll" />
     <None Include="Bases\ZLibrerias\Envasados entre fechas.dll" />
     <None Include="Bases\ZLibrerias\BarcodeLib.dll" />
-    <Content Include="Bases\ZLibrerias\BasesParaCompatibilidad.dll" />
+    <None Include="Bases\ZLibrerias\BasesParaCompatibilidad.dll" />
     <Content Include="Resources\window_new.ico" />
     <Content Include="Resources\window_new_3.ico" />
     <None Include="Resources\text-x-makefile.png" />
