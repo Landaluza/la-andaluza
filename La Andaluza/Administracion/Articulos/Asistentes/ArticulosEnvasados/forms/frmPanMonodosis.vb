@@ -75,7 +75,8 @@
     Public Function grabarDatos(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean Implements wizardable.grabarDatos
         If Me.mododeapertura = BasesParaCompatibilidad.DetailedSimpleForm.INSERCION Then
             If Me.asistente Then
-                Me.dbo.ArticuloId = dtb.Consultar("select max(articuloid) from articulos1", True).Rows(0).Item(0)
+                dtb.PrepararConsulta("select max(articuloid) from articulos1")
+                Me.dbo.ArticuloId = dtb.Consultar().Rows(0).Item(0)
             End If
 
             'guardar tipoformato

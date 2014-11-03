@@ -121,7 +121,10 @@ Public Class frmWstepArticuloSecundario
             If Me.Enabled Then
 
                 'Dim m_DBO_TiposFormatos1 As New DBO_ArticulosEnvasadosHistorico
-                If Me.m_DBO_ArticulosEnvasesSecundario.ID = Nothing Then Me.m_DBO_ArticulosEnvasesSecundario.ArticuloID = dtb.Consultar("select max(articuloID) from Articulos1", True).Rows(0).Item(0)
+                If Me.m_DBO_ArticulosEnvasesSecundario.ID = Nothing Then
+                    dtb.PrepararConsulta("select max(articuloID) from Articulos1")
+                    Me.m_DBO_ArticulosEnvasesSecundario.ArticuloID = dtb.Consultar().Rows(0).Item(0)
+                End If
                 'If Me.m_DBO_TiposFormatos1.TipoFormatoID = Nothing Then
                 '    Dim spt As New spArticulosEnvasadosHistoricos
                 '    m_DBO_TiposFormatos1.TipoFormatoID = spt.seleccionar_ultimo_registro(dtb)

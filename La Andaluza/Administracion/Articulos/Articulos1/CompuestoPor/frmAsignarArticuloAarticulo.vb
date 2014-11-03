@@ -20,10 +20,12 @@ Public Class frmAsignarArticuloAarticulo
         Dim dt As DataTable
 
         If Me.AsignarSecundario Then
-            dt = dtb.Consultar("select descripcionLa, articulos1.articuloid, envasesecundarioID from articulos1, articulosenvasessecundarios where articulosenvasessecundarios.articuloid = articulos1.articuloID and articulotpoid = 9 ", True)
+            dtb.PrepararConsulta("select descripcionLa, articulos1.articuloid, envasesecundarioID from articulos1, articulosenvasessecundarios where articulosenvasessecundarios.articuloid = articulos1.articuloID and articulotpoid = 9 ")
         Else
-            dt = dtb.Consultar("select descripcionLa, articulos1.articuloid from articulos1 where articulotpoid = 8 ", True)
+            dtb.PrepararConsulta("select descripcionLa, articulos1.articuloid from articulos1 where articulotpoid = 8 ")
         End If
+
+        dt = dtb.Consultar()
 
         If Not dt Is Nothing Then
             Me.DataGridView1.DataSource = dt
