@@ -25,7 +25,7 @@ Public Class ctlLotes
     End Function
 
     Public Sub DevolverMuestrasAnaliticas(ByRef dtb As BasesParaCompatibilidad.DataBase, ByRef cbo As ComboBox)
-        cbo.mam_DataSource(clsLot.DevolverMuestrasAnaliticas(dtb), False)
+        cbo.mam_DataSource(clsLot.DevolverMuestrasAnaliticas(dtb), True, "")
     End Sub
 
     Public Sub setLoteID(ByVal LoteID As Integer)

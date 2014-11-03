@@ -48,10 +48,10 @@ Public Class FrmEntLotes
 
 
     Public Sub New()
-
+        MyBase.New()
         InitializeComponent()
 
-        dtb = New BasesParaCompatibilidad.DataBase()
+        'dtb = New BasesParaCompatibilidad.DataBase()
         sp = New spLotes1
         Me.dtsMue = New dtsLotes.LotesDataTable
         Me.dtsCompuestoPor = New dtsLotesComponentes.LotesComponentesDataTable
