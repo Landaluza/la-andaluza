@@ -49,7 +49,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>482</ApplicationRevision>
+    <ApplicationRevision>486</ApplicationRevision>
     <ApplicationVersion>2014.7.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -2242,6 +2242,36 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Administracion\Articulos\Ventas\Grafica.vb" />
+    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\frmEntPaletsProducidos2.Designer.vb">
+      <DependentUpon>frmEntPaletsProducidos2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\frmEntPaletsProducidos2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\frmPaletsProducidos2.Designer.vb">
+      <DependentUpon>frmPaletsProducidos2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\frmPaletsProducidos2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\PaletsContenidos2\frmEntPaletsContenidos2.Designer.vb">
+      <DependentUpon>frmEntPaletsContenidos2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\PaletsContenidos2\frmEntPaletsContenidos2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\PaletsContenidos2\frmPaletsContenidos2.Designer.vb">
+      <DependentUpon>frmPaletsContenidos2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\PaletsContenidos2\frmPaletsContenidos2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\PaletsEntAutoGuardado.Designer.vb">
+      <DependentUpon>PaletsEntAutoGuardado.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\PaletsEntAutoGuardado.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Produccion\Envasados2\FormatosEnvasados2\frmEntFormatosEnvasados2.Designer.vb">
       <DependentUpon>frmEntFormatosEnvasados2.vb</DependentUpon>
     </Compile>
@@ -3401,18 +3431,6 @@
     </Compile>
     <Compile Include="Produccion\Envasados2\EnvasadosProductosArticulos\spEnvasadosProductosArticulos.vb" />
     <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\DBO_PaletsProducidos2.vb" />
-    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\frmEntPaletsProducidos2.Designer.vb">
-      <DependentUpon>frmEntPaletsProducidos2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\frmEntPaletsProducidos2.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\frmPaletsProducidos2.Designer.vb">
-      <DependentUpon>frmPaletsProducidos2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\frmPaletsProducidos2.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\PaletsContenidos2\frmContenidosDetallesMonodosis2.Designer.vb">
       <DependentUpon>frmContenidosDetallesMonodosis2.vb</DependentUpon>
     </Compile>
@@ -3420,25 +3438,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\PaletsContenidos2\DBO_PaletsContenidos2.vb" />
-    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\PaletsContenidos2\frmEntPaletsContenidos2.Designer.vb">
-      <DependentUpon>frmEntPaletsContenidos2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\PaletsContenidos2\frmEntPaletsContenidos2.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\PaletsContenidos2\frmPaletsContenidos2.Designer.vb">
-      <DependentUpon>frmPaletsContenidos2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\PaletsContenidos2\frmPaletsContenidos2.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\PaletsContenidos2\spPaletsContenidos2.vb" />
-    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\PaletsEntAutoGuardado.Designer.vb">
-      <DependentUpon>PaletsEntAutoGuardado.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\PaletsEntAutoGuardado.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\spPaletsProducidos2.vb" />
     <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Resumen\DBO_ResumenFormatosEnvasados.vb" />
     <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Resumen\frmResumen.Designer.vb">
@@ -5467,6 +5467,21 @@
     <EmbeddedResource Include="Produccion\Envasados2\EnvasadosProductosArticulos\new\frmEnvasadosProductosArticulos_NO_USAR.resx">
       <DependentUpon>frmEnvasadosProductosArticulos_NO_USAR.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\frmEntPaletsProducidos2.resx">
+      <DependentUpon>frmEntPaletsProducidos2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\frmPaletsProducidos2.resx">
+      <DependentUpon>frmPaletsProducidos2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\PaletsContenidos2\frmEntPaletsContenidos2.resx">
+      <DependentUpon>frmEntPaletsContenidos2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\PaletsContenidos2\frmPaletsContenidos2.resx">
+      <DependentUpon>frmPaletsContenidos2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\PaletsEntAutoGuardado.resx">
+      <DependentUpon>PaletsEntAutoGuardado.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Produccion\Envasados2\FormatosEnvasados2\frmEntFormatosEnvasados2.resx">
       <DependentUpon>frmEntFormatosEnvasados2.vb</DependentUpon>
     </EmbeddedResource>
@@ -5923,23 +5938,8 @@
     <EmbeddedResource Include="Produccion\Envasados2\EnvasadosProductosArticulos\frmEntEnvasadosProductosArticulos.resx">
       <DependentUpon>frmEntEnvasadosProductosArticulos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\frmEntPaletsProducidos2.resx">
-      <DependentUpon>frmEntPaletsProducidos2.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\frmPaletsProducidos2.resx">
-      <DependentUpon>frmPaletsProducidos2.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\PaletsContenidos2\frmContenidosDetallesMonodosis2.resx">
       <DependentUpon>frmContenidosDetallesMonodosis2.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\PaletsContenidos2\frmEntPaletsContenidos2.resx">
-      <DependentUpon>frmEntPaletsContenidos2.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\PaletsContenidos2\frmPaletsContenidos2.resx">
-      <DependentUpon>frmPaletsContenidos2.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\PaletsEntAutoGuardado.resx">
-      <DependentUpon>PaletsEntAutoGuardado.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Produccion\Envasados2\FormatosEnvasados2\Resumen\frmResumen.resx">
       <DependentUpon>frmResumen.vb</DependentUpon>

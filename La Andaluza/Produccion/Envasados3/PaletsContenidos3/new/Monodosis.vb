@@ -36,7 +36,8 @@ Public Class Monodosis
         ComprobarCantidadesEncajado(dbo_movimiento, m_PaletProducidoOrigen, m_PaletProducidoDestino, _
                                     True, TipoFormatoEnvasadoID, dtb)
         'Movimiento del palets Origen
-        dbo_movimiento.ContenidoDestinoID = CType(dtb.Consultar("select max(paletcontenidoid) from paletscontenidos", False).Rows(0).Item(0), Integer)
+        dtb.PrepararConsulta("select max(paletcontenidoid) from paletscontenidos")
+        dbo_movimiento.ContenidoDestinoID = CType(dtb.Consultar().Rows(0).Item(0), Integer)
         spPMovimientos.Add(dbo_movimiento, dtb)
 
         Dim fecha As String = DateTime.Now.Day & "/" & DateTime.Now.Month & "/" & DateTime.Now.Year
@@ -216,7 +217,8 @@ Public Class Monodosis
             dbo_movimiento.Cliente = Nothing
             dbo_movimiento.Cliente_IsDBNull = True
             'dbo_movimiento.Tipo = 5
-            dbo_movimiento.ContenidoDestinoID = CType(dtb.Consultar("select max(paletcontenidoid) from paletscontenidos", False).Rows(0).Item(0), Integer)
+            dtb.PrepararConsulta("select max(paletcontenidoid) from paletscontenidos")
+            dbo_movimiento.ContenidoDestinoID = CType(dtb.Consultar().Rows(0).Item(0), Integer)
             dbo_movimiento.PaletID = m_palet.ID
             dbo_MovimientoDB.Add(dbo_movimiento, dtb)
 

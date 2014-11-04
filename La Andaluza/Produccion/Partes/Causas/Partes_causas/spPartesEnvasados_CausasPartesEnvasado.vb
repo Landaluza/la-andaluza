@@ -33,7 +33,8 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Function
 
     Public Function seleccionarUltimoRegistro(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
-        Return dtb.Consultar("select max(id) from PartesEnvasados_CausasPartesEnvasado", False).Rows(0).Item(0)
+        dtb.PrepararConsulta("select max(id) from PartesEnvasados_CausasPartesEnvasado")
+        Return dtb.Consultar().Rows(0).Item(0)
     End Function
 
     Function isNoConforme(ByVal parteId As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean

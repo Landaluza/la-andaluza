@@ -262,15 +262,18 @@ Public Class spArticulosEnvasadosHistorico1
     End Function
 
     Public Sub cargarComboBox(ByRef combo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
-        combo.mam_DataSource(dtb.Consultar("TiposFormatosCbo", True), False)
+        dtb.PrepararConsulta("TiposFormatosCbo")
+        combo.mam_DataSource(dtb.Consultar(), False)
     End Sub
 
     Public Sub cargarComboBoxTodos(ByRef combo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
-        combo.mam_DataSource(dtb.Consultar("TiposFormatosCboAll", True), False)
+        dtb.PrepararConsulta("TiposFormatosCboAll")
+        combo.mam_DataSource(dtb.Consultar(), False)
     End Sub
 
     Public Sub cargarComboBoxTodosSinLinea(ByRef combo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
-        combo.mam_DataSource(dtb.Consultar("TiposFormatosCboAllSinLinea", True), False)
+        dtb.PrepararConsulta("TiposFormatosCboAllSinLinea")
+        combo.mam_DataSource(dtb.Consultar(), False)
     End Sub
 
   

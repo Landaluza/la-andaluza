@@ -100,8 +100,8 @@ Public Class frmEntEnvasadosProductos
             Try
                 If sp.Grabar(dbo, Me.dtb) Then
                     If Me.ModoDeApertura = INSERCION Then
-
-                        Me.m_DBO_EnvasadosProductos.ID = Convert.ToInt32(Me.dtb.Consultar("Select max(envasadoProductoid) from envasadosProductos", False).Rows(0).Item(0))
+                        dtb.PrepararConsulta("Select max(envasadoProductoid) from envasadosProductos")
+                        Me.m_DBO_EnvasadosProductos.ID = Convert.ToInt32(Me.dtb.Consultar().Rows(0).Item(0))
                     End If
 
                     If terminar Then Me.dtb.TerminarTransaccion()

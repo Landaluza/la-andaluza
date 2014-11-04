@@ -65,8 +65,8 @@ Public Class frmEntPaletsContenidos
 
         Else
             txtCantidadCajas.Text = m_DBO_PaletsContenidos.CantidadCajas.ToString
-            dtpHoraInicio.Value = DateTime.Now.Add(m_DBO_PaletsContenidos.HoraInicio)
-            dtpHoraFin.Value = DateTime.Now.Add(m_DBO_PaletsContenidos.HoraFin)
+            dtpHoraInicio.Value = New DateTime(Now.Year, Now.Month, Now.Day, m_DBO_PaletsContenidos.HoraInicio.Hours, m_DBO_PaletsContenidos.HoraInicio.Minutes, m_DBO_PaletsContenidos.HoraInicio.Seconds)
+            dtpHoraFin.Value = New DateTime(Now.Year, Now.Month, Now.Day, m_DBO_PaletsContenidos.HoraFin.Hours, m_DBO_PaletsContenidos.HoraFin.Minutes, m_DBO_PaletsContenidos.HoraFin.Seconds)
         End If
 
         txtObservaciones.Text = m_DBO_PaletsContenidos.Observaciones

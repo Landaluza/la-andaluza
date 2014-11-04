@@ -121,7 +121,8 @@ Public Class frmWstepGraneles
 
         Dim spArticulos1 As New spArticulos1
         Dim cb As System.Windows.Forms.CheckBox
-        Dim dt As DataTable = dtb.Consultar("ArticulosCertificadosTiposSelectDgv", True)
+        dtb.PrepararConsulta("ArticulosCertificadosTiposSelectDgv")
+        Dim dt As DataTable = dtb.Consultar()
 
         For Each row As System.Data.DataRow In dt.Rows
             cb = New System.Windows.Forms.CheckBox
@@ -156,7 +157,10 @@ Public Class frmWstepGraneles
     End Sub
 
     Public Function grabarDatos(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean Implements wizardable.grabarDatos
-        If Me.m_DBO_ArticuloGranel.ArticuloID Is Nothing Then Me.m_DBO_ArticuloGranel.ArticuloID = dtb.Consultar("select max(articuloID) from Articulos1", False).Rows(0).Item(0)
+        If Me.m_DBO_ArticuloGranel.ArticuloID Is Nothing Then
+            dtb.PrepararConsulta("select max(articuloID) from Articulos1")
+            Me.m_DBO_ArticuloGranel.ArticuloID = dtb.Consultar().Rows(0).Item(0)
+        End If
 
         If Me.cbCreartipoProducto.Checked Then
             Me.m_DBO_TiposProductos.resetKey()
@@ -164,7 +168,8 @@ Public Class frmWstepGraneles
             If Not Me.spTiposProductos.Grabar(Me.m_DBO_TiposProductos, dtb) Then
                 Return False
             Else
-                Me.m_DBO_ArticuloGranel.TipoProductoID = dtb.Consultar("select max(tipoProductoid) from tiposProductos", False).Rows(0).Item(0)
+                dtb.PrepararConsulta("select max(tipoProductoid) from tiposProductos")
+                Me.m_DBO_ArticuloGranel.TipoProductoID = dtb.Consultar().Rows(0).Item(0)
             End If
         Else
             Me.m_DBO_ArticuloGranel.TipoProductoID = Me.cboTipoProducto.SelectedValue

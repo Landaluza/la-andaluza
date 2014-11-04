@@ -19,7 +19,9 @@
     End Function
 
     Function cargar_grilla(ByVal maestro As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
-        Return dtb.Consultar("[PartesEnvasados_CausasPartesEnvasado_IncidenciasCalidadSelectDgvByIncidencia] " & maestro, False)
+        dtb.PrepararConsulta("[PartesEnvasados_CausasPartesEnvasado_IncidenciasCalidadSelectDgvByIncidencia] @id")
+        dtb.AñadirParametroConsulta("@id", maestro)
+        Return dtb.Consultar()
     End Function
 
     Public Function Guardar(ByVal id_incidencias As Integer, ByVal DBO_empleados_formatosEnvasados As DBO_empleados_formatosEnvasados, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean

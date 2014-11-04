@@ -227,12 +227,27 @@ Public Class frmPaletsProducidos
                 dboPalet.FormatoID = m_MaestroID
 
                 frmCompletar = New frmEntPaletsContenidos(Me.linea, dboPaletsProducidos.FormatoID, dboEnvasado.ID, ACCION_INSERTAR, New spPaletsContenidos, dboTemp) 'dboPalet.ID, New spPaletsContenidos, dboTemp)
-                AddHandler frmCompletar.afterSave, AddressOf dgvFill
+                '                AddHandler frmCompletar.afterSave, AddressOf dgvFill
                 frmCompletar.ModoDeApertura = frmPaletsProducidos.COMPLETAR
                 frmCompletar.Formato = Me.m_MaestroID
                 frmCompletar.Text = "Completar "
                 'GUImain.añadirPestaña(frmCompletar)
                 frmCompletar.ShowDialog()
+
+                Try
+                    Dim pal As New Palet(dboPalet.ID)
+                    pal.recuperar_datos(dtb)
+                    If pal.Cajas_restantes = 0 Then
+                        dboPalet.Terminado = True
+                        CType(Me.sp, spPaletsProducidos).Grabar(dboPalet, dtb)
+                    End If
+                Catch ex As Exception
+                    MessageBox.Show("Error marcando como terminado el palet, actualice el dato manualmente", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Finally
+                    dgvFill()
+                End Try
+                
+
             End If
         End If
         'newRegForm.SetDataBussinesObject(CType(Me.dboPaletsProducidos, BasesParaCompatibilidad.databussines))

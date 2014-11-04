@@ -103,7 +103,8 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Function
 
     Public Function devolver_ultimo_palet(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
-        Return dtb.Consultar("select max(paletproducidoid) from paletsproducidos", False).Rows(0).Item(0)
+        dtb.PrepararConsulta("select max(paletproducidoid) from paletsproducidos")
+        Return dtb.Consultar().Rows(0).Item(0)
     End Function
 
     Public Sub cargar_PaletsProducidosNC_byArticulo(ByRef cbo As ComboBox, ByVal TipoFormatoID As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase)
@@ -127,8 +128,6 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         dtb.PrepararConsulta("PaletsProducidos4CalcularCajas @scc")
         dtb.AñadirParametroConsulta("@scc", scc)
         cuenta = dtb.Consultar().Rows(0).Item(0)
-        'cuenta = dtb.Consultar("exec [dbo].[PaletsProducidos4CalcularCajas] " & scc, False).Rows(0).Item(0)
-        'dtb.Conectar()
 
         Return cuenta
     End Function
@@ -140,11 +139,13 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Sub
 
     Public Function SelectPaletsProducidosBySccAndReferencia(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
-        Return dtb.Consultar("SelectPaletsProducidosBySccAndReferencia", True)
+        dtb.PrepararConsulta("SelectPaletsProducidosBySccAndReferencia")
+        Return dtb.Consultar()
     End Function
 
     Public Function SelectPaletsProducidosSumReferencia(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
-        Return dtb.Consultar("SelectPaletsProducidosSumReferencia", False)
+        dtb.PrepararConsulta("SelectPaletsProducidosSumReferencia")
+        Return dtb.Consultar()
     End Function
 
     Public Function DevolverPorFecha(ByVal EnvID As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
@@ -171,10 +172,7 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         dtb.AñadirParametroConsulta("@scc", scc)
 
         Dim dt As DataTable = dtb.Consultar()
-        'Dim dt As DataTable = dtb.Consultar("select palettipoid from articulosenvasesTerciarios, formatosEnvasados, paletsproducidos " & _
-        '"where articulosenvasesTerciarios.sccetiquetaid = tipoformatoEnvasadoid " & _
-        '"and formatoEnvasadoid = formatoid " & _
-        '"and scc = " & scc)
+
 
         If dt Is Nothing Then
             Return 0

@@ -38,7 +38,9 @@ Public Class frmPaletSCC
 
     Private Sub buscar()
         Dim m_EnAlmacen As Boolean = False
-        Dim dt As DataTable = dtb.Consultar("PaletsProducidosSCCSelect " & txtSCC.Text, True)
+        dtb.PrepararConsulta("PaletsProducidosSCCSelect @scc")
+        dtb.AñadirParametroConsulta("@scc", txtSCC.Text)
+        Dim dt As DataTable = dtb.Consultar()
 
         If Not dt Is Nothing Then
             If dt.Rows.Count = 0 Then
@@ -157,7 +159,9 @@ Public Class frmPaletSCC
 
         Try
 
-            Dim rdt As DataTable = dtb.Consultar("select max(isnull(id_estado,0)) from paletsproducidos where scc = " & dt.Rows(0).Item("SCC"), False)
+            dtb.PrepararConsulta("select max(isnull(id_estado,0)) from paletsproducidos where scc = @scc")
+            dtb.AñadirParametroConsulta("@scc", dt.Rows(0).Item("SCC"))
+            Dim rdt As DataTable = dtb.Consultar()
             If rdt.Rows(0).Item(0) <> 3 Then
                 Me.tsNoConforme.Text = "Marcar como no conforme"
             Else
@@ -340,6 +344,7 @@ Public Class frmPaletSCC
                         Dim m_e As DBO_Envasados2 = spEnvasados2.Select_Record(m_f.EnvasadoID, dtb)
 
                         Dim frm As New frmEntPaletsProducidos2(m_f.ID, True)
+                        ' Dim frm As New frmEntPaletsProducidos(, )
                         frm.Text = "Modificar palet producido"
                         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
                     End If

@@ -181,10 +181,14 @@ Public Class frmPaletsMovimientoEntrePalets
                 'Busco el PaletID del SSCC
                 m_PaletProducidoOrigen = spPaletsProducidos2.Select_RecordBySSCC(frmOrigen.txtSCC.Text, dtb)
                 'Sumo todas las cajas de los ContenidosPalet del PaletProducido de Origen y todos sus movimientos.
-                Dim tbPaletsContenidosOrigen As DataTable = dtb.Consultar("SelectPaletsEnAlmacenByPaletID " & m_PaletProducidoOrigen.PaletProducidoID, True)
+                dtb.PrepararConsulta("SelectPaletsEnAlmacenByPaletID @id")
+                dtb.AñadirParametroConsulta("@id", m_PaletProducidoOrigen.PaletProducidoID)
+                Dim tbPaletsContenidosOrigen As DataTable = dtb.Consultar()
 
                 'CajasPalet del Formato Origen
-                Dim tbCajasPaletOrigen As DataTable = dtb.Consultar("PaletsContenidos2CapacidadCajaDePaletProducido " & m_PaletProducidoOrigen.PaletProducidoID, True)
+                dtb.PrepararConsulta("PaletsContenidos2CapacidadCajaDePaletProducido @id")
+                dtb.AñadirParametroConsulta("@id", m_PaletProducidoOrigen.PaletProducidoID)
+                Dim tbCajasPaletOrigen As DataTable = dtb.Consultar()
                 'messagebox.show("PaletsContenidos2CapacidadCajaDePaletProducido" & m_PaletProducidoOrigen.PaletProducidoID)
                 If Convert.IsDBNull(tbCajasPaletOrigen.Rows(0).Item("CajasPalet")) Then Throw New Exception("El articulo no no tiene 'CajasPorMatricula'")
                 CajasPaletOrigen = tbCajasPaletOrigen.Rows(0).Item("CajasPalet")
@@ -259,7 +263,9 @@ Public Class frmPaletsMovimientoEntrePalets
                     m_PaletProducidoDestino = spPaletsProducidos2.Select_RecordBySSCC(frmDestino.txtSCC.Text, dtb)
 
                     'Sumo todas las cajas de los ContenidosPalet del PaletProducido Destino y todos sus movimientos.
-                    Dim tbPaletsContenidosDestino As DataTable = dtb.Consultar("SelectPaletsEnAlmacenByPaletID " & m_PaletProducidoDestino.PaletProducidoID, True)
+                    dtb.PrepararConsulta("SelectPaletsEnAlmacenByPaletID @id")
+                    dtb.AñadirParametroConsulta("@id", m_PaletProducidoDestino.PaletProducidoID)
+                    Dim tbPaletsContenidosDestino As DataTable = dtb.Consultar()
                     If tbPaletsContenidosDestino Is Nothing Then
                         CajasDestino = 0
                     Else
@@ -271,7 +277,9 @@ Public Class frmPaletsMovimientoEntrePalets
                     End If
 
                     'CajasPalet del Formato Destino
-                    Dim tbCajasPaletDestino As DataTable = dtb.Consultar("PaletsContenidos2CapacidadCajaDePaletProducido " & m_PaletProducidoDestino.PaletProducidoID, True)
+                    dtb.PrepararConsulta("PaletsContenidos2CapacidadCajaDePaletProducido @id")
+                    dtb.AñadirParametroConsulta("@id", m_PaletProducidoDestino.PaletProducidoID)
+                    Dim tbCajasPaletDestino As DataTable = dtb.Consultar()
                     CajasPaletDestino = tbCajasPaletDestino.Rows(0).Item("CajasPalet")
 
                     'If txtCajas.Text > CajasOrigen Then
@@ -300,7 +308,9 @@ Public Class frmPaletsMovimientoEntrePalets
                             If DBO_PaletsMovimientoTipo.EntrePalets Then
                                 Dim cajasañadir As Integer
                                 If Me.cboMovimientoTipo.SelectedValue = 21 Or DBO_PaletsMovimientoTipo.ID = 23 Or DBO_PaletsMovimientoTipo.ID = 26 Then
-                                    Dim capacidad As Integer = dtb.Consultar("PaletsProducidosCapacidadFormatoByPaletProducidoID " & m_PaletProducidoDestino.PaletProducidoID, True).Rows(0).Item(0)
+                                    dtb.PrepararConsulta("PaletsProducidosCapacidadFormatoByPaletProducidoID @id")
+                                    dtb.AñadirParametroConsulta("@id", m_PaletProducidoDestino.PaletProducidoID)
+                                    Dim capacidad As Integer = dtb.Consultar().Rows(0).Item(0)
                                     cajasañadir = If(txtCajas.Text = "", 0, Convert.ToInt32(txtCajas.Text)) / capacidad
                                 Else
                                     cajasañadir = If(txtCajas.Text = "", 0, Convert.ToInt32(txtCajas.Text))
@@ -510,7 +520,9 @@ Public Class frmPaletsMovimientoEntrePalets
             Dim cajasañadir As Integer
             ' If Me.cboMovimientoTipo.SelectedValue = 21 Or DBO_PaletsMovimientoTipo.PaletMovimientoTipoID = 23 Or DBO_PaletsMovimientoTipo.PaletMovimientoTipoID = 26 Then
             If spPaletsMovimiento.esMovimientoEncajado(Me.cboMovimientoTipo.SelectedValue, dtb) Then
-                Dim capacidad As Integer = dtb.Consultar("PaletsProducidosCapacidadFormatoByPaletProducidoID " & m_PaletProducidoDestino.PaletProducidoID, True).Rows(0).Item(0)
+                dtb.PrepararConsulta("PaletsProducidosCapacidadFormatoByPaletProducidoID @id")
+                dtb.AñadirParametroConsulta("@id", m_PaletProducidoDestino.PaletProducidoID)
+                Dim capacidad As Integer = dtb.Consultar().Rows(0).Item(0)
                 cajasañadir = If(txtCajas.Text = "", 0, Convert.ToInt32(txtCajas.Text)) / capacidad
             Else
                 cajasañadir = If(txtCajas.Text = "", 0, Convert.ToInt32(txtCajas.Text))
@@ -535,7 +547,9 @@ Public Class frmPaletsMovimientoEntrePalets
         Try
             If cboMovimientoTipo.SelectedIndex = 0 Then
             Else
-                Me.cboMovimientoSubTipo.mam_DataSource(dtb.Consultar("PaletsMovimientoSubTipoByTipo " & cboMovimientoTipo.SelectedValue, True), False)
+                dtb.PrepararConsulta("PaletsMovimientoSubTipoByTipo @id")
+                dtb.AñadirParametroConsulta("@id", cboMovimientoTipo.SelectedValue)
+                Me.cboMovimientoSubTipo.mam_DataSource(dtb.Consultar(), False)
                 cboMovimientoSubTipo.Refresh()
                 Dim sp As New spPaletsMovimientosTipos
                 DBO_PaletsMovimientoTipo = sp.Select_Record(Me.cboMovimientoTipo.SelectedValue, dtb)

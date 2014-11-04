@@ -1351,7 +1351,6 @@ C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Microsoft
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\office.xml
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Interop.MSTSCLib.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\AxInterop.MSTSCLib.dll
-C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza Produccion.vbprojResolveAssemblyReference.cache
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\Interop.MSTSCLib.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\AxInterop.MSTSCLib.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza Produccion.vbproj.ResolveComReference.cache
@@ -1632,6 +1631,11 @@ C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andalu
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmCambiosFormatosEnvasados2.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEntCambiosFormatosEnvasados2.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEnvasadosProductosArticulos_NO_USAR.resources
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEntPaletsProducidos2.resources
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmPaletsProducidos2.resources
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEntPaletsContenidos2.resources
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmPaletsContenidos2.resources
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.PaletsEntAutoGuardado.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEntFormatosEnvasados2.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmLisEnvPorReferencia.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmPaletsIncompletos.resources
@@ -1784,12 +1788,7 @@ C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andalu
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmControlesPresionLlenadora2.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEntControlesPresionLlenadora2.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEntEnvasadosProductosArticulos.resources
-C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEntPaletsProducidos2.resources
-C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmPaletsProducidos2.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmContenidosDetallesMonodosis2.resources
-C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEntPaletsContenidos2.resources
-C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmPaletsContenidos2.resources
-C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.PaletsEntAutoGuardado.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmResumen.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmIncidenciasRecuento.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEntEnvasadosProductosAnaliticas2.resources

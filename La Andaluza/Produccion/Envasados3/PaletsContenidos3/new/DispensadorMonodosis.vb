@@ -145,7 +145,7 @@ Public Class DispensadorMonodosis
     '            dbo_movimiento.Cliente = Nothing
     '            dbo_movimiento.Cliente_IsDBNull = True
     '            'dbo_movimiento.Tipo = 5
-    '            dbo_movimiento.ContenidoDestinoID = dtb.Consultar("select max(paletcontenidoid) from paletscontenidos", False).Rows(0).Item(0)
+    '            dbo_movimiento.ContenidoDestinoID = dtb.("select max(paletcontenidoid) from paletscontenidos", False).Rows(0).Item(0)
     '            dbo_movimiento.PaletID = m_palet.PaletProducidoID
     '            dbo_MovimientoDB.Add(dbo_movimiento)
 
@@ -245,7 +245,7 @@ Public Class DispensadorMonodosis
     '    ComprobarCantidadesEncajado(padre, dbo_movimiento, m_PaletProducidoOrigen, m_PaletProducidoDestino, _
     '                                True, m_DBO_FormatoEnvasado, if(Doypack, cbo.Tag, Nothing), fuente)
     '    'Movimiento del palets Origen
-    '    dbo_movimiento.ContenidoDestinoID = dtb.Consultar("select max(paletcontenidoid) from paletscontenidos", False).Rows(0).Item(0)
+    '    dbo_movimiento.ContenidoDestinoID = dtb.("select max(paletcontenidoid) from paletscontenidos", False).Rows(0).Item(0)
     '    dbo_MovimientoDB.Add(dbo_movimiento)
     '    'Añadir Observaciones en PaletsProducidos
 
@@ -283,7 +283,7 @@ Public Class DispensadorMonodosis
     '    'Dim capacidad As Integer = DataTableFill("PaletsProducidosCapacidadFormatoByPaletProducidoID " & m_PaletProducidoDestino.PaletProducidoID).Rows(0).Item(0)
     '    Dim capacidad As Integer
 
-    '    capacidad = dtb.Consultar("select capacidadcaja from ArticulosEnvasadosHistorico where tipoformato = " & m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID, False).Rows(0).Item(0)
+    '    capacidad = dtb.("select capacidadcaja from ArticulosEnvasadosHistorico where tipoformato = " & m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID, False).Rows(0).Item(0)
     '    If CantidadUds <> Nothing Then
     '        capacidad = CantidadUds * capacidad
     '    End If
@@ -302,7 +302,7 @@ Public Class DispensadorMonodosis
     '    End If
     '    'End If
 
-    '    dbo_movimiento.Tipo = dtb.Consultar("select id_MovimentoEncajado from tiposcajas, ArticulosEnvasadosHistorico where ArticulosEnvasadosHistorico.tipocajaID = tiposcajas.tipocajaID and tipoformato = " & m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID, False).Rows(0).Item(0)
+    '    dbo_movimiento.Tipo = dtb.("select id_MovimentoEncajado from tiposcajas, ArticulosEnvasadosHistorico where ArticulosEnvasadosHistorico.tipocajaID = tiposcajas.tipocajaID and tipoformato = " & m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID, False).Rows(0).Item(0)
     '    dbo_movimiento.Tipo_IsDBNull = False
     '    dbo_movimiento.PaletID_IsDBNull = False
     '    dbo_movimiento.Fecha = datetime.now
@@ -366,7 +366,7 @@ Public Class DispensadorMonodosis
     '    ComprobarCantidadesEncajado(dbo_movimiento, m_PaletProducidoOrigen, m_PaletProducidoDestino, _
     '                                True, m_DBO_FormatoEnvasado, If(Doypack, cbo.Tag, Nothing), fuente)
     '    'Movimiento del palets Origen
-    '    dbo_movimiento.ContenidoDestinoID = dtb.Consultar("select max(paletcontenidoid) from paletscontenidos", False).Rows(0).Item(0)
+    '    dbo_movimiento.ContenidoDestinoID = dr("select max(paletcontenidoid) from paletscontenidos", False).Rows(0).Item(0)
     '    dbo_MovimientoDB.Add(dbo_movimiento)
     '    'Añadir Observaciones en PaletsProducidos
 
@@ -402,7 +402,7 @@ Public Class DispensadorMonodosis
     '    'Dim capacidad As Integer = DataTableFill("PaletsProducidosCapacidadFormatoByPaletProducidoID " & m_PaletProducidoDestino.PaletProducidoID).Rows(0).Item(0)
     '    Dim capacidad As Integer
 
-    '    capacidad = dtb.Consultar("select capacidadcaja from ArticulosEnvasadosHistorico where  tipoformato = " & m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID, False).Rows(0).Item(0)
+    '    capacidad = dar("select capacidadcaja from ArticulosEnvasadosHistorico where  tipoformato = " & m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID, False).Rows(0).Item(0)
     '    If CantidadUds <> Nothing Then
     '        capacidad = CantidadUds * capacidad
     '    End If
@@ -420,7 +420,7 @@ Public Class DispensadorMonodosis
     '    End If
     '    'End If
 
-    '    dbo_movimiento.Tipo = dtb.Consultar("select id_MovimentoEncajado from tiposcajas, ArticulosEnvasadosHistorico where ArticulosEnvasadosHistorico.tipocajaID = tiposcajas.tipocajaID and tipoformato = " & m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID, False).Rows(0).Item(0)
+    '    dbo_movimiento.Tipo = dultar("select id_MovimentoEncajado from tiposcajas, ArticulosEnvasadosHistorico where ArticulosEnvasadosHistorico.tipocajaID = tiposcajas.tipocajaID and tipoformato = " & m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID, False).Rows(0).Item(0)
     '    dbo_movimiento.Tipo_IsDBNull = False
     '    dbo_movimiento.PaletID_IsDBNull = False
     '    dbo_movimiento.Fecha = DateTime.Now
@@ -554,7 +554,8 @@ Public Class DispensadorMonodosis
                 dbo_movimiento.Cliente = Nothing
                 dbo_movimiento.Cliente_IsDBNull = True
                 'dbo_movimiento.Tipo = 5
-                dbo_movimiento.ContenidoDestinoID = dtb.Consultar("select max(paletcontenidoid) from paletscontenidos", False).Rows(0).Item(0)
+                dtb.PrepararConsulta("select max(paletcontenidoid) from paletscontenidos")
+                dbo_movimiento.ContenidoDestinoID = dtb.Consultar().Rows(0).Item(0)
                 dbo_movimiento.PaletID = m_palet.PaletProducidoID
                 dbo_MovimientoDB.Add(dbo_movimiento, dtb)
 
@@ -650,7 +651,8 @@ Public Class DispensadorMonodosis
         ComprobarCantidadesEncajado(padre, dbo_movimiento, m_PaletProducidoOrigen, m_PaletProducidoDestino, _
                                     True, m_DBO_FormatoEnvasado, If(Doypack, cbo.Tag, Nothing), fuente)
         'Movimiento del palets Origen
-        dbo_movimiento.ContenidoDestinoID = dtb.Consultar("select max(paletcontenidoid) from paletscontenidos", False).Rows(0).Item(0)
+        dtb.PrepararConsulta("select max(paletcontenidoid) from paletscontenidos")
+        dbo_movimiento.ContenidoDestinoID = dtb.Consultar().Rows(0).Item(0)
         dbo_MovimientoDB.Add(dbo_movimiento, dtb)
         'Añadir Observaciones en PaletsProducidos
 

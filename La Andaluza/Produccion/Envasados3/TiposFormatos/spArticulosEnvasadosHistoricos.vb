@@ -69,7 +69,8 @@ Public Class spArticulosEnvasadosHistoricos
     End Sub
 
     Public Function seleccionar_ultimo_registro(ByRef dtb as BasesParaCompatibilidad.Database) As Integer
-        Return dtb.Consultar("select max(tipoformatoid) from tiposformatos", False).Rows(0).Item(0)
+        dtb.PrepararConsulta("select max(tipoformatoid) from tiposformatos")
+        Return dtb.Consultar().Rows(0).Item(0)
     End Function
 
     Public Sub cargar_articulos_Envasados(ByRef cbo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)

@@ -28,7 +28,8 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Function
 
     Function recuperarEnvasadoDiario(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
-        Return dtb.Consultar("envasados_comprobar_envasado_diario", True).Rows(0).Item(0)
+        dtb.PrepararConsulta("envasados_comprobar_envasado_diario")
+        Return dtb.Consultar().Rows(0).Item(0)
     End Function
 
 End Class

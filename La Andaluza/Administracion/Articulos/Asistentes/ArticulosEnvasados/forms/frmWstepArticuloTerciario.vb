@@ -144,9 +144,16 @@ Public Class frmWstepArticuloTerciario
 
             If Me.mododeApertura = BasesParaCompatibilidad.DetailedSimpleForm.INSERCION Then
                 Dim spf As New spArticulosEnvasadosHistoricos
-                If Me.m_DBO_ArticulosEnvasesTerciarios1.ArticuloID = Nothing Then Me.m_DBO_ArticulosEnvasesTerciarios1.ArticuloID = dtb.Consultar("select max(articuloid) from articulos1", True).Rows(0).Item(0)
+
+                If Me.m_DBO_ArticulosEnvasesTerciarios1.ArticuloID = Nothing Then
+                    dtb.PrepararConsulta("select max(articuloid) from articulos1")
+                    Me.m_DBO_ArticulosEnvasesTerciarios1.ArticuloID = dtb.Consultar().Rows(0).Item(0)
+                End If
                 If Me.m_DBO_ArticulosEnvasesTerciarios1.SccEtiquetaID = 0 Or Me.m_DBO_ArticulosEnvasesTerciarios1.SccEtiquetaID = Nothing Then Me.m_DBO_ArticulosEnvasesTerciarios1.SccEtiquetaID = spf.seleccionar_ultimo_registro(dtb)
-                If Me.m_DBO_ArticulosEnvasesTerciarios1.id_ArticuloEnvaseSecundario = Nothing Then Me.m_DBO_ArticulosEnvasesTerciarios1.id_ArticuloEnvaseSecundario = dtb.Consultar("select max(Envasesecundarioid) from articulosenvasesSecundarios", True).Rows(0).Item(0)
+                If Me.m_DBO_ArticulosEnvasesTerciarios1.id_ArticuloEnvaseSecundario = Nothing Then
+                    dtb.PrepararConsulta("select max(Envasesecundarioid) from articulosenvasesSecundarios")
+                    Me.m_DBO_ArticulosEnvasesTerciarios1.id_ArticuloEnvaseSecundario = dtb.Consultar().Rows(0).Item(0)
+                End If
             End If
 
             Return spArticulosEnvasesTerciarios.Grabar(m_DBO_ArticulosEnvasesTerciarios1, dtb)

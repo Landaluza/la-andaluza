@@ -28,10 +28,11 @@ Public Class frmEntAlbaranesCargaMaestro
     Private Medida As Integer
     Private Albaran As String
     Public Sub New()
+        MyBase.New()
         InitializeComponent()
 
 
-        dtb = New BasesParaCompatibilidad.Database()
+
         ctlAlbDet = New ctlAlbaranesCargaDetalles
         dtsAlb = New dtsAlbaranesCargaMaestro.AlbaranesCargaMaestroDataTable
         ctlAlb = New ctlAlbaranesCargaMaestro

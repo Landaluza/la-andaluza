@@ -53,7 +53,7 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Sub
 
     Public Function selecccionar_ultima_incidencia(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
-
-        Return dtb.Consultar("select max(incidenciaid) from incidencias", False).Rows(0).Item(0)
+        dtb.PrepararConsulta("select max(incidenciaid) from incidencias")
+        Return dtb.Consultar().Rows(0).Item(0)
     End Function
 End Class

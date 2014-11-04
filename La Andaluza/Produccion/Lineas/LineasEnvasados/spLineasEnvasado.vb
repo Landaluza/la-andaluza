@@ -33,6 +33,7 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Sub
 
     Public Function devolver_LineasEnvasado(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
-        Return dtb.Consultar("LineasEnvasadoCbo", True)
+        dtb.PrepararConsulta("LineasEnvasadoCbo")
+        Return dtb.Consultar()
     End Function
 End Class

@@ -73,7 +73,8 @@ Public Class spPaletsMovimiento
     ' End Function
 
     Public Function Add(ByVal dbo_movimiento As Dbo_PaletsMovimiento, ByRef dtb As BasesParaCompatibilidad.DataBase, Optional ByVal entrepalets As Boolean = False) As Boolean
-        dbo_movimiento.MovimientoEntrePaletsID = dtb.consultar("select max(id) from paletsmovimiento", False).Rows(0).Item(0)
+        dtb.PrepararConsulta("select max(id) from paletsmovimiento")
+        dbo_movimiento.MovimientoEntrePaletsID = dtb.Consultar().Rows(0).Item(0)
 
         dtb.Conectar()
 
@@ -305,7 +306,9 @@ Public Class spPaletsMovimiento
     End Function
 
     Public Function comprobarFormatoEncajado(p1 As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
-        Dim dt As DataTable = dtb.Consultar("select id_MovimentoEncajado from tiposcajas, articulosEnvasadosHistorico where articulosEnvasadosHistorico.tipocajaID = tiposcajas.tipocajaID and tipoformato = " & p1, False)
+        dtb.PrepararConsulta("select id_MovimentoEncajado from tiposcajas, articulosEnvasadosHistorico where articulosEnvasadosHistorico.tipocajaID = tiposcajas.tipocajaID and tipoformato = @p1")
+        dtb.AñadirParametroConsulta("@p1", p1)
+        Dim dt As DataTable = dtb.Consultar()
         If dt Is Nothing Then Return False
         If dt.Rows.Count = 0 Then Return False
 
@@ -320,7 +323,9 @@ Public Class spPaletsMovimiento
         Dim aux As DBO_PaletsContenidos2 = spPaletsContenidos2.Select_Record(p1, dtb)
 
         Try
-            Dim id As Integer = dtb.consultar("select id from paletsmovimiento where id_PaletReceptor = " & aux.PaletContenidoID, False).Rows(0).Item(0)
+            dtb.PrepararConsulta("select id from paletsmovimiento where id_PaletReceptor = @id")
+            dtb.AñadirParametroConsulta("@id", aux.PaletContenidoID)
+            Dim id As Integer = dtb.Consultar().Rows(0).Item(0)
 
             Dim sp As New spPaletsMovimiento
             Return sp.Select_Record(id, dtb)
@@ -331,7 +336,9 @@ Public Class spPaletsMovimiento
 
     Shared Function esMovimientoEncajado(p1 As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Try
-            Dim i As Integer = dtb.Consultar("select count(*) from tiposcajas where id_movimentoEncajado =" & p1, False).Rows(0).Item(0)
+            dtb.PrepararConsulta("select count(*) from tiposcajas where id_movimentoEncajado = @id")
+            dtb.AñadirParametroConsulta("@id", p1)
+            Dim i As Integer = dtb.Consultar().Rows(0).Item(0)
 
             If i > 0 Then
                 Return True
@@ -344,8 +351,8 @@ Public Class spPaletsMovimiento
     End Function
 
     Public Function ultimo_registro(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
-
-        Dim dt As DataTable = dtb.Consultar("select max(id) from paletsmovimiento", False)
+        dtb.PrepararConsulta("select max(id) from paletsmovimiento")
+        Dim dt As DataTable = dtb.Consultar()
         If dt Is Nothing Then Return 0
         If dt.Rows(0) Is Nothing Then Return 0
         If Convert.IsDBNull(dt.Rows(0).Item(0)) Then Return 0

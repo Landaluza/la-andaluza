@@ -33,14 +33,16 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Sub
 
     Public Function devolver_TiposIncidencias(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
-        Return dtb.Consultar("TiposIncidenciasCbo", True)
+        dtb.PrepararConsulta("TiposIncidenciasCbo")
+        Return dtb.Consultar()
     End Function
 
     Public Sub cargar_TiposIncidenciasSinIncidenciaCalidad(ByRef cbo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase, Optional ByVal selecteditem As Integer = Nothing)
         If selecteditem = Nothing Then
             cbo.mam_DataSource("TiposIncidenciasSinAsignarCalidadCbo", False, dtb)
         Else
-            Dim dt As DataTable = dtb.Consultar("TiposIncidenciasSinAsignarCalidadCbo", True)
+            dtb.PrepararConsulta("TiposIncidenciasSinAsignarCalidadCbo")
+            Dim dt As DataTable = dtb.Consultar()
             Dim dbo As DBO_TiposIncidencias = Me.Select_Record(selecteditem, dtb)
             dt.Rows.Add(selecteditem, dbo.Descripcion)
         End If
@@ -66,7 +68,10 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Sub
 
     Function Select_Mas_Usado_Por_Categoria_Y_Linea(ByVal categoria As Integer, ByVal linea As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Object
-        Dim dt As DataTable = dtb.Consultar("_TiposIncidencias2SelectMasUsadoPorCategoriaYlinea " & categoria & "," & linea, False)
+        dtb.PrepararConsulta("_TiposIncidencias2SelectMasUsadoPorCategoriaYlinea @cat, @lin")
+        dtb.AñadirParametroConsulta("@cat", categoria)
+        dtb.AñadirParametroConsulta("@lin", linea)
+        Dim dt As DataTable = dtb.Consultar()
         If Not dt Is Nothing Then
             If dt.Rows.Count > 0 Then
                 Return dt.Rows(0).Item(0)

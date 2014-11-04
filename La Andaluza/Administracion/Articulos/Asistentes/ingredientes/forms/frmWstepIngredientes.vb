@@ -134,7 +134,8 @@ Public Class frmWstepIngredientes
 
         Dim spArticulos1 As New spArticulos1
         Dim cb As System.Windows.Forms.CheckBox
-        Dim dt As DataTable = dtb.Consultar("ArticulosCertificadosTiposSelectDgv", True)
+        dtb.PrepararConsulta("ArticulosCertificadosTiposSelectDgv")
+        Dim dt As DataTable = dtb.Consultar()
 
         If Not Me.m_IDI Then
             spTiposProductos.cargar_ComboBox(Me.cboTipoProducto, dtb)
@@ -196,7 +197,11 @@ Public Class frmWstepIngredientes
     End Sub
 
     Private Function GuardarIngrediente(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
-        If Me.m_DBO_ArticuloIngrediente.ArticuloID Is Nothing Then Me.m_DBO_ArticuloIngrediente.ArticuloID = dtb.Consultar("select max(articuloID) from Articulos1", False).Rows(0).Item(0)
+
+        If Me.m_DBO_ArticuloIngrediente.ArticuloID Is Nothing Then
+            dtb.PrepararConsulta("select max(articuloID) from Articulos1")
+            Me.m_DBO_ArticuloIngrediente.ArticuloID = dtb.Consultar().Rows(0).Item(0)
+        End If
 
         If comprobarCampos() Then
             If Me.cbCreartipoProducto.Checked Then
@@ -205,7 +210,8 @@ Public Class frmWstepIngredientes
                 If Not Me.spTiposProductos.Grabar(Me.m_DBO_TiposProductos, dtb) Then
                     Return False
                 Else
-                    Me.m_DBO_ArticuloIngrediente.TipoProductoID = dtb.Consultar("select max(tipoProductoid) from tiposProductos", False).Rows(0).Item(0)
+                    dtb.PrepararConsulta("select max(tipoProductoid) from tiposProductos")
+                    Me.m_DBO_ArticuloIngrediente.TipoProductoID = dtb.Consultar().Rows(0).Item(0)
                 End If
             End If
 
@@ -237,7 +243,12 @@ Public Class frmWstepIngredientes
     End Function
 
     Private Function GuardarIngredienteIDI(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
-        If Me.m_DBO_ArticuloIngrediente.ArticuloID Is Nothing Then Me.m_DBO_ArticuloIngrediente.ArticuloID = dtb.Consultar("select max(articuloID) from Articulos1", False).Rows(0).Item(0)
+
+        If Me.m_DBO_ArticuloIngrediente.ArticuloID Is Nothing Then
+            dtb.PrepararConsulta("select max(articuloID) from Articulos1")
+            Me.m_DBO_ArticuloIngrediente.ArticuloID = dtb.Consultar().Rows(0).Item(0)
+        End If
+
 
         If comprobarCampos() Then
 

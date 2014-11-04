@@ -71,7 +71,8 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Sub
 
     Public Function seleccionarUltimoRegistro(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
-        Return dtb.Consultar("select max(id) from Empleados_formatosEnvasados", False).Rows(0).Item(0)
+        dtb.PrepararConsulta("select max(id) from Empleados_formatosEnvasados")
+        Return dtb.Consultar().Rows(0).Item(0)
     End Function
 
     Public Function es_parte_envasado(ByVal id As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean

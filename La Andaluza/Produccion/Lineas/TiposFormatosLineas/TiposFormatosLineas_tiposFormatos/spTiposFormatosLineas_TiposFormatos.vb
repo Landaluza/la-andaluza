@@ -26,8 +26,7 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         dtb.PrepararConsulta("select id from TiposFormatosLineas_TiposFormatos where TipoformatoLineaId = @linea and TipoFOrmatoID = @formato")
         dtb.AñadirParametroConsulta("@linea", foramtoLinea)
         dtb.AñadirParametroConsulta("@formato", tipoFormato)
-        Return dtb.Consultar().Rows(0).Item(0)
-        'Return dtb.Consultar("select id from TiposFormatosLineas_TiposFormatos where TipoformatoLineaId =" & foramtoLinea & " and TipoFOrmatoID = " & tipoFormato & String.Empty, False).Rows(0).Item(0)
+        Return dtb.Consultar().Rows(0).Item(0)        
     End Function
 
     Public Overrides Function Delete(ByVal Id As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean

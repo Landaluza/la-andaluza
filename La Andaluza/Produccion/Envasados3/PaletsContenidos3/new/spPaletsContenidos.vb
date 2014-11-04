@@ -84,7 +84,6 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         dtb.AñadirParametroConsulta("@linea", linea)
         dtb.AñadirParametroConsulta("@tf", tipo_formato)
         Dim dt As DataTable = dtb.Consultar()
-        'Dim dt As DataTable = dtb.Consultar("select isnull(avg(datediff(minute, horainicio, horafin)), 1) from paletsContenidos, paletsproducidos, formatosEnvasados, tiposformatosLineas where paletsproducidos.paletproducidoid = paletscontenidos.paletproducidoid and formatoid = formatoEnvasadoid and formatosEnvasados.tipoformatoLineaid = tiposformatosLineas.tipoformatoLineaid and lineaEnvasadoid = " & linea & " and tipoformatoEnvasadoID = " & tipo_formato, False)
 
         If dt Is Nothing Then Return 15
         If dt.Rows.Count = 0 Then Return 15
