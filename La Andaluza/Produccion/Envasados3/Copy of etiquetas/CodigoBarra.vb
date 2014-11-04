@@ -157,4 +157,21 @@
 
         Return matricula '& control
     End Function
+
+    Public Function ajustarSCC_Con_Digito_Control(ByVal scc As String, g13 As String) As String
+        Dim cod As String = "(00)" & CODIGO_EMPRESA
+        Dim sccCorregido As String = CODIGO_EMPRESA
+        Dim cont As Integer = Len(cod) - 4
+        Dim tope As Integer = LONGITUD_BARCODE_2 - 1 - Len(scc)
+
+        While cont < tope
+            sccCorregido = sccCorregido & "0"
+            cont = cont + 1
+        End While
+
+        Dim matricula As String = sccCorregido & scc
+        Dim control As String = digito_control_ean(matricula.Replace("(00)", ""), g13)
+
+        Return matricula & control
+    End Function
 End Class

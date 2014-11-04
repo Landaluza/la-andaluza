@@ -111,7 +111,34 @@ Public Class frmPaletsProducidos3
             Dim dtb As New BasesParaCompatibilidad.DataBase
             Dim dbo As DBO_PaletsProducidos = spPaletsProducidos.Select_Record(Me.dgvGeneral.CurrentRow.Cells("PaletProducidoID").Value, dtb)
             If Not dbo Is Nothing Then
-                Dim frm As New frmEtiqueta0(dbo.ID, If(Config.UserType = 1 Or Config.UserType = 9 Or Config.UserType = 4, True, False))
+                Dim frm As New frmEtiqueta0(dbo.ID, If(Config.UserType = 1 Or Config.UserType = 9 Or Config.UserType = 4, True, False), False)
+                frm.Show()
+
+                Try
+
+                    spPaletsProducidos.anadir_impresion_etiqueta(Me.dgvGeneral.CurrentRow.Cells("PaletProducidoID").Value, dtb)
+                    Dim textNotificar As String = "Se ha vuelto a imprimir la etiqueta de la matricula  " & Environment.NewLine() & Me.dgvGeneral.CurrentRow.Cells("SCC").Value.ToString & " el día " & DateTime.Now.ToString
+                    Dim mail As New Mail.Mail1And1(True, "Reimpresion de etiqueta " & Me.dgvGeneral.CurrentRow.Cells("SCC").Value.ToString & _
+                                                   "el " & DateTime.Now.ToString, textNotificar, _
+                                                   String.Empty, _
+                                                   Config.MailReportAddress, Config.MailReportPass, "control@landaluza.es", _
+                                                    String.Empty, String.Empty, Config.MailClientHost, False)
+                Catch ex As Exception
+
+                End Try
+            Else
+                MessageBox.Show("No se ppudo recuperar los datos", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            End If
+        End If
+    End Sub
+
+    Private Sub mostrarEtiqueta_control()
+        If Not Me.dgvGeneral.CurrentRow Is Nothing Then
+            Dim spPaletsProducidos As New spPaletsProducidos
+            Dim dtb As New BasesParaCompatibilidad.DataBase
+            Dim dbo As DBO_PaletsProducidos = spPaletsProducidos.Select_Record(Me.dgvGeneral.CurrentRow.Cells("PaletProducidoID").Value, dtb)
+            If Not dbo Is Nothing Then
+                Dim frm As New frmEtiqueta0(dbo.ID, If(Config.UserType = 1 Or Config.UserType = 9 Or Config.UserType = 4, True, False), True)
                 frm.Show()
 
                 Try

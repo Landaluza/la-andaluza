@@ -65,7 +65,8 @@ Public Class frmEntAlbaranesCargaMaestro
             grbAlbaranesPendientes.Location = New System.Drawing.Point(8, 32)
             With dgvAlbaranesProvi
                 .Width = 500
-                .DataSource = dtb.Consultar("SelectAlbaranCargaProMaestroByReserva1", True)
+                dtb.PrepararConsulta("SelectAlbaranCargaProMaestroByReserva1")
+                .DataSource = dtb.Consultar()
                 .Columns("AlbaranCargaProMaestroID").Visible = False
                 .Columns("Cargador").Visible = False
                 .FormatoColumna("Num", BasesParaCompatibilidad.TiposColumna.Derecha, 60, 0)

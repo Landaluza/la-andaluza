@@ -312,7 +312,7 @@ Public Class frmPaletsProducidos2
             If Not dbo Is Nothing Then
                 If MessageBox.Show("¿Desea imprimir etiqueta?", "Etiqueta palet " & dbo.SCC, _
                                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
-                    Dim frm As New frmEtiqueta0(dbo.ID, True)
+                    Dim frm As New frmEtiqueta0(dbo.ID, True, False)
                     frm.Show()
                     Try
                         Dim spPalet As New spPaletsProducidos

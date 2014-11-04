@@ -11,11 +11,13 @@ Public Class frmEtiqueta0
     Private barc As BarcodeLib.Barcode
     Private loteador As Loteado
     Private dtb As BasesParaCompatibilidad.DataBase
+    Private Con_Control As Boolean
 
-    Public Sub New(ByVal paletId As Integer, Optional ByVal edicion As Boolean = False)
+    Public Sub New(ByVal paletId As Integer, ByVal edicion As Boolean, ByVal control As Boolean)
 
         InitializeComponent()
 
+        Con_Control = control
         dtb = New BasesParaCompatibilidad.DataBase
         barc = New BarcodeLib.Barcode
         Me.EtiquetadoraPalets = New Etiquetador
@@ -58,7 +60,12 @@ Public Class frmEtiqueta0
                 Me.llote.Text = loteador.Loteado_cubos(Convert.ToDateTime(Me.dbo_etiquetasPalet.Lote).AddYears(dbo_etiquetasPalet.Anos_caducidad))
             End If
 
-            Me.lscc.Text = Me.barCode.ajustarSCC(Me.dbo_etiquetasPalet.SCC, Me.dbo_etiquetasPalet.EAN13)
+            If Con_Control Then
+                Me.lscc.Text = Me.barCode.ajustarSCC_Con_Digito_Control(Me.dbo_etiquetasPalet.SCC, Me.dbo_etiquetasPalet.EAN13)
+            Else
+                Me.lscc.Text = Me.barCode.ajustarSCC(Me.dbo_etiquetasPalet.SCC, Me.dbo_etiquetasPalet.EAN13)
+            End If
+
             Me.dbo_etiquetasPalet.SCC = Me.lscc.Text
 
 
@@ -141,7 +148,7 @@ Public Class frmEtiqueta0
         barc.IncludeLabel = True
         barc.LabelPosition = BarcodeLib.LabelPositions.BOTTOMLEFT        
         '        Barcode1.Image = barc.Encode(BarcodeLib.TYPE.CODE128, texto, Color.Black, Color.White, 350, 120)
-        Barcode1.Image = barc.Encode(BarcodeLib.TYPE.SSCC, texto, Color.Black, Color.White, 350, 120)
+        Barcode1.Image = barc.Encode(BarcodeLib.TYPE.CODE128, texto, Color.Black, Color.White, 350, 120)
 
 
 
@@ -162,7 +169,7 @@ Public Class frmEtiqueta0
         barc.IncludeLabel = True
         barc.LabelPosition = BarcodeLib.LabelPositions.BOTTOMLEFT
         '        Barcode2.Image = barc.Encode(BarcodeLib.TYPE.CODE128, texto, Color.Black, Color.White, Me.Width - 20, 120)
-        Barcode2.Image = barc.Encode(BarcodeLib.TYPE.SSCC, texto, Color.Black, Color.White, Me.Width - 20, 120)
+        Barcode2.Image = barc.Encode(BarcodeLib.TYPE.CODE128, texto, Color.Black, Color.White, Me.Width - 20, 120)
 
         Barcode2.Width = Barcode2.Image.Width
         Barcode2.Height = Barcode2.Image.Height

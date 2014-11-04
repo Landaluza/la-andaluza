@@ -53,6 +53,13 @@ Public Class frmPaletsProducidos
             btnEtiqueta2.TextDirection = ToolStripTextDirection.Horizontal
             btnEtiqueta2.TextAlign = ContentAlignment.MiddleRight
             AddHandler btnEtiqueta2.Click, AddressOf mostrarEtiqueta
+
+            Dim btnEtiqueta3 As ToolStripButton = Me.bdnGeneral.Items.Add("Imprimir etiqueta control")
+            btnEtiqueta3.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
+            btnEtiqueta3.Image = My.Resources.print_ico
+            btnEtiqueta3.TextDirection = ToolStripTextDirection.Horizontal
+            btnEtiqueta3.TextAlign = ContentAlignment.MiddleRight
+            AddHandler btnEtiqueta3.Click, AddressOf mostrarEtiqueta_control
         End If
 
         Me.dgvPicos.BackgroundColor = Color.White
@@ -264,7 +271,39 @@ Public Class frmPaletsProducidos
                                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
 
 
-                    Dim frm As New frmEtiqueta0(dbo.ID, If(Config.UserType = 1 Or Config.UserType = 9 Or Config.UserType = 4, True, False))
+                    Dim frm As New frmEtiqueta0(dbo.ID, If(Config.UserType = 1 Or Config.UserType = 9 Or Config.UserType = 4, True, False), False)
+                    frm.Show()
+                    Try
+
+                        spPaletsProducidos.anadir_impresion_etiqueta(Me.dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
+                        Dim textNotificar As String = "Se ha vuelto a imprimir la etiqueta de la matricula  " & Environment.NewLine() & Me.dgvGeneral.CurrentRow.Cells("SCC").Value.ToString & " el día " & DateTime.Now.ToString
+                        Dim mail As New Mail.Mail1And1(True, "Reimpresion de etiqueta " & Me.dgvGeneral.CurrentRow.Cells("SCC").Value.ToString & _
+                                                       "el " & DateTime.Now.ToString, textNotificar, _
+                                                       String.Empty, _
+                                                       Config.MailReportAddress, Config.MailReportPass, "control@landaluza.es", _
+                                                        String.Empty, String.Empty, Config.MailClientHost, False)
+                    Catch ex As Exception
+
+                    End Try
+
+                End If
+            Else
+                MessageBox.Show("No se ppudo recuperar los datos", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            End If
+        End If
+    End Sub
+
+    Private Sub mostrarEtiqueta_control()
+        If Not Me.dgvGeneral.CurrentRow Is Nothing Then
+            Dim spPaletsProducidos As New spPaletsProducidos
+            Dim dtb As New BasesParaCompatibilidad.DataBase
+            Dim dbo As DBO_PaletsProducidos = spPaletsProducidos.Select_Record(Me.dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
+            If Not dbo Is Nothing Then
+                If MessageBox.Show("¿Desea imprimir etiqueta?", "Etiqueta palet " & dbo.SCC, _
+                                MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+
+
+                    Dim frm As New frmEtiqueta0(dbo.ID, If(Config.UserType = 1 Or Config.UserType = 9 Or Config.UserType = 4, True, False), True)
                     frm.Show()
                     Try
 
