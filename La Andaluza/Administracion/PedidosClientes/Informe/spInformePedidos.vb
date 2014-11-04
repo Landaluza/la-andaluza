@@ -30,7 +30,8 @@ Public Class spInformePedidos
 
     Public Function SelectInformePedidos_AlbaranesCarga(ByRef dtb As BasesParaCompatibilidad.Database) As DataTable
         dtb.Conectar()
-        Return dtb.Consultar("[dbo].[InformePedidos_SelectAlbaranesCargaMaestro]", True)
+        dtb.PrepararConsulta("[dbo].[InformePedidos_SelectAlbaranesCargaMaestro]")
+        Return dtb.Consultar()
     End Function
 
     Public Sub InsertInformePedidos_TablaTemporal(ByVal AlbaranCargaMaestroID As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase)

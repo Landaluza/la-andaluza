@@ -49,23 +49,23 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Sub
 
     Public Function devolver_TiposProductos_Cbo(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
-
-        Return dtb.Consultar("TiposProductosSelectCbo", True)
+        dtb.PrepararConsulta("TiposProductosSelectCbo")
+        Return dtb.Consultar()
     End Function
 
     Public Function devolver_TiposProductos_No_enologicos(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
-
-        Return dtb.Consultar("TiposProductosSelectCboNoEnologicos", True)
+        dtb.PrepararConsulta("TiposProductosSelectCboNoEnologicos")
+        Return dtb.Consultar()
     End Function
 
     Public Function devolver_TiposProductos_Enologicos(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
-
-        Return dtb.Consultar("TiposProductosSelectCboEnologicos", True)
+        dtb.PrepararConsulta("TiposProductosSelectCboEnologicos")
+        Return dtb.Consultar()
     End Function
 
     Public Function devolver_TiposProductos(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
-
-        Return dtb.Consultar("[dbo].[TiposProductosSelectDgv]", True)
+        dtb.PrepararConsulta("[dbo].[TiposProductosSelectDgv]")
+        Return dtb.Consultar()
     End Function
 
     Public Sub cargar_ComboBox_No_enologicos(ByRef cbo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase, Optional ByVal primeraCelda As String = "")

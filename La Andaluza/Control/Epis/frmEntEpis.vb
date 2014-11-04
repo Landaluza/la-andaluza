@@ -19,7 +19,6 @@ Public Class frmEntEpis
 
 
         If Me.Text.Substring(0, 3) = "Ver" Then
-            'GeneralBindingSource. dataSource = dtb.Consultar("EpisSelectAll")
             GeneralBindingSource.Position = m_Pos
         End If
 

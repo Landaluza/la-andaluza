@@ -16,7 +16,6 @@ Public Class frmEntEpisTipos
        ModificarBindingNavigator()
 
        If Me.Text.Substring(0, 3) = "Ver" Then
-            'GeneralBindingSource. dataSource = dtb.Consultar("EpisTiposSelectAll")
            GeneralBindingSource.Position = m_Pos
        End If
 

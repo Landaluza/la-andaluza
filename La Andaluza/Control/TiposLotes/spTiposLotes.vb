@@ -37,7 +37,8 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Sub
 
     Public Function devolver_TiposLotes(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
-        Return dtb.Consultar("TiposLotesCbo", False)
+        dtb.PrepararConsulta("TiposLotesCbo")
+        Return dtb.Consultar()
     End Function
 
     Public Function DevolverPorDescripcion(ByVal Descripcion As String, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_TiposLotes

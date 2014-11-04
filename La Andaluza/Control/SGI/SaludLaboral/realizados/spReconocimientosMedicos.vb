@@ -29,7 +29,8 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Function
 
     Sub cargar_ReconocimientosMedicos(ByRef comboBox As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
-        comboBox.mam_DataSource(dtb.Consultar("[ReconocimientosMedicosSelectCbo]", True), False)
+        dtb.PrepararConsulta("[ReconocimientosMedicosSelectCbo]")
+        comboBox.mam_DataSource(dtb.Consultar(), False)
     End Sub
 
 End Class

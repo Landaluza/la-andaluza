@@ -140,7 +140,8 @@ Public Class frmEtiqueta0
         barc.Alignment = BarcodeLib.AlignmentPositions.LEFT
         barc.IncludeLabel = True
         barc.LabelPosition = BarcodeLib.LabelPositions.BOTTOMLEFT        
-        Barcode1.Image = barc.Encode(BarcodeLib.TYPE.CODE128, texto, Color.Black, Color.White, 350, 120)
+        '        Barcode1.Image = barc.Encode(BarcodeLib.TYPE.CODE128, texto, Color.Black, Color.White, 350, 120)
+        Barcode1.Image = barc.Encode(BarcodeLib.TYPE.SSCC, texto, Color.Black, Color.White, 350, 120)
 
 
 
@@ -160,7 +161,8 @@ Public Class frmEtiqueta0
         barc.Alignment = BarcodeLib.AlignmentPositions.LEFT
         barc.IncludeLabel = True
         barc.LabelPosition = BarcodeLib.LabelPositions.BOTTOMLEFT
-        Barcode2.Image = barc.Encode(BarcodeLib.TYPE.CODE128, texto, Color.Black, Color.White, Me.Width - 20, 120)
+        '        Barcode2.Image = barc.Encode(BarcodeLib.TYPE.CODE128, texto, Color.Black, Color.White, Me.Width - 20, 120)
+        Barcode2.Image = barc.Encode(BarcodeLib.TYPE.SSCC, texto, Color.Black, Color.White, Me.Width - 20, 120)
 
         Barcode2.Width = Barcode2.Image.Width
         Barcode2.Height = Barcode2.Image.Height

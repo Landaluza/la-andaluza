@@ -33,7 +33,8 @@
     Function comprobarNumeroPedidos(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
 
 
-        Dim dt As DataTable = dtb.Consultar("PedidosClientesCountByDiaServicio2", True)
+        dtb.PrepararConsulta("PedidosClientesCountByDiaServicio2")
+        Dim dt As DataTable = dtb.Consultar()
 
         If dt Is Nothing Then Return 0
         If dt.Rows(0) Is Nothing Then Return 0
@@ -44,7 +45,8 @@
     Function comprobarNumeroOC(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
 
 
-        Dim dt As DataTable = dtb.Consultar("OrdenesDeCargaCountByDiaServicio", True)
+        dtb.PrepararConsulta("OrdenesDeCargaCountByDiaServicio")
+        Dim dt As DataTable = dtb.Consultar()
 
         If dt Is Nothing Then Return 0
         If dt.Rows(0) Is Nothing Then Return 0

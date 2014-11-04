@@ -68,7 +68,8 @@ Public Class frmEntNoticias
 
             Try
                 If sp.Grabar(dbo, Me.dtb) Then
-                    If Me.ModoDeApertura = INSERCION Then Me.m_DBO_Noticias.ID = Convert.ToInt32(Me.dtb.Consultar("select max(id) from noticias", False).Rows(0).Item(0))
+                    Me.dtb.PrepararConsulta("select max(id) from noticias")
+                    If Me.ModoDeApertura = INSERCION Then Me.m_DBO_Noticias.ID = Convert.ToInt32(Me.dtb.Consultar().Rows(0).Item(0))
                     If terminar Then Me.dtb.TerminarTransaccion()
 
                     evitarCerrarSinGuardar = False

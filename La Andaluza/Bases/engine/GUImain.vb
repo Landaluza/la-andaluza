@@ -544,7 +544,8 @@ Public Class GUImain
     End Sub
 
     Protected Sub cargarAgenda()
-        Dim dt As DataTable = dtb.Consultar("ComunicacionesSelectDgv", True)
+        dtb.PrepararConsulta("ComunicacionesSelectDgv")
+        Dim dt As DataTable = dtb.Consultar()
         If Not dt Is Nothing Then
             Me.mAgenda.Items.Clear()
             Dim sms2 As ToolStripMenuItem

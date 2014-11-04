@@ -29,7 +29,8 @@ Public Class spEmpleados
     End Function
 
     Public Function devolver_empleados_inactivos(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
-        Return dtb.Consultar("EmpleadosSelectDgvInactivos", True)
+        dtb.PrepararConsulta("EmpleadosSelectDgvInactivos")
+        Return dtb.Consultar()
     End Function
 
     Public Sub cargar_Empleados(ByRef cbo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
@@ -41,11 +42,13 @@ Public Class spEmpleados
     End Sub
 
     Function devolver_Empleados_Analistas(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
-        Return dtb.Consultar("EmpleadosAnalistasCbo", True)
+        dtb.PrepararConsulta("EmpleadosAnalistasCbo")
+        Return dtb.Consultar()
     End Function
 
     Function devolver_Empleados_Catadores(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
-        Return dtb.Consultar("EmpleadosCatadoresCbo", True)
+        dtb.PrepararConsulta("EmpleadosCatadoresCbo")
+        Return dtb.Consultar()
     End Function
 
     Public Sub cargar_empleados_por_linea(ByRef cbo As ComboBox, ByVal linea As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase)
@@ -78,7 +81,8 @@ Public Class spEmpleados
     End Function
 
     Public Function devolver_Empleados_Envasados_Situacion_Actual(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
-        Return dtb.Consultar("EmpleadosEnvasados_SituacionEnLinea", True)
+        dtb.PrepararConsulta("EmpleadosEnvasados_SituacionEnLinea")
+        Return dtb.Consultar()
     End Function
 
     Public Sub cargar_empleados_envasados(ByRef cbo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
@@ -86,11 +90,13 @@ Public Class spEmpleados
     End Sub
 
     Function devolver_Empleados_Envasados(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
-        Return dtb.Consultar("EmpleadosEnvasados", True)
+        dtb.PrepararConsulta("EmpleadosEnvasados")
+        Return dtb.Consultar()
     End Function
 
     Function devolver_Empleados_Envasados_libres(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
-        Return dtb.Consultar("EmpleadosEnvasadosSinOcupacion", True)
+        dtb.PrepararConsulta("EmpleadosEnvasadosSinOcupacion")
+        Return dtb.Consultar()
     End Function
 
     Sub cargar_Empleados_Envasados_libres(ByRef cbo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
@@ -128,6 +134,7 @@ Public Class spEmpleados
     End Function
 
     Function devolver_empleados_con_turnos_sin_fin(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
-        Return dtb.Consultar("EmpleadosEnvasados_TurnosSinFinalizar", True)
+        dtb.PrepararConsulta("EmpleadosEnvasados_TurnosSinFinalizar")
+        Return dtb.Consultar()
     End Function
 End Class

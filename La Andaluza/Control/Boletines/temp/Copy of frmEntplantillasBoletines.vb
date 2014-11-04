@@ -196,10 +196,11 @@ Public Class frmEntplantillasBoletines
         If Me.m_CodigoLote <> "" Then
             dtb.PrepararConsulta("LotesSelectCategoriasParametrosByCodigoLote @cod")
             dtb.AñadirParametroConsulta("@cod", m_CodigoLote)
-            tablaCategorias = dtb.Consultar()
         Else
-            tablaCategorias = dtb.Consultar("LotesSelectAllCategoriasParametros", True)
+            dtb.PrepararConsulta("LotesSelectAllCategoriasParametros")
         End If
+
+        tablaCategorias = dtb.Consultar()
 
         While contCategorias < tablaCategorias.Rows.Count
             contParametros = 0

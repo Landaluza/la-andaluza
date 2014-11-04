@@ -33,6 +33,7 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Sub
 
     Public Function devolver_MedidasProductos(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
-        Return dtb.Consultar("MedidasProductosCbo", True)
+        dtb.PrepararConsulta("MedidasProductosCbo")
+        Return dtb.Consultar()
     End Function
 End Class

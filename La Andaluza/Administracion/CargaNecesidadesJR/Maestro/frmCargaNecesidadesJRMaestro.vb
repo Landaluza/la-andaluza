@@ -37,7 +37,8 @@ Public Class frmCargaNecesidadesJRMaestro
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         ' dgvFill()
         Dim dtb As New BasesParaCompatibilidad.DataBase
-        GeneralBindingSource.DataSource = dtb.Consultar("SelectCargaNecesidadesMaestroALL", True)
+        dtb.PrepararConsulta("SelectCargaNecesidadesMaestroALL")
+        GeneralBindingSource.DataSource = dtb.Consultar()
         GeneralBindingSource.MoveLast()
         HabilitarBotones()
     End Sub
@@ -63,7 +64,8 @@ Public Class frmCargaNecesidadesJRMaestro
         If response = DialogResult.Yes Then
             Dim dtb As New BasesParaCompatibilidad.DataBase
             If CType(sp, spCargasNecesidades).spDeleteCargaNecesidadesJRMaestro(dgvGeneral.CurrentRow.Cells("MaestroID").Value, dtb) Then
-                GeneralBindingSource.DataSource = dtb.Consultar("SelectCargaNecesidadesMaestroALL", True)
+                dtb.PrepararConsulta("SelectCargaNecesidadesMaestroALL")
+                GeneralBindingSource.DataSource = dtb.Consultar()
             End If
         End If
         HabilitarBotones()
@@ -90,7 +92,8 @@ Public Class frmCargaNecesidadesJRMaestro
 
     Public Overrides Sub Refrescar()
         Dim dtb As New BasesParaCompatibilidad.DataBase
-        GeneralBindingSource.DataSource = dtb.Consultar("SelectCargaNecesidadesMaestroALL", True)
+        dtb.PrepararConsulta("SelectCargaNecesidadesMaestroALL")
+        GeneralBindingSource.DataSource = dtb.Consultar()
         HabilitarBotones()
         With dgvGeneral
             .DataSource = GeneralBindingSource

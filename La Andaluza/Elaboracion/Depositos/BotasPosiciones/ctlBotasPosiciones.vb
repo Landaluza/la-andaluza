@@ -121,7 +121,8 @@ Public Class ctlBotasPosiciones
     End Sub
 
     Public Function devolverPosiciones(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
-        Return dtb.Consultar("select Posiciones.PosicionID,Posiciones.Descripcion,Alturas.Descripcion As Alturas from Posiciones LEFT JOIN Alturas On Posiciones.AlturaID = Alturas.AlturaID", False)
+        dtb.PrepararConsulta("select Posiciones.PosicionID,Posiciones.Descripcion,Alturas.Descripcion As Alturas from Posiciones LEFT JOIN Alturas On Posiciones.AlturaID = Alturas.AlturaID")
+        Return dtb.Consultar()
     End Function
 
 

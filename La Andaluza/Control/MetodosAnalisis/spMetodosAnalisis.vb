@@ -32,7 +32,8 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Sub
 
     Public Function devolverMetodosAnalisis(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
-        Return dtb.Consultar("MetodosAnalisisCbo", True)
+        dtb.PrepararConsulta("MetodosAnalisisCbo")
+        Return dtb.Consultar()
     End Function
 
 End Class

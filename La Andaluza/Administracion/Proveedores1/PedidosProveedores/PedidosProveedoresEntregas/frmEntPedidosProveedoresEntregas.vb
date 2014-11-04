@@ -20,7 +20,8 @@ Public Class frmEntPedidosProveedoresEntregas
 
     Private Sub frmEntPedidosProveedoresEntregas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         If Me.Text.Substring(0, 3) = "Ver" Then
-            GeneralBindingSource.DataSource = dtb.Consultar("PedidosProveedoresEntregasSelectAll", True)
+            dtb.PrepararConsulta("PedidosProveedoresEntregasSelectAll")
+            GeneralBindingSource.DataSource = dtb.Consultar()
             GeneralBindingSource.Position = m_Pos
         End If
 

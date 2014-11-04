@@ -49,7 +49,8 @@ Public Class frmWstepMateriasPrimas
 
         Dim spArticulos1 As New spArticulos1
         Dim cb As System.Windows.Forms.CheckBox
-        Dim dt As DataTable = dtb.Consultar("ArticulosCertificadosTiposSelectDgv", True)
+        dtb.PrepararConsulta("ArticulosCertificadosTiposSelectDgv")
+        Dim dt As DataTable = dtb.Consultar()
 
         For Each row As System.Data.DataRow In dt.Rows
             cb = New System.Windows.Forms.CheckBox
@@ -77,7 +78,11 @@ Public Class frmWstepMateriasPrimas
     End Sub
 
     Public Function grabarDatos(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean Implements wizardable.grabarDatos
-        If Me.m_DBO_MateriaPrima.ArticuloID Is Nothing Then Me.m_DBO_MateriaPrima.ArticuloID = dtb.Consultar("select max(articuloID) from Articulos1", False).Rows(0).Item(0)
+
+        If Me.m_DBO_MateriaPrima.ArticuloID Is Nothing Then
+            dtb.PrepararConsulta("select max(articuloID) from Articulos1")
+            Me.m_DBO_MateriaPrima.ArticuloID = dtb.Consultar().Rows(0).Item(0)
+        End If
 
         If spArticulosMateriasPrimas.GrabarArticulosMateriasPrimasSinTransaccion(m_DBO_MateriaPrima, dtb) Then
             If spArticulos_ArticulosCertificadosTipos.Articulos_ArticulosCertificadosTiposDeleteByArticuloIDSinTransaccion(Me.m_DBO_MateriaPrima.ArticuloID, dtb) Then

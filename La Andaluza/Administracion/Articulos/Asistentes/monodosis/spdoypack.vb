@@ -21,7 +21,8 @@ Class spdoypack
         dtb.AñadirParametroConsulta("@nom", nombre)
 
         If dtb.Consultar(True) Then
-            Return dtb.Consultar("select max(tipoformatoid) from tiposformatos", True).Rows(0).Item(0)
+            dtb.PrepararConsulta("select max(tipoformatoid) from tiposformatos")
+            Return dtb.Consultar().Rows(0).Item(0)
         Else
             Return 0
         End If
@@ -72,7 +73,8 @@ Class spdoypack
     End Function
 
     Public Function UltimoArticuloInsertado(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
-        Return dtb.Consultar("select max(articuloID) from articulos1", False).Rows(0).Item(0)
+        dtb.PrepararConsulta("select max(articuloID) from articulos1")
+        Return dtb.Consultar().Rows(0).Item(0)
     End Function
 
     'Public Function selectRecord(ByVal p1 As Integer) As Collection
