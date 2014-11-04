@@ -132,7 +132,9 @@ Public Class frmPaletsMovimientoEntrePalets
 
                 'If DBO_PaletsMovimientoTipo.PaletMovimientoTipoID = 21 Or DBO_PaletsMovimientoTipo.PaletMovimientoTipoID = 23 Or DBO_PaletsMovimientoTipo.PaletMovimientoTipoID = 26 Then
                 If spPaletsMovimiento.esMovimientoEncajado(Me.cboMovimientoTipo.SelectedValue, dtb) Then
-                    Dim capacidad As Integer = dtb.Consultar("PaletsProducidosCapacidadFormatoByPaletProducidoID " & m_PaletProducidoDestino.PaletProducidoID, True).Rows(0).Item(0)
+                    dtb.PrepararConsulta("PaletsProducidosCapacidadFormatoByPaletProducidoID @id")
+                    dtb.AñadirParametroConsulta("@id", m_PaletProducidoDestino.PaletProducidoID)
+                    Dim capacidad As Integer = dtb.Consultar().Rows(0).Item(0)
                     dbo_movimiento.Cajas = dbo_movimiento.Cajas / capacidad
                 End If
             End If

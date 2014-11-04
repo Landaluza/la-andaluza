@@ -291,7 +291,6 @@ Public Class frmPaletsContenidos2
                 dtb.AñadirParametroConsulta("@env", padre.m_DBO_Envasado.EnvasadoID)
                 dtb.AñadirParametroConsulta("@lin", padre.m_DBO_Envasado.LineaID)
                 Dim HoraInicioAux As Object = dtb.Consultar().Rows(0).Item(0)
-                'Dim HoraInicioAux As Object = dtb.Consultar("exec PaletsProducidos2GetUltimaHoraProduccionPorLinea2 " & padre.m_DBO_Envasado.LineaID & ", " & padre.m_DBO_Envasado.EnvasadoID).Rows(0).Item(0)
                 Dim cajasAux As Integer = (padre.dgvIncompletos.CurrentRow.Cells("Cajas").Value)
 
                 padre.SetValores()

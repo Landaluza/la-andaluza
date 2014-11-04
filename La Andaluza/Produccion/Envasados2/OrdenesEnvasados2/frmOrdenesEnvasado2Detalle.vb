@@ -64,8 +64,8 @@ Public Class frmOrdenesEnvasado2Detalle
         End With
 
         With dgvAlbaranes
-            '. dataSource = dtb.Consultar("InformePedidos_SelectAlbaranesCargaMaestro")
-            .DataSource = dtb.Consultar("InformePedidos_SelectAlbaranesCargaMaestro", True)
+            dtb.PrepararConsulta("InformePedidos_SelectAlbaranesCargaMaestro")
+            .DataSource = dtb.Consultar()
             .Columns("AlbaranCargaMaestroID").Visible = False
             .Columns("ClienteID").Visible = False
             .Columns("Observaciones").Visible = False
@@ -90,8 +90,15 @@ Public Class frmOrdenesEnvasado2Detalle
     End Sub
 
     Private Sub ActualizarGrillas()
-        dgvArtOrdEnv.DataSource = dtb.Consultar("ArticulosOrdenEnvasado2SelectPorOrdenEnvasadoPorLinea " & m_DBO_OrdenesEnvasado.OrdenEnvasadoID & ", " & m_LineaID.ToString, True)
-        dgvPedidos.DataSource = dtb.Consultar("OrdenesEnvasados2InformePedidosPorLinea " & m_LineaID & ",'" & m_DBO_OrdenesEnvasado.Fecha & "'", True)
+        dtb.PrepararConsulta("ArticulosOrdenEnvasado2SelectPorOrdenEnvasadoPorLinea @id, @lin")
+        dtb.AñadirParametroConsulta("@id", m_DBO_OrdenesEnvasado.OrdenEnvasadoID)
+        dtb.AñadirParametroConsulta("@lin", m_LineaID)
+        dgvArtOrdEnv.DataSource = dtb.Consultar()
+
+        dtb.PrepararConsulta("OrdenesEnvasados2InformePedidosPorLinea  @lin, @fec")
+        dtb.AñadirParametroConsulta("@lin", m_LineaID)
+        dtb.AñadirParametroConsulta("@fec", m_DBO_OrdenesEnvasado.Fecha)
+        dgvPedidos.DataSource = dtb.Consultar()
         HabilitarBotones()
     End Sub
 
@@ -160,12 +167,16 @@ Public Class frmOrdenesEnvasado2Detalle
 
         Dim i As Integer = 0
         While i < dgvAlbaranes.SelectedRows.Count
-            dtb.Consultar("InformePedidos_InsertTempAlbaranesCargaMaestro " & dgvAlbaranes.SelectedRows(i).Cells("AlbaranCargaMaestroID").Value.ToString, True)
+            dtb.PrepararConsulta("InformePedidos_InsertTempAlbaranesCargaMaestro @id")
+            dtb.AñadirParametroConsulta("@id", dgvAlbaranes.SelectedRows(i).Cells("AlbaranCargaMaestroID").Value)
+            dtb.Consultar(True)
             'DataTableFill("InformePedidos_InsertTempAlbaranesCargaMaestro " & dgvAlbaranes.SelectedRows(i).Cells("AlbaranCargaMaestroID").Value)
             i = i + 1
         End While
-
-        dgvPedidos.DataSource = dtb.Consultar("OrdenesEnvasados2InformePedidosPorLinea " & m_LineaID & ",'" & m_DBO_OrdenesEnvasado.Fecha & "'", True)
+        dtb.PrepararConsulta("OrdenesEnvasados2InformePedidosPorLinea @lin, @fec")
+        dtb.AñadirParametroConsulta("@lin", m_LineaID)
+        dtb.AñadirParametroConsulta("@fec", m_DBO_OrdenesEnvasado.Fecha)
+        dgvPedidos.DataSource = dtb.Consultar()
         'dgvPedidos.DataSource = DataTableFillSPConParametros("OrdenesEnvasados2InformePedidosPorLinea", "@LineaID", m_LineaID, "@FechaPedido", m_DBO_OrdenesEnvasado.Fecha)
         FormatoGrillas()
         HabilitarBotones()

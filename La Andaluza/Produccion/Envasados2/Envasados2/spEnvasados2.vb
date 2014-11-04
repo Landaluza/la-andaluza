@@ -179,7 +179,8 @@ Class spEnvasados2
     End Sub
 
     Public Shared Function personalPendiente(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
-        Dim dt As DataTable = dtb.Consultar("select count(*) from empleados_formatosEnvasados, formatosEnvasados, envasados where id_formatoEnvasado = formatoEnvasadoid and formatosEnvasados.envasadoid = envasados.envasadoid and convert(varchar, envasados.fecha, 103) <> convert(varchar, CURRENT_TIMESTAMP, 103) and empleados_formatosEnvasados.fin is null", False)
+        dtb.PrepararConsulta("select count(*) from empleados_formatosEnvasados, formatosEnvasados, envasados where id_formatoEnvasado = formatoEnvasadoid and formatosEnvasados.envasadoid = envasados.envasadoid and convert(varchar, envasados.fecha, 103) <> convert(varchar, CURRENT_TIMESTAMP, 103) and empleados_formatosEnvasados.fin is null")
+        Dim dt As DataTable = dtb.Consultar()
         If dt Is Nothing Then Return False
         If dt.Rows(0) Is Nothing Then Return False
 

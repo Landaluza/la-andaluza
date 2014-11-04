@@ -219,7 +219,9 @@ Class spPaletsAlmacenEntradas
     End Sub
 
     Public Function EstaEnAlmacen(ByVal scc As String, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
-        Dim Tabla As DataTable = dtb.Consultar("select count(* ) from PaletsAlmacenEntradas where sscc=" & scc, False)
+        dtb.PrepararConsulta("select count(* ) from PaletsAlmacenEntradas where sscc= @scc")
+        dtb.AñadirParametroConsulta("@scc", scc)
+        Dim Tabla As DataTable = dtb.Consultar()
 
         If Tabla.Rows(0).Item(0) = 0 Then Return False
 

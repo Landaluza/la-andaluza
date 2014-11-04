@@ -312,12 +312,14 @@ Class spFormatosEnvasados2
     End Sub
 
     Function select_ultimo_palet_por_linea(ByVal linea As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As DBO_PaletsProducidos2
-        Return dtb.Consultar("select top 1 horaFin " & _
+        dtb.PrepararConsulta("select top 1 horaFin " & _
                              "from paletsproducidos, paletscontenidos, formatosEnvasados, tiposFormatosLineas " & _
                              "where paletsproducidos.paletproducidoid = paletscontenidos.paletcontenidoid " & _
                              "and paletsproducidos.formatoid = formatosEnvasados.formatoEnvasadoid " & _
                              "and formatosEnvasados.TipoFormatoLineaid =  tiposFormatosLineas.TipoFormatoLineaid " & _
-                             "and lineaEnvasadoID = order by horaFin desc", False).Rows(0).Item(0)
+                             "and lineaEnvasadoID = order by horaFin desc")
+
+        Return dtb.Consultar().Rows(0).Item(0)
     End Function
 
     'Public Function devolverFormatosPorEnvasadosReport(envasadoid As Integer) As DataTable
