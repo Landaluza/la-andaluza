@@ -103,13 +103,15 @@ Public Class frmProveedores
         Dim dtb As New BasesParaCompatibilidad.DataBase
         If Not Me.tsInactivos Is Nothing Then
             If Me.tsInactivos.CheckState Then
-                dataSource = dtb.Consultar(CType(sp, spProveedores).DataGridViewStoredProcedure2, True)
+                dtb.PrepararConsulta(CType(sp, spProveedores).DataGridViewStoredProcedure2)
             Else
-                dataSource = dtb.Consultar(Me.sp.DataGridViewStoredProcedure, True)
+                dtb.PrepararConsulta(Me.sp.DataGridViewStoredProcedure)
             End If
         Else
-            dataSource = dtb.Consultar(Me.sp.DataGridViewStoredProcedure, True)
+            dtb.PrepararConsulta(Me.sp.DataGridViewStoredProcedure)
         End If
+
+        dataSource = dtb.Consultar()
     End Sub
     Protected Overrides Sub BindDataSource()
         If Not dataSource Is Nothing Then

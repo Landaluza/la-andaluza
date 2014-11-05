@@ -57,7 +57,6 @@ Public Class frmArticulosMateriasPrimasTipos
         Dim dtb As New BasesParaCompatibilidad.DataBase
         dtb.PrepararConsulta(spSelectDgv)
         dataSource = dtb.Consultar
-        'dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
     Protected Overrides Sub BindDataSource()
 

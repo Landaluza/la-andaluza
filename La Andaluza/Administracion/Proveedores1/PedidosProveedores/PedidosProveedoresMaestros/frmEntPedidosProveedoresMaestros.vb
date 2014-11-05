@@ -230,7 +230,8 @@ Public Class frmEntPedidosProveedoresMaestros
 
     Private Sub RellenarDgvNivel2()
         Dim spSelectDgvEntregas As String = "PedidosProveedoresEntregasSelectByDetalleIDDgv '" & dgvNivel1.CurrentRow.Cells("PedidoProveedorDetalleID").Value & "'"
-        bdsNivel2.DataSource = dtb.Consultar(spSelectDgvEntregas, True)
+        dtb.PrepararConsulta(spSelectDgvEntregas)
+        bdsNivel2.DataSource = dtb.Consultar()
         bdnNivel2.BindingSource = bdsNivel2
         With dgvNivel2
             .DataSource = bdsNivel2

@@ -58,7 +58,7 @@ Public Class frmCargaNecesidadesJR2Maestro
         Dim dtb As New BasesParaCompatibilidad.DataBase
         dtb.PrepararConsulta(spSelectDgv)
         dataSource = dtb.Consultar
-        'dataSource = dtb.Consultar(spSelectDgv, True)
+        'dtb.PrepararConsulta(spSelectDgv) dataSource = dtb.Consultar()
     End Sub
 
     Protected Overrides Sub BindDataSource()

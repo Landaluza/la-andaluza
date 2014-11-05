@@ -162,7 +162,8 @@ Public Class frmPedidosProveedoresMaestros
 
         Try
             spSelectDgv = "PedidosProveedoresDetallesSelectByMaestroIDDgv '" & dgvGeneral.CurrentRow.Cells("PedidoProveedorMaestroID").Value & "'"
-            tb = dtb.Consultar(spSelectDgv, True)
+            dtb.PrepararConsulta(spSelectDgv)
+            tb = dtb.Consultar()
         Catch ex As Exception
             MessageBox.Show("Error al recuperar datos para el informe. Detalles:" & Environment.NewLine & ex.Message, "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error)
             frmEspera.Close()
@@ -434,7 +435,8 @@ Public Class frmPedidosProveedoresMaestros
     Private Sub CopiarPedido()
         Dim dtb As New BasesParaCompatibilidad.DataBase
         CType(sp, spPedidosProveedoresMaestros).CopyPedidosProveedores(dgvGeneral.CurrentRow.Cells("PedidoProveedorMaestroID").Value, dtb)
-        GeneralBindingSource.DataSource = dtb.Consultar(spSelectDgv, True)
+        dtb.PrepararConsulta(spSelectDgv)
+        GeneralBindingSource.DataSource = dtb.Consultar()
         GeneralBindingSource.MoveLast()
         Modificar()
     End Sub
@@ -464,7 +466,8 @@ Public Class frmPedidosProveedoresMaestros
             spSelectDgv = "PedidosProveedoresMaestrosSelectDgvByEstado"
         End If
 
-        dataSource = dtb.Consultar(spSelectDgv, True)
+        dtb.PrepararConsulta(spSelectDgv)
+        dataSource = dtb.Consultar()
     End Sub
 
     Protected Overrides Sub BindDataSource()

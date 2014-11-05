@@ -115,7 +115,8 @@ Public Class frmEnvasadosProductosArticulos_NO_USAR
 
     Protected Overrides Sub cargar_datos()
         Dim dtb As New BasesParaCompatibilidad.DataBase
-        dataSource = dtb.Consultar(spSelectDgv, True)
+        dtb.PrepararConsulta(spSelectDgv)
+        dataSource = dtb.Consultar()
     End Sub
 
     Protected Overrides Sub BindDataSource()
@@ -125,7 +126,7 @@ Public Class frmEnvasadosProductosArticulos_NO_USAR
 
             'If keepReg Then Me.dgvGrilla.guardarColumnaSeleccionada()
             Dim dtb As New BasesParaCompatibilidad.DataBase
-            ' GeneralBindingSource.DataSource = dtb.Consultar(spSelectDgv, True)
+            ' GeneralBindingSource.dtb.PrepararConsulta(spSelectDgv) dataSource = dtb.Consultar()
 
 
             With dgvGrilla

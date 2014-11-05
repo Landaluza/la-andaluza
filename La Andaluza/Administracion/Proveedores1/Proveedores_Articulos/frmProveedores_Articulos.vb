@@ -43,7 +43,8 @@ Public Class frmProveedores_Articulos
 
     Protected Overrides Sub cargar_datos()
         Dim dtb As New BasesParaCompatibilidad.DataBase
-        dataSource = dtb.Consultar(Me.sp.DataGridViewStoredProcedure, True)
+        dtb.PrepararConsulta(Me.sp.DataGridViewStoredProcedure)
+        dataSource = dtb.Consultar()
     End Sub
     Protected Overrides Sub BindDataSource()
 

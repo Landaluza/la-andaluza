@@ -20,7 +20,8 @@ Public Class frmPaletsMovimientoSubTipo
 
     Protected Overrides Sub cargar_datos()
         Dim dtb As New BasesParaCompatibilidad.DataBase
-        dataSource = dtb.Consultar(spSelectDgv, True)
+        dtb.PrepararConsulta(spSelectDgv)
+        dataSource = dtb.Consultar()
     End Sub
 
     Protected Overrides Sub BindDataSource()
@@ -39,14 +40,16 @@ Public Class frmPaletsMovimientoSubTipo
     Overrides Sub Insertar()
         Action(ACCION_INSERTAR)
         Dim dtb As New BasesParaCompatibilidad.DataBase
-        GeneralBindingSource.DataSource = dtb.Consultar(spSelectDgv, True)
+        dtb.PrepararConsulta(spSelectDgv)
+        GeneralBindingSource.DataSource = dtb.Consultar()
 
     End Sub
 
     Overrides Sub Modificar()
         Action(ACCION_MODIFICAR)
         Dim dtb As New BasesParaCompatibilidad.DataBase
-        GeneralBindingSource.DataSource = dtb.Consultar(spSelectDgv, True)
+        dtb.PrepararConsulta(spSelectDgv)
+        GeneralBindingSource.DataSource = dtb.Consultar()
     End Sub
 
     Overrides Sub Ver()
@@ -60,7 +63,8 @@ Public Class frmPaletsMovimientoSubTipo
         If response = DialogResult.Yes Then
             Dim dtb As New BasesParaCompatibilidad.DataBase
             If CType(sp, spPaletsMovimientoSubTipo).DeletePaletsMovimientoSubTipo(dgvGeneral.CurrentRow.Cells("ID").Value, dtb) Then
-                GeneralBindingSource.DataSource = dtb.Consultar(spSelectDgv, True)
+                dtb.PrepararConsulta(spSelectDgv)
+                GeneralBindingSource.DataSource = dtb.Consultar()
             End If
         End If
     End Sub

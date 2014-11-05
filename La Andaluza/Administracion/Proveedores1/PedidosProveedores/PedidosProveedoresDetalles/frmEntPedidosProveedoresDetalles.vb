@@ -154,7 +154,8 @@ Public Class frmEntPedidosProveedoresDetalles
 
     Private Sub RellenarDgvNivel1()
         Dim spSelectDgv As String = "PedidosProveedoresEntregasSelectByDetalleIDDgv '" & DBO_PedidoProveedorDetalle.PedidoProveedorDetalleID & "'"
-        bdsNivel1.DataSource = dtb.Consultar(spSelectDgv, True)
+        dtb.PrepararConsulta(spSelectDgv)
+        bdsNivel1.DataSource = dtb.Consultar()
         bdnNivel1.BindingSource = bdsNivel1
         With dgvNivel1
             .DataSource = bdsNivel1

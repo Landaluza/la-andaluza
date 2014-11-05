@@ -61,7 +61,6 @@ Public Class frmArticulosIngredientesTipos
         Dim dtb As New BasesParaCompatibilidad.DataBase
         dtb.PrepararConsulta(spSelectDgv)
         dataSource = dtb.Consultar()
-        '        dataSource = dtb.Consultar(spSelectDgv, True)
     End Sub
     Protected Overrides Sub BindDataSource()
         If Not dataSource Is Nothing Then

@@ -11,7 +11,7 @@ Public Class frmClientes
         Dim dtb As New BasesParaCompatibilidad.DataBase
         dtb.PrepararConsulta(spSelectDgv)
         dataSource = dtb.Consultar
-        'dataSource = dtb.Consultar(spSelectDgv, True)
+        'dtb.PrepararConsulta(spSelectDgv) dataSource = dtb.Consultar()
     End Sub
 
     Protected Overrides Sub BindDataSource()
@@ -35,7 +35,8 @@ Public Class frmClientes
     Overrides Sub Modificar()
         Action(ACCION_MODIFICAR)
         Dim dtb As New BasesParaCompatibilidad.DataBase
-        GeneralBindingSource.DataSource = dtb.Consultar(spSelectDgv, True)
+        dtb.PrepararConsulta(spSelectDgv)
+        GeneralBindingSource.DataSource = dtb.Consultar()
     End Sub
 
     Overrides Sub Ver()
@@ -50,7 +51,8 @@ Public Class frmClientes
             Dim dtb As New BasesParaCompatibilidad.DataBase
             If CType(sp, spClientes).DeleteClientes(dgvGeneral.CurrentRow.Cells("ClienteID").Value, dtb) Then
                 'GeneralBindingSource. dataSource = dtb.consultar(spSelectDgv)
-                GeneralBindingSource.DataSource = dtb.Consultar(spSelectDgv, True)
+                dtb.PrepararConsulta(spSelectDgv)
+                GeneralBindingSource.DataSource = dtb.Consultar()
             End If
         End If
     End Sub

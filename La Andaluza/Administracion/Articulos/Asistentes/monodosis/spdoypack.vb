@@ -131,10 +131,12 @@ Class spdoypack
     Public Function selectRecordBy(ByVal p1 As Integer, ByVal p2 As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Dbo_DoyPack
 
         Dim Dbo_DoyPack As New Dbo_DoyPack
-        Dim selectProcedure As String = "[dbo].[doypackSelectBy]"
-
+        Dim selectProcedure As String = "[dbo].[doypackSelectBy] @p1, @p2"
+        dtb.PrepararConsulta(selectProcedure)
+        dtb.AñadirParametroConsulta("@p1", p1)
+        dtb.AñadirParametroConsulta("@p2", p2)
         Try
-            Dim dt As DataTable = dtb.Consultar(selectProcedure & " " & p1 & ", " & p2, True)
+            Dim dt As DataTable = dtb.Consultar()
             For Each row As DataRow In dt.Rows
                 Dbo_DoyPack = New Dbo_DoyPack
                 Dbo_DoyPack.ArticuloPrimarioID = p1

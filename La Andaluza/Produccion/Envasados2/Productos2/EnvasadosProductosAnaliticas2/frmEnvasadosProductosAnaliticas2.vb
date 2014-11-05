@@ -68,7 +68,8 @@ Public Class frmEnvasadosProductosAnaliticas2
 
     Protected Overrides Sub cargar_datos()
         Dim dtb As New BasesParaCompatibilidad.DataBase
-        dataSource = dtb.Consultar(spSelectDgv, True)
+        dtb.PrepararConsulta(spSelectDgv)
+        dataSource = dtb.Consultar()
     End Sub
 
     Protected Overrides Sub BindDataSource()
