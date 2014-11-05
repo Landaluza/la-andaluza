@@ -276,7 +276,6 @@ Class spdoypack
             Dim deleteProcedure As String = "[dbo].[doypackDeleteBy]"
             Dim deleteCommand As System.Data.SqlClient.SqlCommand = dtb.Comando("[dbo].[doypackDeleteBy]")
             deleteCommand.CommandType = CommandType.StoredProcedure
-            deleteCommand.Transaction = dtb.Transaccion
             deleteCommand.Parameters.AddWithValue("@articulo", p1)
             deleteCommand.Parameters.AddWithValue("@monodosis", p2)
 

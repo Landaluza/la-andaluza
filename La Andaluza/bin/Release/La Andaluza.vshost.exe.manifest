@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="La Andaluza.exe" version="2014.7.1.488" publicKeyToken="0000000000000000" language="es-ES" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="La Andaluza.exe" version="2014.7.1.499" publicKeyToken="0000000000000000" language="es-ES" processorArchitecture="msil" type="win32" />
   <description asmv2:iconFile="Resources\LogoBandejaLa2.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
@@ -105,19 +105,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>iT9fdrCJgxBdZibYyrLY+iQj+CA1PrCyhRNNxytpUAA=</dsig:DigestValue>
+        <dsig:DigestValue>LXtic1QPr9EM/hB7fu3ARCWV+5Bxu5V+1lJ9cZB9wX8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BarcodeLib.dll" size="123904">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BarcodeLib.dll" size="134656">
       <assemblyIdentity name="BarcodeLib" version="1.0.0.16" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>r5oEEbz8X0OT3QAbaGAb+YljDgUp0UA8LEqk21M81Nw=</dsig:DigestValue>
+        <dsig:DigestValue>NlsbSzl6PohjBCK2esN7m+M211YshoHiW41FsLNDFaA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -321,19 +321,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ICE2UaNVLxeKB5bgJmqDPN4Hy1VfTvj494OubcgL6eE=</dsig:DigestValue>
+        <dsig:DigestValue>9QYlP6KdNsMv1it5MEcAqF7uotxbU29Xre6M40a6RsU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="La Andaluza.exe" size="10255872">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="La Andaluza.exe" size="10258432">
       <assemblyIdentity name="La Andaluza" version="2014.2.1.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Fo5Qgm0hq42c9x4b0O3RbfTfu9E5JKwLjX6IicUDBOE=</dsig:DigestValue>
+        <dsig:DigestValue>ukLfKbtjUOZcjMUSqTBB8VbyTjVxudMR+L4+AYtwQmg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -469,13 +469,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="Bases\ZLibrerias\BarcodeLib.dll" size="123904">
+  <file name="Bases\ZLibrerias\BarcodeLib.dll" size="134656">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>r5oEEbz8X0OT3QAbaGAb+YljDgUp0UA8LEqk21M81Nw=</dsig:DigestValue>
+      <dsig:DigestValue>NlsbSzl6PohjBCK2esN7m+M211YshoHiW41FsLNDFaA=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Bases\ZLibrerias\twaincontrolxtrial.exe" size="901096">

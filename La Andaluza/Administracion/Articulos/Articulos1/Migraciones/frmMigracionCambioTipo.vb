@@ -23,7 +23,6 @@ Public Class frmMigracionCambioTipo
         Dim migrateCommand As System.Data.SqlClient.SqlCommand = dtb.Comando("[dbo].[ArticulosMigrarTipo]")
 
         Try
-            migrateCommand.Transaction = dtb.Transaccion
             migrateCommand.CommandType = CommandType.StoredProcedure
             migrateCommand.Parameters.AddWithValue("@artMantener", m_dbo_mantener.ID)
             migrateCommand.Parameters.AddWithValue("@tipo", Me.cboArticulo.SelectedValue)

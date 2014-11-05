@@ -65,7 +65,7 @@ Class spOrdenesCarga
         Dim connection As System.Data.SqlClient.SqlConnection = dtb.Conexion
         Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.Comando("[dbo].[OrdenesCargaInsert]")
         insertCommand.CommandType = CommandType.StoredProcedure
-        If Not dtb.Transaccion Is Nothing Then insertCommand.Transaction = dtb.Transaccion
+
         insertCommand.Parameters.AddWithValue("@Fecha", dbo_OrdenesCarga.Fecha)
         insertCommand.Parameters.AddWithValue("@Ruta", dbo_OrdenesCarga.Ruta)
         insertCommand.Parameters.AddWithValue("@Observaciones", dbo_OrdenesCarga.Observaciones)
@@ -89,7 +89,7 @@ Class spOrdenesCarga
         Dim insertProcedure As String = "[dbo].[OrdenesCargaDetallesInsert]"
         Dim insertCommand As System.Data.SqlClient.SqlCommand = dtb.Comando("[dbo].[OrdenesCargaDetallesInsert]")
         insertCommand.CommandType = CommandType.StoredProcedure
-        If Not dtb.Transaccion Is Nothing Then insertCommand.Transaction = dtb.Transaccion
+
         insertCommand.Parameters.AddWithValue("@id_OrdenCarga", dbo_OrdenesCarga.Id_OrdenCarga)
         insertCommand.Parameters.AddWithValue("@Descripcion", dbo_OrdenesCarga.Descripcion)
         insertCommand.Parameters.AddWithValue("@id_tipoFormato", dbo_OrdenesCarga.id_tipoFormato)
@@ -142,7 +142,6 @@ Class spOrdenesCarga
 
         Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.Comando("[dbo].[OrdenesCargaUpdate]")
         updateCommand.CommandType = CommandType.StoredProcedure
-        If Not dtb.Transaccion Is Nothing Then updateCommand.Transaction = dtb.Transaccion
         updateCommand.Parameters.AddWithValue("@NewFecha", newDBO_OrdenesCarga.Fecha)
         updateCommand.Parameters.AddWithValue("@NewRuta", newDBO_OrdenesCarga.Ruta)
         updateCommand.Parameters.AddWithValue("@NewObservaciones", newDBO_OrdenesCarga.Observaciones)

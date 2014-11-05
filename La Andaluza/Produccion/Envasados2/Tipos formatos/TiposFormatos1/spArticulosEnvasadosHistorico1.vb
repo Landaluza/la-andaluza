@@ -81,7 +81,6 @@ Public Class spArticulosEnvasadosHistorico1
 
         Dim updateCommand As System.Data.SqlClient.SqlCommand = dtb.Comando("[dbo].[TiposFormatos1Update]")
         updateCommand.CommandType = CommandType.StoredProcedure
-        If Not dtb.Transaccion Is Nothing Then updateCommand.Transaction = dtb.Transaccion
         '<Tag=[Three][Start]> -- please do not remove this line
         updateCommand.Parameters.AddWithValue("@NewCodigoQS", newDBO_TiposFormatos1.CodigoQS)
         updateCommand.Parameters.AddWithValue("@NewDescripcion", newDBO_TiposFormatos1.Descripcion)

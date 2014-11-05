@@ -39,7 +39,7 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     'End Sub
 
     Function select_lineaPorformato(ByVal formato As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
-        dtb.Consultar("select LineaenvasadoID from formatosEnvasados, tiposformatosLineas where formatosEnvasados.tipoformatoLineaid = tiposformatosLineas.tipoformatoLineaID and formatoEnvasadoID = @for")
+        dtb.PrepararConsulta("select LineaenvasadoID from formatosEnvasados, tiposformatosLineas where formatosEnvasados.tipoformatoLineaid = tiposformatosLineas.tipoformatoLineaID and formatoEnvasadoID = @for")
         dtb.AñadirParametroConsulta("@for", formato)
         Return dtb.Consultar().Rows(0).Item(0)
     End Function

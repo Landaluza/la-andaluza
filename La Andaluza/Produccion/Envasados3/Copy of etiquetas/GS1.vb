@@ -13,7 +13,13 @@
 
     Public ReadOnly Property Empresa As String
         Get
-            Return FNC1 & Codigo1 & Codugo2
+            Return FNC1 & Codigo1 & Codugo2.Replace("(10)", "(10)0")
+        End Get
+    End Property
+
+    Public ReadOnly Property Empresa_DOBLE_CODIFICACION As String
+        Get
+            Return FNC1 & Codigo1 & "B" & Codugo2
         End Get
     End Property
 End Class

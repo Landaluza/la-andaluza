@@ -54,39 +54,46 @@ Public Class frmOrdenesEnvasado2Detalle
 
     Private Sub FormatoGrillas()
 
-        With dgvArtOrdEnv
-            .Columns("ArticuloOrdenEnvasadoID").Visible = False
-            .Columns("LineasEnvasado").Visible = False
-            .FormatoColumna("Descripcion", BasesParaCompatibilidad.TiposColumna.Izquierda, 480, 0)
-            .FormatoColumna("Cajas", BasesParaCompatibilidad.TiposColumna.Miles, , 1)
-            .FormatoColumna("Observaciones", BasesParaCompatibilidad.TiposColumna.Izquierda, 300, 2)
-            .FormatoGeneral()
-        End With
+        If Not dgvArtOrdEnv.DataSource Is Nothing Then
+            With dgvArtOrdEnv
+                .Columns("ArticuloOrdenEnvasadoID").Visible = False
+                .Columns("LineasEnvasado").Visible = False
+                .FormatoColumna("Descripcion", BasesParaCompatibilidad.TiposColumna.Izquierda, 480, 0)
+                .FormatoColumna("Cajas", BasesParaCompatibilidad.TiposColumna.Miles, , 1)
+                .FormatoColumna("Observaciones", BasesParaCompatibilidad.TiposColumna.Izquierda, 300, 2)
+                .FormatoGeneral()
+            End With
+        End If
 
         With dgvAlbaranes
             dtb.PrepararConsulta("InformePedidos_SelectAlbaranesCargaMaestro")
             .DataSource = dtb.Consultar()
-            .Columns("AlbaranCargaMaestroID").Visible = False
-            .Columns("ClienteID").Visible = False
-            .Columns("Observaciones").Visible = False
-            .FormatoColumna("Fecha", BasesParaCompatibilidad.TiposColumna.FechaCorta, 70, 0)
-            .FormatoColumna("NumeroQS", BasesParaCompatibilidad.TiposColumna.Miles, 70, 1)
-            .FormatoGeneral()
+
+            If Not .DataSource Is Nothing Then
+                .Columns("AlbaranCargaMaestroID").Visible = False
+                .Columns("ClienteID").Visible = False
+                .Columns("Observaciones").Visible = False
+                .FormatoColumna("Fecha", BasesParaCompatibilidad.TiposColumna.FechaCorta, 70, 0)
+                .FormatoColumna("NumeroQS", BasesParaCompatibilidad.TiposColumna.Miles, 70, 1)
+                .FormatoGeneral()
+            End If
         End With
 
-        With dgvPedidos
-            .Columns("TipoFormatoID").Visible = False
-            .FormatoColumna("Descripcion", BasesParaCompatibilidad.TiposColumna.Izquierda, 480, 0)
-            .FormatoColumna("ExistenciasLA", "En LA", BasesParaCompatibilidad.TiposColumna.Miles, 70, 1)
-            .FormatoColumna("Transito", BasesParaCompatibilidad.TiposColumna.Miles, 70, 2)
-            .FormatoColumna("PedidosJR", BasesParaCompatibilidad.TiposColumna.Miles, 70, 3)
-            .FormatoColumna("StockJR", BasesParaCompatibilidad.TiposColumna.Miles, 70, 4)
-            .FormatoColumna("PedidosLA", BasesParaCompatibilidad.TiposColumna.Miles, 70, 5)
-            .FormatoColumna("StockLA", BasesParaCompatibilidad.TiposColumna.Miles, 70, 6)
-            .FormatoColumna("CantOrden", BasesParaCompatibilidad.TiposColumna.Miles, 70, 7)
-            .FormatoColumna("A Envasar", BasesParaCompatibilidad.TiposColumna.Miles, 70, 8)
-            .FormatoGeneral()
-        End With
+        If Not dgvPedidos.DataSource Is Nothing Then
+            With dgvPedidos
+                .Columns("TipoFormatoID").Visible = False
+                .FormatoColumna("Descripcion", BasesParaCompatibilidad.TiposColumna.Izquierda, 480, 0)
+                .FormatoColumna("ExistenciasLA", "En LA", BasesParaCompatibilidad.TiposColumna.Miles, 70, 1)
+                .FormatoColumna("Transito", BasesParaCompatibilidad.TiposColumna.Miles, 70, 2)
+                .FormatoColumna("PedidosJR", BasesParaCompatibilidad.TiposColumna.Miles, 70, 3)
+                .FormatoColumna("StockJR", BasesParaCompatibilidad.TiposColumna.Miles, 70, 4)
+                .FormatoColumna("PedidosLA", BasesParaCompatibilidad.TiposColumna.Miles, 70, 5)
+                .FormatoColumna("StockLA", BasesParaCompatibilidad.TiposColumna.Miles, 70, 6)
+                .FormatoColumna("CantOrden", BasesParaCompatibilidad.TiposColumna.Miles, 70, 7)
+                .FormatoColumna("A Envasar", BasesParaCompatibilidad.TiposColumna.Miles, 70, 8)
+                .FormatoGeneral()
+            End With
+        End If
     End Sub
 
     Private Sub ActualizarGrillas()

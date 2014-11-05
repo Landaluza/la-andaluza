@@ -73,7 +73,7 @@ Public Class frmEntIncidencias
                 Me.cboMaquina.SelectedValue = mTipo.MaquinaID
             End If
 
-            dtpHoraInicio.Value = DateTime.Now.Date.Add(Me.m_DBO_Incidencias.HoraInicio)
+            dtpHoraInicio.Value = New DateTime(Now.Year, Now.Month, Now.Day, Me.m_DBO_Incidencias.HoraInicio.Hours, Me.m_DBO_Incidencias.HoraInicio.Minutes, 0)
             dtpHoraFin.Value = DateTime.Now.Date.Add(Me.m_DBO_Incidencias.HoraFin)
             cboTipoIncidencia.SelectedValue = Me.m_DBO_Incidencias.TipoIncidenciaID
         Else
