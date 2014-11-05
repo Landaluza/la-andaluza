@@ -58,7 +58,8 @@ Public Class frmOrdenesCargaInforme
         Dim i As Integer
         Dim chColumn As DataColumn
         i = 0
-        dt = dtb.Consultar("OrdenesCargasInformeNew6", True)
+        dtb.PrepararConsulta("OrdenesCargasInformeNew6")
+        dt = dtb.Consultar()
 
         If Not Me.extracolumns Is Nothing Then
             For Each chColumn In Me.extracolumns
@@ -432,7 +433,7 @@ Public Class frmOrdenesCargaInforme
     '            Try
     '                If Not AddOrdenCarga(NombreHoja, dtb) Then Throw New Exception("No se pudo guardar la orden de carga")
     '                'Dim dat As DataTable = ConsultaVer("max(OrdenCargaID)", "OrdenesCarga")
-    '                Dim dat As DataTable = dtb.Consultar("select max(OrdenCargaID) from OrdenesCarga", False)
+    '                Dim dat As DataTable = dtb.("select max(OrdenCargaID) from OrdenesCarga", False)
     '                m_detalles.Id_OrdenCarga = dat.Rows(0).Item(0)
     '                'Header
     '                'Dim DataArrayHead(0, 0 To dtLineas.Columns.Count - 2) As Object
@@ -578,7 +579,8 @@ Public Class frmOrdenesCargaInforme
                 Try
                     If Not AddOrdenCarga(NombreHoja, dtb) Then Throw New Exception("No se pudo guardar la orden de carga")
                     'Dim dat As DataTable = ConsultaVer("max(OrdenCargaID)", "OrdenesCarga")
-                    Dim dat As DataTable = dtb.Consultar("select max(OrdenCargaID) from OrdenesCarga", False)
+                    dtb.PrepararConsulta("select max(OrdenCargaID) from OrdenesCarga")
+                    Dim dat As DataTable = dtb.Consultar()
                     m_detalles.Id_OrdenCarga = dat.Rows(0).Item(0)
                     'Header
                     'Dim DataArrayHead(0, 0 To dtLineas.Columns.Count - 2) As Object

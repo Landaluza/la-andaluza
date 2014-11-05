@@ -22,9 +22,12 @@ Public Class frmLisAlbaranesCarga
 
 
     Private Sub frmLisAlbaranesCarga_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        cboReferencia.mam_DataSource(dtb.Consultar("TiposFormatosSelectCbo1", True), True, "Todas")
-        cboClientes.mam_DataSource(dtb.Consultar("ClientesCbo", True), True, "Todos")
-        cboLugaresEntrega.mam_DataSource(dtb.Consultar("LugaresEntregasCbo", True), True, "Todos")
+        dtb.PrepararConsulta("TiposFormatosSelectCbo1")
+        cboReferencia.mam_DataSource(dtb.Consultar(), True, "Todas")
+        dtb.PrepararConsulta("ClientesCbo")
+        cboClientes.mam_DataSource(dtb.Consultar(), True, "Todos")
+        dtb.PrepararConsulta("LugaresEntregasCbo")
+        cboLugaresEntrega.mam_DataSource(dtb.Consultar(), True, "Todos")
     End Sub
 
     Private Sub btnPorDias_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPorDias.Click
@@ -65,7 +68,7 @@ Public Class frmLisAlbaranesCarga
         'strHasta = "'" & Format("yyyy/MM/dd", dthasta) & "'"
         Referencia = cboReferencia.SelectedValue
 
-        'datasource = dtb.Consultar("exec AlbaranesCargaProviDetallesSelectDgv " & strDesde & "," & strHasta & "," & Referencia)
+        'datasource = dtb.("exec AlbaranesCargaProviDetallesSelectDgv " & strDesde & "," & strHasta & "," & Referencia)
         dtb.PrepararConsulta("AlbaranesCargaProviDetallesSelectDgv @desde, @hasta, @ref")
         dtb.AñadirParametroConsulta("@desde", dtpDesde.Value.Date)
         dtb.AñadirParametroConsulta("@hasta ", dtpHasta.Value.Date)
@@ -85,7 +88,7 @@ Public Class frmLisAlbaranesCarga
                     dtb.AñadirParametroConsulta("@hasta ", dtpHasta.Value.Date)
                     dtb.AñadirParametroConsulta("@ref", Referencia)
                     datasource2 = dtb.Consultar()
-                    '.DataSource = dtb.Consultar("exec AlbaranesCargaProviDetallesDesglosadoSelectDgv " & strDesde & "," & strHasta & "," & Referencia)
+                    '.DataSource = dtb.("exec AlbaranesCargaProviDetallesDesglosadoSelectDgv " & strDesde & "," & strHasta & "," & Referencia)
                     If datasource2 Is Nothing Then
                         Return
                     End If

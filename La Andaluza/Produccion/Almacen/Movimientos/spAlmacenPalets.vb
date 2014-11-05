@@ -41,7 +41,8 @@ Public Class spAlmacenPalets
 
     Public Function cargasSinServir(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Try
-            Return dtb.consultar("select isnull(count(ordenesCarga.OrdenCargaID),0) from OrdenesCarga where servido = 'false' and id_AlbaranCargaProMaestro is null group by ordenesCarga.OrdenCargaID", False).Rows(0).Item(0)
+            dtb.PrepararConsulta("select isnull(count(ordenesCarga.OrdenCargaID),0) from OrdenesCarga where servido = 'false' and id_AlbaranCargaProMaestro is null group by ordenesCarga.OrdenCargaID")
+            Return dtb.Consultar().Rows(0).Item(0)
         Catch ex As Exception
             Return 0
         End Try
