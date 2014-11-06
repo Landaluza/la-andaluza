@@ -165,11 +165,6 @@ Class spArticulos_ArticulosCertificadosTipos
         Try
             deleteCommand.ExecuteNonQuery()
             Dim count As Integer = System.Convert.ToInt32(deleteCommand.Parameters("@ReturnValue").Value)
-            'If count > 0 Then
-            '    Return True
-            'Else
-            '    Return False
-            'End If
             Return True
         Catch ex As System.Data.SqlClient.SqlException
             Return False

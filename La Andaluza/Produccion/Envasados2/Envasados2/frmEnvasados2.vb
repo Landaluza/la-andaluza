@@ -71,7 +71,8 @@ Public Class frmEnvasados2
 
         Dim i As Integer = 0
         Dim dtb As New BasesParaCompatibilidad.DataBase
-        Dim dtfechas As DataTable = dtb.Consultar(spSelectDgv, True)
+        dtb.PrepararConsulta(spSelectDgv)
+        Dim dtfechas As DataTable = dtb.Consultar()
 
         While i < dtfechas.Rows.Count 'And Convert.ToDateTime(dtfechas.Rows(i).Item("Fecha")) <= Now.Date
             Fechas.Add(Convert.ToDateTime(dtfechas.Rows(i).Item("Fecha")))

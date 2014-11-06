@@ -4,14 +4,12 @@ Public Class frmArticulos1
 
 
     Private dboArticulos1 As DBO_Articulos1
-    'Private tsAsistente As ToolStripButton
     Private tsinformacionGeneral As ToolStripButton
     Private tsEvolucion As ToolStripButton
     Private tsVentas As ToolStripButton
     Private tsInactivos As ToolStripButton
     Private tsActivos As ToolStripButton
     Private tsCambiarTipo As ToolStripButton
-    'Private tsDestruir As ToolStripButton
     Private asist As wizard
     Private fileARticulo As BasesParaCompatibilidad.File
 
@@ -23,7 +21,6 @@ Public Class frmArticulos1
         dboArticulos1 = New DBO_Articulos1
 
 
-        'MyBase.newRegForm = CType(New frmEntArticulos1(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, spArticulos1), BasesParaCompatibilidad.DetailedSimpleForm)
 
         tsinformacionGeneral = Me.bdnGeneral.Items.Add("Información general")
         tsinformacionGeneral.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
@@ -68,13 +65,9 @@ Public Class frmArticulos1
 
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
-        'MyBase.newRegForm = CType(New frmEntArticulos1(BasesParaCompatibilidad.GridSimpleForm.ACCION_INSERTAR, spArticulos1), BasesParaCompatibilidad.DetailedSimpleForm)
-        'AddHandler newRegForm.afterSave, AddressOf dgvFill
-        'newRegForm.SetDataBussinesObject(CType(Me.dboArticulos1, BasesParaCompatibilidad.databussines))
 
         MyBase.EventHandeld = True
         Dim frm As New frmSelectorAsistente
-        'BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         dgvFill()
     End Sub
@@ -162,8 +155,6 @@ Public Class frmArticulos1
         For Each row As DataGridViewRow In dgvGeneral.SelectedRows
             If Not row.DataGridView Is Nothing Then
                 Try
-                    'If Not IsDBNull(Me.dgvGeneral.CurrentRow.Cells("InformacionGeneral").Value) Then
-                    '    If Me.dgvGeneral.CurrentRow.Cells("InformacionGeneral").Value <> "" Then
                     If Not IsDBNull(row.Cells("InformacionGeneral").Value) Then
                         If row.Cells("InformacionGeneral").Value <> "" Then
                             fileARticulo = New BasesParaCompatibilidad.File(Me.dgvGeneral.CurrentRow.Cells("InformacionGeneral").Value)
@@ -171,7 +162,6 @@ Public Class frmArticulos1
                         End If
                     End If
                 Catch ex As Exception
-                    'MessageBox.Show("Error abriendo archivo. Detalles: " & Environment.NewLine & ex.Message, "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End Try
             End If
         Next
@@ -184,14 +174,11 @@ Public Class frmArticulos1
                     If Not IsDBNull(row.Cells("EvolucionPrecios").Value) Then
                         If row.Cells("EvolucionPrecios").Value <> "" Then
 
-                            'If Not IsDBNull(Me.dgvGeneral.CurrentRow.Cells("EvolucionPrecios").Value) Then
-                            '    If Me.dgvGeneral.CurrentRow.Cells("EvolucionPrecios").Value <> "" Then
                             fileARticulo = New BasesParaCompatibilidad.File(Me.dgvGeneral.CurrentRow.Cells("EvolucionPrecios").Value)
                             fileARticulo.open()
                         End If
                     End If
                 Catch ex As Exception
-                    'MessageBox.Show("Error abriendo archivo. Detalles: " & Environment.NewLine & ex.Message, "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End Try
             End If
         Next
@@ -203,7 +190,6 @@ Public Class frmArticulos1
         Dim spArticulo As New spArticulos1
 
         Dim frmTipo As New frmCambiarTipo(Me.dgvGeneral.CurrentRow.Cells("Id").Value)
-        '        If frmTipo.ShowDialog() = Windows.Forms.DialogResult.OK Then
         If BasesParaCompatibilidad.Pantalla.mostrarDialogo(frmTipo) = Windows.Forms.DialogResult.OK Then
 
             dgvFill()

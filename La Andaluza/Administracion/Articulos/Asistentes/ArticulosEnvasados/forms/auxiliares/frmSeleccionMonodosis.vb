@@ -19,7 +19,6 @@ Public Class frmSeleccionMonodosis
 
     Public Sub New()
 
-        ' This call is required by the designer.
         InitializeComponent()
         dtb = New BasesParaCompatibilidad.DataBase
         spMonodosis = New spMonodosis

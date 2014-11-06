@@ -41,19 +41,6 @@ Public Class spArticulos1
         cbo.mam_DataSource("Articulos1CboByTipo " & tipo, False, dtb)
     End Sub
 
-    'Public Function Articulos1SelecMax(ByRef mytrans As System.Data.SqlClient.SqlTransaction) As Integer
-    '    Dim MaxID As Integer = 0
-
-    '    Dim cmd As New System.Data.SqlClient.SqlCommand
-    '    cmd.CommandType = CommandType.StoredProcedure
-    '    cmd.Connection = BasesParaCompatibilidad.BD.Cnx
-    '    cmd.CommandText = "Articulos1SelectMax"
-    '    cmd.Transaction = mytrans
-    '    MaxID = (cmd.ExecuteScalar())
-
-    '    Return MaxID
-
-    'End Function
 
     Public Function certificadosByArticuloId(ByVal articuloID As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
         dtb.PrepararConsulta("Articulos_certificadosSelect @id")

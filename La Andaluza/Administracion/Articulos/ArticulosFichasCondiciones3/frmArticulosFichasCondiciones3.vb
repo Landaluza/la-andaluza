@@ -112,7 +112,7 @@ Public Class frmArticulosFichasCondiciones3
                     .FormatoColumna("Incremento", BasesParaCompatibilidad.TiposColumna.Double2, 50, 6)
                     .FormatoColumna("Vigente", BasesParaCompatibilidad.TiposColumna.Centro, 50, 7)
                     .FormatoColumna("Observaciones", BasesParaCompatibilidad.TiposColumna.Izquierda, True, 38)
-                Else 'Desde una pestaña "ArticulosFichasCondiciones3SelectDgvByArticuloFichaCondicionID '" & MaestroID & "'"
+                Else
                     .Columns("Ruta").Visible = False
                     .FormatoColumna("Descripcion", BasesParaCompatibilidad.TiposColumna.Izquierda, True, 0, 150)
                     .FormatoColumna("Proveedor", BasesParaCompatibilidad.TiposColumna.Izquierda, 200, 1)

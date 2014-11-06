@@ -58,7 +58,8 @@ Public Class frmNoConformes
         'Dim dt, dt2 As DataTable
         Try
             Dim dtb2 As New BasesParaCompatibilidad.Database()
-            dt = dtb2.Consultar(spPalet, True)
+            dtb2.PrepararConsulta(spPalet)
+            dt = dtb2.Consultar()
             'dt = DataTableFill(spPalet)
 
             Me.BeginInvoke(CallDataBindToDataGrid)
@@ -69,8 +70,9 @@ Public Class frmNoConformes
 
     Private Sub dgvFillTerciary()
         Try
-            Dim dtb3 As New BasesParaCompatibilidad.Database()
-            dt2 = dtb3.Consultar(spLote, True)
+            Dim dtb3 As New BasesParaCompatibilidad.DataBase()
+            dtb3.PrepararConsulta(spLote)
+            dt2 = dtb3.Consultar()
             'dt2 = DataTableFill(spLote)
             Me.BeginInvoke(CallDataBindToDataGrid2)
         Catch ex As Exception
@@ -80,7 +82,8 @@ Public Class frmNoConformes
 
     Private Sub dgvFillMain()
         Try
-            dt3 = dtb.Consultar(spArticulo, True)
+            dtb.PrepararConsulta(spArticulo)
+            dt3 = dtb.Consultar()
 
             'dt3 = DataTableFill(spArticulo)
             Me.BeginInvoke(CallDataBindToDataGrid3)
@@ -309,7 +312,7 @@ Public Class frmNoConformes
             Dim Unidad As String
             Dim Ruta As String = "Almacen\Recuentos\"
             Dim RutaCompleta As String
-            Dim NombreHoja As String
+            Dim NombreHoja As String = ""
 
             If BasesParaCompatibilidad.Config.Server = 0 Then '= "MAM1\SQLEXPRESS" Then
                 Unidad = "C:\"
@@ -322,14 +325,16 @@ Public Class frmNoConformes
 
             If tabDatos.SelectedTab Is tabPagPalets Then
                 NombreHoja = RutaCompleta & FechaSeleccionada & " Existencias por palets-noconformes.xls"
-                mse.ExportarTablaExcel(dtb.Consultar(spEcelAlmacen, True), "C:\DataTable.txt", "Existencias", NombreHoja, "DataTable.txt")
+                dtb.PrepararConsulta(spEcelAlmacen)
             ElseIf tabDatos.SelectedTab Is tabPagAcumulados Then
                 NombreHoja = RutaCompleta & FechaSeleccionada & " Existencias por lotes por referencia-noconformes.xls"
-                mse.ExportarTablaExcel(dtb.Consultar(spEcellote, True), "C:\DataTable.txt", "Existencias", NombreHoja, "DataTable.txt")
+                dtb.PrepararConsulta(spEcellote)
             ElseIf tabDatos.SelectedTab Is tpTotales Then
                 NombreHoja = RutaCompleta & FechaSeleccionada & " Existencias totales por referencia-noconformes.xls"
-                mse.ExportarTablaExcel(dtb.Consultar(spEcelCajas, True), "C:\DataTable.txt", "Existencias", NombreHoja, "DataTable.txt")
+                dtb.PrepararConsulta(spEcelCajas)
             End If
+
+            mse.ExportarTablaExcel(dtb.Consultar(), "C:\DataTable.txt", "Existencias", NombreHoja, "DataTable.txt")
             'IO.File.Delete("C:\DataTable.txt")
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)

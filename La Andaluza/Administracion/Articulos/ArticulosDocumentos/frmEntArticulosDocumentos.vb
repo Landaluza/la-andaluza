@@ -19,7 +19,6 @@ Public Class frmEntArticulosDocumentos
     Private Sub frmEntArticulosDocumentos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim spArt As New spArticulos1
         spArt.cargar_Articulos(cboArticuloID, dtb)
-        'Me.cboArticuloID.mam_DataSource("ArticulosDocumentos_ArticulosCbo"), False)
         If Not m_VerID Then
             Me.cboArticuloID.Visible = False
             Me.lblArticuloID.Visible = False
@@ -41,7 +40,6 @@ Public Class frmEntArticulosDocumentos
 
     Private Function GetValores() As Boolean
         Dim errores As String = ""
-        'm_DBO_ArticulosDocumento.ArticuloID = System.Convert.ToInt32(cboArticuloID.SelectedValue)
 
         If txtDescripcion.Text = "" Then
             txtDescripcion.Focus()

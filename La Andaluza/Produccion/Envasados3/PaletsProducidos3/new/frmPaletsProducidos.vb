@@ -104,7 +104,8 @@ Public Class frmPaletsProducidos
 
     Protected Overrides Sub cargar_datos()
         Dim dtb As New BasesParaCompatibilidad.DataBase
-        dataSource = dtb.Consultar(Me.sp.DataGridViewStoredProcedure, True)
+        dtb.PrepararConsulta(Me.sp.DataGridViewStoredProcedure)
+        dataSource = dtb.Consultar()
 
         datasourceIncompletos = CType(Me.sp, spPaletsProducidos).devolver_palets_incompletos_por_TipoFormato(Me.TipoFormato, dtb)
     End Sub

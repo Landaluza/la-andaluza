@@ -14,7 +14,8 @@ Public Class resumenPersonal
     End Sub
 
     Private Sub getData()
-        datasource = dtb.Consultar(datagridViewProcedure, True)
+        dtb.PrepararConsulta(datagridViewProcedure)
+        datasource = dtb.Consultar()
     End Sub
 
     Private Sub binDAtaSource()

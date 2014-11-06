@@ -7,7 +7,6 @@ Public Class frmArticulosIngredientesTipos
     Private m_ArticuloIngredienteTipo As DBO_ArticulosIngredientesTipos
     Private frmEnt As frmEntArticulosIngredientesTipos
     Public Sub New(ByVal MaestroID As Integer)
-        'Uso m_VerID para que cuando uso añadir-editar-modificar desde la pestaña no se vea el ID
         MyBase.New(New spArticulosIngredientesTipos, MaestroID)
         InitializeComponent()
 
@@ -50,10 +49,8 @@ Public Class frmArticulosIngredientesTipos
         frmEnt = New frmEntArticulosIngredientesTipos(m_ArticuloIngredienteTipo, m_Pos, m_VerID)
         frmEnt.Text = String.Format("{0} {1}", TipoAction, Me.Text)
         AddHandler frmEnt.FormClosed, AddressOf dgvFill
-        'BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         GUImain.añadirPestaña(frmEnt)
 
-        'dgvFill()
     End Sub
 
 
@@ -65,7 +62,6 @@ Public Class frmArticulosIngredientesTipos
     Protected Overrides Sub BindDataSource()
         If Not dataSource Is Nothing Then
             GeneralBindingSource.DataSource = dataSource
-            'GeneralBindingSource. dataSource = dtb.consultar(spSelectDgv)
 
 
             butExcel.Visible = True

@@ -31,8 +31,6 @@ Public Class frmEntArticulosFichasTecnicas
     End Sub
 
     Overrides Sub SetValores(ByVal m_ID As Integer, ByVal m_SelectRecord As Boolean)
-        'cboArticuloID.SelectedValue = if(m_DBO_ArticulosFichasTecnica.ArticuloID = Nothing, -1, m_DBO_ArticulosFichasTecnica.ArticuloID)
-
         If m_SelectRecord Then m_DBO_ArticulosFichasTecnica = spArticulosFichasTecnicas.Select_Record(m_ID, dtb)
         txtArticuloFichaTecnicaID.Text = m_DBO_ArticulosFichasTecnica.ArticuloFichaTecnicaID
         cboArticuloID.SelectedValue = If(m_DBO_ArticulosFichasTecnica.ArticuloID = Nothing, -1, m_DBO_ArticulosFichasTecnica.ArticuloID)

@@ -59,7 +59,6 @@ Public Class frmModCompuestoPor
 
                     If formato = Nothing Then
                         Dim frm As New frmDoyPackInfoExtra
-                        'BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
                         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
                         formato = frm.result
 

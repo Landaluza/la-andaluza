@@ -9,7 +9,6 @@
 
     Public Sub New()
         MyBase.New()
-        ' This call is required by the designer.
         InitializeComponent()
 
         Me.title = "Asistente de creación de articulo para envasado"
@@ -63,7 +62,6 @@
 
             End If
         ElseIf panel.GetType = Me.frmSecundario.GetType And Me.wizardStep = 2 Then
-            'Me.frmSecundario.Descripcion = Me.frmdatos.recuperarValor(frmWstepDatosGenerales.DESCRIPCION)
             Me.frmSecundario.TipoProducto = Me.frmdatos.recuperarValor(frmWstepDatosGenerales.PRODUCTO)
             Me.frmSecundario.NoCrearSecundario = Me.frmdatos.recuperarValor(frmWstepDatosGenerales.CREAR_SECUNDARIO)
             Me.frmSecundario.Formato = Me.frmdatos.recuperarValor(frmWstepDatosGenerales.FORMATO)

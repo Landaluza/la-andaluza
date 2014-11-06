@@ -62,12 +62,6 @@ Class spArticulosDocumentos
 
 
             insertCommand.ExecuteNonQuery()
-            'Dim count As Integer = System.Convert.ToInt32(insertCommand.Parameters("@ReturnValue").Value)
-            'If count > 0 Then
-            '    Return True
-            'Else
-            '    Return False
-            'End If
         Catch ex As System.Data.SqlClient.SqlException
             MessageBox.Show("Error al guardar." & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             retorno = False

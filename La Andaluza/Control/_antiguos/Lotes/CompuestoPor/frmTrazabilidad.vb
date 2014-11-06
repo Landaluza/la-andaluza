@@ -84,8 +84,13 @@ Public Class frmTrazabilidad
     End Sub
 
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
-        dtPArtida = Me.dtb.Consultar(spCompuesto.DataGridViewStoredProcedureForFilteredSelect2 & " " & loteID, True)
-        dtFinal = Me.dtb.Consultar(spCompuesto.DataGridViewStoredProcedureForFilteredSelect3 & " " & loteID, True)
+        dtb.PrepararConsulta(spCompuesto.DataGridViewStoredProcedureForFilteredSelect2 & " @id")
+        dtb.AñadirParametroConsulta("@id", loteID)
+        dtPArtida = Me.dtb.Consultar()
+
+        dtb.PrepararConsulta(spCompuesto.DataGridViewStoredProcedureForFilteredSelect3 & " @id")
+        dtb.AñadirParametroConsulta("@id", loteID)
+        dtFinal = Me.dtb.Consultar()
     End Sub
 
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted

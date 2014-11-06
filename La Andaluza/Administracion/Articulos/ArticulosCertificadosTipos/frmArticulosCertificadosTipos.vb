@@ -47,7 +47,6 @@ Public Class frmArticulosCertificadosTipos
 
         frmEnt = New frmEntArticulosCertificadosTipos(m_ArticuloCertificadoTipo, m_Pos, m_VerID)
         frmEnt.Text = String.Format("{0} {1}", TipoAction, Me.Text)
-        'BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frmEnt)
 
 

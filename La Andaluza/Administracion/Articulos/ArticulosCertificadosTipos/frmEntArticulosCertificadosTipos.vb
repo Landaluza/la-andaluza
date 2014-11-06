@@ -20,12 +20,9 @@ Public Class frmEntArticulosCertificadosTipos
 
    Overrides Sub SetValores(ByVal m_ID As Integer, ByVal m_SelectRecord As Boolean)
        
-        'If m_SelectRecord Then m_DBO_ArticulosCertificadosTipo = spArticulosCertificadosTipos.Select_Record(m_ID)
-        'If m_ID > 0 Then
         txtArticuloCertificadoTipoID.Text = m_DBO_ArticulosCertificadosTipo.ArticuloCertificadoTipoID
         txtDescripcion.Text = m_DBO_ArticulosCertificadosTipo.Descripcion
         txtObservaciones.Text = m_DBO_ArticulosCertificadosTipo.Observaciones
-        'End If
    End Sub
 
    Private Sub GetValores()

@@ -159,9 +159,11 @@ Inherits BasesParaCompatibilidad.StoredProcedure
                             "INNER JOIN articulosEnvasadoshistorico ON FormatosEnvasados.TipoFormatoEnvasadoID = TipoFormato " & _
                             "INNER JOIN PaletsContenidos ON PaletsProducidos.PaletProducidoID = PaletsContenidos.PaletProducidoID"
 
-        Dim strWHERE As String = " where Envasados.EnvasadoID =" & EnvID.ToString
+        Dim strWHERE As String = " where Envasados.EnvasadoID = @id"
 
-        Return dtb.Consultar(strSELECT & strFROM & strWHERE, False)
+        dtb.PrepararConsulta(strSELECT & strFROM & strWHERE)
+        dtb.AñadirParametroConsulta("@id", EnvID.ToString)
+        Return dtb.Consultar()
     End Function
 
     Public Function seleccionarTipoPaletPorScc(ByVal scc As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer

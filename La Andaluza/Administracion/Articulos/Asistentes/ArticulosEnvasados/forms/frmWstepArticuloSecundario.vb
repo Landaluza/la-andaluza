@@ -120,28 +120,13 @@ Public Class frmWstepArticuloSecundario
 
             If Me.Enabled Then
 
-                'Dim m_DBO_TiposFormatos1 As New DBO_ArticulosEnvasadosHistorico
                 If Me.m_DBO_ArticulosEnvasesSecundario.ID = Nothing Then
                     dtb.PrepararConsulta("select max(articuloID) from Articulos1")
                     Me.m_DBO_ArticulosEnvasesSecundario.ArticuloID = dtb.Consultar().Rows(0).Item(0)
                 End If
-                'If Me.m_DBO_TiposFormatos1.TipoFormatoID = Nothing Then
-                '    Dim spt As New spArticulosEnvasadosHistoricos
-                '    m_DBO_TiposFormatos1.TipoFormatoID = spt.seleccionar_ultimo_registro(dtb)
-                'End If
 
 
-                ''m_DBO_TiposFormatos1.Descripcion = m_DBO_ArticulosEnvasesSecundario.Descripcion
-                'm_DBO_TiposFormatos1.Separadores = m_DBO_ArticulosEnvasesSecundario.Separadores
-                'm_DBO_TiposFormatos1.CajasPalet = m_DBO_ArticulosEnvasesSecundario.CajasPalet
-                'm_DBO_TiposFormatos1.Genericas = m_DBO_ArticulosEnvasesSecundario.Genericas
-                'm_DBO_TiposFormatos1.Particulares = m_DBO_ArticulosEnvasesSecundario.Particulares
-                'm_DBO_TiposFormatos1.TipoProductoID = m_DBO_ArticulosEnvasesSecundario.ProductoID
-                'm_DBO_TiposFormatos1.TipoCajaID = m_DBO_ArticulosEnvasesSecundario.CajaID
-                'm_DBO_TiposFormatos1.TipoProductoID = m_DBO_ArticulosEnvasesSecundario.ProductoID
 
-                'Dim spTiposFormatos1 As New spArticulosEnvasadosHistorico1
-                'If Not spTiposFormatos1.GrabarTiposFormatos1Sintransaccion(m_DBO_TiposFormatos1,dtb) Then Return False
 
 
 

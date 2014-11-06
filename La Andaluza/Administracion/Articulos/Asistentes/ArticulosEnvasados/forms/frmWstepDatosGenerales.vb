@@ -48,7 +48,6 @@ Public Class frmWstepDatosGenerales
 
     Public Sub establecerValores() Implements wizardable.EstablecerValores
         Me.cboLinea.mam_DataSource("LineasEnvasadoSelectCbo", False, dtb)
-        'Me.cboMarca.mam_DataSource("MarcasCbo", False)
         Dim s As New spmarcas
         s.cargar_marcas(cboMarca, dtb)
         Dim spt As New spArticulosEnvasadosHistoricos
@@ -105,7 +104,6 @@ Public Class frmWstepDatosGenerales
             Dim spt As New spArticulosEnvasadosHistoricos
             Dim m_formato As Integer = spt.seleccionar_ultimo_registro(dtb)
 
-            'Dim ctlTipForLin_TipFor As New ctlTiposFormatosLineas_TiposFormatos
             'If Not ctlTipForLin_TipFor.GuardarTipoFormatoLinea(cboLinea.SelectedValue, m_formato, txtVelocidad.Text) Then Return False
 
 

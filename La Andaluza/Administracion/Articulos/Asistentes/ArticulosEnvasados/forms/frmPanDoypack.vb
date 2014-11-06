@@ -225,7 +225,6 @@ Public Class frmPanDoypack
     Private Sub modificar()
         Dim frm As New BasesParaCompatibilidad.frmEntrada("Nueva cantidad de la monodosis", "Cantidad")
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
-        'spdoypack.modify()
         If frm.Result <> String.Empty Then
             Dim dbo As Dbo_DoyPack = spdoypack.selectRecordById(Me.DataGridView1.CurrentRow.Cells("id").Value, dtb)
             dbo.Cantidad = frm.Result
@@ -233,16 +232,6 @@ Public Class frmPanDoypack
             If Me.mododeapertura = BasesParaCompatibilidad.DetailedSimpleForm.INSERCION Then
                 Me.DataGridView1.CurrentRow.Cells("Cantidad").Value = frm.Result
 
-                'pendiente
-                'Dim dbo As Dbo_DoyPack
-                'For i As Integer = 1 To Me.monodosis.Count
-                '    dbo = monodosis.Item(i)
-                '    If Me.DataGridView1.CurrentRow.Cells("id_monodosis").Value = dbo.MonodosisID Then
-                '        monodosis.Remove(i)
-                '        Me.DataGridView1.Rows.Remove(Me.DataGridView1.CurrentRow)
-                '        return
-                '    End If
-                'Next
             Else
                 If spdoypack.modify(dbo, dtb) Then
                     dgvFill()
@@ -278,22 +267,6 @@ Public Class frmPanDoypack
         Catch ex As Exception
         End Try
     End Sub
-
-
-    'Private Sub cboFormato_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles cboFormato.SelectedIndexChanged
-    '    Try
-    '        Dim spPalets As New spPaletsProducidos
-    '        spPalets.cargar_PaletsProducidosNC_byArticulo(Me.cboSccNC, Me.cboFormato.SelectedValue)
-    '    Catch ex As Exception
-    '    End Try
-
-    '    Try
-    '        Dim sp As New spTiposFormatos
-    '        Dim dbo As DBO_TiposFormatos = sp.Select_Record(Me.cboFormato.SelectedValue)
-    '        Me.cboProducto.SelectedValue = dbo.TipoProductoID
-    '    Catch ex As Exception
-    '    End Try
-    'End Sub
 
 
     Private Sub btnverMarcas_Click(sender As System.Object, e As System.EventArgs) Handles btnverMarcas.Click

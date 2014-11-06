@@ -38,10 +38,7 @@ Public Class frmArticulosFichasTecnicasEstados
         Dim m_ArticulosFichasTecnicasEstado As New DBO_ArticulosFichasTecnicasEstados
         Dim m_Pos As Integer = GeneralBindingSource.Position
 
-        If TipoAction = ACCION_INSERTAR Then
-
-            'if m_maestroid <> 0 Then m_ArticulosFichasTecnicasEstados.Proveedores_ProveedorID = m_MaestroID
-        Else
+        If TipoAction <> ACCION_INSERTAR Then
             Dim dtb As New BasesParaCompatibilidad.DataBase
             m_ArticulosFichasTecnicasEstado = CType(sp, spArticulosFichasTecnicasEstados).Select_Record(GeneralBindingSource(m_Pos).Item("ArticuloFichaTecnicaEstadoID"), dtb)
         End If

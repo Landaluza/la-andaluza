@@ -5,7 +5,6 @@ Public Class frmWstepEtiquetas
 
     Public Sub New()
 
-        ' Llamada necesaria para el diseñador.
         InitializeComponent()
 
         dtb = New BasesParaCompatibilidad.DataBase

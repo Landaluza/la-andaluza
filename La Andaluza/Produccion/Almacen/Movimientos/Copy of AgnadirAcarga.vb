@@ -44,10 +44,12 @@
 
                 Try
 
-                    Dim Linea As String = "PaletsProducidosSelectArticuloCodigoQSBySCC " & txtSCC.Text
+                    Dim Linea As String = "PaletsProducidosSelectArticuloCodigoQSBySCC @scc"
 
                     'ctlAlbDet.SetAlbaranCargaProviDetalleID(0)
-                    Tabla = dtb.Consultar(Linea, True)
+                    dtb.PrepararConsulta(Linea)
+                    dtb.AñadirParametroConsulta("@scc", txtSCC.Text)
+                    Tabla = dtb.Consultar()
 
 
 

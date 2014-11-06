@@ -25,14 +25,11 @@ Public Class frmArticulos1CompuestoPor
             DataGridView1.Columns("subtotal").Visible = False
             DataGridView1.FormatoColumna("descripcionLa", "Descripcion", BasesParaCompatibilidad.TiposColumna.Descripcion, True)
             DataGridView1.FormatoColumna("cantidad", "Cantidad", BasesParaCompatibilidad.TiposColumna.Descripcion, True)
-            'DataGridView1.FormatoColumna("costeUnitario", "Coste und", BasesParaCompatibilidad.TiposColumna.Descripcion, True)
-            'DataGridView1.FormatoColumna("subtotal", "Subtotal", BasesParaCompatibilidad.TiposColumna.Descripcion, True)
         End If
     End Sub
 
     Private Sub butNuevo_Click(sender As System.Object, e As System.EventArgs) Handles butNuevo.Click
         Dim frm As New frmModCompuestoPor(Me.articuloId)
-        'BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         DgvFill()
         RaiseEvent actualizarDatos()
@@ -40,7 +37,6 @@ Public Class frmArticulos1CompuestoPor
 
     Private Sub butModificar_Click(sender As System.Object, e As System.EventArgs) Handles butModificar.Click
         Dim frm As New frmModCompuestoPor(Me.articuloId, DataGridView1.CurrentRow.Cells("articuloid").Value)
-        'BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
         DgvFill()
     End Sub

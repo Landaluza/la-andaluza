@@ -63,7 +63,7 @@ Public Class frmAlmacenExistencias
             Dim Unidad As String
             Dim Ruta As String = "Almacen\Recuentos\"
             Dim RutaCompleta As String
-            Dim NombreHoja As String
+            Dim NombreHoja As String = ""
 
 
             If BasesParaCompatibilidad.Config.Server = 0 Then ' = "MAM1\SQLEXPRESS" Then
@@ -77,14 +77,16 @@ Public Class frmAlmacenExistencias
 
             If tabDatos.SelectedTab Is tpTotales Then
                 NombreHoja = RutaCompleta & FechaSeleccionada & " Existencias totales por referencia-conformes.xls"
-                mse.ExportarTablaExcel(dtb.Consultar(spEcelCajas, True), "C:\DataTable.txt", "Existencias", NombreHoja, "DataTable.txt")
+                dtb.PrepararConsulta(spEcelCajas)
             ElseIf tabDatos.SelectedTab Is tabPagAcumulados Then
                 NombreHoja = RutaCompleta & FechaSeleccionada & " Existencias por lotes por referencia-conformes.xls"
-                mse.ExportarTablaExcel(dtb.Consultar(spEcellote, True), "C:\DataTable.txt", "Existencias", NombreHoja, "DataTable.txt")
+                dtb.PrepararConsulta(spEcellote)
             ElseIf tabDatos.SelectedTab Is tabPagPalets Then
                 NombreHoja = RutaCompleta & FechaSeleccionada & " Existencias por palets-conformes.xls"
-                mse.ExportarTablaExcel(dtb.Consultar(spEcelAlmacen, True), "C:\DataTable.txt", "Existencias", NombreHoja, "DataTable.txt")
+                dtb.PrepararConsulta(spEcelAlmacen)
             End If
+
+            mse.ExportarTablaExcel(dtb.Consultar(), "C:\DataTable.txt", "Existencias", NombreHoja, "DataTable.txt")
             'IO.File.Delete("C:\DataTable.txt")
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -106,7 +108,8 @@ Public Class frmAlmacenExistencias
         'initdgvMain()
         'dt3 = DataTableFill("PaletsProducidosByArticulo3 ")
         'dt3 = DataTableFill("PaletsProducidosByArticulo6 ")
-        dt3 = dtb.Consultar(spArticulo, True)
+        dtb.PrepararConsulta(spArticulo)
+        dt3 = dtb.Consultar()
         Me.DataBindToDataGrid3()
         'dt2 = DataTableFill("PaletsProducidosByLote ")
         'DataBindToDataGrid2()
@@ -147,32 +150,35 @@ Public Class frmAlmacenExistencias
 
     Private Sub dfvFillSecondary()
         Try
-            dt = dtb2.Consultar(spPalet, True)
+            dtb.PrepararConsulta(spPalet)
+            dt = dtb2.Consultar()
 
             Me.BeginInvoke(CallDataBindToDataGrid)
         Catch ex As Exception
-            messagebox.show("Error al cargar grilla. Vuelva a recargarla en unos segundos", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            MessageBox.Show("Error al cargar grilla. Vuelva a recargarla en unos segundos", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
     End Sub
 
     Private Sub dgvFillTerciary()
-        Try            
-            dt2 = dtb3.Consultar(spLote, True)
+        Try
+            dtb.PrepararConsulta(spLote)
+            dt2 = dtb3.Consultar()
             'dt2 = DataTableFill(spLote)
             Me.BeginInvoke(CallDataBindToDataGrid2)
         Catch ex As Exception
-            messagebox.show("Error al cargar grilla. Vuelva a recargarla en unos segundos", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            MessageBox.Show("Error al cargar grilla. Vuelva a recargarla en unos segundos", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
     End Sub
 
     Private Sub dgvFillMain()
-        Try            
-            dt3 = dtb.Consultar(spArticulo, True)
+        Try
+            dtb.PrepararConsulta(spArticulo)
+            dt3 = dtb.Consultar()
 
             'dt3 = DataTableFill(spArticulo)
             Me.BeginInvoke(CallDataBindToDataGrid3)
         Catch ex As Exception
-            messagebox.show("Error al cargar grilla 3. Vuelva a recargarla en unos segundos", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            MessageBox.Show("Error al cargar grilla 3. Vuelva a recargarla en unos segundos", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
     End Sub
 

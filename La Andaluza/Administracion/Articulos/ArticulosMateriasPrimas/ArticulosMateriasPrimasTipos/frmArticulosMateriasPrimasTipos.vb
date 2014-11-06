@@ -46,11 +46,9 @@ Public Class frmArticulosMateriasPrimasTipos
 
         frmEnt = New frmEntArticulosMateriasPrimasTipos(m_ArticuloMateriaPrimaTipo, m_Pos, m_VerID)
         frmEnt.Text = String.Format("{0} {1}", TipoAction, Me.Text)
-        'BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         AddHandler frmEnt.FormClosed, AddressOf dgvFill
         GUImain.añadirPestaña(frmEnt)
 
-        ''dgvFill()
     End Sub
 
     Protected Overrides Sub cargar_datos()
@@ -62,7 +60,6 @@ Public Class frmArticulosMateriasPrimasTipos
 
         If Not dataSource Is Nothing Then
             GeneralBindingSource.DataSource = dataSource
-            'GeneralBindingSource. dataSource = dtb.consultar(spSelectDgv)
 
             butExcel.Visible = True
 

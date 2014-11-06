@@ -20,7 +20,6 @@ Public Class frmEntArticulosFichasPaletizados1
     Private Sub frmEntArticulosFichasPaletizados1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim spArticulosEnvasadosHistoricos As New spArticulosEnvasadosHistoricos
         spArticulosEnvasadosHistoricos.cargar_TiposFormatos_Todos(cboArticuloID, dtb)
-        'Me.cboArticuloID.mam_DataSource("ArticulosFichasPaletizados1_TiposFormatosCbo"), False)
         If Not m_VerID Then
             Me.cboArticuloID.Visible = False
             Me.lblArticuloID.Visible = False

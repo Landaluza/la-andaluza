@@ -56,9 +56,6 @@ Class spArticulosMateriasPrimas
                 DBO_ArticulosMateriasPrimas.MateriaPrimaTipoID = If(reader("MateriaPrimaTipoID") Is Convert.DBNull, 0, Convert.ToInt32(reader("MateriaPrimaTipoID")))
                 DBO_ArticulosMateriasPrimas.FechaModificacion = If(reader("FechaModificacion") Is Convert.DBNull, System.DateTime.Now.Date, CDate(reader("FechaModificacion")))
                 DBO_ArticulosMateriasPrimas.UsuarioModificacion = If(reader("UsuarioModificacion") Is Convert.DBNull, 0, Convert.ToInt32(reader("UsuarioModificacion")))
-            Else
-                'Si cambiamos el tipo no va a encontrar este ArticuloID, en lugar de igualarlo a Nothing lo dejamos sin valores
-                'DBO_ArticulosMateriasPrimas = Nothing
             End If
             reader.Close()
         Catch ex As System.Data.SqlClient.SqlException

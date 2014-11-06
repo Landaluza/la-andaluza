@@ -62,7 +62,8 @@ Public Class spListadoDestruccion
     Public Sub dgvFill(ByRef dgv As DataGridView, ByRef dtb As BasesParaCompatibilidad.DataBase)
         Dim query As String = Me.crearConsulta
 
-        Dim dt As DataTable = dtb.Consultar(query, False)
+        dtb.PrepararConsulta(query)
+        Dim dt As DataTable = dtb.Consultar()
 
         If Not dt Is Nothing Then
             With dgv

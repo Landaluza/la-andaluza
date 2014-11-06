@@ -65,9 +65,6 @@ Class spArticulosGraneles
                 DBO_ArticulosGraneles.Densidad = If(reader("densidad") Is Convert.DBNull, 0, System.Convert.ToDouble(reader("densidad")))
                 DBO_ArticulosGraneles.Cantidad_elaborar_defecto = If(reader("cantidad_elaborar_defecto") Is Convert.DBNull, 0, System.Convert.ToDouble(reader("cantidad_elaborar_defecto")))
 
-            Else
-                'Si cambiamos el tipo no va a encontrar este ArticuloID, en lugar de igualarlo a Nothing lo dejamos sin valores
-                'DBO_ArticulosGraneles = Nothing
             End If
             reader.Close()
         Catch ex As System.Data.SqlClient.SqlException

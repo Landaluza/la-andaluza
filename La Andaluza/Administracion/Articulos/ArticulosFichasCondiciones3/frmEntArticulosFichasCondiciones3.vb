@@ -117,7 +117,6 @@ Public Class frmEntArticulosFichasCondiciones3
 
 
     Private Sub butVerProveedor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerProveedor.Click
-        'Proveedores no esta generado con la ultima version de Generador
         Dim DBO_Proveedor As New DBO_Proveedores
         Dim sp As New spProveedores
         DBO_Proveedor = sp.Select_Record(cboProveedorID.SelectedValue, dtb)
@@ -157,10 +156,6 @@ Public Class frmEntArticulosFichasCondiciones3
             Me.cboPlazoPagoID.mam_DataSource("PagosPlazosCbo", False, dtb)
 
         End Using
-    End Sub
-
-    Private Sub butVerUnidad_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butVerUnidad.Click
-        'MedidasProductos no esta generado con la ultima version de Generador
     End Sub
 
     Private Sub butAddProveedor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butAddProveedor.Click

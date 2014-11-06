@@ -98,8 +98,6 @@
             If Me.m_DBO_Articulos1.ArticuloTpoID = 10 Then '10 = terciarios
                 Me.lblCodigoTARIC.Visible = False
                 Me.txtCodigoTARIC.Visible = False
-                'Me.lblCodigoQS.Visible = False
-                'Me.txtCodigoQS.Visible = False
             End If
         End If
 
@@ -180,14 +178,6 @@
             m_DBO_Articulos1.EvolucionPrecio = Me.txtEvolucion.Text
 
             If Me.txtDescripcion.Visible Then
-                'If Me.txtDescripcion.Text = String.Empty Then
-                '    txtDescripcion.Focus()
-                '    errores = errores & "El campo 'Descripción' no pude estar vacío" & Environment.NewLine
-                'Else
-                '    m_DBO_Articulos1.DescripcionLA = txtDescripcion.Text
-                '    m_DBO_Articulos1.DescripcionCorta = txtDescripcion.Text
-                '    m_DBO_Articulos1.DescripcionQS = txtDescripcion.Text
-                'End If
                 m_DBO_Articulos1.DescripcionLA = txtDescripcion.Text
             End If
 
