@@ -33,7 +33,8 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Function
 
     Public Overloads Function Select_RecordByArticulo(ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
-        Return dtb.Consultar(spArtFilter, True)
+        dtb.PrepararConsulta(spArtFilter)
+        Return dtb.Consultar()
     End Function
 
     Public Overrides Function Delete(ByVal ProveedorID As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean

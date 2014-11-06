@@ -22,7 +22,8 @@ Public Class frmControlIncidencias_Origen
 
 
     Protected Sub dgvFill() Implements BasesParaCompatibilidad.Queriable.dataGridViewFill
-        Dim dt As DataTable = dtb.Consultar(Me.spControlIncidencias_Origen.DataGridViewStoredProcedure, True)
+        dtb.PrepararConsulta(Me.spControlIncidencias_Origen.DataGridViewStoredProcedure)
+        Dim dt As DataTable = dtb.Consultar()
 
         If Not dt Is Nothing Then
             If dt.Rows.Count > 0 Then
