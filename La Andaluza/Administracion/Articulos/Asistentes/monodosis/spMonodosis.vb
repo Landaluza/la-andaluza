@@ -105,13 +105,13 @@ Class spMonodosis
             dtb.PrepararConsulta("delete from monodosis where id_articuloprimario= @id")
             dtb.AñadirParametroConsulta("@id", id)
 
-            If Not dtb.Consultar(True) Then
+            If Not dtb.Execute Then
                 Return False
             End If
 
             dtb.PrepararConsulta("delete from doypack where id_articuloprimario= @id")
             dtb.AñadirParametroConsulta("@id", id)
-            Return dtb.Consultar(True)
+            Return dtb.Execute
         Catch ex As Exception
             Return False
         End Try

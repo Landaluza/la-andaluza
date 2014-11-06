@@ -205,7 +205,7 @@ Public Class clsValoresespecificaciones
                                  ",desviacionMinimo = " & Desviacion_minimo.ToString.Replace(","c, "."c) & _
                                  ",MetodoAnalisisID=" & MetodoAnalisisID.ToString & _
                                  " where ParametroID = " & ParametroID.ToString & " and EspecificacionID = " & EspecificacionID.ToString)
-        Return dtb.Consultar(True)
+        Return dtb.Execute
 
         'Try
         '    Deprecated.ConsultaModificar("ValoresEspecificaciones", _
@@ -233,7 +233,7 @@ Public Class clsValoresespecificaciones
                                          Convert.ToString(Periodicidad) & "," & MetodoAnalisisID.ToString & "," & _
                                          Desviacion_maximo.ToString.Replace(","c, "."c) & "," & Desviacion_minimo.ToString.Replace(","c, "."c) & ")")
 
-        Return dtb.Consultar(True)
+        Return dtb.Execute
         'Try
         '    Deprecated.ConsultaInsertarConcampos("(ParametroID, EspecificacionID, Obligatoriedad, Minimo, Maximo, Periodicidad, MetodoAnalisisID, desviacionMaximo, desviacionMinimo, FechaModificacion, UsuarioModificacion)", _
         '                                 ParametroID.ToString & "," & EspecificacionID.ToString & ",'" & Obligatoriedad.ToString & "'," & _
@@ -254,7 +254,7 @@ Public Class clsValoresespecificaciones
         dtb.PrepararConsulta("delete from ValoresEspecificaciones where ParametroID= @par and EspecificacionID= @esp")
         dtb.AñadirParametroConsulta("@par", ParametroID)
         dtb.AñadirParametroConsulta("@esp", EspecificacionID)
-        Return dtb.Consultar(True)
+        Return dtb.Execute
         'Try
         '    BasesParaCompatibilidad.BD.ConsultaEliminar("ValoresEspecificaciones", "ParametroID = " & ParametroID.ToString & " and EspecificacionID = " & EspecificacionID.ToString)
         '    Return 1
@@ -268,7 +268,7 @@ Public Class clsValoresespecificaciones
 
         dtb.PrepararConsulta("delete from ValoresEspecificaciones where EspecificacionID= @id")
         dtb.AñadirParametroConsulta("@id", EspecificacionID)
-        Return dtb.Consultar(True)
+        Return dtb.Execute
         'Try
         '    BasesParaCompatibilidad.BD.ConsultaEliminar("ValoresEspecificaciones", "EspecificacionID = " & EspecificacionID.ToString)
         '    Return 1

@@ -211,7 +211,7 @@ Public Class clsAlbaranesCargaDetalles
         Try
             dtb.PrepararConsulta("delete from AlbaranesCargaDetalles where AlbaranCargaDetalleID = @id")
             dtb.AñadirParametroConsulta("@id", AlbaranCargaDetalleID)
-            Return dtb.Consultar(True)
+            Return dtb.Execute
             'If (BasesParaCompatibilidad.BD.ConsultaEliminar("AlbaranesCargaDetalles", "AlbaranCargaDetalleID = " & Convert.ToString(AlbaranCargaDetalleID)) = 0) Then
             '    MessageBox.Show("no se puede eliminar AlbaranCargaDetalle, se encuentra en uso", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
             'End If

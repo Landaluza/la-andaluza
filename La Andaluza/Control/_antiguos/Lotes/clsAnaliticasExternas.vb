@@ -82,15 +82,14 @@ Public Class clsAnaliticasExternas
     End Sub
 
     Public Function Modificar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
-        Return dtb.ConsultaAlteraciones("update AnaliticasExternas set" & _
-            "RutaAnalisis='" & RutaAnalisis & "'," & _
-            "Fecha='" & BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha) & "'," & _
-            "ProveedorID='" & Convert.ToString(ProveedorID) & "'," & _
-            "AnaliticaID='" & Convert.ToString(AnaliticaID) & "'" & _
-            " where AnaliticaExternaID=" & Convert.ToString(AnaliticaExternaID))
+        dtb.PrepararConsulta("update AnaliticasExternas set RutaAnalisis= @rut, Fecha= @fec, ProveedorID= @pro, AnaliticaID= @ana where AnaliticaExternaID= @id")
 
-
-
+        dtb.AñadirParametroConsulta("@rut", RutaAnalisis)
+        dtb.AñadirParametroConsulta("@fec", Fecha.Date)
+        dtb.AñadirParametroConsulta("@pro", ProveedorID)
+        dtb.AñadirParametroConsulta("@ana", AnaliticaID)
+        dtb.AñadirParametroConsulta("@id", AnaliticaExternaID)
+        Return dtb.Execute
     End Function
 
     Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
@@ -115,7 +114,7 @@ Public Class clsAnaliticasExternas
        
             dtb.PrepararConsulta("delete from AnaliticasExternas where AnaliticaID = @id")
             dtb.AñadirParametroConsulta("@id", AnaliticaID)
-            Return dtb.Consultar(True)
+        Return dtb.Execute
             'If BasesParaCompatibilidad.BD.ConsultaEliminar("AnaliticasExternas", "AnaliticaID = " & Convert.ToString(AnaliticaID)) = 0 Then Return False
 
             'Return True

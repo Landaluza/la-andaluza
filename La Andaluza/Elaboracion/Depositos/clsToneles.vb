@@ -89,7 +89,7 @@ Public Class clsToneles
 
             dtb.PrepararConsulta("delete from Toneles where TonelID = @id")
             dtb.AñadirParametroConsulta("@id", TonelID)
-            If dtb.Consultar(True) Then
+            If dtb.Execute Then
                 Return 1
             Else
                 MessageBox.Show("no se puede eliminar Tonel, se encuentra en uso", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)

@@ -294,7 +294,7 @@ Public Class clsDepositos
         Try
             dtb.PrepararConsulta("delete from Depositos where DepositoID = @id")
             dtb.AñadirParametroConsulta("@id", DepositoID)
-            If dtb.Consultar(True) Then
+            If dtb.Execute Then
                 Return 1
             Else
                 MessageBox.Show("no se puede eliminar Deposito, se encuentra en uso", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)

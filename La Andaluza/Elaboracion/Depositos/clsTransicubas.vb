@@ -98,7 +98,7 @@ Public Class clsTransicubas
         Try
             dtb.PrepararConsulta("delete from Transicubas where TransicubaID = @id")
             dtb.AñadirParametroConsulta("@id", TransicubaID)
-            If dtb.Consultar(True) Then
+            If dtb.Execute Then
                 Return 1
             Else
                 MessageBox.Show("no se puede eliminar Transicuba, se encuentra en uso", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)

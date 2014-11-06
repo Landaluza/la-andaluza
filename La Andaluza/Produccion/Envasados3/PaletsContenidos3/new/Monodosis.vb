@@ -229,7 +229,7 @@ Public Class Monodosis
             linea = "Diferencia automatizada. Scc: " & m_palet.SCC & ", cajas:" & dbo_movimiento.Cajas & " , fecha: " & fecha & ""
 
             dtb.PrepararConsulta("insert into notificaciones(texto, id_tipousuario, leido) values('" & linea & "', 9, 0)")
-            dtb.Consultar(True)
+            dtb.Execute()
         End If
 
         If textNotificar <> "" Then
@@ -319,7 +319,7 @@ Public Class Monodosis
             linea = "No conformidad automatizada. Scc: " & m_palet.SCC & ", cajas:" & dbo_movimiento.Cajas & " , fecha: " & fecha & ""
 
             dtb.PrepararConsulta("insert into notificaciones(texto, id_tipousuario, leido) values('" & linea & "', 9, 0)")
-            dtb.Consultar(True)
+            dtb.Execute()
         End If
 
         If textNotificar <> "" Then

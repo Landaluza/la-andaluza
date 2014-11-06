@@ -50,21 +50,21 @@ Public Class clsAnaliticasRequerimientos
         dtb.AñadirParametroConsulta("@ana", AnaliticaID)
         dtb.AñadirParametroConsulta("@par", ParametroID)
 
-        Return dtb.Consultar(True)
+        Return dtb.Execute
 
         'BasesParaCompatibilidad.BD.ConsultaEliminar("AnaliticasRequerimientos", "AnaliticaID = " & Convert.ToString(AnaliticaID) & " and ParametroID = " & Convert.ToString(ParametroID))
 
     End Function
 
     Public Function EliminarPorAnalitica(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
-      
-            dtb.PrepararConsulta("delete from AnaliticasRequerimientos where AnaliticaID = @id")
-            dtb.AñadirParametroConsulta("@id", AnaliticaID)
-            Return dtb.Consultar(True)
-            'If BasesParaCompatibilidad.BD.ConsultaEliminar("AnaliticasRequerimientos", "AnaliticaID = " & Convert.ToString(AnaliticaID)) = 0 Then Return False
+
+        dtb.PrepararConsulta("delete from AnaliticasRequerimientos where AnaliticaID = @id")
+        dtb.AñadirParametroConsulta("@id", AnaliticaID)
+        Return dtb.Execute
+        'If BasesParaCompatibilidad.BD.ConsultaEliminar("AnaliticasRequerimientos", "AnaliticaID = " & Convert.ToString(AnaliticaID)) = 0 Then Return False
 
 
-            'Return True
+        'Return True
     End Function
 #End Region
 End Class

@@ -2217,7 +2217,7 @@ Public Class frmEntAlbaranesCargaMaestro
         Try
             dtb.PrepararConsulta("update paletsproducidos set multilote=1 where scc = @scc")
             dtb.AñadirParametroConsulta("@scc", Me.dgvPalet.CurrentRow.Cells("SCC").Value)
-            dtb.Consultar(True)
+            dtb.Execute()
             RellenarDgv()
         Catch ex As Exception
             MessageBox.Show("Error al realizar la operacion. Detalles: " & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -2228,7 +2228,7 @@ Public Class frmEntAlbaranesCargaMaestro
         Try
             dtb.PrepararConsulta("update paletsproducidos set multilote=1 where scc =  @scc")
             dtb.AñadirParametroConsulta("@scc", Me.dgvPalet.CurrentRow.Cells("SCC").Value)
-            dtb.Consultar(True)
+            dtb.Execute()
             RellenarDgv()
         Catch ex As Exception
             MessageBox.Show("Error al realizar la operacion. Detalles: " & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -2244,7 +2244,7 @@ Public Class frmEntAlbaranesCargaMaestro
                     dtb.AñadirParametroConsulta("@lote", lote)
                     dtb.AñadirParametroConsulta("@qs", Me.dgvAcumulados.CurrentRow.Cells("CodigoQS").Value)
                     dtb.AñadirParametroConsulta("@id", Me.dgvAcumulados.CurrentRow.Cells("AlbaranCargaProviMaestroID").Value)
-                    dtb.Consultar(True)
+                    dtb.Execute()
                     RellenarDgv()
                 End If
             End If
@@ -2261,7 +2261,7 @@ Public Class frmEntAlbaranesCargaMaestro
                     dtb.PrepararConsulta("update AlbaranesCargaProviDetalles set loteAlternativo= @lote where  AlbaranCargaProviDetalleID = @id")
                     dtb.AñadirParametroConsulta("@lote", lote)
                     dtb.AñadirParametroConsulta("@id", Me.dgvPalet.CurrentRow.Cells("AlbaranCargaProviDetalleID").Value)
-                    dtb.Consultar(True)
+                    dtb.Execute()
                     RellenarDgv()
                 End If
             End If
@@ -2274,7 +2274,7 @@ Public Class frmEntAlbaranesCargaMaestro
         Try
             dtb.PrepararConsulta("update AlbaranesCargaProviDetalles set loteAlternativo=null where  AlbaranCargaProviDetalleID = @id")
             dtb.AñadirParametroConsulta("@id", Me.dgvPalet.CurrentRow.Cells("AlbaranCargaProviDetalleID").Value)
-            dtb.Consultar(True)
+            dtb.Execute()
             RellenarDgv()
         Catch ex As Exception
             MessageBox.Show("Error al realizar la operacion. Detalles: " & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -2286,7 +2286,7 @@ Public Class frmEntAlbaranesCargaMaestro
             dtb.PrepararConsulta("update AlbaranesCargaProviDetalles set loteAlternativo=null where  CodigoQS= @qs and AlbaranCargaProviMaestroID = @id")
             dtb.AñadirParametroConsulta("@qs", Me.dgvAcumulados.CurrentRow.Cells("CodigoQS").Value)
             dtb.AñadirParametroConsulta("@id", Me.dgvAcumulados.CurrentRow.Cells("AlbaranCargaProviMaestroID").Value)
-            dtb.Consultar(True)
+            dtb.Execute()
             RellenarDgv()
         Catch ex As Exception
             MessageBox.Show("Error al realizar la operacion. Detalles: " & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)

@@ -92,7 +92,7 @@ Public Class clsBotas
         Try
             dtb.PrepararConsulta("delete from Botas where BotaID = @id")
             dtb.AñadirParametroConsulta("@id", BotaID)
-            If dtb.Consultar(True) Then
+            If dtb.Execute Then
                 Return 1
             Else
                 MessageBox.Show("no se puede eliminar Bota, se encuentra en uso", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)

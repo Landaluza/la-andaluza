@@ -192,7 +192,7 @@ Class spFormatosEnvasados2
             m_usuario = aux.Select_Record(BasesParaCompatibilidad.Config.User, dtb)
             dtb.AñadirParametroConsulta("@usuarioNombre", m_usuario.Usuario)
 
-            If dtb.Consultar(True) Then
+            If dtb.Execute Then
                 dtb.TerminarTransaccion()
                 Return True
             Else

@@ -68,7 +68,7 @@ Public Class spCargasNecesidades
             End If
 
             'cmd.ExecuteNonQuery()
-            Return dtb.Consultar(True)
+            Return dtb.Execute
 
         Catch ex As Exception
             MessageBox.Show("Error en BD.spCargaNecesidadesJRMaestro" & Environment.NewLine & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -83,7 +83,7 @@ Public Class spCargasNecesidades
             dtb.PrepararConsulta("DeleteCargaNecesidadesJRMaestro @MaestroID")
 
             dtb.AñadirParametroConsulta("@MaestroID", ValorMaestroID)
-            Return dtb.Consultar(True)
+            Return dtb.Execute
         Catch ex As Exception
             MessageBox.Show("Error en BD.spDeleteCargaNecesidadesJRMaestro" & Environment.NewLine & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
@@ -151,7 +151,7 @@ Public Class spCargasNecesidades
                 dtb.AñadirParametroConsulta("@UsuarioModificacion", BasesParaCompatibilidad.Config.User)
             End If
 
-            Return dtb.Consultar(True)
+            Return dtb.Execute
         Catch ex As Exception
             MessageBox.Show("Error en BD.spCargaNecesidadesJRDetalle" & Environment.NewLine & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False

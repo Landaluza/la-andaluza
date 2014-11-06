@@ -94,7 +94,7 @@ Public Class spEspecificacionLegal
             dtb.PrepararConsulta("[dbo].[LegislacionProductos_parametrosDelete] @legislacionID")
             dtb.AñadirParametroConsulta("@legislacionID", legislacion)
 
-            Return dtb.Consultar(True)
+            Return dtb.Execute
         Catch ex As Exception
             Return False
         End Try
@@ -110,10 +110,10 @@ Public Class spEspecificacionLegal
         dtb.AñadirParametroConsulta("@FechaModificacion", DateTime.Now)
 
         Try
-            Return dtb.Consultar(True)
+            Return dtb.Execute
         Catch ex As System.Data.SqlClient.SqlException
             Return False
-     
+
         End Try
     End Function
 End Class

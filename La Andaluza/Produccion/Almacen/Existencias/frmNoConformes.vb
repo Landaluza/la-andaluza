@@ -373,7 +373,7 @@ Public Class frmNoConformes
             If resp = DialogResult.OK Then
                 dtb.PrepararConsulta("update paletsproducidos set id_estado=1 where scc = @scc")
                 dtb.AñadirParametroConsulta("@scc", Me.dgvPalet.CurrentRow.Cells("SCC").Value)
-                dtb.Consultar(True)
+                dtb.Execute()
                 tsPalets.PerformClick()
             End If
 

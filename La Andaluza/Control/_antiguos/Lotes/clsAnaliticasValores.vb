@@ -65,10 +65,11 @@ Public Class clsAnaliticasValores
     End Function
 
     Public Function Modificar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
-        Return dtb.ConsultaAlteraciones("update AnaliticasValores set " & _
-                                                           "Valor = '" & Convert.ToString(Valor).Replace(",", ".") & "'" & _
-                                                           " where AnaliticaID = " & Convert.ToString(AnaliticaID) & _
-                                                           " and ParametroID = " & Convert.ToString(ParametroID))
+        dtb.PrepararConsulta("update AnaliticasValores set Valor = @val where AnaliticaID = @ana and ParametroID = @par")
+        dtb.AñadirParametroConsulta("@val", Valor) 'Convert.ToString(Valor).Replace(",", ".")
+        dtb.AñadirParametroConsulta("@ana", AnaliticaID)
+        dtb.AñadirParametroConsulta("@par", ParametroID)
+        Return dtb.Execute
 
     End Function
 
@@ -78,19 +79,19 @@ Public Class clsAnaliticasValores
             dtb.AñadirParametroConsulta("@ana", AnaliticaID)
             dtb.AñadirParametroConsulta("@par", ParametroID)
 
-        Return dtb.Consultar(True)
+        Return dtb.Execute
 
-            'BasesParaCompatibilidad.BD.ConsultaEliminar("AnaliticasValores", "AnaliticaID = " & Convert.ToString(AnaliticaID) & " and ParametroID = " & Convert.ToString(ParametroID))
-            'Return 1
+        'BasesParaCompatibilidad.BD.ConsultaEliminar("AnaliticasValores", "AnaliticaID = " & Convert.ToString(AnaliticaID) & " and ParametroID = " & Convert.ToString(ParametroID))
+        'Return 1
     End Function
 
     Public Function EliminarPorAnalitica(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
-      
-            dtb.PrepararConsulta("delete from AnaliticasValores where AnaliticaID = @id")
-            dtb.AñadirParametroConsulta("@id", AnaliticaID)
-            Return dtb.Consultar(True)
-            'If BasesParaCompatibilidad.BD.ConsultaEliminar("AnaliticasValores", "AnaliticaID = " & Convert.ToString(AnaliticaID)) = 0 Then Return False
-            'Return True
+
+        dtb.PrepararConsulta("delete from AnaliticasValores where AnaliticaID = @id")
+        dtb.AñadirParametroConsulta("@id", AnaliticaID)
+        Return dtb.Execute
+        'If BasesParaCompatibilidad.BD.ConsultaEliminar("AnaliticasValores", "AnaliticaID = " & Convert.ToString(AnaliticaID)) = 0 Then Return False
+        'Return True
 
     End Function
 #End Region

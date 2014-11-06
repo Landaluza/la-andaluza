@@ -19,7 +19,7 @@ Public Class frmCambiarTipo
         Try
             dtb.PrepararConsulta("DeleteArticulos1Detalles @tipo")
             dtb.AñadirParametroConsulta("@tipo", cboTipo.SelectedValue.ToString)
-            If Not dtb.Consultar(True) Then
+            If Not dtb.Execute Then
                 dtb.CancelarTransaccion()
                 MessageBox.Show("No se pudo completar la operación. Error borrando detalles del articulo.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 Me.DialogResult = Windows.Forms.DialogResult.Cancel
@@ -28,7 +28,7 @@ Public Class frmCambiarTipo
                 dtb.AñadirParametroConsulta("@tipo", cboTipo.SelectedValue.ToString)
                 dtb.AñadirParametroConsulta("@art", id)
 
-                If Not dtb.Consultar(True) Then
+                If Not dtb.Execute Then
                     dtb.CancelarTransaccion()
                     MessageBox.Show("No se pudo completar la operación", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     Me.DialogResult = Windows.Forms.DialogResult.Cancel

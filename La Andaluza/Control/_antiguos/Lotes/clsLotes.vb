@@ -706,7 +706,7 @@ Public Class clsLotes
 
         dtb.PrepararConsulta("delete from Lotes where LoteID = @id")
         dtb.AñadirParametroConsulta("@id", LoteID)
-        Return dtb.Consultar(True)
+        Return dtb.Execute
         'If BasesParaCompatibilidad.BD.ConsultaEliminar("Lotes", "LoteID = " & LoteID) = 0 Then
         '    MessageBox.Show("No se puede eliminar este Lote, se encuentra en uso", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         '    Return False

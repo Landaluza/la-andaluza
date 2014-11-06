@@ -40,7 +40,7 @@ Public Class frmRevisionLotes
             dtb.PrepararConsulta("update lotes set revisar = null where loteid= @id")
             dtb.AñadirParametroConsulta("@id", Me.dgvGeneral.CurrentRow.Cells("Id").Value.ToString)
 
-            If dtb.Consultar(True) Then
+            If dtb.Execute Then
                 dgvFill()
             Else
                 MessageBox.Show("No se pudo marcar como revisado", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information)

@@ -166,7 +166,7 @@ Public Class frmProveedores
                         dtb.PrepararConsulta("update proveedores set ruta= @ruta where proveedorID= @id")
                         dtb.AñadirParametroConsulta("@ruta", .SelectedPath)
                         dtb.AñadirParametroConsulta("@id", Me.dgvGeneral.CurrentRow.Cells("ProveedorID").Value)
-                        If dtb.Consultar(True) Then
+                        If dtb.Execute Then
                             Me.dgvFill()
                         Else
                             MessageBox.Show("no se pudo actualizar el registro", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)

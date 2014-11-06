@@ -79,20 +79,20 @@ Public Class clsMuestrasObservaciones
         dtb.PrepararConsulta("delete from MuestrasObservaciones where AnaliticaID= @id and ObservacionID= @obs")
         dtb.AñadirParametroConsulta("@id", AnaliticaID)
         dtb.AñadirParametroConsulta("@obs", ObservacionID)
-        Return dtb.Consultar(True)
+        Return dtb.Execute
 
     End Function
 
     Public Function EliminarPorAnalitica(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
-    
-            dtb.PrepararConsulta("delete from MuestrasObservaciones where AnaliticaID = @id")
-            dtb.AñadirParametroConsulta("@id", AnaliticaID)
-            Return dtb.Consultar(True)
 
-            'If BasesParaCompatibilidad.BD.ConsultaEliminar("MuestrasObservaciones", "AnaliticaID = " & Convert.ToString(AnaliticaID)) = 0 Then Return False
+        dtb.PrepararConsulta("delete from MuestrasObservaciones where AnaliticaID = @id")
+        dtb.AñadirParametroConsulta("@id", AnaliticaID)
+        Return dtb.Execute
+
+        'If BasesParaCompatibilidad.BD.ConsultaEliminar("MuestrasObservaciones", "AnaliticaID = " & Convert.ToString(AnaliticaID)) = 0 Then Return False
 
 
-            'Return True
+        'Return True
 
     End Function
 

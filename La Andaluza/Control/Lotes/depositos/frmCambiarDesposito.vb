@@ -40,6 +40,6 @@
         dtb.PrepararConsulta("update lotes set depositoid = @dep where loteid = @lot")
         dtb.AñadirParametroConsulta("@dep", dep)
         dtb.AñadirParametroConsulta("@lot", Me.loteID)
-        Return dtb.Consultar(True)
+        Return dtb.Execute
     End Function
 End Class

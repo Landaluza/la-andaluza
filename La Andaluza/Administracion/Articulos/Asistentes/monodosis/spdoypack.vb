@@ -20,7 +20,7 @@ Class spdoypack
         dtb.PrepararConsulta(s)
         dtb.AñadirParametroConsulta("@nom", nombre)
 
-        If dtb.Consultar(True) Then
+        If dtb.Execute Then
             dtb.PrepararConsulta("select max(tipoformatoid) from tiposformatos")
             Return dtb.Consultar().Rows(0).Item(0)
         Else
@@ -175,13 +175,13 @@ Class spdoypack
         dtb.AñadirParametroConsulta("@nc", If(id_NC = 0, Convert.DBNull, id_NC))
         dtb.AñadirParametroConsulta("@e13", If(ean = "0" Or ean = String.Empty, Convert.DBNull, ean))
         dtb.AñadirParametroConsulta("@art", p1)
-        Return dtb.Consultar(True)
+        Return dtb.Execute
     End Function
 
     Public Function esDoypack(ByVal p1 As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Dim dt As DataTable
 
- 
+
 
         dtb.PrepararConsulta("Select count(*) from doypack where id_articuloPrimario =  @id")
         dtb.AñadirParametroConsulta("@id", p1)
@@ -219,8 +219,8 @@ Class spdoypack
             Return True
         Catch ex As Exception
             Return False
-        Finally            
-                dtb.Desconectar()            
+        Finally
+            dtb.Desconectar()
         End Try
     End Function
 
@@ -249,7 +249,7 @@ Class spdoypack
         Catch ex As Exception
             Return False
         Finally
-                dtb.Desconectar()
+            dtb.Desconectar()
         End Try
     End Function
 
@@ -269,7 +269,7 @@ Class spdoypack
         Catch ex As System.Data.SqlClient.SqlException
             Return False
         Finally
-                dtb.Desconectar()
+            dtb.Desconectar()
         End Try
     End Function
 
@@ -300,7 +300,7 @@ Class spdoypack
             dtb.AñadirParametroConsulta("@p1", p1)
             dtb.AñadirParametroConsulta("@p2", p2)
             dtb.AñadirParametroConsulta("@p3", p3)
-            retorno = retorno And dtb.Consultar(True)
+            retorno = retorno And dtb.Execute
 
             Return retorno
         Catch ex As Exception

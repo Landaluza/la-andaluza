@@ -51,7 +51,7 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     Function MarcarInactivo(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal proveedorID As Integer) As Boolean
         dtb.PrepararConsulta("update proveedores set activo = 0 where proveedorID= @id")
         dtb.AñadirParametroConsulta("@scc", proveedorID)
-        Return dtb.Consultar(True)
+        Return dtb.Execute
     End Function
 
     Sub cargar_Proveedores(ByRef comboBox As ComboBox, ByRef dtb As BasesParaCompatibilidad.database)

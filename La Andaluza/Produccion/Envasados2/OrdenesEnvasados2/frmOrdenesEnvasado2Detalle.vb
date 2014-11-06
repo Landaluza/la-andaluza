@@ -176,7 +176,7 @@ Public Class frmOrdenesEnvasado2Detalle
         While i < dgvAlbaranes.SelectedRows.Count
             dtb.PrepararConsulta("InformePedidos_InsertTempAlbaranesCargaMaestro @id")
             dtb.AñadirParametroConsulta("@id", dgvAlbaranes.SelectedRows(i).Cells("AlbaranCargaMaestroID").Value)
-            dtb.Consultar(True)
+            dtb.Execute()
             'DataTableFill("InformePedidos_InsertTempAlbaranesCargaMaestro " & dgvAlbaranes.SelectedRows(i).Cells("AlbaranCargaMaestroID").Value)
             i = i + 1
         End While

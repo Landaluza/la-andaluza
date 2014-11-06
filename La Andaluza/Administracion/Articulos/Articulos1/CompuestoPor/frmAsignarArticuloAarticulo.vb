@@ -56,12 +56,12 @@ Public Class frmAsignarArticuloAarticulo
             If Me.AsignarSecundario Then
                 dtb.PrepararConsulta("delete from articulos1_articulos1_compuestopor where id_articulo= @id and id_articuloCompuestopor in (select articuloId from articulos1 where articulotpoid = 9)")
                 dtb.AñadirParametroConsulta("@id", id_articulo)
-                If Not dtb.Consultar(True) Then Throw New Exception("No se pudo borrar la composicion")
+                If Not dtb.Execute Then Throw New Exception("No se pudo borrar la composicion")
 
                 dtb.PrepararConsulta("insert into articulos1_articulos1_compuestopor(id_articulo, id_articuloCompuestopor) values(@id,@idc)")
                 dtb.AñadirParametroConsulta("@id", id_articulo)
                 dtb.AñadirParametroConsulta("@idc", id)
-                If Not dtb.Consultar(True) Then Throw New Exception("No se pudo guardar la composicion")
+                If Not dtb.Execute Then Throw New Exception("No se pudo guardar la composicion")
 
                 Dim spArticulosEnvasesSecundarios As New spArticulosEnvasesSecundarios
                 Dim m_aux As DBO_ArticulosEnvasesSecundarios = spArticulosEnvasesSecundarios.Select_RecordByArticuloID(id, dtb)
@@ -70,25 +70,25 @@ Public Class frmAsignarArticuloAarticulo
                 dtb.PrepararConsulta("update articulosenvasessecundarios set id_articuloPrimario = @pri where articuloid = @art")
                 dtb.AñadirParametroConsulta("@pri", m_aux.ID)
                 dtb.AñadirParametroConsulta("@art", id_articulo)
-                If Not dtb.Consultar(True) Then Throw New Exception("Error al actualziar el articulo")
+                If Not dtb.Execute Then Throw New Exception("Error al actualziar el articulo")
 
             Else
                 If Me.guardar Then
                     dtb.PrepararConsulta("delete from articulos1_articulos1_compuestopor where id_articulo= @ar and id_articuloCompuestopor = @com")
                     dtb.AñadirParametroConsulta("@ar", id_articulo)
                     dtb.AñadirParametroConsulta("@com", id)
-                    If Not dtb.Consultar(True) Then Throw New Exception("Error borrando composicion")
+                    If Not dtb.Execute Then Throw New Exception("Error borrando composicion")
 
                     dtb.PrepararConsulta("insert into articulos1_articulos1_compuestopor(id_articulo, id_articuloCompuestopor) values( @ar , @com)")
                     dtb.AñadirParametroConsulta("@ar", id_articulo)
                     dtb.AñadirParametroConsulta("@com", id)
-                    If Not dtb.Consultar(True) Then Throw New Exception("Error guardando composicion")
+                    If Not dtb.Execute Then Throw New Exception("Error guardando composicion")
 
 
                     dtb.PrepararConsulta("update articulosenvasessecundarios set id_articuloPrimario = @pri where articuloid = @art")
                     dtb.AñadirParametroConsulta("@art", id_articulo)
                     dtb.AñadirParametroConsulta("@pri", id)
-                    If Not dtb.Consultar(True) Then Throw New Exception("Error borrando composicion")
+                    If Not dtb.Execute Then Throw New Exception("Error borrando composicion")
                 End If
             End If
 

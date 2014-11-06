@@ -260,7 +260,7 @@
                             If resp = DialogResult.Yes Then
                                 dtb.PrepararConsulta("update paletsproducidos set enalmacen=1 where scc = @scc")
                                 dtb.AñadirParametroConsulta("@scc", txtSCCEscaneado.Text)
-                                If Not dtb.Consultar(True) Then Throw New Exception("Error actualizando el palet")
+                                If Not dtb.Execute Then Throw New Exception("Error actualizando el palet")
                                 rellenarForm()
                             Else
                                 btnOK.Enabled = False
@@ -312,14 +312,14 @@
     Private Sub btnNoMultilote_Click(sender As System.Object, e As System.EventArgs) Handles btnNoMultilote.Click
         dtb.PrepararConsulta("update paletsproducidos set multilote = 0 where scc = @scc")
         dtb.AñadirParametroConsulta("@scc", txtSCCEscaneado.Text)
-        dtb.Consultar(True)
+        dtb.Execute()
         rellenarForm()
     End Sub
 
     Private Sub btnMultilote_Click(sender As System.Object, e As System.EventArgs) Handles btnMultilote.Click
         dtb.PrepararConsulta("update paletsproducidos set multilote = 1 where scc = @scc")
         dtb.AñadirParametroConsulta("@scc", txtSCCEscaneado.Text)
-        dtb.Consultar(True)
+        dtb.Execute()
         rellenarForm()
     End Sub
 

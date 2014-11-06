@@ -131,7 +131,7 @@ Public Class clsEspecificaciones
                                                             ",TipoProductoID = " & TipoProductoID.ToString & _
                                                             ",LegislacionID = " & LegislacionID.ToString & _
                                                             " where EspecificacionID = " & EspecificacionID.ToString)
-        Return dtb.Consultar(True)
+        Return dtb.Execute
         'Try
         '    Deprecated.ConsultaModificar("Especificaciones", _
         '                                                    "CodigoQS = '" & CodigoQS.ToString & _
@@ -160,7 +160,7 @@ Public Class clsEspecificaciones
                                                            ",'" & BasesParaCompatibilidad.Calendar.ArmarFecha(DateTime.Now) & _
                                                            "'," & BasesParaCompatibilidad.Config.User & _
                                                            ", " & LegislacionID & ")")
-        Return dtb.Consultar(True)
+        Return dtb.Execute
 
         'Try
         '    Deprecated.ConsultaInsertarSinDatosUsuario("'" & Descripcion & _
@@ -185,7 +185,7 @@ Public Class clsEspecificaciones
         dtb.PrepararConsulta("delete from Especificaciones where EspecificacionID= @id")
         dtb.AñadirParametroConsulta("@id", EspecificacionID)
 
-        Return dtb.Consultar(True)
+        Return dtb.Execute
         'Try
 
 

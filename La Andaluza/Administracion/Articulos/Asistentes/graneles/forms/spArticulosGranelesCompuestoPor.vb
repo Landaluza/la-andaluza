@@ -40,7 +40,7 @@
             dtb.AñadirParametroConsulta("@ing", p1.ArticuloComponente)
             dtb.AñadirParametroConsulta("@art", p1.ArticuloPrincipal)
             dtb.AñadirParametroConsulta("@fas", p1.Fase)
-            retorno = retorno And dtb.Consultar(True)
+            retorno = retorno And dtb.Execute
 
             dtb.PrepararConsulta("select count(*) from articulosIngredientes_articulos1Compuestopor where id_articuloIngrediente = @ing and id_articulo = @art")
             dtb.AñadirParametroConsulta("@ing", p1.ArticuloComponente)
@@ -52,12 +52,12 @@
                 dtb.AñadirParametroConsulta("@can", Convert.ToString(p1.Old_Cantidad).Replace(",", "."))
                 dtb.AñadirParametroConsulta("@art", p1.ArticuloPrincipal)
                 dtb.AñadirParametroConsulta("@com", p1.ArticuloComponente & String.Empty)
-                retorno = retorno And dtb.Consultar(True)
+                retorno = retorno And dtb.Execute
             Else
                 dtb.PrepararConsulta("delete from articulos1_articulos1_compuestoPor where id_articulo= @art and id_articuloCompuestoPor= @com")
                 dtb.AñadirParametroConsulta("@art", p1.ArticuloPrincipal)
                 dtb.AñadirParametroConsulta("@com", p1.ArticuloComponente & String.Empty)
-                retorno = retorno And dtb.Consultar(True)
+                retorno = retorno And dtb.Execute
             End If
 
             If retorno Then
@@ -96,13 +96,13 @@
                 dtb.AñadirParametroConsulta("@art", p1.ArticuloPrincipal)
                 dtb.AñadirParametroConsulta("@com", p1.ArticuloComponente)
                 dtb.AñadirParametroConsulta("@can", Replace(p1.Cantidad, ",", "."))
-                retorno = retorno And dtb.Consultar(True)
+                retorno = retorno And dtb.Execute
             Else
                 dtb.PrepararConsulta("update articulos1_articulos1_compuestoPor set cantidad=cantidad + @can where id_articulo= @art and id_articuloCompuestoPor= @com")
                 dtb.AñadirParametroConsulta("@can", Convert.ToString(p1.Cantidad).Replace(",", "."))
                 dtb.AñadirParametroConsulta("@art", p1.ArticuloPrincipal)
                 dtb.AñadirParametroConsulta("@com", p1.ArticuloComponente & String.Empty)
-                retorno = retorno And dtb.Consultar(True)
+                retorno = retorno And dtb.Execute
             End If
 
             dtb.PrepararConsulta("insert into articulosIngredientes_articulos1Compuestopor(id_articuloIngrediente , id_articulo , id_elaboracion_fase,	orden, subcantidad) " & _
@@ -112,7 +112,7 @@
             dtb.AñadirParametroConsulta("@fas", p1.Fase)
             dtb.AñadirParametroConsulta("@ord", p1.Orden)
             dtb.AñadirParametroConsulta("@can", Convert.ToString(p1.Cantidad).Replace(",", "."))
-            retorno = retorno And dtb.Consultar(True)
+            retorno = retorno And dtb.Execute
 
             If retorno Then
                 dtb.TerminarTransaccion()
@@ -136,7 +136,7 @@
             dtb.AñadirParametroConsulta("@can2", Convert.ToString(p1.Cantidad).Replace(",", "."))
             dtb.AñadirParametroConsulta("@art", p1.ArticuloPrincipal)
             dtb.AñadirParametroConsulta("@com", p1.ArticuloComponente)
-            retorno = retorno And dtb.Consultar(True)
+            retorno = retorno And dtb.Execute
 
             dtb.PrepararConsulta("update articulosIngredientes_articulos1Compuestopor set orden = @ord, subcantidad= @can where id_articuloIngrediente = @com and id_articulo = @art and id_elaboracion_fase = @fas")
             dtb.AñadirParametroConsulta("@ord", p1.Orden)
@@ -145,7 +145,7 @@
             dtb.AñadirParametroConsulta("@art", p1.ArticuloPrincipal)
             dtb.AñadirParametroConsulta("@fas", p1.Fase)
 
-            retorno = retorno And dtb.Consultar(True)
+            retorno = retorno And dtb.Execute
 
             If retorno Then
                 dtb.TerminarTransaccion()

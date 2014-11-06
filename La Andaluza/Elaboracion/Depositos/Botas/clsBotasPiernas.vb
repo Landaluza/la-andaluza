@@ -86,7 +86,7 @@ Public Class clsBotasPiernas
         Try
             dtb.PrepararConsulta("delete from BotasPiernas where BotaPiernaID = @id")
             dtb.AñadirParametroConsulta("@id", BotaPiernaID)
-            If dtb.Consultar(True) Then
+            If dtb.Execute Then
                 Return 1
             Else
                 MessageBox.Show("no se puede eliminar Tonel, se encuentra en uso", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)

@@ -109,36 +109,45 @@ Public Class clsAnaliticas
     End Function
 
     Public Function Modificar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.PrepararConsulta("update Analiticas set " & _
+                                                           "LoteID = @id," & _
+                                                           "AnalistaID = @ana," & _
+                                                           "CatadorID = @cat" & _
+                                                           "  where AnaliticaID = @an2")
+        dtb.AñadirParametroConsulta("@id", LoteID)
+        dtb.AñadirParametroConsulta("@ana", AnalistaID)
+        dtb.AñadirParametroConsulta("@cat", CatadorID)
+        dtb.AñadirParametroConsulta("@an2", AnaliticaID)
 
-        Return dtb.ConsultaAlteraciones("update Analiticas set " & _
-                                                           "LoteID = " & Convert.ToString(LoteID) & "," & _
-                                                           "AnalistaID = " & Convert.ToString(AnalistaID) & "," & _
-                                                           "CatadorID = " & Convert.ToString(CatadorID) & _
-                                                           "  where AnaliticaID = " & Convert.ToString(AnaliticaID))
+        Return dtb.Execute
 
 
 
     End Function
 
     Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
-        If Not dtb.ConsultaAlteraciones("insert into Analiticas values('" & Nombre & "'," & Convert.ToString(LoteID) & _
-                                  "," & Convert.ToString(AnalistaID) & _
-                                  "," & Convert.ToString(CatadorID) & _
-                                  ",'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Today & " " & TimeOfDay) & "'," & BasesParaCompatibilidad.Config.User.ToString & ")") Then
+        dtb.PrepararConsulta("insert into Analiticas([Nombre],[LoteID],[AnalistaID],[CatadorID],[FechaModificacion],[UsuarioModificacion]) " & _
+                                        "values(@nom, @lot, @ana, @cat, @fec, @usr)")
+        dtb.AñadirParametroConsulta("@nom", Nombre)
+        dtb.AñadirParametroConsulta("@lot", LoteID)
+        dtb.AñadirParametroConsulta("@ana", AnalistaID)
+        dtb.AñadirParametroConsulta("@cat", CatadorID)
+        dtb.AñadirParametroConsulta("@fec", Now.Date)
+        dtb.AñadirParametroConsulta("@usr", BasesParaCompatibilidad.Config.User)
+
+        If Not dtb.Execute Then
             Return 0
         End If
 
         dtb.PrepararConsulta("select max(AnaliticaID) from Analiticas where AnaliticaID>0")
         Return dtb.Consultar().Rows(0).Item(0)
-
-
     End Function
 
     Public Function Eliminar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
      
             dtb.PrepararConsulta("delete from Analiticas where AnaliticaID = @id")
             dtb.AñadirParametroConsulta("@id", AnaliticaID)
-            Return dtb.Consultar(True)
+        Return dtb.Execute
             'If BasesParaCompatibilidad.BD.ConsultaEliminar("Analiticas", "AnaliticaID = " & AnaliticaID) = 0 Then
             '    MessageBox.Show("no se puede eliminar este Analitica, se encuentra en uso", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             '    Return False

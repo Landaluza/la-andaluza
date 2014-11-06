@@ -565,7 +565,7 @@ Public Class DispensadorMonodosis
                 linea = "Diferencia automatizada. Scc: " & m_palet.SCC & ", cajas:" & dbo_movimiento.Cajas & " , fecha: " & fecha & ""
 
                 dtb.PrepararConsulta("insert into notificaciones(texto, id_tipousuario, leido) values('" & linea & "', 9, 0)")
-                dtb.Consultar(True)
+                dtb.Execute()
             Else
                 'Dim frmNoConforme As New frmEncajadoNoConforme
                 'frmNoConforme.ShowDialog()
@@ -663,7 +663,7 @@ Public Class DispensadorMonodosis
         'dbo_MovimientoDB.Add(dbo_movimiento)
         Dim fecha As String = Now.Date.Day & "/" & Now.Date.Month & "/" & Now.Date.Year
         dtb.PrepararConsulta("insert into notificaciones(texto, id_tipousuario, leido) values('Envasado de " & m_PaletProducidoOrigen.FormatoDescripcion & " el " & fecha & ". SCC origen: " & m_PaletProducidoOrigen.SCC & "SCC destino:" & m_PaletProducidoDestino.SCC & "', 9, 0)")
-        dtb.Consultar(True)
+        dtb.Execute()
         Try
             Dim mail As New Mail.Mail1And1(True, "Envasado de " & m_PaletProducidoOrigen.FormatoDescripcion, "Envasado de " & m_PaletProducidoOrigen.FormatoDescripcion & " el " & Convert.ToString(DateTime.Today.Date) & "." & Environment.NewLine & "SCC origen: " & m_PaletProducidoOrigen.SCC & ", cajas de origen: " & dbo_movimiento.Cajas & "; SCC destino:" & m_PaletProducidoDestino.SCC & ", Cajas encajadas: " & cajasInicioMail, String.Empty, _
                                                                                    Config.MailReportAddress, Config.MailReportPass, "control@landaluza.es", _

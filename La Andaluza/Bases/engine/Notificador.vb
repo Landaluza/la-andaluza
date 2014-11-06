@@ -9,7 +9,6 @@
             dtb.AñadirParametroConsulta("@id", Config.UserType)
             dt = dtb.Consultar()
 
-            'dtb.ConsultaAlteraciones("update notificaciones set leido = 1 where id_TipoUsuario = " & Config.UserType & " and leido = 0")
 
         Catch ex As Exception
             Return Nothing
@@ -23,7 +22,7 @@
         Try
             dtb.PrepararConsulta("delete from notificaciones where id = @id")
             dtb.AñadirParametroConsulta("@id", id)
-            Return dtb.Consultar(True)
+            Return dtb.Execute
         Catch ex As Exception
             Return False
         End Try

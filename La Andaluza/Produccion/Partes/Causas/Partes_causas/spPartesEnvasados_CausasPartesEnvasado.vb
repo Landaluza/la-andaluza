@@ -28,8 +28,9 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Function
 
     Public Function DeleteByParte(ByVal Id_empleadoFormatoEnvasado As Int32, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean        
-
-        Return dtb.ConsultaAlteraciones("delete from PartesEnvasados_CausasPartesEnvasado where id_ParteEnvasado=" & Id_empleadoFormatoEnvasado)
+        dtb.PrepararConsulta("delete from PartesEnvasados_CausasPartesEnvasado where id_ParteEnvasado= @id")
+        dtb.AñadirParametroConsulta("@id", Id_empleadoFormatoEnvasado)
+        Return dtb.Execute
     End Function
 
     Public Function seleccionarUltimoRegistro(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer

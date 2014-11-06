@@ -318,7 +318,7 @@ public class clsAlbaranesCargaMaestro
         Try
             dtb.PrepararConsulta("delete from AlbaranesCargaMaestro where AlbaranCargaMaestroID = @id")
             dtb.AñadirParametroConsulta("@id", Convert.ToString(AlbaranCargaMaestroID))
-            If dtb.Consultar(True) Then
+            If dtb.Execute Then
                 Return 1
             Else
                 MessageBox.Show("no se puede eliminar AlbaranCargaMaestro, se encuentra en uso", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
