@@ -273,7 +273,7 @@ Public Class frmEntProveedores
                 If sp.Grabar(dbo, Me.dtb) Then
 
                     If Me.ModoDeApertura = INSERCION Then
-                        dtb.PrepararConsulta("select max(proveedorid) from proveedores")
+                        Me.dtb.PrepararConsulta("select max(proveedorid) from proveedores")
                         Me.m_DBO_Proveedores.ProveedorID = Me.dtb.Consultar().Rows(0).Item(0)
                     End If
 
