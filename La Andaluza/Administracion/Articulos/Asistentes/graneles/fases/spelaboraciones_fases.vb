@@ -29,7 +29,9 @@ Public Class spelaboraciones_fases
     End Function
 
     Public Sub cargar_elaboraciones_fases(ByRef cbo As ComboBox, ByVal idGranel As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase)
-        cbo.mam_DataSource("elaboraciones_fasesCbo " & idGranel, False, dtb)
+        dtb.PrepararConsulta("elaboraciones_fasesCbo @id")
+        dtb.AñadirParametroConsulta("@id", idGranel)
+        cbo.mam_DataSource(dtb.Consultar(), False)
     End Sub
 
     Public Function insertar(ByRef dbo As BasesParaCompatibilidad.DataBussines, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean

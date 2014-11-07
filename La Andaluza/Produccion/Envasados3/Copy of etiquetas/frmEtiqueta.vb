@@ -11,13 +11,13 @@ Public Class frmEtiqueta0
     Private barc As BarcodeLib.Barcode
     Private loteador As Loteado
     Private dtb As BasesParaCompatibilidad.DataBase
-    Private Con_Control As Boolean
+    ' Private Con_Control As Boolean
 
-    Public Sub New(ByVal paletId As Integer, ByVal edicion As Boolean, ByVal control As Boolean)
+    Public Sub New(ByVal paletId As Integer, ByVal edicion As Boolean) ', ByVal control As Boolean)
 
         InitializeComponent()
 
-        Con_Control = control
+        'Con_Control = control
         dtb = New BasesParaCompatibilidad.DataBase
         barc = New BarcodeLib.Barcode
         Me.EtiquetadoraPalets = New Etiquetador
@@ -60,11 +60,12 @@ Public Class frmEtiqueta0
                 Me.llote.Text = loteador.Loteado_cubos(Convert.ToDateTime(Me.dbo_etiquetasPalet.Lote).AddYears(dbo_etiquetasPalet.Anos_caducidad))
             End If
 
-            If Con_Control Then
-                Me.lscc.Text = Me.barCode.ajustarSCC_Con_Digito_Control(Me.dbo_etiquetasPalet.SCC, Me.dbo_etiquetasPalet.EAN13)
-            Else
-                Me.lscc.Text = Me.barCode.ajustarSCC(Me.dbo_etiquetasPalet.SCC, Me.dbo_etiquetasPalet.EAN13)
-            End If
+            Me.lscc.Text = Me.barCode.ajustarSCC_Con_Digito_Control(Me.dbo_etiquetasPalet.SCC, Me.dbo_etiquetasPalet.EAN13)
+            'If Con_Control Then
+            '    Me.lscc.Text = Me.barCode.ajustarSCC_Con_Digito_Control(Me.dbo_etiquetasPalet.SCC, Me.dbo_etiquetasPalet.EAN13)
+            'Else
+            '    Me.lscc.Text = Me.barCode.ajustarSCC(Me.dbo_etiquetasPalet.SCC, Me.dbo_etiquetasPalet.EAN13)
+            'End If
 
             Me.dbo_etiquetasPalet.SCC = Me.lscc.Text
 
@@ -135,31 +136,11 @@ Public Class frmEtiqueta0
     '    Return True
     'End Function
 
+
     Public Sub calcular_codigoBarras1()
         'Dim texto As String = Me.barCode.calcular_codigo_barras_1(Me.lean14.Text, llote.Text)  '"(01)" & Me.lean14.Text & "(10)" & llote.Text
         Dim gs As GS1 = Me.barCode.calcular_codigo_barras_1(Me.lean14.Text, llote.Text)
         Dim texto As String = gs.Empresa
-        
-        Dim temp As New Bitmap(1, 1)
-        temp.SetPixel(0, 0, Me.BackColor)
-        Barcode1.Image = temp
-
-        barc.Alignment = BarcodeLib.AlignmentPositions.LEFT
-        barc.IncludeLabel = True
-        barc.LabelPosition = BarcodeLib.LabelPositions.BOTTOMLEFT        
-        '        Barcode1.Image = barc.Encode(BarcodeLib.TYPE.CODE128, texto, Color.Black, Color.White, 350, 120)
-        Barcode1.Image = barc.Encode(BarcodeLib.TYPE.SSCC, texto, Color.Black, Color.White, 600, 160)
-
-
-
-        Barcode1.Width = 350 'Barcode1.Image.Width
-        Barcode1.Height = Barcode1.Image.Height
-    End Sub
-
-    Public Sub calcular_codigoBarras1_c()
-        'Dim texto As String = Me.barCode.calcular_codigo_barras_1(Me.lean14.Text, llote.Text)  '"(01)" & Me.lean14.Text & "(10)" & llote.Text
-        Dim gs As GS1 = Me.barCode.calcular_codigo_barras_1(Me.lean14.Text, llote.Text)
-        Dim texto As String = gs.Empresa_DOBLE_CODIFICACION
 
         Dim temp As New Bitmap(1, 1)
         temp.SetPixel(0, 0, Me.BackColor)
@@ -169,7 +150,7 @@ Public Class frmEtiqueta0
         barc.IncludeLabel = True
         barc.LabelPosition = BarcodeLib.LabelPositions.BOTTOMLEFT
         '        Barcode1.Image = barc.Encode(BarcodeLib.TYPE.CODE128, texto, Color.Black, Color.White, 350, 120)
-        Barcode1.Image = barc.Encode(BarcodeLib.TYPE.LOTE, texto, Color.Black, Color.White, 700, 160)
+        Barcode1.Image = barc.Encode(BarcodeLib.TYPE.LOTE, texto, Color.Black, Color.White, 800, 160)
 
 
 
@@ -204,7 +185,7 @@ Public Class frmEtiqueta0
     Private Sub lean14_TextChanged(sender As System.Object, e As System.EventArgs) Handles lean14.TextChanged
         Try
             If Me.Visible Then
-                If Me.Barcode1.Visible Then calcular_codigoBarras1_c()
+                If Me.Barcode1.Visible Then calcular_codigoBarras1()
                 If Me.Barcode2.Visible Then calcular_codigoBarras2()
             End If
         Catch ex As Exception
@@ -240,8 +221,8 @@ Public Class frmEtiqueta0
         End If
     End Sub
 
-    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
-        If Me.Barcode1.Visible Then calcular_codigoBarras1_c()
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs)
+        If Me.Barcode1.Visible Then calcular_codigoBarras1()
         If Me.Barcode2.Visible Then calcular_codigoBarras2()
     End Sub
 End Class

@@ -49,14 +49,13 @@ Partial Class frmEtiqueta0
         Me.panCabecera = New System.Windows.Forms.Panel()
         Me.txtCabecera = New System.Windows.Forms.TextBox()
         Me.panBotones = New System.Windows.Forms.Panel()
+        Me.btExp = New System.Windows.Forms.Button()
         Me.butCalculateCod = New System.Windows.Forms.Button()
         Me.btnImprimir = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Barcode2 = New System.Windows.Forms.PictureBox()
         Me.Barcode1 = New System.Windows.Forms.PictureBox()
         Me.Panel8 = New System.Windows.Forms.Panel()
-        Me.btExp = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.Panel2.SuspendLayout()
         Me.Panel4.SuspendLayout()
         Me.Panel3.SuspendLayout()
@@ -380,15 +379,26 @@ Partial Class frmEtiqueta0
         Me.panBotones.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.panBotones.BackColor = System.Drawing.Color.LightGray
-        Me.panBotones.Controls.Add(Me.Button1)
         Me.panBotones.Controls.Add(Me.btExp)
         Me.panBotones.Controls.Add(Me.butCalculateCod)
         Me.panBotones.Controls.Add(Me.btnImprimir)
         Me.panBotones.Location = New System.Drawing.Point(2, 56)
         Me.panBotones.Margin = New System.Windows.Forms.Padding(2)
         Me.panBotones.Name = "panBotones"
-        Me.panBotones.Size = New System.Drawing.Size(14, 112)
+        Me.panBotones.Size = New System.Drawing.Size(15, 112)
         Me.panBotones.TabIndex = 6
+        '
+        'btExp
+        '
+        Me.btExp.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btExp.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btExp.Image = Global.La_Andaluza.My.Resources.Resources.go_next_5
+        Me.btExp.Location = New System.Drawing.Point(0, 0)
+        Me.btExp.Name = "btExp"
+        Me.btExp.Size = New System.Drawing.Size(15, 112)
+        Me.btExp.TabIndex = 3
+        Me.btExp.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btExp.UseVisualStyleBackColor = True
         '
         'butCalculateCod
         '
@@ -396,10 +406,10 @@ Partial Class frmEtiqueta0
         Me.butCalculateCod.FlatAppearance.BorderSize = 0
         Me.butCalculateCod.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.butCalculateCod.Image = Global.La_Andaluza.My.Resources.Resources.document_quick_restart
-        Me.butCalculateCod.Location = New System.Drawing.Point(-166, 40)
+        Me.butCalculateCod.Location = New System.Drawing.Point(-165, 2)
         Me.butCalculateCod.Margin = New System.Windows.Forms.Padding(2)
         Me.butCalculateCod.Name = "butCalculateCod"
-        Me.butCalculateCod.Size = New System.Drawing.Size(166, 36)
+        Me.butCalculateCod.Size = New System.Drawing.Size(166, 57)
         Me.butCalculateCod.TabIndex = 2
         Me.butCalculateCod.Text = "Recalcular codigo de barras"
         Me.butCalculateCod.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
@@ -411,10 +421,10 @@ Partial Class frmEtiqueta0
         Me.btnImprimir.FlatAppearance.BorderSize = 0
         Me.btnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnImprimir.Image = Global.La_Andaluza.My.Resources.Resources.printer_laser_64
-        Me.btnImprimir.Location = New System.Drawing.Point(-166, 74)
+        Me.btnImprimir.Location = New System.Drawing.Point(-165, 63)
         Me.btnImprimir.Margin = New System.Windows.Forms.Padding(2)
         Me.btnImprimir.Name = "btnImprimir"
-        Me.btnImprimir.Size = New System.Drawing.Size(166, 36)
+        Me.btnImprimir.Size = New System.Drawing.Size(166, 47)
         Me.btnImprimir.TabIndex = 1
         Me.btnImprimir.Text = "Imprimir"
         Me.btnImprimir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
@@ -469,33 +479,6 @@ Partial Class frmEtiqueta0
         Me.Panel8.Name = "Panel8"
         Me.Panel8.Size = New System.Drawing.Size(6, 280)
         Me.Panel8.TabIndex = 10
-        '
-        'btExp
-        '
-        Me.btExp.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btExp.Dock = System.Windows.Forms.DockStyle.Right
-        Me.btExp.Image = Global.La_Andaluza.My.Resources.Resources.go_next_5
-        Me.btExp.Location = New System.Drawing.Point(-1, 0)
-        Me.btExp.Name = "btExp"
-        Me.btExp.Size = New System.Drawing.Size(15, 112)
-        Me.btExp.TabIndex = 3
-        Me.btExp.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btExp.UseVisualStyleBackColor = True
-        '
-        'Button1
-        '
-        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Image = Global.La_Andaluza.My.Resources.Resources.document_quick_restart
-        Me.Button1.Location = New System.Drawing.Point(-166, 5)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(2)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(166, 36)
-        Me.Button1.TabIndex = 4
-        Me.Button1.Text = "Recalcular codigo de barras Code C"
-        Me.Button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.Button1.UseVisualStyleBackColor = True
         '
         'frmEtiqueta0
         '
@@ -563,5 +546,4 @@ Partial Class frmEtiqueta0
     Private WithEvents Panel10 As System.Windows.Forms.Panel
     Private WithEvents Panel8 As System.Windows.Forms.Panel
     Private WithEvents btExp As System.Windows.Forms.Button
-    Private WithEvents Button1 As System.Windows.Forms.Button
 End Class

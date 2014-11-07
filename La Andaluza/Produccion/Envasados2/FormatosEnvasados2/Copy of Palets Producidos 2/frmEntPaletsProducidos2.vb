@@ -475,7 +475,7 @@ Public Class frmEntPaletsProducidos2
             '                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
             If spPaletsProducidos2.Etiquetar(Me.m_DBO_PaletProducido.PaletProducidoID, dtb) Then
                 Try
-                    Dim frm As New frmEtiqueta0(Me.m_DBO_PaletProducido.PaletProducidoID, False, False)
+                    Dim frm As New frmEtiqueta0(Me.m_DBO_PaletProducido.PaletProducidoID, False) ', False)
                     frm.Show()
                 Catch ex As Exception
                     MessageBox.Show("No se pudo mostrar los datos", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)

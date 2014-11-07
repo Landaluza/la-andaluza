@@ -98,8 +98,8 @@ Public Class frmEntPaletsContenidosDoypack
     Protected Overrides Function GetValores() As Boolean Implements BasesParaCompatibilidad.Savable.getValores
         Dim errores As String = String.Empty
 
-        m_DBO_PaletsContenidos.HoraInicio = New TimeSpan(dtpHoraInicio.Value.Date.Hour, dtpHoraInicio.Value.Date.Minute, 0)
-        m_DBO_PaletsContenidos.HoraFin = New TimeSpan(dtpHoraFin.Value.Date.Hour, dtpHoraFin.Value.Date.Minute, 0)
+        m_DBO_PaletsContenidos.HoraInicio = New TimeSpan(dtpHoraInicio.Value.Hour, dtpHoraInicio.Value.Minute, 0)
+        m_DBO_PaletsContenidos.HoraFin = New TimeSpan(dtpHoraFin.Value.Hour, dtpHoraFin.Value.Minute, 0)
 
         If dtpHoraInicio.Value > dtpHoraFin.Value Then
             errores = errores & "La hora de inicio no puede ser mayor que fin." & Environment.NewLine()

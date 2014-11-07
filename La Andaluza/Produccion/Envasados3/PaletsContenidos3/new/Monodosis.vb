@@ -334,7 +334,9 @@ Public Class Monodosis
     End Function
 
     Public Sub cargarComboDetallesMonodosisParaDoypack(ByRef combo As ComboBox, ByVal tipoFormato As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase)
-        combo.mam_DataSource("PaletsContenidosSelectMonodosisParaDoypack2 " & tipoFormato, False, dtb)
+        dtb.PrepararConsulta("PaletsContenidosSelectMonodosisParaDoypack @tf")
+        dtb.AñadirParametroConsulta("@tf", tipoFormato)
+        combo.mam_DataSource(dtb.Consultar, False)
     End Sub
 
     Public Sub CargarMonodosis(ByRef pan As Panel, ByVal FormatoEnvasado As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase, Optional ByRef frmDoypack As frmEntPaletsContenidosDoypack = Nothing)

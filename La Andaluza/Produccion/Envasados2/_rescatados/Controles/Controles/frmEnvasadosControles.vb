@@ -77,6 +77,10 @@ Public Class frmEnvasadosControles
                 Dim spEnvasadosControlesImar As New spEnvasadosControlesImar
                 m_DBO_EnvasadoControlLinea = spEnvasadosControlesImar.SelectByEnvasadoControlID(m_EnvasadoControles.EnvasadoControlID, dtb)
                 m_FormLinea = New frmEntEnvasadosControlesImar(TipoAction, m_DBO_EnvasadoControlLinea)
+            Case Is = 6 'Imar
+                Dim spEnvasadosControlesImar As New spEnvasadosControlesImar
+                m_DBO_EnvasadoControlLinea = spEnvasadosControlesImar.SelectByEnvasadoControlID(m_EnvasadoControles.EnvasadoControlID, dtb)
+                m_FormLinea = New frmEntEnvasadosControlesImar(TipoAction, m_DBO_EnvasadoControlLinea)
             Case Else
                 Return
         End Select

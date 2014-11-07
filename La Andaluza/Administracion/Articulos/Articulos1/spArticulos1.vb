@@ -34,11 +34,14 @@ Public Class spArticulos1
     End Function
 
     Public Sub cargar_Articulos(ByRef cbo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
-        cbo.mam_DataSource("Articulos1Cbo", False, dtb)
+        dtb.PrepararConsulta("Articulos1Cbo")
+        cbo.mam_DataSource(dtb.Consultar, False)
     End Sub
 
     Public Sub cargar_Articulos_Por_Tipo(ByRef cbo As ComboBox, ByVal tipo As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase)
-        cbo.mam_DataSource("Articulos1CboByTipo " & tipo, False, dtb)
+        dtb.PrepararConsulta("Articulos1CboByTipo @id")
+        dtb.AñadirParametroConsulta("@id", tipo)
+        cbo.mam_DataSource(dtb.Consultar, False)
     End Sub
 
 
