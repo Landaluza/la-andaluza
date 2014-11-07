@@ -150,12 +150,12 @@ Public Class frmEtiqueta0
         barc.IncludeLabel = True
         barc.LabelPosition = BarcodeLib.LabelPositions.BOTTOMLEFT
         '        Barcode1.Image = barc.Encode(BarcodeLib.TYPE.CODE128, texto, Color.Black, Color.White, 350, 120)
-        Barcode1.Image = barc.Encode(BarcodeLib.TYPE.LOTE, texto, Color.Black, Color.White, 800, 160)
+        Barcode1.Image = barc.Encode(BarcodeLib.TYPE.LOTE, texto, Color.Black, Color.White, 1280, 700)
 
 
 
-        Barcode1.Width = 350 'Barcode1.Image.Width
-        Barcode1.Height = Barcode1.Image.Height
+        '  Barcode1.Width = 350 'Barcode1.Image.Width
+        ''' Barcode1.Height = Barcode1.Image.Height
     End Sub
 
     Public Sub calcular_codigoBarras2()
@@ -171,10 +171,10 @@ Public Class frmEtiqueta0
         barc.IncludeLabel = True
         barc.LabelPosition = BarcodeLib.LabelPositions.BOTTOMLEFT
         '        Barcode2.Image = barc.Encode(BarcodeLib.TYPE.CODE128, texto, Color.Black, Color.White, Me.Width - 20, 120)
-        Barcode2.Image = barc.Encode(BarcodeLib.TYPE.SSCC, texto, Color.Black, Color.White, 650, 200)
+        Barcode2.Image = barc.Encode(BarcodeLib.TYPE.SSCC, texto, Color.Black, Color.White, 1280, 700)
 
-        Barcode2.Width = Barcode2.Image.Width
-        Barcode2.Height = Barcode2.Image.Height
+        '' Barcode2.Width = Barcode2.Image.Width
+        ''   Barcode2.Height = Barcode2.Image.Height
     End Sub
 
     Private Sub butCalculateCod_Click(sender As System.Object, e As System.EventArgs) Handles butCalculateCod.Click
@@ -225,4 +225,6 @@ Public Class frmEtiqueta0
         If Me.Barcode1.Visible Then calcular_codigoBarras1()
         If Me.Barcode2.Visible Then calcular_codigoBarras2()
     End Sub
+
+
 End Class

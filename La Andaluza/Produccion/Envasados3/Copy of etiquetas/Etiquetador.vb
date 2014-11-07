@@ -7,7 +7,7 @@ Public Class Etiquetador
     Private PrintPreviewDialogEtiquetas As PrintPreviewDialog
     Private panel As Panel
 
-    Public dpi As Integer = 7200
+    Public dpi As Integer = 800 '7200
     'Private image As Bitmap
 
     Public Sub New()

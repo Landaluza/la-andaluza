@@ -1319,6 +1319,7 @@ C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\C1.Win.C1
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Carta de portes.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\DgvFilterPopup.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Envasados entre fechas.dll
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\etiquetas.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\EvaluacionIncidencia.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\FastReport.Service.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Incidencias entre fechas.dll

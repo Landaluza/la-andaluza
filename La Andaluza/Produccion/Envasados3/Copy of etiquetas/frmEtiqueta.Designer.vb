@@ -55,6 +55,7 @@ Partial Class frmEtiqueta0
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Barcode2 = New System.Windows.Forms.PictureBox()
         Me.Barcode1 = New System.Windows.Forms.PictureBox()
+        Me.Panel7 = New System.Windows.Forms.Panel()
         Me.Panel8 = New System.Windows.Forms.Panel()
         Me.Panel2.SuspendLayout()
         Me.Panel4.SuspendLayout()
@@ -80,7 +81,7 @@ Partial Class frmEtiqueta0
         Me.Panel2.Location = New System.Drawing.Point(0, 20)
         Me.Panel2.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(342, 80)
+        Me.Panel2.Size = New System.Drawing.Size(680, 148)
         Me.Panel2.TabIndex = 1
         '
         'Panel4
@@ -91,23 +92,23 @@ Partial Class frmEtiqueta0
         Me.Panel4.Controls.Add(Me.lnBotellas)
         Me.Panel4.Controls.Add(Me.Panel10)
         Me.Panel4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel4.Location = New System.Drawing.Point(214, 0)
+        Me.Panel4.Location = New System.Drawing.Point(304, 0)
         Me.Panel4.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(128, 80)
+        Me.Panel4.Size = New System.Drawing.Size(376, 148)
         Me.Panel4.TabIndex = 1
         '
         'lnCajas
         '
         Me.lnCajas.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.lnCajas.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lnCajas.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lnCajas.Location = New System.Drawing.Point(4, 40)
+        Me.lnCajas.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lnCajas.Location = New System.Drawing.Point(10, 63)
         Me.lnCajas.Margin = New System.Windows.Forms.Padding(2)
         Me.lnCajas.MaxLength = 1000
         Me.lnCajas.Multiline = True
         Me.lnCajas.Name = "lnCajas"
-        Me.lnCajas.Size = New System.Drawing.Size(122, 15)
+        Me.lnCajas.Size = New System.Drawing.Size(364, 60)
         Me.lnCajas.TabIndex = 13
         Me.lnCajas.Text = "XXX CAJAS POR PALET"
         '
@@ -115,13 +116,13 @@ Partial Class frmEtiqueta0
         '
         Me.lPalet.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.lPalet.Dock = System.Windows.Forms.DockStyle.Top
-        Me.lPalet.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lPalet.Location = New System.Drawing.Point(4, 0)
+        Me.lPalet.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lPalet.Location = New System.Drawing.Point(10, 0)
         Me.lPalet.Margin = New System.Windows.Forms.Padding(2)
         Me.lPalet.MaxLength = 1000
         Me.lPalet.Multiline = True
         Me.lPalet.Name = "lPalet"
-        Me.lPalet.Size = New System.Drawing.Size(122, 40)
+        Me.lPalet.Size = New System.Drawing.Size(364, 63)
         Me.lPalet.TabIndex = 12
         Me.lPalet.Text = "PALET: CHEP XX x XXX bbb bb bb  cc"
         '
@@ -129,13 +130,13 @@ Partial Class frmEtiqueta0
         '
         Me.lnBotellas.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.lnBotellas.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.lnBotellas.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lnBotellas.Location = New System.Drawing.Point(4, 55)
+        Me.lnBotellas.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lnBotellas.Location = New System.Drawing.Point(10, 123)
         Me.lnBotellas.Margin = New System.Windows.Forms.Padding(2)
         Me.lnBotellas.MaxLength = 1000
         Me.lnBotellas.Multiline = True
         Me.lnBotellas.Name = "lnBotellas"
-        Me.lnBotellas.Size = New System.Drawing.Size(122, 23)
+        Me.lnBotellas.Size = New System.Drawing.Size(364, 23)
         Me.lnBotellas.TabIndex = 14
         Me.lnBotellas.Text = "xxxx BOTELLAS"
         '
@@ -145,7 +146,7 @@ Partial Class frmEtiqueta0
         Me.Panel10.Location = New System.Drawing.Point(0, 0)
         Me.Panel10.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel10.Name = "Panel10"
-        Me.Panel10.Size = New System.Drawing.Size(4, 78)
+        Me.Panel10.Size = New System.Drawing.Size(10, 146)
         Me.Panel10.TabIndex = 15
         '
         'Panel3
@@ -158,20 +159,20 @@ Partial Class frmEtiqueta0
         Me.Panel3.Location = New System.Drawing.Point(0, 0)
         Me.Panel3.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(214, 80)
+        Me.Panel3.Size = New System.Drawing.Size(304, 148)
         Me.Panel3.TabIndex = 0
         '
         'lCajasBotellas
         '
         Me.lCajasBotellas.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.lCajasBotellas.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lCajasBotellas.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lCajasBotellas.Location = New System.Drawing.Point(0, 59)
+        Me.lCajasBotellas.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lCajasBotellas.Location = New System.Drawing.Point(0, 115)
         Me.lCajasBotellas.Margin = New System.Windows.Forms.Padding(2)
         Me.lCajasBotellas.MaxLength = 1000
         Me.lCajasBotellas.Multiline = True
         Me.lCajasBotellas.Name = "lCajasBotellas"
-        Me.lCajasBotellas.Size = New System.Drawing.Size(212, 19)
+        Me.lCajasBotellas.Size = New System.Drawing.Size(302, 31)
         Me.lCajasBotellas.TabIndex = 12
         Me.lCajasBotellas.Text = "xx BOTELLAS DE xxx ml"
         Me.lCajasBotellas.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -180,13 +181,13 @@ Partial Class frmEtiqueta0
         '
         Me.lProducto.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.lProducto.Dock = System.Windows.Forms.DockStyle.Top
-        Me.lProducto.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lProducto.Location = New System.Drawing.Point(0, 24)
+        Me.lProducto.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lProducto.Location = New System.Drawing.Point(0, 31)
         Me.lProducto.Margin = New System.Windows.Forms.Padding(2)
         Me.lProducto.MaxLength = 1000
         Me.lProducto.Multiline = True
         Me.lProducto.Name = "lProducto"
-        Me.lProducto.Size = New System.Drawing.Size(212, 35)
+        Me.lProducto.Size = New System.Drawing.Size(302, 84)
         Me.lProducto.TabIndex = 14
         Me.lProducto.Text = "sustituir los datos de ejemplo por los reales"
         Me.lProducto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -195,13 +196,13 @@ Partial Class frmEtiqueta0
         '
         Me.lMarca.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.lMarca.Dock = System.Windows.Forms.DockStyle.Top
-        Me.lMarca.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lMarca.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lMarca.Location = New System.Drawing.Point(0, 0)
         Me.lMarca.Margin = New System.Windows.Forms.Padding(2)
         Me.lMarca.MaxLength = 1000
         Me.lMarca.Multiline = True
         Me.lMarca.Name = "lMarca"
-        Me.lMarca.Size = New System.Drawing.Size(212, 24)
+        Me.lMarca.Size = New System.Drawing.Size(302, 31)
         Me.lMarca.TabIndex = 13
         Me.lMarca.Text = "Datos no recuperados"
         Me.lMarca.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -218,100 +219,100 @@ Partial Class frmEtiqueta0
         Me.Panel5.Controls.Add(Me.Label2)
         Me.Panel5.Controls.Add(Me.labelean)
         Me.Panel5.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel5.Location = New System.Drawing.Point(0, 100)
+        Me.Panel5.Location = New System.Drawing.Point(0, 168)
         Me.Panel5.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(342, 72)
+        Me.Panel5.Size = New System.Drawing.Size(680, 104)
         Me.Panel5.TabIndex = 2
         '
         'lCaducidad
         '
         Me.lCaducidad.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.lCaducidad.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lCaducidad.Location = New System.Drawing.Point(278, 58)
+        Me.lCaducidad.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lCaducidad.Location = New System.Drawing.Point(388, 74)
         Me.lCaducidad.Margin = New System.Windows.Forms.Padding(2)
         Me.lCaducidad.MaxLength = 20
         Me.lCaducidad.Name = "lCaducidad"
-        Me.lCaducidad.Size = New System.Drawing.Size(63, 16)
+        Me.lCaducidad.Size = New System.Drawing.Size(229, 25)
         Me.lCaducidad.TabIndex = 13
         Me.lCaducidad.Visible = False
         '
         'ltCaducidad
         '
-        Me.ltCaducidad.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ltCaducidad.Location = New System.Drawing.Point(9, 53)
+        Me.ltCaducidad.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ltCaducidad.Location = New System.Drawing.Point(9, 74)
         Me.ltCaducidad.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.ltCaducidad.Name = "ltCaducidad"
-        Me.ltCaducidad.Size = New System.Drawing.Size(323, 15)
+        Me.ltCaducidad.Size = New System.Drawing.Size(375, 31)
         Me.ltCaducidad.TabIndex = 12
         Me.ltCaducidad.Text = "Fecha de consumo preferente(aammdd):"
         '
         'lean13
         '
         Me.lean13.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.lean13.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lean13.Location = New System.Drawing.Point(91, 0)
+        Me.lean13.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lean13.Location = New System.Drawing.Point(112, 3)
         Me.lean13.Margin = New System.Windows.Forms.Padding(2)
         Me.lean13.MaxLength = 13
         Me.lean13.Name = "lean13"
-        Me.lean13.Size = New System.Drawing.Size(162, 16)
+        Me.lean13.Size = New System.Drawing.Size(505, 25)
         Me.lean13.TabIndex = 11
         Me.lean13.Text = "8481034912123"
         '
         'lean14
         '
         Me.lean14.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.lean14.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lean14.Location = New System.Drawing.Point(90, 19)
+        Me.lean14.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lean14.Location = New System.Drawing.Point(111, 30)
         Me.lean14.Margin = New System.Windows.Forms.Padding(2)
         Me.lean14.MaxLength = 14
         Me.lean14.Name = "lean14"
-        Me.lean14.Size = New System.Drawing.Size(162, 16)
+        Me.lean14.Size = New System.Drawing.Size(506, 25)
         Me.lean14.TabIndex = 10
         Me.lean14.Text = "1848103400785"
         '
         'llote
         '
         Me.llote.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.llote.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.llote.Location = New System.Drawing.Point(91, 36)
+        Me.llote.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.llote.Location = New System.Drawing.Point(112, 51)
         Me.llote.Margin = New System.Windows.Forms.Padding(2)
         Me.llote.MaxLength = 20
         Me.llote.Name = "llote"
-        Me.llote.Size = New System.Drawing.Size(162, 16)
+        Me.llote.Size = New System.Drawing.Size(505, 25)
         Me.llote.TabIndex = 8
         Me.llote.Text = "xxxxx"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(9, 36)
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(12, 51)
         Me.Label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(49, 17)
+        Me.Label3.Size = New System.Drawing.Size(74, 26)
         Me.Label3.TabIndex = 2
         Me.Label3.Text = "LOTE:"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(9, 18)
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(8, 29)
         Me.Label2.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(66, 17)
+        Me.Label2.Size = New System.Drawing.Size(100, 26)
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "GTIN-14:"
         '
         'labelean
         '
         Me.labelean.AutoSize = True
-        Me.labelean.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.labelean.Location = New System.Drawing.Point(9, 0)
+        Me.labelean.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.labelean.Location = New System.Drawing.Point(8, 2)
         Me.labelean.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.labelean.Name = "labelean"
-        Me.labelean.Size = New System.Drawing.Size(66, 17)
+        Me.labelean.Size = New System.Drawing.Size(100, 26)
         Me.labelean.TabIndex = 0
         Me.labelean.Text = "GTIN-13:"
         '
@@ -321,31 +322,31 @@ Partial Class frmEtiqueta0
         Me.Panel6.Controls.Add(Me.lscc)
         Me.Panel6.Controls.Add(Me.Label4)
         Me.Panel6.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel6.Location = New System.Drawing.Point(0, 172)
+        Me.Panel6.Location = New System.Drawing.Point(0, 272)
         Me.Panel6.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(342, 17)
+        Me.Panel6.Size = New System.Drawing.Size(680, 33)
         Me.Panel6.TabIndex = 3
         '
         'lscc
         '
         Me.lscc.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.lscc.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lscc.Location = New System.Drawing.Point(91, -2)
+        Me.lscc.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lscc.Location = New System.Drawing.Point(111, 3)
         Me.lscc.Margin = New System.Windows.Forms.Padding(2)
         Me.lscc.MaxLength = 8
         Me.lscc.Name = "lscc"
-        Me.lscc.Size = New System.Drawing.Size(161, 16)
+        Me.lscc.Size = New System.Drawing.Size(506, 25)
         Me.lscc.TabIndex = 7
         Me.lscc.Text = "xxxxx"
         '
         'Label4
         '
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(9, -1)
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(9, 3)
         Me.Label4.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(52, 15)
+        Me.Label4.Size = New System.Drawing.Size(99, 25)
         Me.Label4.TabIndex = 3
         Me.Label4.Text = "SSCC:"
         '
@@ -356,20 +357,20 @@ Partial Class frmEtiqueta0
         Me.panCabecera.Location = New System.Drawing.Point(0, 0)
         Me.panCabecera.Margin = New System.Windows.Forms.Padding(2)
         Me.panCabecera.Name = "panCabecera"
-        Me.panCabecera.Size = New System.Drawing.Size(342, 20)
+        Me.panCabecera.Size = New System.Drawing.Size(680, 20)
         Me.panCabecera.TabIndex = 3
         '
         'txtCabecera
         '
         Me.txtCabecera.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtCabecera.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtCabecera.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtCabecera.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCabecera.Location = New System.Drawing.Point(0, 0)
         Me.txtCabecera.Margin = New System.Windows.Forms.Padding(2)
         Me.txtCabecera.MaxLength = 1000
         Me.txtCabecera.Multiline = True
         Me.txtCabecera.Name = "txtCabecera"
-        Me.txtCabecera.Size = New System.Drawing.Size(342, 20)
+        Me.txtCabecera.Size = New System.Drawing.Size(680, 20)
         Me.txtCabecera.TabIndex = 14
         Me.txtCabecera.Text = "Datos no recuperados"
         Me.txtCabecera.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -385,7 +386,7 @@ Partial Class frmEtiqueta0
         Me.panBotones.Location = New System.Drawing.Point(2, 56)
         Me.panBotones.Margin = New System.Windows.Forms.Padding(2)
         Me.panBotones.Name = "panBotones"
-        Me.panBotones.Size = New System.Drawing.Size(15, 112)
+        Me.panBotones.Size = New System.Drawing.Size(33, 112)
         Me.panBotones.TabIndex = 6
         '
         'btExp
@@ -393,7 +394,7 @@ Partial Class frmEtiqueta0
         Me.btExp.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btExp.Dock = System.Windows.Forms.DockStyle.Right
         Me.btExp.Image = Global.La_Andaluza.My.Resources.Resources.go_next_5
-        Me.btExp.Location = New System.Drawing.Point(0, 0)
+        Me.btExp.Location = New System.Drawing.Point(18, 0)
         Me.btExp.Name = "btExp"
         Me.btExp.Size = New System.Drawing.Size(15, 112)
         Me.btExp.TabIndex = 3
@@ -406,7 +407,7 @@ Partial Class frmEtiqueta0
         Me.butCalculateCod.FlatAppearance.BorderSize = 0
         Me.butCalculateCod.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.butCalculateCod.Image = Global.La_Andaluza.My.Resources.Resources.document_quick_restart
-        Me.butCalculateCod.Location = New System.Drawing.Point(-165, 2)
+        Me.butCalculateCod.Location = New System.Drawing.Point(-152, 2)
         Me.butCalculateCod.Margin = New System.Windows.Forms.Padding(2)
         Me.butCalculateCod.Name = "butCalculateCod"
         Me.butCalculateCod.Size = New System.Drawing.Size(166, 57)
@@ -421,7 +422,7 @@ Partial Class frmEtiqueta0
         Me.btnImprimir.FlatAppearance.BorderSize = 0
         Me.btnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnImprimir.Image = Global.La_Andaluza.My.Resources.Resources.printer_laser_64
-        Me.btnImprimir.Location = New System.Drawing.Point(-165, 63)
+        Me.btnImprimir.Location = New System.Drawing.Point(-152, 63)
         Me.btnImprimir.Margin = New System.Windows.Forms.Padding(2)
         Me.btnImprimir.Name = "btnImprimir"
         Me.btnImprimir.Size = New System.Drawing.Size(166, 47)
@@ -433,9 +434,10 @@ Partial Class frmEtiqueta0
         'Panel1
         '
         Me.Panel1.AutoSize = True
-        Me.Panel1.Controls.Add(Me.panBotones)
         Me.Panel1.Controls.Add(Me.Barcode2)
         Me.Panel1.Controls.Add(Me.Barcode1)
+        Me.Panel1.Controls.Add(Me.Panel7)
+        Me.Panel1.Controls.Add(Me.panBotones)
         Me.Panel1.Controls.Add(Me.Panel8)
         Me.Panel1.Controls.Add(Me.Panel6)
         Me.Panel1.Controls.Add(Me.Panel5)
@@ -445,16 +447,16 @@ Partial Class frmEtiqueta0
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(342, 469)
+        Me.Panel1.Size = New System.Drawing.Size(680, 821)
         Me.Panel1.TabIndex = 2
         '
         'Barcode2
         '
         Me.Barcode2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Barcode2.Location = New System.Drawing.Point(6, 325)
+        Me.Barcode2.Location = New System.Drawing.Point(45, 562)
         Me.Barcode2.Margin = New System.Windows.Forms.Padding(2)
         Me.Barcode2.Name = "Barcode2"
-        Me.Barcode2.Size = New System.Drawing.Size(336, 144)
+        Me.Barcode2.Size = New System.Drawing.Size(590, 259)
         Me.Barcode2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.Barcode2.TabIndex = 8
         Me.Barcode2.TabStop = False
@@ -462,22 +464,30 @@ Partial Class frmEtiqueta0
         'Barcode1
         '
         Me.Barcode1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Barcode1.Location = New System.Drawing.Point(6, 189)
+        Me.Barcode1.Location = New System.Drawing.Point(45, 305)
         Me.Barcode1.Margin = New System.Windows.Forms.Padding(2)
-        Me.Barcode1.MaximumSize = New System.Drawing.Size(336, 136)
         Me.Barcode1.Name = "Barcode1"
-        Me.Barcode1.Size = New System.Drawing.Size(336, 136)
+        Me.Barcode1.Size = New System.Drawing.Size(590, 257)
         Me.Barcode1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.Barcode1.TabIndex = 7
         Me.Barcode1.TabStop = False
         '
+        'Panel7
+        '
+        Me.Panel7.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel7.Location = New System.Drawing.Point(635, 305)
+        Me.Panel7.Margin = New System.Windows.Forms.Padding(2)
+        Me.Panel7.Name = "Panel7"
+        Me.Panel7.Size = New System.Drawing.Size(45, 516)
+        Me.Panel7.TabIndex = 11
+        '
         'Panel8
         '
         Me.Panel8.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Panel8.Location = New System.Drawing.Point(0, 189)
+        Me.Panel8.Location = New System.Drawing.Point(0, 305)
         Me.Panel8.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel8.Name = "Panel8"
-        Me.Panel8.Size = New System.Drawing.Size(6, 280)
+        Me.Panel8.Size = New System.Drawing.Size(45, 516)
         Me.Panel8.TabIndex = 10
         '
         'frmEtiqueta0
@@ -485,7 +495,7 @@ Partial Class frmEtiqueta0
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(342, 469)
+        Me.ClientSize = New System.Drawing.Size(680, 821)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Margin = New System.Windows.Forms.Padding(2)
@@ -546,4 +556,5 @@ Partial Class frmEtiqueta0
     Private WithEvents Panel10 As System.Windows.Forms.Panel
     Private WithEvents Panel8 As System.Windows.Forms.Panel
     Private WithEvents btExp As System.Windows.Forms.Button
+    Private WithEvents Panel7 As System.Windows.Forms.Panel
 End Class
