@@ -94,7 +94,12 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Function
 
     Public Function actualizar_hora_fin(ByRef dbo As DBO_empleados_formatosEnvasados, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
-        Return dtb.ConsultaAlteraciones("update empleados_formatosEnvasados set fin='" & dbo.Fin.Value.ToString & "' where id_empleado=" & dbo.id_empleado & " and id_formatoEnvasado=" & dbo.id_formatoEnvasado & " and fin is null")
+        'dtb.PrepararConsulta("update empleados_formatosEnvasados set fin='" & dbo.Fin.Value.ToString & "' where id_empleado=" & dbo.id_empleado & " and id_formatoEnvasado=" & dbo.id_formatoEnvasado & " and fin is null")
+        dtb.PrepararConsulta("update empleados_formatosEnvasados set fin= @fin where id_empleado= @emp and id_formatoEnvasado= @for and fin is null")
+        dtb.AñadirParametroConsulta("@fin", dbo.Fin.Value)
+        dtb.AñadirParametroConsulta("@emp", dbo.id_empleado)
+        dtb.AñadirParametroConsulta("@for", dbo.id_formatoEnvasado)
+        Return dtb.Execute
     End Function
 
     Public Function hay_empleados_pendientes(ByVal envasadoID As Integer, ByVal LineaID As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean

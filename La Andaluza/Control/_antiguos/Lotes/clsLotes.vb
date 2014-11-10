@@ -599,50 +599,84 @@ Public Class clsLotes
 
 
     Public Function ModificarLoteEnologico(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
-        Return dtb.ConsultaAlteraciones("update Lotes set " & _
-                                 "Descripcion = '" & Descripcion & "'," & _
-                                 "Fecha = '" & BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha) & "'," & _
-                                 "Observacion = '" & Observacion & "'," & _
-                                 "LoteProveedor = '" & LoteProveedor & "'," & _
-                                 "Botellas = " & Convert.ToString(Botellas) & "," & _
-                                 "CantidadID = " & Convert.ToString(CantidadID) & "," & _
-                                 "MedidaID = " & Convert.ToString(MedidaID) & "," & _
-                                 "TipoLoteID = " & Convert.ToString(TipoLoteID) & "," & _
-                                 "TipoProductoID = " & Convert.ToString(TipoProductoID) & "," & _
-                                 "CorredorID = " & CorredorID & "," & _
-                                 "EspecificacionID = " & EspecificacionID & "," & _
-                                 "ProveedorID = " & ProveedorID & "," & _
-                                 "CodigoLote = '" & CodigoLote & "'," & _
-                                 "LoteConjuntoCompraID = " & LoteConjuntoCompraID & ", DepositoID=" & DepositoID & _
-                                 " where LoteID = " & Convert.ToString(LoteID))
-        '"CantidadRestante = '" & Convert.ToString(CantidadRestante) & "'," & _
+        dtb.PrepararConsulta("update Lotes set " & _
+                                 "Descripcion = @desc ," & _
+                                 "Fecha = @fec , " & _
+                                 "Observacion = @obs ," & _
+                                 "LoteProveedor = @lotep ," & _
+                                 "Botellas = @bot ," & _
+                                 "CantidadID = @cant ," & _
+                                 "MedidaID = @med ," & _
+                                 "TipoLoteID = @tipol ," & _
+                                 "TipoProductoID = @tipop ," & _
+                                 "CorredorID = @cor," & _
+                                 "EspecificacionID = @esp ," & _
+                                 "ProveedorID = @pro ," & _
+                                 "CodigoLote = @cod ," & _
+                                 "LoteConjuntoCompraID = @comp, DepositoID= @dep" & _
+                                 " where LoteID = @lot")
+
+
+        dtb.AñadirParametroConsulta("@desc", Descripcion)
+        dtb.AñadirParametroConsulta("@fec", Fecha)
+        dtb.AñadirParametroConsulta("@obs", Observacion)
+        dtb.AñadirParametroConsulta("@lotep", LoteProveedor)
+        dtb.AñadirParametroConsulta("@bot", Botellas)
+        dtb.AñadirParametroConsulta("@cant", CantidadID)
+        dtb.AñadirParametroConsulta("@med", MedidaID)
+        dtb.AñadirParametroConsulta("@tipol", TipoLoteID)
+        dtb.AñadirParametroConsulta("@tipop", TipoProductoID)
+        dtb.AñadirParametroConsulta("@cor", CorredorID)
+        dtb.AñadirParametroConsulta("@esp", EspecificacionID)
+        dtb.AñadirParametroConsulta("@pro", ProveedorID)
+        dtb.AñadirParametroConsulta("@cod", CodigoLote)
+        dtb.AñadirParametroConsulta("@comp", LoteConjuntoCompraID)
+        dtb.AñadirParametroConsulta("@dep", DepositoID)
+        dtb.AñadirParametroConsulta("@lot", LoteID)
+        Return dtb.Execute
 
     End Function
 
     Public Function Modificar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
-        Return dtb.ConsultaAlteraciones("update Lotes set " & _
-                                 "Descripcion = '" & Descripcion & "'," & _
-                                 "Fecha = '" & BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha) & "'," & _
-                                 "Observacion = '" & Observacion & "'," & _
-                                 "LoteProveedor = '" & LoteProveedor & "'," & _
-                                 "Botellas = " & Convert.ToString(Botellas) & "," & _
-                                 "CantidadID = " & Convert.ToString(CantidadID) & "," & _
-                                 "Referencia = " & Convert.ToString(Referencia) & "," & _
-                                 "MedidaID = " & If(MedidaID Is Nothing, "null", Convert.ToString(MedidaID)) & "," & _
-                                 "TipoLoteID = " & Convert.ToString(TipoLoteID) & "," & _
-                                 "TipoProductoID = " & Convert.ToString(TipoProductoID) & "," & _
-                                 "CorredorID = " & CorredorID & "," & _
-                                 "EspecificacionID = " & EspecificacionID & "," & _
-                                 "ProveedorID = " & ProveedorID & "," & _
-                                 "CodigoLote = '" & CodigoLote & "'," & _
-                                 "RecipienteSalidaID = " & RecipienteSalidaID & "," & _
-                                 "LoteConjuntoCompraID = " & LoteConjuntoCompraID & _
-                                 " where LoteID = " & Convert.ToString(LoteID))
 
+        dtb.PrepararConsulta("update Lotes set " & _
+                         "Descripcion = @desc ," & _
+                         "Fecha = @fec ," & _
+                         "Observacion = @obs ," & _
+                         "LoteProveedor = @lotp ," & _
+                         "Botellas = @bot ," & _
+                         "CantidadID = @cant ," & _
+                         "Referencia = @ref ," & _
+                         "MedidaID = @med ," & _
+                         "TipoLoteID = @tl ," & _
+                         "TipoProductoID = @tp ," & _
+                         "CorredorID = @cor ," & _
+                         "EspecificacionID = @esp ," & _
+                         "ProveedorID = @pro ," & _
+                         "CodigoLote = @cod ," & _
+                         "RecipienteSalidaID = @sal ," & _
+                         "LoteConjuntoCompraID =  @comp " & _
+                         " where LoteID = @id")
 
-        '", CantidadRestante = '" & Convert.ToString(CantidadRestante) & "'", _
+        dtb.AñadirParametroConsulta("@desc", Descripcion)
+        dtb.AñadirParametroConsulta("@fec", Fecha)
+        dtb.AñadirParametroConsulta("@obs", Observacion)
+        dtb.AñadirParametroConsulta("@lotp", LoteProveedor)
+        dtb.AñadirParametroConsulta("@bot", Botellas)
+        dtb.AñadirParametroConsulta("@cant", CantidadID)
+        dtb.AñadirParametroConsulta("@ref", Referencia)
+        dtb.AñadirParametroConsulta("@med", If(MedidaID Is Nothing, Convert.DBNull, MedidaID))
+        dtb.AñadirParametroConsulta("@tl", TipoLoteID)
+        dtb.AñadirParametroConsulta("@tp", TipoProductoID)
+        dtb.AñadirParametroConsulta("@cor", CorredorID)
+        dtb.AñadirParametroConsulta("@esp", EspecificacionID)
+        dtb.AñadirParametroConsulta("@pro", ProveedorID)
+        dtb.AñadirParametroConsulta("@cod", CodigoLote)
+        dtb.AñadirParametroConsulta("@sal", RecipienteSalidaID)
+        dtb.AñadirParametroConsulta("@comp", LoteConjuntoCompraID)
+        dtb.AñadirParametroConsulta("@id", LoteID)
 
-
+        Return dtb.Execute
     End Function
 
 

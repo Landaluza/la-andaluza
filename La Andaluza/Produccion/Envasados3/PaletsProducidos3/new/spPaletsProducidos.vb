@@ -210,7 +210,9 @@ Inherits BasesParaCompatibilidad.StoredProcedure
 
     Public Function Etiquetar(ByVal id As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Try
-            Return dtb.ConsultaAlteraciones("update paletsproducidos set contadorImpresiones = isnull(ContadorImpresiones, 0)+1 where paletproducidoid = " & id)
+            dtb.PrepararConsulta("update paletsproducidos set contadorImpresiones = isnull(ContadorImpresiones, 0)+1 where paletproducidoid = @id")
+            dtb.AñadirParametroConsulta("@id", id)
+            Return dtb.Execute
 
         Catch ex As Exception
             Return False

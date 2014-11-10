@@ -230,13 +230,22 @@ Public Class clsDepositos
 
     Public Function Limpiar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Try
-            dtb.ConsultaAlteraciones("update Depositos set " & _
-                                 "TonelID=" & Convert.ToString(TonelID) & "," & _
-                                 "TransicubaID=" & Convert.ToString(TransicubaID) & "," & _
-                                 "BotaPiernaID=" & Convert.ToString(BotaPiernaID) & "," & _
-                                 "BotaID=" & Convert.ToString(BotaID) & "" & _
-                                 " where DepositoID=" & Convert.ToString(DepositoID))
-            Return 1
+            dtb.PrepararConsulta("update Depositos set " & _
+                                 "TonelID= @ton ," & _
+                                 "TransicubaID= @tra ," & _
+                                 "BotaPiernaID= @pie ," & _
+                                 "BotaID= @bot " & _
+                                 " where DepositoID= @dep")
+
+            dtb.AñadirParametroConsulta("@ton", TonelID)
+            dtb.AñadirParametroConsulta("@tra", TransicubaID)
+            dtb.AñadirParametroConsulta("@pie", BotaPiernaID)
+            dtb.AñadirParametroConsulta("@bot", BotaID)
+            dtb.AñadirParametroConsulta("@dep", DepositoID)
+
+            If dtb.Execute Then Return 1
+
+            Return 0
         Catch ex As Exception
             Return 0
         End Try

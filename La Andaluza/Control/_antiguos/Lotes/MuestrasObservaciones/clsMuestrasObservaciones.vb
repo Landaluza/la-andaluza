@@ -68,10 +68,15 @@ Public Class clsMuestrasObservaciones
 
 
     Public Function Modificar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
-        Return dtb.ConsultaAlteraciones("update MuestrasObservaciones set " & _
-                                                       "Descripcion = '" & Descripcion & "'" & _
-                                                       " where AnaliticaID = " & Convert.ToString(AnaliticaID) & _
-                                                       " and ObservacionID = " & Convert.ToString(ObservacionID))
+        dtb.PrepararConsulta("update MuestrasObservaciones set " & _
+                                                       "Descripcion = @des " & _
+                                                       " where AnaliticaID = @ana" & _
+                                                       " and ObservacionID = @obs")
+        dtb.AñadirParametroConsulta("@des", Descripcion)
+        dtb.AñadirParametroConsulta("@ana", AnaliticaID)
+        dtb.AñadirParametroConsulta("@obs", ObservacionID)
+
+        Return dtb.Execute
     End Function
 
 

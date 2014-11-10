@@ -41,14 +41,26 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Sub
 
     Public Function modificar_velocidad(ByRef dtb as BasesParaCompatibilidad.Database, ByVal id As Integer, ByVal velocidad As Integer) As Boolean
-        Return dtb.ConsultaAlteraciones("update tiposformatoslineas_tiposformatos set velocidad=" & velocidad & " where id=" & id)
+        dtb.PrepararConsulta("update tiposformatoslineas_tiposformatos set velocidad= @vel where id= @id")
+        dtb.AñadirParametroConsulta("@vel", velocidad)
+        dtb.AñadirParametroConsulta("@id", id)
+
+        Return dtb.Execute
     End Function
 
     Public Function modificar_personal(ByRef dtb as BasesParaCompatibilidad.Database, ByVal id As Integer, ByVal personal As Integer) As Boolean
-        Return dtb.ConsultaAlteraciones("update tiposformatoslineas_tiposformatos set personalrecomendado=" & personal & " where id=" & id)
+        dtb.PrepararConsulta("update tiposformatoslineas_tiposformatos set personalrecomendado= @per where id= @id")
+        dtb.AñadirParametroConsulta("@per", personal)
+        dtb.AñadirParametroConsulta("@id", id)
+
+        Return dtb.Execute
     End Function
 
     Public Function modificar_personal_y_velocidad(ByRef dtb as BasesParaCompatibilidad.Database, ByVal id As Integer, ByVal personal As Integer, ByVal velocidad As Integer) As Boolean
-        Return dtb.ConsultaAlteraciones("update tiposformatoslineas_tiposformatos set personalrecomendado=" & personal & ", velocidad=" & velocidad & " where id=" & id)
+        dtb.PrepararConsulta("update tiposformatoslineas_tiposformatos set personalrecomendado= @per, velocidad= @vel  where id = @id")
+        dtb.AñadirParametroConsulta("@per", personal)
+        dtb.AñadirParametroConsulta("@vel", velocidad)
+        dtb.AñadirParametroConsulta("@id", id)
+        Return dtb.Execute
     End Function
 End Class

@@ -59,10 +59,14 @@ Public Class clsToneles
 
     Public Function Modificar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Try
-            dtb.ConsultaAlteraciones("update Toneles set " & _
-                               "Descripcion='" & Descripcion & "', ContenidoHabitual='" & ContenidoHabitual & "'" & _
-                               " where TonelID=" & Convert.ToString(TonelID))
-            Return 1
+            dtb.PrepararConsulta("update Toneles set Descripcion= @des, ContenidoHabitual= @con  where TonelID= @id")
+            dtb.AñadirParametroConsulta("@des", Descripcion)
+            dtb.AñadirParametroConsulta("@con", ContenidoHabitual)
+            dtb.AñadirParametroConsulta("@id", TonelID)
+
+            If dtb.Execute Then Return 1
+
+            Return 0
         Catch ex As Exception
             Return 0
         End Try

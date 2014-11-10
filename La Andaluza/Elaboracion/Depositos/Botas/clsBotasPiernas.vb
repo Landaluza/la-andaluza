@@ -58,10 +58,15 @@ Public Class clsBotasPiernas
     Public Function Modificar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
 
         Try
-            dtb.ConsultaAlteraciones("update BotasPiernas set " & _
-                               "Descripcion='" & Descripcion & "', ContenidoHabitual='" & ContenidoHabitual & "'" & _
-                               " where BotaPiernaID=" & Convert.ToString(BotaPiernaID))
-            Return 1
+            dtb.PrepararConsulta("update BotasPiernas set Descripcion= @des , ContenidoHabitual= @con where BotaPiernaID= @id")
+
+            dtb.AñadirParametroConsulta("@des", Descripcion)
+            dtb.AñadirParametroConsulta("@con", ContenidoHabitual)
+            dtb.AñadirParametroConsulta("@id", BotaPiernaID)
+
+            If dtb.Execute Then Return 1
+
+            Return 0
         Catch ex As Exception
             Return 0
         End Try

@@ -15,10 +15,15 @@
     End Function
 
     Public Function asignar_incidencia_envasado(ByVal id_incidenciaEnvasado As Integer, ByVal id_ControlIncidencia As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
-        Return dtb.ConsultaAlteraciones("update incidencias set id_controlIncidencia = " & id_ControlIncidencia & " where incidenciaID=" & id_incidenciaEnvasado)
+        dtb.PrepararConsulta("update incidencias set id_controlIncidencia = @con where incidenciaID= @inc")
+        dtb.AñadirParametroConsulta("@con", id_ControlIncidencia)
+        dtb.AñadirParametroConsulta("@inc", id_incidenciaEnvasado)
+        Return dtb.Execute
     End Function
 
     Public Function eliminar_incidencia_envasado(ByVal id_incidenciaEnvasado As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
-        Return dtb.ConsultaAlteraciones("update incidencias set id_controlIncidencia = null where incidenciaID=" & id_incidenciaEnvasado)
+        dtb.PrepararConsulta("update incidencias set id_controlIncidencia = null where incidenciaID= @id")
+        dtb.AñadirParametroConsulta("@id", id_incidenciaEnvasado)
+        Return dtb.Execute
     End Function
 End Class

@@ -291,8 +291,12 @@ Public Class frmPaletSCC
             If IsNumeric(Me.txtSCC.Text) Then
                 Dim resp As DialogResult = MessageBox.Show("¿Seguro que desea marcar el palet como 'no expedido'?", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
                 If resp = DialogResult.OK Then
-                    dtb.ConsultaAlteraciones("update paletsproducidos set enAlmacen=1 where scc = " & Me.txtSCC.Text)
-                    'deprecated.realizarConsultaAlteraciones("update paletsproducidos set enAlmacen=1 where scc = " & Me.txtSCC.Text)
+                    dtb.PrepararConsulta("update paletsproducidos set enAlmacen=1 where scc = @scc")
+                    dtb.AñadirParametroConsulta("@scc", Me.txtSCC.Text)
+
+                    If Not dtb.Execute() Then
+                        MessageBox.Show("No se pudo actualizar los datos", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    End If
                     Me.buscar()
                 End If
             End If
@@ -306,8 +310,12 @@ Public Class frmPaletSCC
                     If IsNumeric(Me.txtSCC.Text) Then
                         Dim resp As DialogResult = MessageBox.Show("¿Seguro que desea marcar el palet como 'conforme'?", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
                         If resp = DialogResult.OK Then
-                            dtb.ConsultaAlteraciones("update paletsproducidos set id_estado=1 where scc = " & Me.txtSCC.Text)
-                            'deprecated.realizarConsultaAlteraciones("update paletsproducidos set id_estado=1 where scc = " & Me.txtSCC.Text)
+                            dtb.PrepararConsulta("update paletsproducidos set id_estado=1 where scc = @scc")
+                            dtb.AñadirParametroConsulta("@scc", Me.txtSCC.Text)
+
+                            If Not dtb.Execute Then
+                                MessageBox.Show("No se pudo actualizar los datos", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            End If
                             Me.buscar()
                         End If
                     End If
@@ -317,8 +325,12 @@ Public Class frmPaletSCC
                     If IsNumeric(Me.txtSCC.Text) Then
                         Dim resp As DialogResult = MessageBox.Show("¿Seguro que desea marcar el palet como 'no conforme'?", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
                         If resp = DialogResult.OK Then
-                            dtb.ConsultaAlteraciones("update paletsproducidos set id_estado=3 where scc = " & Me.txtSCC.Text)
-                            'deprecated.realizarConsultaAlteraciones("update paletsproducidos set id_estado=3 where scc = " & Me.txtSCC.Text)
+                            dtb.PrepararConsulta("update paletsproducidos set id_estado=3 where scc = @scc")
+                            dtb.AñadirParametroConsulta("@scc", Me.txtSCC.Text)
+
+                            If Not dtb.Execute Then
+                                MessageBox.Show("No se pudo actualizar los datos", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            End If
                             Me.buscar()
                         End If
                     End If

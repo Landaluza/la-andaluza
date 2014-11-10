@@ -463,7 +463,10 @@ Class spLotes1
     End Function
 
     Public Function ActualizarCantidad(ByVal loteId As Integer, ByVal p2 As String, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
-        Return dtb.ConsultaAlteraciones("update lotes set cantidadrestante = " & p2 & " where loteID =" & loteId)
+        dtb.PrepararConsulta("update lotes set cantidadrestante = @can where loteID = @id")
+        dtb.AñadirParametroConsulta("@can", p2)
+        dtb.AñadirParametroConsulta("@id", loteId)
+        Return dtb.Execute
     End Function
 
     Public Function comprobar(ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal dbo As DBO_Lotes1) As Boolean

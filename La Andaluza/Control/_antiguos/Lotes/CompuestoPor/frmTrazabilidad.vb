@@ -147,8 +147,14 @@ Public Class frmTrazabilidad
     Private Function actualizarTrazabilidad(ByVal cantidad As String, ByVal movimiento As String) As Boolean
         dtb.EmpezarTransaccion()
         Try
-            If dtb.ConsultaAlteraciones("update compuestopor set cantidad=" & cantidad & " where movimientoid=" & movimiento) Then
-                If dtb.ConsultaAlteraciones("update movimientos set cantidad=" & cantidad & " where movimientoid=" & movimiento) Then
+            dtb.PrepararConsulta("update compuestopor set cantidad= @can where movimientoid= @mov")
+            dtb.AñadirParametroConsulta("@can", cantidad)
+            dtb.AñadirParametroConsulta("@mov", movimiento)
+            If dtb.Execute Then
+                dtb.PrepararConsulta("update movimientos set cantidad= @can where movimientoid= @mov")
+                dtb.AñadirParametroConsulta("@can", cantidad)
+                dtb.AñadirParametroConsulta("@mov", movimiento)
+                If dtb.Execute Then
                     dtb.TerminarTransaccion()
                     MessageBox.Show("Operacion completada.", "Felicidades", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Return True

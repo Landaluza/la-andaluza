@@ -65,13 +65,14 @@ Public Class clsTransicubas
 
     Public Function Modificar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Try
-            dtb.ConsultaAlteraciones("update Transicubas set " & _
-                       "Descripcion='" & Descripcion & "'," & _
-                       "Estado='" & Estado & "'" & _
-                       " where TransicubaID=" & Convert.ToString(TransicubaID))
+            dtb.PrepararConsulta("update Transicubas set Descripcion= @des ,Estado= @est where TransicubaID= @id")
 
+            dtb.AñadirParametroConsulta("@des", Descripcion)
+            dtb.AñadirParametroConsulta("@est", Estado)
+            dtb.AñadirParametroConsulta("@id", TransicubaID)
 
-            Return 1
+            If dtb.Execute Then Return 1
+            Return 0
         Catch ex As Exception
             Return 0
         End Try

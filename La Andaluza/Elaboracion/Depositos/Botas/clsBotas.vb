@@ -60,12 +60,15 @@ Public Class clsBotas
 
         Try
 
+            dtb.PrepararConsulta("update Botas set BotaTaponID= @bot , PosicionID= @pos where BotaID= @id")
+            dtb.AñadirParametroConsulta("@bot", BotaTaponID)
+            dtb.AñadirParametroConsulta("@pos", PosicionID)
+            dtb.AñadirParametroConsulta("@id", BotaID)
 
-            dtb.ConsultaAlteraciones("update Botas set " & _
-                              "BotaTaponID=" & Convert.ToString(BotaTaponID) & "," & _
-                              "PosicionID=" & Convert.ToString(PosicionID) & "" & _
-                              " where BotaID=" & Convert.ToString(BotaID))
-            Return 1
+            
+            If dtb.Execute Then Return 1
+
+            Return 0
         Catch ex As Exception
             Return 0
         End Try
