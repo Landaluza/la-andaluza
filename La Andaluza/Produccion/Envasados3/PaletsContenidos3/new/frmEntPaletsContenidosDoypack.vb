@@ -141,7 +141,7 @@ Public Class frmEntPaletsContenidosDoypack
                     'RaiseEvent afterSave()
 
                     For Each cbo In Me.cbo_collection
-                        monodosis.añadirMovimientoEncajado(Convert.ToInt32(Me.txtCantidadCajas.Text), Convert.ToInt32(cbo.SelectedValue), Me.m_DBO_PaletsContenidos.PaletProducidoID, Me.mTipoFormatoEnvasadoID, dtb)
+                        monodosis.añadirMovimientoEncajado(Convert.ToInt32(Me.txtCantidadCajas.Text), Convert.ToInt32(cbo.SelectedValue), Me.m_DBO_PaletsContenidos.PaletProducidoID, Me.mTipoFormatoEnvasadoID, dtb, True)
 
                         'Dim indice As Integer = Me.cboMonodosis.SelectedIndex
                         'Dim cont As Integer

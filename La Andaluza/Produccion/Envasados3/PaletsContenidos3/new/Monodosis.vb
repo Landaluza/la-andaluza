@@ -13,7 +13,7 @@ Public Class Monodosis
     Public Sub añadirMovimientoEncajado(ByVal cantidadCajas As Integer, _
                                         ByVal PaletProducidoId_origen As Integer, _
                                         ByVal PaletProducidoId As Integer, _
-                                        ByVal TipoFormatoEnvasadoID As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase)
+                                        ByVal TipoFormatoEnvasadoID As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase, Optional ByVal doypack As Boolean = False)
 
 
         'If Not dbomovimiento Is Nothing Then spPMovimientos.Delete(dbomovimiento.ID)
@@ -34,7 +34,7 @@ Public Class Monodosis
 
 
         ComprobarCantidadesEncajado(dbo_movimiento, m_PaletProducidoOrigen, m_PaletProducidoDestino, _
-                                    True, TipoFormatoEnvasadoID, dtb)
+                                    True, TipoFormatoEnvasadoID, dtb, doypack)
         'Movimiento del palets Origen
         dtb.PrepararConsulta("select max(paletcontenidoid) from paletscontenidos")
         dbo_movimiento.ContenidoDestinoID = CType(dtb.Consultar().Rows(0).Item(0), Integer)
@@ -51,7 +51,7 @@ Public Class Monodosis
                                             ByRef m_PaletProducidoOrigen As DBO_PaletsProducidos, _
                                             ByVal m_PaletProducidoDestino As DBO_PaletsProducidos, _
                                             ByVal origen As Boolean, ByVal TipoFormatoEnvasadoID As Integer, _
-                                            ByRef dtb As BasesParaCompatibilidad.DataBase)
+                                            ByRef dtb As BasesParaCompatibilidad.DataBase, Optional ByVal doypack As Boolean = False)
 
 
         'If origen Then
@@ -65,6 +65,13 @@ Public Class Monodosis
         dtb.AñadirParametroConsulta("@tf", TipoFormatoEnvasadoID)
         capacidad = dtb.Consultar().Rows(0).Item(0)
 
+        If doypack Then
+            Dim botella As Integer
+            dtb.PrepararConsulta("select capacidadbotella from ArticulosEnvasadosHistoricoSinLinea where tipoformato = @tf")
+            dtb.AñadirParametroConsulta("@tf", TipoFormatoEnvasadoID)
+            botella = dtb.Consultar().Rows(0).Item(0)
+            capacidad = capacidad * botella
+        End If
 
         dbo_movimiento.Cajas = dbo_movimiento.Cajas * capacidad
         Dim tope As Long = spPaletsProducidos.calcularCajasAntesExpedir(m_PaletProducidoOrigen.SCC, dtb)
