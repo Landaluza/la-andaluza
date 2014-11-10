@@ -221,7 +221,14 @@ Public Class Etiquetador
         End If
 
         Bitmap.SetResolution(dpi, dpi)
+
         'Draw the bitmap
+        Graphics.CompositingMode = Drawing2D.CompositingMode.SourceCopy
+        Graphics.CompositingQuality = Drawing2D.CompositingQuality.HighQuality
+        Graphics.InterpolationMode = Drawing2D.InterpolationMode.HighQualityBicubic
+        Graphics.TextRenderingHint = Drawing.Text.TextRenderingHint.AntiAliasGridFit
+        Graphics.SmoothingMode = Drawing2D.SmoothingMode.HighQuality
+
         Graphics.PageUnit = GraphicsUnit.Display
         Graphics.DrawImage(Bitmap, target)
     End Sub
