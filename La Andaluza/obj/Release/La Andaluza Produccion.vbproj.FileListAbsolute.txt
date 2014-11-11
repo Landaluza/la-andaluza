@@ -1306,6 +1306,12 @@ C:\Users\Migue\Desktop\git\La andaluza\La Andaluza\obj\Release\La Andaluza.exe.m
 C:\Users\Migue\Desktop\git\La andaluza\La Andaluza\obj\Release\La Andaluza.application
 C:\Users\Migue\Desktop\git\La andaluza\La Andaluza\obj\Release\La Andaluza.exe
 C:\Users\Migue\Desktop\git\La andaluza\La Andaluza\obj\Release\La Andaluza.pdb
+C:\Users\miguel\Desktop\git\La andaluza\La Andaluza\bin\Release\La Andaluza.exe.config
+C:\Users\miguel\Desktop\git\La andaluza\La Andaluza\obj\Release\Interop.MSTSCLib.dll
+C:\Users\miguel\Desktop\git\La andaluza\La Andaluza\obj\Release\AxInterop.MSTSCLib.dll
+C:\Users\miguel\Desktop\git\La andaluza\La Andaluza\obj\Release\La Andaluza Produccion.vbproj.ResolveComReference.cache
+C:\Users\miguel\Desktop\git\La andaluza\La Andaluza\obj\Release\La Andaluza.exe
+C:\Users\miguel\Desktop\git\La andaluza\La Andaluza\obj\Release\La Andaluza.pdb
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Bases\ZLibrerias\wiaaut.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\La Andaluza.exe.config
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\La Andaluza.exe.manifest
@@ -1972,9 +1978,3 @@ C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andalu
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza.application
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza.exe
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza.pdb
-C:\Users\miguel\Desktop\git\La andaluza\La Andaluza\bin\Release\La Andaluza.exe.config
-C:\Users\miguel\Desktop\git\La andaluza\La Andaluza\obj\Release\Interop.MSTSCLib.dll
-C:\Users\miguel\Desktop\git\La andaluza\La Andaluza\obj\Release\AxInterop.MSTSCLib.dll
-C:\Users\miguel\Desktop\git\La andaluza\La Andaluza\obj\Release\La Andaluza Produccion.vbproj.ResolveComReference.cache
-C:\Users\miguel\Desktop\git\La andaluza\La Andaluza\obj\Release\La Andaluza.exe
-C:\Users\miguel\Desktop\git\La andaluza\La Andaluza\obj\Release\La Andaluza.pdb
