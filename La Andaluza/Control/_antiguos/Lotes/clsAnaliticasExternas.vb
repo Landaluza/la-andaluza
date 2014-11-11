@@ -82,7 +82,7 @@ Public Class clsAnaliticasExternas
     End Sub
 
     Public Function Modificar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
-        dtb.PrepararConsulta("update AnaliticasExternas set RutaAnalisis= @rut, Fecha= @fec, ProveedorID= @pro, AnaliticaID= @ana where AnaliticaExternaID= @id")
+        dtb.PrepararConsulta("update AnaliticasExternas set RutaAnalisis= @rut , Fecha= @fec , ProveedorID= @pro , AnaliticaID= @ana where AnaliticaExternaID= @id")
 
         dtb.AñadirParametroConsulta("@rut", RutaAnalisis)
         dtb.AñadirParametroConsulta("@fec", Fecha.Date)
