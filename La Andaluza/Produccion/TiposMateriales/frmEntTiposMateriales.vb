@@ -22,10 +22,8 @@ Public Class frmEntTiposMateriales
         If Me.ModoDeApertura = INSERCION Then
             Me.m_DBO_TiposMateriales = New DBO_TiposMateriales
             Me.SplitContainer1.Panel2Collapsed = True
-            Me.Height = 74
         Else
             Me.m_DBO_TiposMateriales = dbo
-            Me.Height = 425
             Me.SplitContainer1.Panel2Collapsed = False
             frmTiposMateriales_Provedores = New frmTiposMateriales_Provedores(Me.m_DBO_TiposMateriales.ID)
             Engine_LA.FormEnPestaña(frmTiposMateriales_Provedores, tpProveedores)
@@ -54,8 +52,8 @@ Public Class frmEntTiposMateriales
         MyBase.Guardar(Me.dtb)
     End Sub
 
-    Private Sub frmEntTiposMateriales_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.Pantalla.centerHorizontalyIn(Me.Panel1, Me.SplitContainer1.Panel1)
-    End Sub
+    'Private Sub frmEntTiposMateriales_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
+    '    BasesParaCompatibilidad.Pantalla.centerHorizontalyIn(Me.Panel1, Me.SplitContainer1.Panel1)
+    'End Sub
 
 End Class

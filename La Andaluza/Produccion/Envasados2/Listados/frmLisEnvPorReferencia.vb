@@ -67,10 +67,10 @@ Public Class frmLisEnvPorReferencia
                 End With
 
                 For Each row As DataGridViewRow In dgvEnvasados.Rows
-                    TotalMinutos += Convert.ToInt32(If(row.Cells("Minutos").Value = Nothing, 0, row.Cells("Minutos").Value))
-                    TotalCajas += Convert.ToInt32(If(row.Cells("Cajas").Value = Nothing, 0, row.Cells("Cajas").Value))
-                    TotalBotellas += Convert.ToInt32(If(row.Cells("Botellas").Value = Nothing, 0, row.Cells("Botellas").Value))
-                    TotalLitros += Convert.ToInt32(If(row.Cells("Litros").Value = Nothing, 0, row.Cells("Litros").Value))
+                    TotalMinutos += Convert.ToInt32(If(row.Cells("Minutos").Value Is Convert.DBNull, 0, row.Cells("Minutos").Value))
+                    TotalCajas += Convert.ToInt32(If(row.Cells("Cajas").Value Is Convert.DBNull, 0, row.Cells("Cajas").Value))
+                    TotalBotellas += Convert.ToInt32(If(row.Cells("Botellas").Value Is Convert.DBNull, 0, row.Cells("Botellas").Value))
+                    TotalLitros += Convert.ToInt32(If(row.Cells("Litros").Value Is Convert.DBNull, 0, row.Cells("Litros").Value))
                 Next
 
                 txtTotalBotellas.Visible = True

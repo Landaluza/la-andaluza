@@ -18,8 +18,9 @@ Public Class frmEnvasadosProductos
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
         dboEnvasadosProductos = New DBO_EnvasadosProductos
-        MyBase.newRegForm = CType(New frmEntEnvasadosProductos(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, sp), BasesParaCompatibilidad.DetailedSimpleForm)
-        AddHandler newRegForm.afterSave, AddressOf dgvFill
+        Dim frm As New frmEntEnvasadosProductos(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, sp)
+        MyBase.newRegForm = CType(frm, BasesParaCompatibilidad.DetailedSimpleForm)
+        AddHandler frm.afterSave, AddressOf dgvFill
         dboEnvasadosProductos.EnvasadoID = m_MaestroID
         newRegForm.SetDataBussinesObject(CType(Me.dboEnvasadosProductos, BasesParaCompatibilidad.DataBussines))
     End Sub
@@ -28,8 +29,9 @@ Public Class frmEnvasadosProductos
         Dim dtb As New BasesParaCompatibilidad.DataBase
         dboEnvasadosProductos = CType(sp, spEnvasadosProductos).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), dtb)
         If Not dboEnvasadosProductos Is Nothing Then
-            MyBase.newRegForm = CType(New frmEntEnvasadosProductos(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, sp), BasesParaCompatibilidad.DetailedSimpleForm)
-            AddHandler newRegForm.afterSave, AddressOf dgvFill
+            Dim frm As New frmEntEnvasadosProductos(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, sp)
+            MyBase.newRegForm = CType(frm, BasesParaCompatibilidad.DetailedSimpleForm)
+            AddHandler frm.afterSave, AddressOf dgvFill
             newRegForm.SetDataBussinesObject(CType(Me.dboEnvasadosProductos, BasesParaCompatibilidad.DataBussines))
         Else
             MyBase.EventHandeld = True

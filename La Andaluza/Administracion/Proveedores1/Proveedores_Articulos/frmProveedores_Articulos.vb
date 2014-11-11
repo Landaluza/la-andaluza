@@ -5,7 +5,8 @@ Public Class frmProveedores_Articulos
 
 
     Private dboProveedores_Articulos As DBO_Proveedores_Articulos
-
+    Private idArticulo As Integer
+    Private idProveedor As Integer
     Public Sub New(Optional ByVal MaestroID As Integer = 0, Optional ByVal MaestroID2 As Integer = Nothing)
         MyBase.New(New spProveedores_Articulos(If(MaestroID = 0, True, False)), _
                                                If(MaestroID = 0, MaestroID2, MaestroID))
@@ -13,8 +14,9 @@ Public Class frmProveedores_Articulos
 
         dboProveedores_Articulos = New DBO_Proveedores_Articulos
 
-
+        idProveedor = MaestroID
         dboProveedores_Articulos.ProveedorID = MaestroID
+        idArticulo = MaestroID2
         dboProveedores_Articulos.ArticuloID = MaestroID2
 
         'sp.DataGridViewStoredProcedure= sp.DataGridViewStoredProcedureForFilteredSelect & "'" & Me.m_MaestroID & "'"
@@ -26,6 +28,8 @@ Public Class frmProveedores_Articulos
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
         dboProveedores_Articulos = New DBO_Proveedores_Articulos
+        dboProveedores_Articulos.ProveedorID = idProveedor
+        dboProveedores_Articulos.ArticuloID = idArticulo
         'if m_maestroid <> 0 Then dboProveedores_Articulos.ProveedorID = m_MaestroID
         newRegForm.SetDataBussinesObject(Me.dboProveedores_Articulos)
     End Sub

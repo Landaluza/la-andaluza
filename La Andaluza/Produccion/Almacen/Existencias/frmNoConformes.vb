@@ -24,10 +24,9 @@ Public Class frmNoConformes
     Private spEcellote As String = "SumCajasEnAlmacenByCodigoLote_noconforme "
     Private spEcelAlmacen As String = "PaletsProducidosByEnAlmacen2_noconforme "
     Private FechaSeleccionada As String
-    Private dtb As BasesParaCompatibilidad.DataBase
 
-    Private Sub initdgvMain()
-        dtb = New BasesParaCompatibilidad.DataBase
+
+    Private Sub initdgvMain()        
         tab1 = False
         mThreadFic3 = New Thread(UpdateThreadStart3)
         mThreadFic3.IsBackground = True
@@ -82,13 +81,14 @@ Public Class frmNoConformes
 
     Private Sub dgvFillMain()
         Try
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             dtb.PrepararConsulta(spArticulo)
             dt3 = dtb.Consultar()
 
             'dt3 = DataTableFill(spArticulo)
             Me.BeginInvoke(CallDataBindToDataGrid3)
         Catch ex As Exception
-            messagebox.show("Error al cargar grilla 3. Vuelva a recargarla en unos segundos" & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            MessageBox.Show("Error al cargar grilla 3. Vuelva a recargarla en unos segundos" & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
     End Sub
 
@@ -322,6 +322,7 @@ Public Class frmNoConformes
             RutaCompleta = Unidad & Ruta
 
             Dim mse As New BasesParaCompatibilidad.MicrosoftOfficeExporter
+            Dim dtb As New BasesParaCompatibilidad.DataBase
 
             If tabDatos.SelectedTab Is tabPagPalets Then
                 NombreHoja = RutaCompleta & FechaSeleccionada & " Existencias por palets-noconformes.xls"
@@ -371,13 +372,18 @@ Public Class frmNoConformes
 
             Dim resp As DialogResult = MessageBox.Show("¿Seguro que desea marcar el palet como 'no conforme'?", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
             If resp = DialogResult.OK Then
+                Dim dtb As New BasesParaCompatibilidad.DataBase
                 dtb.PrepararConsulta("update paletsproducidos set id_estado=1 where scc = @scc")
                 dtb.AñadirParametroConsulta("@scc", Me.dgvPalet.CurrentRow.Cells("SCC").Value)
-                dtb.Execute()
-                tsPalets.PerformClick()
+                If dtb.Execute() Then
+                    tsPalets.PerformClick()
+                Else
+                    MessageBox.Show("No se pudo realizar la operacion", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                End If
             End If
 
         Catch ex As Exception
+            MessageBox.Show("No se pudo realizar la operacion", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End Try
     End Sub
 
@@ -393,6 +399,8 @@ Public Class frmNoConformes
         Dim m_dbo As New DBO_PaletsProducidos2
         Dim spFormato As New spFormatosEnvasados
         Dim spPaletsProducidos2 As New spPaletsProducidos2
+        Dim dtb As New BasesParaCompatibilidad.DataBase
+
         m_dbo = spPaletsProducidos2.Select_RecordBySSCC(Me.dgvPalet.CurrentRow.Cells("SCC").Value, dtb)
         Dim f_dbo As DBO_FormatosEnvasados = spFormato.Select_Record(m_dbo.FormatoID, dtb)
         Dim frm As New frmEntPaletsProducidos2(True)

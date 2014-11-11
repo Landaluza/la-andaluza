@@ -24,9 +24,7 @@ Public Class frmAlmacenExistencias
     Private spEcelAlmacen As String
     Private FechaSeleccionada As String
     Private spPaletsProducidos2 As spPaletsProducidos2
-    Private dtb2 as BasesParaCompatibilidad.Database
-    Private dtb3 as BasesParaCompatibilidad.Database
-    Private dtb as BasesParaCompatibilidad.Database
+
     Public Sub New()
 
         ' This call is required by the designer.
@@ -40,9 +38,6 @@ Public Class frmAlmacenExistencias
         spEcellote = "SumCajasEnAlmacenByCodigoLote "
         spEcelAlmacen = "PaletsProducidosByEnAlmacen2 "
 
-        dtb2 = New BasesParaCompatibilidad.Database()
-        dtb3 = New BasesParaCompatibilidad.Database()
-        dtb = New BasesParaCompatibilidad.Database()
 
         UpdateThreadStart = New ThreadStart(AddressOf dfvFillSecondary)
         UpdateThreadStart2 = New ThreadStart(AddressOf dgvFillTerciary)
@@ -74,6 +69,7 @@ Public Class frmAlmacenExistencias
             RutaCompleta = Unidad & Ruta
 
             Dim mse As New BasesParaCompatibilidad.MicrosoftOfficeExporter
+            Dim dtb As New BasesParaCompatibilidad.DataBase
 
             If tabDatos.SelectedTab Is tpTotales Then
                 NombreHoja = RutaCompleta & FechaSeleccionada & " Existencias totales por referencia-conformes.xls"
@@ -108,6 +104,7 @@ Public Class frmAlmacenExistencias
         'initdgvMain()
         'dt3 = DataTableFill("PaletsProducidosByArticulo3 ")
         'dt3 = DataTableFill("PaletsProducidosByArticulo6 ")
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         dtb.PrepararConsulta(spArticulo)
         dt3 = dtb.Consultar()
         Me.DataBindToDataGrid3()
@@ -150,8 +147,9 @@ Public Class frmAlmacenExistencias
 
     Private Sub dfvFillSecondary()
         Try
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             dtb.PrepararConsulta(spPalet)
-            dt = dtb2.Consultar()
+            dt = dtb.Consultar()
 
             Me.BeginInvoke(CallDataBindToDataGrid)
         Catch ex As Exception
@@ -161,8 +159,9 @@ Public Class frmAlmacenExistencias
 
     Private Sub dgvFillTerciary()
         Try
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             dtb.PrepararConsulta(spLote)
-            dt2 = dtb3.Consultar()
+            dt2 = dtb.Consultar()
             'dt2 = DataTableFill(spLote)
             Me.BeginInvoke(CallDataBindToDataGrid2)
         Catch ex As Exception
@@ -172,6 +171,7 @@ Public Class frmAlmacenExistencias
 
     Private Sub dgvFillMain()
         Try
+            Dim dtb As New BasesParaCompatibilidad.DataBase
             dtb.PrepararConsulta(spArticulo)
             dt3 = dtb.Consultar()
 
@@ -406,10 +406,14 @@ Public Class frmAlmacenExistencias
 
             Dim resp As DialogResult = MessageBox.Show("¿Seguro que desea marcar el palet como 'no conforme'?", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
             If resp = DialogResult.OK Then
+                Dim dtb As New BasesParaCompatibilidad.DataBase
                 dtb.PrepararConsulta("update paletsproducidos set id_estado=3 where scc = @scc")
                 dtb.AñadirParametroConsulta("@scc", Me.dgvPalet.CurrentRow.Cells("SCC").Value)
-                dtb.Execute()
-                tsPalets.PerformClick()
+                If dtb.Execute() Then
+                    tsPalets.PerformClick()
+                Else
+                    MessageBox.Show("No se pudo realizar la operacion", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                End If
             End If
 
         Catch ex As Exception
@@ -427,6 +431,7 @@ Public Class frmAlmacenExistencias
     Private Sub dgvPalet_CellDoubleClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvPalet.CellDoubleClick
         Dim m_dbo As New DBO_PaletsProducidos2
         Dim spFormato As New spFormatosEnvasados
+        Dim dtb As New BasesParaCompatibilidad.DataBase
         m_dbo = spPaletsProducidos2.Select_RecordBySSCC(Me.dgvPalet.CurrentRow.Cells("SCC").Value, dtb)
         Dim f_dbo As DBO_FormatosEnvasados = spFormato.Select_Record(m_dbo.FormatoID, dtb)
         Dim frm As New frmEntPaletsProducidos2(True)

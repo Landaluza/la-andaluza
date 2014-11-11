@@ -24,7 +24,6 @@ Partial Class frmEntTiposMateriales
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmEntTiposMateriales))
         Me.txtDescripcion = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.lblDescripcion = New System.Windows.Forms.Label()
-
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
@@ -48,7 +47,7 @@ Partial Class frmEntTiposMateriales
         Me.txtDescripcion.EsUnicoTabla = ""
         Me.txtDescripcion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtDescripcion.Location = New System.Drawing.Point(92, 19)
-        Me.txtDescripcion.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtDescripcion.Margin = New System.Windows.Forms.Padding(2)
         Me.txtDescripcion.MaxLength = 50
         Me.txtDescripcion.Minimo = 0
         Me.txtDescripcion.Modificado = False
@@ -78,7 +77,7 @@ Partial Class frmEntTiposMateriales
         Me.Panel1.Controls.Add(Me.txtDescripcion)
         Me.Panel1.Controls.Add(Me.lblDescripcion)
         Me.Panel1.Location = New System.Drawing.Point(38, 2)
-        Me.Panel1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(466, 56)
         Me.Panel1.TabIndex = 1000000001
@@ -87,7 +86,7 @@ Partial Class frmEntTiposMateriales
         '
         Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitContainer1.Location = New System.Drawing.Point(0, 25)
-        Me.SplitContainer1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.SplitContainer1.Margin = New System.Windows.Forms.Padding(2)
         Me.SplitContainer1.Name = "SplitContainer1"
         Me.SplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal
         '
@@ -98,8 +97,8 @@ Partial Class frmEntTiposMateriales
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.TabControl1)
-        Me.SplitContainer1.Size = New System.Drawing.Size(531, 298)
-        Me.SplitContainer1.SplitterDistance = 58
+        Me.SplitContainer1.Size = New System.Drawing.Size(568, 365)
+        Me.SplitContainer1.SplitterDistance = 71
         Me.SplitContainer1.SplitterWidth = 3
         Me.SplitContainer1.TabIndex = 1000000002
         '
@@ -108,19 +107,19 @@ Partial Class frmEntTiposMateriales
         Me.TabControl1.Controls.Add(Me.tpProveedores)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
-        Me.TabControl1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TabControl1.Margin = New System.Windows.Forms.Padding(2)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(531, 237)
+        Me.TabControl1.Size = New System.Drawing.Size(568, 291)
         Me.TabControl1.TabIndex = 0
         '
         'tpProveedores
         '
         Me.tpProveedores.Location = New System.Drawing.Point(4, 22)
-        Me.tpProveedores.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tpProveedores.Margin = New System.Windows.Forms.Padding(2)
         Me.tpProveedores.Name = "tpProveedores"
-        Me.tpProveedores.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.tpProveedores.Size = New System.Drawing.Size(523, 211)
+        Me.tpProveedores.Padding = New System.Windows.Forms.Padding(2)
+        Me.tpProveedores.Size = New System.Drawing.Size(560, 265)
         Me.tpProveedores.TabIndex = 1
         Me.tpProveedores.Text = "Proveedores"
         Me.tpProveedores.UseVisualStyleBackColor = True
@@ -128,12 +127,11 @@ Partial Class frmEntTiposMateriales
         'frmEntTiposMateriales
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(531, 323)
+        Me.ClientSize = New System.Drawing.Size(568, 390)
         Me.Controls.Add(Me.SplitContainer1)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.MinimumSize = New System.Drawing.Size(0, 0)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "frmEntTiposMateriales"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "TiposMateriales"
