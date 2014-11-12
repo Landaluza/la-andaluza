@@ -187,7 +187,7 @@ Public Class frmEntPersonalEnvasado
                 dbo.id_empleado = row.Cells(0).Value
                 If Not sp.Grabar(dbo, dtb) Then
                     '        dtb.CancelarTransaccion ()
-                    MessageBox.Show("No se pudo guardar los datos. Introduzca el personal que arranca la linea manualmente.", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Throw New Exception("ERR1. No se pudo guardar los datos. Introduzca el personal que arranca la linea manualmente.")
                     '        Me.Close()
                 Else
                     If Convert.ToBoolean(row.Cells(2).Value) Then
@@ -195,7 +195,9 @@ Public Class frmEntPersonalEnvasado
                         Dim dboCAusas As New DBO_PartesEnvasados_CausasPartesEnvasado
                         dboCAusas.Id_ParteEnvasado = sp.seleccionarUltimoRegistro(dtb)
                         dboCAusas.Id_CausaParteEnvasado = 3
-                        spCausas.Grabar(dboCAusas, dtb)
+                        If Not spCausas.Grabar(dboCAusas, dtb) Then
+                            Throw New Exception("ERR2. No se pudo guardar los datos. Introduzca el personal que arranca la linea manualmente.")
+                        End If
                     End If
                 End If
             Next
@@ -204,18 +206,19 @@ Public Class frmEntPersonalEnvasado
             'Catch ex As Exception
             'dtb.CancelarTransaccion ()
             'End Try
-            For Each row As DataGridViewRow In Me.dgvEnLinea.Rows
+            ' For Each row As DataGridViewRow In Me.dgvEnLinea.Rows
 
-                'GUIEnvasado.EmpleadosEnLinea.Add()
-            Next
+            'GUIEnvasado.EmpleadosEnLinea.Add()
+            'Next
 
 
 
             'Me.Close()
             Return True
         Else
-            MessageBox.Show("No ha confirmado el personal que estará en la linea", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            Return False
+            
+            Throw New Exception("No ha confirmado el personal que estará en la linea")
+            'Return False
         End If
     End Function
 

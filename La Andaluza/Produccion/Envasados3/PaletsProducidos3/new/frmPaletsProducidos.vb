@@ -234,13 +234,43 @@ Public Class frmPaletsProducidos
                 dboTemp.PaletProducidoID = dboPalet.ID
                 dboPalet.FormatoID = m_MaestroID
 
-                frmCompletar = New frmEntPaletsContenidos(Me.linea, dboPaletsProducidos.FormatoID, dboEnvasado.ID, ACCION_INSERTAR, New spPaletsContenidos, dboTemp) 'dboPalet.ID, New spPaletsContenidos, dboTemp)
-                '                AddHandler frmCompletar.afterSave, AddressOf dgvFill
-                frmCompletar.ModoDeApertura = frmPaletsProducidos.COMPLETAR
-                frmCompletar.Formato = Me.m_MaestroID
-                frmCompletar.Text = "Completar "
-                'GUImain.añadirPestaña(frmCompletar)
-                frmCompletar.ShowDialog()
+
+                If Me.linea = 0 Then
+                    Dim s As New spPaletsContenidos
+                    linea = s.seleccionar_linea_por_formato(dboPaletsProducidos.FormatoID, dtb)
+                End If
+
+                Dim spmovimientos As New spPaletsMovimiento
+                Dim monodosis As New DispensadorMonodosis
+                If spmovimientos.comprobarFormatoEncajado(dboFormatoActual.TipoFormatoEnvasadoID, dtb) Then
+                    If Not monodosis.EsDoyPack(dboFormatoActual.TipoFormatoEnvasadoID, dtb) Then
+                        Dim frmCompletar As New frmEntPaletsContenidosMonodosis(Me.linea, dboFormatoActual.TipoFormatoEnvasadoID, dboEnvasado.ID, BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spPaletsContenidos, dboTemp)
+                        frmCompletar.ModoDeApertura = frmPaletsProducidos.COMPLETAR
+                        frmCompletar.Formato = Me.m_MaestroID
+                        frmCompletar.Text = "Completar "
+                        'GUImain.añadirPestaña(frmCompletar)
+                        frmCompletar.ShowDialog()
+                    Else
+                        Dim frmCompletar As New frmEntPaletsContenidosDoypack(dboPaletsProducidos.FormatoID, Me.linea, dboFormatoActual.TipoFormatoEnvasadoID, dboEnvasado.ID, BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, New spPaletsContenidos, dboTemp)
+                        frmCompletar.ModoDeApertura = frmPaletsProducidos.COMPLETAR
+                        frmCompletar.Formato = Me.m_MaestroID
+                        frmCompletar.Text = "Completar "
+                        'GUImain.añadirPestaña(frmCompletar)
+                        frmCompletar.ShowDialog()
+                    End If
+                Else
+                    frmCompletar = New frmEntPaletsContenidos(Me.linea, dboPaletsProducidos.FormatoID, dboEnvasado.ID, ACCION_INSERTAR, New spPaletsContenidos, dboTemp) 'dboPalet.ID, New spPaletsContenidos, dboTemp)
+                    '                AddHandler frmCompletar.afterSave, AddressOf dgvFill
+                    frmCompletar.ModoDeApertura = frmPaletsProducidos.COMPLETAR
+                    frmCompletar.Formato = Me.m_MaestroID
+                    frmCompletar.Text = "Completar "
+                    'GUImain.añadirPestaña(frmCompletar)
+                    frmCompletar.ShowDialog()
+                End If
+
+
+
+                
 
                 Try
                     Dim pal As New Palet(dboPalet.ID)
