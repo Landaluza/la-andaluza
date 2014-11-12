@@ -162,6 +162,7 @@ Public Class frmEntPaletsContenidosDoypack
                         '    BasesParaCompatibilidad.BD.CancelarTransaccion()
                         'End If
 
+                        dgvMermas.EndEdit()
                         For Each row As DataGridViewRow In Me.dgvMermas.Rows
                             'If (Not row.Cells("Mover").Value Is Nothing) Then
                             '    If CInt(row.Cells("Mover").Value) <> 0 Then
@@ -183,11 +184,12 @@ Public Class frmEntPaletsContenidosDoypack
                     RaiseEvent afterSave(Me, Nothing)
                     Me.Close()
                 Else
-                    dtb.CancelarTransaccion()
+                    dtb.CancelarTransaccion()                   
                     MessageBox.Show("Error al guardar", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
-            Catch ex As Exception
+            Catch ex As Exception                
                 dtb.CancelarTransaccion()
+                dgvMermas.BeginEdit(True)
                 MessageBox.Show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             End Try
         End If

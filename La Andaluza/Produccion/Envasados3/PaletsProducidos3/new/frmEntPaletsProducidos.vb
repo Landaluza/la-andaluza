@@ -47,6 +47,9 @@ Public Class frmEntPaletsProducidos
             Try
                 'Me.m_DBO_PaletsProducidos = dbo
                 GetValores()
+                dtb.PrepararConsulta("PaletsProducidos3GetMaxSCC")
+                Me.m_DBO_PaletsProducidos.SCC = dtb.Consultar().Rows(0).Item(0)
+                dbo = m_DBO_PaletsProducidos
                 If sp.Grabar(dbo, dtb) Then
                     evitarCerrarSinGuardar = False
                     'RaiseEvent afterSave(Me, Nothing)

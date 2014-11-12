@@ -43,6 +43,8 @@ Partial Class frmEntPaletsContenidosMonodosis
         Me.Existencias = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Vaciar = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.Mover = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.chbVaciar = New System.Windows.Forms.CheckBox()
         Me.Label3 = New System.Windows.Forms.Label()
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
@@ -52,6 +54,7 @@ Partial Class frmEntPaletsContenidosMonodosis
         Me.SplitMermas.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.dgvMermas, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel3.SuspendLayout()
         Me.SuspendLayout()
         '
         'dtpHoraInicio
@@ -241,18 +244,19 @@ Partial Class frmEntPaletsContenidosMonodosis
         Me.SplitMermas.Panel2.Controls.Add(Me.Panel2)
         Me.SplitMermas.Panel2.Controls.Add(Me.Label3)
         Me.SplitMermas.Size = New System.Drawing.Size(517, 448)
-        Me.SplitMermas.SplitterDistance = 212
+        Me.SplitMermas.SplitterDistance = 211
         Me.SplitMermas.SplitterWidth = 3
         Me.SplitMermas.TabIndex = 1000000006
         '
         'Panel2
         '
         Me.Panel2.Controls.Add(Me.dgvMermas)
+        Me.Panel2.Controls.Add(Me.Panel3)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(0, 13)
         Me.Panel2.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(517, 220)
+        Me.Panel2.Size = New System.Drawing.Size(517, 221)
         Me.Panel2.TabIndex = 1
         '
         'dgvMermas
@@ -262,13 +266,13 @@ Partial Class frmEntPaletsContenidosMonodosis
         Me.dgvMermas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvMermas.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.SCC, Me.Existencias, Me.Vaciar, Me.Mover})
         Me.dgvMermas.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgvMermas.Location = New System.Drawing.Point(0, 0)
+        Me.dgvMermas.Location = New System.Drawing.Point(0, 24)
         Me.dgvMermas.Margin = New System.Windows.Forms.Padding(2)
         Me.dgvMermas.Name = "dgvMermas"
         Me.dgvMermas.RowHeadersVisible = False
         Me.dgvMermas.RowTemplate.Height = 24
         Me.dgvMermas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvMermas.Size = New System.Drawing.Size(517, 220)
+        Me.dgvMermas.Size = New System.Drawing.Size(517, 197)
         Me.dgvMermas.TabIndex = 0
         '
         'SCC
@@ -293,6 +297,28 @@ Partial Class frmEntPaletsContenidosMonodosis
         '
         Me.Mover.HeaderText = "Mover a NC"
         Me.Mover.Name = "Mover"
+        '
+        'Panel3
+        '
+        Me.Panel3.Controls.Add(Me.chbVaciar)
+        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel3.Location = New System.Drawing.Point(0, 0)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(517, 24)
+        Me.Panel3.TabIndex = 3
+        '
+        'chbVaciar
+        '
+        Me.chbVaciar.Checked = True
+        Me.chbVaciar.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chbVaciar.Dock = System.Windows.Forms.DockStyle.Right
+        Me.chbVaciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.chbVaciar.Location = New System.Drawing.Point(401, 0)
+        Me.chbVaciar.Name = "chbVaciar"
+        Me.chbVaciar.Size = New System.Drawing.Size(116, 24)
+        Me.chbVaciar.TabIndex = 0
+        Me.chbVaciar.Text = "Vaciar"
+        Me.chbVaciar.UseVisualStyleBackColor = True
         '
         'Label3
         '
@@ -328,6 +354,7 @@ Partial Class frmEntPaletsContenidosMonodosis
         Me.SplitMermas.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         CType(Me.dgvMermas, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel3.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -356,4 +383,6 @@ Partial Class frmEntPaletsContenidosMonodosis
     Friend WithEvents Existencias As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Vaciar As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents Mover As System.Windows.Forms.DataGridViewTextBoxColumn
+    Private WithEvents Panel3 As System.Windows.Forms.Panel
+    Private WithEvents chbVaciar As System.Windows.Forms.CheckBox
 End Class

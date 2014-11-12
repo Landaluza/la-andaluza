@@ -148,7 +148,7 @@ Public Class frmEntPaletsContenidosMonodosis
                     'Else
                     '    BasesParaCompatibilidad.BD.CancelarTransaccion()
                     'End If
-
+                    dgvMermas.EndEdit()
                     For Each row As DataGridViewRow In Me.dgvMermas.Rows
                         If Not row.Cells("Mover").Value Is Nothing Then
                             If CInt(row.Cells("Mover").Value) > 0 Then
@@ -156,7 +156,7 @@ Public Class frmEntPaletsContenidosMonodosis
                             End If
                         End If
 
-                        If CType(row.Cells("Vaciar").Value, Boolean) Then
+                        If CType(row.Cells("Vaciar").Value, Boolean) = True Then
                             monodosis.realizarDiferencia(row.Cells("SCC").Value, dtb)
                         End If
                     Next
@@ -169,6 +169,7 @@ Public Class frmEntPaletsContenidosMonodosis
                 End If
             Catch ex As Exception
                 dtb.CancelarTransaccion()
+                dgvMermas.BeginEdit(True)
                 MessageBox.Show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 Me.Close() ' retirar deespues de adecuarlo para poder tener reintentos
             End Try
@@ -245,5 +246,12 @@ Public Class frmEntPaletsContenidosMonodosis
         Catch ex As Exception
             MessageBox.Show("Error. " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+    End Sub
+
+    Private Sub chbVaciar_CheckedChanged(sender As Object, e As EventArgs) Handles chbVaciar.CheckedChanged
+        For Each row As DataGridViewRow In Me.dgvMermas.Rows
+
+            row.Cells("Vaciar").Value = Me.chbVaciar.Checked
+        Next
     End Sub
 End Class
