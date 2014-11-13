@@ -11,6 +11,7 @@ Public Class frmAlbaranesCargaMaestro
         MyBase.New()
         InitializeComponent()
 
+        Me.agno = Now.Date.Year
         ctlAlb = New ctlAlbaranesCargaMaestro
         dtsAlb = New dtsAlbaranesCargaMaestro.AlbaranesCargaMaestroDataTable
 
@@ -21,17 +22,26 @@ Public Class frmAlbaranesCargaMaestro
         label2.Enabled = False
 
         cboYear = New ComboBox
+        cboYear.DropDownStyle = ComboBoxStyle.DropDownList
         Dim dtb As New BasesParaCompatibilidad.DataBase
         dtb.PrepararConsulta("select distinct year(fecha), year(fecha) from AlbaranesCargaMaestro order by year(fecha) desc")
-        cboYear.mam_DataSource(dtb.Consultar(), False)
+
         Me.bdnGeneral.Items.Add(New ToolStripControlHost(cboYear))
-        AddHandler cboYear.SelectedValueChanged, AddressOf asignarAgno
+        cboYear.mam_DataSource(dtb.Consultar(), False)
+        AddHandler cboYear.SelectedValueChanged, AddressOf asignarAgno        
     End Sub
 
     Private Sub asignarAgno()
-        Me.agno = cboYear.SelectedValue
-        dgvFill()
+        Try
+            Me.agno = cboYear.SelectedValue
+            If Not Me.agno = Nothing Then
+                dgvFill()
+            End If
+        Catch ex As Exception
+
+        End Try
     End Sub
+
     Protected Overrides Sub cargar_datos()
         Dim dtb As New BasesParaCompatibilidad.DataBase
         dtb.PrepararConsulta("select AlbaranesCargaMaestro.AlbaranCargaMaestroID,AlbaranesCargaMaestro.AlbaranCargaProMaestroID,AlbaranesCargaMaestro.Fecha,AlbaranesCargaMaestro.ClienteID,AlbaranesCargaMaestro.SerieQSID,AlbaranesCargaMaestro.NumeroQS,AlbaranesCargaMaestro.AlmacenSalidaQSID,AlbaranesCargaMaestro.AgenciaID,AlbaranesCargaMaestro.PorteFormaPagoID,AlbaranesCargaMaestro.PorteImporte,AlbaranesCargaMaestro.Matricula,AlbaranesCargaMaestro.Conductor,AlbaranesCargaMaestro.ConductorDNI,AlbaranesCargaMaestro.ResponsableCargaID,AlbaranesCargaMaestro.ResponsableAdministracionID,AlbaranesCargaMaestro.HoraLlegada,AlbaranesCargaMaestro.HoraSalida,AlbaranesCargaMaestro.Observaciones,AlbaranesCargaMaestro.Reserva1,AlbaranesCargaMaestro.Reserva2,AlbaranesCargaMaestro.Reserva3 from AlbaranesCargaMaestro where year(fecha)= @ano order by fecha asc, NumeroQS asc")

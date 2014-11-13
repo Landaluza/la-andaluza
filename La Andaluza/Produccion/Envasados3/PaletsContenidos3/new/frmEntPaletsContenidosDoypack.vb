@@ -225,7 +225,7 @@ Public Class frmEntPaletsContenidosDoypack
                 End If
             Next
 
-            If j <= cbo.SelectedIndex Then If Not sw Then Me.dgvMermas.Rows.Add(New String() {cbo.Items(j)(1), cbo.Items(j)(5), True})
+            If j <= cbo.SelectedIndex Then If Not sw Then Me.dgvMermas.Rows.Add(New String() {cbo.Items(j)(1), cbo.Items(j)(5), False})
         Next
 
         Me.dgvMermas.Refresh()

@@ -232,6 +232,7 @@ Public Class frmPaletsProducidos
                 dboEnvasado = spEnvasados.Select_Record(dboFormatoActual.EnvasadoID, dtb)
 
                 dboTemp.PaletProducidoID = dboPalet.ID
+                dboTemp.id_formatoEnvasado = maestroId
                 dboPalet.FormatoID = m_MaestroID
 
 

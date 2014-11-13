@@ -315,8 +315,6 @@ Partial Class frmEntPaletsContenidosDoypack
         '
         'chbVaciar
         '
-        Me.chbVaciar.Checked = True
-        Me.chbVaciar.CheckState = System.Windows.Forms.CheckState.Checked
         Me.chbVaciar.Dock = System.Windows.Forms.DockStyle.Right
         Me.chbVaciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.chbVaciar.Location = New System.Drawing.Point(671, 0)

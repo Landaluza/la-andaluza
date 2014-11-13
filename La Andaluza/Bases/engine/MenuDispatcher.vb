@@ -770,4 +770,9 @@ Public Class MenuDispatcher
         frm.Text = "Resumen por mes"
         GUImain.añadirPestaña(frm)
     End Sub
+
+    Private Sub ActualizarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ActualizarToolStripMenuItem.Click, AztualizarToolStripMenuItem.Click, ActualizarToolStripMenuItem6.Click, ActualizarToolStripMenuItem5.Click, ActualizarToolStripMenuItem4.Click, ActualizarToolStripMenuItem3.Click, ActualizarToolStripMenuItem2.Click, ActualizarToolStripMenuItem1.Click
+        Dim upt As New Updater
+        upt.InstallUpdateSyncWithInfo()
+    End Sub
 End Class

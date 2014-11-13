@@ -61,6 +61,7 @@ Partial Class GUImain
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.cmsNotificacionesOperaciones = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.TimerActualizaciones = New System.Windows.Forms.Timer(Me.components)
         Me.Panel1.SuspendLayout()
         Me.mAgenda.SuspendLayout()
         Me.cmsNotificaciones.SuspendLayout()
@@ -460,6 +461,11 @@ Partial Class GUImain
         'BackgroundWorker1
         '
         '
+        'TimerActualizaciones
+        '
+        Me.TimerActualizaciones.Enabled = True
+        Me.TimerActualizaciones.Interval = 300000
+        '
         'GUImain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -542,5 +548,6 @@ Partial Class GUImain
     Protected WithEvents LAgenda As System.Windows.Forms.Label
     Private WithEvents mAgenda As System.Windows.Forms.ContextMenuStrip
     Private WithEvents AsdToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Protected WithEvents TimerActualizaciones As System.Windows.Forms.Timer
 
 End Class

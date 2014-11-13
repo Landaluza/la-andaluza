@@ -7,6 +7,7 @@ Public Class GUImain
     Protected controlador As Controller
     Protected Event extras_showed()
     Protected dtb As BasesParaCompatibilidad.DataBase
+    Protected updater As Updater
 
     'Public Sub New()
     '    MyBase.new()
@@ -27,10 +28,14 @@ Public Class GUImain
         InitializeComponent()
         dtb = New BasesParaCompatibilidad.DataBase
         ' Environment.Exit(69)
+        updater = New Updater
+        TimerActualizaciones.Start()
     End Sub
     Public Sub New(ByRef frm As FrmInicio)
         InitializeComponent()
         dtb = New BasesParaCompatibilidad.DataBase
+        updater = New Updater
+
         'segundaSesion = False
         LAengine = New Engine_LA(Me)
         'Me.frmNews = New frmNews
@@ -45,6 +50,7 @@ Public Class GUImain
 
         
         cargarAgenda()
+        TimerActualizaciones.Start()
     End Sub
 
 
@@ -560,6 +566,11 @@ Public Class GUImain
                 Me.mAgenda.Items.Add(sms2)
             Next
         End If
+    End Sub
+
+    Protected Sub TimerActualizaciones_Tick(sender As Object, e As EventArgs) Handles TimerActualizaciones.Tick
+
+        Updater.InstallUpdateSyncWithInfo()
     End Sub
 End Class
 

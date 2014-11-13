@@ -224,7 +224,7 @@ Public Class frmEntPaletsContenidosMonodosis
             Next
 
             If j <= cboMonodosis.SelectedIndex Then If Not sw Then Me.dgvMermas.Rows.Add(New String() _
-                {Me.cboMonodosis.Items(j)(1), If(Convert.IsDBNull(Me.cboMonodosis.Items(j)(5)), "0", Me.cboMonodosis.Items(j)(5)), True})
+                {Me.cboMonodosis.Items(j)(1), If(Convert.IsDBNull(Me.cboMonodosis.Items(j)(5)), "0", Me.cboMonodosis.Items(j)(5)), False})
         Next
 
         Me.dgvMermas.Refresh()

@@ -244,7 +244,7 @@ Partial Class frmEntPaletsContenidosMonodosis
         Me.SplitMermas.Panel2.Controls.Add(Me.Panel2)
         Me.SplitMermas.Panel2.Controls.Add(Me.Label3)
         Me.SplitMermas.Size = New System.Drawing.Size(517, 448)
-        Me.SplitMermas.SplitterDistance = 211
+        Me.SplitMermas.SplitterDistance = 210
         Me.SplitMermas.SplitterWidth = 3
         Me.SplitMermas.TabIndex = 1000000006
         '
@@ -256,7 +256,7 @@ Partial Class frmEntPaletsContenidosMonodosis
         Me.Panel2.Location = New System.Drawing.Point(0, 13)
         Me.Panel2.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(517, 221)
+        Me.Panel2.Size = New System.Drawing.Size(517, 222)
         Me.Panel2.TabIndex = 1
         '
         'dgvMermas
@@ -272,7 +272,7 @@ Partial Class frmEntPaletsContenidosMonodosis
         Me.dgvMermas.RowHeadersVisible = False
         Me.dgvMermas.RowTemplate.Height = 24
         Me.dgvMermas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvMermas.Size = New System.Drawing.Size(517, 197)
+        Me.dgvMermas.Size = New System.Drawing.Size(517, 198)
         Me.dgvMermas.TabIndex = 0
         '
         'SCC
@@ -309,8 +309,6 @@ Partial Class frmEntPaletsContenidosMonodosis
         '
         'chbVaciar
         '
-        Me.chbVaciar.Checked = True
-        Me.chbVaciar.CheckState = System.Windows.Forms.CheckState.Checked
         Me.chbVaciar.Dock = System.Windows.Forms.DockStyle.Right
         Me.chbVaciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.chbVaciar.Location = New System.Drawing.Point(401, 0)
