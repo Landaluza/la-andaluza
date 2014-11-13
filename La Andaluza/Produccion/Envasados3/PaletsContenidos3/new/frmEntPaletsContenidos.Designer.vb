@@ -39,10 +39,11 @@ Partial Class frmEntPaletsContenidos
         'dtpHoraInicio
         '
         Me.dtpHoraInicio.BackColor = System.Drawing.SystemColors.Window
+        Me.dtpHoraInicio.CustomFormat = "HH:mm"
         Me.dtpHoraInicio.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dtpHoraInicio.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.dtpHoraInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.dtpHoraInicio.Location = New System.Drawing.Point(57, 12)
-        Me.dtpHoraInicio.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.dtpHoraInicio.Margin = New System.Windows.Forms.Padding(2)
         Me.dtpHoraInicio.Name = "dtpHoraInicio"
         Me.dtpHoraInicio.ShowUpDown = True
         Me.dtpHoraInicio.Size = New System.Drawing.Size(86, 21)
@@ -51,10 +52,11 @@ Partial Class frmEntPaletsContenidos
         'dtpHoraFin
         '
         Me.dtpHoraFin.BackColor = System.Drawing.SystemColors.Window
+        Me.dtpHoraFin.CustomFormat = "HH:mm"
         Me.dtpHoraFin.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dtpHoraFin.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.dtpHoraFin.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.dtpHoraFin.Location = New System.Drawing.Point(57, 41)
-        Me.dtpHoraFin.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.dtpHoraFin.Margin = New System.Windows.Forms.Padding(2)
         Me.dtpHoraFin.Name = "dtpHoraFin"
         Me.dtpHoraFin.ShowUpDown = True
         Me.dtpHoraFin.Size = New System.Drawing.Size(86, 21)
@@ -66,7 +68,7 @@ Partial Class frmEntPaletsContenidos
         Me.txtCantidadCajas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtCantidadCajas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCantidadCajas.Location = New System.Drawing.Point(279, 14)
-        Me.txtCantidadCajas.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtCantidadCajas.Margin = New System.Windows.Forms.Padding(2)
         Me.txtCantidadCajas.MaxLength = 9
         Me.txtCantidadCajas.Name = "txtCantidadCajas"
         Me.txtCantidadCajas.Size = New System.Drawing.Size(101, 21)
@@ -79,7 +81,7 @@ Partial Class frmEntPaletsContenidos
         Me.txtObservaciones.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtObservaciones.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtObservaciones.Location = New System.Drawing.Point(13, 98)
-        Me.txtObservaciones.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtObservaciones.Margin = New System.Windows.Forms.Padding(2)
         Me.txtObservaciones.MaxLength = 400
         Me.txtObservaciones.Multiline = True
         Me.txtObservaciones.Name = "txtObservaciones"
@@ -138,7 +140,7 @@ Partial Class frmEntPaletsContenidos
         Me.Panel1.Controls.Add(Me.lblHoraFin)
         Me.Panel1.Controls.Add(Me.dtpHoraFin)
         Me.Panel1.Location = New System.Drawing.Point(21, 32)
-        Me.Panel1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(391, 159)
         Me.Panel1.TabIndex = 1000000001
@@ -163,7 +165,7 @@ Partial Class frmEntPaletsContenidos
         Me.Controls.Add(Me.Panel1)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.MinimumSize = New System.Drawing.Size(431, 237)
         Me.Name = "frmEntPaletsContenidos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent

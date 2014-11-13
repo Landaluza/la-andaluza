@@ -107,6 +107,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.dgvTotalPalets = New System.Windows.Forms.DataGridView()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.btnCartaJr = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.butRegistrarPortesSalidaQS = New System.Windows.Forms.Button()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -142,7 +143,6 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.PrintForm1 = New Microsoft.VisualBasic.PowerPacks.Printing.PrintForm(Me.components)
         Me.PrintForm2 = New Microsoft.VisualBasic.PowerPacks.Printing.PrintForm(Me.components)
         Me.btnToExcel = New System.Windows.Forms.Button()
-        Me.btnCartaJr = New System.Windows.Forms.Button()
         AlbaranCargaMaestroIDLabel = New System.Windows.Forms.Label()
         AlbaranCargaProMaestroIDLabel = New System.Windows.Forms.Label()
         FechaLabel = New System.Windows.Forms.Label()
@@ -832,8 +832,9 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         'HoraLlegadaDateTimePicker
         '
+        Me.HoraLlegadaDateTimePicker.CustomFormat = "HH:mm"
         Me.HoraLlegadaDateTimePicker.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.GeneralBindingSource, "HoraLlegada", True))
-        Me.HoraLlegadaDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.HoraLlegadaDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.HoraLlegadaDateTimePicker.Location = New System.Drawing.Point(106, 121)
         Me.HoraLlegadaDateTimePicker.Name = "HoraLlegadaDateTimePicker"
         Me.HoraLlegadaDateTimePicker.ShowUpDown = True
@@ -842,8 +843,9 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         'HoraSalidaDateTimePicker
         '
+        Me.HoraSalidaDateTimePicker.CustomFormat = "HH:mm"
         Me.HoraSalidaDateTimePicker.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.GeneralBindingSource, "HoraSalida", True))
-        Me.HoraSalidaDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.HoraSalidaDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.HoraSalidaDateTimePicker.Location = New System.Drawing.Point(106, 147)
         Me.HoraSalidaDateTimePicker.Name = "HoraSalidaDateTimePicker"
         Me.HoraSalidaDateTimePicker.ShowUpDown = True
@@ -1270,6 +1272,16 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(451, 220)
         Me.Panel3.TabIndex = 1000000057
+        '
+        'btnCartaJr
+        '
+        Me.btnCartaJr.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCartaJr.Image = Global.La_Andaluza.My.Resources.Resources.page_white_word_16
+        Me.btnCartaJr.Location = New System.Drawing.Point(288, 59)
+        Me.btnCartaJr.Name = "btnCartaJr"
+        Me.btnCartaJr.Size = New System.Drawing.Size(22, 29)
+        Me.btnCartaJr.TabIndex = 1000000066
+        Me.btnCartaJr.UseVisualStyleBackColor = True
         '
         'Label4
         '
@@ -1763,16 +1775,6 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.btnToExcel.TabIndex = 1000000045
         Me.btnToExcel.Text = "Excel"
         Me.btnToExcel.UseVisualStyleBackColor = True
-        '
-        'btnCartaJr
-        '
-        Me.btnCartaJr.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnCartaJr.Image = Global.La_Andaluza.My.Resources.Resources.page_white_word_16
-        Me.btnCartaJr.Location = New System.Drawing.Point(288, 59)
-        Me.btnCartaJr.Name = "btnCartaJr"
-        Me.btnCartaJr.Size = New System.Drawing.Size(22, 29)
-        Me.btnCartaJr.TabIndex = 1000000066
-        Me.btnCartaJr.UseVisualStyleBackColor = True
         '
         'frmEntAlbaranesCargaMaestro
         '

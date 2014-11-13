@@ -60,8 +60,9 @@ Partial Class frmEntPaletsContenidosMonodosis
         'dtpHoraInicio
         '
         Me.dtpHoraInicio.BackColor = System.Drawing.SystemColors.Window
+        Me.dtpHoraInicio.CustomFormat = "HH:mm"
         Me.dtpHoraInicio.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dtpHoraInicio.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.dtpHoraInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.dtpHoraInicio.Location = New System.Drawing.Point(71, 8)
         Me.dtpHoraInicio.Margin = New System.Windows.Forms.Padding(2)
         Me.dtpHoraInicio.Name = "dtpHoraInicio"
@@ -72,8 +73,9 @@ Partial Class frmEntPaletsContenidosMonodosis
         'dtpHoraFin
         '
         Me.dtpHoraFin.BackColor = System.Drawing.SystemColors.Window
+        Me.dtpHoraFin.CustomFormat = "HH:mm"
         Me.dtpHoraFin.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dtpHoraFin.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.dtpHoraFin.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.dtpHoraFin.Location = New System.Drawing.Point(71, 44)
         Me.dtpHoraFin.Margin = New System.Windows.Forms.Padding(2)
         Me.dtpHoraFin.Name = "dtpHoraFin"

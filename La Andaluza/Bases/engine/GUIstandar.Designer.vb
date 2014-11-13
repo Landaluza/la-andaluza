@@ -24,6 +24,7 @@ Partial Class GUIstandar
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.TimerNotificaciones = New System.Windows.Forms.Timer(Me.components)
+        Me.TimerActualizaciones = New System.Windows.Forms.Timer(Me.components)
         Me.Panel1.SuspendLayout()
         Me.PanContenido.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -46,17 +47,17 @@ Partial Class GUIstandar
         '
         'TabPage1
         '
-        Me.TabPage1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TabPage1.Margin = New System.Windows.Forms.Padding(4)
         Me.TabPage1.Size = New System.Drawing.Size(0, 0)
         '
         'Panel9
         '
-        Me.Panel9.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Panel9.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel9.Size = New System.Drawing.Size(0, 0)
         '
         'TabControl2
         '
-        Me.TabControl2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TabControl2.Margin = New System.Windows.Forms.Padding(4)
         Me.TabControl2.Size = New System.Drawing.Size(0, 0)
         '
         'TimerNotificaciones
@@ -64,13 +65,18 @@ Partial Class GUIstandar
         Me.TimerNotificaciones.Interval = 36000000
         Me.TimerNotificaciones.Tag = "36000000"
         '
+        'TimerActualizaciones
+        '
+        Me.TimerActualizaciones.Enabled = True
+        Me.TimerActualizaciones.Interval = 300000
+        '
         'GUIstandar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1042, 682)
         Me.Location = New System.Drawing.Point(0, 0)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "GUIstandar"
         Me.Text = "GUIEnvasado"
         Me.Controls.SetChildIndex(Me.Panel1, 0)
@@ -93,4 +99,5 @@ Partial Class GUIstandar
 
     End Sub
     Protected WithEvents TimerNotificaciones As System.Windows.Forms.Timer
+    Private WithEvents TimerActualizaciones As System.Windows.Forms.Timer
 End Class

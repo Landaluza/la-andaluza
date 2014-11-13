@@ -107,6 +107,10 @@ Public Class frmEntAlbaranesCargaMaestro
 
 
     Private Sub NuevoPalet_Click(ByVal sender As Object, ByVal e As System.EventArgs)
+        If Me.NumeroQSCuadroDeTexto.Text = "" Or Me.NumeroQSCuadroDeTexto.Text = "0" Then
+            MessageBox.Show("Asignar antes un numero al albaran", "")
+            Return
+        End If
         Dim frm As New AgnadirAcarga(m_MaestroProID)
         AddHandler frm.AfterSave, AddressOf RellenarDgv
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)

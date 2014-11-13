@@ -1,11 +1,13 @@
 ﻿Public Class GUIstandar
     Inherits GUImain
-
+    Private updater As Updater
     Public Sub New(ByRef frm As FrmInicio)
         MyBase.new(frm)
         ' This call is required by the designer.
         InitializeComponent()
         Me.Text = Config.Version_seriada
+        Me.updater = New Updater
+        TimerActualizaciones.Start()
     End Sub
 
     Public Overrides Sub terminarDeIniciar(ByVal tablausada As String, ByVal ServidorUsado As String, ByVal UsuarioUsado As String, ByVal usua As String)
@@ -170,4 +172,7 @@
     End Sub
 
     
+    Private Sub TimerActualizaciones_Tick(sender As Object, e As EventArgs) Handles TimerActualizaciones.Tick
+        Me.updater.InstallUpdateSyncWithInfo()
+    End Sub
 End Class

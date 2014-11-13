@@ -56,7 +56,7 @@ Partial Class frmEntCargaNecesidadesJRMaestro
         '
         'txtTodoCorrecto
         '
-        Me.txtTodoCorrecto.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtTodoCorrecto.Margin = New System.Windows.Forms.Padding(4)
         '
         'CargaNecesidadesJRMaestroIDLabel
         '
@@ -133,13 +133,15 @@ Partial Class frmEntCargaNecesidadesJRMaestro
         '
         'HoraDateTimePicker
         '
+        Me.HoraDateTimePicker.CustomFormat = "HH:mm"
         Me.HoraDateTimePicker.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.GeneralBindingSource, "Hora", True))
-        Me.HoraDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.HoraDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.HoraDateTimePicker.Location = New System.Drawing.Point(96, 29)
         Me.HoraDateTimePicker.Name = "HoraDateTimePicker"
         Me.HoraDateTimePicker.ShowUpDown = True
-        Me.HoraDateTimePicker.Size = New System.Drawing.Size(62, 20)
+        Me.HoraDateTimePicker.Size = New System.Drawing.Size(84, 20)
         Me.HoraDateTimePicker.TabIndex = 1000000005
+        Me.HoraDateTimePicker.Value = New Date(2014, 11, 13, 13, 56, 0, 0)
         '
         'ObservacionesCuadroDeTexto
         '
@@ -185,7 +187,7 @@ Partial Class frmEntCargaNecesidadesJRMaestro
         Me.dgv.Name = "dgv"
         Me.dgv.ReadOnly = True
         Me.dgv.RowTemplate.Height = 24
-        Me.dgv.Size = New System.Drawing.Size(783, 500)
+        Me.dgv.Size = New System.Drawing.Size(791, 500)
         Me.dgv.TabIndex = 13
         '
         'tsFormatos1
@@ -193,9 +195,9 @@ Partial Class frmEntCargaNecesidadesJRMaestro
         Me.tsFormatos1.Dock = System.Windows.Forms.DockStyle.Right
         Me.tsFormatos1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.tsFormatos1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsInsertar, Me.tsModificar, Me.tsEliminar})
-        Me.tsFormatos1.Location = New System.Drawing.Point(786, 16)
+        Me.tsFormatos1.Location = New System.Drawing.Point(794, 16)
         Me.tsFormatos1.Name = "tsFormatos1"
-        Me.tsFormatos1.Size = New System.Drawing.Size(32, 500)
+        Me.tsFormatos1.Size = New System.Drawing.Size(24, 500)
         Me.tsFormatos1.TabIndex = 12
         Me.tsFormatos1.Text = "ToolStrip2"
         '
@@ -205,7 +207,7 @@ Partial Class frmEntCargaNecesidadesJRMaestro
         Me.tsInsertar.Image = Global.La_Andaluza.My.Resources.Resources.edit_add_2
         Me.tsInsertar.Name = "tsInsertar"
         Me.tsInsertar.RightToLeftAutoMirrorImage = True
-        Me.tsInsertar.Size = New System.Drawing.Size(29, 20)
+        Me.tsInsertar.Size = New System.Drawing.Size(21, 20)
         Me.tsInsertar.Text = "Añadir"
         Me.tsInsertar.ToolTipText = "Añadir"
         '
@@ -215,7 +217,7 @@ Partial Class frmEntCargaNecesidadesJRMaestro
         Me.tsModificar.Image = Global.La_Andaluza.My.Resources.Resources.Modificar
         Me.tsModificar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsModificar.Name = "tsModificar"
-        Me.tsModificar.Size = New System.Drawing.Size(29, 20)
+        Me.tsModificar.Size = New System.Drawing.Size(21, 20)
         Me.tsModificar.Text = "Modificar"
         Me.tsModificar.ToolTipText = "Modificar"
         '
@@ -225,16 +227,17 @@ Partial Class frmEntCargaNecesidadesJRMaestro
         Me.tsEliminar.Image = Global.La_Andaluza.My.Resources.Resources.edit_remove_3
         Me.tsEliminar.Name = "tsEliminar"
         Me.tsEliminar.RightToLeftAutoMirrorImage = True
-        Me.tsEliminar.Size = New System.Drawing.Size(29, 20)
+        Me.tsEliminar.Size = New System.Drawing.Size(21, 20)
         Me.tsEliminar.Text = "Eliminar"
         Me.tsEliminar.ToolTipText = "Eliminar"
         '
         'ServidoCheckBox
         '
         Me.ServidoCheckBox.AutoSize = True
+        Me.ServidoCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ServidoCheckBox.Location = New System.Drawing.Point(218, 32)
         Me.ServidoCheckBox.Name = "ServidoCheckBox"
-        Me.ServidoCheckBox.Size = New System.Drawing.Size(62, 17)
+        Me.ServidoCheckBox.Size = New System.Drawing.Size(59, 17)
         Me.ServidoCheckBox.TabIndex = 1000000032
         Me.ServidoCheckBox.Text = "Servido"
         Me.ServidoCheckBox.UseVisualStyleBackColor = True
@@ -252,7 +255,7 @@ Partial Class frmEntCargaNecesidadesJRMaestro
         Me.Panel1.Controls.Add(HoraLabel)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 25)
-        Me.Panel1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(821, 81)
         Me.Panel1.TabIndex = 14
@@ -265,7 +268,7 @@ Partial Class frmEntCargaNecesidadesJRMaestro
         Me.Controls.Add(Me.Panel1)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frmEntCargaNecesidadesJRMaestro"
         Me.Controls.SetChildIndex(Me.txtTodoCorrecto, 0)
         Me.Controls.SetChildIndex(Me.Panel1, 0)

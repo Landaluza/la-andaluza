@@ -34,9 +34,10 @@ Partial Class frmEntCompletado
         '
         'lblHoraInicio
         '
-        Me.lblHoraInicio.Location = New System.Drawing.Point(50, 29)
+        Me.lblHoraInicio.Location = New System.Drawing.Point(38, 24)
+        Me.lblHoraInicio.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblHoraInicio.Name = "lblHoraInicio"
-        Me.lblHoraInicio.Size = New System.Drawing.Size(56, 35)
+        Me.lblHoraInicio.Size = New System.Drawing.Size(42, 28)
         Me.lblHoraInicio.TabIndex = 8
         Me.lblHoraInicio.Text = "Inicio"
         Me.lblHoraInicio.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -44,19 +45,22 @@ Partial Class frmEntCompletado
         'dtpHoraInicio
         '
         Me.dtpHoraInicio.BackColor = System.Drawing.SystemColors.Window
+        Me.dtpHoraInicio.CustomFormat = "HH:mm"
         Me.dtpHoraInicio.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dtpHoraInicio.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.dtpHoraInicio.Location = New System.Drawing.Point(112, 31)
+        Me.dtpHoraInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dtpHoraInicio.Location = New System.Drawing.Point(84, 25)
+        Me.dtpHoraInicio.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.dtpHoraInicio.Name = "dtpHoraInicio"
         Me.dtpHoraInicio.ShowUpDown = True
-        Me.dtpHoraInicio.Size = New System.Drawing.Size(114, 24)
+        Me.dtpHoraInicio.Size = New System.Drawing.Size(86, 21)
         Me.dtpHoraInicio.TabIndex = 7
         '
         'lblHoraFin
         '
-        Me.lblHoraFin.Location = New System.Drawing.Point(50, 64)
+        Me.lblHoraFin.Location = New System.Drawing.Point(38, 52)
+        Me.lblHoraFin.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblHoraFin.Name = "lblHoraFin"
-        Me.lblHoraFin.Size = New System.Drawing.Size(56, 35)
+        Me.lblHoraFin.Size = New System.Drawing.Size(42, 28)
         Me.lblHoraFin.TabIndex = 10
         Me.lblHoraFin.Text = "Fin"
         Me.lblHoraFin.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -64,19 +68,22 @@ Partial Class frmEntCompletado
         'dtpHoraFin
         '
         Me.dtpHoraFin.BackColor = System.Drawing.SystemColors.Window
+        Me.dtpHoraFin.CustomFormat = "HH:mm"
         Me.dtpHoraFin.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dtpHoraFin.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.dtpHoraFin.Location = New System.Drawing.Point(112, 66)
+        Me.dtpHoraFin.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dtpHoraFin.Location = New System.Drawing.Point(84, 54)
+        Me.dtpHoraFin.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.dtpHoraFin.Name = "dtpHoraFin"
         Me.dtpHoraFin.ShowUpDown = True
-        Me.dtpHoraFin.Size = New System.Drawing.Size(114, 24)
+        Me.dtpHoraFin.Size = New System.Drawing.Size(86, 21)
         Me.dtpHoraFin.TabIndex = 9
         '
         'lblCantidadCajas
         '
-        Me.lblCantidadCajas.Location = New System.Drawing.Point(357, 29)
+        Me.lblCantidadCajas.Location = New System.Drawing.Point(268, 24)
+        Me.lblCantidadCajas.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblCantidadCajas.Name = "lblCantidadCajas"
-        Me.lblCantidadCajas.Size = New System.Drawing.Size(52, 34)
+        Me.lblCantidadCajas.Size = New System.Drawing.Size(39, 28)
         Me.lblCantidadCajas.TabIndex = 12
         Me.lblCantidadCajas.Text = "Cajas"
         Me.lblCantidadCajas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -89,7 +96,8 @@ Partial Class frmEntCompletado
         Me.txtCantidadCajas.EsUnicoID = 0
         Me.txtCantidadCajas.EsUnicoTabla = ""
         Me.txtCantidadCajas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCantidadCajas.Location = New System.Drawing.Point(408, 33)
+        Me.txtCantidadCajas.Location = New System.Drawing.Point(306, 27)
+        Me.txtCantidadCajas.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.txtCantidadCajas.MaxLength = 9
         Me.txtCantidadCajas.Minimo = 0
         Me.txtCantidadCajas.Modificado = False
@@ -99,11 +107,11 @@ Partial Class frmEntCompletado
         Me.txtCantidadCajas.Numerico_SeparadorMiles = False
         Me.txtCantidadCajas.Obligatorio = False
         Me.txtCantidadCajas.ParametroID = 0
-        Me.txtCantidadCajas.Size = New System.Drawing.Size(133, 24)
+        Me.txtCantidadCajas.Size = New System.Drawing.Size(101, 21)
         Me.txtCantidadCajas.TabIndex = 11
         Me.txtCantidadCajas.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.txtCantidadCajas.ValorMaximo = 0.0!
-        Me.txtCantidadCajas.ValorMinimo = 0.0!
+        Me.txtCantidadCajas.ValorMaximo = 0.0R
+        Me.txtCantidadCajas.ValorMinimo = 0.0R
         '
         'txtObservaciones
         '
@@ -113,7 +121,8 @@ Partial Class frmEntCompletado
         Me.txtObservaciones.EsUnicoID = 0
         Me.txtObservaciones.EsUnicoTabla = ""
         Me.txtObservaciones.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtObservaciones.Location = New System.Drawing.Point(53, 137)
+        Me.txtObservaciones.Location = New System.Drawing.Point(40, 111)
+        Me.txtObservaciones.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.txtObservaciones.MaxLength = 400
         Me.txtObservaciones.Minimo = 0
         Me.txtObservaciones.Modificado = False
@@ -124,25 +133,26 @@ Partial Class frmEntCompletado
         Me.txtObservaciones.Numerico_SeparadorMiles = False
         Me.txtObservaciones.Obligatorio = False
         Me.txtObservaciones.ParametroID = 0
-        Me.txtObservaciones.Size = New System.Drawing.Size(488, 61)
+        Me.txtObservaciones.Size = New System.Drawing.Size(367, 50)
         Me.txtObservaciones.TabIndex = 13
-        Me.txtObservaciones.ValorMaximo = 0.0!
-        Me.txtObservaciones.ValorMinimo = 0.0!
+        Me.txtObservaciones.ValorMaximo = 0.0R
+        Me.txtObservaciones.ValorMinimo = 0.0R
         '
         'lblObservaciones
         '
-        Me.lblObservaciones.Location = New System.Drawing.Point(50, 105)
+        Me.lblObservaciones.Location = New System.Drawing.Point(38, 85)
+        Me.lblObservaciones.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblObservaciones.Name = "lblObservaciones"
-        Me.lblObservaciones.Size = New System.Drawing.Size(111, 35)
+        Me.lblObservaciones.Size = New System.Drawing.Size(83, 28)
         Me.lblObservaciones.TabIndex = 14
         Me.lblObservaciones.Text = "Observaciones"
         Me.lblObservaciones.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'frmEntCompletado
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(598, 244)
+        Me.ClientSize = New System.Drawing.Size(448, 198)
         Me.Controls.Add(Me.lblHoraInicio)
         Me.Controls.Add(Me.dtpHoraInicio)
         Me.Controls.Add(Me.lblHoraFin)
@@ -151,6 +161,7 @@ Partial Class frmEntCompletado
         Me.Controls.Add(Me.txtCantidadCajas)
         Me.Controls.Add(Me.txtObservaciones)
         Me.Controls.Add(Me.lblObservaciones)
+        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.Name = "frmEntCompletado"
         Me.Text = "frmEntCompletado"
         Me.ResumeLayout(False)
