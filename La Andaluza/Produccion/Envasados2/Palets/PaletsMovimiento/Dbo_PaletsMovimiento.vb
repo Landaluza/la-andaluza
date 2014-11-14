@@ -35,7 +35,7 @@ Public Class Dbo_PaletsMovimiento
     Private m_UsuarioModificacion_IsDBNull As Boolean
     Private m_idPaletDestino As Integer
     Private m_id_movimientoEntrePalet As Integer
-
+    Private m_hora As TimeSpan
     Public Sub New()
 
     End Sub
@@ -49,6 +49,17 @@ Public Class Dbo_PaletsMovimiento
         End Set
     End Property
 
+    Public Property Hora As TimeSpan
+        Get
+            If m_hora = Nothing Then
+                Return New TimeSpan(Now.Hour, Now.Minute, Now.Second)
+            End If
+            Return m_hora
+        End Get
+        Set(value As TimeSpan)
+            m_hora = value
+        End Set
+    End Property
     Public Property Tipo() As Int32
         Get
             Return m_Tipo

@@ -41,20 +41,10 @@ Public Class spAlbaranesCarga
     End Function
 
     Public Function devolverPalet(ByVal ValorSCC As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
-        dtb.Conectar()
-        Try
-            Dim cmd As System.Data.SqlClient.SqlCommand = dtb.Comando("DeleteAlbaranCargaDevolverPalet")
+            dtb.PrepararConsulta("DeleteAlbaranCargaDevolverPalet @SCC")
 
-            cmd.Parameters.AddWithValue("@SCC", ValorSCC)
-            cmd.ExecuteNonQuery()
-            Return True
-        Catch ex As Exception
-            MessageBox.Show("Error en BD.DeleteAlbaranCargaDevolverPalet" & Environment.NewLine & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return False
-        Finally
-            dtb.Desconectar()
-        End Try
-
+            dtb.AñadirParametroConsulta("@SCC", ValorSCC)
+            Return dtb.Execute
     End Function
 
     Private Function spDeleteAlbaranCargaSeguridadAll(ByVal pedido As Integer, ByVal ordenCarga As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean

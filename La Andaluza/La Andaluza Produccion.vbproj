@@ -45,11 +45,11 @@
     <TargetCulture>es-ES</TargetCulture>
     <ProductName>La Andaluza Nueva</ProductName>
     <PublisherName>La Andaluza</PublisherName>
-    <MinimumRequiredVersion>2014.11.1.12</MinimumRequiredVersion>
+    <MinimumRequiredVersion>2014.11.1.15</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>14</ApplicationRevision>
+    <ApplicationRevision>18</ApplicationRevision>
     <ApplicationVersion>2014.11.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -2014,7 +2014,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Otros\Idiomas\spIdiomas.vb" />
-    <Compile Include="Otros\Updater.vb" />
+    <Compile Include="Bases\Conf\Updater.vb" />
     <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\frmAlbaranCarga.Designer.vb">
       <DependentUpon>frmAlbaranCarga.vb</DependentUpon>
     </Compile>
@@ -2429,47 +2429,47 @@
     <Compile Include="Produccion\Envasados3\Incidencias2\new\frmEntIncidencias_SU.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\new\DispensadorMonodosis.vb" />
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\new\frmContenidosDetallesMonodosis.Designer.vb">
+    <Compile Include="Produccion\Envasados3\PaletsContenidos3\DispensadorMonodosis.vb" />
+    <Compile Include="Produccion\Envasados3\PaletsContenidos3\frmContenidosDetallesMonodosis.Designer.vb">
       <DependentUpon>frmContenidosDetallesMonodosis.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\new\frmContenidosDetallesMonodosis.vb">
+    <Compile Include="Produccion\Envasados3\PaletsContenidos3\frmContenidosDetallesMonodosis.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\new\frmEntCompletado.Designer.vb">
+    <Compile Include="Produccion\Envasados3\PaletsContenidos3\frmEntCompletado.Designer.vb">
       <DependentUpon>frmEntCompletado.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\new\frmEntCompletado.vb">
+    <Compile Include="Produccion\Envasados3\PaletsContenidos3\frmEntCompletado.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\new\frmEntPaletsContenidos.Designer.vb">
+    <Compile Include="Produccion\Envasados3\PaletsContenidos3\frmEntPaletsContenidos.Designer.vb">
       <DependentUpon>frmEntPaletsContenidos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\new\frmEntPaletsContenidos.vb">
+    <Compile Include="Produccion\Envasados3\PaletsContenidos3\frmEntPaletsContenidos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\new\frmEntPaletsContenidosDoypack.Designer.vb">
+    <Compile Include="Produccion\Envasados3\PaletsContenidos3\frmEntPaletsContenidosDoypack.Designer.vb">
       <DependentUpon>frmEntPaletsContenidosDoypack.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\new\frmEntPaletsContenidosDoypack.vb">
+    <Compile Include="Produccion\Envasados3\PaletsContenidos3\frmEntPaletsContenidosDoypack.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\new\frmEntPaletsContenidosMonodosis.Designer.vb">
+    <Compile Include="Produccion\Envasados3\PaletsContenidos3\frmEntPaletsContenidosMonodosis.Designer.vb">
       <DependentUpon>frmEntPaletsContenidosMonodosis.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\new\frmEntPaletsContenidosMonodosis.vb">
+    <Compile Include="Produccion\Envasados3\PaletsContenidos3\frmEntPaletsContenidosMonodosis.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\new\frmPaletsContenidos.Designer.vb">
+    <Compile Include="Produccion\Envasados3\PaletsContenidos3\frmPaletsContenidos.Designer.vb">
       <DependentUpon>frmPaletsContenidos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\new\frmPaletsContenidos.vb">
+    <Compile Include="Produccion\Envasados3\PaletsContenidos3\frmPaletsContenidos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\new\Monodosis.vb" />
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\new\Palet.vb" />
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\new\PaletContenido.vb" />
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\new\spPaletsContenidos.vb" />
+    <Compile Include="Produccion\Envasados3\PaletsContenidos3\Monodosis.vb" />
+    <Compile Include="Produccion\Envasados3\PaletsContenidos3\Palet.vb" />
+    <Compile Include="Produccion\Envasados3\PaletsContenidos3\PaletContenido.vb" />
+    <Compile Include="Produccion\Envasados3\PaletsContenidos3\spPaletsContenidos.vb" />
     <Compile Include="Produccion\Envasados3\Incidencias2\categorias2\DBO_ClasesIncidencias.vb" />
     <Compile Include="Produccion\Envasados3\Incidencias2\categorias2\spClasesIncidencias.vb" />
     <Compile Include="Produccion\Envasados3\Incidencias2\Categorias\DBO_CategoriaIncidencias.vb" />
@@ -5595,22 +5595,22 @@
     <EmbeddedResource Include="Produccion\Envasados3\Incidencias2\Tipos\frmTiposIncidencias.resx">
       <DependentUpon>frmTiposIncidencias.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\PaletsContenidos3\new\frmContenidosDetallesMonodosis.resx">
+    <EmbeddedResource Include="Produccion\Envasados3\PaletsContenidos3\frmContenidosDetallesMonodosis.resx">
       <DependentUpon>frmContenidosDetallesMonodosis.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\PaletsContenidos3\new\frmEntCompletado.resx">
+    <EmbeddedResource Include="Produccion\Envasados3\PaletsContenidos3\frmEntCompletado.resx">
       <DependentUpon>frmEntCompletado.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\PaletsContenidos3\new\frmEntPaletsContenidos.resx">
+    <EmbeddedResource Include="Produccion\Envasados3\PaletsContenidos3\frmEntPaletsContenidos.resx">
       <DependentUpon>frmEntPaletsContenidos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\PaletsContenidos3\new\frmEntPaletsContenidosDoypack.resx">
+    <EmbeddedResource Include="Produccion\Envasados3\PaletsContenidos3\frmEntPaletsContenidosDoypack.resx">
       <DependentUpon>frmEntPaletsContenidosDoypack.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\PaletsContenidos3\new\frmEntPaletsContenidosMonodosis.resx">
+    <EmbeddedResource Include="Produccion\Envasados3\PaletsContenidos3\frmEntPaletsContenidosMonodosis.resx">
       <DependentUpon>frmEntPaletsContenidosMonodosis.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\PaletsContenidos3\new\frmPaletsContenidos.resx">
+    <EmbeddedResource Include="Produccion\Envasados3\PaletsContenidos3\frmPaletsContenidos.resx">
       <DependentUpon>frmPaletsContenidos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Produccion\Envasados3\PaletsProducidos3\new\estados\frmEntPaletsEstados.resx">
@@ -6891,82 +6891,82 @@
   <ItemGroup>
     <PublishFile Include="Microsoft.ReportViewer.Common">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="Microsoft.ReportViewer.DataVisualization">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="Microsoft.ReportViewer.ProcessingObjectModel">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="Microsoft.ReportViewer.WinForms">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="Microsoft.SqlServer.Types">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="Microsoft.Vbe.Interop">
       <Visible>False</Visible>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="office">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="stdole">
       <Visible>False</Visible>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
   </ItemGroup>

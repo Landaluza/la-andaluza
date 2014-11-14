@@ -68,7 +68,7 @@
                                                               txtObsEnvasado.Text, _
                                                               "Reserva1", _
                                                               "Reserva2", _
-                                                              "Reserva3", "") Then
+                                                              "Reserva3", "") <> 0 Then
                         Dim sp As New spPaletsProducidos
                         Dim DBO_PaletsProducidos As DBO_PaletsProducidos = sp.Select_RecordBySSCC(txtSCC.Text, dtb)
                         DBO_PaletsProducidos.EnAlmacen = 0
