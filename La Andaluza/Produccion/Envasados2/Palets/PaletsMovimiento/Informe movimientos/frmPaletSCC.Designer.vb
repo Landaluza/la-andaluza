@@ -25,12 +25,12 @@ Partial Class frmPaletSCC
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.ImageList = New System.Windows.Forms.ImageList(Me.components)
         Me.StatusBarfrmdbo_Movimiento = New System.Windows.Forms.StatusBar()
-
         Me.lblSCC = New System.Windows.Forms.Label()
         Me.dgvMovimientos = New System.Windows.Forms.DataGridView()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.EliminarMovimientoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ModificarMovimientoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CambiarHoraToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.lblArticulo = New System.Windows.Forms.Label()
         Me.lblDescripcion = New System.Windows.Forms.Label()
         Me.btnVer = New System.Windows.Forms.Button()
@@ -43,6 +43,7 @@ Partial Class frmPaletSCC
         Me.tsPalet = New System.Windows.Forms.ToolStripButton()
         Me.tsNoConforme = New System.Windows.Forms.ToolStripButton()
         Me.txtSCC = New BasesParaCompatibilidad.CuadroDeTexto()
+        Me.CambiarFechaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvMovimientos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
@@ -79,13 +80,6 @@ Partial Class frmPaletSCC
         Me.StatusBarfrmdbo_Movimiento.Size = New System.Drawing.Size(836, 22)
         Me.StatusBarfrmdbo_Movimiento.TabIndex = 13
         '
-        'tlpTop
-        '
-
-
-
-
-        '
         'lblSCC
         '
         Me.lblSCC.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
@@ -119,9 +113,9 @@ Partial Class frmPaletSCC
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EliminarMovimientoToolStripMenuItem, Me.ModificarMovimientoToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EliminarMovimientoToolStripMenuItem, Me.ModificarMovimientoToolStripMenuItem, Me.CambiarHoraToolStripMenuItem, Me.CambiarFechaToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(194, 48)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(194, 114)
         '
         'EliminarMovimientoToolStripMenuItem
         '
@@ -137,6 +131,13 @@ Partial Class frmPaletSCC
         Me.ModificarMovimientoToolStripMenuItem.Name = "ModificarMovimientoToolStripMenuItem"
         Me.ModificarMovimientoToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
         Me.ModificarMovimientoToolStripMenuItem.Text = "Modificar movimiento"
+        '
+        'CambiarHoraToolStripMenuItem
+        '
+        Me.CambiarHoraToolStripMenuItem.Image = Global.La_Andaluza.My.Resources.Resources.appointmentmissed16
+        Me.CambiarHoraToolStripMenuItem.Name = "CambiarHoraToolStripMenuItem"
+        Me.CambiarHoraToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
+        Me.CambiarHoraToolStripMenuItem.Text = "Cambiar hora"
         '
         'lblArticulo
         '
@@ -279,6 +280,13 @@ Partial Class frmPaletSCC
         Me.txtSCC.ValorMaximo = 0.0R
         Me.txtSCC.ValorMinimo = 0.0R
         '
+        'CambiarFechaToolStripMenuItem
+        '
+        Me.CambiarFechaToolStripMenuItem.Image = Global.La_Andaluza.My.Resources.Resources.note_go
+        Me.CambiarFechaToolStripMenuItem.Name = "CambiarFechaToolStripMenuItem"
+        Me.CambiarFechaToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
+        Me.CambiarFechaToolStripMenuItem.Text = "Cambiar fecha"
+        '
         'frmPaletSCC
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
@@ -321,5 +329,7 @@ Partial Class frmPaletSCC
     Public WithEvents LblCajasExisten As System.Windows.Forms.Label
     Public WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
     Public WithEvents btnVer As System.Windows.Forms.Button
+    Private WithEvents CambiarHoraToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents CambiarFechaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

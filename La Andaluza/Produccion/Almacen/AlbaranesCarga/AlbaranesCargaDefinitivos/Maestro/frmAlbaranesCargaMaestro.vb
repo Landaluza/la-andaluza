@@ -101,8 +101,15 @@ Public Class frmAlbaranesCargaMaestro
         Dim Posicion As Integer = GeneralBindingSource.Position
         ' If Posicion >= 0 Then
         If Not dgvGeneral.CurrentRow Is Nothing Then
+            'comprobar si el numero es 0 aun y solicitar un cambio
+            'If dgvGeneral.CurrentRow.Cells("AlbaranCargaProMaestroID").Value = 0 Then
+
+            'End If
+
+
             Dim FrmEnt As New frmEntAlbaranesCargaMaestro()
             FrmEnt.Text = ACCION_MODIFICAR & " AlbaranesCargaMaestro"
+
             FrmEnt.CargarDatos(Posicion, _
                        dgvGeneral.CurrentRow.Cells(0).Value, _
                        dgvGeneral.CurrentRow.Cells(1).Value, _

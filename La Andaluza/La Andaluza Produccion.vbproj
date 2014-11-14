@@ -45,11 +45,11 @@
     <TargetCulture>es-ES</TargetCulture>
     <ProductName>La Andaluza Nueva</ProductName>
     <PublisherName>La Andaluza</PublisherName>
-    <MinimumRequiredVersion>2014.11.1.15</MinimumRequiredVersion>
+    <MinimumRequiredVersion>2014.11.1.26</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>18</ApplicationRevision>
+    <ApplicationRevision>27</ApplicationRevision>
     <ApplicationVersion>2014.11.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -2015,10 +2015,10 @@
     </Compile>
     <Compile Include="Otros\Idiomas\spIdiomas.vb" />
     <Compile Include="Bases\Conf\Updater.vb" />
-    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\frmAlbaranCarga.Designer.vb">
-      <DependentUpon>frmAlbaranCarga.vb</DependentUpon>
+    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\frmNumeroAlbaran.Designer.vb">
+      <DependentUpon>frmNumeroAlbaran.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\frmAlbaranCarga.vb">
+    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\frmNumeroAlbaran.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Detalle\ctlAlbaranesCargaProviDetalles.vb" />
@@ -2330,6 +2330,18 @@
       <DependentUpon>frmPaletsMovimientoEntrePalets.vb</DependentUpon>
     </Compile>
     <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\Entre Palets\frmPaletsMovimientoEntrePalets.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\Informe movimientos\frmModificarFecha.Designer.vb">
+      <DependentUpon>frmModificarFecha.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\Informe movimientos\frmModificarFecha.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\Informe movimientos\frmModificarHora.Designer.vb">
+      <DependentUpon>frmModificarHora.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\Informe movimientos\frmModificarHora.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Produccion\Envasados2\Personal\frmEntPersonalEnvasado.Designer.vb">
@@ -5415,14 +5427,14 @@
     <EmbeddedResource Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Detalle\frmEntAlbaranesCargaDetalles.resx">
       <DependentUpon>frmEntAlbaranesCargaDetalles.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\frmAlbaranCarga.resx">
-      <DependentUpon>frmAlbaranCarga.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\frmAlbaranesCargaMaestro.resx">
       <DependentUpon>frmAlbaranesCargaMaestro.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\frmEntAlbaranesCargaMaestro.resx">
       <DependentUpon>frmEntAlbaranesCargaMaestro.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\frmNumeroAlbaran.resx">
+      <DependentUpon>frmNumeroAlbaran.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Detalle\Listados\frmLisAlbaranesCarga.resx">
       <DependentUpon>frmLisAlbaranesCarga.vb</DependentUpon>
@@ -5516,6 +5528,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Produccion\Envasados2\Palets\PaletsMovimiento\Entre Palets\frmPaletsMovimientoEntrePalets.resx">
       <DependentUpon>frmPaletsMovimientoEntrePalets.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Produccion\Envasados2\Palets\PaletsMovimiento\Informe movimientos\frmModificarFecha.resx">
+      <DependentUpon>frmModificarFecha.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Produccion\Envasados2\Palets\PaletsMovimiento\Informe movimientos\frmModificarHora.resx">
+      <DependentUpon>frmModificarHora.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Produccion\Envasados2\Personal\frmEntPersonalEnvasado.resx">
       <DependentUpon>frmEntPersonalEnvasado.vb</DependentUpon>

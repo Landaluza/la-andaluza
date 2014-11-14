@@ -198,20 +198,40 @@ Public Class frmEntAlbaranesCargaMaestro
 
         Try
             If Me.Text.Substring(0, 8) = "Insertar" Then
+                'If m_MaestroProID = 0 Then
+                '    dtb.PrepararConsulta("INSERT INTO [dbo].[AlbaranCargaProMaestro] ([Numero],[Fecha],[ResponsableCargaID],[Observaciones] VALUES (" & _
+                '                                    " (select max(numero)+1 from AlbaranCargaProMaestro) , @fech , @res , @obs )")
+
+                '    dtb.AñadirParametroConsulta("@fech", Now.Date)
+                '    dtb.AñadirParametroConsulta("@res", BasesParaCompatibilidad.Config.User)
+                '    dtb.AñadirParametroConsulta("@obs", "creado automaticamente por " & Config.UserName)
+                '    If Not dtb.Execute Then
+                '        Throw New Exception("Error al crear el albaran provisional")
+                '    End If
+
+                '    dtb.PrepararConsulta("select max(numero) from AlbaranCargaProMaestro")
+                '    m_MaestroProID = dtb.Consultar().Rows(0).Item(0)
+                'End If
+                'si m_MaestroProID = 0 no deberia guardar
+                If m_MaestroProID = 0 Then
+                    dtb.PrepararConsulta("select min(AlbaranCargaProMaestroID)-1 from AlbaranesCargaMaestro")
+                    m_MaestroProID = dtb.Consultar().Rows(0).Item(0)
+                End If
+
                 If Not ctlAlb.GuardarAlbaranCargaMaestro(dtb, m_MaestroProID, _
                                                   FechaDateTimePicker.Value, _
                                                   ClienteIDCuadroDeTexto.Text, _
-                                                  (SerieQSIDCuadroDeTexto.Text), _
-                                                  (NumeroQSCuadroDeTexto.Text), _
-                                                  (AlmacenSalidaQSIDCuadroDeTexto.Text), _
-                                                  (AgenciaIDCuadroDeTexto.Text), _
-                                                  (PorteFormaPagoIDCuadroDeTexto.Text), _
-                                                  (PorteImporteCuadroDeTexto.Text), _
+                                                  SerieQSIDCuadroDeTexto.Text, _
+                                                  NumeroQSCuadroDeTexto.Text, _
+                                                  AlmacenSalidaQSIDCuadroDeTexto.Text, _
+                                                  AgenciaIDCuadroDeTexto.Text, _
+                                                  PorteFormaPagoIDCuadroDeTexto.Text, _
+                                                  PorteImporteCuadroDeTexto.Text, _
                                                   MatriculaCuadroDeTexto.Text, _
                                                   ConductorCuadroDeTexto.Text, _
                                                   ConductorDNICuadroDeTexto.Text, _
-                                                  (ResponsableCargaIDCuadroDeTexto.Text), _
-                                                  (ResponsableAdministracionIDCuadroDeTexto.Text), _
+                                                  ResponsableCargaIDCuadroDeTexto.Text, _
+                                                  ResponsableAdministracionIDCuadroDeTexto.Text, _
                                                   HoraLlegadaDateTimePicker.Value, _
                                                   HoraSalidaDateTimePicker.Value, _
                                                   ObservacionesCuadroDeTexto.Text, _

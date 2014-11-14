@@ -453,4 +453,67 @@ Public Class frmPaletSCC
 
         End Try
     End Sub
+
+    Private Sub CambiarHoraToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CambiarHoraToolStripMenuItem.Click
+        Try
+            If Me.dgvMovimientos.CurrentRow Is Nothing Then
+                Return
+            End If
+
+            If Me.dgvMovimientos.CurrentRow.Cells("id_movimiento").Value Is Convert.DBNull Then
+                Return
+            End If
+
+            Dim dtb As New BasesParaCompatibilidad.DataBase
+            Dim sp As New spPaletsMovimiento
+            Dim dbo As Dbo_PaletsMovimiento = sp.Select_Record(Me.dgvMovimientos.CurrentRow.Cells("id_movimiento").Value, dtb)
+            Dim frm As New frmModificarHora()
+            If frm.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                dbo.Hora = frm.Hora
+                dtb.PrepararConsulta("update paletsmovimiento set hora = @hora where id = @id")
+                dtb.AñadirParametroConsulta("@hora", dbo.Hora)
+                dtb.AñadirParametroConsulta("@id", dbo.ID)
+                If Not dtb.Execute Then
+                    MessageBox.Show("No se pudo actualizar la hora", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                End If
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End Try
+
+        buscar()
+    End Sub
+
+    Private Sub CambiarFechaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CambiarFechaToolStripMenuItem.Click
+        Try
+            If Me.dgvMovimientos.CurrentRow Is Nothing Then
+                Return
+            End If
+
+            If Me.dgvMovimientos.CurrentRow.Cells("id_movimiento").Value Is Convert.DBNull Then
+                Return
+            End If
+
+            Dim dtb As New BasesParaCompatibilidad.DataBase
+            Dim sp As New spPaletsMovimiento
+            Dim dbo As Dbo_PaletsMovimiento = sp.Select_Record(Me.dgvMovimientos.CurrentRow.Cells("id_movimiento").Value, dtb)
+            Dim frm As New frmModificarFecha()
+            If frm.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                dbo.Fecha = frm.fecha
+                dtb.PrepararConsulta("update paletsmovimiento set fecha = @fecha where id = @id")
+                dtb.AñadirParametroConsulta("@fecha", dbo.Fecha)
+                dtb.AñadirParametroConsulta("@id", dbo.ID)
+
+                If Not dtb.Execute Then
+                    MessageBox.Show("No se pudo actualizar la hora", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                End If
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End Try
+
+        buscar()
+    End Sub
 End Class

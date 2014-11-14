@@ -63,4 +63,56 @@ Public Class Updater
             End If
         End If
     End Sub
+
+    Public Sub InstallOnlyRequired()
+        Dim info As UpdateCheckInfo = Nothing
+
+        If (ApplicationDeployment.IsNetworkDeployed) Then
+            Dim AD As ApplicationDeployment = ApplicationDeployment.CurrentDeployment
+
+            Try
+                info = AD.CheckForDetailedUpdate()
+            Catch dde As DeploymentDownloadException
+                Return
+            Catch ioe As InvalidOperationException
+                Return
+            End Try
+
+            If (info.UpdateAvailable) Then
+                Dim doUpdate As Boolean = True
+
+                If (info.IsUpdateRequired) Then               
+                    If aplazar = 0 Then
+                        Dim dr As DialogResult = MessageBox.Show("Se ha detectado una actualizacion obligatoria, desea actualizar ahora?" & Environment.NewLine & "(Si pulsa Cancelar se pospondra la actualización 5 minutos)", "Actualización obligatoria disponible", MessageBoxButtons.YesNo)
+                        If (Not System.Windows.Forms.DialogResult.No = dr) Then
+                            doUpdate = False
+                            aplazar = 1
+                        End If
+                    Else
+                        ' Display a message that the app MUST reboot. Display the minimum required version.
+                        aplazar = 0
+                        MessageBox.Show("Se ha detectado una actualización obligatoria " & _
+                            "a la versión " & info.MinimumRequiredVersion.ToString() & _
+                            ". Se instalará la actualización y luego se reiniciará la aplicacion automaticamente.", _
+                            "Actualización disponible", MessageBoxButtons.OK, _
+                            MessageBoxIcon.Information)
+
+                    End If
+
+                End If
+
+                If (doUpdate) Then
+                    Try
+                        AD.Update()
+                        MessageBox.Show("Se ha instalado una actualización, la aplicación se reiniciara ahora.")
+                        Application.Restart()
+                    Catch dde As DeploymentDownloadException
+                        MessageBox.Show("No se pudo instalar la ultima version de la aplicacion. " & ControlChars.Lf & ControlChars.Lf & "Por favor comprueba tu conexion de red o vuelve a intentarlo mas tarde.")
+                        Return
+                    End Try
+                End If
+            End If
+        End If
+    End Sub
+
 End Class

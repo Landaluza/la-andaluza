@@ -173,6 +173,6 @@
 
     
     Private Sub TimerActualizaciones_Tick(sender As Object, e As EventArgs) Handles TimerActualizaciones.Tick
-        Me.updater.InstallUpdateSyncWithInfo()
+        Me.updater.InstallOnlyRequired()
     End Sub
 End Class
