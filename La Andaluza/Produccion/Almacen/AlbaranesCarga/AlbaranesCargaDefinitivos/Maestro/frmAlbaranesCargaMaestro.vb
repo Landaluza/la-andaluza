@@ -110,30 +110,31 @@ Public Class frmAlbaranesCargaMaestro
             Dim FrmEnt As New frmEntAlbaranesCargaMaestro()
             FrmEnt.Text = ACCION_MODIFICAR & " AlbaranesCargaMaestro"
 
-            ' FrmEnt.Cargar(Posicion, dgvGeneral.CurrentRow.Cells(0).Value)
+            FrmEnt.Cargar(Posicion, dgvGeneral.CurrentRow.Cells(0).Value)
 
-            FrmEnt.CargarDatos(Posicion, _
-                       dgvGeneral.CurrentRow.Cells(0).Value, _
-                       dgvGeneral.CurrentRow.Cells(1).Value, _
-                       dgvGeneral.CurrentRow.Cells(2).Value, _
-                       dgvGeneral.CurrentRow.Cells(3).Value, _
-                       dgvGeneral.CurrentRow.Cells(4).Value, _
-                       dgvGeneral.CurrentRow.Cells(5).Value, _
-                       dgvGeneral.CurrentRow.Cells(6).Value, _
-                       dgvGeneral.CurrentRow.Cells(7).Value, _
-                       dgvGeneral.CurrentRow.Cells(8).Value, _
-                       dgvGeneral.CurrentRow.Cells(9).Value, _
-                       dgvGeneral.CurrentRow.Cells(10).Value, _
-                       dgvGeneral.CurrentRow.Cells(11).Value, _
-                       dgvGeneral.CurrentRow.Cells(12).Value, _
-                       dgvGeneral.CurrentRow.Cells(13).Value, _
-                       dgvGeneral.CurrentRow.Cells(14).Value, _
-                       dgvGeneral.CurrentRow.Cells(15).Value, _
-                       dgvGeneral.CurrentRow.Cells(16).Value, _
-                       dgvGeneral.CurrentRow.Cells(17).Value, _
-                       dgvGeneral.CurrentRow.Cells(18).Value, _
-                       dgvGeneral.CurrentRow.Cells(19).Value, _
-                       dgvGeneral.CurrentRow.Cells(20).Value)
+            'FrmEnt.CargarDatos(Posicion, _
+            '           dgvGeneral.CurrentRow.Cells(0).Value, _
+            '           dgvGeneral.CurrentRow.Cells(1).Value, _
+            '           dgvGeneral.CurrentRow.Cells(2).Value, _
+            '           dgvGeneral.CurrentRow.Cells(3).Value, _
+            '           dgvGeneral.CurrentRow.Cells(4).Value, _
+            '           dgvGeneral.CurrentRow.Cells(5).Value, _
+            '           dgvGeneral.CurrentRow.Cells(6).Value, _
+            '           dgvGeneral.CurrentRow.Cells(7).Value, _
+            '           dgvGeneral.CurrentRow.Cells(8).Value, _
+            '           dgvGeneral.CurrentRow.Cells(9).Value, _
+            '           dgvGeneral.CurrentRow.Cells(10).Value, _
+            '           dgvGeneral.CurrentRow.Cells(11).Value, _
+            '           dgvGeneral.CurrentRow.Cells(12).Value, _
+            '           dgvGeneral.CurrentRow.Cells(13).Value, _
+            '           dgvGeneral.CurrentRow.Cells(14).Value, _
+            '           dgvGeneral.CurrentRow.Cells(15).Value, _
+            '           dgvGeneral.CurrentRow.Cells(16).Value, _
+            '           dgvGeneral.CurrentRow.Cells(17).Value, _
+            '           dgvGeneral.CurrentRow.Cells(18).Value, _
+            '           dgvGeneral.CurrentRow.Cells(19).Value, _
+            '           dgvGeneral.CurrentRow.Cells(20).Value)
+
             BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
             dgvFill()
         Else
@@ -146,28 +147,30 @@ Public Class frmAlbaranesCargaMaestro
         If Posicion >= 0 Then
             Dim FrmEnt As New frmEntAlbaranesCargaMaestro()
             FrmEnt.Text = ACCION_VER & " AlbaranesCargaMaestro"
-            FrmEnt.CargarDatos(Posicion, _
-                       dgvGeneral.Rows(Posicion).Cells(0).Value, _
-                       dgvGeneral.Rows(Posicion).Cells(1).Value, _
-                       dgvGeneral.Rows(Posicion).Cells(2).Value, _
-                       dgvGeneral.Rows(Posicion).Cells(3).Value, _
-                       dgvGeneral.Rows(Posicion).Cells(4).Value, _
-                       dgvGeneral.Rows(Posicion).Cells(5).Value, _
-                       dgvGeneral.Rows(Posicion).Cells(6).Value, _
-                       dgvGeneral.Rows(Posicion).Cells(7).Value, _
-                       dgvGeneral.Rows(Posicion).Cells(8).Value, _
-                       dgvGeneral.Rows(Posicion).Cells(9).Value, _
-                       dgvGeneral.Rows(Posicion).Cells(10).Value, _
-                       dgvGeneral.Rows(Posicion).Cells(11).Value, _
-                       dgvGeneral.Rows(Posicion).Cells(12).Value, _
-                       dgvGeneral.Rows(Posicion).Cells(13).Value, _
-                       dgvGeneral.Rows(Posicion).Cells(14).Value, _
-                       dgvGeneral.Rows(Posicion).Cells(15).Value, _
-                       dgvGeneral.Rows(Posicion).Cells(16).Value, _
-                       dgvGeneral.Rows(Posicion).Cells(17).Value, _
-                       dgvGeneral.Rows(Posicion).Cells(18).Value, _
-                       dgvGeneral.Rows(Posicion).Cells(19).Value, _
-                       dgvGeneral.Rows(Posicion).Cells(20).Value)
+            FrmEnt.Cargar(Posicion, dgvGeneral.CurrentRow.Cells(0).Value)
+
+            'FrmEnt.CargarDatos(Posicion, _
+            '           dgvGeneral.Rows(Posicion).Cells(0).Value, _
+            '           dgvGeneral.Rows(Posicion).Cells(1).Value, _
+            '           dgvGeneral.Rows(Posicion).Cells(2).Value, _
+            '           dgvGeneral.Rows(Posicion).Cells(3).Value, _
+            '           dgvGeneral.Rows(Posicion).Cells(4).Value, _
+            '           dgvGeneral.Rows(Posicion).Cells(5).Value, _
+            '           dgvGeneral.Rows(Posicion).Cells(6).Value, _
+            '           dgvGeneral.Rows(Posicion).Cells(7).Value, _
+            '           dgvGeneral.Rows(Posicion).Cells(8).Value, _
+            '           dgvGeneral.Rows(Posicion).Cells(9).Value, _
+            '           dgvGeneral.Rows(Posicion).Cells(10).Value, _
+            '           dgvGeneral.Rows(Posicion).Cells(11).Value, _
+            '           dgvGeneral.Rows(Posicion).Cells(12).Value, _
+            '           dgvGeneral.Rows(Posicion).Cells(13).Value, _
+            '           dgvGeneral.Rows(Posicion).Cells(14).Value, _
+            '           dgvGeneral.Rows(Posicion).Cells(15).Value, _
+            '           dgvGeneral.Rows(Posicion).Cells(16).Value, _
+            '           dgvGeneral.Rows(Posicion).Cells(17).Value, _
+            '           dgvGeneral.Rows(Posicion).Cells(18).Value, _
+            '           dgvGeneral.Rows(Posicion).Cells(19).Value, _
+            '           dgvGeneral.Rows(Posicion).Cells(20).Value)
             BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Else
             MessageBox.Show("No hay celda seleccionada", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
