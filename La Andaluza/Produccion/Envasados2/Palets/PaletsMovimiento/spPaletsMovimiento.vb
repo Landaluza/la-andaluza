@@ -99,6 +99,7 @@ Public Class spPaletsMovimiento
             insertCommand.Parameters.AddWithValue("@PaletID", Convert.DBNull)
         End If
         insertCommand.Parameters.AddWithValue("@Fecha", If(dbo_movimiento.Fecha_IsDBNull = True, Convert.DBNull, dbo_movimiento.Fecha))
+        insertCommand.Parameters.AddWithValue("@Hora", dbo_movimiento.Hora)
         insertCommand.Parameters.AddWithValue("@Cajas", If(dbo_movimiento.Cajas_IsDBNull = True, Convert.DBNull, dbo_movimiento.Cajas))
         insertCommand.Parameters.AddWithValue("@DocumentoID", If(dbo_movimiento.DocumentoID_IsDBNull = True, Convert.DBNull, dbo_movimiento.DocumentoID))
         insertCommand.Parameters.AddWithValue("@Comentarios", If(dbo_movimiento.Comentarios_IsDBNull = True, Convert.DBNull, dbo_movimiento.Comentarios))
