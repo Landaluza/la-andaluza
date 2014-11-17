@@ -308,7 +308,8 @@ Public Class Monodosis
             dbo_movimiento.Tipo_IsDBNull = False
             dbo_movimiento.PaletID_IsDBNull = False
             dbo_movimiento.Cajas = -1 * cantidad
-            dbo_movimiento.Fecha = DateTime.Now
+            dbo_movimiento.Fecha = fecha
+            dbo_movimiento.Hora = hora
             dbo_movimiento.Comentarios = "no conformidad automatizada"
             dbo_movimiento.Comentarios_IsDBNull = False
             dbo_movimiento.AutorizadoPor = Nothing
@@ -346,7 +347,7 @@ Public Class Monodosis
     End Function
 
     Public Sub cargarComboDetallesMonodosisParaDoypack(ByRef combo As ComboBox, ByVal tipoFormato As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase)
-        dtb.PrepararConsulta("PaletsContenidosSelectMonodosisParaDoypack @tf")
+        dtb.PrepararConsulta("PaletsContenidosSelectMonodosisParaDoypack2 @tf")
         dtb.AñadirParametroConsulta("@tf", tipoFormato)
         combo.mam_DataSource(dtb.Consultar, False)
     End Sub

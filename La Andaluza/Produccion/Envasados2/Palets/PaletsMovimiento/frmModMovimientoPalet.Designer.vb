@@ -61,6 +61,7 @@ Partial Class frmModMovimientoPalet
         Me.Label4 = New System.Windows.Forms.Label()
         Me.txtObsPaletDestino = New System.Windows.Forms.TextBox()
         Me.lblObsPaletOrigen = New System.Windows.Forms.Label()
+        Me.dtpHora = New System.Windows.Forms.DateTimePicker()
         Me.gpbDatosAdicionales.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.gpbDatos.SuspendLayout()
@@ -340,6 +341,7 @@ Partial Class frmModMovimientoPalet
         '
         'gpbDatos
         '
+        Me.gpbDatos.Controls.Add(Me.dtpHora)
         Me.gpbDatos.Controls.Add(Me.btnGenerar)
         Me.gpbDatos.Controls.Add(Me.txtPaletID)
         Me.gpbDatos.Controls.Add(Me.Label5)
@@ -608,6 +610,15 @@ Partial Class frmModMovimientoPalet
         Me.lblObsPaletOrigen.TabIndex = 2
         Me.lblObsPaletOrigen.Text = "Palet origen"
         '
+        'dtpHora
+        '
+        Me.dtpHora.CustomFormat = "HH:mm"
+        Me.dtpHora.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dtpHora.Location = New System.Drawing.Point(173, 81)
+        Me.dtpHora.Name = "dtpHora"
+        Me.dtpHora.Size = New System.Drawing.Size(80, 20)
+        Me.dtpHora.TabIndex = 13
+        '
         'frmModMovimientoPalet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -666,4 +677,5 @@ Partial Class frmModMovimientoPalet
     Private WithEvents lblObsPaletOrigen As System.Windows.Forms.Label
     Private WithEvents txtPaletID As System.Windows.Forms.TextBox
     Private WithEvents btnGenerar As System.Windows.Forms.Button
+    Private WithEvents dtpHora As System.Windows.Forms.DateTimePicker
 End Class

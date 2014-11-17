@@ -154,6 +154,7 @@ Public Class spPaletsMovimiento
             insertCommand.Parameters.AddWithValue("@NewPaletID", Convert.DBNull)
         End If
         insertCommand.Parameters.AddWithValue("@NewFecha", If(dbo_movimiento.Fecha_IsDBNull = True, Convert.DBNull, dbo_movimiento.Fecha))
+        insertCommand.Parameters.AddWithValue("@Hora", dbo_movimiento.Hora)
         insertCommand.Parameters.AddWithValue("@NewCajas", If(dbo_movimiento.Cajas_IsDBNull = True, Convert.DBNull, dbo_movimiento.Cajas))
         insertCommand.Parameters.AddWithValue("@NewDocumentoID", If(dbo_movimiento.DocumentoID_IsDBNull = True, Convert.DBNull, dbo_movimiento.DocumentoID))
         insertCommand.Parameters.AddWithValue("@NewComentarios", If(dbo_movimiento.Comentarios_IsDBNull = True, Convert.DBNull, dbo_movimiento.Comentarios))
@@ -289,6 +290,7 @@ Public Class spPaletsMovimiento
                 DBO_PaletsMovimiento.Inicial = If(reader("Inicial") Is Convert.DBNull, String.Empty, Convert.ToString(reader("Inicial")))
                 DBO_PaletsMovimiento.Final = If(reader("Final") Is Convert.DBNull, String.Empty, Convert.ToString(reader("Final")))
                 DBO_PaletsMovimiento.Fecha = If(reader("Fecha") Is Convert.DBNull, System.DateTime.Now.Date, CDate(reader("Fecha")))
+                DBO_PaletsMovimiento.Hora = If(reader("Hora") Is Convert.DBNull, System.DateTime.Now.TimeOfDay, CType(reader("Hora"), TimeSpan))
                 DBO_PaletsMovimiento.ContenidoDestinoID = If(reader("id_PaletReceptor") Is Convert.DBNull, 0, Convert.ToInt32(reader("id_PaletReceptor")))
                 DBO_PaletsMovimiento.MovimientoEntrePaletsID = If(reader("id_MovimientoEntrePalet") Is Convert.DBNull, 0, Convert.ToInt32(reader("id_MovimientoEntrePalet")))
                 DBO_PaletsMovimiento.FechaModificacion = If(reader("FechaModificacion") Is Convert.DBNull, System.DateTime.Now.Date, CDate(reader("FechaModificacion")))

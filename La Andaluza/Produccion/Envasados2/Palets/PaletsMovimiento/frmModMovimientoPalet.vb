@@ -1,7 +1,7 @@
 ﻿Imports BasesParaCompatibilidad.ComboBoxExtension
 Imports BasesParaCompatibilidad.dtpExtension
 Public Class frmModMovimientoPalet
-    Dim Respuesta As DialogResult
+    Private Respuesta As DialogResult
 
     Private CajasOrigen As Integer = 0
     Private CajasDestino As Integer = 0
@@ -49,7 +49,7 @@ Public Class frmModMovimientoPalet
             txtPaletID.Text = dbo_movimiento.PaletID
             txtCajas.Text = dbo_movimiento.Cajas
             txtDocumento.Text = dbo_movimiento.DocumentoID
-
+            dtpHora.Value = New DateTime(Now.Year, Now.Month, Now.Day, dbo_movimiento.Hora.Hours, dbo_movimiento.Hora.Minutes, 0)
 
             Me.cboMovimientoTipo.SelectedValue = dbo_movimiento.Tipo
             dtpFecha.Text = dbo_movimiento.Fecha
@@ -167,6 +167,7 @@ Public Class frmModMovimientoPalet
             dbo_movimiento.PaletID_IsDBNull = False
             dbo_movimiento.Fecha = dtpFecha.Value.Date
             dbo_movimiento.Fecha_IsDBNull = False
+            dbo_movimiento.Hora = New TimeSpan(dtpHora.Value.Hour, dtpHora.Value.Minute, 0)
             dbo_movimiento.Cajas_IsDBNull = If(txtCajas.Text = "", True, False)
 
             dbo_movimiento.Comentarios = System.Convert.ToString(If(txtObsMovimiento.Text = "", String.Empty, txtObsMovimiento.Text))

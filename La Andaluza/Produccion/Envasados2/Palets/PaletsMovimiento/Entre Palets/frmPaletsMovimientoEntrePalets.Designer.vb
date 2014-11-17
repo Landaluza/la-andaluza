@@ -27,6 +27,7 @@ Partial Class frmPaletsMovimientoEntrePalets
         Me.gpbDestino = New System.Windows.Forms.GroupBox()
         Me.panDestino = New System.Windows.Forms.Panel()
         Me.gpbDatos = New System.Windows.Forms.GroupBox()
+        Me.dtpHora = New System.Windows.Forms.DateTimePicker()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.cboMovimientoSubTipo = New System.Windows.Forms.ComboBox()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -63,7 +64,6 @@ Partial Class frmPaletsMovimientoEntrePalets
         Me.txtCliente = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.txtMotivo = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
         Me.gpbOrigen.SuspendLayout()
         Me.gpbDestino.SuspendLayout()
         Me.gpbDatos.SuspendLayout()
@@ -113,7 +113,7 @@ Partial Class frmPaletsMovimientoEntrePalets
         '
         'gpbDatos
         '
-        Me.gpbDatos.Controls.Add(Me.DateTimePicker1)
+        Me.gpbDatos.Controls.Add(Me.dtpHora)
         Me.gpbDatos.Controls.Add(Me.Label5)
         Me.gpbDatos.Controls.Add(Me.cboMovimientoSubTipo)
         Me.gpbDatos.Controls.Add(Me.Label7)
@@ -133,6 +133,15 @@ Partial Class frmPaletsMovimientoEntrePalets
         Me.gpbDatos.TabIndex = 1
         Me.gpbDatos.TabStop = False
         Me.gpbDatos.Text = "Datos del movimiento"
+        '
+        'dtpHora
+        '
+        Me.dtpHora.CustomFormat = "HH:mm"
+        Me.dtpHora.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dtpHora.Location = New System.Drawing.Point(167, 81)
+        Me.dtpHora.Name = "dtpHora"
+        Me.dtpHora.Size = New System.Drawing.Size(67, 20)
+        Me.dtpHora.TabIndex = 11
         '
         'Label5
         '
@@ -635,20 +644,11 @@ Partial Class frmPaletsMovimientoEntrePalets
         Me.Panel1.Size = New System.Drawing.Size(1009, 228)
         Me.Panel1.TabIndex = 5
         '
-        'DateTimePicker1
-        '
-        Me.DateTimePicker1.CustomFormat = "HH:mm"
-        Me.DateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.DateTimePicker1.Location = New System.Drawing.Point(167, 81)
-        Me.DateTimePicker1.Name = "DateTimePicker1"
-        Me.DateTimePicker1.Size = New System.Drawing.Size(67, 20)
-        Me.DateTimePicker1.TabIndex = 11
-        '
         'frmPaletsMovimientoEntrePalets
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1009, 813)
+        Me.ClientSize = New System.Drawing.Size(1009, 793)
         Me.Controls.Add(Me.gpbDestino)
         Me.Controls.Add(Me.gpbObservaciones)
         Me.Controls.Add(Me.Panel1)
@@ -710,5 +710,5 @@ Partial Class frmPaletsMovimientoEntrePalets
     Private WithEvents gpbDatosAdicionales As System.Windows.Forms.GroupBox
     Private WithEvents Label5 As System.Windows.Forms.Label
     Private WithEvents Panel1 As System.Windows.Forms.Panel
-    Private WithEvents DateTimePicker1 As System.Windows.Forms.DateTimePicker
+    Private WithEvents dtpHora As System.Windows.Forms.DateTimePicker
 End Class

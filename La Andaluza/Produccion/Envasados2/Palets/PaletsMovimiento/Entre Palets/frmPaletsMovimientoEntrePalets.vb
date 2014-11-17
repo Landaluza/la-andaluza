@@ -144,6 +144,7 @@ Public Class frmPaletsMovimientoEntrePalets
             dbo_movimiento.PaletID_IsDBNull = False
             dbo_movimiento.Fecha = dtpFecha.Value.Date
             dbo_movimiento.Fecha_IsDBNull = False
+            dbo_movimiento.Hora = New TimeSpan(dtpHora.Value.Hour, dtpHora.Value.Minute, 0)
             dbo_movimiento.Cajas_IsDBNull = If(txtCajas.Text = "", True, False)
 
             dbo_movimiento.Comentarios = System.Convert.ToString(If(txtObsMovimiento.Text = "", String.Empty, txtObsMovimiento.Text))
