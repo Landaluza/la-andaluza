@@ -242,57 +242,75 @@ Public Class frmEntFormatosEnvasados2
     End Sub
 
     Overrides Sub Guardar()
-        dtb.EmpezarTransaccion()
         Dim cargar As Boolean = False
         Dim formato As Integer
 
-        Try
             If Me.ModoDeApertura = MODIFICACION Then
+                dtb.EmpezarTransaccion()
+                Try
 
-                If Config.UserType = 4 Or Config.UserType = 9 Then
-                    GetValores()
-                    m_DBO_FormatoEnvasado.EnvasadoID = m_DBO_Envasado.EnvasadoID
-                    If Not spFormatosEnvasados2.GrabarFormatosEnvasados2(m_DBO_FormatoEnvasado, dtb) Then
-                        Throw New Exception("no se pudo grabar el formato")
-                    End If
-                End If
-
-                dtb.TerminarTransaccion()
-                Me.Close()
-            Else
-                If Convert.ToString(cboTipoFormatoLinea.SelectedValue) <> "System.Data.DataRowView" And cboTipoFormatoID.SelectedValue.ToString <> "System.Data.DataRowView" Then
-                    If Me.frmPersonal.getVAlores Then
+                    If Config.UserType = 4 Or Config.UserType = 9 Then
                         GetValores()
                         m_DBO_FormatoEnvasado.EnvasadoID = m_DBO_Envasado.EnvasadoID
-
                         If Not spFormatosEnvasados2.GrabarFormatosEnvasados2(m_DBO_FormatoEnvasado, dtb) Then
-                            Throw New Exception("No se pudo grabar el formato")
+                            Throw New Exception("no se pudo grabar el formato")
                         End If
-
-                        MyBase.Guardar()
-                        If Not frmPersonal.guardar(m_DBO_FormatoEnvasado.ID, dtb) Then
-                            Throw New Exception("No se pudo grabar el personal")
-                        End If
-
-                        formato = spFormatosEnvasados2.recuperarUltimoFormatoEnvasado(Me.m_DBO_Envasado, dtb)
-                        dtb.TerminarTransaccion()
-
-                        cargar = True
-                       
-                    Else
-                        dtb.CancelarTransaccion()
-                        MessageBox.Show("Revise los datos del personal", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     End If
-                Else
-                    dtb.CancelarTransaccion()
-                End If
+
+                    dtb.TerminarTransaccion()
+                    Me.Close()
+                Catch ex As Exception
+                dtb.CancelarTransaccion()
+                MessageBox.Show("Asegurese de seleccionar antes el formato" & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return
+                End Try
+                
+        Else
+
+            If Not Me.frmPersonal.getVAlores Then
+                MessageBox.Show("Revise los datos del personal", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Return
             End If
-        Catch ex As Exception
-            dtb.CancelarTransaccion()
-            MessageBox.Show("Asegurese de seleccionar antes el formato" & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
+
+            Try
+                If Convert.ToString(cboTipoFormatoLinea.SelectedValue) = "System.Data.DataRowView" Or cboTipoFormatoID.SelectedValue.ToString = "System.Data.DataRowView" Then
+                    MessageBox.Show("Seleccione un formato", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    Return
+                End If
+            Catch ex As Exception
+                MessageBox.Show("Seleccione un formato", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Return
+            End Try
+
+            dtb.EmpezarTransaccion()
+
+            Try
+
+                GetValores()
+                m_DBO_FormatoEnvasado.EnvasadoID = m_DBO_Envasado.EnvasadoID
+
+                If Not spFormatosEnvasados2.GrabarFormatosEnvasados2(m_DBO_FormatoEnvasado, dtb) Then
+                    Throw New Exception("No se pudo grabar el formato")
+                End If
+
+                If Not frmPersonal.guardar(m_DBO_FormatoEnvasado.ID, dtb) Then
+                    Throw New Exception("No se pudo grabar el personal")
+                End If
+
+                formato = spFormatosEnvasados2.recuperarUltimoFormatoEnvasado(Me.m_DBO_Envasado, dtb)
+
+
+                dtb.TerminarTransaccion()
+                cargar = True
+
+            Catch ex As Exception
+                dtb.CancelarTransaccion()
+                MessageBox.Show("Asegurese de seleccionar antes el formato" & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        End If
 
         If cargar Then
+            MyBase.Guardar()
             SetValores()
             Me.tpgProduccion.Visible = True
             cargar_formularios()

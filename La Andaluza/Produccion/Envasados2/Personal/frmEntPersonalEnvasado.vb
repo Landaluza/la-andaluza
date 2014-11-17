@@ -175,51 +175,51 @@ Public Class frmEntPersonalEnvasado
     End Function
 
     Public Function guardar(ByVal formatoEnvasado As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
-        If Me.dgvEnLinea.Rows.Count > 0 Then
-            Dim sp As New spempleados_formatosEnvasados
-            Dim dbo As New DBO_empleados_formatosEnvasados
-            dbo.Inicio = New TimeSpan(Me.dtpInicio.Value.Hour, Me.dtpInicio.Value.Minute, 0)
-            'dbo.Inicio = New Date(Now.Year, Now.Month, Now.Day, Now.Hour, Now.Minute, Now.Second)
-            dbo.id_formatoEnvasado = formatoEnvasado
-            'dtb.EmpezarTransaccion()
-            'Try
-            For Each row As DataGridViewRow In Me.dgvEnLinea.Rows
-                dbo.id_empleado = row.Cells(0).Value
-                If Not sp.Grabar(dbo, dtb) Then
-                    '        dtb.CancelarTransaccion ()
-                    Throw New Exception("ERR1. No se pudo guardar los datos. Introduzca el personal que arranca la linea manualmente.")
-                    '        Me.Close()
-                Else
-                    If Convert.ToBoolean(row.Cells(2).Value) Then
-                        Dim spCausas As New spPartesEnvasados_CausasPartesEnvasado
-                        Dim dboCAusas As New DBO_PartesEnvasados_CausasPartesEnvasado
-                        dboCAusas.Id_ParteEnvasado = sp.seleccionarUltimoRegistro(dtb)
-                        dboCAusas.Id_CausaParteEnvasado = 3
-                        If Not spCausas.Grabar(dboCAusas, dtb) Then
-                            Throw New Exception("ERR2. No se pudo guardar los datos. Introduzca el personal que arranca la linea manualmente.")
-                        End If
+        'If Me.dgvEnLinea.Rows.Count > 0 Then
+        Dim sp As New spempleados_formatosEnvasados
+        Dim dbo As New DBO_empleados_formatosEnvasados
+        dbo.Inicio = New TimeSpan(Me.dtpInicio.Value.Hour, Me.dtpInicio.Value.Minute, 0)
+        'dbo.Inicio = New Date(Now.Year, Now.Month, Now.Day, Now.Hour, Now.Minute, Now.Second)
+        dbo.id_formatoEnvasado = formatoEnvasado
+        'dtb.EmpezarTransaccion()
+        'Try
+        For Each row As DataGridViewRow In Me.dgvEnLinea.Rows
+            dbo.id_empleado = row.Cells(0).Value
+            If Not sp.Grabar(dbo, dtb) Then
+                '        dtb.CancelarTransaccion ()
+                Throw New Exception("ERR1. No se pudo guardar los datos. Introduzca el personal que arranca la linea manualmente.")
+                '        Me.Close()
+            Else
+                If Convert.ToBoolean(row.Cells(2).Value) Then
+                    Dim spCausas As New spPartesEnvasados_CausasPartesEnvasado
+                    Dim dboCAusas As New DBO_PartesEnvasados_CausasPartesEnvasado
+                    dboCAusas.Id_ParteEnvasado = sp.seleccionarUltimoRegistro(dtb)
+                    dboCAusas.Id_CausaParteEnvasado = 3
+                    If Not spCausas.Grabar(dboCAusas, dtb) Then
+                        Throw New Exception("ERR2. No se pudo guardar los datos. Introduzca el personal que arranca la linea manualmente.")
                     End If
                 End If
-            Next
+            End If
+        Next
 
-            'dtb.TerminarTransaccion ()
-            'Catch ex As Exception
-            'dtb.CancelarTransaccion ()
-            'End Try
-            ' For Each row As DataGridViewRow In Me.dgvEnLinea.Rows
+        'dtb.TerminarTransaccion ()
+        'Catch ex As Exception
+        'dtb.CancelarTransaccion ()
+        'End Try
+        ' For Each row As DataGridViewRow In Me.dgvEnLinea.Rows
 
-            'GUIEnvasado.EmpleadosEnLinea.Add()
-            'Next
+        'GUIEnvasado.EmpleadosEnLinea.Add()
+        'Next
 
 
 
-            'Me.Close()
-            Return True
-        Else
-            
-            Throw New Exception("No ha confirmado el personal que estará en la linea")
-            'Return False
-        End If
+        'Me.Close()
+        Return True
+        'Else
+
+        '    Throw New Exception("No ha confirmado el personal que estará en la linea")
+        '    'Return False
+        'End If
     End Function
 
 End Class
