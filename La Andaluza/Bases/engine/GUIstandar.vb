@@ -173,6 +173,14 @@
 
     
     Private Sub TimerActualizaciones_Tick(sender As Object, e As EventArgs) Handles TimerActualizaciones.Tick
-        Me.updater.InstallOnlyRequired()
+        If Me.updater.InstallOnlyRequired() Then
+            lActualizaciones.Visible = True
+        Else
+            If lActualizaciones.Visible Then lActualizaciones.Visible = False
+        End If
+    End Sub
+
+    Private Sub lActualizaciones_Click(sender As Object, e As EventArgs) Handles lActualizaciones.Click
+        updater.InstallUpdateSyncWithInfo()
     End Sub
 End Class

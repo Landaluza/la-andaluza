@@ -64,7 +64,7 @@ Public Class Updater
         End If
     End Sub
 
-    Public Sub InstallOnlyRequired()
+    Public Function InstallOnlyRequired() As Boolean
         Dim info As UpdateCheckInfo = Nothing
 
         If (ApplicationDeployment.IsNetworkDeployed) Then
@@ -73,15 +73,15 @@ Public Class Updater
             Try
                 info = AD.CheckForDetailedUpdate()
             Catch dde As DeploymentDownloadException
-                Return
+                Return False
             Catch ioe As InvalidOperationException
-                Return
+                Return False
             End Try
 
             If (info.UpdateAvailable) Then
                 Dim doUpdate As Boolean = True
 
-                If (info.IsUpdateRequired) Then               
+                If (info.IsUpdateRequired) Then
                     If aplazar = 0 Then
                         Dim dr As DialogResult = MessageBox.Show("Se ha detectado una actualizacion obligatoria, desea actualizar ahora?" & Environment.NewLine & "(Si pulsa Cancelar se pospondra la actualización 5 minutos)", "Actualización obligatoria disponible", MessageBoxButtons.YesNo)
                         If (Not System.Windows.Forms.DialogResult.No = dr) Then
@@ -99,6 +99,8 @@ Public Class Updater
 
                     End If
 
+                Else
+                    Return True
                 End If
 
                 If (doUpdate) Then
@@ -108,11 +110,13 @@ Public Class Updater
                         Application.Restart()
                     Catch dde As DeploymentDownloadException
                         MessageBox.Show("No se pudo instalar la ultima version de la aplicacion. " & ControlChars.Lf & ControlChars.Lf & "Por favor comprueba tu conexion de red o vuelve a intentarlo mas tarde.")
-                        Return
+                        Return True
                     End Try
                 End If
             End If
         End If
-    End Sub
+
+        Return False
+    End Function
 
 End Class
