@@ -101,6 +101,7 @@ Public Class FrmEntLotes
             AddHandler tsCantidad.Click, AddressOf cambiar_cantidad
         End If
     End Sub
+
     Public Sub CargarDatos(ByVal pos As Integer, ByVal ID As Integer, ByVal TipLot As Integer, ByVal TipPro As Integer, ByVal ConEnologic As Boolean)
         Posicion = pos
         LoteID = ID

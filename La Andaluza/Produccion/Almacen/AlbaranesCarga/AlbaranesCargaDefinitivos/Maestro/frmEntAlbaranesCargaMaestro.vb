@@ -116,6 +116,71 @@ Public Class frmEntAlbaranesCargaMaestro
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
     End Sub
 
+    'Public Sub Cargar(ByVal Pos As Integer,
+    '                   ByVal AlbaranCargaMaestroID As Integer)
+
+    '    dtb.PrepararConsulta("select AlbaranesCargaMaestro.AlbaranCargaMaestroID,AlbaranesCargaMaestro.AlbaranCargaProMaestroID,AlbaranesCargaMaestro.Fecha,AlbaranesCargaMaestro.ClienteID,AlbaranesCargaMaestro.SerieQSID,AlbaranesCargaMaestro.NumeroQS,AlbaranesCargaMaestro.AlmacenSalidaQSID,AlbaranesCargaMaestro.AgenciaID,AlbaranesCargaMaestro.PorteFormaPagoID,AlbaranesCargaMaestro.PorteImporte,AlbaranesCargaMaestro.Matricula,AlbaranesCargaMaestro.Conductor,AlbaranesCargaMaestro.ConductorDNI,AlbaranesCargaMaestro.ResponsableCargaID,AlbaranesCargaMaestro.ResponsableAdministracionID,AlbaranesCargaMaestro.HoraLlegada,AlbaranesCargaMaestro.HoraSalida,AlbaranesCargaMaestro.Observaciones,AlbaranesCargaMaestro.Reserva1,AlbaranesCargaMaestro.Reserva2,AlbaranesCargaMaestro.Reserva3 from AlbaranesCargaMaestro where AlbaranesCargaMaestro.AlbaranCargaMaestroID= @Id order by fecha asc, NumeroQS asc")
+    '    dtb.AñadirParametroConsulta("@Id", AlbaranCargaMaestroID)
+    '    Dim dt As DataTable = dtb.Consultar()
+
+
+    '    '           dgvGeneral.CurrentRow.Cells(2).Value, _
+    '    '           dgvGeneral.CurrentRow.Cells(3).Value, _
+    '    '           dgvGeneral.CurrentRow.Cells(4).Value, _
+    '    '           dgvGeneral.CurrentRow.Cells(5).Value, _
+    '    '           dgvGeneral.CurrentRow.Cells(6).Value, _
+    '    '           dgvGeneral.CurrentRow.Cells(7).Value, _
+    '    '           dgvGeneral.CurrentRow.Cells(8).Value, _
+    '    '           dgvGeneral.CurrentRow.Cells(9).Value, _
+    '    '           dgvGeneral.CurrentRow.Cells(10).Value, _
+    '    '           dgvGeneral.CurrentRow.Cells(11).Value, _
+    '    '           dgvGeneral.CurrentRow.Cells(12).Value, _
+    '    '           dgvGeneral.CurrentRow.Cells(13).Value, _
+    '    '           dgvGeneral.CurrentRow.Cells(14).Value, _
+    '    '           dgvGeneral.CurrentRow.Cells(15).Value, _
+    '    '           dgvGeneral.CurrentRow.Cells(16).Value, _
+    '    '           dgvGeneral.CurrentRow.Cells(17).Value, _
+    '    '           dgvGeneral.CurrentRow.Cells(18).Value, _
+    '    '           dgvGeneral.CurrentRow.Cells(19).Value, _
+    '    '           dgvGeneral.CurrentRow.Cells(20).Value
+
+    '    Posicion = Pos
+    '    ctlAlb.SetAlbaranCargaMaestroID(AlbaranCargaMaestroID)
+    '    txtAlbaranCargaMaestroID.Text = AlbaranCargaMaestroID.ToString
+    '    txtMaestroID.Text = AlbaranCargaProMaestroID.ToString
+    '    m_MaestroProID = AlbaranCargaProMaestroID.ToString
+    '    FechaDateTimePicker.Value = Fecha
+    '    ClienteIDCuadroDeTexto.Text = ClienteID.ToString
+    '    SerieQSIDCuadroDeTexto.Text = SerieQSID.ToString
+    '    NumeroQSCuadroDeTexto.Text = NumeroQS.ToString
+    '    AlmacenSalidaQSIDCuadroDeTexto.Text = AlmacenSalidaQSID.ToString
+    '    AgenciaIDCuadroDeTexto.Text = AgenciaID.ToString
+    '    PorteFormaPagoIDCuadroDeTexto.Text = PorteFormaPagoID.ToString
+    '    PorteImporteCuadroDeTexto.Text = PorteImporte.ToString
+    '    MatriculaCuadroDeTexto.Text = Matricula
+    '    ConductorCuadroDeTexto.Text = Conductor
+    '    ConductorDNICuadroDeTexto.Text = ConductorDNI
+    '    Reserva1CuadroDeTexto.Text = Reserva1
+
+    '    'Los mismos datos en pestaña Acumulados
+    '    txtCabeza.Text = Matricula
+    '    txtConductor.Text = Conductor
+    '    txtDNI.Text = ConductorDNI
+    '    txtRemolque1.Text = Reserva1
+
+    '    ResponsableCargaIDCuadroDeTexto.Text = ResponsableCargaID.ToString
+    '    ResponsableAdministracionIDCuadroDeTexto.Text = ResponsableAdministracionID.ToString
+    '    HoraLlegadaDateTimePicker.Value = Now.Date.Add(HoraLlegada)
+    '    HoraSalidaDateTimePicker.Value = Now.Date.Add(HoraSalida)
+    '    ObservacionesCuadroDeTexto.Text = Observaciones
+
+    '    Reserva2CuadroDeTexto.Text = Reserva2
+    '    Reserva3CuadroDeTexto.Text = Reserva3
+
+    '    v_cliente = ClienteID.ToString
+    '    v_conductor = Conductor
+    'End Sub
+
     Public Sub CargarDatos(ByVal Pos As Integer,
                            ByVal AlbaranCargaMaestroID As Integer, _
                            ByVal AlbaranCargaProMaestroID As Integer, _

@@ -133,6 +133,7 @@ Public Class FrmLotesEnologicos
                            Convert.ToInt32(cboTipoLoteID.SelectedValue), _
                            Convert.ToInt32(cboTipoProducto.SelectedValue), _
                            chbConEnologicos.Checked)
+
             BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
 
             'If MessageBox.Show("¿Recargar la tabla?", "Refrescar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then

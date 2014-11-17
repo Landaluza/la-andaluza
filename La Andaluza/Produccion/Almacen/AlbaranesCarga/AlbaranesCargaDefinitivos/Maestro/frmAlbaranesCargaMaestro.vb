@@ -45,7 +45,7 @@ Public Class frmAlbaranesCargaMaestro
     Protected Overrides Sub cargar_datos()
         Dim dtb As New BasesParaCompatibilidad.DataBase
         dtb.PrepararConsulta("select AlbaranesCargaMaestro.AlbaranCargaMaestroID,AlbaranesCargaMaestro.AlbaranCargaProMaestroID,AlbaranesCargaMaestro.Fecha,AlbaranesCargaMaestro.ClienteID,AlbaranesCargaMaestro.SerieQSID,AlbaranesCargaMaestro.NumeroQS,AlbaranesCargaMaestro.AlmacenSalidaQSID,AlbaranesCargaMaestro.AgenciaID,AlbaranesCargaMaestro.PorteFormaPagoID,AlbaranesCargaMaestro.PorteImporte,AlbaranesCargaMaestro.Matricula,AlbaranesCargaMaestro.Conductor,AlbaranesCargaMaestro.ConductorDNI,AlbaranesCargaMaestro.ResponsableCargaID,AlbaranesCargaMaestro.ResponsableAdministracionID,AlbaranesCargaMaestro.HoraLlegada,AlbaranesCargaMaestro.HoraSalida,AlbaranesCargaMaestro.Observaciones,AlbaranesCargaMaestro.Reserva1,AlbaranesCargaMaestro.Reserva2,AlbaranesCargaMaestro.Reserva3 from AlbaranesCargaMaestro where year(fecha)= @ano order by fecha asc, NumeroQS asc")
-        dtb.AñadirParametroConsulta("ano", agno)
+        dtb.AñadirParametroConsulta("@ano", agno)
         dataSource = dtb.Consultar()
     End Sub
 
@@ -109,6 +109,8 @@ Public Class frmAlbaranesCargaMaestro
 
             Dim FrmEnt As New frmEntAlbaranesCargaMaestro()
             FrmEnt.Text = ACCION_MODIFICAR & " AlbaranesCargaMaestro"
+
+            ' FrmEnt.Cargar(Posicion, dgvGeneral.CurrentRow.Cells(0).Value)
 
             FrmEnt.CargarDatos(Posicion, _
                        dgvGeneral.CurrentRow.Cells(0).Value, _
