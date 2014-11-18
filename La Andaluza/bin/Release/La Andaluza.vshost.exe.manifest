@@ -338,14 +338,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="La Andaluza.exe" size="10312704">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="La Andaluza.exe" size="10314752">
       <assemblyIdentity name="La Andaluza" version="2014.2.1.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>DHI1c9CHKSQlrxI/SKMPXU58gGAR40OT3FXOorZjta8=</dsig:DigestValue>
+        <dsig:DigestValue>D6Mq1pjaPHEKVw3dMP48Efkrjt7AsJ7gvLn83URtpMc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

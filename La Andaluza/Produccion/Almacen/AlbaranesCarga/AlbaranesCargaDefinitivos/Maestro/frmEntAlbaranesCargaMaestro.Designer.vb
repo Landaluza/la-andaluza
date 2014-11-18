@@ -89,6 +89,10 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.tabDatos = New System.Windows.Forms.TabControl()
         Me.tabPagDatos = New System.Windows.Forms.TabPage()
+        Me.cboREsponsableAdminsitracion = New System.Windows.Forms.ComboBox()
+        Me.cboREsponsableCarga = New System.Windows.Forms.ComboBox()
+        Me.Label24 = New System.Windows.Forms.Label()
+        Me.Label23 = New System.Windows.Forms.Label()
         Me.cboClientes = New System.Windows.Forms.ComboBox()
         Me.cboConductores = New System.Windows.Forms.ComboBox()
         Me.grbAlbaranesPendientes = New System.Windows.Forms.GroupBox()
@@ -232,6 +236,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         AlbaranCargaProMaestroIDLabel.Size = New System.Drawing.Size(139, 13)
         AlbaranCargaProMaestroIDLabel.TabIndex = 1000000002
         AlbaranCargaProMaestroIDLabel.Text = "AlbaranCargaProMaestroID:"
+        AlbaranCargaProMaestroIDLabel.Visible = False
         '
         'FechaLabel
         '
@@ -250,6 +255,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         ClienteIDLabel.Size = New System.Drawing.Size(56, 13)
         ClienteIDLabel.TabIndex = 1000000006
         ClienteIDLabel.Text = "Cliente ID:"
+        ClienteIDLabel.Visible = False
         '
         'SerieQSIDLabel
         '
@@ -331,6 +337,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         ResponsableCargaIDLabel.Size = New System.Drawing.Size(117, 13)
         ResponsableCargaIDLabel.TabIndex = 1000000026
         ResponsableCargaIDLabel.Text = "Responsable Carga ID:"
+        ResponsableCargaIDLabel.Visible = False
         '
         'ResponsableAdministracionIDLabel
         '
@@ -340,6 +347,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         ResponsableAdministracionIDLabel.Size = New System.Drawing.Size(157, 13)
         ResponsableAdministracionIDLabel.TabIndex = 1000000028
         ResponsableAdministracionIDLabel.Text = "Responsable Administracion ID:"
+        ResponsableAdministracionIDLabel.Visible = False
         '
         'HoraLlegadaLabel
         '
@@ -508,7 +516,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         'Label20
         '
         Label20.AutoSize = True
-        Label20.Location = New System.Drawing.Point(679, 306)
+        Label20.Location = New System.Drawing.Point(622, 306)
         Label20.Name = "Label20"
         Label20.Size = New System.Drawing.Size(59, 13)
         Label20.TabIndex = 1000000051
@@ -517,7 +525,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         'Label21
         '
         Label21.AutoSize = True
-        Label21.Location = New System.Drawing.Point(679, 345)
+        Label21.Location = New System.Drawing.Point(622, 345)
         Label21.Name = "Label21"
         Label21.Size = New System.Drawing.Size(42, 13)
         Label21.TabIndex = 1000000052
@@ -569,6 +577,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.txtMaestroID.TabIndex = 1000000003
         Me.txtMaestroID.ValorMaximo = 0.0R
         Me.txtMaestroID.ValorMinimo = 0.0R
+        Me.txtMaestroID.Visible = False
         '
         'FechaDateTimePicker
         '
@@ -599,6 +608,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.ClienteIDCuadroDeTexto.TabIndex = 1
         Me.ClienteIDCuadroDeTexto.ValorMaximo = 0.0R
         Me.ClienteIDCuadroDeTexto.ValorMinimo = 0.0R
+        Me.ClienteIDCuadroDeTexto.Visible = False
         '
         'SerieQSIDCuadroDeTexto
         '
@@ -808,6 +818,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.ResponsableCargaIDCuadroDeTexto.TabIndex = 1000000027
         Me.ResponsableCargaIDCuadroDeTexto.ValorMaximo = 0.0R
         Me.ResponsableCargaIDCuadroDeTexto.ValorMinimo = 0.0R
+        Me.ResponsableCargaIDCuadroDeTexto.Visible = False
         '
         'ResponsableAdministracionIDCuadroDeTexto
         '
@@ -829,6 +840,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.ResponsableAdministracionIDCuadroDeTexto.TabIndex = 1000000029
         Me.ResponsableAdministracionIDCuadroDeTexto.ValorMaximo = 0.0R
         Me.ResponsableAdministracionIDCuadroDeTexto.ValorMinimo = 0.0R
+        Me.ResponsableAdministracionIDCuadroDeTexto.Visible = False
         '
         'HoraLlegadaDateTimePicker
         '
@@ -1018,6 +1030,10 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         'tabPagDatos
         '
+        Me.tabPagDatos.Controls.Add(Me.cboREsponsableAdminsitracion)
+        Me.tabPagDatos.Controls.Add(Me.cboREsponsableCarga)
+        Me.tabPagDatos.Controls.Add(Me.Label24)
+        Me.tabPagDatos.Controls.Add(Me.Label23)
         Me.tabPagDatos.Controls.Add(Me.cboClientes)
         Me.tabPagDatos.Controls.Add(Label21)
         Me.tabPagDatos.Controls.Add(Label20)
@@ -1036,6 +1052,44 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.tabPagDatos.TabIndex = 0
         Me.tabPagDatos.Text = "Datos"
         Me.tabPagDatos.UseVisualStyleBackColor = True
+        '
+        'cboREsponsableAdminsitracion
+        '
+        Me.cboREsponsableAdminsitracion.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
+        Me.cboREsponsableAdminsitracion.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cboREsponsableAdminsitracion.FormattingEnabled = True
+        Me.cboREsponsableAdminsitracion.Location = New System.Drawing.Point(763, 426)
+        Me.cboREsponsableAdminsitracion.Name = "cboREsponsableAdminsitracion"
+        Me.cboREsponsableAdminsitracion.Size = New System.Drawing.Size(222, 21)
+        Me.cboREsponsableAdminsitracion.TabIndex = 1000000057
+        '
+        'cboREsponsableCarga
+        '
+        Me.cboREsponsableCarga.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
+        Me.cboREsponsableCarga.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cboREsponsableCarga.FormattingEnabled = True
+        Me.cboREsponsableCarga.Location = New System.Drawing.Point(763, 380)
+        Me.cboREsponsableCarga.Name = "cboREsponsableCarga"
+        Me.cboREsponsableCarga.Size = New System.Drawing.Size(222, 21)
+        Me.cboREsponsableCarga.TabIndex = 1000000056
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.Location = New System.Drawing.Point(622, 429)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(139, 13)
+        Me.Label24.TabIndex = 1000000055
+        Me.Label24.Text = "Responsable administracion"
+        '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.Location = New System.Drawing.Point(622, 388)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(99, 13)
+        Me.Label23.TabIndex = 1000000054
+        Me.Label23.Text = "Responsable carga"
         '
         'cboClientes
         '
@@ -1919,6 +1973,10 @@ Partial Class frmEntAlbaranesCargaMaestro
     Private WithEvents Panel2 As System.Windows.Forms.Panel
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     Private WithEvents btnCartaJr As System.Windows.Forms.Button
+    Private WithEvents cboREsponsableAdminsitracion As System.Windows.Forms.ComboBox
+    Private WithEvents cboREsponsableCarga As System.Windows.Forms.ComboBox
+    Private WithEvents Label24 As System.Windows.Forms.Label
+    Private WithEvents Label23 As System.Windows.Forms.Label
     ' Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     'Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     ' Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator

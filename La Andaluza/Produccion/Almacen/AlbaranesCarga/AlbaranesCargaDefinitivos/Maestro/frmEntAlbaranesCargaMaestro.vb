@@ -9,41 +9,33 @@ Public Class frmEntAlbaranesCargaMaestro
     Private ctlAlbDet As ctlAlbaranesCargaDetalles
     Private dtsAlb As dtsAlbaranesCargaMaestro.AlbaranesCargaMaestroDataTable
     Private ctlAlb As ctlAlbaranesCargaMaestro
-    'Private ctlAlbProMae As ctlAlbaranCargaProMaestro
-    'Private ctlAlbProDet As ctlAlbaranesCargaProviDetalles
-
     Private totalCajas As Integer
     Private m_MaestroProID As String
     Private m_MaestroID As String
-
     Private v_cliente As String
     Private v_conductor As String
     Private tsExcel As ToolStripButton
     Private tsNuevoPalet As ToolStripButton
     Private macrosender As MacroAdapter.MacroSender
     Private Respuesta As MsgBoxResult
-    'Private oQS As Object
-    'Private oMensajesQS As Object
-    'Private TiempoEspera As Integer = 600
     Private Medida As Integer
     Private Albaran As String
     Public Sub New()
         MyBase.New()
         InitializeComponent()
 
-
-
         ctlAlbDet = New ctlAlbaranesCargaDetalles
         dtsAlb = New dtsAlbaranesCargaMaestro.AlbaranesCargaMaestroDataTable
         ctlAlb = New ctlAlbaranesCargaMaestro
-        ' ctlAlbProMae = New ctlAlbaranCargaProMaestro
-        'ctlAlbProDet = New ctlAlbaranesCargaProviDetalles
         FechaDateTimePicker.activarFoco()
         HoraLlegadaDateTimePicker.activarFoco()
         HoraSalidaDateTimePicker.activarFoco()
 
         cboConductores.mam_DataSource("ConductoresSelectCbo", False, dtb)
         cboClientes.mam_DataSource("ClientesSelectCbo", False, dtb)
+        Dim spEmp As New spEmpleados
+        spEmp.cargar_Empleados(cboREsponsableAdminsitracion, dtb)
+        spEmp.cargar_Empleados(cboREsponsableCarga, dtb)
 
         tsExcel = Me.bdnGeneral.Items.Add("Excel")
         tsExcel.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
@@ -149,7 +141,9 @@ Public Class frmEntAlbaranesCargaMaestro
         txtRemolque1.Text = dt.Rows(0).Item("Reserva1") 'Reserva1
 
         ResponsableCargaIDCuadroDeTexto.Text = dt.Rows(0).Item("ResponsableCargaID") 'ResponsableCargaID.ToString
+        cboREsponsableCarga.SelectedValue = dt.Rows(0).Item("ResponsableCargaID")
         ResponsableAdministracionIDCuadroDeTexto.Text = dt.Rows(0).Item("ResponsableAdministracionID") ' ResponsableAdministracionID.ToString
+        cboREsponsableAdminsitracion.SelectedValue = dt.Rows(0).Item("ResponsableAdministracionID")
         HoraLlegadaDateTimePicker.Value = New DateTime(Now.Year, Now.Month, Now.Day, CType(dt.Rows(0).Item("HoraLlegada"), TimeSpan).Hours, CType(dt.Rows(0).Item("HoraLlegada"), TimeSpan).Minutes, 0)  ' Now.Date.Add(HoraLlegada)
         HoraSalidaDateTimePicker.Value = New DateTime(Now.Year, Now.Month, Now.Day, CType(dt.Rows(0).Item("HoraSalida"), TimeSpan).Hours, CType(dt.Rows(0).Item("HoraSalida"), TimeSpan).Minutes, 0)  ' Now.Date.Add(HoraSalida)
         ObservacionesCuadroDeTexto.Text = dt.Rows(0).Item("Observaciones") 'Observaciones
@@ -237,7 +231,19 @@ Public Class frmEntAlbaranesCargaMaestro
 
     End Sub
 
+    Private Function getValores() As Boolean
+        Dim errroes As String = ""
+
+        If ResponsableCargaIDCuadroDeTexto.Text = "" Then ResponsableCargaIDCuadroDeTexto.Text = 0
+        If ResponsableAdministracionIDCuadroDeTexto.Text = "" Then ResponsableAdministracionIDCuadroDeTexto.Text = 0
+
+        Return True
+    End Function
     Overrides Sub Guardar()
+        If Not getValores Then
+            Return
+        End If
+
         Me.txtAlbaranCargaMaestroID.Focus()
         dtb.EmpezarTransaccion()
 
@@ -315,18 +321,18 @@ Public Class frmEntAlbaranesCargaMaestro
             If Me.Text.Substring(0, 9) = "Modificar" Then
                 If Not ctlAlb.GuardarAlbaranCargaMaestro(dtb, m_MaestroProID, _
                                                   FechaDateTimePicker.Value, _
-                                                  (ClienteIDCuadroDeTexto.Text), _
-                                                  (SerieQSIDCuadroDeTexto.Text), _
-                                                  (NumeroQSCuadroDeTexto.Text), _
-                                                  (AlmacenSalidaQSIDCuadroDeTexto.Text), _
-                                                  (AgenciaIDCuadroDeTexto.Text), _
-                                                  (PorteFormaPagoIDCuadroDeTexto.Text), _
-                                                  (PorteImporteCuadroDeTexto.Text), _
+                                                  ClienteIDCuadroDeTexto.Text, _
+                                                  SerieQSIDCuadroDeTexto.Text, _
+                                                  NumeroQSCuadroDeTexto.Text, _
+                                                  AlmacenSalidaQSIDCuadroDeTexto.Text, _
+                                                  AgenciaIDCuadroDeTexto.Text, _
+                                                  PorteFormaPagoIDCuadroDeTexto.Text, _
+                                                  PorteImporteCuadroDeTexto.Text, _
                                                   MatriculaCuadroDeTexto.Text, _
                                                   ConductorCuadroDeTexto.Text, _
                                                   ConductorDNICuadroDeTexto.Text, _
-                                                  (ResponsableCargaIDCuadroDeTexto.Text), _
-                                                  (ResponsableAdministracionIDCuadroDeTexto.Text), _
+                                                   ResponsableCargaIDCuadroDeTexto.Text, _
+                                                  ResponsableAdministracionIDCuadroDeTexto.Text, _
                                                   HoraLlegadaDateTimePicker.Value, _
                                                   HoraSalidaDateTimePicker.Value, _
                                                   ObservacionesCuadroDeTexto.Text, _
@@ -2374,5 +2380,21 @@ Public Class frmEntAlbaranesCargaMaestro
 
     Private Sub btnCartaJr_Click(sender As Object, e As EventArgs) Handles btnCartaJr.Click
         cartaPortes()
+    End Sub
+
+    Private Sub cboREsponsableCarga_SelectedValueChanged(sender As Object, e As EventArgs) Handles cboREsponsableCarga.SelectedValueChanged
+        Try
+            ResponsableCargaIDCuadroDeTexto.Text = cboREsponsableCarga.SelectedValue
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub cboREsponsableAdminsitracion_SelectedValueChanged(sender As Object, e As EventArgs) Handles cboREsponsableAdminsitracion.SelectedValueChanged
+        Try
+            ResponsableAdministracionIDCuadroDeTexto.Text = cboREsponsableAdminsitracion.SelectedValue
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class
