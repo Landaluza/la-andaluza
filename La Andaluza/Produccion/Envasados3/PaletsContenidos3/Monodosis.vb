@@ -15,7 +15,7 @@ Public Class Monodosis
                                         ByVal cantidadCajas As Integer, _
                                         ByVal PaletProducidoId_origen As Integer, _
                                         ByVal PaletProducidoId As Integer, _
-                                        ByVal TipoFormatoEnvasadoID As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase, Optional ByVal doypack As Boolean = False)
+                                        ByVal TipoFormatoEnvasadoID As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal id_monodosis As Integer, Optional ByVal doypack As Boolean = False)
 
 
         'If Not dbomovimiento Is Nothing Then spPMovimientos.Delete(dbomovimiento.ID)
@@ -26,7 +26,7 @@ Public Class Monodosis
         Dim m_PaletProducidoOrigen As DBO_PaletsProducidos
         Dim m_PaletProducidoDestino As DBO_PaletsProducidos
 
-        dbo_movimiento.hora = hora
+        dbo_movimiento.Hora = hora
         dbo_movimiento.Fecha = fecha
         dbo_movimiento.Cajas = cantidadCajas
         Dim cajasInicioMail As String = dbo_movimiento.Cajas.ToString
@@ -37,7 +37,7 @@ Public Class Monodosis
 
 
         ComprobarCantidadesEncajado(dbo_movimiento, m_PaletProducidoOrigen, m_PaletProducidoDestino, _
-                                    True, TipoFormatoEnvasadoID, dtb, doypack)
+                                    True, TipoFormatoEnvasadoID, dtb, id_monodosis, doypack)
         'Movimiento del palets Origen
         dtb.PrepararConsulta("select max(paletcontenidoid) from paletscontenidos")
         dbo_movimiento.ContenidoDestinoID = CType(dtb.Consultar().Rows(0).Item(0), Integer)
@@ -54,7 +54,7 @@ Public Class Monodosis
                                             ByRef m_PaletProducidoOrigen As DBO_PaletsProducidos, _
                                             ByVal m_PaletProducidoDestino As DBO_PaletsProducidos, _
                                             ByVal origen As Boolean, ByVal TipoFormatoEnvasadoID As Integer, _
-                                            ByRef dtb As BasesParaCompatibilidad.DataBase, Optional ByVal doypack As Boolean = False)
+                                            ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal id_monodosis As Integer, Optional ByVal doypack As Boolean = False)
 
 
         'If origen Then
@@ -70,8 +70,9 @@ Public Class Monodosis
 
         If doypack Then
             Dim botella As Integer
-            dtb.PrepararConsulta("select capacidadbotella from ArticulosEnvasadosHistoricoSinLinea where tipoformato = @tf")
+            dtb.PrepararConsulta("select min(cantidad) from doypack where id_tipoFormato = @tf and id_monodosis = (select id_articuloPrimario  from monodosis where id = @id )")
             dtb.AñadirParametroConsulta("@tf", TipoFormatoEnvasadoID)
+            dtb.AñadirParametroConsulta("@id", id_monodosis)
             botella = dtb.Consultar().Rows(0).Item(0)
             capacidad = capacidad * botella
         End If
@@ -385,7 +386,7 @@ Public Class Monodosis
                 AddHandler cbo.SelectedValueChanged, AddressOf frmDoypack.actualizarMermas
             End If
 
-            cbo.Tag = row.Item(2)
+            cbo.Tag = row.Item(3)
 
             pl = New Panel
             adv.Parent = pl

@@ -94,7 +94,7 @@ Inherits BasesParaCompatibilidad.StoredProcedure
     End Function
 
     Public Function devolver_monodosis_para_doypack(ByVal FormatoEnvasado As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As DataTable
-        dtb.PrepararConsulta("select descripcionLa, monodosis.id_tipoFormato, cantidad " & _
+        dtb.PrepararConsulta("select descripcionLa, monodosis.id_tipoFormato, cantidad, monodosis.id " & _
                                             "from doypack, monodosis, articulos1  " & _
                                             "where  " & _
                                             "doypack.id_monodosis = monodosis.id_articuloPrimario " & _

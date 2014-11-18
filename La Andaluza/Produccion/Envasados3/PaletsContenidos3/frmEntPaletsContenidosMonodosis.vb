@@ -137,7 +137,7 @@ Public Class frmEntPaletsContenidosMonodosis
                 dbpFe = spFe.Select_Record(Me.m_DBO_PaletsContenidos.id_formatoEnvasado, dtb)
                 dboEnv = spEnv.Select_Record(dbpFe.EnvasadoID, dtb)
 
-                monodosis.añadirMovimientoEncajado(Me.m_DBO_PaletsContenidos.HoraFin, dboEnv.Fecha, Convert.ToInt32(Me.txtCantidadCajas.Text), Convert.ToInt32(Me.cboMonodosis.SelectedValue), Me.m_DBO_PaletsContenidos.PaletProducidoID, Me.mTipoFormatoEnvasadoID, dtb)
+                monodosis.añadirMovimientoEncajado(Me.m_DBO_PaletsContenidos.HoraFin, dboEnv.Fecha, Convert.ToInt32(Me.txtCantidadCajas.Text), Convert.ToInt32(Me.cboMonodosis.SelectedValue), Me.m_DBO_PaletsContenidos.PaletProducidoID, Me.mTipoFormatoEnvasadoID, dtb, 0)
 
                 Dim indice As Integer = Me.cboMonodosis.SelectedIndex
                 Dim cont As Integer
