@@ -369,13 +369,18 @@ Public Class frmPaletSCC
                         Dim dtb As New BasesParaCompatibilidad.DataBase
                         Dim spForamtos As New spFormatosEnvasados
                         Dim spEnvasados2 As New spEnvasados2
-                        Dim m_p As DBO_PaletsProducidos2 = spPaletsProducidos2.Select_RecordBySSCC(Me.dgvMovimientos.CurrentRow.Cells("SCC").Value, dtb)
-                        Dim m_f As DBO_FormatosEnvasados = spForamtos.Select_Record(m_p.FormatoID, dtb)
-                        Dim m_e As DBO_Envasados2 = spEnvasados2.Select_Record(m_f.EnvasadoID, dtb)
+                        'Dim m_p As DBO_PaletsProducidos2 = spPaletsProducidos2.Select_RecordBySSCC(Me.dgvMovimientos.CurrentRow.Cells("SCC").Value, dtb)
+                        'Dim m_f As DBO_FormatosEnvasados = spForamtos.Select_Record(m_p.FormatoID, dtb)
+                        'Dim m_e As DBO_Envasados2 = spEnvasados2.Select_Record(m_f.EnvasadoID, dtb)
+                        Dim sppp As New spPaletsProducidos
+                        Dim dboPaletsProducidos As DBO_PaletsProducidos = sppp.Select_RecordBySSCC(Me.dgvMovimientos.CurrentRow.Cells("SCC").Value, dtb)
 
-                        Dim frm As New frmEntPaletsProducidos2(m_f.ID, True)
-                        ' Dim frm As New frmEntPaletsProducidos(, )
-                        frm.Text = "Modificar palet producido"
+                        Dim dbpFormato As DBO_FormatosEnvasados = spForamtos.Select_Record(dboPaletsProducidos.FormatoID, dtb)
+                        Dim frm As New frmEntPaletsProducidos(0, dbpFormato.TipoFormatoEnvasadoID, dbpFormato.EnvasadoID, BasesParaCompatibilidad.gridsimpleform.ACCION_MODIFICAR, sppp, dboPaletsProducidos)
+
+                        'Dim frm As New frmEntPaletsProducidos2(m_f.ID, True)
+                        '' Dim frm As New frmEntPaletsProducidos(, )
+                        'frm.Text = "Modificar palet producido"
                         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
                     End If
                 Else
@@ -411,14 +416,23 @@ Public Class frmPaletSCC
                                                    "Si continua se le dirigirá a la ventana de palets producidos ¿Desea continuar?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
                 If resp = DialogResult.Yes Then
-                    Dim spFormato As New spFormatosEnvasados
-                    Dim spEnvasados2 As New spEnvasados2
-                    Dim m_p As DBO_PaletsProducidos2 = spPaletsProducidos2.Select_RecordBySSCC(Me.dgvMovimientos.CurrentRow.Cells("SCC").Value, dtb)
-                    Dim m_f As DBO_FormatosEnvasados = spFormato.Select_Record(m_p.FormatoID, dtb)
-                    Dim m_e As DBO_Envasados2 = spEnvasados2.Select_Record(m_f.EnvasadoID, dtb)
 
-                    Dim frm As New frmEntPaletsProducidos2(m_f.ID, True)
-                    frm.Text = "Modificar palet producido"
+                    Dim spForamtos As New spFormatosEnvasados
+                    Dim spEnvasados2 As New spEnvasados2
+                    Dim sppp As New spPaletsProducidos
+                    Dim dboPaletsProducidos As DBO_PaletsProducidos = sppp.Select_RecordBySSCC(Me.dgvMovimientos.CurrentRow.Cells("SCC").Value, dtb)
+
+                    Dim dbpFormato As DBO_FormatosEnvasados = spForamtos.Select_Record(dboPaletsProducidos.FormatoID, dtb)
+                    Dim frm As New frmEntPaletsProducidos(0, dbpFormato.TipoFormatoEnvasadoID, dbpFormato.EnvasadoID, BasesParaCompatibilidad.gridsimpleform.ACCION_MODIFICAR, sppp, dboPaletsProducidos)
+
+                    'Dim spFormato As New spFormatosEnvasados
+                    'Dim spEnvasados2 As New spEnvasados2
+                    'Dim m_p As DBO_PaletsProducidos2 = spPaletsProducidos2.Select_RecordBySSCC(Me.dgvMovimientos.CurrentRow.Cells("SCC").Value, dtb)
+                    'Dim m_f As DBO_FormatosEnvasados = spFormato.Select_Record(m_p.FormatoID, dtb)
+                    'Dim m_e As DBO_Envasados2 = spEnvasados2.Select_Record(m_f.EnvasadoID, dtb)
+
+                    'Dim frm As New frmEntPaletsProducidos2(m_f.ID, True)
+                    'frm.Text = "Modificar palet producido"
                     BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
                     buscar()
 

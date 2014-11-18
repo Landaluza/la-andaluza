@@ -429,12 +429,22 @@ Public Class frmAlmacenExistencias
     End Sub
 
     Private Sub dgvPalet_CellDoubleClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvPalet.CellDoubleClick
-        Dim m_dbo As New DBO_PaletsProducidos2
-        Dim spFormato As New spFormatosEnvasados
         Dim dtb As New BasesParaCompatibilidad.DataBase
-        m_dbo = spPaletsProducidos2.Select_RecordBySSCC(Me.dgvPalet.CurrentRow.Cells("SCC").Value, dtb)
-        Dim f_dbo As DBO_FormatosEnvasados = spFormato.Select_Record(m_dbo.FormatoID, dtb)
-        Dim frm As New frmEntPaletsProducidos2(True)
+        Dim spForamtos As New spFormatosEnvasados
+        Dim spEnvasados2 As New spEnvasados2
+        Dim sppp As New spPaletsProducidos
+        Dim dboPaletsProducidos As DBO_PaletsProducidos = sppp.Select_RecordBySSCC(Me.dgvPalet.CurrentRow.Cells("SCC").Value, dtb)
+
+        Dim dbpFormato As DBO_FormatosEnvasados = spForamtos.Select_Record(dboPaletsProducidos.FormatoID, dtb)
+        Dim frm As New frmEntPaletsProducidos(0, dbpFormato.TipoFormatoEnvasadoID, dbpFormato.EnvasadoID, BasesParaCompatibilidad.gridsimpleform.ACCION_MODIFICAR, sppp, dboPaletsProducidos)
+
+
+        'Dim m_dbo As New DBO_PaletsProducidos
+        'Dim spFormato As New spFormatosEnvasados
+        'Dim dtb As New BasesParaCompatibilidad.DataBase
+        'm_dbo = spPaletsProducidos2.Select_RecordBySSCC(Me.dgvPalet.CurrentRow.Cells("SCC").Value, dtb)
+        'Dim f_dbo As DBO_FormatosEnvasados = spFormato.Select_Record(m_dbo.FormatoID, dtb)
+        'Dim frm As New frmEntPaletsProducidos2(True)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
     End Sub
 End Class

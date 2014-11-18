@@ -616,123 +616,124 @@ Public Class DispensadorMonodosis
 
     End Sub
 
-    Public Sub añadirMovimientoEncajado(ByRef dtb As BasesParaCompatibilidad.DataBase, ByRef padre As frmEntPaletsProducidos2, ByRef cbo As ComboBox, _
-                                       ByVal cantidadCajas As Integer, ByRef m_DBO_PaletsContenidos2 As DBO_PaletsContenidos2, _
-                                       ByRef spPMovimientos As spPaletsMovimiento, ByRef dbomovimiento As Dbo_PaletsMovimiento, _
-                                       ByRef m_DBO_FormatoEnvasado As DBO_FormatosEnvasados, Optional ByVal Doypack As Boolean = False)
+    'Public Sub añadirMovimientoEncajado(ByRef dtb As BasesParaCompatibilidad.DataBase, ByRef padre As frmEntPaletsProducidos2, ByRef cbo As ComboBox, _
+    '                                   ByVal cantidadCajas As Integer, ByRef m_DBO_PaletsContenidos2 As DBO_PaletsContenidos2, _
+    '                                   ByRef spPMovimientos As spPaletsMovimiento, ByRef dbomovimiento As Dbo_PaletsMovimiento, _
+    '                                   ByRef m_DBO_FormatoEnvasado As DBO_FormatosEnvasados, Optional ByVal Doypack As Boolean = False)
 
-        If Not dbomovimiento Is Nothing Then spPMovimientos.Delete(dbomovimiento.ID, dtb)
+    '    If Not dbomovimiento Is Nothing Then spPMovimientos.Delete(dbomovimiento.ID, dtb)
 
-        Dim dbo_movimiento As New Dbo_PaletsMovimiento
-        Dim m_PaletProducidoOrigen As DBO_PaletsProducidos2
-        Dim m_PaletProducidoDestino As DBO_PaletsProducidos2
-        Dim dbo_MovimientoDB As New spPaletsMovimiento
-        Dim fuente As String = ""
-        Dim spPaletsProducidos2 As New spPaletsProducidos2
+    '    Dim dbo_movimiento As New Dbo_PaletsMovimiento
+    '    Dim m_PaletProducidoOrigen As DBO_PaletsProducidos2
+    '    Dim m_PaletProducidoDestino As DBO_PaletsProducidos2
+    '    Dim dbo_MovimientoDB As New spPaletsMovimiento
+    '    Dim fuente As String = ""
+    '    Dim spPaletsProducidos2 As New spPaletsProducidos2
 
-        dbo_movimiento.Fecha = Now.Date
-        dbo_movimiento.Cajas = cantidadCajas
-        Dim cajasInicioMail As String = dbo_movimiento.Cajas
+    '    dbo_movimiento.Fecha = Now.Date
+    '    dbo_movimiento.Cajas = cantidadCajas
+    '    Dim cajasInicioMail As String = dbo_movimiento.Cajas
 
-        m_PaletProducidoOrigen = spPaletsProducidos2.Select_RecordBySSCCSinMachacar(cbo.SelectedItem(1), dtb)
-        m_PaletProducidoDestino = spPaletsProducidos2.Select_RecordSinMachacar(m_DBO_PaletsContenidos2.PaletProducidoID, dtb)
+    '    m_PaletProducidoOrigen = spPaletsProducidos2.Select_RecordBySSCCSinMachacar(cbo.SelectedItem(1), dtb)
+    '    m_PaletProducidoDestino = spPaletsProducidos2.Select_RecordSinMachacar(m_DBO_PaletsContenidos2.PaletProducidoID, dtb)
 
-        If Doypack Then
-            Dim pl As Panel = cbo.Parent
-            For Each obj As Object In pl.Controls
-                If TypeOf obj Is Label Then
-                    If obj.forecolor <> Color.Red Then
-                        fuente = obj.text
-                    End If
-                End If
-            Next
-        End If
+    '    If Doypack Then
+    '        Dim pl As Panel = cbo.Parent
+    '        For Each obj As Object In pl.Controls
+    '            If TypeOf obj Is Label Then
+    '                If obj.forecolor <> Color.Red Then
+    '                    fuente = obj.text
+    '                End If
+    '            End If
+    '        Next
+    '    End If
 
-        ComprobarCantidadesEncajado(padre, dbo_movimiento, m_PaletProducidoOrigen, m_PaletProducidoDestino, _
-                                    True, m_DBO_FormatoEnvasado, If(Doypack, cbo.Tag, Nothing), fuente)
-        'Movimiento del palets Origen
-        dtb.PrepararConsulta("select max(paletcontenidoid) from paletscontenidos")
-        dbo_movimiento.ContenidoDestinoID = dtb.Consultar().Rows(0).Item(0)
-        dbo_MovimientoDB.Add(dbo_movimiento, dtb)
-        'Añadir Observaciones en PaletsProducidos
+    '    ComprobarCantidadesEncajado(padre, dbo_movimiento, m_PaletProducidoOrigen, m_PaletProducidoDestino, _
+    '                                True, m_DBO_FormatoEnvasado, If(Doypack, cbo.Tag, Nothing), fuente)
+    '    'Movimiento del palets Origen
+    '    dtb.PrepararConsulta("select max(paletcontenidoid) from paletscontenidos")
+    '    dbo_movimiento.ContenidoDestinoID = dtb.Consultar().Rows(0).Item(0)
+    '    dbo_MovimientoDB.Add(dbo_movimiento, dtb)
+    '    'Añadir Observaciones en PaletsProducidos
 
-        'm_PaletProducidoOrigen.observacionesPalets = "Encajado de monodosis"
-        'spPaletsProducidos2.GrabarPaletProducido2(m_PaletProducidoOrigen)
+    '    'm_PaletProducidoOrigen.observacionesPalets = "Encajado de monodosis"
+    '    'spPaletsProducidos2.GrabarPaletProducido2(m_PaletProducidoOrigen)
 
-        '
-        'dbo_MovimientoDB.Add(dbo_movimiento)
-        Dim fecha As String = Now.Date.Day & "/" & Now.Date.Month & "/" & Now.Date.Year
-        dtb.PrepararConsulta("insert into notificaciones(texto, id_tipousuario, leido) values('Envasado de " & m_PaletProducidoOrigen.FormatoDescripcion & " el " & fecha & ". SCC origen: " & m_PaletProducidoOrigen.SCC & "SCC destino:" & m_PaletProducidoDestino.SCC & "', 9, 0)")
-        dtb.Execute()
-        Try
-            Dim mail As New Mail.Mail1And1(True, "Envasado de " & m_PaletProducidoOrigen.FormatoDescripcion, "Envasado de " & m_PaletProducidoOrigen.FormatoDescripcion & " el " & Convert.ToString(DateTime.Today.Date) & "." & Environment.NewLine & "SCC origen: " & m_PaletProducidoOrigen.SCC & ", cajas de origen: " & dbo_movimiento.Cajas & "; SCC destino:" & m_PaletProducidoDestino.SCC & ", Cajas encajadas: " & cajasInicioMail, String.Empty, _
-                                                                                   Config.MailReportAddress, Config.MailReportPass, "control@landaluza.es", _
-                                                                                   String.Empty, String.Empty, Config.MailClientHost, False)
-        Catch ex As Exception
-            MessageBox.Show("No se pudo notificar a cotnrol de este movimiento. Por favor, notifiquelo telefonicamente.", "Error de notificacion", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        End Try
+    '    '
+    '    'dbo_MovimientoDB.Add(dbo_movimiento)
+    '    Dim fecha As String = Now.Date.Day & "/" & Now.Date.Month & "/" & Now.Date.Year
+    '    dtb.PrepararConsulta("insert into notificaciones(texto, id_tipousuario, leido) values('Envasado de " & m_PaletProducidoOrigen.FormatoDescripcion & " el " & fecha & ". SCC origen: " & m_PaletProducidoOrigen.SCC & "SCC destino:" & m_PaletProducidoDestino.SCC & "', 9, 0)")
+    '    dtb.Execute()
+    '    Try
+    '        Dim mail As New Mail.Mail1And1(True, "Envasado de " & m_PaletProducidoOrigen.FormatoDescripcion, "Envasado de " & m_PaletProducidoOrigen.FormatoDescripcion & " el " & Convert.ToString(DateTime.Today.Date) & "." & Environment.NewLine & "SCC origen: " & m_PaletProducidoOrigen.SCC & ", cajas de origen: " & dbo_movimiento.Cajas & "; SCC destino:" & m_PaletProducidoDestino.SCC & ", Cajas encajadas: " & cajasInicioMail, String.Empty, _
+    '                                                                               Config.MailReportAddress, Config.MailReportPass, "control@landaluza.es", _
+    '                                                                               String.Empty, String.Empty, Config.MailClientHost, False)
+    '    Catch ex As Exception
+    '        MessageBox.Show("No se pudo notificar a cotnrol de este movimiento. Por favor, notifiquelo telefonicamente.", "Error de notificacion", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    '    End Try
 
-    End Sub
+    'End Sub
 
-    Private Sub ComprobarCantidadesEncajado(ByRef padre As frmEntPaletsProducidos2, _
-                                          ByRef dbo_movimiento As Dbo_PaletsMovimiento, _
-                                          ByRef m_PaletProducidoOrigen As DBO_PaletsProducidos2, _
-                                          ByVal m_PaletProducidoDestino As DBO_PaletsProducidos2, _
-                                          ByVal origen As Boolean, ByRef m_DBO_FormatoEnvasado As DBO_FormatosEnvasados, _
-                                          ByRef dtb As BasesParaCompatibilidad.DataBase, Optional ByVal CantidadUds As Integer = Nothing, Optional fuente As String = "")
+    'Private Sub ComprobarCantidadesEncajado(ByRef padre As frmEntPaletsProducidos2, _
+    '                                      ByRef dbo_movimiento As Dbo_PaletsMovimiento, _
+    '                                      ByRef m_PaletProducidoOrigen As DBO_PaletsProducidos2, _
+    '                                      ByVal m_PaletProducidoDestino As DBO_PaletsProducidos2, _
+    '                                      ByVal origen As Boolean, ByRef m_DBO_FormatoEnvasado As DBO_FormatosEnvasados, _
+    '                                      ByRef dtb As BasesParaCompatibilidad.DataBase, Optional ByVal CantidadUds As Integer = Nothing, Optional fuente As String = "")
 
-        Dim spPaletsProducidos2 As New spPaletsProducidos2
-        'If origen Then
-        dbo_movimiento.PaletID = m_PaletProducidoOrigen.PaletProducidoID
+    '    Dim spPaletsProducidos2 As New spPaletsProducidos2
+    '    'If origen Then
+    '    dbo_movimiento.PaletID = m_PaletProducidoOrigen.PaletProducidoID
 
-        dbo_movimiento.DocumentoID = System.Convert.ToInt32(m_PaletProducidoDestino.SCC)
-        dbo_movimiento.DocumentoID_IsDBNull = False
+    '    dbo_movimiento.DocumentoID = System.Convert.ToInt32(m_PaletProducidoDestino.SCC)
+    '    dbo_movimiento.DocumentoID_IsDBNull = False
 
-        'Dim capacidad As Integer = DataTableFill("PaletsProducidosCapacidadFormatoByPaletProducidoID " & m_PaletProducidoDestino.PaletProducidoID).Rows(0).Item(0)
-        Dim capacidad As Integer
+    '    'Dim capacidad As Integer = DataTableFill("PaletsProducidosCapacidadFormatoByPaletProducidoID " & m_PaletProducidoDestino.PaletProducidoID).Rows(0).Item(0)
+    '    Dim capacidad As Integer
 
-        dtb.PrepararConsulta("select capacidadCaja from articulosEnvasadosHistorico where tipoformato = @tf")
-        dtb.AñadirParametroConsulta("@tf", m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID)
-        capacidad = dtb.Consultar().Rows(0).Item(0)
-        If CantidadUds <> Nothing Then
-            capacidad = CantidadUds * capacidad
-        End If
+    '    dtb.PrepararConsulta("select capacidadCaja from articulosEnvasadosHistorico where tipoformato = @tf")
+    '    dtb.AñadirParametroConsulta("@tf", m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID)
+    '    capacidad = dtb.Consultar().Rows(0).Item(0)
+    '    If CantidadUds <> Nothing Then
+    '        capacidad = CantidadUds * capacidad
+    '    End If
 
-        dbo_movimiento.Cajas = dbo_movimiento.Cajas * capacidad
-        Dim tope As Long = spPaletsProducidos2.calcularCajasAntesExpedir(m_PaletProducidoOrigen.SCC, dtb)
-        If tope < dbo_movimiento.Cajas Then
-            padre.Close()
-            If fuente <> "" Then
-                Throw New Exception("No hay suficientes cajas para realizar el movimiento de " & fuente & "." & Environment.NewLine & _
-                                    "Solo quedan " & tope & " monodosis (" & Convert.ToInt32(tope / capacidad) & "cajas)")
-            Else
-                Throw New Exception("No hay suficientes cajas para realizar el movimiento. Solo quedan " & tope & " monodosis (" & Convert.ToInt32(tope / capacidad) & "cajas)")
-            End If
-            'Me.Close()            
-        End If
-        'End If
+    '    dbo_movimiento.Cajas = dbo_movimiento.Cajas * capacidad
+    '    Dim tope As Long = spPaletsProducidos2.calcularCajasAntesExpedir(m_PaletProducidoOrigen.SCC, dtb)
+    '    If tope < dbo_movimiento.Cajas Then
+    '        padre.Close()
+    '        If fuente <> "" Then
+    '            Throw New Exception("No hay suficientes cajas para realizar el movimiento de " & fuente & "." & Environment.NewLine & _
+    '                                "Solo quedan " & tope & " monodosis (" & Convert.ToInt32(tope / capacidad) & "cajas)")
+    '        Else
+    '            Throw New Exception("No hay suficientes cajas para realizar el movimiento. Solo quedan " & tope & " monodosis (" & Convert.ToInt32(tope / capacidad) & "cajas)")
+    '        End If
+    '        'Me.Close()            
+    '    End If
+    '    'End If
 
-        dtb.PrepararConsulta("select id_MovimentoEncajado from tiposcajas, articulosEnvasadoshistorico where articulosEnvasadoshistorico.tipocajaID = tiposcajas.tipocajaID and tipoformato = @tf")
-        dtb.AñadirParametroConsulta("@tf", m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID)
-        dbo_movimiento.Tipo = dtb.Consultar().Rows(0).Item(0)
-        dbo_movimiento.Tipo_IsDBNull = False
-        dbo_movimiento.PaletID_IsDBNull = False
-        dbo_movimiento.Fecha = Today.Date
-        dbo_movimiento.Fecha_IsDBNull = False
-        dbo_movimiento.Cajas_IsDBNull = False
-        dbo_movimiento.Inicial_IsDBNull = True
-        dbo_movimiento.Comentarios = "Movimiento de encajado para envasar el palet " & m_PaletProducidoDestino.SCC
-        dbo_movimiento.Comentarios_IsDBNull = False
-        dbo_movimiento.AutorizadoPor = Nothing
-        dbo_movimiento.AutorizadoPor_IsDBNull = True
-        dbo_movimiento.Receptor = Nothing
-        dbo_movimiento.Receptor_IsDBNull = True
-        dbo_movimiento.Motivo = "" ' Si pongo Nothing da error.
-        dbo_movimiento.Motivo_IsDBNull = False
-        dbo_movimiento.Solicitante = Nothing
-        dbo_movimiento.Solicitante_IsDBNull = True
-        dbo_movimiento.Cliente = Nothing
-        dbo_movimiento.Cliente_IsDBNull = True
+    '    dtb.PrepararConsulta("select id_MovimentoEncajado from tiposcajas, articulosEnvasadoshistorico where articulosEnvasadoshistorico.tipocajaID = tiposcajas.tipocajaID and tipoformato = @tf")
+    '    dtb.AñadirParametroConsulta("@tf", m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID)
+    '    dbo_movimiento.Tipo = dtb.Consultar().Rows(0).Item(0)
+    '    dbo_movimiento.Tipo_IsDBNull = False
+    '    dbo_movimiento.PaletID_IsDBNull = False
+    '    dbo_movimiento.Fecha = Today.Date
+    '    dbo_movimiento.Fecha_IsDBNull = False
+    '    dbo_movimiento.Cajas_IsDBNull = False
+    '    dbo_movimiento.Inicial_IsDBNull = True
+    '    dbo_movimiento.Comentarios = "Movimiento de encajado para envasar el palet " & m_PaletProducidoDestino.SCC
+    '    dbo_movimiento.Comentarios_IsDBNull = False
+    '    dbo_movimiento.AutorizadoPor = Nothing
+    '    dbo_movimiento.AutorizadoPor_IsDBNull = True
+    '    dbo_movimiento.Receptor = Nothing
+    '    dbo_movimiento.Receptor_IsDBNull = True
+    '    dbo_movimiento.Motivo = "" ' Si pongo Nothing da error.
+    '    dbo_movimiento.Motivo_IsDBNull = False
+    '    dbo_movimiento.Solicitante = Nothing
+    '    dbo_movimiento.Solicitante_IsDBNull = True
+    '    dbo_movimiento.Cliente = Nothing
+    '    dbo_movimiento.Cliente_IsDBNull = True
 
-    End Sub
+    'End Sub
+
 End Class
