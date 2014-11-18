@@ -41,66 +41,72 @@ Public Class frmPaletSCC
             dtb.AñadirParametroConsulta("@scc", txtSCC.Text)
             Dim dt As DataTable = dtb.Consultar()
 
-            If Not dt Is Nothing Then
-                If dt.Rows.Count = 0 Then
-                    MessageBox.Show("Debes introducir un SSCC valido", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                    txtSCC.Focus()
-                Else
-                    If m_DesdeMovimiento Then
-                        'Hay que buscar el PaletID del SSCC
-                        If m_OrigenDestino = "Origen" Then
-                            m_PaletProducidoOrigen = spPaletsProducidos2.Select_RecordBySSCC(txtSCC.Text, dtb)
-                            'Compruebo si alguno de los ContenidosPalet del PaletProducido estan en Almacen.
-                            Dim tbPaletsContenidos As DataTable = spPaletsContenidos2.PaletsContenidosPorPaletsProducidos(m_PaletProducidoOrigen.PaletProducidoID, dtb)
+            If dt Is Nothing Then
+                MessageBox.Show("Debes introducir un SSCC valido", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                txtSCC.Focus()
+                Me.dgvMovimientos.DataSource = Nothing
+                Return
+            End If
 
-                            If tbPaletsContenidos.Rows.Count > 0 Then
-                                Dim m_DataRow As DataRow
-                                For Each m_DataRow In tbPaletsContenidos.Rows
-                                    If Convert.ToString(m_DataRow.Item("EnAlmacen")) = "True" Then
-                                        m_EnAlmacen = True
-                                    End If
-                                Next
-                            Else
+            If dt.Rows.Count = 0 Then
+                Me.dgvMovimientos.DataSource = Nothing
+                Return
+            End If
+
+            If m_DesdeMovimiento Then
+                'Hay que buscar el PaletID del SSCC
+                If m_OrigenDestino = "Origen" Then
+                    m_PaletProducidoOrigen = spPaletsProducidos2.Select_RecordBySSCC(txtSCC.Text, dtb)
+                    'Compruebo si alguno de los ContenidosPalet del PaletProducido estan en Almacen.
+                    Dim tbPaletsContenidos As DataTable = spPaletsContenidos2.PaletsContenidosPorPaletsProducidos(m_PaletProducidoOrigen.PaletProducidoID, dtb)
+
+                    If tbPaletsContenidos.Rows.Count > 0 Then
+                        Dim m_DataRow As DataRow
+                        For Each m_DataRow In tbPaletsContenidos.Rows
+                            If Convert.ToString(m_DataRow.Item("EnAlmacen")) = "True" Then
                                 m_EnAlmacen = True
                             End If
-                            'El problema es que en las monodosis tenemos varios PaletsProducidosID con un mismo SSCC
-
-
-                            If m_EnAlmacen Then
-                                FillDgv(dt)
-                            Else
-                                MessageBox.Show("Este palet no esta en Almacen, no se pueden hacer movimientos de el.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                                txtSCC.Focus()
-                            End If
-                        Else
-                            m_PaletProducidoDestino = spPaletsProducidos2.Select_RecordBySSCC(txtSCC.Text, dtb)
-                            'Compruebo si alguno de los ContenidosPalet del PaletProducido estan en Almacen.
-                            Dim tbPaletsContenidos As DataTable = spPaletsContenidos2.PaletsContenidosPorPaletsProducidos(m_PaletProducidoDestino.PaletProducidoID, dtb)
-
-                            If tbPaletsContenidos.Rows.Count > 0 Then
-                                Dim m_DataRow As DataRow
-                                For Each m_DataRow In tbPaletsContenidos.Rows
-                                    If Convert.ToString(m_DataRow.Item("EnAlmacen")) = "True" Then
-                                        m_EnAlmacen = True
-                                    End If
-                                Next
-                            Else
-                                m_EnAlmacen = True
-                            End If
-
-                            If m_EnAlmacen Then
-                                FillDgv(dt)
-                            Else
-                                MessageBox.Show("Este palet no esta en Almacen, no se pueden hacer movimientos de el.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                                txtSCC.Focus()
-                            End If
-                        End If
-
+                        Next
                     Else
+                        m_EnAlmacen = True
+                    End If
+                    'El problema es que en las monodosis tenemos varios PaletsProducidosID con un mismo SSCC
+
+
+                    If m_EnAlmacen Then
                         FillDgv(dt)
+                    Else
+                        MessageBox.Show("Este palet no esta en Almacen, no se pueden hacer movimientos de el.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                        txtSCC.Focus()
+                    End If
+                Else
+                    m_PaletProducidoDestino = spPaletsProducidos2.Select_RecordBySSCC(txtSCC.Text, dtb)
+                    'Compruebo si alguno de los ContenidosPalet del PaletProducido estan en Almacen.
+                    Dim tbPaletsContenidos As DataTable = spPaletsContenidos2.PaletsContenidosPorPaletsProducidos(m_PaletProducidoDestino.PaletProducidoID, dtb)
+
+                    If tbPaletsContenidos.Rows.Count > 0 Then
+                        Dim m_DataRow As DataRow
+                        For Each m_DataRow In tbPaletsContenidos.Rows
+                            If Convert.ToString(m_DataRow.Item("EnAlmacen")) = "True" Then
+                                m_EnAlmacen = True
+                            End If
+                        Next
+                    Else
+                        m_EnAlmacen = True
+                    End If
+
+                    If m_EnAlmacen Then
+                        FillDgv(dt)
+                    Else
+                        MessageBox.Show("Este palet no esta en Almacen, no se pueden hacer movimientos de el.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                        txtSCC.Focus()
                     End If
                 End If
+
+            Else
+                FillDgv(dt)
             End If
+            
         Catch ex As Exception
             MessageBox.Show("No se pudo recuperar la lista de movimientos. " & ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End Try
@@ -351,7 +357,7 @@ Public Class frmPaletSCC
         End Try
     End Sub
 
-    Private Sub EliminarMovimientoToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles EliminarMovimientoToolStripMenuItem.Click
+    Private Sub EliminarMovimientoToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles EliminarMovimientoToolStripMenuItem.Click, tsEliminar2.Click
         Try
             If Not dgvMovimientos.CurrentRow Is Nothing Then
                 If Me.dgvMovimientos.CurrentRow.Cells("TipoMovimiento").Value = "Envasar" Then
@@ -381,7 +387,7 @@ Public Class frmPaletSCC
                             Dim dtb As New BasesParaCompatibilidad.DataBase
                             If Not sp.Delete(Me.dgvMovimientos.CurrentRow.Cells("id_movimiento").Value, dtb) Then
                                 Throw New Exception("ERR1. Error al eliminar el movimiento")
-                            End If                            
+                            End If
                         End If
                     End If
                 End If
@@ -454,7 +460,7 @@ Public Class frmPaletSCC
         End Try
     End Sub
 
-    Private Sub CambiarHoraToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CambiarHoraToolStripMenuItem.Click
+    Private Sub CambiarHoraToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CambiarHoraToolStripMenuItem.Click, tsCambiarHora.Click
         Try
             If Me.dgvMovimientos.CurrentRow Is Nothing Then
                 Return
@@ -485,7 +491,7 @@ Public Class frmPaletSCC
         buscar()
     End Sub
 
-    Private Sub CambiarFechaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CambiarFechaToolStripMenuItem.Click
+    Private Sub CambiarFechaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CambiarFechaToolStripMenuItem.Click, tsCAmbiarFecha.Click
         Try
             If Me.dgvMovimientos.CurrentRow Is Nothing Then
                 Return
@@ -500,7 +506,7 @@ Public Class frmPaletSCC
             Dim dbo As Dbo_PaletsMovimiento = sp.Select_Record(Me.dgvMovimientos.CurrentRow.Cells("id_movimiento").Value, dtb)
             Dim frm As New frmModificarFecha()
             If frm.ShowDialog() = Windows.Forms.DialogResult.OK Then
-                dbo.Fecha = frm.fecha
+                dbo.Fecha = frm.Fecha
                 dtb.PrepararConsulta("update paletsmovimiento set fecha = @fecha where id = @id")
                 dtb.AñadirParametroConsulta("@fecha", dbo.Fecha)
                 dtb.AñadirParametroConsulta("@id", dbo.ID)
