@@ -719,7 +719,7 @@ Public Class MenuDispatcher
                 enlace = "http://192.60.52.103/sabater/login.php"
                 postdata = "txtLogin=jerez999&txtClave=jerez&Aceptar=Aceptar"
         End Select
-        Dim frm As New frmEnlaces("JR", enlace, postdata)
+        Dim frm As New frmEnlacesForm("JR", enlace, postdata)
         GUImain.añadirPestaña(frm)
     End Sub
 
@@ -782,7 +782,6 @@ Public Class MenuDispatcher
     End Sub
 
     Private Sub ChepToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChepToolStripMenuItem.Click
-        Dim frm As New frmAccesoRemoto(New SessionConsejoRegulador)
-        GUImain.añadirPestaña(frm)
+        Dim ch As New EnlaceChep
     End Sub
 End Class
