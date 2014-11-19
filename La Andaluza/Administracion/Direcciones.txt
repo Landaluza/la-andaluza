@@ -1,0 +1,10 @@
+CHEP:
+
+-Usuario; pp-martinmi
+-Contraseña; 12345617
+
+
+LOGIFRUIT:
+
+-Usuario; jrsabater
+-Contraseña; boñynzcx

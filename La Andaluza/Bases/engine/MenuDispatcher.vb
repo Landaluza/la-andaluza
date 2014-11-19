@@ -775,4 +775,14 @@ Public Class MenuDispatcher
         Dim upt As New Updater
         upt.InstallUpdateSyncWithInfo()
     End Sub
+
+    Private Sub LogifruitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LogifruitToolStripMenuItem.Click
+        Dim frm As New frmAccesoRemoto(New SessionConsejoRegulador)
+        GUImain.añadirPestaña(frm)
+    End Sub
+
+    Private Sub ChepToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChepToolStripMenuItem.Click
+        Dim frm As New frmAccesoRemoto(New SessionConsejoRegulador)
+        GUImain.añadirPestaña(frm)
+    End Sub
 End Class
