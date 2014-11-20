@@ -302,11 +302,32 @@ Public Class frmPaletsProducidos
                 If MessageBox.Show("¿Desea imprimir etiqueta?", "Etiqueta palet " & dbo.SCC, _
                                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
 
+                        dtb.PrepararConsulta("select max(paletproducidoid) ,max(paletproducidoid), articulo " & _
+                        "from paletsproducidos, FormatosEnvasados, ArticulosEnvasadosHistoricoSinLinea " & _
+                        "where " & _
+                        "FormatoID = FormatoEnvasadoID " & _
+                        "and TipoFormatoEnvasadoID = tipoformato " & _
+                        "group by articulo " & _
+                        " having articulo not like 'Mono%' " & _
+                        " order by max(PaletProducidoID) desc")
 
-                    Dim frm As New etiquetas.frmEtiqueta(Me.dgvGeneral.CurrentRow.Cells("Id").Value, BasesParaCompatibilidad.Config.connectionString)
-                    frm.Show()
+                    Dim cad As String = ""
+
+                    Dim dt As DataTable = dtb.Consultar
+                    For Each row As DataRow In dt.Rows
+                        Try
+                            Dim frm As New etiquetas.frmEtiqueta(row.Item(0), BasesParaCompatibilidad.Config.connectionString)
+                            frm.Show()
+                        Catch ex As Exception
+                            cad = row.Item(0) & Environment.NewLine
+                        End Try
+                    Next
+
+                    MessageBox.Show("errores :" & cad, "", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
                     Try
+                        Dim frm As New etiquetas.frmEtiqueta(Me.dgvGeneral.CurrentRow.Cells("Id").Value, BasesParaCompatibilidad.Config.connectionString)
+                        frm.Show()
 
                         spPaletsProducidos.anadir_impresion_etiqueta(Me.dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
                         Dim textNotificar As String = "Se ha vuelto a imprimir la etiqueta de la matricula  " & Environment.NewLine() & Me.dgvGeneral.CurrentRow.Cells("SCC").Value.ToString & " el día " & DateTime.Now.ToString
