@@ -86,4 +86,12 @@ Inherits BasesParaCompatibilidad.StoredProcedure
         Return dtb.Consultar().Rows(0).Item(0)
     End Function
 
+    Function actualizar(m_DBO_FormatoEnvasado As DBO_FormatosEnvasados, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.PrepararConsulta("update formatosenvasados set TipoFormatoEnvasadoID= @tipo, TipoFormatoLineaID= @linea where FormatoEnvasadoID= @id")
+        dtb.AñadirParametroConsulta("@tipo", m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID)
+        dtb.AñadirParametroConsulta("@linea", m_DBO_FormatoEnvasado.TipoFormatoLineaID)
+        dtb.AñadirParametroConsulta("@id", m_DBO_FormatoEnvasado.ID)
+        Return dtb.Execute
+    End Function
+
 End Class

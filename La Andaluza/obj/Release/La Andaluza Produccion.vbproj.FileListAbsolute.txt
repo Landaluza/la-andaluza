@@ -2642,3 +2642,5 @@ C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andalu
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza.application
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza.exe
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza.pdb
+C:\Users\miguel\Desktop\git\La andaluza\La Andaluza\obj\Release\Interop.SHDocVw.dll
+C:\Users\miguel\Desktop\git\La andaluza\La Andaluza\obj\Release\La_Andaluza.frmEnlacesForm.resources

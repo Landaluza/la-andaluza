@@ -1,12 +1,12 @@
 Public Class frmEntFormatosEnvasados2
-    inherits BasesParaCompatibilidad.FrmAHeredarEntOld
+    Inherits BasesParaCompatibilidad.FrmAHeredarEntOld
 
     Private m_Tabla As DataTable
     Public m_DBO_Envasado As DBO_Envasados2
     Public m_DBO_FormatoEnvasado As DBO_FormatosEnvasados
     Private m_linea As Integer
     Private m_CantidadEnvasada As Integer
-    Private frHijo as BasesParaCompatibilidad.FrmAheredarOld
+    Private frHijo As BasesParaCompatibilidad.FrmAheredarOld
     Private spFormatosEnvasados As spFormatosEnvasados
 
     Private tsIncidencias As ToolStripItem
@@ -15,7 +15,7 @@ Public Class frmEntFormatosEnvasados2
     Private tsIncidencias4 As ToolStripItem
     Private tsIncidencias5 As ToolStripItem
     Private tsIncidencias6 As ToolStripItem
-    Private tsEspecificaciones As ToolStripItem
+    Private tsModificar As ToolStripItem
 
     Private frPalets As frmPaletsProducidos
     Private frmControlesCalidadEnvasados2 As frmEnvasadosControles
@@ -88,53 +88,57 @@ Public Class frmEntFormatosEnvasados2
             Return
         End If
 
-        Me.tsIncidencias = Me.bdnGeneral.Items.Add("Incidencia Calidad")
-        tsIncidencias.Text = "&Calidad (Alt+c)"
-        tsIncidencias.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
-        tsIncidencias.Image = My.Resources.edit_add_2
-        tsIncidencias.Tag = 7
-        AddHandler tsIncidencias.Click, AddressOf frmIncidencias2.InsertarInc
+        If Config.UserType = 4 Or Config.UserType = 9 Then
+            Me.tsModificar = Me.bdnGeneral.Items.Add("Modificar articulo")
+            tsModificar.Text = "Modificar articulo"
+            tsModificar.Tag = 0
+            tsModificar.DisplayStyle = ToolStripItemDisplayStyle.Text
+            AddHandler tsModificar.Click, AddressOf VerModificar_Click
 
-        Me.tsIncidencias2 = Me.bdnGeneral.Items.Add("Incidencia Mecanica")
-        tsIncidencias2.Text = "&Mecanica (Alt+m)"
-        tsIncidencias2.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
-        tsIncidencias2.Image = My.Resources.edit_add_2
-        tsIncidencias2.Tag = 8
-        AddHandler tsIncidencias2.Click, AddressOf frmIncidencias2.InsertarInc
+            btnModificar.Visible = True
+        Else
+            Me.tsIncidencias = Me.bdnGeneral.Items.Add("Incidencia Calidad")
+            tsIncidencias.Text = "&Calidad (Alt+c)"
+            tsIncidencias.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
+            tsIncidencias.Image = My.Resources.edit_add_2
+            tsIncidencias.Tag = 7
+            AddHandler tsIncidencias.Click, AddressOf frmIncidencias2.InsertarInc
 
-        Me.tsIncidencias3 = Me.bdnGeneral.Items.Add("Incidencia Intrinseca")
-        tsIncidencias3.Text = "&Intrinsecas (Alt+i)"
-        tsIncidencias3.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
-        tsIncidencias3.Image = My.Resources.edit_add_2
-        tsIncidencias3.Tag = 9
-        AddHandler tsIncidencias3.Click, AddressOf frmIncidencias2.InsertarInc
+            Me.tsIncidencias2 = Me.bdnGeneral.Items.Add("Incidencia Mecanica")
+            tsIncidencias2.Text = "&Mecanica (Alt+m)"
+            tsIncidencias2.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
+            tsIncidencias2.Image = My.Resources.edit_add_2
+            tsIncidencias2.Tag = 8
+            AddHandler tsIncidencias2.Click, AddressOf frmIncidencias2.InsertarInc
 
-        Me.tsIncidencias4 = Me.bdnGeneral.Items.Add("Incidencia Gestion")
-        tsIncidencias4.Text = "&Gestion (Alt+g)"
-        tsIncidencias4.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
-        tsIncidencias4.Image = My.Resources.edit_add_2
-        tsIncidencias4.Tag = 10
-        AddHandler tsIncidencias4.Click, AddressOf frmIncidencias2.InsertarInc
+            Me.tsIncidencias3 = Me.bdnGeneral.Items.Add("Incidencia Intrinseca")
+            tsIncidencias3.Text = "&Intrinsecas (Alt+i)"
+            tsIncidencias3.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
+            tsIncidencias3.Image = My.Resources.edit_add_2
+            tsIncidencias3.Tag = 9
+            AddHandler tsIncidencias3.Click, AddressOf frmIncidencias2.InsertarInc
 
-        Me.tsIncidencias5 = Me.bdnGeneral.Items.Add("Incidencia Planificada")
-        tsIncidencias5.Text = "&Planificadas(Alt+p)"
-        tsIncidencias5.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
-        tsIncidencias5.Image = My.Resources.edit_add_2
-        tsIncidencias5.Tag = 11
-        AddHandler tsIncidencias5.Click, AddressOf frmIncidencias2.InsertarInc
+            Me.tsIncidencias4 = Me.bdnGeneral.Items.Add("Incidencia Gestion")
+            tsIncidencias4.Text = "&Gestion (Alt+g)"
+            tsIncidencias4.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
+            tsIncidencias4.Image = My.Resources.edit_add_2
+            tsIncidencias4.Tag = 10
+            AddHandler tsIncidencias4.Click, AddressOf frmIncidencias2.InsertarInc
 
-        Me.tsIncidencias6 = Me.bdnGeneral.Items.Add("Indencia Recuperables")
-        tsIncidencias6.Text = "&Recuperables (Alt+r)"
-        tsIncidencias6.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
-        tsIncidencias6.Image = My.Resources.edit_add_2
-        tsIncidencias6.Tag = 12
-        AddHandler tsIncidencias6.Click, AddressOf frmIncidencias2.InsertarInc
+            Me.tsIncidencias5 = Me.bdnGeneral.Items.Add("Incidencia Planificada")
+            tsIncidencias5.Text = "&Planificadas(Alt+p)"
+            tsIncidencias5.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
+            tsIncidencias5.Image = My.Resources.edit_add_2
+            tsIncidencias5.Tag = 11
+            AddHandler tsIncidencias5.Click, AddressOf frmIncidencias2.InsertarInc
 
-        Me.tsEspecificaciones = Me.bdnGeneral.Items.Add("Ver especificaciones")
-        tsEspecificaciones.Text = "Ver &Especificaciones (Alt+e)"
-        tsEspecificaciones.Tag = 0
-        tsEspecificaciones.DisplayStyle = ToolStripItemDisplayStyle.Text
-        AddHandler tsEspecificaciones.Click, AddressOf ButEspecificaciones_Click
+            Me.tsIncidencias6 = Me.bdnGeneral.Items.Add("Indencia Recuperables")
+            tsIncidencias6.Text = "&Recuperables (Alt+r)"
+            tsIncidencias6.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
+            tsIncidencias6.Image = My.Resources.edit_add_2
+            tsIncidencias6.Tag = 12
+            AddHandler tsIncidencias6.Click, AddressOf frmIncidencias2.InsertarInc
+        End If
     End Sub
 
     Private Sub frmEntFormatosEnvasados2_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -245,26 +249,26 @@ Public Class frmEntFormatosEnvasados2
         Dim cargar As Boolean = False
         Dim formato As Integer
 
-            If Me.ModoDeApertura = MODIFICACION Then
-                dtb.EmpezarTransaccion()
-                Try
+        If Me.ModoDeApertura = MODIFICACION Then
+            'dtb.EmpezarTransaccion()
+            'Try
 
-                    If Config.UserType = 4 Or Config.UserType = 9 Then
-                        GetValores()
-                        m_DBO_FormatoEnvasado.EnvasadoID = m_DBO_Envasado.EnvasadoID
-                        If Not spFormatosEnvasados2.GrabarFormatosEnvasados2(m_DBO_FormatoEnvasado, dtb) Then
-                            Throw New Exception("no se pudo grabar el formato")
-                        End If
-                    End If
+            '    If Config.UserType = 4 Or Config.UserType = 9 Then
+            '        GetValores()
+            '        m_DBO_FormatoEnvasado.EnvasadoID = m_DBO_Envasado.EnvasadoID
+            '        If Not spFormatosEnvasados2.GrabarFormatosEnvasados2(m_DBO_FormatoEnvasado, dtb) Then
+            '            Throw New Exception("no se pudo grabar el formato")
+            '        End If
+            '    End If
 
-                    dtb.TerminarTransaccion()
-                    Me.Close()
-                Catch ex As Exception
-                dtb.CancelarTransaccion()
-                MessageBox.Show("Asegurese de seleccionar antes el formato" & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Return
-                End Try
-                
+            '    dtb.TerminarTransaccion()
+            '    Me.Close()
+            'Catch ex As Exception
+            'dtb.CancelarTransaccion()
+            'MessageBox.Show("Asegurese de seleccionar antes el formato" & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            'Return
+            'End Try
+            Me.Close()
         Else
 
             If Not Me.frmPersonal.getVAlores Then
@@ -282,31 +286,33 @@ Public Class frmEntFormatosEnvasados2
                 Return
             End Try
 
-            dtb.EmpezarTransaccion()
+            If GetValores() Then
+                dtb.EmpezarTransaccion()
 
-            Try
-
-                GetValores()
-                m_DBO_FormatoEnvasado.EnvasadoID = m_DBO_Envasado.EnvasadoID
-
-                If Not spFormatosEnvasados2.GrabarFormatosEnvasados2(m_DBO_FormatoEnvasado, dtb) Then
-                    Throw New Exception("No se pudo grabar el formato")
-                End If
-
-                If Not frmPersonal.guardar(m_DBO_FormatoEnvasado.ID, dtb) Then
-                    Throw New Exception("No se pudo grabar el personal")
-                End If
-
-                formato = spFormatosEnvasados2.recuperarUltimoFormatoEnvasado(Me.m_DBO_Envasado, dtb)
+                Try
 
 
-                dtb.TerminarTransaccion()
-                cargar = True
+                    m_DBO_FormatoEnvasado.EnvasadoID = m_DBO_Envasado.EnvasadoID
 
-            Catch ex As Exception
-                dtb.CancelarTransaccion()
-                MessageBox.Show("Asegurese de seleccionar antes el formato" & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            End Try
+                    If Not spFormatosEnvasados2.GrabarFormatosEnvasados2(m_DBO_FormatoEnvasado, dtb) Then
+                        Throw New Exception("No se pudo grabar el formato")
+                    End If
+
+                    If Not frmPersonal.guardar(m_DBO_FormatoEnvasado.ID, dtb) Then
+                        Throw New Exception("No se pudo grabar el personal")
+                    End If
+
+                    formato = spFormatosEnvasados2.recuperarUltimoFormatoEnvasado(Me.m_DBO_Envasado, dtb)
+
+
+                    dtb.TerminarTransaccion()
+                    cargar = True
+
+                Catch ex As Exception
+                    dtb.CancelarTransaccion()
+                    MessageBox.Show("Asegurese de seleccionar antes el formato" & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End Try
+            End If
         End If
 
         If cargar Then
@@ -347,10 +353,20 @@ Public Class frmEntFormatosEnvasados2
         End If
     End Sub
 
-    Friend Sub GetValores()
-        m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID = cboTipoFormatoID.SelectedValue
-        m_DBO_FormatoEnvasado.TipoFormatoLineaID = cboTipoFormatoLinea.SelectedValue
-    End Sub
+    Private Function GetValores() As Boolean
+        Try
+            If cboTipoFormatoID.SelectedValue Is Nothing Or cboTipoFormatoLinea.SelectedValue Is Nothing Then
+                MessageBox.Show("Seleccione antes los valores del envasado", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Return False
+            End If
+            m_DBO_FormatoEnvasado.TipoFormatoEnvasadoID = cboTipoFormatoID.SelectedValue
+            m_DBO_FormatoEnvasado.TipoFormatoLineaID = cboTipoFormatoLinea.SelectedValue
+
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
 
     Overrides Sub SetValores()
 
@@ -373,19 +389,11 @@ Public Class frmEntFormatosEnvasados2
 
 
         If Me.ModoDeApertura = MODIFICACION Then
-            If Config.UserType = 4 Or Config.UserType = 9 Then
-                Me.Panel2.Visible = True
-                Me.cboTipoFormatoID.Enabled = True
-                Me.cboTipoFormatoLinea.Enabled = True
-                Me.cboTipoProducto.Enabled = True
+            Me.Panel2.Visible = False
+            Me.cboTipoFormatoID.Enabled = False
+            Me.cboTipoFormatoLinea.Enabled = False
+            Me.cboTipoProducto.Enabled = False
 
-            Else
-                Me.Panel2.Visible = False
-                Me.cboTipoFormatoID.Enabled = False
-                Me.cboTipoFormatoLinea.Enabled = False
-                Me.cboTipoProducto.Enabled = False
-
-            End If
             SplitContainer1.Panel1Collapsed = False
             SplitContainer1.Panel2Collapsed = True
         End If
@@ -393,26 +401,6 @@ Public Class frmEntFormatosEnvasados2
         Me.Text = Me.Text & " | " & cboTipoFormatoID.Text
     End Sub
 
-    Private Sub ButEspecificaciones_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        If tsEspecificaciones.Tag = 0 Then
-            Try
-                If cboTipoFormatoID.SelectedValue <> 0 Then
-                    pnlEspecificaciones.Visible = True
-                    'tpgProduccion.Visible = False
-                    tsEspecificaciones.Text = "BasesParaCompatibilidad.BD.Cerrar &Especificaciones (Alt+e)"
-                    tsEspecificaciones.Tag = 0
-                End If
-            Catch ex As Exception
-                pnlEspecificaciones.Visible = False
-                'tpgProduccion.Visible = True
-            End Try
-        Else
-            pnlEspecificaciones.Visible = False
-            tpgProduccion.Visible = True
-            tsEspecificaciones.Text = "Ver &Especificaciones (Alt+e)"
-            tsEspecificaciones.Tag = 1
-        End If
-    End Sub
 
     Private Sub cboTipoFormatoLinea_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cboTipoFormatoLinea.SelectedIndexChanged
         Try
@@ -453,7 +441,7 @@ Public Class frmEntFormatosEnvasados2
 
     Private Sub cboTipoProducto_SelectedValueChanged(sender As System.Object, e As System.EventArgs) Handles cboTipoProducto.SelectedValueChanged
         Try
-            If Convert.ToString(cboTipoProducto.SelectedValue) <> "System.Data.DataRowView" Then                
+            If Convert.ToString(cboTipoProducto.SelectedValue) <> "System.Data.DataRowView" Then
                 spTiposFormatosLineas.cargar_TiposFormatosLineas_por_linea_envasado_tipoProducto(cboTipoFormatoLinea, m_DBO_Envasado.LineaID.ToString, cboTipoProducto.SelectedValue, dtb)
             End If
         Catch ex As Exception
@@ -463,4 +451,25 @@ Public Class frmEntFormatosEnvasados2
 
 
 
+    Private Sub btnModificar_Click(sender As Object, e As EventArgs) Handles btnModificar.Click
+        If GetValores() Then
+            Try
+                If Me.spFormatosEnvasados.actualizar(Me.m_DBO_FormatoEnvasado, dtb) Then
+                    Me.Panel2.Visible = False
+                    Me.Text = "Modificar formato envasado | " & cboTipoFormatoID.Text
+                Else
+                    MessageBox.Show("No se pudo actualizar los datos.", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                End If
+            Catch ex As Exception
+                MessageBox.Show("Error actualizando los datos. " & ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        End If
+    End Sub
+
+    Private Sub VerModificar_Click(sender As Object, e As EventArgs)
+        Me.Panel2.Visible = True
+        Me.cboTipoFormatoID.Enabled = True
+        Me.cboTipoFormatoLinea.Enabled = True
+        Me.cboTipoProducto.Enabled = True
+    End Sub
 End Class

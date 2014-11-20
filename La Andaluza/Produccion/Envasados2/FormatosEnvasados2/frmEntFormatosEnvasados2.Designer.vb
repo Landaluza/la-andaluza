@@ -60,6 +60,7 @@ Partial Class frmEntFormatosEnvasados2
         Me.cboTipoFormatoID = New System.Windows.Forms.ComboBox()
         Me.cboTipoFormatoLinea = New System.Windows.Forms.ComboBox()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.btnModificar = New System.Windows.Forms.Button()
         FormatoLabel = New System.Windows.Forms.Label()
         Label4 = New System.Windows.Forms.Label()
         Label1 = New System.Windows.Forms.Label()
@@ -434,6 +435,7 @@ Partial Class frmEntFormatosEnvasados2
         '
         'Panel2
         '
+        Me.Panel2.Controls.Add(Me.btnModificar)
         Me.Panel2.Controls.Add(Label1)
         Me.Panel2.Controls.Add(Me.cboTipoProducto)
         Me.Panel2.Controls.Add(Label4)
@@ -493,6 +495,19 @@ Partial Class frmEntFormatosEnvasados2
         Me.SplitContainer1.Size = New System.Drawing.Size(957, 505)
         Me.SplitContainer1.SplitterDistance = 319
         Me.SplitContainer1.TabIndex = 1000000002
+        '
+        'btnModificar
+        '
+        Me.btnModificar.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnModificar.FlatAppearance.BorderSize = 0
+        Me.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnModificar.Image = Global.La_Andaluza.My.Resources.Resources.document_save_5_32
+        Me.btnModificar.Location = New System.Drawing.Point(894, 14)
+        Me.btnModificar.Name = "btnModificar"
+        Me.btnModificar.Size = New System.Drawing.Size(51, 50)
+        Me.btnModificar.TabIndex = 15
+        Me.btnModificar.UseVisualStyleBackColor = True
+        Me.btnModificar.Visible = False
         '
         'frmEntFormatosEnvasados2
         '
@@ -570,4 +585,5 @@ End Sub
     Private WithEvents panEmpleados As System.Windows.Forms.Panel
     Private WithEvents Panel2 As System.Windows.Forms.Panel
     Private WithEvents SplitContainer1 As System.Windows.Forms.SplitContainer
+    Private WithEvents btnModificar As System.Windows.Forms.Button
 End Class
