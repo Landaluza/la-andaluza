@@ -194,14 +194,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="etiquetas.dll" size="1187840">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="etiquetas.dll" size="1188352">
       <assemblyIdentity name="etiquetas" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>IJ4zOoLV0tC662au1OUtuUaroGly32nmKj6YI9r2pwU=</dsig:DigestValue>
+        <dsig:DigestValue>uwnKSLkmXlpsV1obyy9C6MThwodimXoR3OsyJZpAKNU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -345,7 +345,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>VmnPooTsiAq/rUqsAZsq101n9i7hC34eAFz4q3wehYA=</dsig:DigestValue>
+        <dsig:DigestValue>gkWGmeSXtWTwz2Em7QyPhEbvqK/y758GF8lXNIspXRY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
