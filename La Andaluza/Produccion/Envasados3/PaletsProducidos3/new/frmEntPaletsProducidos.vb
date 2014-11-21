@@ -9,7 +9,7 @@ Public Class frmEntPaletsProducidos
     Private mTipoFormatoEnvasadoID As Integer
     'Private mFecha As Date
     Private envasado As Integer
-    Private frmEtiqueta As frmEtiqueta0
+    'Private frmEtiqueta As frmEtiqueta0
 
     Public WriteOnly Property Linea As Integer
         Set(value As Integer)
@@ -248,8 +248,11 @@ Public Class frmEntPaletsProducidos
                                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
                     If spp.Etiquetar(Me.m_DBO_PaletsProducidos.ID, dtb) Then
                         'Dim frm As New frmEtiqueta0(Me.m_DBO_PaletsProducidos.ID, False) ', False)
-                        Dim frm As New etiquetas.frmEtiqueta(Me.m_DBO_PaletsProducidos.ID, BasesParaCompatibilidad.Config.connectionString)
-                        frm.Show()
+                        'Dim frm As New etiquetas.frmEtiqueta(Me.m_DBO_PaletsProducidos.ID, BasesParaCompatibilidad.Config.connectionString)
+                        'frm.Show()
+                        Dim et As New etiquetas.Etiqueta(Me.m_DBO_PaletsProducidos.ID, BasesParaCompatibilidad.Config.connectionString)
+                        et.print()
+                        et.print()
                     Else
                         MessageBox.Show("No se pudo imprimir la etiqueta, vuelva a intentarlo manualmente", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     End If

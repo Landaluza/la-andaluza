@@ -2390,10 +2390,10 @@
     <Compile Include="Produccion\Envasados3\Copy of etiquetas\CodigoBarra.vb" />
     <Compile Include="Produccion\Envasados3\Copy of etiquetas\DBO_EtiquetasPalets.vb" />
     <Compile Include="Produccion\Envasados3\Copy of etiquetas\Etiquetador.vb" />
-    <Compile Include="Produccion\Envasados3\Copy of etiquetas\frmEtiqueta.Designer.vb">
+    <Compile Include="Produccion\Envasados3\Incidencias2\frmEtiqueta.Designer.vb">
       <DependentUpon>frmEtiqueta.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados3\Copy of etiquetas\frmEtiqueta.vb">
+    <Compile Include="Produccion\Envasados3\Incidencias2\frmEtiqueta.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Produccion\Envasados3\Copy of etiquetas\GS1.vb" />
@@ -5531,7 +5531,7 @@
     <EmbeddedResource Include="Produccion\Envasados3\Copy of etiquetas\articulosLoteados\frmEntArticulosLoteados.resx">
       <DependentUpon>frmEntArticulosLoteados.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\Copy of etiquetas\frmEtiqueta.resx">
+    <EmbeddedResource Include="Produccion\Envasados3\Incidencias2\frmEtiqueta.resx">
       <DependentUpon>frmEtiqueta.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Produccion\Envasados3\Copy of etiquetas\TiposLoteados\frmEntTiposLoteados.resx">
@@ -6620,7 +6620,7 @@
     <None Include="Resources\glyphicons_371_global.png" />
     <None Include="Bases\ZLibrerias\BasesParaCompatibilidad.dll" />
     <None Include="Bases\ZLibrerias\BarcodeLib.dll" />
-    <Content Include="Bases\ZLibrerias\etiquetas.dll" />
+    <None Include="Bases\ZLibrerias\etiquetas.dll" />
     <Content Include="Resources\window_new.ico" />
     <Content Include="Resources\window_new_3.ico" />
     <None Include="Resources\text-x-makefile.png" />
