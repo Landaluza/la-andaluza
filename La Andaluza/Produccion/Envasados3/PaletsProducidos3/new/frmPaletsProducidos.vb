@@ -13,6 +13,7 @@ Public Class frmPaletsProducidos
     Private envasado As Integer
     'Private fechaEnvasado As date
     Public Const COMPLETAR As Byte = 98
+    Private etiqueta As etiquetas.Etiqueta
 
 
     Public ReadOnly Property maestroId As Integer 'Implements BotleForm.maestroId
@@ -62,6 +63,7 @@ Public Class frmPaletsProducidos
             'AddHandler btnEtiqueta3.Click, AddressOf mostrarEtiqueta_control
         End If
 
+        etiqueta = New etiquetas.Etiqueta(0, BasesParaCompatibilidad.Config.connectionString)
         Me.dgvPicos.BackgroundColor = Color.White
     End Sub
 
@@ -299,6 +301,9 @@ Public Class frmPaletsProducidos
             Dim dtb As New BasesParaCompatibilidad.DataBase
             Dim dbo As DBO_PaletsProducidos = spPaletsProducidos.Select_Record(Me.dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
             If Not dbo Is Nothing Then
+                If spPaletsProducidos.esMonodosis(Me.dboPaletsProducidos.FormatoID, dtb) Then
+                    Return
+                End If
                 If MessageBox.Show("¿Desea imprimir etiqueta?", "Etiqueta palet " & dbo.SCC, _
                                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
 
@@ -325,10 +330,11 @@ Public Class frmPaletsProducidos
 
 
                     Try
+
                         'Dim frmEt As New etiquetas.frmEtiqueta(Me.dgvGeneral.CurrentRow.Cells("Id").Value, BasesParaCompatibilidad.Config.connectionString)
                         'frmEt.Show()
-                        Dim et As New etiquetas.Etiqueta(Me.dgvGeneral.CurrentRow.Cells("Id").Value, BasesParaCompatibilidad.Config.connectionString)
-                        et.print()
+                        etiqueta.id = Me.dgvGeneral.CurrentRow.Cells("Id").Value
+                        etiqueta.print()
 
                         spPaletsProducidos.anadir_impresion_etiqueta(Me.dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
                         Dim textNotificar As String = "Se ha vuelto a imprimir la etiqueta de la matricula  " & Environment.NewLine() & Me.dgvGeneral.CurrentRow.Cells("SCC").Value.ToString & " el día " & DateTime.Now.ToString

@@ -256,4 +256,17 @@ Inherits BasesParaCompatibilidad.StoredProcedure
             Return False
         End Try
     End Function
+
+    Shared Function esMonodosis(ByVal formato As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.PrepararConsulta("select count(*) from monodosis where id_tipoFormato = (select TipoFormatoEnvasadoID from FormatosEnvasados where FormatoEnvasadoID = @id)")
+        dtb.AñadirParametroConsulta("@id", formato)
+        Dim dt As DataTable = dtb.Consultar
+
+        If dt.Rows(0).Item(0) > 0 Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
 End Class

@@ -10,6 +10,7 @@ Public Class frmEntPaletsProducidos
     'Private mFecha As Date
     Private envasado As Integer
     'Private frmEtiqueta As frmEtiqueta0
+    Private etiqueta As etiquetas.Etiqueta
 
     Public WriteOnly Property Linea As Integer
         Set(value As Integer)
@@ -80,6 +81,7 @@ Public Class frmEntPaletsProducidos
 
         Me.frmPaletsContenidos = New frmPaletsContenidos(Me.mLinea, Me.mTipoFormatoEnvasadoID, Me.envasado, m_DBO_PaletsProducidos.ID)
         AddHandler frmPaletsContenidos.completado, AddressOf Me.contenido_completo
+        etiqueta = New etiquetas.Etiqueta(0, BasesParaCompatibilidad.Config.connectionString)
     End Sub
 
     'Public Sub New(ByVal lineaEnvasado As Integer, ByVal tipoformato As Integer, ByVal fechaEnvasado As Date)
@@ -244,15 +246,19 @@ Public Class frmEntPaletsProducidos
             Dim spp As spPaletsProducidos = CType(Me.sp, spPaletsProducidos)
 
             If Not spp.estaEtiquetado(Me.m_DBO_PaletsProducidos.ID, dtb) Then
+                If spPaletsProducidos.esMonodosis(Me.m_DBO_PaletsProducidos.FormatoID, dtb) Then
+                    Return
+                End If
+
                 If MessageBox.Show("¿Desea imprimir etiqueta?", "Etiqueta palet " & Me.m_DBO_PaletsProducidos.SCC, _
                                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
                     If spp.Etiquetar(Me.m_DBO_PaletsProducidos.ID, dtb) Then
                         'Dim frm As New frmEtiqueta0(Me.m_DBO_PaletsProducidos.ID, False) ', False)
                         'Dim frm As New etiquetas.frmEtiqueta(Me.m_DBO_PaletsProducidos.ID, BasesParaCompatibilidad.Config.connectionString)
                         'frm.Show()
-                        Dim et As New etiquetas.Etiqueta(Me.m_DBO_PaletsProducidos.ID, BasesParaCompatibilidad.Config.connectionString)
-                        et.print()
-                        et.print()
+                        etiqueta.id = Me.m_DBO_PaletsProducidos.ID
+                        etiqueta.print()
+                        etiqueta.print()
                     Else
                         MessageBox.Show("No se pudo imprimir la etiqueta, vuelva a intentarlo manualmente", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     End If
