@@ -52,7 +52,6 @@ Partial Class frmEntAlbaranesCargaMaestro
         Dim Label17 As System.Windows.Forms.Label
         Dim Label18 As System.Windows.Forms.Label
         Dim Label19 As System.Windows.Forms.Label
-        Dim Label20 As System.Windows.Forms.Label
         Dim Label21 As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmEntAlbaranesCargaMaestro))
         Me.DtsAlbaranesCargaMaestro = New La_Andaluza.dtsAlbaranesCargaMaestro()
@@ -179,7 +178,6 @@ Partial Class frmEntAlbaranesCargaMaestro
         Label17 = New System.Windows.Forms.Label()
         Label18 = New System.Windows.Forms.Label()
         Label19 = New System.Windows.Forms.Label()
-        Label20 = New System.Windows.Forms.Label()
         Label21 = New System.Windows.Forms.Label()
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DtsAlbaranesCargaMaestro, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -512,15 +510,6 @@ Partial Class frmEntAlbaranesCargaMaestro
         Label19.Size = New System.Drawing.Size(58, 13)
         Label19.TabIndex = 1000000034
         Label19.Text = "Remolque:"
-        '
-        'Label20
-        '
-        Label20.AutoSize = True
-        Label20.Location = New System.Drawing.Point(622, 306)
-        Label20.Name = "Label20"
-        Label20.Size = New System.Drawing.Size(59, 13)
-        Label20.TabIndex = 1000000051
-        Label20.Text = "Conductor:"
         '
         'Label21
         '
@@ -1036,8 +1025,6 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.tabPagDatos.Controls.Add(Me.Label23)
         Me.tabPagDatos.Controls.Add(Me.cboClientes)
         Me.tabPagDatos.Controls.Add(Label21)
-        Me.tabPagDatos.Controls.Add(Label20)
-        Me.tabPagDatos.Controls.Add(Me.cboConductores)
         Me.tabPagDatos.Controls.Add(Me.grbAlbaranesPendientes)
         Me.tabPagDatos.Controls.Add(Me.grbDatosCabecera)
         Me.tabPagDatos.Controls.Add(Me.grbDatosTransporte)
@@ -1060,7 +1047,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.cboREsponsableAdminsitracion.FormattingEnabled = True
         Me.cboREsponsableAdminsitracion.Location = New System.Drawing.Point(763, 426)
         Me.cboREsponsableAdminsitracion.Name = "cboREsponsableAdminsitracion"
-        Me.cboREsponsableAdminsitracion.Size = New System.Drawing.Size(222, 21)
+        Me.cboREsponsableAdminsitracion.Size = New System.Drawing.Size(415, 21)
         Me.cboREsponsableAdminsitracion.TabIndex = 1000000057
         '
         'cboREsponsableCarga
@@ -1070,7 +1057,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.cboREsponsableCarga.FormattingEnabled = True
         Me.cboREsponsableCarga.Location = New System.Drawing.Point(763, 380)
         Me.cboREsponsableCarga.Name = "cboREsponsableCarga"
-        Me.cboREsponsableCarga.Size = New System.Drawing.Size(222, 21)
+        Me.cboREsponsableCarga.Size = New System.Drawing.Size(415, 21)
         Me.cboREsponsableCarga.TabIndex = 1000000056
         '
         'Label24
@@ -1098,7 +1085,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.cboClientes.FormattingEnabled = True
         Me.cboClientes.Location = New System.Drawing.Point(763, 342)
         Me.cboClientes.Name = "cboClientes"
-        Me.cboClientes.Size = New System.Drawing.Size(222, 21)
+        Me.cboClientes.Size = New System.Drawing.Size(415, 21)
         Me.cboClientes.TabIndex = 1000000053
         '
         'cboConductores
@@ -1106,9 +1093,9 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.cboConductores.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.cboConductores.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cboConductores.FormattingEnabled = True
-        Me.cboConductores.Location = New System.Drawing.Point(763, 303)
+        Me.cboConductores.Location = New System.Drawing.Point(405, 61)
         Me.cboConductores.Name = "cboConductores"
-        Me.cboConductores.Size = New System.Drawing.Size(222, 21)
+        Me.cboConductores.Size = New System.Drawing.Size(184, 21)
         Me.cboConductores.TabIndex = 1000000050
         '
         'grbAlbaranesPendientes
@@ -1170,6 +1157,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.grbDatosTransporte.Controls.Add(ConductorLabel)
         Me.grbDatosTransporte.Controls.Add(PorteImporteLabel)
         Me.grbDatosTransporte.Controls.Add(Me.ConductorCuadroDeTexto)
+        Me.grbDatosTransporte.Controls.Add(Me.cboConductores)
         Me.grbDatosTransporte.Controls.Add(Me.PorteFormaPagoIDCuadroDeTexto)
         Me.grbDatosTransporte.Controls.Add(Me.Reserva1CuadroDeTexto)
         Me.grbDatosTransporte.Controls.Add(ConductorDNILabel)
@@ -1183,7 +1171,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.grbDatosTransporte.Controls.Add(Me.HoraSalidaDateTimePicker)
         Me.grbDatosTransporte.Location = New System.Drawing.Point(574, 32)
         Me.grbDatosTransporte.Name = "grbDatosTransporte"
-        Me.grbDatosTransporte.Size = New System.Drawing.Size(422, 232)
+        Me.grbDatosTransporte.Size = New System.Drawing.Size(604, 232)
         Me.grbDatosTransporte.TabIndex = 1000000047
         Me.grbDatosTransporte.TabStop = False
         Me.grbDatosTransporte.Text = "Datos transporte"

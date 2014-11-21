@@ -66,6 +66,8 @@ Public Class frmEntAlbaranesCargaMaestro
                 .FormatoColumna("Observaciones", BasesParaCompatibilidad.TiposColumna.Observaciones, 427, 3)
                 .FormatoGeneral()
             End With
+            cboREsponsableAdminsitracion.SelectedValue = 41
+            cboREsponsableCarga.SelectedValue = 86
         Else
             If Me.Text.Substring(0, 3) = "Ver" Then
                 ctlAlb.mostrarTodosAlbaranesCargaMaestro(dtb, dtsAlb)
