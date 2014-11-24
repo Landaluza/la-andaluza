@@ -42,15 +42,16 @@ Partial Class frmPaletsProducidos
         Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitContainer1.IsSplitterFixed = True
         Me.SplitContainer1.Location = New System.Drawing.Point(0, 25)
-        Me.SplitContainer1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.SplitContainer1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.SplitContainer1.Name = "SplitContainer1"
         Me.SplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal
         '
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.TabControl1)
-        Me.SplitContainer1.Size = New System.Drawing.Size(1113, 542)
-        Me.SplitContainer1.SplitterDistance = 340
+        Me.SplitContainer1.Size = New System.Drawing.Size(835, 436)
+        Me.SplitContainer1.SplitterDistance = 273
+        Me.SplitContainer1.SplitterWidth = 3
         Me.SplitContainer1.TabIndex = 13
         '
         'TabControl1
@@ -58,21 +59,21 @@ Partial Class frmPaletsProducidos
         Me.TabControl1.Controls.Add(Me.tpPicos)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
-        Me.TabControl1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TabControl1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1113, 198)
+        Me.TabControl1.Size = New System.Drawing.Size(835, 160)
         Me.TabControl1.TabIndex = 0
         '
         'tpPicos
         '
         Me.tpPicos.Controls.Add(Me.dgvPicos)
         Me.tpPicos.Controls.Add(Me.ToolStrip1)
-        Me.tpPicos.Location = New System.Drawing.Point(4, 25)
-        Me.tpPicos.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.tpPicos.Location = New System.Drawing.Point(4, 22)
+        Me.tpPicos.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.tpPicos.Name = "tpPicos"
-        Me.tpPicos.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.tpPicos.Size = New System.Drawing.Size(1105, 169)
+        Me.tpPicos.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tpPicos.Size = New System.Drawing.Size(827, 134)
         Me.tpPicos.TabIndex = 0
         Me.tpPicos.Text = "Picos"
         Me.tpPicos.UseVisualStyleBackColor = True
@@ -84,24 +85,24 @@ Partial Class frmPaletsProducidos
         Me.dgvPicos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
         Me.dgvPicos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvPicos.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgvPicos.Location = New System.Drawing.Point(3, 27)
-        Me.dgvPicos.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.dgvPicos.Location = New System.Drawing.Point(2, 27)
+        Me.dgvPicos.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.dgvPicos.MultiSelect = False
         Me.dgvPicos.Name = "dgvPicos"
         Me.dgvPicos.ReadOnly = True
         Me.dgvPicos.RowHeadersVisible = False
         Me.dgvPicos.RowTemplate.Height = 24
         Me.dgvPicos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvPicos.Size = New System.Drawing.Size(1099, 140)
+        Me.dgvPicos.Size = New System.Drawing.Size(823, 105)
         Me.dgvPicos.TabIndex = 1
         '
         'ToolStrip1
         '
         Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripCompletar, Me.ToolStripMostrar, Me.ToolStripOcultar})
-        Me.ToolStrip1.Location = New System.Drawing.Point(3, 2)
+        Me.ToolStrip1.Location = New System.Drawing.Point(2, 2)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1099, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(823, 25)
         Me.ToolStrip1.TabIndex = 0
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -110,7 +111,7 @@ Partial Class frmPaletsProducidos
         Me.ToolStripCompletar.Image = Global.La_Andaluza.My.Resources.Resources.package_add
         Me.ToolStripCompletar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripCompletar.Name = "ToolStripCompletar"
-        Me.ToolStripCompletar.Size = New System.Drawing.Size(94, 22)
+        Me.ToolStripCompletar.Size = New System.Drawing.Size(83, 22)
         Me.ToolStripCompletar.Text = "Completar"
         '
         'ToolStripMostrar
@@ -137,12 +138,12 @@ Partial Class frmPaletsProducidos
         '
         'frmPaletsProducidos
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
-        Me.ClientSize = New System.Drawing.Size(1113, 567)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.ClientSize = New System.Drawing.Size(835, 461)
         Me.Controls.Add(Me.SplitContainer1)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.DoubleBuffered = True
-        Me.Margin = New System.Windows.Forms.Padding(5)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmPaletsProducidos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
@@ -169,7 +170,7 @@ Partial Class frmPaletsProducidos
     Private WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
     Private WithEvents ToolStripCompletar As System.Windows.Forms.ToolStripButton
     Private WithEvents ToolStripMostrar As System.Windows.Forms.ToolStripButton
-    Private WithEvents ToolStripOcultar As System.Windows.Forms.ToolStripButton    
+    Private WithEvents ToolStripOcultar As System.Windows.Forms.ToolStripButton
 
 
 End Class

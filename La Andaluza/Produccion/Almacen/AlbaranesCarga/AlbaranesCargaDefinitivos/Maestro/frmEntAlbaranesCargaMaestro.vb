@@ -32,6 +32,8 @@ Public Class frmEntAlbaranesCargaMaestro
         HoraSalidaDateTimePicker.activarFoco()
 
         cboConductores.mam_DataSource("ConductoresSelectCbo", False, dtb)
+        Dim spLugares As New spLugaresEntregas
+        spLugares.cargar_LugaresEntregas(cboLugaresEntrega, dtb, "")
         cboClientes.mam_DataSource("ClientesSelectCbo", False, dtb)
         Dim spEmp As New spEmpleados
         spEmp.cargar_Empleados(cboREsponsableAdminsitracion, dtb)
@@ -53,10 +55,10 @@ Public Class frmEntAlbaranesCargaMaestro
 
         If Me.Text.Substring(0, 8) = "Insertar" Then
             grbDatosCabecera.Visible = False
+            grbDatosTransporte.Visible = False
             grbAlbaranesPendientes.Visible = True
             grbAlbaranesPendientes.Location = New System.Drawing.Point(8, 32)
-            With dgvAlbaranesProvi
-                .Width = 500
+            With dgvAlbaranesProvi                
                 dtb.PrepararConsulta("SelectAlbaranCargaProMaestroByReserva1")
                 .DataSource = dtb.Consultar()
                 .Columns("AlbaranCargaProMaestroID").Visible = False
@@ -85,7 +87,9 @@ Public Class frmEntAlbaranesCargaMaestro
                 AddHandler tsNuevoPalet.Click, AddressOf NuevoPalet_Click
             End If
 
+            grbDatosCabecera.Visible = True
             grbAlbaranesPendientes.Visible = False
+            grbDatosTransporte.Visible = True
             RellenarDgv()
         End If
 
@@ -132,7 +136,7 @@ Public Class frmEntAlbaranesCargaMaestro
         PorteFormaPagoIDCuadroDeTexto.Text = dt.Rows(0).Item("PorteFormaPagoID").ToString
         PorteImporteCuadroDeTexto.Text = dt.Rows(0).Item("PorteImporte").ToString
         MatriculaCuadroDeTexto.Text = dt.Rows(0).Item("Matricula")
-        ConductorCuadroDeTexto.Text = dt.Rows(0).Item("Conductor")
+        cboConductores.Text = dt.Rows(0).Item("Conductor")
         ConductorDNICuadroDeTexto.Text = dt.Rows(0).Item("ConductorDNI")
         Reserva1CuadroDeTexto.Text = dt.Rows(0).Item("NumeroQS")
 
@@ -151,7 +155,7 @@ Public Class frmEntAlbaranesCargaMaestro
         ObservacionesCuadroDeTexto.Text = dt.Rows(0).Item("Observaciones") 'Observaciones
 
         Reserva2CuadroDeTexto.Text = dt.Rows(0).Item("Reserva2") ' Reserva2
-        Reserva3CuadroDeTexto.Text = dt.Rows(0).Item("Reserva3") 'Reserva3
+        cboLugaresEntrega.Text = dt.Rows(0).Item("Reserva3") 'Reserva3
 
         v_cliente = dt.Rows(0).Item("ClienteID") ' ClienteID.ToString
         v_conductor = dt.Rows(0).Item("Conductor") 'Conductor
@@ -194,7 +198,7 @@ Public Class frmEntAlbaranesCargaMaestro
         PorteFormaPagoIDCuadroDeTexto.Text = PorteFormaPagoID.ToString
         PorteImporteCuadroDeTexto.Text = PorteImporte.ToString
         MatriculaCuadroDeTexto.Text = Matricula
-        ConductorCuadroDeTexto.Text = Conductor
+        cboConductores.Text = Conductor
         ConductorDNICuadroDeTexto.Text = ConductorDNI
         Reserva1CuadroDeTexto.Text = Reserva1
 
@@ -211,7 +215,7 @@ Public Class frmEntAlbaranesCargaMaestro
         ObservacionesCuadroDeTexto.Text = Observaciones
 
         Reserva2CuadroDeTexto.Text = Reserva2
-        Reserva3CuadroDeTexto.Text = Reserva3
+        cboLugaresEntrega.Text = Reserva3
 
         v_cliente = ClienteID.ToString
         v_conductor = Conductor
@@ -226,6 +230,7 @@ Public Class frmEntAlbaranesCargaMaestro
 
             grbAlbaranesPendientes.Visible = False
             grbDatosCabecera.Visible = True
+            grbDatosTransporte.Visible = True
             RellenarDgv()
         Catch ex As Exception
             messagebox.show("Selecciona una fila entera pulsando a la izquierda de la misma. Detalles: " & Environment.NewLine & ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -281,7 +286,7 @@ Public Class frmEntAlbaranesCargaMaestro
                                                   PorteFormaPagoIDCuadroDeTexto.Text, _
                                                   PorteImporteCuadroDeTexto.Text, _
                                                   MatriculaCuadroDeTexto.Text, _
-                                                  ConductorCuadroDeTexto.Text, _
+                                                  cboConductores.Text, _
                                                   ConductorDNICuadroDeTexto.Text, _
                                                   ResponsableCargaIDCuadroDeTexto.Text, _
                                                   ResponsableAdministracionIDCuadroDeTexto.Text, _
@@ -290,7 +295,7 @@ Public Class frmEntAlbaranesCargaMaestro
                                                   ObservacionesCuadroDeTexto.Text, _
                                                   Reserva1CuadroDeTexto.Text, _
                                                   Reserva2CuadroDeTexto.Text, _
-                                                  Reserva3CuadroDeTexto.Text) Then
+                                                  cboLugaresEntrega.Text) Then
 
                     Throw New Exception("Error guardando el albaran")
                 End If
@@ -331,7 +336,7 @@ Public Class frmEntAlbaranesCargaMaestro
                                                   PorteFormaPagoIDCuadroDeTexto.Text, _
                                                   PorteImporteCuadroDeTexto.Text, _
                                                   MatriculaCuadroDeTexto.Text, _
-                                                  ConductorCuadroDeTexto.Text, _
+                                                  cboConductores.Text, _
                                                   ConductorDNICuadroDeTexto.Text, _
                                                    ResponsableCargaIDCuadroDeTexto.Text, _
                                                   ResponsableAdministracionIDCuadroDeTexto.Text, _
@@ -340,7 +345,7 @@ Public Class frmEntAlbaranesCargaMaestro
                                                   ObservacionesCuadroDeTexto.Text, _
                                                   Reserva1CuadroDeTexto.Text, _
                                                   Reserva2CuadroDeTexto.Text, _
-                                                  Reserva3CuadroDeTexto.Text) Then
+                                                  cboLugaresEntrega.Text) Then
                     Throw New Exception("Error modificando el albaran")
                 End If
 
@@ -496,7 +501,7 @@ Public Class frmEntAlbaranesCargaMaestro
             ConductorDNICuadroDeTexto.Text = m_Conductor.DNI
             Me.txtDNI.Text = m_Conductor.DNI
 
-            Me.ConductorCuadroDeTexto.Text = cboConductores.Text
+            Me.cboConductores.Text = cboConductores.Text
             Me.txtConductor.Text = cboConductores.Text
         Catch ex As Exception
         End Try
@@ -2265,8 +2270,8 @@ Public Class frmEntAlbaranesCargaMaestro
         Me.txtRemolque1.Text = Reserva1CuadroDeTexto.Text
     End Sub
 
-    Private Sub ConductorCuadroDeTexto_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ConductorCuadroDeTexto.TextChanged
-        txtConductor.Text = ConductorCuadroDeTexto.Text
+    Private Sub ConductorCuadroDeTexto_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        txtConductor.Text = cboConductores.Text
     End Sub
 
     Private Sub ConductorDNICuadroDeTexto_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ConductorDNICuadroDeTexto.TextChanged
@@ -2363,8 +2368,9 @@ Public Class frmEntAlbaranesCargaMaestro
             dtb.PrepararConsulta("update AlbaranesCargaProviDetalles set loteAlternativo=null where  CodigoQS= @qs and AlbaranCargaProviMaestroID = @id")
             dtb.AñadirParametroConsulta("@qs", Me.dgvAcumulados.CurrentRow.Cells("CodigoQS").Value)
             dtb.AñadirParametroConsulta("@id", Me.dgvAcumulados.CurrentRow.Cells("AlbaranCargaProviMaestroID").Value)
-            dtb.Execute()
-            RellenarDgv()
+            If dtb.Execute() Then
+                RellenarDgv()
+            End If
         Catch ex As Exception
             MessageBox.Show("Error al realizar la operacion. Detalles: " & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -2399,4 +2405,6 @@ Public Class frmEntAlbaranesCargaMaestro
 
         End Try
     End Sub
+
+  
 End Class

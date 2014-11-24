@@ -31,4 +31,7 @@ Public Class spLugaresEntregas
         cbo.mam_DataSource("LugaresEntregasCbo", False, dtb)
     End Sub
 
+    Public Sub cargar_LugaresEntregas(ByRef cbo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase, ByVal primeraColumna As String)
+        cbo.mam_DataSource("LugaresEntregasCbo", True, dtb, primeraColumna)
+    End Sub
 End Class

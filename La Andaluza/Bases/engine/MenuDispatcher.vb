@@ -112,7 +112,6 @@ Public Class MenuDispatcher
                 Return Me.MSControl
             Case 5
                 Me.frmArticulos1 = New frmArticulos1
-                frmAlbaranesCargaMaestro = New frmAlbaranesCargaMaestro
 
                 Return Me.MSAdministracion
             Case 6
@@ -236,9 +235,7 @@ Public Class MenuDispatcher
 
 
     Private Sub tsmAlbaranDeCargaMaestroBBDD_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmAlbaranDeCargaMaestroBBDD.Click, ToolStripMenuItem818.Click, ToolStripMenuItem476.Click, ToolStripMenuItem1160.Click, ToolStripMenuItem32.Click
-        If frmAlbaranesCargaMaestro Is Nothing Then
             frmAlbaranesCargaMaestro = New frmAlbaranesCargaMaestro
-        End If
         GUImain.añadirPestaña(frmAlbaranesCargaMaestro)
     End Sub
 

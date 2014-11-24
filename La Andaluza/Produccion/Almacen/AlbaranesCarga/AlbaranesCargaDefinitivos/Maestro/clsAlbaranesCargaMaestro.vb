@@ -280,7 +280,28 @@ public class clsAlbaranesCargaMaestro
 
     Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Try
-            If Not dtb.ConsultaAlteraciones("insert into AlbaranesCargaMaestro values(" & _
+            If Not dtb.ConsultaAlteraciones("insert into AlbaranesCargaMaestro ([AlbaranCargaProMaestroID]" & _
+           ",[Fecha]" & _
+           ",[ClienteID]" & _
+           ",[SerieQSID]" & _
+           ",[NumeroQS]" & _
+           ",[AlmacenSalidaQSID]" & _
+           ",[AgenciaID]" & _
+           ",[PorteFormaPagoID]" & _
+           ",[PorteImporte]" & _
+           ",[Matricula]" & _
+           ",[Conductor]" & _
+           ",[ConductorDNI]" & _
+           ",[ResponsableCargaID]" & _
+           ",[ResponsableAdministracionID]" & _
+           ",[HoraLlegada]" & _
+           ",[HoraSalida]" & _
+           ",[Observaciones]" & _
+           ",[Reserva1]" & _
+           ",[Reserva2]" & _
+           ",[Reserva3]" & _
+           ",[FechaModificacion]" & _
+           ",[UsuarioModificacion]) values(" & _
                         "" & Convert.ToString(AlbaranCargaProMaestroID) & "," & _
                         "'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha) & "'," & _
                         "" & Convert.ToString(ClienteID) & "," & _
