@@ -32,7 +32,6 @@ Partial Class frmEntAlbaranesCargaMaestro
         Dim PorteImporteLabel As System.Windows.Forms.Label
         Dim ConductorLabel As System.Windows.Forms.Label
         Dim ResponsableCargaIDLabel As System.Windows.Forms.Label
-        Dim ResponsableAdministracionIDLabel As System.Windows.Forms.Label
         Dim HoraLlegadaLabel As System.Windows.Forms.Label
         Dim HoraSalidaLabel As System.Windows.Forms.Label
         Dim ObservacionesLabel As System.Windows.Forms.Label
@@ -67,7 +66,6 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.MatriculaCuadroDeTexto = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.ConductorDNICuadroDeTexto = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.ResponsableCargaIDCuadroDeTexto = New BasesParaCompatibilidad.CuadroDeTexto()
-        Me.ResponsableAdministracionIDCuadroDeTexto = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.HoraLlegadaDateTimePicker = New System.Windows.Forms.DateTimePicker()
         Me.HoraSalidaDateTimePicker = New System.Windows.Forms.DateTimePicker()
         Me.ObservacionesCuadroDeTexto = New BasesParaCompatibilidad.CuadroDeTexto()
@@ -158,7 +156,6 @@ Partial Class frmEntAlbaranesCargaMaestro
         PorteImporteLabel = New System.Windows.Forms.Label()
         ConductorLabel = New System.Windows.Forms.Label()
         ResponsableCargaIDLabel = New System.Windows.Forms.Label()
-        ResponsableAdministracionIDLabel = New System.Windows.Forms.Label()
         HoraLlegadaLabel = New System.Windows.Forms.Label()
         HoraSalidaLabel = New System.Windows.Forms.Label()
         ObservacionesLabel = New System.Windows.Forms.Label()
@@ -328,16 +325,6 @@ Partial Class frmEntAlbaranesCargaMaestro
         ResponsableCargaIDLabel.TabIndex = 1000000026
         ResponsableCargaIDLabel.Text = "Responsable Carga ID:"
         ResponsableCargaIDLabel.Visible = False
-        '
-        'ResponsableAdministracionIDLabel
-        '
-        ResponsableAdministracionIDLabel.AutoSize = True
-        ResponsableAdministracionIDLabel.Location = New System.Drawing.Point(17, 298)
-        ResponsableAdministracionIDLabel.Name = "ResponsableAdministracionIDLabel"
-        ResponsableAdministracionIDLabel.Size = New System.Drawing.Size(157, 13)
-        ResponsableAdministracionIDLabel.TabIndex = 1000000028
-        ResponsableAdministracionIDLabel.Text = "Responsable Administracion ID:"
-        ResponsableAdministracionIDLabel.Visible = False
         '
         'HoraLlegadaLabel
         '
@@ -780,28 +767,6 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.ResponsableCargaIDCuadroDeTexto.ValorMinimo = 0.0R
         Me.ResponsableCargaIDCuadroDeTexto.Visible = False
         '
-        'ResponsableAdministracionIDCuadroDeTexto
-        '
-        Me.ResponsableAdministracionIDCuadroDeTexto.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "ResponsableAdministracionID", True))
-        Me.ResponsableAdministracionIDCuadroDeTexto.EsUnicoCampo = ""
-        Me.ResponsableAdministracionIDCuadroDeTexto.EsUnicoCampoID = ""
-        Me.ResponsableAdministracionIDCuadroDeTexto.EsUnicoID = 0
-        Me.ResponsableAdministracionIDCuadroDeTexto.EsUnicoTabla = ""
-        Me.ResponsableAdministracionIDCuadroDeTexto.Location = New System.Drawing.Point(180, 295)
-        Me.ResponsableAdministracionIDCuadroDeTexto.Minimo = 0
-        Me.ResponsableAdministracionIDCuadroDeTexto.Modificado = False
-        Me.ResponsableAdministracionIDCuadroDeTexto.Name = "ResponsableAdministracionIDCuadroDeTexto"
-        Me.ResponsableAdministracionIDCuadroDeTexto.Numerico_EsNumerico = False
-        Me.ResponsableAdministracionIDCuadroDeTexto.Numerico_NumeroDoublees = 0
-        Me.ResponsableAdministracionIDCuadroDeTexto.Numerico_SeparadorMiles = False
-        Me.ResponsableAdministracionIDCuadroDeTexto.Obligatorio = False
-        Me.ResponsableAdministracionIDCuadroDeTexto.ParametroID = 0
-        Me.ResponsableAdministracionIDCuadroDeTexto.Size = New System.Drawing.Size(64, 20)
-        Me.ResponsableAdministracionIDCuadroDeTexto.TabIndex = 1000000029
-        Me.ResponsableAdministracionIDCuadroDeTexto.ValorMaximo = 0.0R
-        Me.ResponsableAdministracionIDCuadroDeTexto.ValorMinimo = 0.0R
-        Me.ResponsableAdministracionIDCuadroDeTexto.Visible = False
-        '
         'HoraLlegadaDateTimePicker
         '
         Me.HoraLlegadaDateTimePicker.CustomFormat = "HH:mm"
@@ -1080,14 +1045,12 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.grbDatosCabecera.Controls.Add(ClienteIDLabel)
         Me.grbDatosCabecera.Controls.Add(Label2)
         Me.grbDatosCabecera.Controls.Add(FechaLabel)
-        Me.grbDatosCabecera.Controls.Add(ResponsableAdministracionIDLabel)
         Me.grbDatosCabecera.Controls.Add(Reserva2Label)
         Me.grbDatosCabecera.Controls.Add(Me.Reserva2CuadroDeTexto)
         Me.grbDatosCabecera.Controls.Add(Me.AlmacenSalidaQSIDCuadroDeTexto)
         Me.grbDatosCabecera.Controls.Add(Reserva3Label)
         Me.grbDatosCabecera.Controls.Add(Me.ObservacionesCuadroDeTexto)
         Me.grbDatosCabecera.Controls.Add(AlmacenSalidaQSIDLabel)
-        Me.grbDatosCabecera.Controls.Add(Me.ResponsableAdministracionIDCuadroDeTexto)
         Me.grbDatosCabecera.Controls.Add(ObservacionesLabel)
         Me.grbDatosCabecera.Controls.Add(Me.ResponsableCargaIDCuadroDeTexto)
         Me.grbDatosCabecera.Controls.Add(Me.SerieQSIDCuadroDeTexto)
@@ -1904,7 +1867,6 @@ Partial Class frmEntAlbaranesCargaMaestro
     Private WithEvents MatriculaCuadroDeTexto As BasesParaCompatibilidad.CuadroDeTexto
     Private WithEvents ConductorDNICuadroDeTexto As BasesParaCompatibilidad.CuadroDeTexto
     Private WithEvents ResponsableCargaIDCuadroDeTexto As BasesParaCompatibilidad.CuadroDeTexto
-    Private WithEvents ResponsableAdministracionIDCuadroDeTexto As BasesParaCompatibilidad.CuadroDeTexto
     Private WithEvents HoraLlegadaDateTimePicker As System.Windows.Forms.DateTimePicker
     Private WithEvents HoraSalidaDateTimePicker As System.Windows.Forms.DateTimePicker
     Private WithEvents ObservacionesCuadroDeTexto As BasesParaCompatibilidad.CuadroDeTexto

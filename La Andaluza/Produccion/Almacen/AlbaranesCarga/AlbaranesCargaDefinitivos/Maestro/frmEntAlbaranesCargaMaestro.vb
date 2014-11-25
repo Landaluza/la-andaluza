@@ -148,8 +148,7 @@ Public Class frmEntAlbaranesCargaMaestro
 
         ResponsableCargaIDCuadroDeTexto.Text = dt.Rows(0).Item("ResponsableCargaID") 'ResponsableCargaID.ToString
         cboREsponsableCarga.SelectedValue = dt.Rows(0).Item("ResponsableCargaID")
-        ResponsableAdministracionIDCuadroDeTexto.Text = dt.Rows(0).Item("ResponsableAdministracionID") ' ResponsableAdministracionID.ToString
-        cboREsponsableAdminsitracion.SelectedValue = dt.Rows(0).Item("ResponsableAdministracionID")
+        cboREsponsableAdminsitracion.SelectedValue = dt.Rows(0).Item("ResponsableAdministracionID") ' ResponsableAdministracionID.ToString        
         HoraLlegadaDateTimePicker.Value = New DateTime(Now.Year, Now.Month, Now.Day, CType(dt.Rows(0).Item("HoraLlegada"), TimeSpan).Hours, CType(dt.Rows(0).Item("HoraLlegada"), TimeSpan).Minutes, 0)  ' Now.Date.Add(HoraLlegada)
         HoraSalidaDateTimePicker.Value = New DateTime(Now.Year, Now.Month, Now.Day, CType(dt.Rows(0).Item("HoraSalida"), TimeSpan).Hours, CType(dt.Rows(0).Item("HoraSalida"), TimeSpan).Minutes, 0)  ' Now.Date.Add(HoraSalida)
         ObservacionesCuadroDeTexto.Text = dt.Rows(0).Item("Observaciones") 'Observaciones
@@ -209,7 +208,7 @@ Public Class frmEntAlbaranesCargaMaestro
         txtRemolque1.Text = Reserva1
 
         ResponsableCargaIDCuadroDeTexto.Text = ResponsableCargaID.ToString
-        ResponsableAdministracionIDCuadroDeTexto.Text = ResponsableAdministracionID.ToString
+        cboREsponsableAdminsitracion.SelectedValue = ResponsableAdministracionID.ToString
         HoraLlegadaDateTimePicker.Value = Now.Date.Add(HoraLlegada)
         HoraSalidaDateTimePicker.Value = Now.Date.Add(HoraSalida)
         ObservacionesCuadroDeTexto.Text = Observaciones
@@ -239,12 +238,19 @@ Public Class frmEntAlbaranesCargaMaestro
     End Sub
 
     Private Function getValores() As Boolean
-        Dim errroes As String = ""
+        Dim errores As String = ""
 
         If ResponsableCargaIDCuadroDeTexto.Text = "" Then ResponsableCargaIDCuadroDeTexto.Text = 0
-        If ResponsableAdministracionIDCuadroDeTexto.Text = "" Then ResponsableAdministracionIDCuadroDeTexto.Text = 0
-
-        Return True
+        If cboREsponsableAdminsitracion.SelectedValue Is Nothing Or cboREsponsableAdminsitracion.SelectedText = "" Then
+            errores &= "No se selecciono un responsable para administracion"
+        End If
+        
+        If errores = "" Then
+            Return True
+        Else
+            MessageBox.Show("Rellene correctamente el formulario. Se han encontrado los siguientes errores:" & Environment.NewLine & errores, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            Return False
+        End If
     End Function
     Overrides Sub Guardar()
         If Not getValores Then
@@ -289,7 +295,7 @@ Public Class frmEntAlbaranesCargaMaestro
                                                   cboConductores.Text, _
                                                   ConductorDNICuadroDeTexto.Text, _
                                                   ResponsableCargaIDCuadroDeTexto.Text, _
-                                                  ResponsableAdministracionIDCuadroDeTexto.Text, _
+                                                  cboREsponsableAdminsitracion.SelectedValue, _
                                                   HoraLlegadaDateTimePicker.Value, _
                                                   HoraSalidaDateTimePicker.Value, _
                                                   ObservacionesCuadroDeTexto.Text, _
@@ -339,7 +345,7 @@ Public Class frmEntAlbaranesCargaMaestro
                                                   cboConductores.Text, _
                                                   ConductorDNICuadroDeTexto.Text, _
                                                    ResponsableCargaIDCuadroDeTexto.Text, _
-                                                  ResponsableAdministracionIDCuadroDeTexto.Text, _
+                                                 cboREsponsableAdminsitracion.SelectedValue, _
                                                   HoraLlegadaDateTimePicker.Value, _
                                                   HoraSalidaDateTimePicker.Value, _
                                                   ObservacionesCuadroDeTexto.Text, _
@@ -2398,13 +2404,6 @@ Public Class frmEntAlbaranesCargaMaestro
         End Try
     End Sub
 
-    Private Sub cboREsponsableAdminsitracion_SelectedValueChanged(sender As Object, e As EventArgs) Handles cboREsponsableAdminsitracion.SelectedValueChanged
-        Try
-            ResponsableAdministracionIDCuadroDeTexto.Text = cboREsponsableAdminsitracion.SelectedValue
-        Catch ex As Exception
-
-        End Try
-    End Sub
 
   
 End Class
