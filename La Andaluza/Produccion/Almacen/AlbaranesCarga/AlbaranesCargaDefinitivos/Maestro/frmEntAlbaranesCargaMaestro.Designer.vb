@@ -31,7 +31,6 @@ Partial Class frmEntAlbaranesCargaMaestro
         Dim PorteFormaPagoIDLabel As System.Windows.Forms.Label
         Dim PorteImporteLabel As System.Windows.Forms.Label
         Dim ConductorLabel As System.Windows.Forms.Label
-        Dim ResponsableCargaIDLabel As System.Windows.Forms.Label
         Dim HoraLlegadaLabel As System.Windows.Forms.Label
         Dim HoraSalidaLabel As System.Windows.Forms.Label
         Dim ObservacionesLabel As System.Windows.Forms.Label
@@ -50,13 +49,11 @@ Partial Class frmEntAlbaranesCargaMaestro
         Dim Label17 As System.Windows.Forms.Label
         Dim Label18 As System.Windows.Forms.Label
         Dim Label19 As System.Windows.Forms.Label
-        Dim Label21 As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmEntAlbaranesCargaMaestro))
         Me.DtsAlbaranesCargaMaestro = New La_Andaluza.dtsAlbaranesCargaMaestro()
         Me.txtAlbaranCargaMaestroID = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.txtMaestroID = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.FechaDateTimePicker = New System.Windows.Forms.DateTimePicker()
-        Me.ClienteIDCuadroDeTexto = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.SerieQSIDCuadroDeTexto = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.NumeroQSCuadroDeTexto = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.AlmacenSalidaQSIDCuadroDeTexto = New BasesParaCompatibilidad.CuadroDeTexto()
@@ -65,7 +62,6 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.PorteImporteCuadroDeTexto = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.MatriculaCuadroDeTexto = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.ConductorDNICuadroDeTexto = New BasesParaCompatibilidad.CuadroDeTexto()
-        Me.ResponsableCargaIDCuadroDeTexto = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.HoraLlegadaDateTimePicker = New System.Windows.Forms.DateTimePicker()
         Me.HoraSalidaDateTimePicker = New System.Windows.Forms.DateTimePicker()
         Me.ObservacionesCuadroDeTexto = New BasesParaCompatibilidad.CuadroDeTexto()
@@ -92,9 +88,9 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.cboConductores = New System.Windows.Forms.ComboBox()
         Me.grbDatosCabecera = New System.Windows.Forms.GroupBox()
         Me.cboLugaresEntrega = New System.Windows.Forms.ComboBox()
+        Me.cboClientes = New System.Windows.Forms.ComboBox()
         Me.grbAlbaranesPendientes = New System.Windows.Forms.GroupBox()
         Me.dgvAlbaranesProvi = New System.Windows.Forms.DataGridView()
-        Me.cboClientes = New System.Windows.Forms.ComboBox()
         Me.Panel5 = New System.Windows.Forms.Panel()
         Me.tabPagPalets = New System.Windows.Forms.TabPage()
         Me.tabPagAcumulados = New System.Windows.Forms.TabPage()
@@ -155,7 +151,6 @@ Partial Class frmEntAlbaranesCargaMaestro
         PorteFormaPagoIDLabel = New System.Windows.Forms.Label()
         PorteImporteLabel = New System.Windows.Forms.Label()
         ConductorLabel = New System.Windows.Forms.Label()
-        ResponsableCargaIDLabel = New System.Windows.Forms.Label()
         HoraLlegadaLabel = New System.Windows.Forms.Label()
         HoraSalidaLabel = New System.Windows.Forms.Label()
         ObservacionesLabel = New System.Windows.Forms.Label()
@@ -174,7 +169,6 @@ Partial Class frmEntAlbaranesCargaMaestro
         Label17 = New System.Windows.Forms.Label()
         Label18 = New System.Windows.Forms.Label()
         Label19 = New System.Windows.Forms.Label()
-        Label21 = New System.Windows.Forms.Label()
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DtsAlbaranesCargaMaestro, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvPalet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -248,10 +242,9 @@ Partial Class frmEntAlbaranesCargaMaestro
         ClienteIDLabel.AutoSize = True
         ClienteIDLabel.Location = New System.Drawing.Point(15, 47)
         ClienteIDLabel.Name = "ClienteIDLabel"
-        ClienteIDLabel.Size = New System.Drawing.Size(56, 13)
+        ClienteIDLabel.Size = New System.Drawing.Size(42, 13)
         ClienteIDLabel.TabIndex = 1000000006
-        ClienteIDLabel.Text = "Cliente ID:"
-        ClienteIDLabel.Visible = False
+        ClienteIDLabel.Text = "Cliente:"
         '
         'SerieQSIDLabel
         '
@@ -315,16 +308,6 @@ Partial Class frmEntAlbaranesCargaMaestro
         ConductorLabel.Size = New System.Drawing.Size(59, 13)
         ConductorLabel.TabIndex = 1000000022
         ConductorLabel.Text = "Conductor:"
-        '
-        'ResponsableCargaIDLabel
-        '
-        ResponsableCargaIDLabel.AutoSize = True
-        ResponsableCargaIDLabel.Location = New System.Drawing.Point(17, 274)
-        ResponsableCargaIDLabel.Name = "ResponsableCargaIDLabel"
-        ResponsableCargaIDLabel.Size = New System.Drawing.Size(117, 13)
-        ResponsableCargaIDLabel.TabIndex = 1000000026
-        ResponsableCargaIDLabel.Text = "Responsable Carga ID:"
-        ResponsableCargaIDLabel.Visible = False
         '
         'HoraLlegadaLabel
         '
@@ -490,15 +473,6 @@ Partial Class frmEntAlbaranesCargaMaestro
         Label19.TabIndex = 1000000034
         Label19.Text = "Remolque:"
         '
-        'Label21
-        '
-        Label21.AutoSize = True
-        Label21.Location = New System.Drawing.Point(588, 303)
-        Label21.Name = "Label21"
-        Label21.Size = New System.Drawing.Size(42, 13)
-        Label21.TabIndex = 1000000052
-        Label21.Text = "Cliente:"
-        '
         'DtsAlbaranesCargaMaestro
         '
         Me.DtsAlbaranesCargaMaestro.DataSetName = "dtsAlbaranesCargaMaestro"
@@ -555,28 +529,6 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.FechaDateTimePicker.Name = "FechaDateTimePicker"
         Me.FechaDateTimePicker.Size = New System.Drawing.Size(87, 20)
         Me.FechaDateTimePicker.TabIndex = 0
-        '
-        'ClienteIDCuadroDeTexto
-        '
-        Me.ClienteIDCuadroDeTexto.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "ClienteID", True))
-        Me.ClienteIDCuadroDeTexto.EsUnicoCampo = ""
-        Me.ClienteIDCuadroDeTexto.EsUnicoCampoID = ""
-        Me.ClienteIDCuadroDeTexto.EsUnicoID = 0
-        Me.ClienteIDCuadroDeTexto.EsUnicoTabla = ""
-        Me.ClienteIDCuadroDeTexto.Location = New System.Drawing.Point(99, 47)
-        Me.ClienteIDCuadroDeTexto.Minimo = 0
-        Me.ClienteIDCuadroDeTexto.Modificado = False
-        Me.ClienteIDCuadroDeTexto.Name = "ClienteIDCuadroDeTexto"
-        Me.ClienteIDCuadroDeTexto.Numerico_EsNumerico = False
-        Me.ClienteIDCuadroDeTexto.Numerico_NumeroDoublees = 0
-        Me.ClienteIDCuadroDeTexto.Numerico_SeparadorMiles = False
-        Me.ClienteIDCuadroDeTexto.Obligatorio = False
-        Me.ClienteIDCuadroDeTexto.ParametroID = 0
-        Me.ClienteIDCuadroDeTexto.Size = New System.Drawing.Size(87, 20)
-        Me.ClienteIDCuadroDeTexto.TabIndex = 1
-        Me.ClienteIDCuadroDeTexto.ValorMaximo = 0.0R
-        Me.ClienteIDCuadroDeTexto.ValorMinimo = 0.0R
-        Me.ClienteIDCuadroDeTexto.Visible = False
         '
         'SerieQSIDCuadroDeTexto
         '
@@ -745,28 +697,6 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.ConductorDNICuadroDeTexto.ValorMaximo = 0.0R
         Me.ConductorDNICuadroDeTexto.ValorMinimo = 0.0R
         '
-        'ResponsableCargaIDCuadroDeTexto
-        '
-        Me.ResponsableCargaIDCuadroDeTexto.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "ResponsableCargaID", True))
-        Me.ResponsableCargaIDCuadroDeTexto.EsUnicoCampo = ""
-        Me.ResponsableCargaIDCuadroDeTexto.EsUnicoCampoID = ""
-        Me.ResponsableCargaIDCuadroDeTexto.EsUnicoID = 0
-        Me.ResponsableCargaIDCuadroDeTexto.EsUnicoTabla = ""
-        Me.ResponsableCargaIDCuadroDeTexto.Location = New System.Drawing.Point(180, 271)
-        Me.ResponsableCargaIDCuadroDeTexto.Minimo = 0
-        Me.ResponsableCargaIDCuadroDeTexto.Modificado = False
-        Me.ResponsableCargaIDCuadroDeTexto.Name = "ResponsableCargaIDCuadroDeTexto"
-        Me.ResponsableCargaIDCuadroDeTexto.Numerico_EsNumerico = False
-        Me.ResponsableCargaIDCuadroDeTexto.Numerico_NumeroDoublees = 0
-        Me.ResponsableCargaIDCuadroDeTexto.Numerico_SeparadorMiles = False
-        Me.ResponsableCargaIDCuadroDeTexto.Obligatorio = False
-        Me.ResponsableCargaIDCuadroDeTexto.ParametroID = 0
-        Me.ResponsableCargaIDCuadroDeTexto.Size = New System.Drawing.Size(64, 20)
-        Me.ResponsableCargaIDCuadroDeTexto.TabIndex = 1000000027
-        Me.ResponsableCargaIDCuadroDeTexto.ValorMaximo = 0.0R
-        Me.ResponsableCargaIDCuadroDeTexto.ValorMinimo = 0.0R
-        Me.ResponsableCargaIDCuadroDeTexto.Visible = False
-        '
         'HoraLlegadaDateTimePicker
         '
         Me.HoraLlegadaDateTimePicker.CustomFormat = "HH:mm"
@@ -805,7 +735,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.ObservacionesCuadroDeTexto.Numerico_SeparadorMiles = False
         Me.ObservacionesCuadroDeTexto.Obligatorio = False
         Me.ObservacionesCuadroDeTexto.ParametroID = 0
-        Me.ObservacionesCuadroDeTexto.Size = New System.Drawing.Size(173, 20)
+        Me.ObservacionesCuadroDeTexto.Size = New System.Drawing.Size(377, 20)
         Me.ObservacionesCuadroDeTexto.TabIndex = 1000000035
         Me.ObservacionesCuadroDeTexto.ValorMaximo = 0.0R
         Me.ObservacionesCuadroDeTexto.ValorMinimo = 0.0R
@@ -838,7 +768,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.Reserva2CuadroDeTexto.EsUnicoCampoID = ""
         Me.Reserva2CuadroDeTexto.EsUnicoID = 0
         Me.Reserva2CuadroDeTexto.EsUnicoTabla = ""
-        Me.Reserva2CuadroDeTexto.Location = New System.Drawing.Point(99, 72)
+        Me.Reserva2CuadroDeTexto.Location = New System.Drawing.Point(97, 72)
         Me.Reserva2CuadroDeTexto.Minimo = 0
         Me.Reserva2CuadroDeTexto.Modificado = False
         Me.Reserva2CuadroDeTexto.Name = "Reserva2CuadroDeTexto"
@@ -847,7 +777,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.Reserva2CuadroDeTexto.Numerico_SeparadorMiles = False
         Me.Reserva2CuadroDeTexto.Obligatorio = False
         Me.Reserva2CuadroDeTexto.ParametroID = 0
-        Me.Reserva2CuadroDeTexto.Size = New System.Drawing.Size(87, 20)
+        Me.Reserva2CuadroDeTexto.Size = New System.Drawing.Size(89, 20)
         Me.Reserva2CuadroDeTexto.TabIndex = 1000000039
         Me.Reserva2CuadroDeTexto.ValorMaximo = 0.0R
         Me.Reserva2CuadroDeTexto.ValorMinimo = 0.0R
@@ -949,8 +879,6 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.Panel4.Controls.Add(Me.grbDatosTransporte)
         Me.Panel4.Controls.Add(Me.grbDatosCabecera)
         Me.Panel4.Controls.Add(Me.grbAlbaranesPendientes)
-        Me.Panel4.Controls.Add(Me.cboClientes)
-        Me.Panel4.Controls.Add(Label21)
         Me.Panel4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel4.Location = New System.Drawing.Point(3, 32)
         Me.Panel4.Name = "Panel4"
@@ -981,9 +909,9 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.grbDatosTransporte.Controls.Add(HoraSalidaLabel)
         Me.grbDatosTransporte.Controls.Add(Me.HoraSalidaDateTimePicker)
         Me.grbDatosTransporte.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grbDatosTransporte.Location = New System.Drawing.Point(292, 0)
+        Me.grbDatosTransporte.Location = New System.Drawing.Point(520, 0)
         Me.grbDatosTransporte.Name = "grbDatosTransporte"
-        Me.grbDatosTransporte.Size = New System.Drawing.Size(905, 332)
+        Me.grbDatosTransporte.Size = New System.Drawing.Size(677, 332)
         Me.grbDatosTransporte.TabIndex = 1000000047
         Me.grbDatosTransporte.TabStop = False
         Me.grbDatosTransporte.Text = "Datos transporte"
@@ -1039,8 +967,8 @@ Partial Class frmEntAlbaranesCargaMaestro
         'grbDatosCabecera
         '
         Me.grbDatosCabecera.Controls.Add(Me.cboLugaresEntrega)
+        Me.grbDatosCabecera.Controls.Add(Me.cboClientes)
         Me.grbDatosCabecera.Controls.Add(Me.FechaDateTimePicker)
-        Me.grbDatosCabecera.Controls.Add(Me.ClienteIDCuadroDeTexto)
         Me.grbDatosCabecera.Controls.Add(Label8)
         Me.grbDatosCabecera.Controls.Add(ClienteIDLabel)
         Me.grbDatosCabecera.Controls.Add(Label2)
@@ -1052,16 +980,14 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.grbDatosCabecera.Controls.Add(Me.ObservacionesCuadroDeTexto)
         Me.grbDatosCabecera.Controls.Add(AlmacenSalidaQSIDLabel)
         Me.grbDatosCabecera.Controls.Add(ObservacionesLabel)
-        Me.grbDatosCabecera.Controls.Add(Me.ResponsableCargaIDCuadroDeTexto)
         Me.grbDatosCabecera.Controls.Add(Me.SerieQSIDCuadroDeTexto)
-        Me.grbDatosCabecera.Controls.Add(ResponsableCargaIDLabel)
         Me.grbDatosCabecera.Controls.Add(NumeroQSLabel)
         Me.grbDatosCabecera.Controls.Add(Me.NumeroQSCuadroDeTexto)
         Me.grbDatosCabecera.Controls.Add(SerieQSIDLabel)
         Me.grbDatosCabecera.Dock = System.Windows.Forms.DockStyle.Left
         Me.grbDatosCabecera.Location = New System.Drawing.Point(0, 0)
         Me.grbDatosCabecera.Name = "grbDatosCabecera"
-        Me.grbDatosCabecera.Size = New System.Drawing.Size(292, 332)
+        Me.grbDatosCabecera.Size = New System.Drawing.Size(520, 332)
         Me.grbDatosCabecera.TabIndex = 1000000048
         Me.grbDatosCabecera.TabStop = False
         Me.grbDatosCabecera.Text = "Datos cabecera"
@@ -1073,8 +999,18 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.cboLugaresEntrega.FormattingEnabled = True
         Me.cboLugaresEntrega.Location = New System.Drawing.Point(97, 95)
         Me.cboLugaresEntrega.Name = "cboLugaresEntrega"
-        Me.cboLugaresEntrega.Size = New System.Drawing.Size(173, 21)
+        Me.cboLugaresEntrega.Size = New System.Drawing.Size(379, 21)
         Me.cboLugaresEntrega.TabIndex = 1000000051
+        '
+        'cboClientes
+        '
+        Me.cboClientes.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
+        Me.cboClientes.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cboClientes.FormattingEnabled = True
+        Me.cboClientes.Location = New System.Drawing.Point(97, 45)
+        Me.cboClientes.Name = "cboClientes"
+        Me.cboClientes.Size = New System.Drawing.Size(379, 21)
+        Me.cboClientes.TabIndex = 1000000053
         '
         'grbAlbaranesPendientes
         '
@@ -1095,16 +1031,6 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.dgvAlbaranesProvi.Name = "dgvAlbaranesProvi"
         Me.dgvAlbaranesProvi.Size = New System.Drawing.Size(1191, 245)
         Me.dgvAlbaranesProvi.TabIndex = 1000000043
-        '
-        'cboClientes
-        '
-        Me.cboClientes.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
-        Me.cboClientes.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cboClientes.FormattingEnabled = True
-        Me.cboClientes.Location = New System.Drawing.Point(729, 300)
-        Me.cboClientes.Name = "cboClientes"
-        Me.cboClientes.Size = New System.Drawing.Size(415, 21)
-        Me.cboClientes.TabIndex = 1000000053
         '
         'Panel5
         '
@@ -1780,7 +1706,6 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.tabDatos.ResumeLayout(False)
         Me.tabPagDatos.ResumeLayout(False)
         Me.Panel4.ResumeLayout(False)
-        Me.Panel4.PerformLayout()
         Me.grbDatosTransporte.ResumeLayout(False)
         Me.grbDatosTransporte.PerformLayout()
         Me.grbDatosCabecera.ResumeLayout(False)
@@ -1816,17 +1741,17 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.PerformLayout()
 
     End Sub
-   Private WithEvents DtsAlbaranesCargaMaestro As La_Andaluza.dtsAlbaranesCargaMaestro
-   Private WithEvents tabPagDatos As System.Windows.Forms.TabPage
-   Private WithEvents tabPagPalets As System.Windows.Forms.TabPage
-   Private WithEvents dgvAlbaranesProvi As System.Windows.Forms.DataGridView
-   Private WithEvents TabPagTotales As System.Windows.Forms.TabPage
-   Private WithEvents butAlbaranQS As System.Windows.Forms.Button
-   Private WithEvents butEntradaJR As System.Windows.Forms.Button
-   Private WithEvents butJRaMercadona As System.Windows.Forms.Button
-   Private WithEvents butCartaPortes As System.Windows.Forms.Button
-   Private WithEvents GroupBox2 As System.Windows.Forms.GroupBox
-   Private WithEvents butMercadonaCanarias As System.Windows.Forms.Button
+    Private WithEvents DtsAlbaranesCargaMaestro As La_Andaluza.dtsAlbaranesCargaMaestro
+    Private WithEvents tabPagDatos As System.Windows.Forms.TabPage
+    Private WithEvents tabPagPalets As System.Windows.Forms.TabPage
+    Private WithEvents dgvAlbaranesProvi As System.Windows.Forms.DataGridView
+    Private WithEvents TabPagTotales As System.Windows.Forms.TabPage
+    Private WithEvents butAlbaranQS As System.Windows.Forms.Button
+    Private WithEvents butEntradaJR As System.Windows.Forms.Button
+    Private WithEvents butJRaMercadona As System.Windows.Forms.Button
+    Private WithEvents butCartaPortes As System.Windows.Forms.Button
+    Private WithEvents GroupBox2 As System.Windows.Forms.GroupBox
+    Private WithEvents butMercadonaCanarias As System.Windows.Forms.Button
     Private WithEvents tabDatos As System.Windows.Forms.TabControl
     Private WithEvents tabPagAcumulados As System.Windows.Forms.TabPage
     Private WithEvents dgvAcumulados As System.Windows.Forms.DataGridView
@@ -1857,7 +1782,6 @@ Partial Class frmEntAlbaranesCargaMaestro
     Private WithEvents txtAlbaranCargaMaestroID As BasesParaCompatibilidad.CuadroDeTexto
     Private WithEvents txtMaestroID As BasesParaCompatibilidad.CuadroDeTexto
     Private WithEvents FechaDateTimePicker As System.Windows.Forms.DateTimePicker
-    Private WithEvents ClienteIDCuadroDeTexto As BasesParaCompatibilidad.CuadroDeTexto
     Private WithEvents SerieQSIDCuadroDeTexto As BasesParaCompatibilidad.CuadroDeTexto
     Private WithEvents NumeroQSCuadroDeTexto As BasesParaCompatibilidad.CuadroDeTexto
     Private WithEvents AlmacenSalidaQSIDCuadroDeTexto As BasesParaCompatibilidad.CuadroDeTexto
@@ -1866,7 +1790,6 @@ Partial Class frmEntAlbaranesCargaMaestro
     Private WithEvents PorteImporteCuadroDeTexto As BasesParaCompatibilidad.CuadroDeTexto
     Private WithEvents MatriculaCuadroDeTexto As BasesParaCompatibilidad.CuadroDeTexto
     Private WithEvents ConductorDNICuadroDeTexto As BasesParaCompatibilidad.CuadroDeTexto
-    Private WithEvents ResponsableCargaIDCuadroDeTexto As BasesParaCompatibilidad.CuadroDeTexto
     Private WithEvents HoraLlegadaDateTimePicker As System.Windows.Forms.DateTimePicker
     Private WithEvents HoraSalidaDateTimePicker As System.Windows.Forms.DateTimePicker
     Private WithEvents ObservacionesCuadroDeTexto As BasesParaCompatibilidad.CuadroDeTexto

@@ -44,7 +44,20 @@ Public Class frmAlbaranesCargaMaestro
 
     Protected Overrides Sub cargar_datos()
         Dim dtb As New BasesParaCompatibilidad.DataBase
-        dtb.PrepararConsulta("select AlbaranesCargaMaestro.AlbaranCargaMaestroID,AlbaranesCargaMaestro.AlbaranCargaProMaestroID,AlbaranesCargaMaestro.Fecha,AlbaranesCargaMaestro.ClienteID,AlbaranesCargaMaestro.SerieQSID,AlbaranesCargaMaestro.NumeroQS,AlbaranesCargaMaestro.AlmacenSalidaQSID,AlbaranesCargaMaestro.AgenciaID,AlbaranesCargaMaestro.PorteFormaPagoID,AlbaranesCargaMaestro.PorteImporte,AlbaranesCargaMaestro.Matricula,AlbaranesCargaMaestro.Conductor,AlbaranesCargaMaestro.ConductorDNI,AlbaranesCargaMaestro.ResponsableCargaID,AlbaranesCargaMaestro.ResponsableAdministracionID,AlbaranesCargaMaestro.HoraLlegada,AlbaranesCargaMaestro.HoraSalida,AlbaranesCargaMaestro.Observaciones,AlbaranesCargaMaestro.Reserva1,AlbaranesCargaMaestro.Reserva2,AlbaranesCargaMaestro.Reserva3 from AlbaranesCargaMaestro where year(fecha)= @ano order by fecha asc, NumeroQS asc")
+        dtb.PrepararConsulta("select  " & _
+            "AlbaranesCargaMaestro.AlbaranCargaMaestroID, AlbaranesCargaMaestro.AlbaranCargaProMaestroID, " & _
+            "AlbaranesCargaMaestro.Fecha, AlbaranesCargaMaestro.ClienteID, AlbaranesCargaMaestro.SerieQSID, " & _
+            "AlbaranesCargaMaestro.NumeroQS, AlbaranesCargaMaestro.AlmacenSalidaQSID, AlbaranesCargaMaestro.AgenciaID, " & _
+            "AlbaranesCargaMaestro.PorteFormaPagoID, AlbaranesCargaMaestro.PorteImporte, AlbaranesCargaMaestro.Matricula, " & _
+            "AlbaranesCargaMaestro.Conductor, AlbaranesCargaMaestro.ConductorDNI, AlbaranesCargaMaestro.ResponsableCargaID, " & _
+            "AlbaranesCargaMaestro.ResponsableAdministracionID, AlbaranesCargaMaestro.HoraLlegada, AlbaranesCargaMaestro.HoraSalida, " & _
+            "AlbaranesCargaMaestro.Observaciones, AlbaranesCargaMaestro.Reserva1, AlbaranesCargaMaestro.Reserva2, AlbaranesCargaMaestro.Reserva3, " & _
+            "clientes.Nombre as Cliente " & _
+        "from AlbaranesCargaMaestro, clientes " & _
+        "where AlbaranesCargaMaestro.ClienteID = clientes.ClienteID " & _
+        "and year(fecha)= @ano " & _
+        "order by fecha asc, NumeroQS asc")
+
         dtb.AñadirParametroConsulta("@ano", agno)
         dataSource = dtb.Consultar()
     End Sub
@@ -76,10 +89,11 @@ Public Class frmAlbaranesCargaMaestro
                 .Columns("Reserva2").Visible = False
                 .Columns("Reserva3").Visible = False
                 .Columns("SerieQSID").Visible = False
+                .Columns("ClienteID").Visible = False
 
                 .FormatoColumna("NumeroQS", "NumeroQS", BasesParaCompatibilidad.TiposColumna.Derecha, 70, 0)
                 .FormatoColumna("Fecha", "Fecha", BasesParaCompatibilidad.TiposColumna.FechaCorta, 85, 1)
-                .FormatoColumna("ClienteID", "Cliente", BasesParaCompatibilidad.TiposColumna.Centro, 60, 3)
+                .FormatoColumna("Cliente", BasesParaCompatibilidad.TiposColumna.Derecha, 200, 3)
                 .FormatoColumna("Observaciones", "Observaciones", BasesParaCompatibilidad.TiposColumna.Observaciones, 400, 4)
                 .FormatoGeneral()
                 .MoveLast()

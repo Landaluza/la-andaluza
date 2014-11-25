@@ -12,7 +12,7 @@ Public Class frmEntAlbaranesCargaMaestro
     Private totalCajas As Integer
     Private m_MaestroProID As String
     Private m_MaestroID As String
-    Private v_cliente As String
+    'Private v_cliente As String
     Private v_conductor As String
     Private tsExcel As ToolStripButton
     Private tsNuevoPalet As ToolStripButton
@@ -70,6 +70,8 @@ Public Class frmEntAlbaranesCargaMaestro
             End With
             cboREsponsableAdminsitracion.SelectedValue = 41
             cboREsponsableCarga.SelectedValue = 86
+            cboLugaresEntrega.SelectedValue = 1
+            cboClientes.SelectedValue = 1
         Else
             If Me.Text.Substring(0, 3) = "Ver" Then
                 ctlAlb.mostrarTodosAlbaranesCargaMaestro(dtb, dtsAlb)
@@ -128,7 +130,7 @@ Public Class frmEntAlbaranesCargaMaestro
         txtMaestroID.Text = dt.Rows(0).Item("AlbaranCargaProMaestroID").ToString
         m_MaestroProID = dt.Rows(0).Item("AlbaranCargaProMaestroID").ToString
         FechaDateTimePicker.Value = dt.Rows(0).Item("Fecha")
-        ClienteIDCuadroDeTexto.Text = dt.Rows(0).Item("ClienteID").ToString
+        cboClientes.SelectedValue = dt.Rows(0).Item("ClienteID").ToString
         SerieQSIDCuadroDeTexto.Text = dt.Rows(0).Item("SerieQSID").ToString
         NumeroQSCuadroDeTexto.Text = dt.Rows(0).Item("NumeroQS").ToString
         AlmacenSalidaQSIDCuadroDeTexto.Text = dt.Rows(0).Item("AlmacenSalidaQSID").ToString
@@ -146,7 +148,7 @@ Public Class frmEntAlbaranesCargaMaestro
         txtDNI.Text = dt.Rows(0).Item("ConductorDNI") 'ConductorDNI
         txtRemolque1.Text = dt.Rows(0).Item("Reserva1") 'Reserva1
 
-        ResponsableCargaIDCuadroDeTexto.Text = dt.Rows(0).Item("ResponsableCargaID") 'ResponsableCargaID.ToString
+
         cboREsponsableCarga.SelectedValue = dt.Rows(0).Item("ResponsableCargaID")
         cboREsponsableAdminsitracion.SelectedValue = dt.Rows(0).Item("ResponsableAdministracionID") ' ResponsableAdministracionID.ToString        
         HoraLlegadaDateTimePicker.Value = New DateTime(Now.Year, Now.Month, Now.Day, CType(dt.Rows(0).Item("HoraLlegada"), TimeSpan).Hours, CType(dt.Rows(0).Item("HoraLlegada"), TimeSpan).Minutes, 0)  ' Now.Date.Add(HoraLlegada)
@@ -156,7 +158,6 @@ Public Class frmEntAlbaranesCargaMaestro
         Reserva2CuadroDeTexto.Text = dt.Rows(0).Item("Reserva2") ' Reserva2
         cboLugaresEntrega.Text = dt.Rows(0).Item("Reserva3") 'Reserva3
 
-        v_cliente = dt.Rows(0).Item("ClienteID") ' ClienteID.ToString
         v_conductor = dt.Rows(0).Item("Conductor") 'Conductor
     End Sub
 
@@ -189,7 +190,7 @@ Public Class frmEntAlbaranesCargaMaestro
         txtMaestroID.Text = AlbaranCargaProMaestroID.ToString
         m_MaestroProID = AlbaranCargaProMaestroID.ToString
         FechaDateTimePicker.Value = Fecha
-        ClienteIDCuadroDeTexto.Text = ClienteID.ToString
+            cboClientes.SelectedValue = ClienteID.ToString
         SerieQSIDCuadroDeTexto.Text = SerieQSID.ToString
         NumeroQSCuadroDeTexto.Text = NumeroQS.ToString
         AlmacenSalidaQSIDCuadroDeTexto.Text = AlmacenSalidaQSID.ToString
@@ -207,7 +208,7 @@ Public Class frmEntAlbaranesCargaMaestro
         txtDNI.Text = ConductorDNI
         txtRemolque1.Text = Reserva1
 
-        ResponsableCargaIDCuadroDeTexto.Text = ResponsableCargaID.ToString
+        cboREsponsableCarga.SelectedValue = ResponsableCargaID.ToString
         cboREsponsableAdminsitracion.SelectedValue = ResponsableAdministracionID.ToString
         HoraLlegadaDateTimePicker.Value = Now.Date.Add(HoraLlegada)
         HoraSalidaDateTimePicker.Value = Now.Date.Add(HoraSalida)
@@ -216,7 +217,6 @@ Public Class frmEntAlbaranesCargaMaestro
         Reserva2CuadroDeTexto.Text = Reserva2
         cboLugaresEntrega.Text = Reserva3
 
-        v_cliente = ClienteID.ToString
         v_conductor = Conductor
     End Sub
 
@@ -240,11 +240,22 @@ Public Class frmEntAlbaranesCargaMaestro
     Private Function getValores() As Boolean
         Dim errores As String = ""
 
-        If ResponsableCargaIDCuadroDeTexto.Text = "" Then ResponsableCargaIDCuadroDeTexto.Text = 0
-        If cboREsponsableAdminsitracion.SelectedValue Is Nothing Or cboREsponsableAdminsitracion.Text = "" Then
-            errores &= "No se selecciono un responsable para administracion"
+        If cboREsponsableCarga.SelectedValue Is Nothing Or cboREsponsableCarga.Text = "" Then
+            errores &= "No se selecciono un responsable para la carga" & Environment.NewLine
         End If
-        
+
+        If cboREsponsableAdminsitracion.SelectedValue Is Nothing Or cboREsponsableAdminsitracion.Text = "" Then
+            errores &= "No se selecciono un responsable para administracion" & Environment.NewLine
+        End If
+
+        If cboLugaresEntrega.SelectedValue Is Nothing Or cboLugaresEntrega.Text = "" Then
+            errores &= "No se selecciono un lugar de entrega" & Environment.NewLine
+        End If
+
+        If cboClientes.SelectedValue Is Nothing Or cboClientes.Text = "" Then
+            errores &= "No se selecciono un cliente" & Environment.NewLine
+        End If
+
         If errores = "" Then
             Return True
         Else
@@ -284,7 +295,7 @@ Public Class frmEntAlbaranesCargaMaestro
 
                 If Not ctlAlb.GuardarAlbaranCargaMaestro(dtb, m_MaestroProID, _
                                                   FechaDateTimePicker.Value, _
-                                                  ClienteIDCuadroDeTexto.Text, _
+                                                  cboClientes.SelectedValue, _
                                                   SerieQSIDCuadroDeTexto.Text, _
                                                   NumeroQSCuadroDeTexto.Text, _
                                                   AlmacenSalidaQSIDCuadroDeTexto.Text, _
@@ -294,7 +305,7 @@ Public Class frmEntAlbaranesCargaMaestro
                                                   MatriculaCuadroDeTexto.Text, _
                                                   cboConductores.Text, _
                                                   ConductorDNICuadroDeTexto.Text, _
-                                                  ResponsableCargaIDCuadroDeTexto.Text, _
+                                                  cboREsponsableCarga.SelectedValue, _
                                                   cboREsponsableAdminsitracion.SelectedValue, _
                                                   HoraLlegadaDateTimePicker.Value, _
                                                   HoraSalidaDateTimePicker.Value, _
@@ -334,7 +345,7 @@ Public Class frmEntAlbaranesCargaMaestro
             If Me.Text.Substring(0, 9) = "Modificar" Then
                 If Not ctlAlb.GuardarAlbaranCargaMaestro(dtb, m_MaestroProID, _
                                                   FechaDateTimePicker.Value, _
-                                                  ClienteIDCuadroDeTexto.Text, _
+                                                  cboClientes.SelectedValue, _
                                                   SerieQSIDCuadroDeTexto.Text, _
                                                   NumeroQSCuadroDeTexto.Text, _
                                                   AlmacenSalidaQSIDCuadroDeTexto.Text, _
@@ -344,7 +355,7 @@ Public Class frmEntAlbaranesCargaMaestro
                                                   MatriculaCuadroDeTexto.Text, _
                                                   cboConductores.Text, _
                                                   ConductorDNICuadroDeTexto.Text, _
-                                                   ResponsableCargaIDCuadroDeTexto.Text, _
+                                                   cboREsponsableCarga.SelectedValue, _
                                                  cboREsponsableAdminsitracion.SelectedValue, _
                                                   HoraLlegadaDateTimePicker.Value, _
                                                   HoraSalidaDateTimePicker.Value, _
@@ -512,15 +523,6 @@ Public Class frmEntAlbaranesCargaMaestro
         Catch ex As Exception
         End Try
 
-    End Sub
-
-    Private Sub cboClientes_SelectedValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboClientes.SelectedValueChanged
-        'Tengo que usar este Try vacio porque da error al cargar el formnulario
-        Try
-            ClienteIDCuadroDeTexto.Text = (CType(cboClientes.SelectedValue, Integer) - 1).ToString
-        Catch ex As Exception
-
-        End Try
     End Sub
 
     Private Sub btnToExcel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnToExcel.Click
@@ -2297,7 +2299,6 @@ Public Class frmEntAlbaranesCargaMaestro
     End Sub
 
     Private Sub frmEntAlbaranesCargaMaestro_Shown(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Shown
-        Me.cboClientes.SelectedValue = Me.v_cliente + 1
         Me.cboConductores.SelectedIndex = Me.cboConductores.FindString(Me.v_conductor)
     End Sub
 
@@ -2394,19 +2395,5 @@ Public Class frmEntAlbaranesCargaMaestro
 
     Private Sub btnCartaJr_Click(sender As Object, e As EventArgs) Handles btnCartaJr.Click
         cartaPortes()
-    End Sub
-
-    Private Sub cboREsponsableCarga_SelectedValueChanged(sender As Object, e As EventArgs) Handles cboREsponsableCarga.SelectedValueChanged
-        Try
-            ResponsableCargaIDCuadroDeTexto.Text = cboREsponsableCarga.SelectedValue
-        Catch ex As Exception
-
-        End Try
-    End Sub
-
-
-  
-    Private Sub ResponsableCargaIDCuadroDeTexto_TextChanged(sender As Object, e As EventArgs) Handles ResponsableCargaIDCuadroDeTexto.TextChanged
-
     End Sub
 End Class
