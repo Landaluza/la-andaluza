@@ -161,7 +161,8 @@ Public Class frmPedidosProveedoresMaestros
         Dim dtb As New BasesParaCompatibilidad.DataBase
 
         Try
-            spSelectDgv = "PedidosProveedoresDetallesSelectByMaestroIDDgv '" & dgvGeneral.CurrentRow.Cells("PedidoProveedorMaestroID").Value & "'"
+            spSelectDgv = "PedidosProveedoresDetallesSelectByMaestroIDDgv @id"
+            dtb.AñadirParametroConsulta("@id", dgvGeneral.CurrentRow.Cells("PedidoProveedorMaestroID").Value)
             dtb.PrepararConsulta(spSelectDgv)
             tb = dtb.Consultar()
         Catch ex As Exception
@@ -377,7 +378,7 @@ Public Class frmPedidosProveedoresMaestros
                 End If
             End If
         Catch ex As Exception
-            MessageBox.Show(ex.Message.Substring(1, 20) & Environment.NewLine & "Fallo al grabar el fichero como PDF")
+            MessageBox.Show("Fallo al grabar el fichero como PDF" & Environment.NewLine & ex.Message)
             frmEspera.Close()
             Return
         End Try
@@ -397,7 +398,7 @@ Public Class frmPedidosProveedoresMaestros
                           LineEnding:=Microsoft.Office.Interop.Word.WdLineEndingType.wdCRLF, _
                           AddBiDiMarks:=False)
             Catch ex As Exception
-                MessageBox.Show(ex.Message.Substring(1, 20) & Environment.NewLine & "Fallo al grabar el fichero como PDF")
+                MessageBox.Show("Fallo2 al grabar el fichero como PDF" & Environment.NewLine & ex.Message)
                 frmEspera.Close()
                 Return
             End Try
@@ -405,7 +406,7 @@ Public Class frmPedidosProveedoresMaestros
             Try
                 CType(sp, spPedidosProveedoresMaestros).UpdatePedidosProveedoresMaestros_RutaPDF(dgvGeneral.CurrentRow.Cells("PedidoProveedorMaestroID").Value, PDFFile & Convert.ToString(dgvGeneral.CurrentRow.Cells("Numero").Value) & ".PDF", dtb)
             Catch ex As Exception
-                MessageBox.Show("Error actualizando tabla. Detalles: " & ex.Message.Substring(1, 20) & Environment.NewLine & "Fallo al grabar el fichero como PDF")
+                MessageBox.Show("Error actualizando tabla. Detalles: " & ex.Message & Environment.NewLine & "Fallo al grabar el fichero como PDF")
             End Try
         End If
 

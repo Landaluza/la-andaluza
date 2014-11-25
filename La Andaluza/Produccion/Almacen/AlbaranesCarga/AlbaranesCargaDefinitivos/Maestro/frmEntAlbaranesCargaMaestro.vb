@@ -241,7 +241,7 @@ Public Class frmEntAlbaranesCargaMaestro
         Dim errores As String = ""
 
         If ResponsableCargaIDCuadroDeTexto.Text = "" Then ResponsableCargaIDCuadroDeTexto.Text = 0
-        If cboREsponsableAdminsitracion.SelectedValue Is Nothing Or cboREsponsableAdminsitracion.SelectedText = "" Then
+        If cboREsponsableAdminsitracion.SelectedValue Is Nothing Or cboREsponsableAdminsitracion.Text = "" Then
             errores &= "No se selecciono un responsable para administracion"
         End If
         
