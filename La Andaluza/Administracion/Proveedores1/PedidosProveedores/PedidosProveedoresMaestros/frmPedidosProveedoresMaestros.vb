@@ -141,6 +141,9 @@ Public Class frmPedidosProveedoresMaestros
         'dgvGeneral.FormatoGeneral()
     End Sub
 
+
+
+
     Private Sub Impreso()
         frmEspera = New BasesParaCompatibilidad.frmEspera("Generando informe")
         frmEspera.Show()
@@ -162,8 +165,8 @@ Public Class frmPedidosProveedoresMaestros
 
         Try
             spSelectDgv = "PedidosProveedoresDetallesSelectByMaestroIDDgv @id"
-            dtb.AñadirParametroConsulta("@id", dgvGeneral.CurrentRow.Cells("PedidoProveedorMaestroID").Value)
             dtb.PrepararConsulta(spSelectDgv)
+            dtb.AñadirParametroConsulta("@id", dgvGeneral.CurrentRow.Cells("PedidoProveedorMaestroID").Value)
             tb = dtb.Consultar()
         Catch ex As Exception
             MessageBox.Show("Error al recuperar datos para el informe. Detalles:" & Environment.NewLine & ex.Message, "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error)

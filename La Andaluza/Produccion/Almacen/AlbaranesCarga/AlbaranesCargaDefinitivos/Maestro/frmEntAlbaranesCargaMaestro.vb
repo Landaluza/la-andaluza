@@ -2406,4 +2406,7 @@ Public Class frmEntAlbaranesCargaMaestro
 
 
   
+    Private Sub ResponsableCargaIDCuadroDeTexto_TextChanged(sender As Object, e As EventArgs) Handles ResponsableCargaIDCuadroDeTexto.TextChanged
+
+    End Sub
 End Class
