@@ -1387,6 +1387,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         'txtRemolque1
         '
+        Me.txtRemolque1.Enabled = False
         Me.txtRemolque1.EsUnicoCampo = ""
         Me.txtRemolque1.EsUnicoCampoID = ""
         Me.txtRemolque1.EsUnicoID = 0
@@ -1407,6 +1408,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         'txtCabeza
         '
+        Me.txtCabeza.Enabled = False
         Me.txtCabeza.EsUnicoCampo = ""
         Me.txtCabeza.EsUnicoCampoID = ""
         Me.txtCabeza.EsUnicoID = 0
@@ -1449,6 +1451,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         'txtConductor
         '
         Me.txtConductor.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "Conductor", True))
+        Me.txtConductor.Enabled = False
         Me.txtConductor.EsUnicoCampo = ""
         Me.txtConductor.EsUnicoCampoID = ""
         Me.txtConductor.EsUnicoID = 0
@@ -1491,6 +1494,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         'txtDNI
         '
         Me.txtDNI.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "ConductorDNI", True))
+        Me.txtDNI.Enabled = False
         Me.txtDNI.EsUnicoCampo = ""
         Me.txtDNI.EsUnicoCampoID = ""
         Me.txtDNI.EsUnicoID = 0

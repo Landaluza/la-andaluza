@@ -56,12 +56,12 @@ Public Class frmPaletsProducidos
             AddHandler btnEtiqueta2.Click, AddressOf mostrarEtiqueta
 
             
-            'Dim btnEtiqueta3 As ToolStripButton = Me.bdnGeneral.Items.Add("Imprimir etiqueta")
+            'Dim btnEtiqueta3 As ToolStripButton = Me.bdnGeneral.Items.Add("Imprimir etiqueta ivan")
             'btnEtiqueta3.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
             'btnEtiqueta3.Image = My.Resources.print_ico
             'btnEtiqueta3.TextDirection = ToolStripTextDirection.Horizontal
             'btnEtiqueta3.TextAlign = ContentAlignment.MiddleRight
-            'AddHandler btnEtiqueta3.Click, AddressOf mostrarEtiqueta_control
+            'AddHandler btnEtiqueta3.Click, AddressOf mostrarEtiqueta2
         End If
 
         etiqueta = New etiquetas.Etiqueta(0, BasesParaCompatibilidad.Config.connectionString)
@@ -354,18 +354,20 @@ Public Class frmPaletsProducidos
         End If
     End Sub
 
-    'Private Sub mostrarEtiqueta2()
-    '    Dim cs As New BasesParaCompatibilidad.Consola
+    ' Private Sub mostrarEtiqueta2()
+    'Dim cs As New BasesParaCompatibilidad.Consola
 
+    'Try
+    '    etiqueta = New etiquetas.Etiqueta(55940, BasesParaCompatibilidad.Config.connectionString)
+    '    etiqueta.print()
+    '    cs.Espera(5000)
 
+    '    etiqueta = New etiquetas.Etiqueta(56133, BasesParaCompatibilidad.Config.connectionString)
+    '    etiqueta.print()
+    '    cs.Espera(2000)
+    'Catch ex As Exception
 
-    '    Try
-    '        etiqueta = New etiquetas.Etiqueta(Me.ComboBox1.SelectedText, BasesParaCompatibilidad.Config.connectionString)            
-    '        etiqueta.print()
-    '        cs.Espera(2000)
-    '    Catch ex As Exception
-
-    '    End Try
+    'End Try
 
     'End Sub
 End Class

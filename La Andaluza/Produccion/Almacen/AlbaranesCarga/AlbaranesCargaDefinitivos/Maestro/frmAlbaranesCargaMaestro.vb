@@ -53,9 +53,9 @@ Public Class frmAlbaranesCargaMaestro
             "AlbaranesCargaMaestro.ResponsableAdministracionID, AlbaranesCargaMaestro.HoraLlegada, AlbaranesCargaMaestro.HoraSalida, " & _
             "AlbaranesCargaMaestro.Observaciones, AlbaranesCargaMaestro.Reserva1, AlbaranesCargaMaestro.Reserva2, AlbaranesCargaMaestro.Reserva3, " & _
             "clientes.Nombre as Cliente " & _
-        "from AlbaranesCargaMaestro, clientes " & _
-        "where AlbaranesCargaMaestro.ClienteID = clientes.ClienteID " & _
-        "and year(fecha)= @ano " & _
+        "from AlbaranesCargaMaestro left join clientes " & _
+        "on AlbaranesCargaMaestro.ClienteID = clientes.ClienteID " & _
+        "where year(fecha)= @ano " & _
         "order by fecha asc, NumeroQS asc")
 
         dtb.AñadirParametroConsulta("@ano", agno)
