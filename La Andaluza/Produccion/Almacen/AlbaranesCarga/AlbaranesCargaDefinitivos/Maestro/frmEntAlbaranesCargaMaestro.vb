@@ -530,16 +530,6 @@ Public Class frmEntAlbaranesCargaMaestro
         End Try
 
         Try
-            Me.spAlbaran.seleccionar_agencia_por_conductor(cboConductores.SelectedValue, cboAgencia, Me.dtb)
-        Catch ex As Exception
-        End Try
-
-        Try
-            Me.spAlbaran.seleccionar_remolque_por_conductor(cboConductores.SelectedValue, cboREmolque, Me.dtb)
-        Catch ex As Exception
-        End Try
-
-        Try
             Me.spAlbaran.seleccionar_cabeza_por_conductor(cboConductores.SelectedValue, cboCabeza, Me.dtb)
         Catch ex As Exception
         End Try
@@ -2423,5 +2413,21 @@ Public Class frmEntAlbaranesCargaMaestro
 
     Private Sub btnCartaJr_Click(sender As Object, e As EventArgs) Handles btnCartaJr.Click
         cartaPortes()
+    End Sub
+
+    Private Sub cboCabeza_SelectedValueChanged(sender As Object, e As EventArgs) Handles cboCabeza.SelectedValueChanged
+        Try
+            Try
+                txtDetalleAgencia.Text = Me.spAlbaran.seleccionar_agencia_por_conductor(cboCabeza.SelectedValue, Me.dtb)
+            Catch ex As Exception
+            End Try
+
+            Try
+                txtDetalleRemolque.Text = Me.spAlbaran.seleccionar_remolque_por_conductor(cboCabeza.SelectedValue, Me.dtb)
+            Catch ex As Exception
+            End Try
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

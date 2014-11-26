@@ -47,7 +47,6 @@ Partial Class frmEntAlbaranesCargaMaestro
         Dim Label15 As System.Windows.Forms.Label
         Dim Label16 As System.Windows.Forms.Label
         Dim Label17 As System.Windows.Forms.Label
-        Dim Label18 As System.Windows.Forms.Label
         Dim Label19 As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmEntAlbaranesCargaMaestro))
         Me.DtsAlbaranesCargaMaestro = New La_Andaluza.dtsAlbaranesCargaMaestro()
@@ -140,9 +139,10 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.PrintForm1 = New Microsoft.VisualBasic.PowerPacks.Printing.PrintForm(Me.components)
         Me.PrintForm2 = New Microsoft.VisualBasic.PowerPacks.Printing.PrintForm(Me.components)
         Me.btnToExcel = New System.Windows.Forms.Button()
-        Me.cboAgencia = New System.Windows.Forms.ComboBox()
-        Me.cboREmolque = New System.Windows.Forms.ComboBox()
         Me.cboCabeza = New System.Windows.Forms.ComboBox()
+        Me.btnNuevoCamion = New System.Windows.Forms.Button()
+        Me.txtDetalleRemolque = New System.Windows.Forms.TextBox()
+        Me.txtDetalleAgencia = New System.Windows.Forms.TextBox()
         AlbaranCargaMaestroIDLabel = New System.Windows.Forms.Label()
         AlbaranCargaProMaestroIDLabel = New System.Windows.Forms.Label()
         FechaLabel = New System.Windows.Forms.Label()
@@ -170,7 +170,6 @@ Partial Class frmEntAlbaranesCargaMaestro
         Label15 = New System.Windows.Forms.Label()
         Label16 = New System.Windows.Forms.Label()
         Label17 = New System.Windows.Forms.Label()
-        Label18 = New System.Windows.Forms.Label()
         Label19 = New System.Windows.Forms.Label()
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DtsAlbaranesCargaMaestro, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -454,18 +453,9 @@ Partial Class frmEntAlbaranesCargaMaestro
         Label17.AutoSize = True
         Label17.Location = New System.Drawing.Point(18, 95)
         Label17.Name = "Label17"
-        Label17.Size = New System.Drawing.Size(46, 13)
+        Label17.Size = New System.Drawing.Size(42, 13)
         Label17.TabIndex = 1000000034
-        Label17.Text = "Cabeza:"
-        '
-        'Label18
-        '
-        Label18.AutoSize = True
-        Label18.Location = New System.Drawing.Point(204, 95)
-        Label18.Name = "Label18"
-        Label18.Size = New System.Drawing.Size(58, 13)
-        Label18.TabIndex = 1000000036
-        Label18.Text = "Remolque:"
+        Label17.Text = "Camion"
         '
         'Label19
         '
@@ -869,11 +859,11 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         'grbDatosTransporte
         '
+        Me.grbDatosTransporte.Controls.Add(Me.txtDetalleAgencia)
+        Me.grbDatosTransporte.Controls.Add(Me.txtDetalleRemolque)
+        Me.grbDatosTransporte.Controls.Add(Me.btnNuevoCamion)
         Me.grbDatosTransporte.Controls.Add(Me.cboCabeza)
-        Me.grbDatosTransporte.Controls.Add(Me.cboREmolque)
-        Me.grbDatosTransporte.Controls.Add(Me.cboAgencia)
         Me.grbDatosTransporte.Controls.Add(Me.cboFormaPAgo)
-        Me.grbDatosTransporte.Controls.Add(Label18)
         Me.grbDatosTransporte.Controls.Add(Me.cboREsponsableAdminsitracion)
         Me.grbDatosTransporte.Controls.Add(Label17)
         Me.grbDatosTransporte.Controls.Add(Me.txtMatricula)
@@ -1688,26 +1678,6 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.btnToExcel.Text = "Excel"
         Me.btnToExcel.UseVisualStyleBackColor = True
         '
-        'cboAgencia
-        '
-        Me.cboAgencia.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
-        Me.cboAgencia.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cboAgencia.FormattingEnabled = True
-        Me.cboAgencia.Location = New System.Drawing.Point(407, 121)
-        Me.cboAgencia.Name = "cboAgencia"
-        Me.cboAgencia.Size = New System.Drawing.Size(182, 21)
-        Me.cboAgencia.TabIndex = 1000000058
-        '
-        'cboREmolque
-        '
-        Me.cboREmolque.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
-        Me.cboREmolque.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cboREmolque.FormattingEnabled = True
-        Me.cboREmolque.Location = New System.Drawing.Point(312, 92)
-        Me.cboREmolque.Name = "cboREmolque"
-        Me.cboREmolque.Size = New System.Drawing.Size(182, 21)
-        Me.cboREmolque.TabIndex = 1000000059
-        '
         'cboCabeza
         '
         Me.cboCabeza.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
@@ -1717,6 +1687,30 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.cboCabeza.Name = "cboCabeza"
         Me.cboCabeza.Size = New System.Drawing.Size(85, 21)
         Me.cboCabeza.TabIndex = 1000000060
+        '
+        'btnNuevoCamion
+        '
+        Me.btnNuevoCamion.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnNuevoCamion.Image = Global.La_Andaluza.My.Resources.Resources.car
+        Me.btnNuevoCamion.Location = New System.Drawing.Point(595, 90)
+        Me.btnNuevoCamion.Name = "btnNuevoCamion"
+        Me.btnNuevoCamion.Size = New System.Drawing.Size(29, 20)
+        Me.btnNuevoCamion.TabIndex = 1000000061
+        Me.btnNuevoCamion.UseVisualStyleBackColor = True
+        '
+        'txtDetalleRemolque
+        '
+        Me.txtDetalleRemolque.Location = New System.Drawing.Point(207, 90)
+        Me.txtDetalleRemolque.Name = "txtDetalleRemolque"
+        Me.txtDetalleRemolque.Size = New System.Drawing.Size(192, 20)
+        Me.txtDetalleRemolque.TabIndex = 1000000062
+        '
+        'txtDetalleAgencia
+        '
+        Me.txtDetalleAgencia.Location = New System.Drawing.Point(405, 90)
+        Me.txtDetalleAgencia.Name = "txtDetalleAgencia"
+        Me.txtDetalleAgencia.Size = New System.Drawing.Size(184, 20)
+        Me.txtDetalleAgencia.TabIndex = 1000000063
         '
         'frmEntAlbaranesCargaMaestro
         '
@@ -1865,9 +1859,10 @@ Partial Class frmEntAlbaranesCargaMaestro
     Friend WithEvents Panel5 As System.Windows.Forms.Panel
     Private WithEvents Panel4 As System.Windows.Forms.Panel
     Private WithEvents cboFormaPAgo As System.Windows.Forms.ComboBox
-    Private WithEvents cboAgencia As System.Windows.Forms.ComboBox
     Private WithEvents cboCabeza As System.Windows.Forms.ComboBox
-    Private WithEvents cboREmolque As System.Windows.Forms.ComboBox
+    Private WithEvents txtDetalleAgencia As System.Windows.Forms.TextBox
+    Private WithEvents txtDetalleRemolque As System.Windows.Forms.TextBox
+    Private WithEvents btnNuevoCamion As System.Windows.Forms.Button
     ' Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     'Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     ' Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
