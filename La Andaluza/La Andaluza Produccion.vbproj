@@ -49,7 +49,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>72</ApplicationRevision>
+    <ApplicationRevision>77</ApplicationRevision>
     <ApplicationVersion>2014.11.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -2029,6 +2029,7 @@
     <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\frmNumeroAlbaran.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\spAlbaranesMaestros.vb" />
     <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Detalle\ctlAlbaranesCargaProviDetalles.vb" />
     <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Detalle\Listados\frmLisAlbaranesCarga.Designer.vb">
       <DependentUpon>frmLisAlbaranesCarga.vb</DependentUpon>

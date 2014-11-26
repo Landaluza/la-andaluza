@@ -58,14 +58,13 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.NumeroQSCuadroDeTexto = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.AlmacenSalidaQSIDCuadroDeTexto = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.AgenciaIDCuadroDeTexto = New BasesParaCompatibilidad.CuadroDeTexto()
-        Me.PorteFormaPagoIDCuadroDeTexto = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.PorteImporteCuadroDeTexto = New BasesParaCompatibilidad.CuadroDeTexto()
-        Me.MatriculaCuadroDeTexto = New BasesParaCompatibilidad.CuadroDeTexto()
+        Me.txtMatricula = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.ConductorDNICuadroDeTexto = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.HoraLlegadaDateTimePicker = New System.Windows.Forms.DateTimePicker()
         Me.HoraSalidaDateTimePicker = New System.Windows.Forms.DateTimePicker()
         Me.ObservacionesCuadroDeTexto = New BasesParaCompatibilidad.CuadroDeTexto()
-        Me.Reserva1CuadroDeTexto = New BasesParaCompatibilidad.CuadroDeTexto()
+        Me.txtRemolque = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.Reserva2CuadroDeTexto = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.dgvPalet = New System.Windows.Forms.DataGridView()
         Me.cmPalets = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -81,6 +80,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.tabPagDatos = New System.Windows.Forms.TabPage()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.grbDatosTransporte = New System.Windows.Forms.GroupBox()
+        Me.cboFormaPAgo = New System.Windows.Forms.ComboBox()
         Me.cboREsponsableAdminsitracion = New System.Windows.Forms.ComboBox()
         Me.cboREsponsableCarga = New System.Windows.Forms.ComboBox()
         Me.Label24 = New System.Windows.Forms.Label()
@@ -140,6 +140,9 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.PrintForm1 = New Microsoft.VisualBasic.PowerPacks.Printing.PrintForm(Me.components)
         Me.PrintForm2 = New Microsoft.VisualBasic.PowerPacks.Printing.PrintForm(Me.components)
         Me.btnToExcel = New System.Windows.Forms.Button()
+        Me.cboAgencia = New System.Windows.Forms.ComboBox()
+        Me.cboREmolque = New System.Windows.Forms.ComboBox()
+        Me.cboCabeza = New System.Windows.Forms.ComboBox()
         AlbaranCargaMaestroIDLabel = New System.Windows.Forms.Label()
         AlbaranCargaProMaestroIDLabel = New System.Windows.Forms.Label()
         FechaLabel = New System.Windows.Forms.Label()
@@ -278,23 +281,23 @@ Partial Class frmEntAlbaranesCargaMaestro
         AgenciaIDLabel.AutoSize = True
         AgenciaIDLabel.Location = New System.Drawing.Point(204, 124)
         AgenciaIDLabel.Name = "AgenciaIDLabel"
-        AgenciaIDLabel.Size = New System.Drawing.Size(63, 13)
+        AgenciaIDLabel.Size = New System.Drawing.Size(49, 13)
         AgenciaIDLabel.TabIndex = 1000000014
-        AgenciaIDLabel.Text = "Agencia ID:"
+        AgenciaIDLabel.Text = "Agencia:"
         '
         'PorteFormaPagoIDLabel
         '
         PorteFormaPagoIDLabel.AutoSize = True
-        PorteFormaPagoIDLabel.Location = New System.Drawing.Point(204, 150)
+        PorteFormaPagoIDLabel.Location = New System.Drawing.Point(204, 184)
         PorteFormaPagoIDLabel.Name = "PorteFormaPagoIDLabel"
-        PorteFormaPagoIDLabel.Size = New System.Drawing.Size(109, 13)
+        PorteFormaPagoIDLabel.Size = New System.Drawing.Size(67, 13)
         PorteFormaPagoIDLabel.TabIndex = 1000000016
-        PorteFormaPagoIDLabel.Text = "Porte Forma Pago ID:"
+        PorteFormaPagoIDLabel.Text = "Forma Pago:"
         '
         'PorteImporteLabel
         '
         PorteImporteLabel.AutoSize = True
-        PorteImporteLabel.Location = New System.Drawing.Point(204, 176)
+        PorteImporteLabel.Location = New System.Drawing.Point(204, 155)
         PorteImporteLabel.Name = "PorteImporteLabel"
         PorteImporteLabel.Size = New System.Drawing.Size(73, 13)
         PorteImporteLabel.TabIndex = 1000000018
@@ -395,7 +398,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         'Label11
         '
         Label11.AutoSize = True
-        Label11.Location = New System.Drawing.Point(209, 166)
+        Label11.Location = New System.Drawing.Point(209, 143)
         Label11.Name = "Label11"
         Label11.Size = New System.Drawing.Size(73, 13)
         Label11.TabIndex = 1000000018
@@ -413,11 +416,11 @@ Partial Class frmEntAlbaranesCargaMaestro
         'Label13
         '
         Label13.AutoSize = True
-        Label13.Location = New System.Drawing.Point(209, 140)
+        Label13.Location = New System.Drawing.Point(209, 169)
         Label13.Name = "Label13"
-        Label13.Size = New System.Drawing.Size(109, 13)
+        Label13.Size = New System.Drawing.Size(67, 13)
         Label13.TabIndex = 1000000016
-        Label13.Text = "Porte Forma Pago ID:"
+        Label13.Text = "Forma Pago:"
         '
         'Label14
         '
@@ -449,7 +452,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         'Label17
         '
         Label17.AutoSize = True
-        Label17.Location = New System.Drawing.Point(18, 39)
+        Label17.Location = New System.Drawing.Point(18, 95)
         Label17.Name = "Label17"
         Label17.Size = New System.Drawing.Size(46, 13)
         Label17.TabIndex = 1000000034
@@ -458,7 +461,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         'Label18
         '
         Label18.AutoSize = True
-        Label18.Location = New System.Drawing.Point(234, 39)
+        Label18.Location = New System.Drawing.Point(204, 95)
         Label18.Name = "Label18"
         Label18.Size = New System.Drawing.Size(58, 13)
         Label18.TabIndex = 1000000036
@@ -614,27 +617,6 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.AgenciaIDCuadroDeTexto.ValorMaximo = 0.0R
         Me.AgenciaIDCuadroDeTexto.ValorMinimo = 0.0R
         '
-        'PorteFormaPagoIDCuadroDeTexto
-        '
-        Me.PorteFormaPagoIDCuadroDeTexto.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "PorteFormaPagoID", True))
-        Me.PorteFormaPagoIDCuadroDeTexto.EsUnicoCampo = ""
-        Me.PorteFormaPagoIDCuadroDeTexto.EsUnicoCampoID = ""
-        Me.PorteFormaPagoIDCuadroDeTexto.EsUnicoID = 0
-        Me.PorteFormaPagoIDCuadroDeTexto.EsUnicoTabla = ""
-        Me.PorteFormaPagoIDCuadroDeTexto.Location = New System.Drawing.Point(312, 146)
-        Me.PorteFormaPagoIDCuadroDeTexto.Minimo = 0
-        Me.PorteFormaPagoIDCuadroDeTexto.Modificado = False
-        Me.PorteFormaPagoIDCuadroDeTexto.Name = "PorteFormaPagoIDCuadroDeTexto"
-        Me.PorteFormaPagoIDCuadroDeTexto.Numerico_EsNumerico = False
-        Me.PorteFormaPagoIDCuadroDeTexto.Numerico_NumeroDoublees = 0
-        Me.PorteFormaPagoIDCuadroDeTexto.Numerico_SeparadorMiles = False
-        Me.PorteFormaPagoIDCuadroDeTexto.Obligatorio = False
-        Me.PorteFormaPagoIDCuadroDeTexto.ParametroID = 0
-        Me.PorteFormaPagoIDCuadroDeTexto.Size = New System.Drawing.Size(87, 20)
-        Me.PorteFormaPagoIDCuadroDeTexto.TabIndex = 1000000017
-        Me.PorteFormaPagoIDCuadroDeTexto.ValorMaximo = 0.0R
-        Me.PorteFormaPagoIDCuadroDeTexto.ValorMinimo = 0.0R
-        '
         'PorteImporteCuadroDeTexto
         '
         Me.PorteImporteCuadroDeTexto.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "PorteImporte", True))
@@ -642,7 +624,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.PorteImporteCuadroDeTexto.EsUnicoCampoID = ""
         Me.PorteImporteCuadroDeTexto.EsUnicoID = 0
         Me.PorteImporteCuadroDeTexto.EsUnicoTabla = ""
-        Me.PorteImporteCuadroDeTexto.Location = New System.Drawing.Point(312, 173)
+        Me.PorteImporteCuadroDeTexto.Location = New System.Drawing.Point(312, 152)
         Me.PorteImporteCuadroDeTexto.Minimo = 0
         Me.PorteImporteCuadroDeTexto.Modificado = False
         Me.PorteImporteCuadroDeTexto.Name = "PorteImporteCuadroDeTexto"
@@ -656,25 +638,25 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.PorteImporteCuadroDeTexto.ValorMaximo = 0.0R
         Me.PorteImporteCuadroDeTexto.ValorMinimo = 0.0R
         '
-        'MatriculaCuadroDeTexto
+        'txtMatricula
         '
-        Me.MatriculaCuadroDeTexto.EsUnicoCampo = ""
-        Me.MatriculaCuadroDeTexto.EsUnicoCampoID = ""
-        Me.MatriculaCuadroDeTexto.EsUnicoID = 0
-        Me.MatriculaCuadroDeTexto.EsUnicoTabla = ""
-        Me.MatriculaCuadroDeTexto.Location = New System.Drawing.Point(108, 36)
-        Me.MatriculaCuadroDeTexto.Minimo = 0
-        Me.MatriculaCuadroDeTexto.Modificado = False
-        Me.MatriculaCuadroDeTexto.Name = "MatriculaCuadroDeTexto"
-        Me.MatriculaCuadroDeTexto.Numerico_EsNumerico = False
-        Me.MatriculaCuadroDeTexto.Numerico_NumeroDoublees = 0
-        Me.MatriculaCuadroDeTexto.Numerico_SeparadorMiles = False
-        Me.MatriculaCuadroDeTexto.Obligatorio = False
-        Me.MatriculaCuadroDeTexto.ParametroID = 0
-        Me.MatriculaCuadroDeTexto.Size = New System.Drawing.Size(92, 20)
-        Me.MatriculaCuadroDeTexto.TabIndex = 1000000021
-        Me.MatriculaCuadroDeTexto.ValorMaximo = 0.0R
-        Me.MatriculaCuadroDeTexto.ValorMinimo = 0.0R
+        Me.txtMatricula.EsUnicoCampo = ""
+        Me.txtMatricula.EsUnicoCampoID = ""
+        Me.txtMatricula.EsUnicoID = 0
+        Me.txtMatricula.EsUnicoTabla = ""
+        Me.txtMatricula.Location = New System.Drawing.Point(106, 32)
+        Me.txtMatricula.Minimo = 0
+        Me.txtMatricula.Modificado = False
+        Me.txtMatricula.Name = "txtMatricula"
+        Me.txtMatricula.Numerico_EsNumerico = False
+        Me.txtMatricula.Numerico_NumeroDoublees = 0
+        Me.txtMatricula.Numerico_SeparadorMiles = False
+        Me.txtMatricula.Obligatorio = False
+        Me.txtMatricula.ParametroID = 0
+        Me.txtMatricula.Size = New System.Drawing.Size(92, 20)
+        Me.txtMatricula.TabIndex = 1000000021
+        Me.txtMatricula.ValorMaximo = 0.0R
+        Me.txtMatricula.ValorMinimo = 0.0R
         '
         'ConductorDNICuadroDeTexto
         '
@@ -740,26 +722,26 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.ObservacionesCuadroDeTexto.ValorMaximo = 0.0R
         Me.ObservacionesCuadroDeTexto.ValorMinimo = 0.0R
         '
-        'Reserva1CuadroDeTexto
+        'txtRemolque
         '
-        Me.Reserva1CuadroDeTexto.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "Reserva1", True))
-        Me.Reserva1CuadroDeTexto.EsUnicoCampo = ""
-        Me.Reserva1CuadroDeTexto.EsUnicoCampoID = ""
-        Me.Reserva1CuadroDeTexto.EsUnicoID = 0
-        Me.Reserva1CuadroDeTexto.EsUnicoTabla = ""
-        Me.Reserva1CuadroDeTexto.Location = New System.Drawing.Point(298, 36)
-        Me.Reserva1CuadroDeTexto.Minimo = 0
-        Me.Reserva1CuadroDeTexto.Modificado = False
-        Me.Reserva1CuadroDeTexto.Name = "Reserva1CuadroDeTexto"
-        Me.Reserva1CuadroDeTexto.Numerico_EsNumerico = False
-        Me.Reserva1CuadroDeTexto.Numerico_NumeroDoublees = 0
-        Me.Reserva1CuadroDeTexto.Numerico_SeparadorMiles = False
-        Me.Reserva1CuadroDeTexto.Obligatorio = False
-        Me.Reserva1CuadroDeTexto.ParametroID = 0
-        Me.Reserva1CuadroDeTexto.Size = New System.Drawing.Size(101, 20)
-        Me.Reserva1CuadroDeTexto.TabIndex = 1000000037
-        Me.Reserva1CuadroDeTexto.ValorMaximo = 0.0R
-        Me.Reserva1CuadroDeTexto.ValorMinimo = 0.0R
+        Me.txtRemolque.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "Reserva1", True))
+        Me.txtRemolque.EsUnicoCampo = ""
+        Me.txtRemolque.EsUnicoCampoID = ""
+        Me.txtRemolque.EsUnicoID = 0
+        Me.txtRemolque.EsUnicoTabla = ""
+        Me.txtRemolque.Location = New System.Drawing.Point(298, 36)
+        Me.txtRemolque.Minimo = 0
+        Me.txtRemolque.Modificado = False
+        Me.txtRemolque.Name = "txtRemolque"
+        Me.txtRemolque.Numerico_EsNumerico = False
+        Me.txtRemolque.Numerico_NumeroDoublees = 0
+        Me.txtRemolque.Numerico_SeparadorMiles = False
+        Me.txtRemolque.Obligatorio = False
+        Me.txtRemolque.ParametroID = 0
+        Me.txtRemolque.Size = New System.Drawing.Size(101, 20)
+        Me.txtRemolque.TabIndex = 1000000037
+        Me.txtRemolque.ValorMaximo = 0.0R
+        Me.txtRemolque.ValorMinimo = 0.0R
         '
         'Reserva2CuadroDeTexto
         '
@@ -887,10 +869,14 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         'grbDatosTransporte
         '
+        Me.grbDatosTransporte.Controls.Add(Me.cboCabeza)
+        Me.grbDatosTransporte.Controls.Add(Me.cboREmolque)
+        Me.grbDatosTransporte.Controls.Add(Me.cboAgencia)
+        Me.grbDatosTransporte.Controls.Add(Me.cboFormaPAgo)
         Me.grbDatosTransporte.Controls.Add(Label18)
         Me.grbDatosTransporte.Controls.Add(Me.cboREsponsableAdminsitracion)
         Me.grbDatosTransporte.Controls.Add(Label17)
-        Me.grbDatosTransporte.Controls.Add(Me.MatriculaCuadroDeTexto)
+        Me.grbDatosTransporte.Controls.Add(Me.txtMatricula)
         Me.grbDatosTransporte.Controls.Add(Me.cboREsponsableCarga)
         Me.grbDatosTransporte.Controls.Add(Me.PorteImporteCuadroDeTexto)
         Me.grbDatosTransporte.Controls.Add(ConductorLabel)
@@ -898,8 +884,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.grbDatosTransporte.Controls.Add(PorteImporteLabel)
         Me.grbDatosTransporte.Controls.Add(Me.Label23)
         Me.grbDatosTransporte.Controls.Add(Me.cboConductores)
-        Me.grbDatosTransporte.Controls.Add(Me.PorteFormaPagoIDCuadroDeTexto)
-        Me.grbDatosTransporte.Controls.Add(Me.Reserva1CuadroDeTexto)
+        Me.grbDatosTransporte.Controls.Add(Me.txtRemolque)
         Me.grbDatosTransporte.Controls.Add(PorteFormaPagoIDLabel)
         Me.grbDatosTransporte.Controls.Add(Me.ConductorDNICuadroDeTexto)
         Me.grbDatosTransporte.Controls.Add(Me.AgenciaIDCuadroDeTexto)
@@ -915,6 +900,16 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.grbDatosTransporte.TabIndex = 1000000047
         Me.grbDatosTransporte.TabStop = False
         Me.grbDatosTransporte.Text = "Datos transporte"
+        '
+        'cboFormaPAgo
+        '
+        Me.cboFormaPAgo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
+        Me.cboFormaPAgo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cboFormaPAgo.FormattingEnabled = True
+        Me.cboFormaPAgo.Location = New System.Drawing.Point(312, 181)
+        Me.cboFormaPAgo.Name = "cboFormaPAgo"
+        Me.cboFormaPAgo.Size = New System.Drawing.Size(277, 21)
+        Me.cboFormaPAgo.TabIndex = 1000000054
         '
         'cboREsponsableAdminsitracion
         '
@@ -1228,7 +1223,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.ButEmbotelladoPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButEmbotelladoPedido.Location = New System.Drawing.Point(181, 128)
         Me.ButEmbotelladoPedido.Name = "ButEmbotelladoPedido"
-        Me.ButEmbotelladoPedido.Size = New System.Drawing.Size(129, 29)
+        Me.ButEmbotelladoPedido.Size = New System.Drawing.Size(129, 44)
         Me.ButEmbotelladoPedido.TabIndex = 1000000064
         Me.ButEmbotelladoPedido.Text = "Embotellado con pedido"
         Me.ButEmbotelladoPedido.UseVisualStyleBackColor = True
@@ -1430,11 +1425,12 @@ Partial Class frmEntAlbaranesCargaMaestro
         'CuadroDeTexto2
         '
         Me.CuadroDeTexto2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "PorteImporte", True))
+        Me.CuadroDeTexto2.Enabled = False
         Me.CuadroDeTexto2.EsUnicoCampo = ""
         Me.CuadroDeTexto2.EsUnicoCampoID = ""
         Me.CuadroDeTexto2.EsUnicoID = 0
         Me.CuadroDeTexto2.EsUnicoTabla = ""
-        Me.CuadroDeTexto2.Location = New System.Drawing.Point(317, 163)
+        Me.CuadroDeTexto2.Location = New System.Drawing.Point(317, 140)
         Me.CuadroDeTexto2.Minimo = 0
         Me.CuadroDeTexto2.Modificado = False
         Me.CuadroDeTexto2.Name = "CuadroDeTexto2"
@@ -1473,11 +1469,12 @@ Partial Class frmEntAlbaranesCargaMaestro
         'CuadroDeTexto4
         '
         Me.CuadroDeTexto4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "PorteFormaPagoID", True))
+        Me.CuadroDeTexto4.Enabled = False
         Me.CuadroDeTexto4.EsUnicoCampo = ""
         Me.CuadroDeTexto4.EsUnicoCampoID = ""
         Me.CuadroDeTexto4.EsUnicoID = 0
         Me.CuadroDeTexto4.EsUnicoTabla = ""
-        Me.CuadroDeTexto4.Location = New System.Drawing.Point(317, 136)
+        Me.CuadroDeTexto4.Location = New System.Drawing.Point(317, 166)
         Me.CuadroDeTexto4.Minimo = 0
         Me.CuadroDeTexto4.Modificado = False
         Me.CuadroDeTexto4.Name = "CuadroDeTexto4"
@@ -1516,6 +1513,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         'CuadroDeTexto6
         '
         Me.CuadroDeTexto6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "AgenciaID", True))
+        Me.CuadroDeTexto6.Enabled = False
         Me.CuadroDeTexto6.EsUnicoCampo = ""
         Me.CuadroDeTexto6.EsUnicoCampoID = ""
         Me.CuadroDeTexto6.EsUnicoID = 0
@@ -1690,6 +1688,36 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.btnToExcel.Text = "Excel"
         Me.btnToExcel.UseVisualStyleBackColor = True
         '
+        'cboAgencia
+        '
+        Me.cboAgencia.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
+        Me.cboAgencia.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cboAgencia.FormattingEnabled = True
+        Me.cboAgencia.Location = New System.Drawing.Point(407, 121)
+        Me.cboAgencia.Name = "cboAgencia"
+        Me.cboAgencia.Size = New System.Drawing.Size(182, 21)
+        Me.cboAgencia.TabIndex = 1000000058
+        '
+        'cboREmolque
+        '
+        Me.cboREmolque.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
+        Me.cboREmolque.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cboREmolque.FormattingEnabled = True
+        Me.cboREmolque.Location = New System.Drawing.Point(312, 92)
+        Me.cboREmolque.Name = "cboREmolque"
+        Me.cboREmolque.Size = New System.Drawing.Size(182, 21)
+        Me.cboREmolque.TabIndex = 1000000059
+        '
+        'cboCabeza
+        '
+        Me.cboCabeza.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
+        Me.cboCabeza.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cboCabeza.FormattingEnabled = True
+        Me.cboCabeza.Location = New System.Drawing.Point(108, 90)
+        Me.cboCabeza.Name = "cboCabeza"
+        Me.cboCabeza.Size = New System.Drawing.Size(85, 21)
+        Me.cboCabeza.TabIndex = 1000000060
+        '
         'frmEntAlbaranesCargaMaestro
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1790,14 +1818,13 @@ Partial Class frmEntAlbaranesCargaMaestro
     Private WithEvents NumeroQSCuadroDeTexto As BasesParaCompatibilidad.CuadroDeTexto
     Private WithEvents AlmacenSalidaQSIDCuadroDeTexto As BasesParaCompatibilidad.CuadroDeTexto
     Private WithEvents AgenciaIDCuadroDeTexto As BasesParaCompatibilidad.CuadroDeTexto
-    Private WithEvents PorteFormaPagoIDCuadroDeTexto As BasesParaCompatibilidad.CuadroDeTexto
     Private WithEvents PorteImporteCuadroDeTexto As BasesParaCompatibilidad.CuadroDeTexto
-    Private WithEvents MatriculaCuadroDeTexto As BasesParaCompatibilidad.CuadroDeTexto
+    Private WithEvents txtMatricula As BasesParaCompatibilidad.CuadroDeTexto
     Private WithEvents ConductorDNICuadroDeTexto As BasesParaCompatibilidad.CuadroDeTexto
     Private WithEvents HoraLlegadaDateTimePicker As System.Windows.Forms.DateTimePicker
     Private WithEvents HoraSalidaDateTimePicker As System.Windows.Forms.DateTimePicker
     Private WithEvents ObservacionesCuadroDeTexto As BasesParaCompatibilidad.CuadroDeTexto
-    Private WithEvents Reserva1CuadroDeTexto As BasesParaCompatibilidad.CuadroDeTexto
+    Private WithEvents txtRemolque As BasesParaCompatibilidad.CuadroDeTexto
     Private WithEvents Reserva2CuadroDeTexto As BasesParaCompatibilidad.CuadroDeTexto
     Private WithEvents dgvPalet As System.Windows.Forms.DataGridView
     Private WithEvents Label7 As System.Windows.Forms.Label
@@ -1837,6 +1864,10 @@ Partial Class frmEntAlbaranesCargaMaestro
     Private WithEvents cboLugaresEntrega As System.Windows.Forms.ComboBox
     Friend WithEvents Panel5 As System.Windows.Forms.Panel
     Private WithEvents Panel4 As System.Windows.Forms.Panel
+    Private WithEvents cboFormaPAgo As System.Windows.Forms.ComboBox
+    Private WithEvents cboAgencia As System.Windows.Forms.ComboBox
+    Private WithEvents cboCabeza As System.Windows.Forms.ComboBox
+    Private WithEvents cboREmolque As System.Windows.Forms.ComboBox
     ' Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     'Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     ' Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
