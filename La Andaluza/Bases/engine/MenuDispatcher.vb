@@ -308,17 +308,17 @@ Public Class MenuDispatcher
         GUImain.añadirPestaña(frmCamiones)
     End Sub
 
-    Private Sub tsmAgenciasTranportes_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmAgenciasTranportes.Click, ToolStripMenuItem1003.Click, ToolStripMenuItem832.Click, ToolStripMenuItem490.Click
+    Private Sub tsmAgenciasTranportes_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmAgenciasTranportes.Click, ToolStripMenuItem1003.Click, ToolStripMenuItem832.Click, ToolStripMenuItem490.Click, AgenciasDeTransporteToolStripMenuItem.Click
         frmAgenciasTransportes = New frmAgenciasTransportes
         GUImain.añadirPestaña(frmAgenciasTransportes)
     End Sub
 
-    Private Sub tsmCamionesTipos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmCamionesTipos.Click, ToolStripMenuItem1004.Click, ToolStripMenuItem833.Click, ToolStripMenuItem491.Click
+    Private Sub tsmCamionesTipos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmCamionesTipos.Click, ToolStripMenuItem1004.Click, ToolStripMenuItem833.Click, ToolStripMenuItem491.Click, CamionesToolStripMenuItem.Click
         frmCamionesTipos = New frmCamionesTipos
         GUImain.añadirPestaña(frmCamionesTipos)
     End Sub
 
-    Private Sub tsmConductores_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmConductores.Click, ToolStripMenuItem1176.Click, ToolStripMenuItem1005.Click, ToolStripMenuItem834.Click, ToolStripMenuItem492.Click
+    Private Sub tsmConductores_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmConductores.Click, ToolStripMenuItem1176.Click, ToolStripMenuItem1005.Click, ToolStripMenuItem834.Click, ToolStripMenuItem492.Click, ConductoresToolStripMenuItem.Click
         frmConductores = New frmConductores
         GUImain.añadirPestaña(frmConductores)
     End Sub

@@ -18,4 +18,9 @@ Public Class spAlbaranesMaestros
         dtb.AñadirParametroConsulta("@id", conductor)
         cbo.mam_DataSource(dtb.Consultar(), False)
     End Sub
+
+    Public Sub cargar_agencias(ByRef cbo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        dtb.PrepararConsulta("select AgenciaTransporteID, Nombre from AgenciasTransportes")
+        cbo.mam_DataSource(dtb.Consultar(), False)
+    End Sub
 End Class

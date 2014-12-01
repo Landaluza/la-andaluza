@@ -29,11 +29,13 @@ Public Class frmEntAlbaranesCargaMaestro
         spAlbaran = New spAlbaranesMaestros
         ctlAlbDet = New ctlAlbaranesCargaDetalles
         dtsAlb = New dtsAlbaranesCargaMaestro.AlbaranesCargaMaestroDataTable
+        Me.SuspendLayout()
         ctlAlb = New ctlAlbaranesCargaMaestro
         FechaDateTimePicker.activarFoco()
         HoraLlegadaDateTimePicker.activarFoco()
         HoraSalidaDateTimePicker.activarFoco()
 
+        spAlbaran.cargar_agencias(cboAgencia, dtb)
         cboConductores.mam_DataSource("ConductoresSelectCbo", False, dtb)
         Dim spLugares As New spLugaresEntregas
         spLugares.cargar_LugaresEntregas(cboLugaresEntrega, dtb, "")
@@ -42,6 +44,7 @@ Public Class frmEntAlbaranesCargaMaestro
         spEmp.cargar_Empleados(cboREsponsableAdminsitracion, dtb)
         spEmp.cargar_Empleados(cboREsponsableCarga, dtb)
         cboFormaPAgo.mam_DataSource("PagosFormasCbo", False, dtb)
+
 
 
         tsExcel = Me.bdnGeneral.Items.Add("Excel")
@@ -53,6 +56,7 @@ Public Class frmEntAlbaranesCargaMaestro
         tsExcel.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
         tsExcel.Image = My.Resources.page_excel_16
         AddHandler tsExcel.Click, AddressOf btnToExcel_Click
+        Me.ResumeLayout()
     End Sub
 
     Private Sub frmEntAlbaranesCargaMaestro_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -139,13 +143,13 @@ Public Class frmEntAlbaranesCargaMaestro
         SerieQSIDCuadroDeTexto.Text = dt.Rows(0).Item("SerieQSID").ToString
         NumeroQSCuadroDeTexto.Text = dt.Rows(0).Item("NumeroQS").ToString
         AlmacenSalidaQSIDCuadroDeTexto.Text = dt.Rows(0).Item("AlmacenSalidaQSID").ToString
-        AgenciaIDCuadroDeTexto.Text = dt.Rows(0).Item("AgenciaID").ToString
+        cboAgencia.SelectedValue = dt.Rows(0).Item("AgenciaID").ToString
         cboFormaPAgo.SelectedValue = If(dt.Rows(0).Item("PorteFormaPagoID") Is Convert.DBNull, 0, dt.Rows(0).Item("PorteFormaPagoID"))
         PorteImporteCuadroDeTexto.Text = dt.Rows(0).Item("PorteImporte").ToString
-        txtMatricula.Text = dt.Rows(0).Item("Matricula")
+        cboCabeza.Text = dt.Rows(0).Item("Matricula")
         cboConductores.Text = dt.Rows(0).Item("Conductor")
         ConductorDNICuadroDeTexto.Text = dt.Rows(0).Item("ConductorDNI")
-        txtRemolque.Text = dt.Rows(0).Item("NumeroQS")
+        txtDetalleRemolque.Text = dt.Rows(0).Item("NumeroQS")
 
         'Los mismos datos en pestaña Acumulados
         txtCabeza.Text = dt.Rows(0).Item("Matricula") 'Matricula
@@ -199,13 +203,13 @@ Public Class frmEntAlbaranesCargaMaestro
         SerieQSIDCuadroDeTexto.Text = SerieQSID.ToString
         NumeroQSCuadroDeTexto.Text = NumeroQS.ToString
         AlmacenSalidaQSIDCuadroDeTexto.Text = AlmacenSalidaQSID.ToString
-        AgenciaIDCuadroDeTexto.Text = AgenciaID.ToString
+        cboAgencia.SelectedValue = AgenciaID.ToString
         cboFormaPAgo.SelectedValue = PorteFormaPagoID.ToString
         PorteImporteCuadroDeTexto.Text = PorteImporte.ToString
-        txtMatricula.Text = Matricula
+        cboCabeza.Text = Matricula
         cboConductores.Text = Conductor
         ConductorDNICuadroDeTexto.Text = ConductorDNI
-        txtRemolque.Text = Reserva1
+        txtDetalleRemolque.Text = Reserva1
 
         'Los mismos datos en pestaña Acumulados
         txtCabeza.Text = Matricula
@@ -304,10 +308,10 @@ Public Class frmEntAlbaranesCargaMaestro
                                                   SerieQSIDCuadroDeTexto.Text, _
                                                   NumeroQSCuadroDeTexto.Text, _
                                                   AlmacenSalidaQSIDCuadroDeTexto.Text, _
-                                                  AgenciaIDCuadroDeTexto.Text, _
+                                                  cboAgencia.SelectedValue, _
                                                   cboFormaPAgo.SelectedValue, _
                                                   PorteImporteCuadroDeTexto.Text, _
-                                                  txtMatricula.Text, _
+                                                  cboCabeza.Text, _
                                                   cboConductores.Text, _
                                                   ConductorDNICuadroDeTexto.Text, _
                                                   cboREsponsableCarga.SelectedValue, _
@@ -315,7 +319,7 @@ Public Class frmEntAlbaranesCargaMaestro
                                                   HoraLlegadaDateTimePicker.Value, _
                                                   HoraSalidaDateTimePicker.Value, _
                                                   ObservacionesCuadroDeTexto.Text, _
-                                                  txtRemolque.Text, _
+                                                  txtDetalleRemolque.Text, _
                                                   Reserva2CuadroDeTexto.Text, _
                                                   cboLugaresEntrega.Text) Then
 
@@ -354,10 +358,10 @@ Public Class frmEntAlbaranesCargaMaestro
                                                   SerieQSIDCuadroDeTexto.Text, _
                                                   NumeroQSCuadroDeTexto.Text, _
                                                   AlmacenSalidaQSIDCuadroDeTexto.Text, _
-                                                  AgenciaIDCuadroDeTexto.Text, _
+                                                  cboAgencia.SelectedValue, _
                                                   cboFormaPAgo.SelectedValue, _
                                                   PorteImporteCuadroDeTexto.Text, _
-                                                  txtMatricula.Text, _
+                                                  cboCabeza.Text, _
                                                   cboConductores.Text, _
                                                   ConductorDNICuadroDeTexto.Text, _
                                                    cboREsponsableCarga.SelectedValue, _
@@ -365,7 +369,7 @@ Public Class frmEntAlbaranesCargaMaestro
                                                   HoraLlegadaDateTimePicker.Value, _
                                                   HoraSalidaDateTimePicker.Value, _
                                                   ObservacionesCuadroDeTexto.Text, _
-                                                  txtRemolque.Text, _
+                                                  txtDetalleRemolque.Text, _
                                                   Reserva2CuadroDeTexto.Text, _
                                                   cboLugaresEntrega.Text) Then
                     Throw New Exception("Error modificando el albaran")
@@ -2280,13 +2284,7 @@ Public Class frmEntAlbaranesCargaMaestro
         End Try
     End Sub
 
-    Private Sub MatriculaCuadroDeTexto_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtMatricula.TextChanged
-        Me.txtCabeza.Text = Me.txtMatricula.Text
-    End Sub
 
-    Private Sub Reserva1CuadroDeTexto_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtRemolque.TextChanged
-        Me.txtRemolque1.Text = txtRemolque.Text
-    End Sub
 
     Private Sub ConductorCuadroDeTexto_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cboConductores.SelectedValueChanged
         Try
@@ -2298,10 +2296,6 @@ Public Class frmEntAlbaranesCargaMaestro
 
     Private Sub ConductorDNICuadroDeTexto_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ConductorDNICuadroDeTexto.TextChanged
         txtDNI.Text = ConductorDNICuadroDeTexto.Text
-    End Sub
-
-    Private Sub AgenciaIDCuadroDeTexto_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AgenciaIDCuadroDeTexto.TextChanged
-        CuadroDeTexto6.Text = AgenciaIDCuadroDeTexto.Text
     End Sub
 
     Private Sub PorteFormaPagoIDCuadroDeTexto_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cboFormaPAgo.SelectedValueChanged
@@ -2418,7 +2412,7 @@ Public Class frmEntAlbaranesCargaMaestro
     Private Sub cboCabeza_SelectedValueChanged(sender As Object, e As EventArgs) Handles cboCabeza.SelectedValueChanged
         Try
             Try
-                txtDetalleAgencia.Text = Me.spAlbaran.seleccionar_agencia_por_conductor(cboCabeza.SelectedValue, Me.dtb)
+                cboAgencia.SelectedValue = Me.spAlbaran.seleccionar_agencia_por_conductor(cboCabeza.SelectedValue, Me.dtb)
             Catch ex As Exception
             End Try
 
@@ -2429,5 +2423,21 @@ Public Class frmEntAlbaranesCargaMaestro
         Catch ex As Exception
 
         End Try
+    End Sub
+
+    Private Sub cboCabeza_TextChanged(sender As Object, e As EventArgs) Handles cboCabeza.TextChanged
+        Me.txtCabeza.Text = Me.cboCabeza.Text
+    End Sub
+
+    Private Sub txtDetalleRemolque_TextChanged(sender As Object, e As EventArgs) Handles txtDetalleRemolque.TextChanged
+        Me.txtRemolque1.Text = txtDetalleRemolque.Text
+    End Sub
+
+    Private Sub cboAgencia_TextChanged(sender As Object, e As EventArgs) Handles cboAgencia.TextChanged
+        CuadroDeTexto6.Text = cboAgencia.Text
+    End Sub
+
+    Private Sub btnNuevoCamion_Click(sender As Object, e As EventArgs) Handles btnNuevoCamion.Click
+        'spAlbaran.nuevo
     End Sub
 End Class

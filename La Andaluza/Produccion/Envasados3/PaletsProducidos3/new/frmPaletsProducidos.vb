@@ -47,22 +47,22 @@ Public Class frmPaletsProducidos
         butExcel.Visible = True
         Me.refrescar(MaestroID)
 
-        If Config.UserType = 1 Or Config.UserType = 9 Or Config.UserType = 4 Then
-            Dim btnEtiqueta2 As ToolStripButton = Me.bdnGeneral.Items.Add("Etiqueta")
-            btnEtiqueta2.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
-            btnEtiqueta2.Image = My.Resources.print_ico
-            btnEtiqueta2.TextDirection = ToolStripTextDirection.Horizontal
-            btnEtiqueta2.TextAlign = ContentAlignment.MiddleRight
-            AddHandler btnEtiqueta2.Click, AddressOf mostrarEtiqueta
+        'If Config.UserType = 1 Or Config.UserType = 9 Or Config.UserType = 4 Then
+        Dim btnEtiqueta2 As ToolStripButton = Me.bdnGeneral.Items.Add("Etiqueta")
+        btnEtiqueta2.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
+        btnEtiqueta2.Image = My.Resources.print_ico
+        btnEtiqueta2.TextDirection = ToolStripTextDirection.Horizontal
+        btnEtiqueta2.TextAlign = ContentAlignment.MiddleRight
+        AddHandler btnEtiqueta2.Click, AddressOf mostrarEtiqueta
 
-            
-            'Dim btnEtiqueta3 As ToolStripButton = Me.bdnGeneral.Items.Add("Imprimir etiqueta ivan")
-            'btnEtiqueta3.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
-            'btnEtiqueta3.Image = My.Resources.print_ico
-            'btnEtiqueta3.TextDirection = ToolStripTextDirection.Horizontal
-            'btnEtiqueta3.TextAlign = ContentAlignment.MiddleRight
-            'AddHandler btnEtiqueta3.Click, AddressOf mostrarEtiqueta2
-        End If
+
+        'Dim btnEtiqueta3 As ToolStripButton = Me.bdnGeneral.Items.Add("Imprimir etiqueta ivan")
+        'btnEtiqueta3.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
+        'btnEtiqueta3.Image = My.Resources.print_ico
+        'btnEtiqueta3.TextDirection = ToolStripTextDirection.Horizontal
+        'btnEtiqueta3.TextAlign = ContentAlignment.MiddleRight
+        'AddHandler btnEtiqueta3.Click, AddressOf mostrarEtiqueta2
+        ' End If
 
         etiqueta = New etiquetas.Etiqueta(0, BasesParaCompatibilidad.Config.connectionString)
         Me.dgvPicos.BackgroundColor = Color.White
