@@ -256,9 +256,11 @@ Public Class frmEntPaletsProducidos
                         'Dim frm As New frmEtiqueta0(Me.m_DBO_PaletsProducidos.ID, False) ', False)
                         'Dim frm As New etiquetas.frmEtiqueta(Me.m_DBO_PaletsProducidos.ID, BasesParaCompatibilidad.Config.connectionString)
                         'frm.Show()
-                        etiqueta.id = Me.m_DBO_PaletsProducidos.ID
-                        etiqueta.print()
-                        etiqueta.print()
+                        etiqueta = New etiquetas.Etiqueta(Me.m_DBO_PaletsProducidos.ID, BasesParaCompatibilidad.Config.connectionString)
+                        'etiqueta.id = Me.m_DBO_PaletsProducidos.ID
+                        etiqueta.print(2)
+                        'etiqueta = New etiquetas.Etiqueta(Me.m_DBO_PaletsProducidos.ID, BasesParaCompatibilidad.Config.connectionString)
+                        'etiqueta.print()
                     Else
                         MessageBox.Show("No se pudo imprimir la etiqueta, vuelva a intentarlo manualmente", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     End If

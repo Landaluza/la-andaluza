@@ -334,7 +334,7 @@ Public Class frmPaletsProducidos
                         'Dim frmEt As New etiquetas.frmEtiqueta(Me.dgvGeneral.CurrentRow.Cells("Id").Value, BasesParaCompatibilidad.Config.connectionString)
                         'frmEt.Show()
                         etiqueta.id = Me.dgvGeneral.CurrentRow.Cells("Id").Value
-                        etiqueta.print()
+                        etiqueta.print(2)
 
                         spPaletsProducidos.anadir_impresion_etiqueta(Me.dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
                         Dim textNotificar As String = "Se ha vuelto a imprimir la etiqueta de la matricula  " & Environment.NewLine() & Me.dgvGeneral.CurrentRow.Cells("SCC").Value.ToString & " el día " & DateTime.Now.ToString
