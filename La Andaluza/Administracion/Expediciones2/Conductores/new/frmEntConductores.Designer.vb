@@ -47,7 +47,7 @@ Partial Class frmEntConductores
         Me.txtNombre.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txtNombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtNombre.Location = New System.Drawing.Point(109, 14)
-        Me.txtNombre.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtNombre.Margin = New System.Windows.Forms.Padding(2)
         Me.txtNombre.MaxLength = 40
         Me.txtNombre.Name = "txtNombre"
         Me.txtNombre.Size = New System.Drawing.Size(181, 21)
@@ -59,7 +59,7 @@ Partial Class frmEntConductores
         Me.txtApellido1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txtApellido1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtApellido1.Location = New System.Drawing.Point(109, 42)
-        Me.txtApellido1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtApellido1.Margin = New System.Windows.Forms.Padding(2)
         Me.txtApellido1.MaxLength = 40
         Me.txtApellido1.Name = "txtApellido1"
         Me.txtApellido1.Size = New System.Drawing.Size(181, 21)
@@ -71,7 +71,7 @@ Partial Class frmEntConductores
         Me.txtApellido2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txtApellido2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtApellido2.Location = New System.Drawing.Point(109, 70)
-        Me.txtApellido2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtApellido2.Margin = New System.Windows.Forms.Padding(2)
         Me.txtApellido2.MaxLength = 40
         Me.txtApellido2.Name = "txtApellido2"
         Me.txtApellido2.Size = New System.Drawing.Size(181, 21)
@@ -83,7 +83,7 @@ Partial Class frmEntConductores
         Me.txtApodo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txtApodo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtApodo.Location = New System.Drawing.Point(109, 98)
-        Me.txtApodo.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtApodo.Margin = New System.Windows.Forms.Padding(2)
         Me.txtApodo.MaxLength = 40
         Me.txtApodo.Name = "txtApodo"
         Me.txtApodo.Size = New System.Drawing.Size(181, 21)
@@ -95,7 +95,7 @@ Partial Class frmEntConductores
         Me.txtDNI.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txtDNI.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtDNI.Location = New System.Drawing.Point(109, 126)
-        Me.txtDNI.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtDNI.Margin = New System.Windows.Forms.Padding(2)
         Me.txtDNI.MaxLength = 20
         Me.txtDNI.Name = "txtDNI"
         Me.txtDNI.Size = New System.Drawing.Size(181, 21)
@@ -107,7 +107,7 @@ Partial Class frmEntConductores
         Me.txtMovil.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txtMovil.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtMovil.Location = New System.Drawing.Point(109, 154)
-        Me.txtMovil.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtMovil.Margin = New System.Windows.Forms.Padding(2)
         Me.txtMovil.MaxLength = 20
         Me.txtMovil.Name = "txtMovil"
         Me.txtMovil.Size = New System.Drawing.Size(181, 21)
@@ -120,7 +120,7 @@ Partial Class frmEntConductores
         Me.txtObservaciones.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txtObservaciones.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtObservaciones.Location = New System.Drawing.Point(109, 182)
-        Me.txtObservaciones.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtObservaciones.Margin = New System.Windows.Forms.Padding(2)
         Me.txtObservaciones.MaxLength = 500
         Me.txtObservaciones.Name = "txtObservaciones"
         Me.txtObservaciones.Size = New System.Drawing.Size(253, 21)
@@ -229,7 +229,7 @@ Partial Class frmEntConductores
         Me.tlpMiddle.Controls.Add(Me.lblObservaciones, 1, 6)
         Me.tlpMiddle.Controls.Add(Me.txtObservaciones, 2, 6)
         Me.tlpMiddle.Location = New System.Drawing.Point(61, 54)
-        Me.tlpMiddle.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tlpMiddle.Margin = New System.Windows.Forms.Padding(2)
         Me.tlpMiddle.Name = "tlpMiddle"
         Me.tlpMiddle.Padding = New System.Windows.Forms.Padding(0, 12, 0, 0)
         Me.tlpMiddle.RowCount = 8
@@ -251,7 +251,7 @@ Partial Class frmEntConductores
         Me.Controls.Add(Me.tlpMiddle)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "frmEntConductores"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Conductores"

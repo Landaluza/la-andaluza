@@ -49,7 +49,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>2014.12.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -2023,6 +2023,12 @@
     </Compile>
     <Compile Include="Otros\Idiomas\spIdiomas.vb" />
     <Compile Include="Bases\Conf\Updater.vb" />
+    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\AlbaranMaestro.vb" />
+    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\dtsAlbaranesCargaMaestro.Designer.vb">
+      <DependentUpon>dtsAlbaranesCargaMaestro.xsd</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\frmNumeroAlbaran.Designer.vb">
       <DependentUpon>frmNumeroAlbaran.vb</DependentUpon>
     </Compile>
@@ -2149,11 +2155,6 @@
     </Compile>
     <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\clsAlbaranesCargaMaestro.vb" />
     <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\ctlAlbaranesCargaMaestro.vb" />
-    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\dtsAlbaranesCargaMaestro.Designer.vb">
-      <DependentUpon>dtsAlbaranesCargaMaestro.xsd</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
     <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\frmAlbaranesCargaMaestro.Designer.vb">
       <DependentUpon>frmAlbaranesCargaMaestro.vb</DependentUpon>
     </Compile>
@@ -2391,12 +2392,6 @@
     <Compile Include="Produccion\Envasados3\Copy of etiquetas\CodigoBarra.vb" />
     <Compile Include="Produccion\Envasados3\Copy of etiquetas\DBO_EtiquetasPalets.vb" />
     <Compile Include="Produccion\Envasados3\Copy of etiquetas\Etiquetador.vb" />
-    <Compile Include="Produccion\Envasados3\Copy of etiquetas\frmEtiqueta.Designer.vb">
-      <DependentUpon>frmEtiqueta.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Copy of etiquetas\frmEtiqueta.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Produccion\Envasados3\Copy of etiquetas\frnEtiquetaEditable.Designer.vb">
       <DependentUpon>frnEtiquetaEditable.vb</DependentUpon>
     </Compile>
@@ -5537,9 +5532,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Produccion\Envasados3\Copy of etiquetas\articulosLoteados\frmEntArticulosLoteados.resx">
       <DependentUpon>frmEntArticulosLoteados.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\Copy of etiquetas\frmEtiqueta.resx">
-      <DependentUpon>frmEtiqueta.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Produccion\Envasados3\Copy of etiquetas\frnEtiquetaEditable.resx">
       <DependentUpon>frnEtiquetaEditable.vb</DependentUpon>

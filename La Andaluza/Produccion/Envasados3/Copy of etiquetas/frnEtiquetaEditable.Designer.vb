@@ -428,6 +428,7 @@ Partial Class frnEtiquetaEditable
         Me.ClientSize = New System.Drawing.Size(548, 451)
         Me.Controls.Add(Me.Panel1)
         Me.Name = "frnEtiquetaEditable"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "frnEtiquetaEditable"
         Me.Panel6.ResumeLayout(False)
         Me.Panel6.PerformLayout()

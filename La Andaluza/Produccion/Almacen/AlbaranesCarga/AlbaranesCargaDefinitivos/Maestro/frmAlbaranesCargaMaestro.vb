@@ -3,7 +3,7 @@ Imports BasesParaCompatibilidad.DataGridViewExtension
 Public Class frmAlbaranesCargaMaestro
     Inherits BasesParaCompatibilidad.FrmAheredarOld
 
-    Private ctlAlb As ctlAlbaranesCargaMaestro
+    Private ctlAlb As AlbaranesCarga.ctlAlbaranesCargaMaestro
     Private dtsAlb As dtsAlbaranesCargaMaestro.AlbaranesCargaMaestroDataTable
     Private cboYear As ComboBox
     Private agno As Integer
@@ -12,7 +12,7 @@ Public Class frmAlbaranesCargaMaestro
         InitializeComponent()
 
         Me.agno = Now.Date.Year
-        ctlAlb = New ctlAlbaranesCargaMaestro
+        ctlAlb = New AlbaranesCarga.ctlAlbaranesCargaMaestro
         dtsAlb = New dtsAlbaranesCargaMaestro.AlbaranesCargaMaestroDataTable
 
         Dim label2 As ToolStripItem
@@ -106,7 +106,8 @@ Public Class frmAlbaranesCargaMaestro
     Overrides Sub Insertar()
         Dim FrmEnt As New frmEntAlbaranesCargaMaestro()
         FrmEnt.Text = ACCION_INSERTAR & " AlbaranesCargaMaestro"
-        FrmEnt.CargarDatos(0, 0, 0, Today, 0, 0, 0, 0, 0, 0, 0, "", "", "", 0, 0, DateTime.Now.TimeOfDay, DateTime.Now.TimeOfDay, "", "", "", "")
+        'FrmEnt.CargarDatos(0, 0, 0, Today, 0, 0, 0, 0, 0, 0, 0, "", "", "", 0, 0, DateTime.Now.TimeOfDay, DateTime.Now.TimeOfDay, "", "", 0, "")
+        FrmEnt.Cargar(0, 0)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         dgvFill()
     End Sub

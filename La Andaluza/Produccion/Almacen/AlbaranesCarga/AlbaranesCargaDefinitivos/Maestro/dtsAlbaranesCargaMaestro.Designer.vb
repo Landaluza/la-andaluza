@@ -584,7 +584,7 @@ Partial Public Class dtsAlbaranesCargaMaestro
                     ByVal HoraSalida As System.TimeSpan,  _
                     ByVal Observaciones As String,  _
                     ByVal Reserva1 As String,  _
-                    ByVal Reserva2 As String,  _
+                    ByVal Reserva2 As Integer,  _
                     ByVal Reserva3 As String) As AlbaranesCargaMaestroRow
             Dim rowAlbaranesCargaMaestroRow As AlbaranesCargaMaestroRow = CType(Me.NewRow,AlbaranesCargaMaestroRow)
             Dim columnValuesArray() As Object = New Object() {Nothing, AlbaranCargaProMaestroID, Fecha, ClienteID, SerieQSID, NumeroQS, AlmacenSalidaQSID, AgenciaID, PorteFormaPagoID, PorteImporte, Matricula, Conductor, ConductorDNI, ResponsableCargaID, ResponsableAdministracionID, HoraLlegada, HoraSalida, Observaciones, Reserva1, Reserva2, Reserva3}
@@ -680,7 +680,7 @@ Partial Public Class dtsAlbaranesCargaMaestro
             MyBase.Columns.Add(Me.columnObservaciones)
             Me.columnReserva1 = New Global.System.Data.DataColumn("Reserva1", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnReserva1)
-            Me.columnReserva2 = New Global.System.Data.DataColumn("Reserva2", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnReserva2 = New Global.System.Data.DataColumn("Reserva2", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnReserva2)
             Me.columnReserva3 = New Global.System.Data.DataColumn("Reserva3", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnReserva3)
@@ -696,7 +696,6 @@ Partial Public Class dtsAlbaranesCargaMaestro
             Me.columnConductorDNI.MaxLength = 15
             Me.columnObservaciones.MaxLength = 250
             Me.columnReserva1.MaxLength = 50
-            Me.columnReserva2.MaxLength = 50
             Me.columnReserva3.MaxLength = 50
         End Sub
         
@@ -1140,10 +1139,10 @@ Partial Public Class dtsAlbaranesCargaMaestro
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Reserva2() As String
+        Public Property Reserva2() As Integer
             Get
                 Try 
-                    Return CType(Me(Me.tableAlbaranesCargaMaestro.Reserva2Column),String)
+                    Return CType(Me(Me.tableAlbaranesCargaMaestro.Reserva2Column),Integer)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("El valor de la columna 'Reserva2' de la tabla 'AlbaranesCargaMaestro' es DBNull.", e)
                 End Try

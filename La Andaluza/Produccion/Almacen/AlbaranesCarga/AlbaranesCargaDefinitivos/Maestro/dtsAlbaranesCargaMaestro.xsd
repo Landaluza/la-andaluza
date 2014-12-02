@@ -4,7 +4,7 @@
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="LAConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="LAConnectionString1 (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.La_Andaluza.My.MySettings.GlobalReference.Default.LAConnectionString1" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="LAConnectionString1" IsAppSettingsProperty="true" Modifier="Assembly" Name="LAConnectionString1 (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.La_Andaluza.My.MySettings.GlobalReference.Default.LAConnectionString1" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables />
         <Sources />
@@ -14,7 +14,7 @@
   <xs:element name="dtsAlbaranesCargaMaestro" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dtsAlbaranesCargaMaestro" msprop:Generator_UserDSName="dtsAlbaranesCargaMaestro">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="AlbaranesCargaMaestro" msprop:Generator_TableClassName="AlbaranesCargaMaestroDataTable" msprop:Generator_RowEvArgName="AlbaranesCargaMaestroRowChangeEvent" msprop:Generator_TableVarName="tableAlbaranesCargaMaestro" msprop:Generator_TablePropName="AlbaranesCargaMaestro" msprop:Generator_RowDeletingName="AlbaranesCargaMaestroRowDeleting" msprop:Generator_RowChangingName="AlbaranesCargaMaestroRowChanging" msprop:Generator_RowDeletedName="AlbaranesCargaMaestroRowDeleted" msprop:Generator_RowEvHandlerName="AlbaranesCargaMaestroRowChangeEventHandler" msprop:Generator_RowChangedName="AlbaranesCargaMaestroRowChanged" msprop:Generator_UserTableName="AlbaranesCargaMaestro" msprop:Generator_RowClassName="AlbaranesCargaMaestroRow">
+        <xs:element name="AlbaranesCargaMaestro" msprop:Generator_TableClassName="AlbaranesCargaMaestroDataTable" msprop:Generator_RowEvArgName="AlbaranesCargaMaestroRowChangeEvent" msprop:Generator_TableVarName="tableAlbaranesCargaMaestro" msprop:Generator_TablePropName="AlbaranesCargaMaestro" msprop:Generator_RowDeletingName="AlbaranesCargaMaestroRowDeleting" msprop:Generator_RowChangingName="AlbaranesCargaMaestroRowChanging" msprop:Generator_RowDeletedName="AlbaranesCargaMaestroRowDeleted" msprop:Generator_RowEvHandlerName="AlbaranesCargaMaestroRowChangeEventHandler" msprop:Generator_UserTableName="AlbaranesCargaMaestro" msprop:Generator_RowChangedName="AlbaranesCargaMaestroRowChanged" msprop:Generator_RowClassName="AlbaranesCargaMaestroRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="AlbaranCargaMaestroID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnAlbaranCargaMaestroID" msprop:Generator_ColumnPropNameInRow="AlbaranCargaMaestroID" msprop:Generator_ColumnPropNameInTable="AlbaranCargaMaestroIDColumn" msprop:Generator_UserColumnName="AlbaranCargaMaestroID" type="xs:int" />
@@ -66,13 +66,7 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Reserva2" msprop:Generator_ColumnVarNameInTable="columnReserva2" msprop:Generator_ColumnPropNameInRow="Reserva2" msprop:Generator_ColumnPropNameInTable="Reserva2Column" msprop:Generator_UserColumnName="Reserva2" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
+              <xs:element name="Reserva2" msprop:Generator_ColumnVarNameInTable="columnReserva2" msprop:Generator_ColumnPropNameInRow="Reserva2" msprop:Generator_ColumnPropNameInTable="Reserva2Column" msprop:Generator_UserColumnName="Reserva2" type="xs:int" minOccurs="0" />
               <xs:element name="Reserva3" msprop:Generator_ColumnVarNameInTable="columnReserva3" msprop:Generator_ColumnPropNameInRow="Reserva3" msprop:Generator_ColumnPropNameInTable="Reserva3Column" msprop:Generator_UserColumnName="Reserva3" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">

@@ -83,11 +83,6 @@
               <BindableControlInfo Name="CuadroDeTexto" Type="CuadroDeTexto" AssemblyName="La Andaluza, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" AssemblyCodeBase="file:///C:/Documents and Settings/andaluza/Escritorio/2009.03.23 LA/La Andaluza/obj/Debug/La Andaluza.exe" />
             </ControlSetting></ControlSettings>
         </ColumnUISetting>
-        <ColumnUISetting Name="Reserva2">
-          <ControlSettings><ControlSetting ArtifactName="Microsoft:System.Windows.Forms:Form" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-              <BindableControlInfo Name="CuadroDeTexto" Type="CuadroDeTexto" AssemblyName="La Andaluza, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" AssemblyCodeBase="file:///C:/Documents and Settings/andaluza/Escritorio/2009.03.23 LA/La Andaluza/obj/Debug/La Andaluza.exe" />
-            </ControlSetting></ControlSettings>
-        </ColumnUISetting>
         <ColumnUISetting Name="Reserva3">
           <ControlSettings><ControlSetting ArtifactName="Microsoft:System.Windows.Forms:Form" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
               <BindableControlInfo Name="CuadroDeTexto" Type="CuadroDeTexto" AssemblyName="La Andaluza, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" AssemblyCodeBase="file:///C:/Documents and Settings/andaluza/Escritorio/2009.03.23 LA/La Andaluza/obj/Debug/La Andaluza.exe" />

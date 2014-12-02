@@ -8,7 +8,7 @@ Public Class frmEntAlbaranesCargaMaestro
 
     Private ctlAlbDet As ctlAlbaranesCargaDetalles
     Private dtsAlb As dtsAlbaranesCargaMaestro.AlbaranesCargaMaestroDataTable
-    Private ctlAlb As ctlAlbaranesCargaMaestro
+    Private ctlAlb As AlbaranesCarga.ctlAlbaranesCargaMaestro
     Private totalCajas As Integer
     Private m_MaestroProID As String
     Private m_MaestroID As String
@@ -20,17 +20,17 @@ Public Class frmEntAlbaranesCargaMaestro
     Private Respuesta As MsgBoxResult
     Private Medida As Integer
     Private Albaran As String
-    Private spAlbaran As spAlbaranesMaestros
+    Private spAlbaran As AlbaranesCarga.spAlbaranesMaestros
 
     Public Sub New()
         MyBase.New()
         InitializeComponent()
 
-        spAlbaran = New spAlbaranesMaestros
+        spAlbaran = New AlbaranesCarga.spAlbaranesMaestros
         ctlAlbDet = New ctlAlbaranesCargaDetalles
         dtsAlb = New dtsAlbaranesCargaMaestro.AlbaranesCargaMaestroDataTable
         Me.SuspendLayout()
-        ctlAlb = New ctlAlbaranesCargaMaestro
+        ctlAlb = New AlbaranesCarga.ctlAlbaranesCargaMaestro
         FechaDateTimePicker.activarFoco()
         HoraLlegadaDateTimePicker.activarFoco()
         HoraSalidaDateTimePicker.activarFoco()
@@ -67,7 +67,7 @@ Public Class frmEntAlbaranesCargaMaestro
             grbDatosTransporte.Visible = False
             grbAlbaranesPendientes.Visible = True
             grbAlbaranesPendientes.Location = New System.Drawing.Point(8, 32)
-            With dgvAlbaranesProvi                
+            With dgvAlbaranesProvi
                 dtb.PrepararConsulta("SelectAlbaranCargaProMaestroByReserva1")
                 .DataSource = dtb.Consultar()
                 .Columns("AlbaranCargaProMaestroID").Visible = False
@@ -82,6 +82,7 @@ Public Class frmEntAlbaranesCargaMaestro
             cboLugaresEntrega.SelectedValue = 1
             cboClientes.SelectedValue = 1
         Else
+
             If Me.Text.Substring(0, 3) = "Ver" Then
                 ctlAlb.mostrarTodosAlbaranesCargaMaestro(dtb, dtsAlb)
                 GeneralBindingSource.DataSource = dtsAlb
@@ -128,6 +129,12 @@ Public Class frmEntAlbaranesCargaMaestro
     Public Sub Cargar(ByVal Pos As Integer,
                        ByVal AlbaranCargaMaestroID As Integer)
 
+        If AlbaranCargaMaestroID = 0 Then
+            spAlbaran.cargar_pedidos(Me.cboPedido, dtb, False)
+        Else
+            spAlbaran.cargar_pedidos(Me.cboPedido, dtb, True)
+        End If
+
         dtb.PrepararConsulta("select AlbaranesCargaMaestro.AlbaranCargaMaestroID,AlbaranesCargaMaestro.AlbaranCargaProMaestroID,AlbaranesCargaMaestro.Fecha,AlbaranesCargaMaestro.ClienteID,AlbaranesCargaMaestro.SerieQSID,AlbaranesCargaMaestro.NumeroQS,AlbaranesCargaMaestro.AlmacenSalidaQSID,AlbaranesCargaMaestro.AgenciaID,AlbaranesCargaMaestro.PorteFormaPagoID,AlbaranesCargaMaestro.PorteImporte,AlbaranesCargaMaestro.Matricula,AlbaranesCargaMaestro.Conductor,AlbaranesCargaMaestro.ConductorDNI,AlbaranesCargaMaestro.ResponsableCargaID,AlbaranesCargaMaestro.ResponsableAdministracionID,AlbaranesCargaMaestro.HoraLlegada,AlbaranesCargaMaestro.HoraSalida,AlbaranesCargaMaestro.Observaciones,AlbaranesCargaMaestro.Reserva1,AlbaranesCargaMaestro.Reserva2,AlbaranesCargaMaestro.Reserva3 from AlbaranesCargaMaestro where AlbaranesCargaMaestro.AlbaranCargaMaestroID= @Id order by fecha asc, NumeroQS asc")
         dtb.AñadirParametroConsulta("@Id", AlbaranCargaMaestroID)
         Dim dt As DataTable = dtb.Consultar()
@@ -164,7 +171,7 @@ Public Class frmEntAlbaranesCargaMaestro
         HoraSalidaDateTimePicker.Value = New DateTime(Now.Year, Now.Month, Now.Day, CType(dt.Rows(0).Item("HoraSalida"), TimeSpan).Hours, CType(dt.Rows(0).Item("HoraSalida"), TimeSpan).Minutes, 0)  ' Now.Date.Add(HoraSalida)
         ObservacionesCuadroDeTexto.Text = dt.Rows(0).Item("Observaciones") 'Observaciones
 
-        Reserva2CuadroDeTexto.Text = dt.Rows(0).Item("Reserva2") ' Reserva2
+        cboPedido.SelectedValue = dt.Rows(0).Item("Reserva2") ' Reserva2
         cboLugaresEntrega.Text = dt.Rows(0).Item("Reserva3") 'Reserva3
 
         v_conductor = dt.Rows(0).Item("Conductor") 'Conductor
@@ -192,6 +199,8 @@ Public Class frmEntAlbaranesCargaMaestro
                            ByVal Reserva1 As String, _
                            ByVal Reserva2 As String, _
                            ByVal Reserva3 As String)
+
+        spAlbaran.cargar_pedidos(Me.cboPedido, dtb, False)
 
         Posicion = Pos
         ctlAlb.SetAlbaranCargaMaestroID(AlbaranCargaMaestroID)
@@ -223,7 +232,7 @@ Public Class frmEntAlbaranesCargaMaestro
         HoraSalidaDateTimePicker.Value = Now.Date.Add(HoraSalida)
         ObservacionesCuadroDeTexto.Text = Observaciones
 
-        Reserva2CuadroDeTexto.Text = Reserva2
+        cboPedido.SelectedValue = Reserva2
         cboLugaresEntrega.Text = Reserva3
 
         v_conductor = Conductor
@@ -320,7 +329,7 @@ Public Class frmEntAlbaranesCargaMaestro
                                                   HoraSalidaDateTimePicker.Value, _
                                                   ObservacionesCuadroDeTexto.Text, _
                                                   txtDetalleRemolque.Text, _
-                                                  Reserva2CuadroDeTexto.Text, _
+                                                  cboPedido.SelectedValue, _
                                                   cboLugaresEntrega.Text) Then
 
                     Throw New Exception("Error guardando el albaran")
@@ -370,7 +379,7 @@ Public Class frmEntAlbaranesCargaMaestro
                                                   HoraSalidaDateTimePicker.Value, _
                                                   ObservacionesCuadroDeTexto.Text, _
                                                   txtDetalleRemolque.Text, _
-                                                  Reserva2CuadroDeTexto.Text, _
+                                                  cboPedido.SelectedValue, _
                                                   cboLugaresEntrega.Text) Then
                     Throw New Exception("Error modificando el albaran")
                 End If

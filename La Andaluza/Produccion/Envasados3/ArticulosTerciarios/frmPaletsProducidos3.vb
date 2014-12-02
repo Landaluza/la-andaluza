@@ -109,55 +109,48 @@ Public Class frmPaletsProducidos3
         If Not Me.dgvGeneral.CurrentRow Is Nothing Then
             Dim spPaletsProducidos As New spPaletsProducidos
             Dim dtb As New BasesParaCompatibilidad.DataBase
-            Dim dbo As DBO_PaletsProducidos = spPaletsProducidos.Select_Record(Me.dgvGeneral.CurrentRow.Cells("PaletProducidoID").Value, dtb)
+            Dim dbo As DBO_PaletsProducidos = spPaletsProducidos.Select_Record(Me.dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
             If Not dbo Is Nothing Then
-                Dim frm As New frmEtiqueta0(dbo.ID, If(Config.UserType = 1 Or Config.UserType = 9 Or Config.UserType = 4, True, False)) ', False)
-                frm.Show()
+                If spPaletsProducidos.esMonodosis(Me.dboPaletsProducidos.FormatoID, dtb) Then
+                    Return
+                End If
+                If MessageBox.Show("¿Desea imprimir etiqueta?", "Etiqueta palet " & dbo.SCC, _
+                                MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
 
-                Try
+                    Try
 
-                    spPaletsProducidos.anadir_impresion_etiqueta(Me.dgvGeneral.CurrentRow.Cells("PaletProducidoID").Value, dtb)
-                    Dim textNotificar As String = "Se ha vuelto a imprimir la etiqueta de la matricula  " & Environment.NewLine() & Me.dgvGeneral.CurrentRow.Cells("SCC").Value.ToString & " el día " & DateTime.Now.ToString
-                    Dim mail As New Mail.Mail1And1(True, "Reimpresion de etiqueta " & Me.dgvGeneral.CurrentRow.Cells("SCC").Value.ToString & _
-                                                   "el " & DateTime.Now.ToString, textNotificar, _
-                                                   String.Empty, _
-                                                   Config.MailReportAddress, Config.MailReportPass, "control@landaluza.es", _
-                                                    String.Empty, String.Empty, Config.MailClientHost, False)
-                Catch ex As Exception
+                        'Dim frmEt As New etiquetas.frmEtiqueta(Me.dgvGeneral.CurrentRow.Cells("Id").Value, BasesParaCompatibilidad.Config.connectionString)
+                        'frmEt.Show()
+                        Dim etiqueta As New etiquetas.Etiqueta(Me.dgvGeneral.CurrentRow.Cells("Id").Value, BasesParaCompatibilidad.Config.connectionString)
+                        etiqueta.cargar()
+                        Dim dataset As etiquetas.LADataSet = etiqueta.DataSet
+                        Dim frm As New frnEtiquetaEditable(etiqueta.DataSet)
+                        If frm.ShowDialog = Windows.Forms.DialogResult.Cancel Then
+                            Return
+                        End If
 
-                End Try
+                        etiqueta.DataSet = frm.Dataset
+                        etiqueta.calcular()
+                        etiqueta.print(2, False)
+
+                        spPaletsProducidos.anadir_impresion_etiqueta(Me.dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
+                        Dim textNotificar As String = "Se ha vuelto a imprimir la etiqueta de la matricula  " & Environment.NewLine() & Me.dgvGeneral.CurrentRow.Cells("SCC").Value.ToString & " el día " & DateTime.Now.ToString
+                        Dim mail As New Mail.Mail1And1(True, "Reimpresion de etiqueta " & Me.dgvGeneral.CurrentRow.Cells("SCC").Value.ToString & _
+                                                       "el " & DateTime.Now.ToString, textNotificar, _
+                                                       String.Empty, _
+                                                       Config.MailReportAddress, Config.MailReportPass, "control@landaluza.es", _
+                                                        String.Empty, String.Empty, Config.MailClientHost, False)
+                    Catch ex As Exception
+                        MessageBox.Show(ex.Message)
+                    End Try
+
+                End If
             Else
-                MessageBox.Show("No se ppudo recuperar los datos", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                MessageBox.Show("No se pudo recuperar los datos", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             End If
         End If
     End Sub
-
-    Private Sub mostrarEtiqueta_control()
-        If Not Me.dgvGeneral.CurrentRow Is Nothing Then
-            Dim spPaletsProducidos As New spPaletsProducidos
-            Dim dtb As New BasesParaCompatibilidad.DataBase
-            Dim dbo As DBO_PaletsProducidos = spPaletsProducidos.Select_Record(Me.dgvGeneral.CurrentRow.Cells("PaletProducidoID").Value, dtb)
-            If Not dbo Is Nothing Then
-                Dim frm As New frmEtiqueta0(dbo.ID, If(Config.UserType = 1 Or Config.UserType = 9 Or Config.UserType = 4, True, False)) ', True)
-                frm.Show()
-
-                Try
-
-                    spPaletsProducidos.anadir_impresion_etiqueta(Me.dgvGeneral.CurrentRow.Cells("PaletProducidoID").Value, dtb)
-                    Dim textNotificar As String = "Se ha vuelto a imprimir la etiqueta de la matricula  " & Environment.NewLine() & Me.dgvGeneral.CurrentRow.Cells("SCC").Value.ToString & " el día " & DateTime.Now.ToString
-                    Dim mail As New Mail.Mail1And1(True, "Reimpresion de etiqueta " & Me.dgvGeneral.CurrentRow.Cells("SCC").Value.ToString & _
-                                                   "el " & DateTime.Now.ToString, textNotificar, _
-                                                   String.Empty, _
-                                                   Config.MailReportAddress, Config.MailReportPass, "control@landaluza.es", _
-                                                    String.Empty, String.Empty, Config.MailClientHost, False)
-                Catch ex As Exception
-
-                End Try
-            Else
-                MessageBox.Show("No se ppudo recuperar los datos", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            End If
-        End If
-    End Sub
+   
 
     Private Sub butNroRegistros_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
