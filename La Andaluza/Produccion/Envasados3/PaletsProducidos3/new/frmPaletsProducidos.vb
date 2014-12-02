@@ -333,8 +333,17 @@ Public Class frmPaletsProducidos
 
                         'Dim frmEt As New etiquetas.frmEtiqueta(Me.dgvGeneral.CurrentRow.Cells("Id").Value, BasesParaCompatibilidad.Config.connectionString)
                         'frmEt.Show()
-                        etiqueta.id = Me.dgvGeneral.CurrentRow.Cells("Id").Value
-                        etiqueta.print(2)
+                        etiqueta = New etiquetas.Etiqueta(Me.dgvGeneral.CurrentRow.Cells("Id").Value, BasesParaCompatibilidad.Config.connectionString)
+                        etiqueta.cargar()
+                        Dim dataset As etiquetas.LADataSet = etiqueta.DataSet
+                        Dim frm As New frnEtiquetaEditable(etiqueta.DataSet)
+                        If frm.ShowDialog = Windows.Forms.DialogResult.Cancel Then
+                            Return
+                        End If
+
+                        etiqueta.DataSet = frm.Dataset
+                        etiqueta.calcular()
+                        etiqueta.print(2, False)
 
                         spPaletsProducidos.anadir_impresion_etiqueta(Me.dgvGeneral.CurrentRow.Cells("Id").Value, dtb)
                         Dim textNotificar As String = "Se ha vuelto a imprimir la etiqueta de la matricula  " & Environment.NewLine() & Me.dgvGeneral.CurrentRow.Cells("SCC").Value.ToString & " el día " & DateTime.Now.ToString
@@ -344,7 +353,7 @@ Public Class frmPaletsProducidos
                                                        Config.MailReportAddress, Config.MailReportPass, "control@landaluza.es", _
                                                         String.Empty, String.Empty, Config.MailClientHost, False)
                     Catch ex As Exception
-
+                        MessageBox.Show(ex.Message)
                     End Try
 
                 End If

@@ -78,6 +78,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.tabPagDatos = New System.Windows.Forms.TabPage()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.grbDatosTransporte = New System.Windows.Forms.GroupBox()
+        Me.cboAgencia = New System.Windows.Forms.ComboBox()
         Me.txtDetalleRemolque = New System.Windows.Forms.TextBox()
         Me.btnNuevoCamion = New System.Windows.Forms.Button()
         Me.cboCabeza = New System.Windows.Forms.ComboBox()
@@ -141,7 +142,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.PrintForm1 = New Microsoft.VisualBasic.PowerPacks.Printing.PrintForm(Me.components)
         Me.PrintForm2 = New Microsoft.VisualBasic.PowerPacks.Printing.PrintForm(Me.components)
         Me.btnToExcel = New System.Windows.Forms.Button()
-        Me.cboAgencia = New System.Windows.Forms.ComboBox()
+        Me.cboPedido = New System.Windows.Forms.ComboBox()
         AlbaranCargaMaestroIDLabel = New System.Windows.Forms.Label()
         AlbaranCargaProMaestroIDLabel = New System.Windows.Forms.Label()
         FechaLabel = New System.Windows.Forms.Label()
@@ -458,6 +459,36 @@ Partial Class frmEntAlbaranesCargaMaestro
         Label19.TabIndex = 1000000034
         Label19.Text = "Remolque:"
         '
+        'Label18
+        '
+        Label18.AutoSize = True
+        Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Label18.Location = New System.Drawing.Point(406, 79)
+        Label18.Name = "Label18"
+        Label18.Size = New System.Drawing.Size(34, 9)
+        Label18.TabIndex = 1000000064
+        Label18.Text = "Agencia:"
+        '
+        'Label20
+        '
+        Label20.AutoSize = True
+        Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Label20.Location = New System.Drawing.Point(205, 79)
+        Label20.Name = "Label20"
+        Label20.Size = New System.Drawing.Size(42, 9)
+        Label20.TabIndex = 1000000065
+        Label20.Text = "Remolque:"
+        '
+        'Label21
+        '
+        Label21.AutoSize = True
+        Label21.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Label21.Location = New System.Drawing.Point(106, 79)
+        Label21.Name = "Label21"
+        Label21.Size = New System.Drawing.Size(42, 9)
+        Label21.TabIndex = 1000000066
+        Label21.Text = "Remolque:"
+        '
         'DtsAlbaranesCargaMaestro
         '
         Me.DtsAlbaranesCargaMaestro.DataSetName = "dtsAlbaranesCargaMaestro"
@@ -543,7 +574,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.NumeroQSCuadroDeTexto.EsUnicoCampoID = ""
         Me.NumeroQSCuadroDeTexto.EsUnicoID = 0
         Me.NumeroQSCuadroDeTexto.EsUnicoTabla = ""
-        Me.NumeroQSCuadroDeTexto.Location = New System.Drawing.Point(99, 121)
+        Me.NumeroQSCuadroDeTexto.Location = New System.Drawing.Point(97, 121)
         Me.NumeroQSCuadroDeTexto.Minimo = 0
         Me.NumeroQSCuadroDeTexto.Modificado = False
         Me.NumeroQSCuadroDeTexto.Name = "NumeroQSCuadroDeTexto"
@@ -820,6 +851,16 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.grbDatosTransporte.TabStop = False
         Me.grbDatosTransporte.Text = "Datos transporte"
         '
+        'cboAgencia
+        '
+        Me.cboAgencia.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
+        Me.cboAgencia.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cboAgencia.FormattingEnabled = True
+        Me.cboAgencia.Location = New System.Drawing.Point(405, 90)
+        Me.cboAgencia.Name = "cboAgencia"
+        Me.cboAgencia.Size = New System.Drawing.Size(184, 21)
+        Me.cboAgencia.TabIndex = 1000000067
+        '
         'txtDetalleRemolque
         '
         Me.txtDetalleRemolque.Location = New System.Drawing.Point(207, 90)
@@ -908,6 +949,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         'grbDatosCabecera
         '
+        Me.grbDatosCabecera.Controls.Add(Me.cboPedido)
         Me.grbDatosCabecera.Controls.Add(Me.cboLugaresEntrega)
         Me.grbDatosCabecera.Controls.Add(Me.cboClientes)
         Me.grbDatosCabecera.Controls.Add(Me.FechaDateTimePicker)
@@ -1635,45 +1677,16 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.btnToExcel.Text = "Excel"
         Me.btnToExcel.UseVisualStyleBackColor = True
         '
-        'Label18
+        'cboPedido
         '
-        Label18.AutoSize = True
-        Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Label18.Location = New System.Drawing.Point(406, 79)
-        Label18.Name = "Label18"
-        Label18.Size = New System.Drawing.Size(34, 9)
-        Label18.TabIndex = 1000000064
-        Label18.Text = "Agencia:"
-        '
-        'Label20
-        '
-        Label20.AutoSize = True
-        Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Label20.Location = New System.Drawing.Point(205, 79)
-        Label20.Name = "Label20"
-        Label20.Size = New System.Drawing.Size(42, 9)
-        Label20.TabIndex = 1000000065
-        Label20.Text = "Remolque:"
-        '
-        'Label21
-        '
-        Label21.AutoSize = True
-        Label21.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Label21.Location = New System.Drawing.Point(106, 79)
-        Label21.Name = "Label21"
-        Label21.Size = New System.Drawing.Size(42, 9)
-        Label21.TabIndex = 1000000066
-        Label21.Text = "Remolque:"
-        '
-        'cboAgencia
-        '
-        Me.cboAgencia.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
-        Me.cboAgencia.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cboAgencia.FormattingEnabled = True
-        Me.cboAgencia.Location = New System.Drawing.Point(405, 90)
-        Me.cboAgencia.Name = "cboAgencia"
-        Me.cboAgencia.Size = New System.Drawing.Size(184, 21)
-        Me.cboAgencia.TabIndex = 1000000067
+        Me.cboPedido.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
+        Me.cboPedido.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cboPedido.FormattingEnabled = True
+        Me.cboPedido.Location = New System.Drawing.Point(201, 72)
+        Me.cboPedido.Name = "cboPedido"
+        Me.cboPedido.Size = New System.Drawing.Size(275, 21)
+        Me.cboPedido.TabIndex = 1000000054
+        Me.cboPedido.Visible = False
         '
         'frmEntAlbaranesCargaMaestro
         '
@@ -1823,6 +1836,7 @@ Partial Class frmEntAlbaranesCargaMaestro
     Private WithEvents txtDetalleRemolque As System.Windows.Forms.TextBox
     Private WithEvents btnNuevoCamion As System.Windows.Forms.Button
     Private WithEvents cboAgencia As System.Windows.Forms.ComboBox
+    Private WithEvents cboPedido As System.Windows.Forms.ComboBox
     ' Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     'Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     ' Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator

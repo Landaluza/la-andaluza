@@ -258,7 +258,7 @@ Public Class frmEntPaletsProducidos
                         'frm.Show()
                         etiqueta = New etiquetas.Etiqueta(Me.m_DBO_PaletsProducidos.ID, BasesParaCompatibilidad.Config.connectionString)
                         'etiqueta.id = Me.m_DBO_PaletsProducidos.ID
-                        etiqueta.print(2)
+                        etiqueta.print(2, True)
                         'etiqueta = New etiquetas.Etiqueta(Me.m_DBO_PaletsProducidos.ID, BasesParaCompatibilidad.Config.connectionString)
                         'etiqueta.print()
                     Else
