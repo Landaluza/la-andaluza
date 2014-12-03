@@ -32,13 +32,12 @@
     Private Shared ruta_servidor As String
     Private Shared versionApp As String
 
-
     Public Shared Sub Cargar_Ajustes_Predeterminados()
         ruta_servidor = "\\192.168.10.200\datos\informatica\La Andaluza app\"
 
 
 
-        BasesParaCompatibilidad.Config.Server = BasesParaCompatibilidad.DataBase.SERVIDOR
+        BasesParaCompatibilidad.Config.Server = BasesParaCompatibilidad.DataBase.LOCAL
         BasesParaCompatibilidad.DataBase.buildConnectionString(BasesParaCompatibilidad.Config.Server)
         Config.MailReportPass = "Administracion2008"
         Config.HelpUrl = "http://192.168.10.106/AyudaLA/index.php"

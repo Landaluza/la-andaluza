@@ -33,8 +33,6 @@ Partial Class frmEntAlbaranesCargaMaestro
         Dim HoraLlegadaLabel As System.Windows.Forms.Label
         Dim HoraSalidaLabel As System.Windows.Forms.Label
         Dim ObservacionesLabel As System.Windows.Forms.Label
-        Dim Reserva2Label As System.Windows.Forms.Label
-        Dim Reserva3Label As System.Windows.Forms.Label
         Dim Label2 As System.Windows.Forms.Label
         Dim Label8 As System.Windows.Forms.Label
         Dim Label9 As System.Windows.Forms.Label
@@ -141,7 +139,6 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.Label22 = New System.Windows.Forms.Label()
         Me.PrintForm1 = New Microsoft.VisualBasic.PowerPacks.Printing.PrintForm(Me.components)
         Me.PrintForm2 = New Microsoft.VisualBasic.PowerPacks.Printing.PrintForm(Me.components)
-        Me.btnToExcel = New System.Windows.Forms.Button()
         AlbaranCargaMaestroIDLabel = New System.Windows.Forms.Label()
         AlbaranCargaProMaestroIDLabel = New System.Windows.Forms.Label()
         FechaLabel = New System.Windows.Forms.Label()
@@ -155,8 +152,6 @@ Partial Class frmEntAlbaranesCargaMaestro
         HoraLlegadaLabel = New System.Windows.Forms.Label()
         HoraSalidaLabel = New System.Windows.Forms.Label()
         ObservacionesLabel = New System.Windows.Forms.Label()
-        Reserva2Label = New System.Windows.Forms.Label()
-        Reserva3Label = New System.Windows.Forms.Label()
         Label2 = New System.Windows.Forms.Label()
         Label8 = New System.Windows.Forms.Label()
         Label9 = New System.Windows.Forms.Label()
@@ -172,36 +167,36 @@ Partial Class frmEntAlbaranesCargaMaestro
         Label18 = New System.Windows.Forms.Label()
         Label20 = New System.Windows.Forms.Label()
         Label21 = New System.Windows.Forms.Label()
-        CType(Me.GeneralBindingSource,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.DtsAlbaranesCargaMaestro,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.dgvPalet,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.cmPalets.SuspendLayout
-        Me.tabDatos.SuspendLayout
-        Me.tabPagDatos.SuspendLayout
-        Me.Panel4.SuspendLayout
-        Me.grbDatosTransporte.SuspendLayout
-        Me.grbDatosCabecera.SuspendLayout
-        Me.grbAlbaranesPendientes.SuspendLayout
-        CType(Me.dgvAlbaranesProvi,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel5.SuspendLayout
-        Me.tabPagPalets.SuspendLayout
-        Me.tabPagAcumulados.SuspendLayout
-        CType(Me.dgvAcumulados,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.cmAcumulados.SuspendLayout
-        Me.Panel1.SuspendLayout
-        Me.Panel2.SuspendLayout
-        CType(Me.dgvTotalPalets,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel3.SuspendLayout
-        Me.GroupBox2.SuspendLayout
-        Me.GroupBox1.SuspendLayout
-        Me.TabPagTotales.SuspendLayout
-        CType(Me.SplitContainer1,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.SplitContainer1.Panel1.SuspendLayout
-        Me.SplitContainer1.Panel2.SuspendLayout
-        Me.SplitContainer1.SuspendLayout
-        CType(Me.dgvTotales,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.dgvTotalesPorPalet,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.SuspendLayout
+        CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DtsAlbaranesCargaMaestro, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvPalet, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.cmPalets.SuspendLayout()
+        Me.tabDatos.SuspendLayout()
+        Me.tabPagDatos.SuspendLayout()
+        Me.Panel4.SuspendLayout()
+        Me.grbDatosTransporte.SuspendLayout()
+        Me.grbDatosCabecera.SuspendLayout()
+        Me.grbAlbaranesPendientes.SuspendLayout()
+        CType(Me.dgvAlbaranesProvi, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel5.SuspendLayout()
+        Me.tabPagPalets.SuspendLayout()
+        Me.tabPagAcumulados.SuspendLayout()
+        CType(Me.dgvAcumulados, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.cmAcumulados.SuspendLayout()
+        Me.Panel1.SuspendLayout()
+        Me.Panel2.SuspendLayout()
+        CType(Me.dgvTotalPalets, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel3.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
+        Me.TabPagTotales.SuspendLayout()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer1.Panel1.SuspendLayout()
+        Me.SplitContainer1.Panel2.SuspendLayout()
+        Me.SplitContainer1.SuspendLayout()
+        CType(Me.dgvTotales, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvTotalesPorPalet, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
         '
         'GeneralBindingSource
         '
@@ -214,278 +209,258 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         'AlbaranCargaMaestroIDLabel
         '
-        AlbaranCargaMaestroIDLabel.AutoSize = true
+        AlbaranCargaMaestroIDLabel.AutoSize = True
         AlbaranCargaMaestroIDLabel.Location = New System.Drawing.Point(26, 6)
         AlbaranCargaMaestroIDLabel.Name = "AlbaranCargaMaestroIDLabel"
         AlbaranCargaMaestroIDLabel.Size = New System.Drawing.Size(123, 13)
-        AlbaranCargaMaestroIDLabel.TabIndex = 1000000000
+        AlbaranCargaMaestroIDLabel.TabIndex = 0
         AlbaranCargaMaestroIDLabel.Text = "AlbaranCargaMaestroID:"
         '
         'AlbaranCargaProMaestroIDLabel
         '
-        AlbaranCargaProMaestroIDLabel.AutoSize = true
+        AlbaranCargaProMaestroIDLabel.AutoSize = True
         AlbaranCargaProMaestroIDLabel.Location = New System.Drawing.Point(256, 6)
         AlbaranCargaProMaestroIDLabel.Name = "AlbaranCargaProMaestroIDLabel"
         AlbaranCargaProMaestroIDLabel.Size = New System.Drawing.Size(139, 13)
-        AlbaranCargaProMaestroIDLabel.TabIndex = 1000000002
+        AlbaranCargaProMaestroIDLabel.TabIndex = 2
         AlbaranCargaProMaestroIDLabel.Text = "AlbaranCargaProMaestroID:"
-        AlbaranCargaProMaestroIDLabel.Visible = false
+        AlbaranCargaProMaestroIDLabel.Visible = False
         '
         'FechaLabel
         '
-        FechaLabel.AutoSize = true
-        FechaLabel.Location = New System.Drawing.Point(15, 26)
+        FechaLabel.AutoSize = True
+        FechaLabel.Location = New System.Drawing.Point(15, 28)
         FechaLabel.Name = "FechaLabel"
         FechaLabel.Size = New System.Drawing.Size(40, 13)
-        FechaLabel.TabIndex = 1000000004
+        FechaLabel.TabIndex = 0
         FechaLabel.Text = "Fecha:"
         '
         'ClienteIDLabel
         '
-        ClienteIDLabel.AutoSize = true
-        ClienteIDLabel.Location = New System.Drawing.Point(15, 47)
+        ClienteIDLabel.AutoSize = True
+        ClienteIDLabel.Location = New System.Drawing.Point(15, 58)
         ClienteIDLabel.Name = "ClienteIDLabel"
         ClienteIDLabel.Size = New System.Drawing.Size(42, 13)
-        ClienteIDLabel.TabIndex = 1000000006
+        ClienteIDLabel.TabIndex = 2
         ClienteIDLabel.Text = "Cliente:"
         '
         'SerieQSIDLabel
         '
-        SerieQSIDLabel.AutoSize = true
-        SerieQSIDLabel.Location = New System.Drawing.Point(17, 221)
+        SerieQSIDLabel.AutoSize = True
+        SerieQSIDLabel.Location = New System.Drawing.Point(17, 224)
         SerieQSIDLabel.Name = "SerieQSIDLabel"
         SerieQSIDLabel.Size = New System.Drawing.Size(63, 13)
-        SerieQSIDLabel.TabIndex = 1000000008
+        SerieQSIDLabel.TabIndex = 14
         SerieQSIDLabel.Text = "Serie QSID:"
         '
         'NumeroQSLabel
         '
-        NumeroQSLabel.AutoSize = true
-        NumeroQSLabel.Location = New System.Drawing.Point(15, 124)
+        NumeroQSLabel.AutoSize = True
+        NumeroQSLabel.Location = New System.Drawing.Point(15, 159)
         NumeroQSLabel.Name = "NumeroQSLabel"
         NumeroQSLabel.Size = New System.Drawing.Size(65, 13)
-        NumeroQSLabel.TabIndex = 1000000010
+        NumeroQSLabel.TabIndex = 8
         NumeroQSLabel.Text = "Numero QS:"
         '
         'AlmacenSalidaQSIDLabel
         '
-        AlmacenSalidaQSIDLabel.AutoSize = true
-        AlmacenSalidaQSIDLabel.Location = New System.Drawing.Point(17, 248)
+        AlmacenSalidaQSIDLabel.AutoSize = True
+        AlmacenSalidaQSIDLabel.Location = New System.Drawing.Point(17, 257)
         AlmacenSalidaQSIDLabel.Name = "AlmacenSalidaQSIDLabel"
         AlmacenSalidaQSIDLabel.Size = New System.Drawing.Size(112, 13)
-        AlmacenSalidaQSIDLabel.TabIndex = 1000000012
+        AlmacenSalidaQSIDLabel.TabIndex = 16
         AlmacenSalidaQSIDLabel.Text = "Almacen Salida QSID:"
         '
         'PorteFormaPagoIDLabel
         '
-        PorteFormaPagoIDLabel.AutoSize = true
+        PorteFormaPagoIDLabel.AutoSize = True
         PorteFormaPagoIDLabel.Location = New System.Drawing.Point(204, 184)
         PorteFormaPagoIDLabel.Name = "PorteFormaPagoIDLabel"
         PorteFormaPagoIDLabel.Size = New System.Drawing.Size(67, 13)
-        PorteFormaPagoIDLabel.TabIndex = 1000000016
+        PorteFormaPagoIDLabel.TabIndex = 17
         PorteFormaPagoIDLabel.Text = "Forma Pago:"
         '
         'PorteImporteLabel
         '
-        PorteImporteLabel.AutoSize = true
+        PorteImporteLabel.AutoSize = True
         PorteImporteLabel.Location = New System.Drawing.Point(204, 155)
         PorteImporteLabel.Name = "PorteImporteLabel"
         PorteImporteLabel.Size = New System.Drawing.Size(73, 13)
-        PorteImporteLabel.TabIndex = 1000000018
+        PorteImporteLabel.TabIndex = 15
         PorteImporteLabel.Text = "Porte Importe:"
         '
         'ConductorLabel
         '
-        ConductorLabel.AutoSize = true
+        ConductorLabel.AutoSize = True
         ConductorLabel.Location = New System.Drawing.Point(18, 48)
         ConductorLabel.Name = "ConductorLabel"
         ConductorLabel.Size = New System.Drawing.Size(59, 13)
-        ConductorLabel.TabIndex = 1000000022
+        ConductorLabel.TabIndex = 0
         ConductorLabel.Text = "Conductor:"
         '
         'HoraLlegadaLabel
         '
-        HoraLlegadaLabel.AutoSize = true
+        HoraLlegadaLabel.AutoSize = True
         HoraLlegadaLabel.Location = New System.Drawing.Point(18, 128)
         HoraLlegadaLabel.Name = "HoraLlegadaLabel"
         HoraLlegadaLabel.Size = New System.Drawing.Size(74, 13)
-        HoraLlegadaLabel.TabIndex = 1000000030
+        HoraLlegadaLabel.TabIndex = 11
         HoraLlegadaLabel.Text = "Hora Llegada:"
         '
         'HoraSalidaLabel
         '
-        HoraSalidaLabel.AutoSize = true
+        HoraSalidaLabel.AutoSize = True
         HoraSalidaLabel.Location = New System.Drawing.Point(19, 155)
         HoraSalidaLabel.Name = "HoraSalidaLabel"
         HoraSalidaLabel.Size = New System.Drawing.Size(65, 13)
-        HoraSalidaLabel.TabIndex = 1000000032
+        HoraSalidaLabel.TabIndex = 13
         HoraSalidaLabel.Text = "Hora Salida:"
         '
         'ObservacionesLabel
         '
-        ObservacionesLabel.AutoSize = true
-        ObservacionesLabel.Location = New System.Drawing.Point(15, 145)
+        ObservacionesLabel.AutoSize = True
+        ObservacionesLabel.Location = New System.Drawing.Point(15, 192)
         ObservacionesLabel.Name = "ObservacionesLabel"
         ObservacionesLabel.Size = New System.Drawing.Size(81, 13)
-        ObservacionesLabel.TabIndex = 1000000034
+        ObservacionesLabel.TabIndex = 10
         ObservacionesLabel.Text = "Observaciones:"
-        '
-        'Reserva2Label
-        '
-        Reserva2Label.AutoSize = true
-        Reserva2Label.Location = New System.Drawing.Point(15, 173)
-        Reserva2Label.Name = "Reserva2Label"
-        Reserva2Label.Size = New System.Drawing.Size(56, 13)
-        Reserva2Label.TabIndex = 1000000038
-        Reserva2Label.Text = "Reserva2:"
-        Reserva2Label.Visible = false
-        '
-        'Reserva3Label
-        '
-        Reserva3Label.AutoSize = true
-        Reserva3Label.Location = New System.Drawing.Point(16, 197)
-        Reserva3Label.Name = "Reserva3Label"
-        Reserva3Label.Size = New System.Drawing.Size(56, 13)
-        Reserva3Label.TabIndex = 1000000040
-        Reserva3Label.Text = "Reserva3:"
-        Reserva3Label.Visible = false
         '
         'Label2
         '
-        Label2.AutoSize = true
-        Label2.Location = New System.Drawing.Point(15, 73)
+        Label2.AutoSize = True
+        Label2.Location = New System.Drawing.Point(15, 93)
         Label2.Name = "Label2"
         Label2.Size = New System.Drawing.Size(43, 13)
-        Label2.TabIndex = 2
+        Label2.TabIndex = 4
         Label2.Text = "Pedido:"
         '
         'Label8
         '
-        Label8.AutoSize = true
-        Label8.Location = New System.Drawing.Point(15, 98)
+        Label8.AutoSize = True
+        Label8.Location = New System.Drawing.Point(15, 126)
         Label8.Name = "Label8"
         Label8.Size = New System.Drawing.Size(76, 13)
-        Label8.TabIndex = 3
+        Label8.TabIndex = 6
         Label8.Text = "Lugar entrega:"
         '
         'Label9
         '
-        Label9.AutoSize = true
+        Label9.AutoSize = True
         Label9.Location = New System.Drawing.Point(23, 29)
         Label9.Name = "Label9"
         Label9.Size = New System.Drawing.Size(46, 13)
-        Label9.TabIndex = 1000000020
+        Label9.TabIndex = 0
         Label9.Text = "Cabeza:"
         '
         'Label10
         '
-        Label10.AutoSize = true
+        Label10.AutoSize = True
         Label10.Location = New System.Drawing.Point(23, 55)
         Label10.Name = "Label10"
         Label10.Size = New System.Drawing.Size(59, 13)
-        Label10.TabIndex = 1000000022
+        Label10.TabIndex = 4
         Label10.Text = "Conductor:"
         '
         'Label11
         '
-        Label11.AutoSize = true
+        Label11.AutoSize = True
         Label11.Location = New System.Drawing.Point(209, 143)
         Label11.Name = "Label11"
         Label11.Size = New System.Drawing.Size(73, 13)
-        Label11.TabIndex = 1000000018
+        Label11.TabIndex = 14
         Label11.Text = "Porte Importe:"
         '
         'Label12
         '
-        Label12.AutoSize = true
+        Label12.AutoSize = True
         Label12.Location = New System.Drawing.Point(23, 81)
         Label12.Name = "Label12"
         Label12.Size = New System.Drawing.Size(81, 13)
-        Label12.TabIndex = 1000000024
+        Label12.TabIndex = 6
         Label12.Text = "Conductor DNI:"
         '
         'Label13
         '
-        Label13.AutoSize = true
+        Label13.AutoSize = True
         Label13.Location = New System.Drawing.Point(209, 169)
         Label13.Name = "Label13"
         Label13.Size = New System.Drawing.Size(67, 13)
-        Label13.TabIndex = 1000000016
+        Label13.TabIndex = 16
         Label13.Text = "Forma Pago:"
         '
         'Label14
         '
-        Label14.AutoSize = true
+        Label14.AutoSize = True
         Label14.Location = New System.Drawing.Point(209, 114)
         Label14.Name = "Label14"
         Label14.Size = New System.Drawing.Size(49, 13)
-        Label14.TabIndex = 1000000014
+        Label14.TabIndex = 10
         Label14.Text = "Agencia:"
         '
         'Label15
         '
-        Label15.AutoSize = true
+        Label15.AutoSize = True
         Label15.Location = New System.Drawing.Point(23, 118)
         Label15.Name = "Label15"
         Label15.Size = New System.Drawing.Size(74, 13)
-        Label15.TabIndex = 1000000030
+        Label15.TabIndex = 8
         Label15.Text = "Hora Llegada:"
         '
         'Label16
         '
-        Label16.AutoSize = true
+        Label16.AutoSize = True
         Label16.Location = New System.Drawing.Point(24, 145)
         Label16.Name = "Label16"
         Label16.Size = New System.Drawing.Size(65, 13)
-        Label16.TabIndex = 1000000032
+        Label16.TabIndex = 12
         Label16.Text = "Hora Salida:"
         '
         'Label17
         '
-        Label17.AutoSize = true
+        Label17.AutoSize = True
         Label17.Location = New System.Drawing.Point(18, 95)
         Label17.Name = "Label17"
         Label17.Size = New System.Drawing.Size(42, 13)
-        Label17.TabIndex = 1000000034
+        Label17.TabIndex = 6
         Label17.Text = "Camion"
         '
         'Label19
         '
-        Label19.AutoSize = true
+        Label19.AutoSize = True
         Label19.Location = New System.Drawing.Point(236, 29)
         Label19.Name = "Label19"
         Label19.Size = New System.Drawing.Size(58, 13)
-        Label19.TabIndex = 1000000034
+        Label19.TabIndex = 2
         Label19.Text = "Remolque:"
         '
         'Label18
         '
-        Label18.AutoSize = true
-        Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 6!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Label18.AutoSize = True
+        Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Label18.Location = New System.Drawing.Point(406, 79)
         Label18.Name = "Label18"
         Label18.Size = New System.Drawing.Size(34, 9)
-        Label18.TabIndex = 1000000064
+        Label18.TabIndex = 5
         Label18.Text = "Agencia:"
         '
         'Label20
         '
-        Label20.AutoSize = true
-        Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 6!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Label20.AutoSize = True
+        Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Label20.Location = New System.Drawing.Point(205, 79)
         Label20.Name = "Label20"
         Label20.Size = New System.Drawing.Size(42, 9)
-        Label20.TabIndex = 1000000065
+        Label20.TabIndex = 4
         Label20.Text = "Remolque:"
         '
         'Label21
         '
-        Label21.AutoSize = true
-        Label21.Font = New System.Drawing.Font("Microsoft Sans Serif", 6!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Label21.AutoSize = True
+        Label21.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Label21.Location = New System.Drawing.Point(106, 79)
         Label21.Name = "Label21"
         Label21.Size = New System.Drawing.Size(42, 9)
-        Label21.TabIndex = 1000000066
+        Label21.TabIndex = 3
         Label21.Text = "Remolque:"
         '
         'DtsAlbaranesCargaMaestro
@@ -495,203 +470,209 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         'txtAlbaranCargaMaestroID
         '
-        Me.txtAlbaranCargaMaestroID.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "AlbaranCargaMaestroID", true))
+        Me.txtAlbaranCargaMaestroID.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "AlbaranCargaMaestroID", True))
         Me.txtAlbaranCargaMaestroID.EsUnicoCampo = ""
         Me.txtAlbaranCargaMaestroID.EsUnicoCampoID = ""
         Me.txtAlbaranCargaMaestroID.EsUnicoID = 0
         Me.txtAlbaranCargaMaestroID.EsUnicoTabla = ""
         Me.txtAlbaranCargaMaestroID.Location = New System.Drawing.Point(189, 3)
         Me.txtAlbaranCargaMaestroID.Minimo = 0
-        Me.txtAlbaranCargaMaestroID.Modificado = false
+        Me.txtAlbaranCargaMaestroID.Modificado = False
         Me.txtAlbaranCargaMaestroID.Name = "txtAlbaranCargaMaestroID"
-        Me.txtAlbaranCargaMaestroID.Numerico_EsNumerico = false
+        Me.txtAlbaranCargaMaestroID.Numerico_EsNumerico = False
         Me.txtAlbaranCargaMaestroID.Numerico_NumeroDoublees = 0
-        Me.txtAlbaranCargaMaestroID.Numerico_SeparadorMiles = false
-        Me.txtAlbaranCargaMaestroID.Obligatorio = false
+        Me.txtAlbaranCargaMaestroID.Numerico_SeparadorMiles = False
+        Me.txtAlbaranCargaMaestroID.Obligatorio = False
         Me.txtAlbaranCargaMaestroID.ParametroID = 0
         Me.txtAlbaranCargaMaestroID.Size = New System.Drawing.Size(57, 20)
-        Me.txtAlbaranCargaMaestroID.TabIndex = 1000000001
-        Me.txtAlbaranCargaMaestroID.ValorMaximo = 0R
-        Me.txtAlbaranCargaMaestroID.ValorMinimo = 0R
+        Me.txtAlbaranCargaMaestroID.TabIndex = 1
+        Me.txtAlbaranCargaMaestroID.ValorMaximo = 0.0R
+        Me.txtAlbaranCargaMaestroID.ValorMinimo = 0.0R
         '
         'txtMaestroID
         '
-        Me.txtMaestroID.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "AlbaranCargaProMaestroID", true))
+        Me.txtMaestroID.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "AlbaranCargaProMaestroID", True))
         Me.txtMaestroID.EsUnicoCampo = ""
         Me.txtMaestroID.EsUnicoCampoID = ""
         Me.txtMaestroID.EsUnicoID = 0
         Me.txtMaestroID.EsUnicoTabla = ""
         Me.txtMaestroID.Location = New System.Drawing.Point(419, 6)
         Me.txtMaestroID.Minimo = 0
-        Me.txtMaestroID.Modificado = false
+        Me.txtMaestroID.Modificado = False
         Me.txtMaestroID.Name = "txtMaestroID"
-        Me.txtMaestroID.Numerico_EsNumerico = false
+        Me.txtMaestroID.Numerico_EsNumerico = False
         Me.txtMaestroID.Numerico_NumeroDoublees = 0
-        Me.txtMaestroID.Numerico_SeparadorMiles = false
-        Me.txtMaestroID.Obligatorio = false
+        Me.txtMaestroID.Numerico_SeparadorMiles = False
+        Me.txtMaestroID.Obligatorio = False
         Me.txtMaestroID.ParametroID = 0
         Me.txtMaestroID.Size = New System.Drawing.Size(57, 20)
         Me.txtMaestroID.TabIndex = 1000000003
-        Me.txtMaestroID.ValorMaximo = 0R
-        Me.txtMaestroID.ValorMinimo = 0R
-        Me.txtMaestroID.Visible = false
+        Me.txtMaestroID.ValorMaximo = 0.0R
+        Me.txtMaestroID.ValorMinimo = 0.0R
+        Me.txtMaestroID.Visible = False
         '
         'FechaDateTimePicker
         '
-        Me.FechaDateTimePicker.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.GeneralBindingSource, "Fecha", true))
+        Me.FechaDateTimePicker.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.GeneralBindingSource, "Fecha", True))
         Me.FechaDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.FechaDateTimePicker.Location = New System.Drawing.Point(99, 22)
         Me.FechaDateTimePicker.Name = "FechaDateTimePicker"
         Me.FechaDateTimePicker.Size = New System.Drawing.Size(87, 20)
-        Me.FechaDateTimePicker.TabIndex = 0
+        Me.FechaDateTimePicker.TabIndex = 1
         '
         'SerieQSIDCuadroDeTexto
         '
-        Me.SerieQSIDCuadroDeTexto.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "SerieQSID", true))
+        Me.SerieQSIDCuadroDeTexto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.SerieQSIDCuadroDeTexto.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "SerieQSID", True))
         Me.SerieQSIDCuadroDeTexto.EsUnicoCampo = ""
         Me.SerieQSIDCuadroDeTexto.EsUnicoCampoID = ""
         Me.SerieQSIDCuadroDeTexto.EsUnicoID = 0
         Me.SerieQSIDCuadroDeTexto.EsUnicoTabla = ""
-        Me.SerieQSIDCuadroDeTexto.Location = New System.Drawing.Point(180, 218)
+        Me.SerieQSIDCuadroDeTexto.Location = New System.Drawing.Point(180, 222)
         Me.SerieQSIDCuadroDeTexto.Minimo = 0
-        Me.SerieQSIDCuadroDeTexto.Modificado = false
+        Me.SerieQSIDCuadroDeTexto.Modificado = False
         Me.SerieQSIDCuadroDeTexto.Name = "SerieQSIDCuadroDeTexto"
-        Me.SerieQSIDCuadroDeTexto.Numerico_EsNumerico = false
+        Me.SerieQSIDCuadroDeTexto.Numerico_EsNumerico = False
         Me.SerieQSIDCuadroDeTexto.Numerico_NumeroDoublees = 0
-        Me.SerieQSIDCuadroDeTexto.Numerico_SeparadorMiles = false
-        Me.SerieQSIDCuadroDeTexto.Obligatorio = false
+        Me.SerieQSIDCuadroDeTexto.Numerico_SeparadorMiles = False
+        Me.SerieQSIDCuadroDeTexto.Obligatorio = False
         Me.SerieQSIDCuadroDeTexto.ParametroID = 0
         Me.SerieQSIDCuadroDeTexto.Size = New System.Drawing.Size(87, 20)
-        Me.SerieQSIDCuadroDeTexto.TabIndex = 1000000009
-        Me.SerieQSIDCuadroDeTexto.ValorMaximo = 0R
-        Me.SerieQSIDCuadroDeTexto.ValorMinimo = 0R
+        Me.SerieQSIDCuadroDeTexto.TabIndex = 15
+        Me.SerieQSIDCuadroDeTexto.ValorMaximo = 0.0R
+        Me.SerieQSIDCuadroDeTexto.ValorMinimo = 0.0R
         '
         'NumeroQSCuadroDeTexto
         '
-        Me.NumeroQSCuadroDeTexto.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "NumeroQS", true))
+        Me.NumeroQSCuadroDeTexto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.NumeroQSCuadroDeTexto.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "NumeroQS", True))
         Me.NumeroQSCuadroDeTexto.EsUnicoCampo = ""
         Me.NumeroQSCuadroDeTexto.EsUnicoCampoID = ""
         Me.NumeroQSCuadroDeTexto.EsUnicoID = 0
         Me.NumeroQSCuadroDeTexto.EsUnicoTabla = ""
-        Me.NumeroQSCuadroDeTexto.Location = New System.Drawing.Point(97, 121)
+        Me.NumeroQSCuadroDeTexto.Location = New System.Drawing.Point(97, 157)
         Me.NumeroQSCuadroDeTexto.Minimo = 0
-        Me.NumeroQSCuadroDeTexto.Modificado = false
+        Me.NumeroQSCuadroDeTexto.Modificado = False
         Me.NumeroQSCuadroDeTexto.Name = "NumeroQSCuadroDeTexto"
-        Me.NumeroQSCuadroDeTexto.Numerico_EsNumerico = false
+        Me.NumeroQSCuadroDeTexto.Numerico_EsNumerico = False
         Me.NumeroQSCuadroDeTexto.Numerico_NumeroDoublees = 0
-        Me.NumeroQSCuadroDeTexto.Numerico_SeparadorMiles = false
-        Me.NumeroQSCuadroDeTexto.Obligatorio = false
+        Me.NumeroQSCuadroDeTexto.Numerico_SeparadorMiles = False
+        Me.NumeroQSCuadroDeTexto.Obligatorio = False
         Me.NumeroQSCuadroDeTexto.ParametroID = 0
         Me.NumeroQSCuadroDeTexto.Size = New System.Drawing.Size(87, 20)
-        Me.NumeroQSCuadroDeTexto.TabIndex = 1000000011
-        Me.NumeroQSCuadroDeTexto.ValorMaximo = 0R
-        Me.NumeroQSCuadroDeTexto.ValorMinimo = 0R
+        Me.NumeroQSCuadroDeTexto.TabIndex = 9
+        Me.NumeroQSCuadroDeTexto.ValorMaximo = 0.0R
+        Me.NumeroQSCuadroDeTexto.ValorMinimo = 0.0R
         '
         'AlmacenSalidaQSIDCuadroDeTexto
         '
-        Me.AlmacenSalidaQSIDCuadroDeTexto.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "AlmacenSalidaQSID", true))
+        Me.AlmacenSalidaQSIDCuadroDeTexto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.AlmacenSalidaQSIDCuadroDeTexto.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "AlmacenSalidaQSID", True))
         Me.AlmacenSalidaQSIDCuadroDeTexto.EsUnicoCampo = ""
         Me.AlmacenSalidaQSIDCuadroDeTexto.EsUnicoCampoID = ""
         Me.AlmacenSalidaQSIDCuadroDeTexto.EsUnicoID = 0
         Me.AlmacenSalidaQSIDCuadroDeTexto.EsUnicoTabla = ""
-        Me.AlmacenSalidaQSIDCuadroDeTexto.Location = New System.Drawing.Point(180, 245)
+        Me.AlmacenSalidaQSIDCuadroDeTexto.Location = New System.Drawing.Point(180, 255)
         Me.AlmacenSalidaQSIDCuadroDeTexto.Minimo = 0
-        Me.AlmacenSalidaQSIDCuadroDeTexto.Modificado = false
+        Me.AlmacenSalidaQSIDCuadroDeTexto.Modificado = False
         Me.AlmacenSalidaQSIDCuadroDeTexto.Name = "AlmacenSalidaQSIDCuadroDeTexto"
-        Me.AlmacenSalidaQSIDCuadroDeTexto.Numerico_EsNumerico = false
+        Me.AlmacenSalidaQSIDCuadroDeTexto.Numerico_EsNumerico = False
         Me.AlmacenSalidaQSIDCuadroDeTexto.Numerico_NumeroDoublees = 0
-        Me.AlmacenSalidaQSIDCuadroDeTexto.Numerico_SeparadorMiles = false
-        Me.AlmacenSalidaQSIDCuadroDeTexto.Obligatorio = false
+        Me.AlmacenSalidaQSIDCuadroDeTexto.Numerico_SeparadorMiles = False
+        Me.AlmacenSalidaQSIDCuadroDeTexto.Obligatorio = False
         Me.AlmacenSalidaQSIDCuadroDeTexto.ParametroID = 0
         Me.AlmacenSalidaQSIDCuadroDeTexto.Size = New System.Drawing.Size(87, 20)
-        Me.AlmacenSalidaQSIDCuadroDeTexto.TabIndex = 1000000013
-        Me.AlmacenSalidaQSIDCuadroDeTexto.ValorMaximo = 0R
-        Me.AlmacenSalidaQSIDCuadroDeTexto.ValorMinimo = 0R
+        Me.AlmacenSalidaQSIDCuadroDeTexto.TabIndex = 17
+        Me.AlmacenSalidaQSIDCuadroDeTexto.ValorMaximo = 0.0R
+        Me.AlmacenSalidaQSIDCuadroDeTexto.ValorMinimo = 0.0R
         '
         'PorteImporteCuadroDeTexto
         '
-        Me.PorteImporteCuadroDeTexto.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "PorteImporte", true))
+        Me.PorteImporteCuadroDeTexto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PorteImporteCuadroDeTexto.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "PorteImporte", True))
         Me.PorteImporteCuadroDeTexto.EsUnicoCampo = ""
         Me.PorteImporteCuadroDeTexto.EsUnicoCampoID = ""
         Me.PorteImporteCuadroDeTexto.EsUnicoID = 0
         Me.PorteImporteCuadroDeTexto.EsUnicoTabla = ""
         Me.PorteImporteCuadroDeTexto.Location = New System.Drawing.Point(312, 152)
         Me.PorteImporteCuadroDeTexto.Minimo = 0
-        Me.PorteImporteCuadroDeTexto.Modificado = false
+        Me.PorteImporteCuadroDeTexto.Modificado = False
         Me.PorteImporteCuadroDeTexto.Name = "PorteImporteCuadroDeTexto"
-        Me.PorteImporteCuadroDeTexto.Numerico_EsNumerico = false
+        Me.PorteImporteCuadroDeTexto.Numerico_EsNumerico = False
         Me.PorteImporteCuadroDeTexto.Numerico_NumeroDoublees = 2
-        Me.PorteImporteCuadroDeTexto.Numerico_SeparadorMiles = false
-        Me.PorteImporteCuadroDeTexto.Obligatorio = false
+        Me.PorteImporteCuadroDeTexto.Numerico_SeparadorMiles = False
+        Me.PorteImporteCuadroDeTexto.Obligatorio = False
         Me.PorteImporteCuadroDeTexto.ParametroID = 0
-        Me.PorteImporteCuadroDeTexto.Size = New System.Drawing.Size(87, 20)
-        Me.PorteImporteCuadroDeTexto.TabIndex = 1000000019
-        Me.PorteImporteCuadroDeTexto.ValorMaximo = 0R
-        Me.PorteImporteCuadroDeTexto.ValorMinimo = 0R
+        Me.PorteImporteCuadroDeTexto.Size = New System.Drawing.Size(85, 20)
+        Me.PorteImporteCuadroDeTexto.TabIndex = 16
+        Me.PorteImporteCuadroDeTexto.ValorMaximo = 0.0R
+        Me.PorteImporteCuadroDeTexto.ValorMinimo = 0.0R
         '
         'ConductorDNICuadroDeTexto
         '
-        Me.ConductorDNICuadroDeTexto.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "ConductorDNI", true))
+        Me.ConductorDNICuadroDeTexto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.ConductorDNICuadroDeTexto.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "ConductorDNI", True))
         Me.ConductorDNICuadroDeTexto.EsUnicoCampo = ""
         Me.ConductorDNICuadroDeTexto.EsUnicoCampoID = ""
         Me.ConductorDNICuadroDeTexto.EsUnicoID = 0
         Me.ConductorDNICuadroDeTexto.EsUnicoTabla = ""
         Me.ConductorDNICuadroDeTexto.Location = New System.Drawing.Point(405, 44)
         Me.ConductorDNICuadroDeTexto.Minimo = 0
-        Me.ConductorDNICuadroDeTexto.Modificado = false
+        Me.ConductorDNICuadroDeTexto.Modificado = False
         Me.ConductorDNICuadroDeTexto.Name = "ConductorDNICuadroDeTexto"
-        Me.ConductorDNICuadroDeTexto.Numerico_EsNumerico = false
+        Me.ConductorDNICuadroDeTexto.Numerico_EsNumerico = False
         Me.ConductorDNICuadroDeTexto.Numerico_NumeroDoublees = 0
-        Me.ConductorDNICuadroDeTexto.Numerico_SeparadorMiles = false
-        Me.ConductorDNICuadroDeTexto.Obligatorio = false
+        Me.ConductorDNICuadroDeTexto.Numerico_SeparadorMiles = False
+        Me.ConductorDNICuadroDeTexto.Obligatorio = False
         Me.ConductorDNICuadroDeTexto.ParametroID = 0
         Me.ConductorDNICuadroDeTexto.Size = New System.Drawing.Size(184, 20)
-        Me.ConductorDNICuadroDeTexto.TabIndex = 1000000025
-        Me.ConductorDNICuadroDeTexto.ValorMaximo = 0R
-        Me.ConductorDNICuadroDeTexto.ValorMinimo = 0R
+        Me.ConductorDNICuadroDeTexto.TabIndex = 2
+        Me.ConductorDNICuadroDeTexto.ValorMaximo = 0.0R
+        Me.ConductorDNICuadroDeTexto.ValorMinimo = 0.0R
         '
         'HoraLlegadaDateTimePicker
         '
         Me.HoraLlegadaDateTimePicker.CustomFormat = "HH:mm"
-        Me.HoraLlegadaDateTimePicker.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.GeneralBindingSource, "HoraLlegada", true))
+        Me.HoraLlegadaDateTimePicker.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.GeneralBindingSource, "HoraLlegada", True))
         Me.HoraLlegadaDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.HoraLlegadaDateTimePicker.Location = New System.Drawing.Point(106, 124)
         Me.HoraLlegadaDateTimePicker.Name = "HoraLlegadaDateTimePicker"
-        Me.HoraLlegadaDateTimePicker.ShowUpDown = true
+        Me.HoraLlegadaDateTimePicker.ShowUpDown = True
         Me.HoraLlegadaDateTimePicker.Size = New System.Drawing.Size(87, 20)
-        Me.HoraLlegadaDateTimePicker.TabIndex = 1000000031
+        Me.HoraLlegadaDateTimePicker.TabIndex = 12
         '
         'HoraSalidaDateTimePicker
         '
         Me.HoraSalidaDateTimePicker.CustomFormat = "HH:mm"
-        Me.HoraSalidaDateTimePicker.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.GeneralBindingSource, "HoraSalida", true))
+        Me.HoraSalidaDateTimePicker.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.GeneralBindingSource, "HoraSalida", True))
         Me.HoraSalidaDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.HoraSalidaDateTimePicker.Location = New System.Drawing.Point(106, 155)
         Me.HoraSalidaDateTimePicker.Name = "HoraSalidaDateTimePicker"
-        Me.HoraSalidaDateTimePicker.ShowUpDown = true
+        Me.HoraSalidaDateTimePicker.ShowUpDown = True
         Me.HoraSalidaDateTimePicker.Size = New System.Drawing.Size(87, 20)
-        Me.HoraSalidaDateTimePicker.TabIndex = 1000000033
+        Me.HoraSalidaDateTimePicker.TabIndex = 14
         '
         'ObservacionesCuadroDeTexto
         '
-        Me.ObservacionesCuadroDeTexto.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "Observaciones", true))
+        Me.ObservacionesCuadroDeTexto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.ObservacionesCuadroDeTexto.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "Observaciones", True))
         Me.ObservacionesCuadroDeTexto.EsUnicoCampo = ""
         Me.ObservacionesCuadroDeTexto.EsUnicoCampoID = ""
         Me.ObservacionesCuadroDeTexto.EsUnicoID = 0
         Me.ObservacionesCuadroDeTexto.EsUnicoTabla = ""
-        Me.ObservacionesCuadroDeTexto.Location = New System.Drawing.Point(97, 142)
+        Me.ObservacionesCuadroDeTexto.Location = New System.Drawing.Point(97, 190)
         Me.ObservacionesCuadroDeTexto.Minimo = 0
-        Me.ObservacionesCuadroDeTexto.Modificado = false
+        Me.ObservacionesCuadroDeTexto.Modificado = False
         Me.ObservacionesCuadroDeTexto.Name = "ObservacionesCuadroDeTexto"
-        Me.ObservacionesCuadroDeTexto.Numerico_EsNumerico = false
+        Me.ObservacionesCuadroDeTexto.Numerico_EsNumerico = False
         Me.ObservacionesCuadroDeTexto.Numerico_NumeroDoublees = 0
-        Me.ObservacionesCuadroDeTexto.Numerico_SeparadorMiles = false
-        Me.ObservacionesCuadroDeTexto.Obligatorio = false
+        Me.ObservacionesCuadroDeTexto.Numerico_SeparadorMiles = False
+        Me.ObservacionesCuadroDeTexto.Obligatorio = False
         Me.ObservacionesCuadroDeTexto.ParametroID = 0
         Me.ObservacionesCuadroDeTexto.Size = New System.Drawing.Size(379, 20)
-        Me.ObservacionesCuadroDeTexto.TabIndex = 1000000035
-        Me.ObservacionesCuadroDeTexto.ValorMaximo = 0R
-        Me.ObservacionesCuadroDeTexto.ValorMinimo = 0R
+        Me.ObservacionesCuadroDeTexto.TabIndex = 11
+        Me.ObservacionesCuadroDeTexto.ValorMaximo = 0.0R
+        Me.ObservacionesCuadroDeTexto.ValorMinimo = 0.0R
         '
         'dgvPalet
         '
@@ -771,7 +752,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.tabDatos.Name = "tabDatos"
         Me.tabDatos.SelectedIndex = 0
         Me.tabDatos.Size = New System.Drawing.Size(1211, 657)
-        Me.tabDatos.TabIndex = 1000000044
+        Me.tabDatos.TabIndex = 0
         '
         'tabPagDatos
         '
@@ -783,7 +764,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.tabPagDatos.Size = New System.Drawing.Size(1203, 631)
         Me.tabPagDatos.TabIndex = 0
         Me.tabPagDatos.Text = "Datos"
-        Me.tabPagDatos.UseVisualStyleBackColor = true
+        Me.tabPagDatos.UseVisualStyleBackColor = True
         '
         'Panel4
         '
@@ -822,29 +803,32 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.grbDatosTransporte.Controls.Add(HoraSalidaLabel)
         Me.grbDatosTransporte.Controls.Add(Me.HoraSalidaDateTimePicker)
         Me.grbDatosTransporte.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grbDatosTransporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.grbDatosTransporte.Location = New System.Drawing.Point(520, 0)
         Me.grbDatosTransporte.Name = "grbDatosTransporte"
         Me.grbDatosTransporte.Size = New System.Drawing.Size(677, 332)
-        Me.grbDatosTransporte.TabIndex = 1000000047
-        Me.grbDatosTransporte.TabStop = false
+        Me.grbDatosTransporte.TabIndex = 1
+        Me.grbDatosTransporte.TabStop = False
         Me.grbDatosTransporte.Text = "Datos transporte"
         '
         'cboAgencia
         '
         Me.cboAgencia.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.cboAgencia.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cboAgencia.FormattingEnabled = true
+        Me.cboAgencia.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cboAgencia.FormattingEnabled = True
         Me.cboAgencia.Location = New System.Drawing.Point(405, 90)
         Me.cboAgencia.Name = "cboAgencia"
         Me.cboAgencia.Size = New System.Drawing.Size(184, 21)
-        Me.cboAgencia.TabIndex = 1000000067
+        Me.cboAgencia.TabIndex = 9
         '
         'txtDetalleRemolque
         '
+        Me.txtDetalleRemolque.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtDetalleRemolque.Location = New System.Drawing.Point(207, 90)
         Me.txtDetalleRemolque.Name = "txtDetalleRemolque"
-        Me.txtDetalleRemolque.Size = New System.Drawing.Size(192, 20)
-        Me.txtDetalleRemolque.TabIndex = 1000000062
+        Me.txtDetalleRemolque.Size = New System.Drawing.Size(190, 20)
+        Me.txtDetalleRemolque.TabIndex = 8
         '
         'btnNuevoCamion
         '
@@ -853,77 +837,81 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.btnNuevoCamion.Location = New System.Drawing.Point(595, 90)
         Me.btnNuevoCamion.Name = "btnNuevoCamion"
         Me.btnNuevoCamion.Size = New System.Drawing.Size(29, 20)
-        Me.btnNuevoCamion.TabIndex = 1000000061
-        Me.btnNuevoCamion.UseVisualStyleBackColor = true
-        Me.btnNuevoCamion.Visible = false
+        Me.btnNuevoCamion.TabIndex = 10
+        Me.btnNuevoCamion.UseVisualStyleBackColor = True
         '
         'cboCabeza
         '
         Me.cboCabeza.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.cboCabeza.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cboCabeza.FormattingEnabled = true
+        Me.cboCabeza.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cboCabeza.FormattingEnabled = True
         Me.cboCabeza.Location = New System.Drawing.Point(108, 90)
         Me.cboCabeza.Name = "cboCabeza"
         Me.cboCabeza.Size = New System.Drawing.Size(85, 21)
-        Me.cboCabeza.TabIndex = 1000000060
+        Me.cboCabeza.TabIndex = 7
         '
         'cboFormaPAgo
         '
         Me.cboFormaPAgo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.cboFormaPAgo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cboFormaPAgo.FormattingEnabled = true
+        Me.cboFormaPAgo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cboFormaPAgo.FormattingEnabled = True
         Me.cboFormaPAgo.Location = New System.Drawing.Point(312, 181)
         Me.cboFormaPAgo.Name = "cboFormaPAgo"
         Me.cboFormaPAgo.Size = New System.Drawing.Size(277, 21)
-        Me.cboFormaPAgo.TabIndex = 1000000054
+        Me.cboFormaPAgo.TabIndex = 18
         '
         'cboREsponsableAdminsitracion
         '
         Me.cboREsponsableAdminsitracion.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.cboREsponsableAdminsitracion.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cboREsponsableAdminsitracion.FormattingEnabled = true
-        Me.cboREsponsableAdminsitracion.Location = New System.Drawing.Point(147, 257)
+        Me.cboREsponsableAdminsitracion.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cboREsponsableAdminsitracion.FormattingEnabled = True
+        Me.cboREsponsableAdminsitracion.Location = New System.Drawing.Point(165, 257)
         Me.cboREsponsableAdminsitracion.Name = "cboREsponsableAdminsitracion"
-        Me.cboREsponsableAdminsitracion.Size = New System.Drawing.Size(442, 21)
-        Me.cboREsponsableAdminsitracion.TabIndex = 1000000057
+        Me.cboREsponsableAdminsitracion.Size = New System.Drawing.Size(424, 21)
+        Me.cboREsponsableAdminsitracion.TabIndex = 22
         '
         'cboREsponsableCarga
         '
         Me.cboREsponsableCarga.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.cboREsponsableCarga.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cboREsponsableCarga.FormattingEnabled = true
-        Me.cboREsponsableCarga.Location = New System.Drawing.Point(147, 211)
+        Me.cboREsponsableCarga.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cboREsponsableCarga.FormattingEnabled = True
+        Me.cboREsponsableCarga.Location = New System.Drawing.Point(165, 211)
         Me.cboREsponsableCarga.Name = "cboREsponsableCarga"
-        Me.cboREsponsableCarga.Size = New System.Drawing.Size(442, 21)
-        Me.cboREsponsableCarga.TabIndex = 1000000056
+        Me.cboREsponsableCarga.Size = New System.Drawing.Size(424, 21)
+        Me.cboREsponsableCarga.TabIndex = 20
         '
         'Label24
         '
-        Me.Label24.AutoSize = true
-        Me.Label24.Location = New System.Drawing.Point(6, 260)
+        Me.Label24.AutoSize = True
+        Me.Label24.Location = New System.Drawing.Point(18, 260)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(139, 13)
-        Me.Label24.TabIndex = 1000000055
+        Me.Label24.TabIndex = 21
         Me.Label24.Text = "Responsable administracion"
         '
         'Label23
         '
-        Me.Label23.AutoSize = true
-        Me.Label23.Location = New System.Drawing.Point(6, 219)
+        Me.Label23.AutoSize = True
+        Me.Label23.Location = New System.Drawing.Point(18, 221)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(99, 13)
-        Me.Label23.TabIndex = 1000000054
+        Me.Label23.TabIndex = 19
         Me.Label23.Text = "Responsable carga"
         '
         'cboConductores
         '
         Me.cboConductores.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.cboConductores.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cboConductores.FormattingEnabled = true
+        Me.cboConductores.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cboConductores.FormattingEnabled = True
         Me.cboConductores.Location = New System.Drawing.Point(106, 45)
         Me.cboConductores.Name = "cboConductores"
         Me.cboConductores.Size = New System.Drawing.Size(291, 21)
-        Me.cboConductores.TabIndex = 1000000050
+        Me.cboConductores.TabIndex = 1
         '
         'grbDatosCabecera
         '
@@ -935,9 +923,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.grbDatosCabecera.Controls.Add(ClienteIDLabel)
         Me.grbDatosCabecera.Controls.Add(Label2)
         Me.grbDatosCabecera.Controls.Add(FechaLabel)
-        Me.grbDatosCabecera.Controls.Add(Reserva2Label)
         Me.grbDatosCabecera.Controls.Add(Me.AlmacenSalidaQSIDCuadroDeTexto)
-        Me.grbDatosCabecera.Controls.Add(Reserva3Label)
         Me.grbDatosCabecera.Controls.Add(Me.ObservacionesCuadroDeTexto)
         Me.grbDatosCabecera.Controls.Add(AlmacenSalidaQSIDLabel)
         Me.grbDatosCabecera.Controls.Add(ObservacionesLabel)
@@ -946,42 +932,46 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.grbDatosCabecera.Controls.Add(Me.NumeroQSCuadroDeTexto)
         Me.grbDatosCabecera.Controls.Add(SerieQSIDLabel)
         Me.grbDatosCabecera.Dock = System.Windows.Forms.DockStyle.Left
+        Me.grbDatosCabecera.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.grbDatosCabecera.Location = New System.Drawing.Point(0, 0)
         Me.grbDatosCabecera.Name = "grbDatosCabecera"
         Me.grbDatosCabecera.Size = New System.Drawing.Size(520, 332)
-        Me.grbDatosCabecera.TabIndex = 1000000048
-        Me.grbDatosCabecera.TabStop = false
+        Me.grbDatosCabecera.TabIndex = 0
+        Me.grbDatosCabecera.TabStop = False
         Me.grbDatosCabecera.Text = "Datos cabecera"
         '
         'cboPedido
         '
         Me.cboPedido.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.cboPedido.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cboPedido.FormattingEnabled = true
-        Me.cboPedido.Location = New System.Drawing.Point(97, 72)
+        Me.cboPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cboPedido.FormattingEnabled = True
+        Me.cboPedido.Location = New System.Drawing.Point(97, 89)
         Me.cboPedido.Name = "cboPedido"
         Me.cboPedido.Size = New System.Drawing.Size(379, 21)
-        Me.cboPedido.TabIndex = 1000000054
+        Me.cboPedido.TabIndex = 5
         '
         'cboLugaresEntrega
         '
         Me.cboLugaresEntrega.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.cboLugaresEntrega.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cboLugaresEntrega.FormattingEnabled = true
-        Me.cboLugaresEntrega.Location = New System.Drawing.Point(97, 95)
+        Me.cboLugaresEntrega.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cboLugaresEntrega.FormattingEnabled = True
+        Me.cboLugaresEntrega.Location = New System.Drawing.Point(97, 123)
         Me.cboLugaresEntrega.Name = "cboLugaresEntrega"
         Me.cboLugaresEntrega.Size = New System.Drawing.Size(379, 21)
-        Me.cboLugaresEntrega.TabIndex = 1000000051
+        Me.cboLugaresEntrega.TabIndex = 7
         '
         'cboClientes
         '
         Me.cboClientes.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.cboClientes.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cboClientes.FormattingEnabled = true
-        Me.cboClientes.Location = New System.Drawing.Point(97, 45)
+        Me.cboClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cboClientes.FormattingEnabled = True
+        Me.cboClientes.Location = New System.Drawing.Point(97, 55)
         Me.cboClientes.Name = "cboClientes"
         Me.cboClientes.Size = New System.Drawing.Size(379, 21)
-        Me.cboClientes.TabIndex = 1000000053
+        Me.cboClientes.TabIndex = 3
         '
         'grbAlbaranesPendientes
         '
@@ -990,18 +980,20 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.grbAlbaranesPendientes.Location = New System.Drawing.Point(0, 332)
         Me.grbAlbaranesPendientes.Name = "grbAlbaranesPendientes"
         Me.grbAlbaranesPendientes.Size = New System.Drawing.Size(1197, 264)
-        Me.grbAlbaranesPendientes.TabIndex = 1000000049
-        Me.grbAlbaranesPendientes.TabStop = false
+        Me.grbAlbaranesPendientes.TabIndex = 2
+        Me.grbAlbaranesPendientes.TabStop = False
         Me.grbAlbaranesPendientes.Text = "Albaranes provisionales sin asignar."
         '
         'dgvAlbaranesProvi
         '
+        Me.dgvAlbaranesProvi.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
         Me.dgvAlbaranesProvi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvAlbaranesProvi.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvAlbaranesProvi.Location = New System.Drawing.Point(3, 16)
         Me.dgvAlbaranesProvi.Name = "dgvAlbaranesProvi"
+        Me.dgvAlbaranesProvi.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
         Me.dgvAlbaranesProvi.Size = New System.Drawing.Size(1191, 245)
-        Me.dgvAlbaranesProvi.TabIndex = 1000000043
+        Me.dgvAlbaranesProvi.TabIndex = 0
         '
         'Panel5
         '
@@ -1013,7 +1005,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.Panel5.Location = New System.Drawing.Point(3, 3)
         Me.Panel5.Name = "Panel5"
         Me.Panel5.Size = New System.Drawing.Size(1197, 29)
-        Me.Panel5.TabIndex = 1000000059
+        Me.Panel5.TabIndex = 0
         '
         'tabPagPalets
         '
@@ -1024,7 +1016,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.tabPagPalets.Size = New System.Drawing.Size(1203, 631)
         Me.tabPagPalets.TabIndex = 1
         Me.tabPagPalets.Text = "Palets"
-        Me.tabPagPalets.UseVisualStyleBackColor = true
+        Me.tabPagPalets.UseVisualStyleBackColor = True
         '
         'tabPagAcumulados
         '
@@ -1039,12 +1031,12 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.tabPagAcumulados.Size = New System.Drawing.Size(1203, 631)
         Me.tabPagAcumulados.TabIndex = 2
         Me.tabPagAcumulados.Text = "Acumulados"
-        Me.tabPagAcumulados.UseVisualStyleBackColor = true
+        Me.tabPagAcumulados.UseVisualStyleBackColor = True
         '
         'dgvAcumulados
         '
-        Me.dgvAcumulados.AllowUserToAddRows = false
-        Me.dgvAcumulados.AllowUserToDeleteRows = false
+        Me.dgvAcumulados.AllowUserToAddRows = False
+        Me.dgvAcumulados.AllowUserToDeleteRows = False
         Me.dgvAcumulados.BackgroundColor = System.Drawing.Color.White
         Me.dgvAcumulados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvAcumulados.ContextMenuStrip = Me.cmAcumulados
@@ -1054,7 +1046,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.dgvAcumulados.RowTemplate.Height = 24
         Me.dgvAcumulados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvAcumulados.Size = New System.Drawing.Size(731, 601)
-        Me.dgvAcumulados.TabIndex = 1000000044
+        Me.dgvAcumulados.TabIndex = 1
         '
         'cmAcumulados
         '
@@ -1078,13 +1070,13 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         'Label1
         '
-        Me.Label1.AutoSize = true
+        Me.Label1.AutoSize = True
         Me.Label1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(3, 3)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(367, 24)
-        Me.Label1.TabIndex = 1000000047
+        Me.Label1.TabIndex = 0
         Me.Label1.Text = "Total referencias acumuladas por lote."
         '
         'Panel1
@@ -1098,7 +1090,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Padding = New System.Windows.Forms.Padding(15, 0, 0, 0)
         Me.Panel1.Size = New System.Drawing.Size(466, 625)
-        Me.Panel1.TabIndex = 1000000066
+        Me.Panel1.TabIndex = 2
         '
         'Panel2
         '
@@ -1122,17 +1114,17 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.dgvTotalPalets.RowTemplate.Height = 24
         Me.dgvTotalPalets.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvTotalPalets.Size = New System.Drawing.Size(436, 187)
-        Me.dgvTotalPalets.TabIndex = 1000000046
+        Me.dgvTotalPalets.TabIndex = 1
         '
         'Label3
         '
-        Me.Label3.AutoSize = true
+        Me.Label3.AutoSize = True
         Me.Label3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(0, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(123, 24)
-        Me.Label3.TabIndex = 1000000048
+        Me.Label3.TabIndex = 0
         Me.Label3.Text = "Total palets."
         '
         'Panel3
@@ -1152,7 +1144,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.Panel3.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(451, 220)
-        Me.Panel3.TabIndex = 1000000057
+        Me.Panel3.TabIndex = 0
         '
         'btnCartaJr
         '
@@ -1161,17 +1153,17 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.btnCartaJr.Location = New System.Drawing.Point(288, 59)
         Me.btnCartaJr.Name = "btnCartaJr"
         Me.btnCartaJr.Size = New System.Drawing.Size(22, 29)
-        Me.btnCartaJr.TabIndex = 1000000066
-        Me.btnCartaJr.UseVisualStyleBackColor = true
+        Me.btnCartaJr.TabIndex = 6
+        Me.btnCartaJr.UseVisualStyleBackColor = True
         '
         'Label4
         '
-        Me.Label4.AutoSize = true
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.Location = New System.Drawing.Point(3, 26)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(90, 20)
-        Me.Label4.TabIndex = 1000000049
+        Me.Label4.TabIndex = 0
         Me.Label4.Text = "Peso bruto:"
         '
         'butRegistrarPortesSalidaQS
@@ -1180,18 +1172,18 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.butRegistrarPortesSalidaQS.Location = New System.Drawing.Point(181, 94)
         Me.butRegistrarPortesSalidaQS.Name = "butRegistrarPortesSalidaQS"
         Me.butRegistrarPortesSalidaQS.Size = New System.Drawing.Size(129, 29)
-        Me.butRegistrarPortesSalidaQS.TabIndex = 1000000065
+        Me.butRegistrarPortesSalidaQS.TabIndex = 7
         Me.butRegistrarPortesSalidaQS.Text = "Registrar porte en QS"
-        Me.butRegistrarPortesSalidaQS.UseVisualStyleBackColor = true
+        Me.butRegistrarPortesSalidaQS.UseVisualStyleBackColor = True
         '
         'Label5
         '
-        Me.Label5.AutoSize = true
-        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.Location = New System.Drawing.Point(3, 61)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(85, 20)
-        Me.Label5.TabIndex = 1000000050
+        Me.Label5.TabIndex = 2
         Me.Label5.Text = "Peso neto:"
         '
         'ButEmbotelladoPedido
@@ -1200,29 +1192,30 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.ButEmbotelladoPedido.Location = New System.Drawing.Point(181, 128)
         Me.ButEmbotelladoPedido.Name = "ButEmbotelladoPedido"
         Me.ButEmbotelladoPedido.Size = New System.Drawing.Size(129, 44)
-        Me.ButEmbotelladoPedido.TabIndex = 1000000064
+        Me.ButEmbotelladoPedido.TabIndex = 8
         Me.ButEmbotelladoPedido.Text = "Embotellado con pedido"
-        Me.ButEmbotelladoPedido.UseVisualStyleBackColor = true
+        Me.ButEmbotelladoPedido.UseVisualStyleBackColor = True
         '
         'txtPesoBruto
         '
+        Me.txtPesoBruto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtPesoBruto.EsUnicoCampo = ""
         Me.txtPesoBruto.EsUnicoCampoID = ""
         Me.txtPesoBruto.EsUnicoID = 0
         Me.txtPesoBruto.EsUnicoTabla = ""
         Me.txtPesoBruto.Location = New System.Drawing.Point(99, 26)
         Me.txtPesoBruto.Minimo = 0
-        Me.txtPesoBruto.Modificado = false
+        Me.txtPesoBruto.Modificado = False
         Me.txtPesoBruto.Name = "txtPesoBruto"
-        Me.txtPesoBruto.Numerico_EsNumerico = false
+        Me.txtPesoBruto.Numerico_EsNumerico = False
         Me.txtPesoBruto.Numerico_NumeroDoublees = 0
-        Me.txtPesoBruto.Numerico_SeparadorMiles = false
-        Me.txtPesoBruto.Obligatorio = false
+        Me.txtPesoBruto.Numerico_SeparadorMiles = False
+        Me.txtPesoBruto.Obligatorio = False
         Me.txtPesoBruto.ParametroID = 0
         Me.txtPesoBruto.Size = New System.Drawing.Size(71, 20)
-        Me.txtPesoBruto.TabIndex = 1000000052
-        Me.txtPesoBruto.ValorMaximo = 0R
-        Me.txtPesoBruto.ValorMinimo = 0R
+        Me.txtPesoBruto.TabIndex = 1
+        Me.txtPesoBruto.ValorMaximo = 0.0R
+        Me.txtPesoBruto.ValorMinimo = 0.0R
         '
         'butAlbaranProvisional
         '
@@ -1230,29 +1223,30 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.butAlbaranProvisional.Location = New System.Drawing.Point(181, 24)
         Me.butAlbaranProvisional.Name = "butAlbaranProvisional"
         Me.butAlbaranProvisional.Size = New System.Drawing.Size(129, 29)
-        Me.butAlbaranProvisional.TabIndex = 1000000063
+        Me.butAlbaranProvisional.TabIndex = 4
         Me.butAlbaranProvisional.Text = "Albaran Provisional"
-        Me.butAlbaranProvisional.UseVisualStyleBackColor = true
+        Me.butAlbaranProvisional.UseVisualStyleBackColor = True
         '
         'txtPesoNeto
         '
+        Me.txtPesoNeto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtPesoNeto.EsUnicoCampo = ""
         Me.txtPesoNeto.EsUnicoCampoID = ""
         Me.txtPesoNeto.EsUnicoID = 0
         Me.txtPesoNeto.EsUnicoTabla = ""
         Me.txtPesoNeto.Location = New System.Drawing.Point(99, 61)
         Me.txtPesoNeto.Minimo = 0
-        Me.txtPesoNeto.Modificado = false
+        Me.txtPesoNeto.Modificado = False
         Me.txtPesoNeto.Name = "txtPesoNeto"
-        Me.txtPesoNeto.Numerico_EsNumerico = false
+        Me.txtPesoNeto.Numerico_EsNumerico = False
         Me.txtPesoNeto.Numerico_NumeroDoublees = 0
-        Me.txtPesoNeto.Numerico_SeparadorMiles = false
-        Me.txtPesoNeto.Obligatorio = false
+        Me.txtPesoNeto.Numerico_SeparadorMiles = False
+        Me.txtPesoNeto.Obligatorio = False
         Me.txtPesoNeto.ParametroID = 0
         Me.txtPesoNeto.Size = New System.Drawing.Size(71, 20)
-        Me.txtPesoNeto.TabIndex = 1000000053
-        Me.txtPesoNeto.ValorMaximo = 0R
-        Me.txtPesoNeto.ValorMinimo = 0R
+        Me.txtPesoNeto.TabIndex = 3
+        Me.txtPesoNeto.ValorMaximo = 0.0R
+        Me.txtPesoNeto.ValorMinimo = 0.0R
         '
         'GroupBox2
         '
@@ -1264,8 +1258,8 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.GroupBox2.Location = New System.Drawing.Point(317, 6)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(118, 213)
-        Me.GroupBox2.TabIndex = 1000000061
-        Me.GroupBox2.TabStop = false
+        Me.GroupBox2.TabIndex = 9
+        Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Mercadona"
         '
         'butAlbaranQS
@@ -1274,9 +1268,9 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.butAlbaranQS.Location = New System.Drawing.Point(6, 19)
         Me.butAlbaranQS.Name = "butAlbaranQS"
         Me.butAlbaranQS.Size = New System.Drawing.Size(109, 29)
-        Me.butAlbaranQS.TabIndex = 1000000056
+        Me.butAlbaranQS.TabIndex = 0
         Me.butAlbaranQS.Text = "Salida de LA a JR"
-        Me.butAlbaranQS.UseVisualStyleBackColor = true
+        Me.butAlbaranQS.UseVisualStyleBackColor = True
         '
         'butMercadonaCanarias
         '
@@ -1284,9 +1278,9 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.butMercadonaCanarias.Location = New System.Drawing.Point(6, 157)
         Me.butMercadonaCanarias.Name = "butMercadonaCanarias"
         Me.butMercadonaCanarias.Size = New System.Drawing.Size(109, 48)
-        Me.butMercadonaCanarias.TabIndex = 1000000062
+        Me.butMercadonaCanarias.TabIndex = 4
         Me.butMercadonaCanarias.Text = "Salida Mercadona Canarias"
-        Me.butMercadonaCanarias.UseVisualStyleBackColor = true
+        Me.butMercadonaCanarias.UseVisualStyleBackColor = True
         '
         'butCartaPortes
         '
@@ -1294,9 +1288,9 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.butCartaPortes.Location = New System.Drawing.Point(6, 122)
         Me.butCartaPortes.Name = "butCartaPortes"
         Me.butCartaPortes.Size = New System.Drawing.Size(109, 29)
-        Me.butCartaPortes.TabIndex = 1000000060
+        Me.butCartaPortes.TabIndex = 3
         Me.butCartaPortes.Text = "Carta portes"
-        Me.butCartaPortes.UseVisualStyleBackColor = true
+        Me.butCartaPortes.UseVisualStyleBackColor = True
         '
         'butEntradaJR
         '
@@ -1304,9 +1298,9 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.butEntradaJR.Location = New System.Drawing.Point(6, 54)
         Me.butEntradaJR.Name = "butEntradaJR"
         Me.butEntradaJR.Size = New System.Drawing.Size(109, 29)
-        Me.butEntradaJR.TabIndex = 1000000057
+        Me.butEntradaJR.TabIndex = 1
         Me.butEntradaJR.Text = "Entrada en JR"
-        Me.butEntradaJR.UseVisualStyleBackColor = true
+        Me.butEntradaJR.UseVisualStyleBackColor = True
         '
         'butJRaMercadona
         '
@@ -1314,9 +1308,9 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.butJRaMercadona.Location = New System.Drawing.Point(6, 89)
         Me.butJRaMercadona.Name = "butJRaMercadona"
         Me.butJRaMercadona.Size = New System.Drawing.Size(109, 29)
-        Me.butJRaMercadona.TabIndex = 1000000058
+        Me.butJRaMercadona.TabIndex = 2
         Me.butJRaMercadona.Text = "JR a Mercadona"
-        Me.butJRaMercadona.UseVisualStyleBackColor = true
+        Me.butJRaMercadona.UseVisualStyleBackColor = True
         '
         'butLAaJR
         '
@@ -1324,9 +1318,9 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.butLAaJR.Location = New System.Drawing.Point(181, 59)
         Me.butLAaJR.Name = "butLAaJR"
         Me.butLAaJR.Size = New System.Drawing.Size(101, 29)
-        Me.butLAaJR.TabIndex = 1000000059
+        Me.butLAaJR.TabIndex = 5
         Me.butLAaJR.Text = "Albaran LA a JR"
-        Me.butLAaJR.UseVisualStyleBackColor = true
+        Me.butLAaJR.UseVisualStyleBackColor = True
         '
         'GroupBox1
         '
@@ -1352,179 +1346,179 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.GroupBox1.Location = New System.Drawing.Point(15, 431)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(451, 194)
-        Me.GroupBox1.TabIndex = 1000000055
-        Me.GroupBox1.TabStop = false
+        Me.GroupBox1.TabIndex = 1
+        Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Datos transporte"
         '
         'txtRemolque1
         '
-        Me.txtRemolque1.Enabled = false
+        Me.txtRemolque1.Enabled = False
         Me.txtRemolque1.EsUnicoCampo = ""
         Me.txtRemolque1.EsUnicoCampoID = ""
         Me.txtRemolque1.EsUnicoID = 0
         Me.txtRemolque1.EsUnicoTabla = ""
         Me.txtRemolque1.Location = New System.Drawing.Point(295, 26)
         Me.txtRemolque1.Minimo = 0
-        Me.txtRemolque1.Modificado = false
+        Me.txtRemolque1.Modificado = False
         Me.txtRemolque1.Name = "txtRemolque1"
-        Me.txtRemolque1.Numerico_EsNumerico = false
+        Me.txtRemolque1.Numerico_EsNumerico = False
         Me.txtRemolque1.Numerico_NumeroDoublees = 0
-        Me.txtRemolque1.Numerico_SeparadorMiles = false
-        Me.txtRemolque1.Obligatorio = false
+        Me.txtRemolque1.Numerico_SeparadorMiles = False
+        Me.txtRemolque1.Obligatorio = False
         Me.txtRemolque1.ParametroID = 0
         Me.txtRemolque1.Size = New System.Drawing.Size(109, 20)
-        Me.txtRemolque1.TabIndex = 1000000035
-        Me.txtRemolque1.ValorMaximo = 0R
-        Me.txtRemolque1.ValorMinimo = 0R
+        Me.txtRemolque1.TabIndex = 3
+        Me.txtRemolque1.ValorMaximo = 0.0R
+        Me.txtRemolque1.ValorMinimo = 0.0R
         '
         'txtCabeza
         '
-        Me.txtCabeza.Enabled = false
+        Me.txtCabeza.Enabled = False
         Me.txtCabeza.EsUnicoCampo = ""
         Me.txtCabeza.EsUnicoCampoID = ""
         Me.txtCabeza.EsUnicoID = 0
         Me.txtCabeza.EsUnicoTabla = ""
         Me.txtCabeza.Location = New System.Drawing.Point(113, 26)
         Me.txtCabeza.Minimo = 0
-        Me.txtCabeza.Modificado = false
+        Me.txtCabeza.Modificado = False
         Me.txtCabeza.Name = "txtCabeza"
-        Me.txtCabeza.Numerico_EsNumerico = false
+        Me.txtCabeza.Numerico_EsNumerico = False
         Me.txtCabeza.Numerico_NumeroDoublees = 0
-        Me.txtCabeza.Numerico_SeparadorMiles = false
-        Me.txtCabeza.Obligatorio = false
+        Me.txtCabeza.Numerico_SeparadorMiles = False
+        Me.txtCabeza.Obligatorio = False
         Me.txtCabeza.ParametroID = 0
         Me.txtCabeza.Size = New System.Drawing.Size(109, 20)
-        Me.txtCabeza.TabIndex = 1000000021
-        Me.txtCabeza.ValorMaximo = 0R
-        Me.txtCabeza.ValorMinimo = 0R
+        Me.txtCabeza.TabIndex = 1
+        Me.txtCabeza.ValorMaximo = 0.0R
+        Me.txtCabeza.ValorMinimo = 0.0R
         '
         'CuadroDeTexto2
         '
-        Me.CuadroDeTexto2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "PorteImporte", true))
-        Me.CuadroDeTexto2.Enabled = false
+        Me.CuadroDeTexto2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "PorteImporte", True))
+        Me.CuadroDeTexto2.Enabled = False
         Me.CuadroDeTexto2.EsUnicoCampo = ""
         Me.CuadroDeTexto2.EsUnicoCampoID = ""
         Me.CuadroDeTexto2.EsUnicoID = 0
         Me.CuadroDeTexto2.EsUnicoTabla = ""
         Me.CuadroDeTexto2.Location = New System.Drawing.Point(317, 140)
         Me.CuadroDeTexto2.Minimo = 0
-        Me.CuadroDeTexto2.Modificado = false
+        Me.CuadroDeTexto2.Modificado = False
         Me.CuadroDeTexto2.Name = "CuadroDeTexto2"
-        Me.CuadroDeTexto2.Numerico_EsNumerico = false
+        Me.CuadroDeTexto2.Numerico_EsNumerico = False
         Me.CuadroDeTexto2.Numerico_NumeroDoublees = 2
-        Me.CuadroDeTexto2.Numerico_SeparadorMiles = false
-        Me.CuadroDeTexto2.Obligatorio = false
+        Me.CuadroDeTexto2.Numerico_SeparadorMiles = False
+        Me.CuadroDeTexto2.Obligatorio = False
         Me.CuadroDeTexto2.ParametroID = 0
         Me.CuadroDeTexto2.Size = New System.Drawing.Size(87, 20)
-        Me.CuadroDeTexto2.TabIndex = 1000000019
-        Me.CuadroDeTexto2.ValorMaximo = 0R
-        Me.CuadroDeTexto2.ValorMinimo = 0R
+        Me.CuadroDeTexto2.TabIndex = 15
+        Me.CuadroDeTexto2.ValorMaximo = 0.0R
+        Me.CuadroDeTexto2.ValorMinimo = 0.0R
         '
         'txtConductor
         '
-        Me.txtConductor.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "Conductor", true))
-        Me.txtConductor.Enabled = false
+        Me.txtConductor.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "Conductor", True))
+        Me.txtConductor.Enabled = False
         Me.txtConductor.EsUnicoCampo = ""
         Me.txtConductor.EsUnicoCampoID = ""
         Me.txtConductor.EsUnicoID = 0
         Me.txtConductor.EsUnicoTabla = ""
         Me.txtConductor.Location = New System.Drawing.Point(113, 52)
         Me.txtConductor.Minimo = 0
-        Me.txtConductor.Modificado = false
+        Me.txtConductor.Modificado = False
         Me.txtConductor.Name = "txtConductor"
-        Me.txtConductor.Numerico_EsNumerico = false
+        Me.txtConductor.Numerico_EsNumerico = False
         Me.txtConductor.Numerico_NumeroDoublees = 0
-        Me.txtConductor.Numerico_SeparadorMiles = false
-        Me.txtConductor.Obligatorio = false
+        Me.txtConductor.Numerico_SeparadorMiles = False
+        Me.txtConductor.Obligatorio = False
         Me.txtConductor.ParametroID = 0
         Me.txtConductor.Size = New System.Drawing.Size(291, 20)
-        Me.txtConductor.TabIndex = 1000000023
-        Me.txtConductor.ValorMaximo = 0R
-        Me.txtConductor.ValorMinimo = 0R
+        Me.txtConductor.TabIndex = 5
+        Me.txtConductor.ValorMaximo = 0.0R
+        Me.txtConductor.ValorMinimo = 0.0R
         '
         'CuadroDeTexto4
         '
-        Me.CuadroDeTexto4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "PorteFormaPagoID", true))
-        Me.CuadroDeTexto4.Enabled = false
+        Me.CuadroDeTexto4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "PorteFormaPagoID", True))
+        Me.CuadroDeTexto4.Enabled = False
         Me.CuadroDeTexto4.EsUnicoCampo = ""
         Me.CuadroDeTexto4.EsUnicoCampoID = ""
         Me.CuadroDeTexto4.EsUnicoID = 0
         Me.CuadroDeTexto4.EsUnicoTabla = ""
         Me.CuadroDeTexto4.Location = New System.Drawing.Point(317, 166)
         Me.CuadroDeTexto4.Minimo = 0
-        Me.CuadroDeTexto4.Modificado = false
+        Me.CuadroDeTexto4.Modificado = False
         Me.CuadroDeTexto4.Name = "CuadroDeTexto4"
-        Me.CuadroDeTexto4.Numerico_EsNumerico = false
+        Me.CuadroDeTexto4.Numerico_EsNumerico = False
         Me.CuadroDeTexto4.Numerico_NumeroDoublees = 0
-        Me.CuadroDeTexto4.Numerico_SeparadorMiles = false
-        Me.CuadroDeTexto4.Obligatorio = false
+        Me.CuadroDeTexto4.Numerico_SeparadorMiles = False
+        Me.CuadroDeTexto4.Obligatorio = False
         Me.CuadroDeTexto4.ParametroID = 0
         Me.CuadroDeTexto4.Size = New System.Drawing.Size(87, 20)
-        Me.CuadroDeTexto4.TabIndex = 1000000017
-        Me.CuadroDeTexto4.ValorMaximo = 0R
-        Me.CuadroDeTexto4.ValorMinimo = 0R
+        Me.CuadroDeTexto4.TabIndex = 17
+        Me.CuadroDeTexto4.ValorMaximo = 0.0R
+        Me.CuadroDeTexto4.ValorMinimo = 0.0R
         '
         'txtDNI
         '
-        Me.txtDNI.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "ConductorDNI", true))
-        Me.txtDNI.Enabled = false
+        Me.txtDNI.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "ConductorDNI", True))
+        Me.txtDNI.Enabled = False
         Me.txtDNI.EsUnicoCampo = ""
         Me.txtDNI.EsUnicoCampoID = ""
         Me.txtDNI.EsUnicoID = 0
         Me.txtDNI.EsUnicoTabla = ""
         Me.txtDNI.Location = New System.Drawing.Point(113, 78)
         Me.txtDNI.Minimo = 0
-        Me.txtDNI.Modificado = false
+        Me.txtDNI.Modificado = False
         Me.txtDNI.Name = "txtDNI"
-        Me.txtDNI.Numerico_EsNumerico = false
+        Me.txtDNI.Numerico_EsNumerico = False
         Me.txtDNI.Numerico_NumeroDoublees = 0
-        Me.txtDNI.Numerico_SeparadorMiles = false
-        Me.txtDNI.Obligatorio = false
+        Me.txtDNI.Numerico_SeparadorMiles = False
+        Me.txtDNI.Obligatorio = False
         Me.txtDNI.ParametroID = 0
         Me.txtDNI.Size = New System.Drawing.Size(109, 20)
-        Me.txtDNI.TabIndex = 1000000025
-        Me.txtDNI.ValorMaximo = 0R
-        Me.txtDNI.ValorMinimo = 0R
+        Me.txtDNI.TabIndex = 7
+        Me.txtDNI.ValorMaximo = 0.0R
+        Me.txtDNI.ValorMinimo = 0.0R
         '
         'CuadroDeTexto6
         '
-        Me.CuadroDeTexto6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "AgenciaID", true))
-        Me.CuadroDeTexto6.Enabled = false
+        Me.CuadroDeTexto6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GeneralBindingSource, "AgenciaID", True))
+        Me.CuadroDeTexto6.Enabled = False
         Me.CuadroDeTexto6.EsUnicoCampo = ""
         Me.CuadroDeTexto6.EsUnicoCampoID = ""
         Me.CuadroDeTexto6.EsUnicoID = 0
         Me.CuadroDeTexto6.EsUnicoTabla = ""
         Me.CuadroDeTexto6.Location = New System.Drawing.Point(317, 111)
         Me.CuadroDeTexto6.Minimo = 0
-        Me.CuadroDeTexto6.Modificado = false
+        Me.CuadroDeTexto6.Modificado = False
         Me.CuadroDeTexto6.Name = "CuadroDeTexto6"
-        Me.CuadroDeTexto6.Numerico_EsNumerico = false
+        Me.CuadroDeTexto6.Numerico_EsNumerico = False
         Me.CuadroDeTexto6.Numerico_NumeroDoublees = 0
-        Me.CuadroDeTexto6.Numerico_SeparadorMiles = false
-        Me.CuadroDeTexto6.Obligatorio = false
+        Me.CuadroDeTexto6.Numerico_SeparadorMiles = False
+        Me.CuadroDeTexto6.Obligatorio = False
         Me.CuadroDeTexto6.ParametroID = 0
         Me.CuadroDeTexto6.Size = New System.Drawing.Size(87, 20)
-        Me.CuadroDeTexto6.TabIndex = 1000000015
-        Me.CuadroDeTexto6.ValorMaximo = 0R
-        Me.CuadroDeTexto6.ValorMinimo = 0R
+        Me.CuadroDeTexto6.TabIndex = 11
+        Me.CuadroDeTexto6.ValorMaximo = 0.0R
+        Me.CuadroDeTexto6.ValorMinimo = 0.0R
         '
         'DateTimePicker1
         '
-        Me.DateTimePicker1.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.GeneralBindingSource, "HoraLlegada", true))
+        Me.DateTimePicker1.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.GeneralBindingSource, "HoraLlegada", True))
         Me.DateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.DateTimePicker1.Location = New System.Drawing.Point(111, 111)
         Me.DateTimePicker1.Name = "DateTimePicker1"
         Me.DateTimePicker1.Size = New System.Drawing.Size(87, 20)
-        Me.DateTimePicker1.TabIndex = 1000000031
+        Me.DateTimePicker1.TabIndex = 9
         '
         'DateTimePicker2
         '
-        Me.DateTimePicker2.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.GeneralBindingSource, "HoraSalida", true))
+        Me.DateTimePicker2.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.GeneralBindingSource, "HoraSalida", True))
         Me.DateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.DateTimePicker2.Location = New System.Drawing.Point(111, 137)
         Me.DateTimePicker2.Name = "DateTimePicker2"
         Me.DateTimePicker2.Size = New System.Drawing.Size(87, 20)
-        Me.DateTimePicker2.TabIndex = 1000000033
+        Me.DateTimePicker2.TabIndex = 13
         '
         'txtTotalBultos
         '
@@ -1534,23 +1528,23 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.txtTotalBultos.EsUnicoTabla = ""
         Me.txtTotalBultos.Location = New System.Drawing.Point(194, 641)
         Me.txtTotalBultos.Minimo = 0
-        Me.txtTotalBultos.Modificado = false
+        Me.txtTotalBultos.Modificado = False
         Me.txtTotalBultos.Name = "txtTotalBultos"
-        Me.txtTotalBultos.Numerico_EsNumerico = true
+        Me.txtTotalBultos.Numerico_EsNumerico = True
         Me.txtTotalBultos.Numerico_NumeroDoublees = 0
-        Me.txtTotalBultos.Numerico_SeparadorMiles = true
-        Me.txtTotalBultos.Obligatorio = false
+        Me.txtTotalBultos.Numerico_SeparadorMiles = True
+        Me.txtTotalBultos.Obligatorio = False
         Me.txtTotalBultos.ParametroID = 0
         Me.txtTotalBultos.Size = New System.Drawing.Size(68, 20)
         Me.txtTotalBultos.TabIndex = 1000000054
         Me.txtTotalBultos.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.txtTotalBultos.ValorMaximo = 0R
-        Me.txtTotalBultos.ValorMinimo = 0R
+        Me.txtTotalBultos.ValorMaximo = 0.0R
+        Me.txtTotalBultos.ValorMinimo = 0.0R
         '
         'Label6
         '
-        Me.Label6.AutoSize = true
-        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.Location = New System.Drawing.Point(97, 639)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(95, 20)
@@ -1566,7 +1560,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.TabPagTotales.Size = New System.Drawing.Size(1203, 631)
         Me.TabPagTotales.TabIndex = 3
         Me.TabPagTotales.Text = "Totales"
-        Me.TabPagTotales.UseVisualStyleBackColor = true
+        Me.TabPagTotales.UseVisualStyleBackColor = True
         '
         'SplitContainer1
         '
@@ -1591,8 +1585,8 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         'dgvTotales
         '
-        Me.dgvTotales.AllowUserToAddRows = false
-        Me.dgvTotales.AllowUserToDeleteRows = false
+        Me.dgvTotales.AllowUserToAddRows = False
+        Me.dgvTotales.AllowUserToDeleteRows = False
         Me.dgvTotales.BackgroundColor = System.Drawing.Color.White
         Me.dgvTotales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvTotales.Dock = System.Windows.Forms.DockStyle.Fill
@@ -1605,9 +1599,9 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         'Label7
         '
-        Me.Label7.AutoSize = true
+        Me.Label7.AutoSize = True
         Me.Label7.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.Location = New System.Drawing.Point(0, 0)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(231, 24)
@@ -1616,8 +1610,8 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         'dgvTotalesPorPalet
         '
-        Me.dgvTotalesPorPalet.AllowUserToAddRows = false
-        Me.dgvTotalesPorPalet.AllowUserToDeleteRows = false
+        Me.dgvTotalesPorPalet.AllowUserToAddRows = False
+        Me.dgvTotalesPorPalet.AllowUserToDeleteRows = False
         Me.dgvTotalesPorPalet.BackgroundColor = System.Drawing.Color.White
         Me.dgvTotalesPorPalet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvTotalesPorPalet.Dock = System.Windows.Forms.DockStyle.Fill
@@ -1630,9 +1624,9 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         'Label22
         '
-        Me.Label22.AutoSize = true
+        Me.Label22.AutoSize = True
         Me.Label22.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Label22.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.Label22.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label22.Location = New System.Drawing.Point(0, 0)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(166, 24)
@@ -1644,7 +1638,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.PrintForm1.DocumentName = "document"
         Me.PrintForm1.Form = Me
         Me.PrintForm1.PrintAction = System.Drawing.Printing.PrintAction.PrintToPreview
-        Me.PrintForm1.PrinterSettings = CType(resources.GetObject("PrintForm1.PrinterSettings"),System.Drawing.Printing.PrinterSettings)
+        Me.PrintForm1.PrinterSettings = CType(resources.GetObject("PrintForm1.PrinterSettings"), System.Drawing.Printing.PrinterSettings)
         Me.PrintForm1.PrintFileName = Nothing
         '
         'PrintForm2
@@ -1652,32 +1646,21 @@ Partial Class frmEntAlbaranesCargaMaestro
         Me.PrintForm2.DocumentName = "document"
         Me.PrintForm2.Form = Me
         Me.PrintForm2.PrintAction = System.Drawing.Printing.PrintAction.PrintToPrinter
-        Me.PrintForm2.PrinterSettings = CType(resources.GetObject("PrintForm2.PrinterSettings"),System.Drawing.Printing.PrinterSettings)
+        Me.PrintForm2.PrinterSettings = CType(resources.GetObject("PrintForm2.PrinterSettings"), System.Drawing.Printing.PrinterSettings)
         Me.PrintForm2.PrintFileName = Nothing
-        '
-        'btnToExcel
-        '
-        Me.btnToExcel.Location = New System.Drawing.Point(313, 5)
-        Me.btnToExcel.Name = "btnToExcel"
-        Me.btnToExcel.Size = New System.Drawing.Size(50, 19)
-        Me.btnToExcel.TabIndex = 1000000045
-        Me.btnToExcel.Text = "Excel"
-        Me.btnToExcel.UseVisualStyleBackColor = true
         '
         'frmEntAlbaranesCargaMaestro
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(1211, 686)
-        Me.Controls.Add(Me.btnToExcel)
         Me.Controls.Add(Me.tabDatos)
         Me.Cursor = System.Windows.Forms.Cursors.Default
-        Me.Icon = CType(resources.GetObject("$this.Icon"),System.Drawing.Icon)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frmEntAlbaranesCargaMaestro"
         Me.Controls.SetChildIndex(Me.txtTodoCorrecto, 0)
         Me.Controls.SetChildIndex(Me.tabDatos, 0)
-        Me.Controls.SetChildIndex(Me.btnToExcel, 0)
-        CType(Me.GeneralBindingSource,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DtsAlbaranesCargaMaestro,System.ComponentModel.ISupportInitialize).EndInit
         CType(Me.dgvPalet,System.ComponentModel.ISupportInitialize).EndInit
         Me.cmPalets.ResumeLayout(false)
@@ -1756,7 +1739,6 @@ End Sub
     Private WithEvents butAlbaranProvisional As System.Windows.Forms.Button
     Private WithEvents ButEmbotelladoPedido As System.Windows.Forms.Button
     Private WithEvents butRegistrarPortesSalidaQS As System.Windows.Forms.Button
-    Private WithEvents btnToExcel As System.Windows.Forms.Button
     Private WithEvents txtAlbaranCargaMaestroID As BasesParaCompatibilidad.CuadroDeTexto
     Private WithEvents txtMaestroID As BasesParaCompatibilidad.CuadroDeTexto
     Private WithEvents FechaDateTimePicker As System.Windows.Forms.DateTimePicker

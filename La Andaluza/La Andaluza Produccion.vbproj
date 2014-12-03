@@ -26,10 +26,14 @@
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <OptionStrict>Off</OptionStrict>
     <TargetFrameworkProfile />
-    <SccProjectName>Svn</SccProjectName>
-    <SccLocalPath>Svn</SccLocalPath>
-    <SccAuxPath>Svn</SccAuxPath>
-    <SccProvider>SubversionScc</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
     <PublishUrl>\\192.168.10.200\datos\Informatica\La Andaluza app\</PublishUrl>
@@ -45,11 +49,11 @@
     <TargetCulture>es-ES</TargetCulture>
     <ProductName>La Andaluza Nueva</ProductName>
     <PublisherName>La Andaluza</PublisherName>
-    <MinimumRequiredVersion>2014.12.1.1</MinimumRequiredVersion>
+    <MinimumRequiredVersion>2014.12.1.8</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>6</ApplicationRevision>
+    <ApplicationRevision>11</ApplicationRevision>
     <ApplicationVersion>2014.12.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -586,20 +590,20 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Administracion\Expediciones2\AgenciasTransportes\new\spAgenciasTransportes.vb" />
-    <Compile Include="Administracion\Expediciones2\CamionesTipos\new\DBO_CamionesTipos.vb" />
-    <Compile Include="Administracion\Expediciones2\CamionesTipos\new\frmCamionesTipos.Designer.vb">
+    <Compile Include="Administracion\Expediciones2\CamionesTipos\DBO_CamionesTipos.vb" />
+    <Compile Include="Administracion\Expediciones2\CamionesTipos\frmCamionesTipos.Designer.vb">
       <DependentUpon>frmCamionesTipos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Administracion\Expediciones2\CamionesTipos\new\frmCamionesTipos.vb">
+    <Compile Include="Administracion\Expediciones2\CamionesTipos\frmCamionesTipos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administracion\Expediciones2\CamionesTipos\new\frmEntCamionesTipos.Designer.vb">
+    <Compile Include="Administracion\Expediciones2\CamionesTipos\frmEntCamionesTipos.Designer.vb">
       <DependentUpon>frmEntCamionesTipos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Administracion\Expediciones2\CamionesTipos\new\frmEntCamionesTipos.vb">
+    <Compile Include="Administracion\Expediciones2\CamionesTipos\frmEntCamionesTipos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administracion\Expediciones2\CamionesTipos\new\spCamionesTipos.vb" />
+    <Compile Include="Administracion\Expediciones2\CamionesTipos\spCamionesTipos.vb" />
     <Compile Include="Administracion\Expediciones2\Camiones\new\DBO_Camiones.vb" />
     <Compile Include="Administracion\Expediciones2\Camiones\new\frmCamiones.Designer.vb">
       <DependentUpon>frmCamiones.vb</DependentUpon>
@@ -2029,12 +2033,19 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\frmDatosExtraCamion.Designer.vb">
+      <DependentUpon>frmDatosExtraCamion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\frmDatosExtraCamion.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\frmNumeroAlbaran.Designer.vb">
       <DependentUpon>frmNumeroAlbaran.vb</DependentUpon>
     </Compile>
     <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\frmNumeroAlbaran.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\Qs.vb" />
     <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\spAlbaranesMaestros.vb" />
     <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Detalle\ctlAlbaranesCargaProviDetalles.vb" />
     <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaProvisionales\Detalle\Listados\frmLisAlbaranesCarga.Designer.vb">
@@ -2389,8 +2400,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Produccion\Envasados3\Copy of etiquetas\articulosLoteados\spArticulosLoteados.vb" />
-    <Compile Include="Produccion\Envasados3\Copy of etiquetas\CodigoBarra.vb" />
-    <Compile Include="Produccion\Envasados3\Copy of etiquetas\DBO_EtiquetasPalets.vb" />
     <Compile Include="Produccion\Envasados3\Copy of etiquetas\Etiquetador.vb" />
     <Compile Include="Produccion\Envasados3\Copy of etiquetas\frnEtiquetaEditable.Designer.vb">
       <DependentUpon>frnEtiquetaEditable.vb</DependentUpon>
@@ -2399,8 +2408,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Produccion\Envasados3\Copy of etiquetas\GS1.vb" />
-    <Compile Include="Produccion\Envasados3\Copy of etiquetas\Loteado.vb" />
-    <Compile Include="Produccion\Envasados3\Copy of etiquetas\spEtiquetasPalets.vb" />
     <Compile Include="Produccion\Envasados3\Copy of etiquetas\TiposLoteados\DBO_TiposLoteados.vb" />
     <Compile Include="Produccion\Envasados3\Copy of etiquetas\TiposLoteados\frmEntTiposLoteados.Designer.vb">
       <DependentUpon>frmEntTiposLoteados.vb</DependentUpon>
@@ -2546,40 +2553,40 @@
     </Compile>
     <Compile Include="Produccion\Envasados3\Incidencias2\Tipos\spTiposIncidencias.vb" />
     <Compile Include="Produccion\Envasados3\PaletsContenidos3\DBO_PaletsContenidos.vb" />
-    <Compile Include="Produccion\Envasados3\PaletsProducidos3\new\DBO_PaletsProducidos.vb" />
-    <Compile Include="Produccion\Envasados3\PaletsProducidos3\new\estados\DBO_PaletsEstados.vb" />
-    <Compile Include="Produccion\Envasados3\PaletsProducidos3\new\estados\frmEntPaletsEstados.Designer.vb">
+    <Compile Include="Produccion\Envasados3\PaletsProducidos3\DBO_PaletsProducidos.vb" />
+    <Compile Include="Produccion\Envasados3\PaletsProducidos3\estados\DBO_PaletsEstados.vb" />
+    <Compile Include="Produccion\Envasados3\PaletsProducidos3\estados\frmEntPaletsEstados.Designer.vb">
       <DependentUpon>frmEntPaletsEstados.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsProducidos3\new\estados\frmEntPaletsEstados.vb">
+    <Compile Include="Produccion\Envasados3\PaletsProducidos3\estados\frmEntPaletsEstados.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsProducidos3\new\estados\frmPaletsEstados.Designer.vb">
+    <Compile Include="Produccion\Envasados3\PaletsProducidos3\estados\frmPaletsEstados.Designer.vb">
       <DependentUpon>frmPaletsEstados.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsProducidos3\new\estados\frmPaletsEstados.vb">
+    <Compile Include="Produccion\Envasados3\PaletsProducidos3\estados\frmPaletsEstados.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsProducidos3\new\estados\spPaletsEstados.vb" />
-    <Compile Include="Produccion\Envasados3\PaletsProducidos3\new\frmEntPaletsProducidos.Designer.vb">
+    <Compile Include="Produccion\Envasados3\PaletsProducidos3\estados\spPaletsEstados.vb" />
+    <Compile Include="Produccion\Envasados3\PaletsProducidos3\frmEntPaletsProducidos.Designer.vb">
       <DependentUpon>frmEntPaletsProducidos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsProducidos3\new\frmEntPaletsProducidos.vb">
+    <Compile Include="Produccion\Envasados3\PaletsProducidos3\frmEntPaletsProducidos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsProducidos3\new\frmPaletsProducidos.Designer.vb">
+    <Compile Include="Produccion\Envasados3\PaletsProducidos3\frmPaletsProducidos.Designer.vb">
       <DependentUpon>frmPaletsProducidos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsProducidos3\new\frmPaletsProducidos.vb">
+    <Compile Include="Produccion\Envasados3\PaletsProducidos3\frmPaletsProducidos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsProducidos3\new\frmSinContenidos.Designer.vb">
+    <Compile Include="Produccion\Envasados3\PaletsProducidos3\frmSinContenidos.Designer.vb">
       <DependentUpon>frmSinContenidos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsProducidos3\new\frmSinContenidos.vb">
+    <Compile Include="Produccion\Envasados3\PaletsProducidos3\frmSinContenidos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsProducidos3\new\spPaletsProducidos.vb" />
+    <Compile Include="Produccion\Envasados3\PaletsProducidos3\spPaletsProducidos.vb" />
     <Compile Include="Produccion\Envasados3\PersonalEnLinea\frmPersonalEnvasadoSinFin.Designer.vb">
       <DependentUpon>frmPersonalEnvasadoSinFin.vb</DependentUpon>
     </Compile>
@@ -4776,10 +4783,10 @@
     <EmbeddedResource Include="Administracion\Expediciones2\AgenciasTransportes\new\frmEntAgenciasTransportes.resx">
       <DependentUpon>frmEntAgenciasTransportes.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administracion\Expediciones2\CamionesTipos\new\frmCamionesTipos.resx">
+    <EmbeddedResource Include="Administracion\Expediciones2\CamionesTipos\frmCamionesTipos.resx">
       <DependentUpon>frmCamionesTipos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administracion\Expediciones2\CamionesTipos\new\frmEntCamionesTipos.resx">
+    <EmbeddedResource Include="Administracion\Expediciones2\CamionesTipos\frmEntCamionesTipos.resx">
       <DependentUpon>frmEntCamionesTipos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administracion\Expediciones2\Camiones\new\frmCamiones.resx">
@@ -5413,6 +5420,9 @@
     <EmbeddedResource Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\frmAlbaranesCargaMaestro.resx">
       <DependentUpon>frmAlbaranesCargaMaestro.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\frmDatosExtraCamion.resx">
+      <DependentUpon>frmDatosExtraCamion.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\frmEntAlbaranesCargaMaestro.resx">
       <DependentUpon>frmEntAlbaranesCargaMaestro.vb</DependentUpon>
     </EmbeddedResource>
@@ -5599,19 +5609,19 @@
     <EmbeddedResource Include="Produccion\Envasados3\PaletsContenidos3\frmPaletsContenidos.resx">
       <DependentUpon>frmPaletsContenidos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\PaletsProducidos3\new\estados\frmEntPaletsEstados.resx">
+    <EmbeddedResource Include="Produccion\Envasados3\PaletsProducidos3\estados\frmEntPaletsEstados.resx">
       <DependentUpon>frmEntPaletsEstados.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\PaletsProducidos3\new\estados\frmPaletsEstados.resx">
+    <EmbeddedResource Include="Produccion\Envasados3\PaletsProducidos3\estados\frmPaletsEstados.resx">
       <DependentUpon>frmPaletsEstados.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\PaletsProducidos3\new\frmEntPaletsProducidos.resx">
+    <EmbeddedResource Include="Produccion\Envasados3\PaletsProducidos3\frmEntPaletsProducidos.resx">
       <DependentUpon>frmEntPaletsProducidos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\PaletsProducidos3\new\frmPaletsProducidos.resx">
+    <EmbeddedResource Include="Produccion\Envasados3\PaletsProducidos3\frmPaletsProducidos.resx">
       <DependentUpon>frmPaletsProducidos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\PaletsProducidos3\new\frmSinContenidos.resx">
+    <EmbeddedResource Include="Produccion\Envasados3\PaletsProducidos3\frmSinContenidos.resx">
       <DependentUpon>frmSinContenidos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Produccion\Envasados3\PersonalEnLinea\frmPersonalEnvasadoSinFin.resx">
@@ -6877,82 +6887,82 @@
   <ItemGroup>
     <PublishFile Include="Microsoft.ReportViewer.Common">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="Microsoft.ReportViewer.DataVisualization">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="Microsoft.ReportViewer.ProcessingObjectModel">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="Microsoft.ReportViewer.WinForms">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="Microsoft.SqlServer.Types">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="Microsoft.Vbe.Interop">
       <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="office">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="stdole">
       <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
   </ItemGroup>

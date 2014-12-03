@@ -39,13 +39,13 @@ Partial Class frmEntPaletsContenidosMonodosis
         Me.SplitMermas = New System.Windows.Forms.SplitContainer()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.dgvMermas = New System.Windows.Forms.DataGridView()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.chbVaciar = New System.Windows.Forms.CheckBox()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.SCC = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Existencias = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Vaciar = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.Mover = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.chbVaciar = New System.Windows.Forms.CheckBox()
-        Me.Label3 = New System.Windows.Forms.Label()
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         CType(Me.SplitMermas, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -164,7 +164,7 @@ Partial Class frmEntPaletsContenidosMonodosis
         Me.Panel1.Controls.Add(Me.lblHoraInicio)
         Me.Panel1.Controls.Add(Me.lblHoraFin)
         Me.Panel1.Controls.Add(Me.dtpHoraInicio)
-        Me.Panel1.Location = New System.Drawing.Point(32, 31)
+        Me.Panel1.Location = New System.Drawing.Point(28, 21)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(446, 165)
@@ -245,7 +245,7 @@ Partial Class frmEntPaletsContenidosMonodosis
         '
         Me.SplitMermas.Panel2.Controls.Add(Me.Panel2)
         Me.SplitMermas.Panel2.Controls.Add(Me.Label3)
-        Me.SplitMermas.Size = New System.Drawing.Size(517, 448)
+        Me.SplitMermas.Size = New System.Drawing.Size(510, 448)
         Me.SplitMermas.SplitterDistance = 210
         Me.SplitMermas.SplitterWidth = 3
         Me.SplitMermas.TabIndex = 1000000006
@@ -258,7 +258,7 @@ Partial Class frmEntPaletsContenidosMonodosis
         Me.Panel2.Location = New System.Drawing.Point(0, 13)
         Me.Panel2.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(517, 222)
+        Me.Panel2.Size = New System.Drawing.Size(510, 222)
         Me.Panel2.TabIndex = 1
         '
         'dgvMermas
@@ -274,8 +274,39 @@ Partial Class frmEntPaletsContenidosMonodosis
         Me.dgvMermas.RowHeadersVisible = False
         Me.dgvMermas.RowTemplate.Height = 24
         Me.dgvMermas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvMermas.Size = New System.Drawing.Size(517, 198)
+        Me.dgvMermas.Size = New System.Drawing.Size(510, 198)
         Me.dgvMermas.TabIndex = 0
+        '
+        'Panel3
+        '
+        Me.Panel3.Controls.Add(Me.chbVaciar)
+        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel3.Location = New System.Drawing.Point(0, 0)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(510, 24)
+        Me.Panel3.TabIndex = 3
+        '
+        'chbVaciar
+        '
+        Me.chbVaciar.Dock = System.Windows.Forms.DockStyle.Right
+        Me.chbVaciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.chbVaciar.Location = New System.Drawing.Point(394, 0)
+        Me.chbVaciar.Name = "chbVaciar"
+        Me.chbVaciar.Size = New System.Drawing.Size(116, 24)
+        Me.chbVaciar.TabIndex = 0
+        Me.chbVaciar.Text = "Vaciar"
+        Me.chbVaciar.UseVisualStyleBackColor = True
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Label3.Location = New System.Drawing.Point(0, 0)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(44, 13)
+        Me.Label3.TabIndex = 0
+        Me.Label3.Text = "Mermas"
         '
         'SCC
         '
@@ -300,41 +331,10 @@ Partial Class frmEntPaletsContenidosMonodosis
         Me.Mover.HeaderText = "Mover a NC"
         Me.Mover.Name = "Mover"
         '
-        'Panel3
-        '
-        Me.Panel3.Controls.Add(Me.chbVaciar)
-        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel3.Location = New System.Drawing.Point(0, 0)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(517, 24)
-        Me.Panel3.TabIndex = 3
-        '
-        'chbVaciar
-        '
-        Me.chbVaciar.Dock = System.Windows.Forms.DockStyle.Right
-        Me.chbVaciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.chbVaciar.Location = New System.Drawing.Point(401, 0)
-        Me.chbVaciar.Name = "chbVaciar"
-        Me.chbVaciar.Size = New System.Drawing.Size(116, 24)
-        Me.chbVaciar.TabIndex = 0
-        Me.chbVaciar.Text = "Vaciar"
-        Me.chbVaciar.UseVisualStyleBackColor = True
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Label3.Location = New System.Drawing.Point(0, 0)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(44, 13)
-        Me.Label3.TabIndex = 0
-        Me.Label3.Text = "Mermas"
-        '
         'frmEntPaletsContenidosMonodosis
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(517, 473)
+        Me.ClientSize = New System.Drawing.Size(510, 473)
         Me.Controls.Add(Me.SplitMermas)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -379,10 +379,10 @@ Partial Class frmEntPaletsContenidosMonodosis
     Private WithEvents btnMonodosis As System.Windows.Forms.Button
     Private WithEvents cboMonodosis As System.Windows.Forms.ComboBox
     Private WithEvents lCajasSuperiores As System.Windows.Forms.Label
+    Private WithEvents Panel3 As System.Windows.Forms.Panel
+    Private WithEvents chbVaciar As System.Windows.Forms.CheckBox
     Friend WithEvents SCC As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Existencias As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Vaciar As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents Mover As System.Windows.Forms.DataGridViewTextBoxColumn
-    Private WithEvents Panel3 As System.Windows.Forms.Panel
-    Private WithEvents chbVaciar As System.Windows.Forms.CheckBox
 End Class
