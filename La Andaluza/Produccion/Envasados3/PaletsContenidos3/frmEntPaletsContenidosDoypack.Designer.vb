@@ -38,15 +38,14 @@ Partial Class frmEntPaletsContenidosDoypack
         Me.SplitMermas = New System.Windows.Forms.SplitContainer()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.dgvMermas = New System.Windows.Forms.DataGridView()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.chbVaciar = New System.Windows.Forms.CheckBox()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.SCC = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Existencias = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Vaciar = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.Mover = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Combo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Indice = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.chbVaciar = New System.Windows.Forms.CheckBox()
-        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Observaciones = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitDoypack, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitDoypack.Panel1.SuspendLayout()
@@ -261,7 +260,7 @@ Partial Class frmEntPaletsContenidosDoypack
         Me.dgvMermas.AllowUserToAddRows = False
         Me.dgvMermas.AllowUserToDeleteRows = False
         Me.dgvMermas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvMermas.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.SCC, Me.Existencias, Me.Vaciar, Me.Mover, Me.Combo, Me.Indice})
+        Me.dgvMermas.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.SCC, Me.Existencias, Me.Vaciar, Me.Mover, Me.Observaciones})
         Me.dgvMermas.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvMermas.Location = New System.Drawing.Point(0, 24)
         Me.dgvMermas.Margin = New System.Windows.Forms.Padding(2)
@@ -271,40 +270,6 @@ Partial Class frmEntPaletsContenidosDoypack
         Me.dgvMermas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvMermas.Size = New System.Drawing.Size(787, 271)
         Me.dgvMermas.TabIndex = 1
-        '
-        'SCC
-        '
-        Me.SCC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.SCC.HeaderText = "SCC"
-        Me.SCC.Name = "SCC"
-        '
-        'Existencias
-        '
-        Me.Existencias.HeaderText = "Existencias"
-        Me.Existencias.Name = "Existencias"
-        '
-        'Vaciar
-        '
-        Me.Vaciar.HeaderText = "Vaciar"
-        Me.Vaciar.Name = "Vaciar"
-        '
-        'Mover
-        '
-        Me.Mover.HeaderText = "Mover a no conforme"
-        Me.Mover.Name = "Mover"
-        Me.Mover.Visible = False
-        '
-        'Combo
-        '
-        Me.Combo.HeaderText = "Combo"
-        Me.Combo.Name = "Combo"
-        Me.Combo.Visible = False
-        '
-        'Indice
-        '
-        Me.Indice.HeaderText = "Indice"
-        Me.Indice.Name = "Indice"
-        Me.Indice.Visible = False
         '
         'Panel3
         '
@@ -336,6 +301,36 @@ Partial Class frmEntPaletsContenidosDoypack
         Me.Label3.Size = New System.Drawing.Size(44, 13)
         Me.Label3.TabIndex = 0
         Me.Label3.Text = "Mermas"
+        '
+        'SCC
+        '
+        Me.SCC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.SCC.HeaderText = "SCC"
+        Me.SCC.Name = "SCC"
+        Me.SCC.Width = 180
+        '
+        'Existencias
+        '
+        Me.Existencias.HeaderText = "Existencias"
+        Me.Existencias.Name = "Existencias"
+        '
+        'Vaciar
+        '
+        Me.Vaciar.HeaderText = "Vaciar"
+        Me.Vaciar.Name = "Vaciar"
+        '
+        'Mover
+        '
+        Me.Mover.HeaderText = "Mover a no conforme"
+        Me.Mover.Name = "Mover"
+        Me.Mover.Visible = False
+        '
+        'Observaciones
+        '
+        Me.Observaciones.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.Observaciones.HeaderText = "Observaciones"
+        Me.Observaciones.Name = "Observaciones"
+        Me.Observaciones.ReadOnly = True
         '
         'frmEntPaletsContenidosDoypack
         '
@@ -389,12 +384,11 @@ Partial Class frmEntPaletsContenidosDoypack
     Private WithEvents Label3 As System.Windows.Forms.Label
     Private WithEvents dgvMermas As System.Windows.Forms.DataGridView
     Private WithEvents lCajasSuperiores As System.Windows.Forms.Label
+    Private WithEvents Panel3 As System.Windows.Forms.Panel
+    Private WithEvents chbVaciar As System.Windows.Forms.CheckBox
     Friend WithEvents SCC As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Existencias As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Vaciar As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents Mover As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Combo As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Indice As System.Windows.Forms.DataGridViewTextBoxColumn
-    Private WithEvents Panel3 As System.Windows.Forms.Panel
-    Private WithEvents chbVaciar As System.Windows.Forms.CheckBox
+    Friend WithEvents Observaciones As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

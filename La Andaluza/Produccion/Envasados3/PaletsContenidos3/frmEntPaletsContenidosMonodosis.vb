@@ -161,9 +161,13 @@ Public Class frmEntPaletsContenidosMonodosis
                     dgvMermas.EndEdit()
                     For Each row As DataGridViewRow In Me.dgvMermas.Rows
                         If Not row.Cells("Mover").Value Is Nothing Then
-                            If CInt(row.Cells("Mover").Value) > 0 Then
-                                If Not monodosis.moverNC(dboEnv.Fecha, Me.m_DBO_PaletsContenidos.HoraFin, dtb, row.Cells("SCC").Value, row.Cells("Mover").Value) Then
-                                    Throw New Exception("Error al guardar las no conformidades")
+                            If row.Cells("Mover").Value <> "" Then
+                                If IsNumeric(row.Cells("Mover").Value) Then
+                                    If CInt(row.Cells("Mover").Value) > 0 Then
+                                        If Not monodosis.moverNC(dboEnv.Fecha, Me.m_DBO_PaletsContenidos.HoraFin, dtb, row.Cells("SCC").Value, row.Cells("Mover").Value) Then
+                                            Throw New Exception("Error al guardar las no conformidades")
+                                        End If
+                                    End If
                                 End If
                             End If
                         End If
@@ -237,7 +241,7 @@ Public Class frmEntPaletsContenidosMonodosis
             Next
 
             If j <= cboMonodosis.SelectedIndex Then If Not sw Then Me.dgvMermas.Rows.Add(New String() _
-                {Me.cboMonodosis.Items(j)(1), If(Convert.IsDBNull(Me.cboMonodosis.Items(j)(5)), "0", Me.cboMonodosis.Items(j)(5)), False})
+                {Me.cboMonodosis.Items(j)(1), If(Convert.IsDBNull(Me.cboMonodosis.Items(j)(5)), "0", Me.cboMonodosis.Items(j)(5)), False, "", Me.cboMonodosis.Items(j)(6)})
         Next
 
         Me.dgvMermas.Refresh()

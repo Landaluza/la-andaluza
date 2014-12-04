@@ -204,15 +204,15 @@ Public Class frmEntPaletsContenidosDoypack
         End If
     End Sub
 
-    Public Sub cargarMermasCombo()
-        For Each cbo As ComboBox In Me.cbo_collection
-            Dim i As Integer = cbo.Items.Count
+    'Public Sub cargarMermasCombo()
+    '    For Each cbo As ComboBox In Me.cbo_collection
+    '        Dim i As Integer = cbo.Items.Count
 
-            For cont As Integer = 0 To i
-                Me.dgvMermas.Rows.Add(New String() {cbo.Items(cont)(1), If(cbo.Items(cont)(4).ToString = "3", True, False), True, cbo.Items(cont)(5)})
-            Next
-        Next
-    End Sub
+    '        For cont As Integer = 0 To i
+    '            Me.dgvMermas.Rows.Add(New String() {cbo.Items(cont)(1), If(cbo.Items(cont)(4).ToString = "3", True, False), True, cbo.Items(cont)(5), cbo.Items(cont)(6)})
+    '        Next
+    '    Next
+    'End Sub
 
     Public Sub actualizarMermas(ByVal cbobject As System.Object, ByVal e As System.EventArgs)
         Dim cbo As ComboBox = cbobject
@@ -234,7 +234,8 @@ Public Class frmEntPaletsContenidosDoypack
                 End If
             Next
 
-            If j <= cbo.SelectedIndex Then If Not sw Then Me.dgvMermas.Rows.Add(New String() {cbo.Items(j)(1), cbo.Items(j)(5), False})
+
+            If j <= cbo.SelectedIndex Then If Not sw Then Me.dgvMermas.Rows.Add(New String() {cbo.Items(j)(1), cbo.Items(j)(5), False, "", cbo.Items(j)(6)})
         Next
 
         Me.dgvMermas.Refresh()

@@ -2024,7 +2024,6 @@ C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Microsoft
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\office.xml
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Interop.MSTSCLib.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\AxInterop.MSTSCLib.dll
-C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza Produccion.vbprojResolveAssemblyReference.cache
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\Interop.MSTSCLib.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\Interop.SHDocVw.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\AxInterop.MSTSCLib.dll
@@ -2287,6 +2286,7 @@ C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andalu
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmAlbaranesCargaDetalles.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEntAlbaranesCargaDetalles.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmAlbaranesCargaMaestro.resources
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmDatosExtraCamion.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEntAlbaranesCargaMaestro.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmNumeroAlbaran.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmLisAlbaranesCarga.resources
@@ -2644,4 +2644,3 @@ C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andalu
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza.application
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza.exe
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La Andaluza.pdb
-C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmDatosExtraCamion.resources
