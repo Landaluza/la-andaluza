@@ -491,7 +491,7 @@ Namespace AlbaranesCarga
         End Sub
 
 
-        Public Sub cartaPortes(ByVal dni As String, ByVal conductor As String, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        Public Sub cartaPortesJR(ByVal dni As String, ByVal conductor As String, ByRef dtb As BasesParaCompatibilidad.DataBase)
             Dim cabecera As String
             Dim texto As String
             Dim detalle As String
@@ -530,5 +530,319 @@ Namespace AlbaranesCarga
             BasesParaCompatibilidad.Pantalla.mostrarDialogo(a)
         End Sub
 
+        Public Sub CartaPortes(ByVal cantidad As String, ByVal cabeza As String, ByVal remolque As String)
+            'Dim EmpresaDestinataria As String
+            'Dim LugarEntrega As String
+            Dim DescripcionMercancia As String
+            Dim NumeroDocumento As String
+            'Dim OperadorTransporte As String
+            'Dim Transportista As String
+            Dim PesoBruto As String
+            Dim Anchocolumna As Integer = 242
+            Dim Anchocolumna1 As Integer = 294
+            Dim Fecha As String = System.DateTime.Today.ToString.Substring(0, 10)
+            Dim Fila As Integer = 1
+            Dim DireccionJRSabater As String = "J.R.SABATER, S.A." + Environment.NewLine + _
+                                               "C/Marquetería, 7" + Environment.NewLine + _
+                                               "11408 - JEREZ DE LA FRONTERA" + Environment.NewLine + _
+                                               "CADIZ - ESPAÑA" + Environment.NewLine
+
+            Dim DireccionMercadonaHuevar As String = "MERCADONA - HUEVAR" + Environment.NewLine + _
+                                                     "AV. SEVILLA-HUELVA A-49 KM.21" + Environment.NewLine + _
+                                                     "41830 - HUEVAR" + Environment.NewLine + _
+                                                     "SEVILLA (ESPAÑA)" + Environment.NewLine
+
+            Dim DireccionMercadonaAntequera As String = "MERCADONA - ANTEQUERA" + Environment.NewLine + _
+                                                        "PQ. EMPRESARIAL SECTOR SUP.I 5" + Environment.NewLine + _
+                                                        "29200 - ANTEQUERA" + Environment.NewLine + _
+                                                        "MALAGA (ESPAÑA)" + Environment.NewLine
+
+            Dim DireccionAcotral As String = "TRANSPORTES ACOTRAL, S.L." + Environment.NewLine + _
+                                             "C/ CUEVA DE VIERA, Nº2" + Environment.NewLine + _
+                                             "24900 - ANTEQUERA" + Environment.NewLine + _
+                                             "MALAGA (ESPAÑA)" + Environment.NewLine
+
+            Dim DireccionTransreyes As String = "TRANSREYES LOGISTICA, S.L." + Environment.NewLine + _
+                                                "C/ CEREZO, 8 - Apto. Correos nº1" + Environment.NewLine + _
+                                                "18040 - LA ZUBIA" + Environment.NewLine + _
+                                                "GRANADA (ESPAÑA)" + Environment.NewLine
+
+            Dim oWord As New Microsoft.Office.Interop.Word.Application
+            Dim oDoc As Microsoft.Office.Interop.Word.Document
+            Dim oTablaTitulo As Microsoft.Office.Interop.Word.Table
+            'Dim oTabla As Table
+            'Dim oPara1 As Paragraph
+
+            oWord.Visible = False
+            oDoc = oWord.Documents.Add
+            oWord.ActiveWindow.Selection.Style = Microsoft.Office.Interop.Word.WdBuiltinStyle.wdStylePlainText
+
+            With oDoc.PageSetup
+                Try
+                    .PaperSize = Microsoft.Office.Interop.Word.WdPaperSize.wdPaperA4
+                Catch ex As Exception
+                End Try
+                Try
+                    .Orientation = Microsoft.Office.Interop.Word.WdOrientation.wdOrientPortrait
+                Catch ex As Exception
+                End Try
+                .LeftMargin = oWord.CentimetersToPoints(1)
+                .BottomMargin = oWord.CentimetersToPoints(0.7)
+                .TopMargin = oWord.CentimetersToPoints(1)
+                .TextColumns.SetCount(2)
+            End With
+            Try
+                oTablaTitulo = oDoc.Tables.Add(oDoc.Bookmarks.Item("\endofdoc").Range, 32, 1)
+                With oTablaTitulo
+                    .Range.Cells.VerticalAlignment = Microsoft.Office.Interop.Word.WdCellVerticalAlignment.wdCellAlignVerticalCenter
+                    .Borders.InsideLineStyle = Microsoft.Office.Interop.Word.WdLineStyle.wdLineStyleDouble
+                    .Borders.OutsideLineStyle = Microsoft.Office.Interop.Word.WdLineStyle.wdLineStyleDouble
+                    .Cell(1, 1).Range.InsertAfter("")
+                    '.Cell(1, 1).Width = 63
+
+                    .Cell(1, 1).Range.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter
+                    .Cell(1, 1).Width = oWord.PixelsToPoints(300)
+                    .Cell(1, 1).Range.Font.Size = 18
+                    .Cell(1, 1).Range.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter
+                    .mam_FormatoLinea(1, 1, Anchocolumna, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, "DOCUMENTO DE CONTROL DEL TRANSPORTE " + Environment.NewLine + _
+                                                                                                         "DE MERCANCIAS POR CARRETERA" + Environment.NewLine + _
+                                                                                                         "Orden FOM/238/203, de 28 de agosto de 2003")
+
+
+
+                    'Dim rngPara As Range
+                    ''Set rngPara = ActiveDocument.Paragraphs(1).Range
+                    'rngPara = .Cell(1, 1).Range
+                    'With rngPara
+                    '    .Sentences(1).Select()
+                    '    .Bold = True
+                    '    .Font.Name = "Arial"
+                    'End With
+                    '
+
+                    .mam_FormatoLineaTitulo(2, 1, Anchocolumna, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, True, "EMPRESA CARGADORA (Nombre y domicilio)")
+                    .mam_FormatoLinea(3, 1, Anchocolumna, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, DireccionJRSabater)
+
+                    .mam_FormatoLineaTitulo(4, 1, Anchocolumna, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, True, "EMPRESA EXPEDIDORA (Nombre y domicilio)")
+                    .mam_FormatoLinea(5, 1, Anchocolumna, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, DireccionJRSabater)
+
+
+                    .mam_FormatoLineaTitulo(6, 1, Anchocolumna, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, True, "EMPRESA DESTINATARIA (Nombre y domicilio)")
+                    .mam_FormatoLineaTitulo(10, 1, Anchocolumna, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, True, "LUGAR ENTREGA MERCANCIA DESTINO")
+
+                    Dim Respuesta As DialogResult
+                    Respuesta = MessageBox.Show(" ¿El lugar de entrega es Huevar?", _
+                                       "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                    If Respuesta = DialogResult.Yes Then
+                        .mam_FormatoLinea(7, 1, Anchocolumna, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, DireccionMercadonaHuevar)
+                        .mam_FormatoLinea(11, 1, Anchocolumna, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, DireccionMercadonaHuevar)
+
+                    Else
+                        .mam_FormatoLinea(7, 1, Anchocolumna, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, DireccionMercadonaAntequera)
+                        .mam_FormatoLinea(11, 1, Anchocolumna, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, DireccionMercadonaAntequera)
+                    End If
+
+                    .mam_FormatoLineaTitulo(8, 1, Anchocolumna, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, True, "LUGAR Y FECHA CARGA MERCANCIA")
+                    .mam_FormatoLinea(9, 1, Anchocolumna, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, _
+                                                                                                        "JEREZ DE LA FRA - CADIZ - ESPAÑA" + Environment.NewLine + _
+                                                                                                        (Fecha) + Environment.NewLine)
+
+
+
+
+                    .mam_FormatoLineaTitulo(12, 1, Anchocolumna, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, True, "INSTRUCCIONES DEL REMITENTE")
+                    .mam_FormatoLinea(13, 1, Anchocolumna, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, Environment.NewLine + _
+                                                   Environment.NewLine + _
+                                                   Environment.NewLine + _
+                                                   Environment.NewLine + _
+                                                   Environment.NewLine + _
+                                                   Environment.NewLine + _
+                                                   Environment.NewLine + _
+                                                   Environment.NewLine)
+
+
+                   
+
+                    DescripcionMercancia = Environment.NewLine + _
+                                            cantidad + " PALETS DE VINAGRES Y SALSAS" + _
+                                            Environment.NewLine + _
+                                            Environment.NewLine + _
+                                            Environment.NewLine + _
+                                            Environment.NewLine + _
+                                            Environment.NewLine + _
+                                            Environment.NewLine + _
+                                            Environment.NewLine + _
+                                            Environment.NewLine
+
+                    .mam_FormatoLineaTitulo(14, 1, Anchocolumna, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, True, "DESCRIPCION DE LA MERCANCIA")
+                    .mam_FormatoLinea(15, 1, Anchocolumna, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, DescripcionMercancia)
+
+                    .mam_FormatoLineaTitulo(16, 1, Anchocolumna, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, True, "FIRMA Y SELLO EMPRESA CARGADORA")
+                    .mam_FormatoLinea(17, 1, Anchocolumna, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, Environment.NewLine + _
+                                                   Environment.NewLine + _
+                                                   Environment.NewLine + _
+                                                   Environment.NewLine + _
+                                                   Environment.NewLine + _
+                                                   Environment.NewLine + _
+                                                   Environment.NewLine + _
+                                                   Environment.NewLine + _
+                                                   Environment.NewLine + _
+                                                   Environment.NewLine + _
+                                                   Environment.NewLine + _
+                                                   Environment.NewLine)
+
+                    NumeroDocumento = InputBox("Introduce numero documento", "Documento")
+                    .mam_FormatoLinea(18, 1, Anchocolumna1, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter, "DOCUMENTO Nº" + " " + NumeroDocumento.ToString + Environment.NewLine + "Formalizado en Jerez a " + (Fecha) + Environment.NewLine)
+
+                    Dim Respuesta1 As DialogResult
+                    Respuesta1 = MessageBox.Show(" ¿Es Acotral la empresa cargadora?", _
+                                       "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                    If Respuesta1 = DialogResult.Yes Then
+                        .mam_FormatoLineaTitulo(19, 1, Anchocolumna1, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, True, "OPERADOR DE TRANSPORTE (AGENCIA)")
+                        .mam_FormatoLinea(20, 1, Anchocolumna1, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, DireccionAcotral)
+
+                        .mam_FormatoLineaTitulo(21, 1, Anchocolumna1, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, True, "TRANSPORTISTA (Nombre y domicilio)")
+                        .mam_FormatoLinea(22, 1, Anchocolumna1, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, DireccionAcotral)
+
+                    Else
+                        .mam_FormatoLineaTitulo(19, 1, Anchocolumna1, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, True, "OPERADOR DE TRANSPORTE (AGENCIA)")
+                        .mam_FormatoLinea(20, 1, Anchocolumna1, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, DireccionTransreyes)
+
+                        .mam_FormatoLineaTitulo(21, 1, Anchocolumna1, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, True, "TRANSPORTISTA (Nombre y domicilio)")
+                        .mam_FormatoLinea(22, 1, Anchocolumna1, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, DireccionTransreyes)
+
+                    End If
+
+
+
+                    Dim MatriculaTractora As String
+                    MatriculaTractora = cabeza
+                    MatriculaTractora = MatriculaTractora
+
+
+                    Dim MatriculaSemirremolque As String
+                    MatriculaSemirremolque = remolque
+                    MatriculaSemirremolque = MatriculaSemirremolque
+
+                    .mam_FormatoLineaTitulo(23, 1, Anchocolumna1, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, True, "MATRICULA TRACTORA")
+                    .mam_FormatoLinea(24, 1, Anchocolumna1, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, MatriculaTractora + Environment.NewLine)
+
+
+                    .mam_FormatoLineaTitulo(25, 1, Anchocolumna1, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, True, "MATRICULA SEMIRREMOLQUE")
+                    .mam_FormatoLinea(26, 1, Anchocolumna1, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, MatriculaSemirremolque + Environment.NewLine)
+
+
+                    .mam_FormatoLineaTitulo(27, 1, Anchocolumna1, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, True, "RESERVA Y OBSERVACIONES DEL TRANSPORTISTA")
+                    .mam_FormatoLinea(28, 1, Anchocolumna1, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, Environment.NewLine + _
+                                                   Environment.NewLine + _
+                                                   Environment.NewLine + _
+                                                   Environment.NewLine + _
+                                                   Environment.NewLine + _
+                                                   Environment.NewLine + _
+                                                   Environment.NewLine + _
+                                                   Environment.NewLine + _
+                                                   Environment.NewLine + _
+                                                   Environment.NewLine + _
+                                                   Environment.NewLine + _
+                                                   Environment.NewLine + _
+                                                   Environment.NewLine + _
+                                                   Environment.NewLine + _
+                                                   Environment.NewLine + _
+                                                   Environment.NewLine + _
+                                                   Environment.NewLine + _
+                                                   Environment.NewLine)
+
+                    .Cell(29, 1).Split(1, 4)
+                    .Cell(30, 1).Split(1, 4)
+
+                    .mam_FormatoLineaTitulo(29, 1, 73, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, True, "Nº DE BULTOS")
+                    .mam_FormatoLinea(30, 1, 73, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, Environment.NewLine + _
+                    Environment.NewLine + _
+                    Environment.NewLine + _
+                    Environment.NewLine + _
+                    Environment.NewLine + _
+                    Environment.NewLine + _
+                    Environment.NewLine + _
+                    Environment.NewLine + _
+                    Environment.NewLine)
+
+
+
+
+                    PesoBruto = InputBox("Introduce peso bruto", "PesoBruto")
+                    PesoBruto = Environment.NewLine + _
+                                            PesoBruto + " Kg." + _
+                                            Environment.NewLine + _
+                                            Environment.NewLine + _
+                                            Environment.NewLine + _
+                                            Environment.NewLine + _
+                                            Environment.NewLine + _
+                                            Environment.NewLine + _
+                                            Environment.NewLine + _
+                                            Environment.NewLine
+                    .mam_FormatoLineaTitulo(29, 2, 74, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, True, "PESO BRUTO")
+                    .mam_FormatoLinea(30, 2, 74, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, PesoBruto)
+
+                    .mam_FormatoLineaTitulo(29, 3, 74, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, True, "PESO NETO")
+                    .mam_FormatoLinea(30, 3, 74, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, Environment.NewLine + _
+                    Environment.NewLine + _
+                    Environment.NewLine + _
+                    Environment.NewLine + _
+                    Environment.NewLine + _
+                    Environment.NewLine + _
+                    Environment.NewLine + _
+                    Environment.NewLine + _
+                    Environment.NewLine)
+
+                    .mam_FormatoLineaTitulo(29, 4, 73, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, True, "VOLUMEN M3")
+                    .mam_FormatoLinea(30, 4, 73, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, Environment.NewLine + _
+                    Environment.NewLine + _
+                    Environment.NewLine + _
+                    Environment.NewLine + _
+                    Environment.NewLine + _
+                    Environment.NewLine + _
+                    Environment.NewLine + _
+                    Environment.NewLine + _
+                    Environment.NewLine)
+
+
+                    .Cell(31, 1).Split(1, 2)
+                    .Cell(32, 1).Split(1, 2)
+
+                    .mam_FormatoLineaTitulo(31, 1, 147, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, True, "EMPRESA TRANSPORTISTA")
+                    .mam_FormatoLinea(32, 1, 147, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, Environment.NewLine + _
+                                                  Environment.NewLine + _
+                                                  Environment.NewLine + _
+                                                  Environment.NewLine + _
+                                                  Environment.NewLine + _
+                                                  Environment.NewLine + _
+                                                  Environment.NewLine)
+
+                    .mam_FormatoLineaTitulo(31, 2, 147, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, True, "EMPRESA DESTINATARIA")
+                    .mam_FormatoLinea(32, 2, 147, 10, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, Environment.NewLine + _
+                                                  Environment.NewLine + _
+                                                  Environment.NewLine + _
+                                                  Environment.NewLine + _
+                                                  Environment.NewLine + _
+                                                  Environment.NewLine)
+
+                End With
+
+                'oDoc.ActiveWindow.View.SeekView = WdSeekView.wdSeekPrimaryFooter
+                'oWord.Selection.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphRight
+                'oWord.Selection.Font.Color = WdColor.wdColorBlue
+                'oWord.Selection.Font.Size = 12
+                'oWord.Selection.TypeText(Text:=Now)
+
+                oDoc.ActiveWindow.ActivePane.View.SeekView = Microsoft.Office.Interop.Word.WdSeekView.wdSeekMainDocument
+                oWord.Visible = True
+                oWord.NormalTemplate.Saved = True
+                oWord = Nothing
+                oDoc = Nothing
+                'Me.Dispose()
+            Catch ex As Exception
+                MessageBox.Show("Ocurrio un error." & Environment.NewLine & " Detalles: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        End Sub
     End Class
 End Namespace
