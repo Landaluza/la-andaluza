@@ -774,8 +774,7 @@ Public Class MenuDispatcher
     End Sub
 
     Private Sub LogifruitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LogifruitToolStripMenuItem.Click
-        Dim frm As New frmAccesoRemoto(New SessionConsejoRegulador)
-        GUImain.añadirPestaña(frm)
+        Dim ch As New EnlaceLogi
     End Sub
 
     Private Sub ChepToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChepToolStripMenuItem.Click

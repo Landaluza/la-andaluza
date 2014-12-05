@@ -66,6 +66,7 @@ Partial Class frmEntPedidosProveedoresDetalles
         Me.bdnNivel1Add = New System.Windows.Forms.ToolStripButton()
         Me.bdnNivel1Modificar = New System.Windows.Forms.ToolStripButton()
         Me.bdsNivel1 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.lCantidad = New System.Windows.Forms.Label()
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tlpMiddle.SuspendLayout()
         Me.grbDetalles.SuspendLayout()
@@ -87,7 +88,7 @@ Partial Class frmEntPedidosProveedoresDetalles
         Me.txtPedidoProveedorDetalleID.EsUnicoID = 0
         Me.txtPedidoProveedorDetalleID.EsUnicoTabla = ""
         Me.txtPedidoProveedorDetalleID.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPedidoProveedorDetalleID.Location = New System.Drawing.Point(147, 3)
+        Me.txtPedidoProveedorDetalleID.Location = New System.Drawing.Point(144, 3)
         Me.txtPedidoProveedorDetalleID.MaxLength = 9
         Me.txtPedidoProveedorDetalleID.Minimo = 0
         Me.txtPedidoProveedorDetalleID.Modificado = False
@@ -112,7 +113,7 @@ Partial Class frmEntPedidosProveedoresDetalles
         Me.txtPedidoProveedorMaestroID.EsUnicoID = 0
         Me.txtPedidoProveedorMaestroID.EsUnicoTabla = ""
         Me.txtPedidoProveedorMaestroID.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPedidoProveedorMaestroID.Location = New System.Drawing.Point(147, 30)
+        Me.txtPedidoProveedorMaestroID.Location = New System.Drawing.Point(415, 3)
         Me.txtPedidoProveedorMaestroID.MaxLength = 9
         Me.txtPedidoProveedorMaestroID.Minimo = 0
         Me.txtPedidoProveedorMaestroID.Modificado = False
@@ -137,7 +138,7 @@ Partial Class frmEntPedidosProveedoresDetalles
         Me.txtArticuloID.EsUnicoID = 0
         Me.txtArticuloID.EsUnicoTabla = ""
         Me.txtArticuloID.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtArticuloID.Location = New System.Drawing.Point(337, 30)
+        Me.txtArticuloID.Location = New System.Drawing.Point(586, 3)
         Me.txtArticuloID.MaxLength = 9
         Me.txtArticuloID.Minimo = 0
         Me.txtArticuloID.Modificado = False
@@ -159,7 +160,7 @@ Partial Class frmEntPedidosProveedoresDetalles
         Me.txtFechaServicio.BackColor = System.Drawing.SystemColors.Window
         Me.txtFechaServicio.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtFechaServicio.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.txtFechaServicio.Location = New System.Drawing.Point(147, 159)
+        Me.txtFechaServicio.Location = New System.Drawing.Point(144, 132)
         Me.txtFechaServicio.Name = "txtFechaServicio"
         Me.txtFechaServicio.Size = New System.Drawing.Size(95, 21)
         Me.txtFechaServicio.TabIndex = 4
@@ -174,7 +175,7 @@ Partial Class frmEntPedidosProveedoresDetalles
         Me.txtObservaciones.EsUnicoID = 0
         Me.txtObservaciones.EsUnicoTabla = ""
         Me.txtObservaciones.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtObservaciones.Location = New System.Drawing.Point(147, 186)
+        Me.txtObservaciones.Location = New System.Drawing.Point(144, 159)
         Me.txtObservaciones.MaxLength = 250
         Me.txtObservaciones.Minimo = 0
         Me.txtObservaciones.Modificado = False
@@ -197,7 +198,7 @@ Partial Class frmEntPedidosProveedoresDetalles
         Me.txtEstadoID.EsUnicoID = 0
         Me.txtEstadoID.EsUnicoTabla = ""
         Me.txtEstadoID.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtEstadoID.Location = New System.Drawing.Point(508, 217)
+        Me.txtEstadoID.Location = New System.Drawing.Point(586, 190)
         Me.txtEstadoID.MaxLength = 9
         Me.txtEstadoID.Minimo = 0
         Me.txtEstadoID.Modificado = False
@@ -222,7 +223,7 @@ Partial Class frmEntPedidosProveedoresDetalles
         Me.txtPedidosProveedoresMaestro_PedidoProveedorMaestroID.EsUnicoID = 0
         Me.txtPedidosProveedoresMaestro_PedidoProveedorMaestroID.EsUnicoTabla = ""
         Me.txtPedidosProveedoresMaestro_PedidoProveedorMaestroID.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPedidosProveedoresMaestro_PedidoProveedorMaestroID.Location = New System.Drawing.Point(147, 247)
+        Me.txtPedidosProveedoresMaestro_PedidoProveedorMaestroID.Location = New System.Drawing.Point(144, 220)
         Me.txtPedidosProveedoresMaestro_PedidoProveedorMaestroID.MaxLength = 9
         Me.txtPedidosProveedoresMaestro_PedidoProveedorMaestroID.Minimo = 0
         Me.txtPedidosProveedoresMaestro_PedidoProveedorMaestroID.Modificado = False
@@ -251,7 +252,7 @@ Partial Class frmEntPedidosProveedoresDetalles
         '
         'lblPedidoProveedorMaestroID
         '
-        Me.lblPedidoProveedorMaestroID.Location = New System.Drawing.Point(3, 27)
+        Me.lblPedidoProveedorMaestroID.Location = New System.Drawing.Point(271, 0)
         Me.lblPedidoProveedorMaestroID.Name = "lblPedidoProveedorMaestroID"
         Me.lblPedidoProveedorMaestroID.Size = New System.Drawing.Size(138, 21)
         Me.lblPedidoProveedorMaestroID.TabIndex = 1
@@ -262,9 +263,9 @@ Partial Class frmEntPedidosProveedoresDetalles
         'lblArticuloID
         '
         Me.lblArticuloID.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblArticuloID.Location = New System.Drawing.Point(32, 54)
+        Me.lblArticuloID.Location = New System.Drawing.Point(29, 27)
         Me.lblArticuloID.Name = "lblArticuloID"
-        Me.lblArticuloID.Size = New System.Drawing.Size(109, 21)
+        Me.lblArticuloID.Size = New System.Drawing.Size(109, 20)
         Me.lblArticuloID.TabIndex = 2
         Me.lblArticuloID.Text = "Articulo"
         Me.lblArticuloID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -272,7 +273,7 @@ Partial Class frmEntPedidosProveedoresDetalles
         'lblCantidad
         '
         Me.lblCantidad.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblCantidad.Location = New System.Drawing.Point(32, 81)
+        Me.lblCantidad.Location = New System.Drawing.Point(29, 60)
         Me.lblCantidad.Name = "lblCantidad"
         Me.lblCantidad.Size = New System.Drawing.Size(109, 21)
         Me.lblCantidad.TabIndex = 3
@@ -282,7 +283,7 @@ Partial Class frmEntPedidosProveedoresDetalles
         'lblFechaServicio
         '
         Me.lblFechaServicio.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblFechaServicio.Location = New System.Drawing.Point(32, 156)
+        Me.lblFechaServicio.Location = New System.Drawing.Point(29, 129)
         Me.lblFechaServicio.Name = "lblFechaServicio"
         Me.lblFechaServicio.Size = New System.Drawing.Size(109, 21)
         Me.lblFechaServicio.TabIndex = 4
@@ -292,7 +293,7 @@ Partial Class frmEntPedidosProveedoresDetalles
         'lblObservaciones
         '
         Me.lblObservaciones.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblObservaciones.Location = New System.Drawing.Point(32, 183)
+        Me.lblObservaciones.Location = New System.Drawing.Point(29, 156)
         Me.lblObservaciones.Name = "lblObservaciones"
         Me.lblObservaciones.Size = New System.Drawing.Size(109, 21)
         Me.lblObservaciones.TabIndex = 5
@@ -302,7 +303,7 @@ Partial Class frmEntPedidosProveedoresDetalles
         'lblEstadoID
         '
         Me.lblEstadoID.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblEstadoID.Location = New System.Drawing.Point(32, 214)
+        Me.lblEstadoID.Location = New System.Drawing.Point(29, 187)
         Me.lblEstadoID.Name = "lblEstadoID"
         Me.lblEstadoID.Size = New System.Drawing.Size(109, 21)
         Me.lblEstadoID.TabIndex = 6
@@ -313,7 +314,7 @@ Partial Class frmEntPedidosProveedoresDetalles
         '
         Me.lblPedidosProveedoresMaestro_PedidoProveedorMaestroID.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.tlpMiddle.SetColumnSpan(Me.lblPedidosProveedoresMaestro_PedidoProveedorMaestroID, 3)
-        Me.lblPedidosProveedoresMaestro_PedidoProveedorMaestroID.Location = New System.Drawing.Point(274, 258)
+        Me.lblPedidosProveedoresMaestro_PedidoProveedorMaestroID.Location = New System.Drawing.Point(271, 245)
         Me.lblPedidosProveedoresMaestro_PedidoProveedorMaestroID.Name = "lblPedidosProveedoresMaestro_PedidoProveedorMaestroID"
         Me.lblPedidosProveedoresMaestro_PedidoProveedorMaestroID.Size = New System.Drawing.Size(286, 8)
         Me.lblPedidosProveedoresMaestro_PedidoProveedorMaestroID.TabIndex = 7
@@ -331,37 +332,39 @@ Partial Class frmEntPedidosProveedoresDetalles
         Me.tlpMiddle.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.tlpMiddle.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.tlpMiddle.Controls.Add(Me.txtPedidoProveedorDetalleID, 2, 0)
-        Me.tlpMiddle.Controls.Add(Me.txtPedidoProveedorMaestroID, 2, 1)
-        Me.tlpMiddle.Controls.Add(Me.lblArticuloID, 1, 2)
-        Me.tlpMiddle.Controls.Add(Me.cboArticulos, 2, 2)
-        Me.tlpMiddle.Controls.Add(Me.cboUnidades, 4, 3)
-        Me.tlpMiddle.Controls.Add(Me.Label2, 3, 3)
+        Me.tlpMiddle.Controls.Add(Me.cboUnidades, 4, 4)
+        Me.tlpMiddle.Controls.Add(Me.Label2, 3, 4)
         Me.tlpMiddle.Controls.Add(Me.lblPedidoProveedorDetalleID, 1, 0)
-        Me.tlpMiddle.Controls.Add(Me.lblPedidoProveedorMaestroID, 1, 1)
-        Me.tlpMiddle.Controls.Add(Me.Label1, 1, 4)
-        Me.tlpMiddle.Controls.Add(Me.txtPedidosProveedoresMaestro_PedidoProveedorMaestroID, 2, 10)
-        Me.tlpMiddle.Controls.Add(Me.cboEstados, 2, 9)
-        Me.tlpMiddle.Controls.Add(Me.lblEstadoID, 1, 9)
-        Me.tlpMiddle.Controls.Add(Me.txtObservaciones, 2, 8)
-        Me.tlpMiddle.Controls.Add(Me.txtFechaServicio, 2, 6)
-        Me.tlpMiddle.Controls.Add(Me.lblObservaciones, 1, 8)
-        Me.tlpMiddle.Controls.Add(Me.lblFechaServicio, 1, 6)
-        Me.tlpMiddle.Controls.Add(Me.Label3, 1, 5)
-        Me.tlpMiddle.Controls.Add(Me.lblPedidosProveedoresMaestro_PedidoProveedorMaestroID, 3, 10)
-        Me.tlpMiddle.Controls.Add(Me.lblCantidad, 1, 3)
-        Me.tlpMiddle.Controls.Add(Me.txtEstadoID, 5, 9)
-        Me.tlpMiddle.Controls.Add(Me.txtArticuloID, 4, 1)
-        Me.tlpMiddle.Controls.Add(Me.lArticulosObservaciones, 5, 2)
-        Me.tlpMiddle.Controls.Add(Me.txtCantidadPedida, 2, 3)
-        Me.tlpMiddle.Controls.Add(Me.txtCantidadServida, 2, 4)
-        Me.tlpMiddle.Controls.Add(Me.txtCAntidadRetante, 2, 5)
-        Me.tlpMiddle.Controls.Add(Me.btnAddUnidad, 5, 3)
+        Me.tlpMiddle.Controls.Add(Me.Label1, 1, 5)
+        Me.tlpMiddle.Controls.Add(Me.txtPedidosProveedoresMaestro_PedidoProveedorMaestroID, 2, 11)
+        Me.tlpMiddle.Controls.Add(Me.cboEstados, 2, 10)
+        Me.tlpMiddle.Controls.Add(Me.lblEstadoID, 1, 10)
+        Me.tlpMiddle.Controls.Add(Me.txtObservaciones, 2, 9)
+        Me.tlpMiddle.Controls.Add(Me.txtFechaServicio, 2, 7)
+        Me.tlpMiddle.Controls.Add(Me.lblObservaciones, 1, 9)
+        Me.tlpMiddle.Controls.Add(Me.lblFechaServicio, 1, 7)
+        Me.tlpMiddle.Controls.Add(Me.Label3, 1, 6)
+        Me.tlpMiddle.Controls.Add(Me.lblPedidosProveedoresMaestro_PedidoProveedorMaestroID, 3, 11)
+        Me.tlpMiddle.Controls.Add(Me.lblCantidad, 1, 4)
+        Me.tlpMiddle.Controls.Add(Me.txtEstadoID, 5, 10)
+        Me.tlpMiddle.Controls.Add(Me.lArticulosObservaciones, 5, 3)
+        Me.tlpMiddle.Controls.Add(Me.txtCantidadPedida, 2, 4)
+        Me.tlpMiddle.Controls.Add(Me.txtCantidadServida, 2, 5)
+        Me.tlpMiddle.Controls.Add(Me.txtCAntidadRetante, 2, 6)
+        Me.tlpMiddle.Controls.Add(Me.btnAddUnidad, 5, 4)
+        Me.tlpMiddle.Controls.Add(Me.lblPedidoProveedorMaestroID, 3, 0)
+        Me.tlpMiddle.Controls.Add(Me.txtPedidoProveedorMaestroID, 4, 0)
+        Me.tlpMiddle.Controls.Add(Me.txtArticuloID, 5, 0)
+        Me.tlpMiddle.Controls.Add(Me.lCantidad, 5, 2)
+        Me.tlpMiddle.Controls.Add(Me.cboArticulos, 2, 2)
+        Me.tlpMiddle.Controls.Add(Me.lblArticuloID, 1, 2)
         Me.tlpMiddle.Dock = System.Windows.Forms.DockStyle.Top
         Me.tlpMiddle.Location = New System.Drawing.Point(0, 25)
         Me.tlpMiddle.Name = "tlpMiddle"
-        Me.tlpMiddle.RowCount = 11
+        Me.tlpMiddle.RowCount = 12
         Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle())
@@ -379,7 +382,7 @@ Partial Class frmEntPedidosProveedoresDetalles
         Me.tlpMiddle.SetColumnSpan(Me.cboArticulos, 3)
         Me.cboArticulos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cboArticulos.FormattingEnabled = True
-        Me.cboArticulos.Location = New System.Drawing.Point(147, 57)
+        Me.cboArticulos.Location = New System.Drawing.Point(144, 30)
         Me.cboArticulos.Name = "cboArticulos"
         Me.cboArticulos.Size = New System.Drawing.Size(355, 21)
         Me.cboArticulos.TabIndex = 0
@@ -388,7 +391,7 @@ Partial Class frmEntPedidosProveedoresDetalles
         '
         Me.cboUnidades.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cboUnidades.FormattingEnabled = True
-        Me.cboUnidades.Location = New System.Drawing.Point(337, 84)
+        Me.cboUnidades.Location = New System.Drawing.Point(415, 63)
         Me.cboUnidades.Name = "cboUnidades"
         Me.cboUnidades.Size = New System.Drawing.Size(165, 21)
         Me.cboUnidades.TabIndex = 1000000075
@@ -396,7 +399,7 @@ Partial Class frmEntPedidosProveedoresDetalles
         'Label2
         '
         Me.Label2.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label2.Location = New System.Drawing.Point(274, 84)
+        Me.Label2.Location = New System.Drawing.Point(352, 63)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(57, 21)
         Me.Label2.TabIndex = 1000000076
@@ -406,7 +409,7 @@ Partial Class frmEntPedidosProveedoresDetalles
         'Label1
         '
         Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label1.Location = New System.Drawing.Point(52, 109)
+        Me.Label1.Location = New System.Drawing.Point(49, 87)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(89, 21)
         Me.Label1.TabIndex = 11
@@ -417,7 +420,7 @@ Partial Class frmEntPedidosProveedoresDetalles
         '
         Me.cboEstados.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cboEstados.FormattingEnabled = True
-        Me.cboEstados.Location = New System.Drawing.Point(147, 217)
+        Me.cboEstados.Location = New System.Drawing.Point(144, 190)
         Me.cboEstados.Name = "cboEstados"
         Me.cboEstados.Size = New System.Drawing.Size(121, 21)
         Me.cboEstados.TabIndex = 3
@@ -425,7 +428,7 @@ Partial Class frmEntPedidosProveedoresDetalles
         'Label3
         '
         Me.Label3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label3.Location = New System.Drawing.Point(32, 132)
+        Me.Label3.Location = New System.Drawing.Point(29, 108)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(109, 21)
         Me.Label3.TabIndex = 1000000077
@@ -437,17 +440,17 @@ Partial Class frmEntPedidosProveedoresDetalles
         Me.lArticulosObservaciones.AutoSize = True
         Me.lArticulosObservaciones.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lArticulosObservaciones.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lArticulosObservaciones.Location = New System.Drawing.Point(507, 54)
+        Me.lArticulosObservaciones.Location = New System.Drawing.Point(585, 47)
         Me.lArticulosObservaciones.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lArticulosObservaciones.Name = "lArticulosObservaciones"
-        Me.lArticulosObservaciones.Size = New System.Drawing.Size(322, 27)
+        Me.lArticulosObservaciones.Size = New System.Drawing.Size(244, 13)
         Me.lArticulosObservaciones.TabIndex = 1000000079
         Me.lArticulosObservaciones.Text = "Label4"
         '
         'txtCantidadPedida
         '
         Me.txtCantidadPedida.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtCantidadPedida.Location = New System.Drawing.Point(146, 83)
+        Me.txtCantidadPedida.Location = New System.Drawing.Point(143, 62)
         Me.txtCantidadPedida.Margin = New System.Windows.Forms.Padding(2)
         Me.txtCantidadPedida.Name = "txtCantidadPedida"
         Me.txtCantidadPedida.Size = New System.Drawing.Size(76, 13)
@@ -456,7 +459,7 @@ Partial Class frmEntPedidosProveedoresDetalles
         'txtCantidadServida
         '
         Me.txtCantidadServida.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtCantidadServida.Location = New System.Drawing.Point(146, 110)
+        Me.txtCantidadServida.Location = New System.Drawing.Point(143, 89)
         Me.txtCantidadServida.Margin = New System.Windows.Forms.Padding(2)
         Me.txtCantidadServida.Name = "txtCantidadServida"
         Me.txtCantidadServida.Size = New System.Drawing.Size(76, 13)
@@ -465,7 +468,7 @@ Partial Class frmEntPedidosProveedoresDetalles
         'txtCAntidadRetante
         '
         Me.txtCAntidadRetante.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtCAntidadRetante.Location = New System.Drawing.Point(146, 134)
+        Me.txtCAntidadRetante.Location = New System.Drawing.Point(143, 110)
         Me.txtCAntidadRetante.Margin = New System.Windows.Forms.Padding(2)
         Me.txtCAntidadRetante.Name = "txtCAntidadRetante"
         Me.txtCAntidadRetante.Size = New System.Drawing.Size(76, 13)
@@ -477,7 +480,7 @@ Partial Class frmEntPedidosProveedoresDetalles
         Me.btnAddUnidad.FlatAppearance.BorderSize = 0
         Me.btnAddUnidad.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAddUnidad.Image = Global.La_Andaluza.My.Resources.Resources.edit_add_2
-        Me.btnAddUnidad.Location = New System.Drawing.Point(508, 84)
+        Me.btnAddUnidad.Location = New System.Drawing.Point(586, 63)
         Me.btnAddUnidad.Name = "btnAddUnidad"
         Me.btnAddUnidad.Size = New System.Drawing.Size(26, 21)
         Me.btnAddUnidad.TabIndex = 1000000083
@@ -622,6 +625,16 @@ Partial Class frmEntPedidosProveedoresDetalles
         Me.bdnNivel1Modificar.Size = New System.Drawing.Size(23, 22)
         Me.bdnNivel1Modificar.Text = "Modificar"
         '
+        'lCantidad
+        '
+        Me.lCantidad.AutoSize = True
+        Me.lCantidad.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lCantidad.Location = New System.Drawing.Point(586, 27)
+        Me.lCantidad.Name = "lCantidad"
+        Me.lCantidad.Size = New System.Drawing.Size(242, 20)
+        Me.lCantidad.TabIndex = 1000000084
+        Me.lCantidad.Text = "Label4"
+        '
         'frmEntPedidosProveedoresDetalles
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -632,7 +645,6 @@ Partial Class frmEntPedidosProveedoresDetalles
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4)
-        Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmEntPedidosProveedoresDetalles"
         Me.Text = "PedidosProveedoresDetalles"
         Me.Controls.SetChildIndex(Me.tlpMiddle, 0)
@@ -696,4 +708,5 @@ Partial Class frmEntPedidosProveedoresDetalles
     Private WithEvents txtCantidadServida As System.Windows.Forms.TextBox
     Private WithEvents txtCAntidadRetante As System.Windows.Forms.TextBox
     Private WithEvents btnAddUnidad As System.Windows.Forms.Button
+    Private WithEvents lCantidad As System.Windows.Forms.Label
 End Class

@@ -53,7 +53,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>12</ApplicationRevision>
+    <ApplicationRevision>16</ApplicationRevision>
     <ApplicationVersion>2014.12.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -2027,6 +2027,7 @@
     </Compile>
     <Compile Include="Otros\Idiomas\spIdiomas.vb" />
     <Compile Include="Bases\Conf\Updater.vb" />
+    <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\Albaran.vb" />
     <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\AlbaranMaestro.vb" />
     <Compile Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\dtsAlbaranesCargaMaestro.Designer.vb">
       <DependentUpon>dtsAlbaranesCargaMaestro.xsd</DependentUpon>

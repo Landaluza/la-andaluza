@@ -194,6 +194,11 @@ Public Class frmEntPedidosProveedoresDetalles
             Me.lArticulosObservaciones.Text = Me.cboArticulos.SelectedItem(2)
         Catch ex As Exception
         End Try
+
+        Try
+            Me.lCantidad.Text = Me.cboArticulos.SelectedItem(3)
+        Catch ex As Exception
+        End Try
     End Sub
 
     Private Sub btnAddUnidad_Click(sender As Object, e As EventArgs) Handles btnAddUnidad.Click
@@ -203,3 +208,4 @@ Public Class frmEntPedidosProveedoresDetalles
         s.cargar_MedidasProductos(Me.cboUnidades, dtb)
     End Sub
 End Class
+
