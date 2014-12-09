@@ -8,7 +8,7 @@
     Public Shared UserType As Integer
     'Public Shared Property UserPermission As Integer
     Public Shared Worker As Integer
-    Public Shared UserName As String
+    'Public Shared UserName As String
 
     Public Shared dataFillNotificaction As Boolean
     Public Shared MailClientHost As String
@@ -37,9 +37,9 @@
 
 
 
-        BasesParaCompatibilidad.Config.Server = BasesParaCompatibilidad.DataBase.SERVIDOR
+        BasesParaCompatibilidad.Config.Server = BasesParaCompatibilidad.DataBase.LOCAL
         BasesParaCompatibilidad.DataBase.buildConnectionString(BasesParaCompatibilidad.Config.Server)
-        Config.MailReportPass = "Administracion2008"
+
         Config.HelpUrl = "http://192.168.10.106/AyudaLA/index.php"
         'Config.ventasPath = "Z:\Informatica\La Andaluza app\ExcelFile\Book1.xlsx"
         Config.ventasPath = "ExcelFile\Book1.xlsx"
@@ -51,8 +51,13 @@
         Config.InformeListadoPedidosPendientesUnaFecha = "listadoPedidosPendientesDia.frx"
         Config.InformeListadoPedidosPendientesUnProveedor = "listadoPedidosPendientesunProveedor.frx"
         Config.InformeListadoPedidosPendientesIncumplidos = "listadoPedidosPendientesIncumplida.frx"
+        Config.MailReportPass = "Administracion2008"
         Config.MailReportAddress = "administracion@landaluza.es"
         Config.MailClientHost = "smtp.1and1.es"
+        Envasado.Config.MailReportPass = "Administracion2008"
+        Envasado.Config.MailReportAddress = "administracion@landaluza.es"
+        Envasado.Config.MailClientHost = "smtp.1and1.es"
+
         Config.QS_Sesion = "Sesión A - [24 x 80]"
         'Config.QS_Sesion = "Sesión A"
 

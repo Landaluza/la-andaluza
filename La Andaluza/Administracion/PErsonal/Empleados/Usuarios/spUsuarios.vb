@@ -78,6 +78,7 @@ Public Class spUsuarios
 
                 BasesParaCompatibilidad.Config.User = dbo.ID
                 Config.UserType = dbo.TipoUsuarioID
+                Envasado.Config.UserType = dbo.TipoUsuarioID
 
                 Config.dataFillNotificaction = False
                 dtb.PrepararConsulta("select id from empleados where id_usuario= @id")

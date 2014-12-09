@@ -177,7 +177,7 @@ Public Class frmEntPaletsProducidos
                 e.Cancel = True
 
             ElseIf resp = Windows.Forms.DialogResult.OK Then
-                If Me.txtObservacionesPalets.Text = "" Then Me.txtObservacionesPalets.Text = "Generado sin contenidos por usuario " & Config.UserName
+                If Me.txtObservacionesPalets.Text = "" Then Me.txtObservacionesPalets.Text = "Generado sin contenidos por usuario " '& Config.UserName
                 GetValores()
                 sp.Grabar(dbo, dtb)
                 RaiseEvent afterSave(Nothing, Nothing)
@@ -200,7 +200,7 @@ Public Class frmEntPaletsProducidos
             If resp = vbNo Then
                 Return False
             Else
-                If Me.txtObservacionesPalets.Text = "" Then Me.txtObservacionesPalets.Text = "Generado sin contenidos por usuario " & Config.UserName
+                If Me.txtObservacionesPalets.Text = "" Then Me.txtObservacionesPalets.Text = "Generado sin contenidos por usuario " '& Config.UserName
                 GetValores()
                 sp.Grabar(dbo, dtb)
                 Return True
@@ -242,30 +242,36 @@ Public Class frmEntPaletsProducidos
         '    End If
         'End If
 
-        If Me.chbTerminado.Checked Then
-            Dim spp As spPaletsProducidos = CType(Me.sp, spPaletsProducidos)
+        Try
 
-            If Not spp.estaEtiquetado(Me.m_DBO_PaletsProducidos.ID, dtb) Then
-                If spPaletsProducidos.esMonodosis(Me.m_DBO_PaletsProducidos.FormatoID, dtb) Then
-                    Return
-                End If
+        'If Me.chbTerminado.Checked Then
+        Dim spp As spPaletsProducidos = CType(Me.sp, spPaletsProducidos)
 
-                If MessageBox.Show("¿Desea imprimir etiqueta?", "Etiqueta palet " & Me.m_DBO_PaletsProducidos.SCC, _
-                                MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
-                    If spp.Etiquetar(Me.m_DBO_PaletsProducidos.ID, dtb) Then
-                        'Dim frm As New frmEtiqueta0(Me.m_DBO_PaletsProducidos.ID, False) ', False)
-                        'Dim frm As New etiquetas.frmEtiqueta(Me.m_DBO_PaletsProducidos.ID, BasesParaCompatibilidad.Config.connectionString)
-                        'frm.Show()
-                        etiqueta = New etiquetas.Etiqueta(Me.m_DBO_PaletsProducidos.ID, BasesParaCompatibilidad.Config.connectionString)
-                        'etiqueta.id = Me.m_DBO_PaletsProducidos.ID
-                        etiqueta.print(2, True)
-                        'etiqueta = New etiquetas.Etiqueta(Me.m_DBO_PaletsProducidos.ID, BasesParaCompatibilidad.Config.connectionString)
-                        'etiqueta.print()
-                    Else
-                        MessageBox.Show("No se pudo imprimir la etiqueta, vuelva a intentarlo manualmente", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    End If
+        If Not spp.estaEtiquetado(Me.m_DBO_PaletsProducidos.ID, dtb) Then
+            If spPaletsProducidos.esMonodosis(Me.m_DBO_PaletsProducidos.FormatoID, dtb) Then
+                Return
+            End If
+
+            If MessageBox.Show("¿Desea imprimir etiqueta?", "Etiqueta palet " & Me.m_DBO_PaletsProducidos.SCC, _
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                If spp.Etiquetar(Me.m_DBO_PaletsProducidos.ID, dtb) Then
+                    'Dim frm As New frmEtiqueta0(Me.m_DBO_PaletsProducidos.ID, False) ', False)
+                    'Dim frm As New etiquetas.frmEtiqueta(Me.m_DBO_PaletsProducidos.ID, BasesParaCompatibilidad.Config.connectionString)
+                    'frm.Show()
+                    etiqueta = New etiquetas.Etiqueta(Me.m_DBO_PaletsProducidos.ID, BasesParaCompatibilidad.Config.connectionString)
+                    'etiqueta.id = Me.m_DBO_PaletsProducidos.ID
+                    etiqueta.print(2, True)
+                    'etiqueta = New etiquetas.Etiqueta(Me.m_DBO_PaletsProducidos.ID, BasesParaCompatibilidad.Config.connectionString)
+                    'etiqueta.print()
+                Else
+                    MessageBox.Show("No se pudo imprimir la etiqueta, vuelva a intentarlo manualmente", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End If
             End If
         End If
+            ' End If
+
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

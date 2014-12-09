@@ -21,7 +21,7 @@ Public Class MenuDispatcher
     Private frmVisitasMain As frmVisitasMain
     Private frmProveedoresMain As frmProveedoresMain
     Private frmExistenciasPorDepositoFecha As InformesDepositos.frmExistenciasPorDepositoFecha
-    Private frmPaletsProducidos3 As frmPaletsProducidos3
+    Private frmPaletsProducidos3 As Envasado.frmPaletsProducidos3
 
     Private frmAlbaranesCargaMaestro As frmAlbaranesCargaMaestro
     Private frmExistenciasTodas As frmExistenciasTodas
@@ -35,7 +35,8 @@ Public Class MenuDispatcher
     Private frmClientes As frmClientes
     Private frmStock As frmStock
     Private frmArticulosEtiquetasTipos As frmArticulosEtiquetasTipos
-    Private frmEnvasados2 As frmEnvasados2
+    'Private frmEnvasados2 As frmEnvasados2
+    Private frmEnvasados2 As Envasado.frmEnvasados2
     Private PaletNoAlmacenNoTerminado As PaletNoAlmacenNoTerminado
     Private frmPedidosClientesNecesidades As frmPedidosClientesNecesidades
     Private frmOrdenesCargaInforme As frmOrdenesCargaInforme
@@ -229,7 +230,7 @@ Public Class MenuDispatcher
     End Sub
 
     Private Sub tsmPaletsProducidosBBDD_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmPaletsProducidosBBDD.Click, ToolStripMenuItem973.Click, ToolStripMenuItem802.Click, ToolStripMenuItem631.Click, ArticulosTerciariosPaletsToolStripMenuItem.Click
-        frmPaletsProducidos3 = New frmPaletsProducidos3(0)
+        frmPaletsProducidos3 = New Envasado.frmPaletsProducidos3(0)
         GUImain.añadirPestaña(frmPaletsProducidos3)
     End Sub
 
@@ -461,7 +462,7 @@ Public Class MenuDispatcher
     End Sub
 
     Private Sub EnvasadoToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EnvasadoToolStripMenuItem.Click, ToolStripMenuItem1129.Click, ToolStripMenuItem103.Click, ToolStripMenuItem958.Click, ToolStripMenuItem787.Click, ToolStripMenuItem616.Click, EnvasadoDiarioToolStripMenuItem.Click
-        frmEnvasados2 = New frmEnvasados2
+        frmEnvasados2 = New Envasado.frmEnvasados2
         GUImain.añadirPestaña(frmEnvasados2)
     End Sub
 
