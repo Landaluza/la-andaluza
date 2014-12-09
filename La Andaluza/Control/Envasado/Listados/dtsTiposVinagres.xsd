@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dtsTiposVinagres" targetNamespace="http://tempuri.org/dtsTiposVinagres.xsd" xmlns:mstns="http://tempuri.org/dtsTiposVinagres.xsd" xmlns="http://tempuri.org/dtsTiposVinagres.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dtsTiposVinagres" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="dtsTiposVinagres" msprop:Generator_UserDSName="dtsTiposVinagres" msprop:EnableTableAdapterManager="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="TiposVinagres" msprop:Generator_UserTableName="TiposVinagres" msprop:Generator_RowDeletedName="TiposVinagresRowDeleted" msprop:Generator_TableClassName="TiposVinagresDataTable" msprop:Generator_RowChangedName="TiposVinagresRowChanged" msprop:Generator_RowClassName="TiposVinagresRow" msprop:Generator_RowChangingName="TiposVinagresRowChanging" msprop:Generator_RowEvArgName="TiposVinagresRowChangeEvent" msprop:Generator_RowEvHandlerName="TiposVinagresRowChangeEventHandler" msprop:Generator_TablePropName="TiposVinagres" msprop:Generator_TableVarName="tableTiposVinagres" msprop:Generator_RowDeletingName="TiposVinagresRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TipoVinagreID" msprop:Generator_UserColumnName="TipoVinagreID" msprop:Generator_ColumnPropNameInRow="TipoVinagreID" msprop:Generator_ColumnVarNameInTable="columnTipoVinagreID" msprop:Generator_ColumnPropNameInTable="TipoVinagreIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Descripcion" msprop:Generator_UserColumnName="Descripcion" msprop:Generator_ColumnPropNameInRow="Descripcion" msprop:Generator_ColumnVarNameInTable="columnDescripcion" msprop:Generator_ColumnPropNameInTable="DescripcionColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Abreviatura" msprop:Generator_UserColumnName="Abreviatura" msprop:Generator_ColumnPropNameInRow="Abreviatura" msprop:Generator_ColumnVarNameInTable="columnAbreviatura" msprop:Generator_ColumnPropNameInTable="AbreviaturaColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

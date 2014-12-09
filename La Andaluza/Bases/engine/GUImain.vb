@@ -536,7 +536,7 @@ Public Class GUImain
     End Sub
 
     Private Sub lPersonalSinFin_Click(sender As System.Object, e As System.EventArgs) Handles lPersonalSinFin.Click
-        Dim frm As New frmPersonalEnvasadoSinFin
+        Dim frm As New Envasado.frmPersonalEnvasadoSinFin
         LAengine.añadirPestañaAutonoma(frm)
     End Sub
 

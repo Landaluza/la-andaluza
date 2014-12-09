@@ -9,8 +9,7 @@ Public Class frmMediaProduccion
     Private dtb As BasesParaCompatibilidad.DataBase
     Public Sub New()
         InitializeComponent()
-        Dim spLineasEnvasado As New spLineasEnvasado
-        spLineasEnvasado.cargar_LineasEnvasado(Me.cboLinea, dtb)
+       cargar_LineasEnvasado(Me.cboLinea, dtb)
         Me.dtpEnvasado.activarFoco()
         dtb = New BasesParaCompatibilidad.DataBase()
     End Sub
@@ -68,6 +67,10 @@ Public Class frmMediaProduccion
                 Me.cboArticulo.mam_DataSource(dtb.Consultar, False)
             End If
         End If
+    End Sub
+
+    Public Sub cargar_LineasEnvasado(ByRef cbo As ComboBox, ByRef dtb As BasesParaCompatibilidad.DataBase)
+        cbo.mam_DataSource("LineasEnvasadoCbo", False, dtb)
     End Sub
 
     Private Sub recargar()

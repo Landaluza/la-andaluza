@@ -10,7 +10,7 @@
     Public Event BeforeScan(ByRef sender As Object, ByVal scc As String)
     Public EventHandled As Boolean
     Private loteOriginal As String
-    Private spPaletsProducidos2 As spPaletsProducidos2
+    Private spPaletsProducidos2 As Envasado.spPaletsProducidos2
     Private dtb as BasesParaCompatibilidad.Database
     Public Sub New(ByVal MaestroProID As Integer)
         InitializeComponent()
@@ -18,7 +18,7 @@
         ctlAlbDet = New ctlAlbaranesCargaProviDetalles
         spAlamacen = New spAlmacenPalets
         Me.codigoMaestro = MaestroProID
-        spPaletsProducidos2 = New spPaletsProducidos2
+        spPaletsProducidos2 = New Envasado.spPaletsProducidos2
         dtb = New BasesParaCompatibilidad.Database()
     End Sub
 

@@ -116,7 +116,7 @@
             '    End If
             Case 9 '4
 
-                If spEnvasados2.personalPendiente(dtb) Then
+                If Envasado.spEnvasados2.personalPendiente(dtb) Then
                     Me.lPersonalSinFin.Visible = True
                 End If
 

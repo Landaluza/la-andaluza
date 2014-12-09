@@ -10,7 +10,7 @@ Public Class MenuDispatcher
     Private frmMaterialConstruccion As frmMaterialConstruccion
     Private LisDepPorTipos As LisDepPorTipos
     Private frmUnidadesMedidas As frmUnidadesMedidas
-    Private frmTiposFormatosLineas As frmTiposFormatosLineas
+    Private frmTiposFormatosLineas As Envasado.frmTiposFormatosLineas
     Private frmOrdenesEnvasado2 As frmOrdenesEnvasado2
     Private frmTiposMateriales As frmTiposMateriales
     Private frmTiposProductoMain As frmTiposProductoMain
@@ -65,7 +65,7 @@ Public Class MenuDispatcher
     Private InformesVinagreJerez1 As InformesVinagreJerez.Form1
     Private frmPartesTrabajosDiariosMaestros As frmPartesTrabajosDiariosMaestros
     Private frmRecuentoMaterialesAuxiliares As frmRecuentoMaterialesAuxiliares
-    Private frmSituacionPersonal As frmSituacionPersonal
+    Private frmSituacionPersonal As Envasado.frmSituacionPersonal
     Private checks As checks
     Private frmIncidenciasCalidadMain As frmIncidenciasCalidadMain
     Private frmempresas As frmempresas
@@ -187,7 +187,7 @@ Public Class MenuDispatcher
 
 
     Private Sub tsmFomatosDeEnvasadosPorLineasBBDD_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmFomatosDeEnvasadosPorLineasBBDD.Click, ToolStripMenuItem961.Click, ToolStripMenuItem790.Click
-        frmTiposFormatosLineas = New frmTiposFormatosLineas
+        frmTiposFormatosLineas = New Envasado.frmTiposFormatosLineas
         GUImain.añadirPestaña(frmTiposFormatosLineas)
     End Sub
 
@@ -561,7 +561,7 @@ Public Class MenuDispatcher
     End Sub
 
     Private Sub SituacionActualPersonalToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SituacionActualPersonalToolStripMenuItem.Click
-        frmSituacionPersonal = New frmSituacionPersonal
+        frmSituacionPersonal = New Envasado.frmSituacionPersonal
         GUImain.añadirPestaña(frmSituacionPersonal)
     End Sub
 

@@ -23,14 +23,14 @@ Public Class frmAlmacenExistencias
     Private spEcellote As String
     Private spEcelAlmacen As String
     Private FechaSeleccionada As String
-    Private spPaletsProducidos2 As spPaletsProducidos2
+    Private spPaletsProducidos2 As Envasado.spPaletsProducidos2
 
     Public Sub New()
 
         ' This call is required by the designer.
         InitializeComponent()
 
-        spPaletsProducidos2 = New spPaletsProducidos2
+        spPaletsProducidos2 = New Envasado.spPaletsProducidos2
         spPalet = "PaletsProducidosByEnAlmacen2 "
         spLote = "PaletsProducidosByLote "
         spArticulo = "PaletsProducidosByArticulo7 "
@@ -430,13 +430,13 @@ Public Class frmAlmacenExistencias
 
     Private Sub dgvPalet_CellDoubleClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvPalet.CellDoubleClick
         Dim dtb As New BasesParaCompatibilidad.DataBase
-        Dim spForamtos As New spFormatosEnvasados
-        Dim spEnvasados2 As New spEnvasados2
-        Dim sppp As New spPaletsProducidos
-        Dim dboPaletsProducidos As DBO_PaletsProducidos = sppp.Select_RecordBySSCC(Me.dgvPalet.CurrentRow.Cells("SCC").Value, dtb)
+        Dim spForamtos As New Envasado.spFormatosEnvasados
+        Dim spEnvasados2 As New Envasado.spEnvasados2
+        Dim sppp As New Envasado.spPaletsProducidos
+        Dim dboPaletsProducidos As Envasado.DBO_PaletsProducidos = sppp.Select_RecordBySSCC(Me.dgvPalet.CurrentRow.Cells("SCC").Value, dtb)
 
-        Dim dbpFormato As DBO_FormatosEnvasados = spForamtos.Select_Record(dboPaletsProducidos.FormatoID, dtb)
-        Dim frm As New frmEntPaletsProducidos(0, dbpFormato.TipoFormatoEnvasadoID, dbpFormato.EnvasadoID, BasesParaCompatibilidad.gridsimpleform.ACCION_MODIFICAR, sppp, dboPaletsProducidos)
+        Dim dbpFormato As Envasado.DBO_FormatosEnvasados = spForamtos.Select_Record(dboPaletsProducidos.FormatoID, dtb)
+        Dim frm As New Envasado.frmEntPaletsProducidos(0, dbpFormato.TipoFormatoEnvasadoID, dbpFormato.EnvasadoID, BasesParaCompatibilidad.gridsimpleform.ACCION_MODIFICAR, sppp, dboPaletsProducidos)
 
 
         'Dim m_dbo As New DBO_PaletsProducidos

@@ -2065,27 +2065,6 @@
     <Compile Include="Produccion\Almacen\Movimientos\Copy of AgnadirAcarga.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados2\CambiosFormatosEnvasados2\frmCambiosFormatosEnvasados2.Designer.vb">
-      <DependentUpon>frmCambiosFormatosEnvasados2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\CambiosFormatosEnvasados2\frmCambiosFormatosEnvasados2.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\CambiosFormatosEnvasados2\frmEntCambiosFormatosEnvasados2.Designer.vb">
-      <DependentUpon>frmEntCambiosFormatosEnvasados2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\CambiosFormatosEnvasados2\frmEntCambiosFormatosEnvasados2.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\Envasados2\DBO_Envasados2.vb" />
-    <Compile Include="Produccion\Envasados2\EnvasadosProductosArticulos\DBO_Lotes1.vb" />
-    <Compile Include="Produccion\Envasados2\EnvasadosProductosArticulos\new\frmEnvasadosProductosArticulos_NO_USAR.Designer.vb">
-      <DependentUpon>frmEnvasadosProductosArticulos_NO_USAR.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\EnvasadosProductosArticulos\new\frmEnvasadosProductosArticulos_NO_USAR.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\EnvasadosProductosArticulos\spLotes1.vb" />
     <Compile Include="Control\_antiguos\Lotes\clsAnaliticas.vb" />
     <Compile Include="Control\_antiguos\Lotes\clsAnaliticasExternas.vb" />
     <Compile Include="Control\_antiguos\Lotes\clsAnaliticasRequerimientos.vb" />
@@ -2144,8 +2123,6 @@
     <Compile Include="Control\_antiguos\Lotes\MuestrasObservaciones\clsMuestrasObservaciones.vb" />
     <Compile Include="Control\_antiguos\Lotes\MuestrasObservaciones\clsObservaciones.vb" />
     <Compile Include="Control\_antiguos\Lotes\spElaboraciones.vb" />
-    <Compile Include="Produccion\Envasados2\EnvasadosProductosArticulos\DBO_Movimientos1.vb" />
-    <Compile Include="Produccion\Envasados2\EnvasadosProductosArticulos\spMovimientos1.vb" />
     <Compile Include="Otros\Geografia\paises\ctl_Paises.vb" />
     <Compile Include="Otros\Geografia\poblaciones\Ctl_Poblaciones.vb" />
     <Compile Include="Otros\Geografia\provincias\Ctl_Provincias.vb" />
@@ -2279,418 +2256,113 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Administracion\Articulos\Ventas\Grafica.vb" />
-    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\frmEntFormatosEnvasados2.Designer.vb">
-      <DependentUpon>frmEntFormatosEnvasados2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\frmEntFormatosEnvasados2.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\Listados\dtsTiposVinagres.Designer.vb">
+    <Compile Include="Control\Lotes\DBO_Lotes1.vb" />
+    <Compile Include="Control\Lotes\DBO_Movimientos1.vb" />
+    <Compile Include="Control\Lotes\spLotes1.vb" />
+    <Compile Include="Control\Lotes\spMovimientos1.vb" />
+    <Compile Include="Control\Envasado\Listados\dtsTiposVinagres.Designer.vb">
       <DependentUpon>dtsTiposVinagres.xsd</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Include="Produccion\Envasados2\Listados\frmLisEnvPorReferencia.Designer.vb">
+    <Compile Include="Control\Envasado\Listados\frmLisEnvPorReferencia.Designer.vb">
       <DependentUpon>frmLisEnvPorReferencia.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados2\Listados\frmLisEnvPorReferencia.vb">
+    <Compile Include="Control\Envasado\Listados\frmLisEnvPorReferencia.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados2\Listados\frmPaletsIncompletos.Designer.vb">
+    <Compile Include="Control\Envasado\Listados\frmPaletsIncompletos.Designer.vb">
       <DependentUpon>frmPaletsIncompletos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados2\Listados\frmPaletsIncompletos.vb">
+    <Compile Include="Control\Envasado\Listados\frmPaletsIncompletos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados2\Listados\new\frmLisEnvPorArticuloPrimario.Designer.vb">
+    <Compile Include="Control\Envasado\Listados\new\frmLisEnvPorArticuloPrimario.Designer.vb">
       <DependentUpon>frmLisEnvPorArticuloPrimario.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados2\Listados\new\frmLisEnvPorArticuloPrimario.vb">
+    <Compile Include="Control\Envasado\Listados\new\frmLisEnvPorArticuloPrimario.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados2\MaterialesEnvasados2\DBO_MaterialesEnvasados2.vb" />
-    <Compile Include="Produccion\Envasados2\MaterialesEnvasados2\frmEntMaterialesEnvasados2.Designer.vb">
-      <DependentUpon>frmEntMaterialesEnvasados2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\MaterialesEnvasados2\frmEntMaterialesEnvasados2.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\MaterialesEnvasados2\frmMaterialesEnvasados2.Designer.vb">
-      <DependentUpon>frmMaterialesEnvasados2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\MaterialesEnvasados2\frmMaterialesEnvasados2.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\MaterialesEnvasados2\spMaterialesEnvasados2.vb" />
-    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\Entre Palets\frmPaletsMovimientoEntrePalets.Designer.vb">
+    <Compile Include="Control\PaletsMovimiento\Entre Palets\frmPaletsMovimientoEntrePalets.Designer.vb">
       <DependentUpon>frmPaletsMovimientoEntrePalets.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\Entre Palets\frmPaletsMovimientoEntrePalets.vb">
+    <Compile Include="Control\PaletsMovimiento\Entre Palets\frmPaletsMovimientoEntrePalets.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\Informe movimientos\frmModificarFecha.Designer.vb">
+    <Compile Include="Control\PaletsMovimiento\Informe movimientos\frmModificarFecha.Designer.vb">
       <DependentUpon>frmModificarFecha.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\Informe movimientos\frmModificarFecha.vb">
+    <Compile Include="Control\PaletsMovimiento\Informe movimientos\frmModificarFecha.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\Informe movimientos\frmModificarHora.Designer.vb">
+    <Compile Include="Control\PaletsMovimiento\Informe movimientos\frmModificarHora.Designer.vb">
       <DependentUpon>frmModificarHora.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\Informe movimientos\frmModificarHora.vb">
+    <Compile Include="Control\PaletsMovimiento\Informe movimientos\frmModificarHora.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados2\Personal\frmEntPersonalEnvasado.Designer.vb">
-      <DependentUpon>frmEntPersonalEnvasado.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\Personal\frmEntPersonalEnvasado.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\Personal\frmEntPersonalEnvasadoFin.Designer.vb">
-      <DependentUpon>frmEntPersonalEnvasadoFin.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\Personal\frmEntPersonalEnvasadoFin.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\Personal\frmEntPersonalEnvasadoFinArticulo.Designer.vb">
-      <DependentUpon>frmEntPersonalEnvasadoFinArticulo.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\Personal\frmEntPersonalEnvasadoFinArticulo.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\Personal\frmPersonalEnvasadoOcupado.Designer.vb">
-      <DependentUpon>frmPersonalEnvasadoOcupado.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\Personal\frmPersonalEnvasadoOcupado.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\Personal\frmSituacionPersonal.Designer.vb">
-      <DependentUpon>frmSituacionPersonal.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\Personal\frmSituacionPersonal.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\Personal\spPersonalEnvasado.vb" />
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles7\DBO_EnvasadosControles7.vb" />
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles7\frmEntEnvasadosControles7.Designer.vb">
-      <DependentUpon>frmEntEnvasadosControles7.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles7\frmEntEnvasadosControles7.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles7\spEnvasadosControles7.vb" />
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles\frmEnvasadosControles.Designer.vb">
-      <DependentUpon>frmEnvasadosControles.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles\frmEnvasadosControles.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\ArticulosTerciarios\frmPaletsProducidos3.Designer.vb">
-      <DependentUpon>frmPaletsProducidos3.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\ArticulosTerciarios\frmPaletsProducidos3.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Copy of etiquetas\articulosLoteados\DBO_ArticulosLoteados.vb" />
-    <Compile Include="Produccion\Envasados3\Copy of etiquetas\articulosLoteados\frmArticulosLoteados.Designer.vb">
-      <DependentUpon>frmArticulosLoteados.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Copy of etiquetas\articulosLoteados\frmArticulosLoteados.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Copy of etiquetas\articulosLoteados\frmEntArticulosLoteados.Designer.vb">
-      <DependentUpon>frmEntArticulosLoteados.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Copy of etiquetas\articulosLoteados\frmEntArticulosLoteados.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Copy of etiquetas\articulosLoteados\spArticulosLoteados.vb" />
-    <Compile Include="Produccion\Envasados3\Copy of etiquetas\Etiquetador.vb" />
-    <Compile Include="Produccion\Envasados3\Copy of etiquetas\frnEtiquetaEditable.Designer.vb">
-      <DependentUpon>frnEtiquetaEditable.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Copy of etiquetas\frnEtiquetaEditable.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Copy of etiquetas\GS1.vb" />
-    <Compile Include="Produccion\Envasados3\Copy of etiquetas\TiposLoteados\DBO_TiposLoteados.vb" />
-    <Compile Include="Produccion\Envasados3\Copy of etiquetas\TiposLoteados\frmEntTiposLoteados.Designer.vb">
-      <DependentUpon>frmEntTiposLoteados.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Copy of etiquetas\TiposLoteados\frmEntTiposLoteados.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Copy of etiquetas\TiposLoteados\frmTiposLoteados.Designer.vb">
-      <DependentUpon>frmTiposLoteados.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Copy of etiquetas\TiposLoteados\frmTiposLoteados.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Copy of etiquetas\TiposLoteados\spTiposLoteados.vb" />
-    <Compile Include="Produccion\Envasados3\Incidencias2\new\frmEntIncidencias_SU.Designer.vb">
-      <DependentUpon>frmEntIncidencias_SU.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Incidencias2\new\frmEntIncidencias_SU.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\DispensadorMonodosis.vb" />
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\frmContenidosDetallesMonodosis.Designer.vb">
-      <DependentUpon>frmContenidosDetallesMonodosis.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\frmContenidosDetallesMonodosis.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\frmEntCompletado.Designer.vb">
-      <DependentUpon>frmEntCompletado.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\frmEntCompletado.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\frmEntPaletsContenidos.Designer.vb">
-      <DependentUpon>frmEntPaletsContenidos.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\frmEntPaletsContenidos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\frmEntPaletsContenidosDoypack.Designer.vb">
-      <DependentUpon>frmEntPaletsContenidosDoypack.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\frmEntPaletsContenidosDoypack.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\frmEntPaletsContenidosMonodosis.Designer.vb">
-      <DependentUpon>frmEntPaletsContenidosMonodosis.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\frmEntPaletsContenidosMonodosis.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\frmPaletsContenidos.Designer.vb">
-      <DependentUpon>frmPaletsContenidos.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\frmPaletsContenidos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\Monodosis.vb" />
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\Palet.vb" />
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\PaletContenido.vb" />
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\spPaletsContenidos.vb" />
-    <Compile Include="Produccion\Envasados3\Incidencias2\categorias2\DBO_ClasesIncidencias.vb" />
-    <Compile Include="Produccion\Envasados3\Incidencias2\categorias2\spClasesIncidencias.vb" />
-    <Compile Include="Produccion\Envasados3\Incidencias2\Categorias\DBO_CategoriaIncidencias.vb" />
-    <Compile Include="Produccion\Envasados3\Incidencias2\Categorias\frmCategoriaIncidencias.Designer.vb">
+    <Compile Include="Control\Incidencias\Incidencias2\categorias2\DBO_ClasesIncidencias.vb" />
+    <Compile Include="Control\Incidencias\Incidencias2\categorias2\spClasesIncidencias.vb" />
+    <Compile Include="Control\Incidencias\Incidencias2\Categorias\DBO_CategoriaIncidencias.vb" />
+    <Compile Include="Control\Incidencias\Incidencias2\Categorias\frmCategoriaIncidencias.Designer.vb">
       <DependentUpon>frmCategoriaIncidencias.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados3\Incidencias2\Categorias\frmCategoriaIncidencias.vb">
+    <Compile Include="Control\Incidencias\Incidencias2\Categorias\frmCategoriaIncidencias.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados3\Incidencias2\Categorias\frmEntCategoriaIncidencias.Designer.vb">
+    <Compile Include="Control\Incidencias\Incidencias2\Categorias\frmEntCategoriaIncidencias.Designer.vb">
       <DependentUpon>frmEntCategoriaIncidencias.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados3\Incidencias2\Categorias\frmEntCategoriaIncidencias.vb">
+    <Compile Include="Control\Incidencias\Incidencias2\Categorias\frmEntCategoriaIncidencias.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados3\Incidencias2\Categorias\spCategoriaIncidencias.vb" />
-    <Compile Include="Produccion\Envasados3\Incidencias2\Clases\frmClasesIncidencias.Designer.vb">
+    <Compile Include="Control\Incidencias\Incidencias2\Categorias\spCategoriaIncidencias.vb" />
+    <Compile Include="Control\Incidencias\Incidencias2\Clases\frmClasesIncidencias.Designer.vb">
       <DependentUpon>frmClasesIncidencias.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados3\Incidencias2\Clases\frmClasesIncidencias.vb">
+    <Compile Include="Control\Incidencias\Incidencias2\Clases\frmClasesIncidencias.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados3\Incidencias2\Clases\frmEntClasesIncidencias.Designer.vb">
+    <Compile Include="Control\Incidencias\Incidencias2\Clases\frmEntClasesIncidencias.Designer.vb">
       <DependentUpon>frmEntClasesIncidencias.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados3\Incidencias2\Clases\frmEntClasesIncidencias.vb">
+    <Compile Include="Control\Incidencias\Incidencias2\Clases\frmEntClasesIncidencias.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados3\Incidencias2\Incidencias_Empleados\frmEntIncidenciasEmpleados.Designer.vb">
-      <DependentUpon>frmEntIncidenciasEmpleados.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Incidencias2\Incidencias_Empleados\frmEntIncidenciasEmpleados.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Incidencias2\Incidencias_Empleados\frmIncidenciasEmpleados.Designer.vb">
-      <DependentUpon>frmIncidenciasEmpleados.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Incidencias2\Incidencias_Empleados\frmIncidenciasEmpleados.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Incidencias2\Incidencias_Empleados\spIncidenciasEmpleados.vb" />
-    <Compile Include="Produccion\Envasados3\Incidencias2\IncidenciasCalidad2\new\DBO_IncidenciasCalidad.vb" />
-    <Compile Include="Produccion\Envasados3\Incidencias2\IncidenciasCalidad2\new\frmEntIncidenciasCalidad.Designer.vb">
-      <DependentUpon>frmEntIncidenciasCalidad.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Incidencias2\IncidenciasCalidad2\new\frmEntIncidenciasCalidad.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Incidencias2\IncidenciasCalidad2\new\frmIncidenciasCalidad.Designer.vb">
-      <DependentUpon>frmIncidenciasCalidad.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Incidencias2\IncidenciasCalidad2\new\frmIncidenciasCalidad.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Incidencias2\IncidenciasCalidad2\new\spIncidenciasCalidad.vb" />
-    <Compile Include="Produccion\Envasados3\Incidencias2\new\DBO_Incidencias.vb" />
-    <Compile Include="Produccion\Envasados3\Incidencias2\new\frmEntIncidencias.Designer.vb">
-      <DependentUpon>frmEntIncidencias.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Incidencias2\new\frmEntIncidencias.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Incidencias2\new\frmIncidencias.Designer.vb">
-      <DependentUpon>frmIncidencias.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Incidencias2\new\frmIncidencias.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Incidencias2\new\spIncidencias.vb" />
-    <Compile Include="Produccion\Envasados3\Incidencias2\Tipos\DBO_TiposIncidencias.vb" />
-    <Compile Include="Produccion\Envasados3\Incidencias2\Tipos\frmEntTiposIncidencias.Designer.vb">
+    <Compile Include="Control\Incidencias\Incidencias2\Tipos\DBO_TiposIncidencias.vb" />
+    <Compile Include="Control\Incidencias\Incidencias2\Tipos\frmEntTiposIncidencias.Designer.vb">
       <DependentUpon>frmEntTiposIncidencias.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados3\Incidencias2\Tipos\frmEntTiposIncidencias.vb">
+    <Compile Include="Control\Incidencias\Incidencias2\Tipos\frmEntTiposIncidencias.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados3\Incidencias2\Tipos\frmTiposIncidencias.Designer.vb">
+    <Compile Include="Control\Incidencias\Incidencias2\Tipos\frmTiposIncidencias.Designer.vb">
       <DependentUpon>frmTiposIncidencias.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados3\Incidencias2\Tipos\frmTiposIncidencias.vb">
+    <Compile Include="Control\Incidencias\Incidencias2\Tipos\frmTiposIncidencias.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados3\Incidencias2\Tipos\spTiposIncidencias.vb" />
-    <Compile Include="Produccion\Envasados3\PaletsContenidos3\DBO_PaletsContenidos.vb" />
-    <Compile Include="Produccion\Envasados3\PaletsProducidos3\DBO_PaletsProducidos.vb" />
-    <Compile Include="Produccion\Envasados3\PaletsProducidos3\estados\DBO_PaletsEstados.vb" />
-    <Compile Include="Produccion\Envasados3\PaletsProducidos3\estados\frmEntPaletsEstados.Designer.vb">
-      <DependentUpon>frmEntPaletsEstados.vb</DependentUpon>
+    <Compile Include="Control\Incidencias\Incidencias2\Tipos\spTiposIncidencias.vb" />
+    <Compile Include="Produccion\Almacen\PaletsProducidos3\DBO_PaletsProducidos.vb" />
+    <Compile Include="Produccion\Almacen\PaletsProducidos3\spPaletsProducidos.vb" />
+    <Compile Include="Administracion\Articulos\TiposFormatos\DBO_ArticulosEnvasadoHistorico.vb" />
+    <Compile Include="Administracion\Articulos\TiposFormatos\spArticulosEnvasadosHistoricos.vb" />
+    <Compile Include="Administracion\Articulos\Asistentes\ArticulosEnvasados\forms\spTiposFormatosLineas_TiposFormatos.vb" />
+    <Compile Include="Control\PaletsMovimiento\PaletsMovimientosTipos\DBO_PaletsMovimientosTipos.vb" />
+    <Compile Include="Control\PaletsMovimiento\PaletsMovimientosTipos\frmEntPaletsMovimientosTipos.Designer.vb">
+      <DependentUpon>frmEntPaletsMovimientosTipos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsProducidos3\estados\frmEntPaletsEstados.vb">
+    <Compile Include="Control\PaletsMovimiento\PaletsMovimientosTipos\frmEntPaletsMovimientosTipos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsProducidos3\estados\frmPaletsEstados.Designer.vb">
-      <DependentUpon>frmPaletsEstados.vb</DependentUpon>
+    <Compile Include="Control\PaletsMovimiento\PaletsMovimientosTipos\frmPaletsMovimientosTipos.Designer.vb">
+      <DependentUpon>frmPaletsMovimientosTipos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsProducidos3\estados\frmPaletsEstados.vb">
+    <Compile Include="Control\PaletsMovimiento\PaletsMovimientosTipos\frmPaletsMovimientosTipos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsProducidos3\estados\spPaletsEstados.vb" />
-    <Compile Include="Produccion\Envasados3\PaletsProducidos3\frmEntPaletsProducidos.Designer.vb">
-      <DependentUpon>frmEntPaletsProducidos.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsProducidos3\frmEntPaletsProducidos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsProducidos3\frmPaletsProducidos.Designer.vb">
-      <DependentUpon>frmPaletsProducidos.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsProducidos3\frmPaletsProducidos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsProducidos3\frmSinContenidos.Designer.vb">
-      <DependentUpon>frmSinContenidos.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsProducidos3\frmSinContenidos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\PaletsProducidos3\spPaletsProducidos.vb" />
-    <Compile Include="Produccion\Envasados3\PersonalEnLinea\frmPersonalEnvasadoSinFin.Designer.vb">
-      <DependentUpon>frmPersonalEnvasadoSinFin.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\PersonalEnLinea\frmPersonalEnvasadoSinFin.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\PersonalEnLinea\PersonalEnLinea.Designer.vb">
-      <DependentUpon>PersonalEnLinea.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\PersonalEnLinea\PersonalEnLinea.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\PersonalEnLinea\envasado\DBO_empleados_envasados.vb" />
-    <Compile Include="Produccion\Envasados3\PersonalEnLinea\envasado\frmempleados_envasados.Designer.vb">
-      <DependentUpon>frmempleados_envasados.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\PersonalEnLinea\envasado\frmempleados_envasados.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\PersonalEnLinea\envasado\frmEntempleados_envasados.Designer.vb">
-      <DependentUpon>frmEntempleados_envasados.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\PersonalEnLinea\envasado\frmEntempleados_envasados.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\PersonalEnLinea\envasado\spempleados_envasados.vb" />
-    <Compile Include="Produccion\Envasados3\PersonalEnLinea\spPersonalEnLinea.vb" />
-    <Compile Include="Produccion\Envasados3\Productos\DBO_EnvasadosProductos.vb" />
-    <Compile Include="Produccion\Envasados3\Productos\frmEntEnvasadosProductos.Designer.vb">
-      <DependentUpon>frmEntEnvasadosProductos.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Productos\frmEntEnvasadosProductos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Productos\frmEnvasadosProductos.Designer.vb">
-      <DependentUpon>frmEnvasadosProductos.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Productos\frmEnvasadosProductos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Productos\spEnvasadosProductos.vb" />
-    <Compile Include="Produccion\Envasados3\ResumenPersonal\resumenPersonal.Designer.vb">
-      <DependentUpon>resumenPersonal.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\ResumenPersonal\resumenPersonal.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\TiposFormatos\DBO_ArticulosEnvasadoHistorico.vb" />
-    <Compile Include="Produccion\Envasados3\TiposFormatos\DBO_TiposFormatos.vb" />
-    <Compile Include="Produccion\Envasados3\TiposFormatos\spArticulosEnvasadosHistoricos.vb" />
-    <Compile Include="Produccion\Envasados3\TiposFormatos\spFormatosArticulos.vb" />
-    <Compile Include="Produccion\Envasados3\Trazabilidad\DBO_MaterialesEnvasados.vb" />
-    <Compile Include="Produccion\Envasados3\Trazabilidad\frmEntMaterialesEnvasados.Designer.vb">
-      <DependentUpon>frmEntMaterialesEnvasados.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Trazabilidad\frmEntMaterialesEnvasados.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Trazabilidad\frmMaterialesEnvasados.Designer.vb">
-      <DependentUpon>frmMaterialesEnvasados.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Trazabilidad\frmMaterialesEnvasados.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\Trazabilidad\spMaterialesEnvasados.vb" />
-    <Compile Include="Produccion\Lineas\LineasEnvasados\DBO_LineasEnvasado.vb" />
-    <Compile Include="Produccion\Lineas\LineasEnvasados\frmEntLineasEnvasado.Designer.vb">
-      <DependentUpon>frmEntLineasEnvasado.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Lineas\LineasEnvasados\frmEntLineasEnvasado.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Lineas\LineasEnvasados\frmLineasEnvasado.Designer.vb">
-      <DependentUpon>frmLineasEnvasado.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Lineas\LineasEnvasados\frmLineasEnvasado.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Lineas\LineasEnvasados\spLineasEnvasado.vb" />
-    <Compile Include="Produccion\Lineas\TiposFormatosLineas\TiposFormatosLineas_tiposFormatos\DBO_TiposFormatosLineas_TiposFormatos.vb" />
-    <Compile Include="Produccion\Lineas\TiposFormatosLineas\TiposFormatosLineas_tiposFormatos\frmEntTiposFormatosLineas_TiposFormatos.Designer.vb">
-      <DependentUpon>frmEntTiposFormatosLineas_TiposFormatos.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Lineas\TiposFormatosLineas\TiposFormatosLineas_tiposFormatos\frmEntTiposFormatosLineas_TiposFormatos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Lineas\TiposFormatosLineas\TiposFormatosLineas_tiposFormatos\frmModLoteTiposFormatosLineas_TiposFormatos.Designer.vb">
-      <DependentUpon>frmModLoteTiposFormatosLineas_TiposFormatos.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Lineas\TiposFormatosLineas\TiposFormatosLineas_tiposFormatos\frmModLoteTiposFormatosLineas_TiposFormatos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Lineas\TiposFormatosLineas\TiposFormatosLineas_tiposFormatos\frmTiposFormatosLineas_TiposFormatos.Designer.vb">
-      <DependentUpon>frmTiposFormatosLineas_TiposFormatos.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Lineas\TiposFormatosLineas\TiposFormatosLineas_tiposFormatos\frmTiposFormatosLineas_TiposFormatos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Lineas\TiposFormatosLineas\TiposFormatosLineas_tiposFormatos\spTiposFormatosLineas_TiposFormatos.vb" />
+    <Compile Include="Control\PaletsMovimiento\PaletsMovimientosTipos\spPaletsMovimientosTipos.vb" />
+    <Compile Include="Administracion\Articulos\Asistentes\ArticulosEnvasados\forms\DBO_TiposFormatosLineas_TiposFormatos.vb" />
     <Compile Include="Produccion\maquinas\DBO_Maquinas.vb" />
     <Compile Include="Produccion\maquinas\frmEntMaquinas.Designer.vb">
       <DependentUpon>frmEntMaquinas.vb</DependentUpon>
@@ -2705,62 +2377,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Produccion\maquinas\spMaquinas.vb" />
-    <Compile Include="Produccion\Lineas\Maquinas_lineas\DBO_Maquinas_Lineas.vb" />
-    <Compile Include="Produccion\Lineas\Maquinas_lineas\frmEntMaquinas_Lineas.Designer.vb">
-      <DependentUpon>frmEntMaquinas_Lineas.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Lineas\Maquinas_lineas\frmEntMaquinas_Lineas.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Lineas\Maquinas_lineas\frmMaquinas_Lineas.Designer.vb">
-      <DependentUpon>frmMaquinas_Lineas.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Lineas\Maquinas_lineas\frmMaquinas_Lineas.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Lineas\Maquinas_lineas\spMaquinas_Lineas.vb" />
-    <Compile Include="Produccion\Lineas\TiposFormatosLineas\DBO_TiposFormatosLineas.vb" />
-    <Compile Include="Produccion\Lineas\TiposFormatosLineas\frmEntTiposFormatosLineas.Designer.vb">
-      <DependentUpon>frmEntTiposFormatosLineas.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Lineas\TiposFormatosLineas\frmEntTiposFormatosLineas.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Lineas\TiposFormatosLineas\frmTiposFormatosLineas.Designer.vb">
-      <DependentUpon>frmTiposFormatosLineas.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Lineas\TiposFormatosLineas\frmTiposFormatosLineas.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Lineas\TiposFormatosLineas\spTiposFormatosLineas.vb" />
-    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\PaletsMovimientosTipos\DBO_PaletsMovimientosTipos.vb" />
-    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\PaletsMovimientosTipos\frmEntPaletsMovimientosTipos.Designer.vb">
-      <DependentUpon>frmEntPaletsMovimientosTipos.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\PaletsMovimientosTipos\frmEntPaletsMovimientosTipos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\PaletsMovimientosTipos\frmPaletsMovimientosTipos.Designer.vb">
-      <DependentUpon>frmPaletsMovimientosTipos.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\PaletsMovimientosTipos\frmPaletsMovimientosTipos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\PaletsMovimientosTipos\spPaletsMovimientosTipos.vb" />
-    <Compile Include="Produccion\Lineas\Empleados_lineas\DBO_Empleados_LineasEnvasado.vb" />
-    <Compile Include="Produccion\Lineas\Empleados_lineas\frmEmpleados_LineasEnvasado.Designer.vb">
-      <DependentUpon>frmEmpleados_LineasEnvasado.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Lineas\Empleados_lineas\frmEmpleados_LineasEnvasado.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Lineas\Empleados_lineas\frmEntEmpleados_LineasEnvasado.Designer.vb">
-      <DependentUpon>frmEntEmpleados_LineasEnvasado.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Lineas\Empleados_lineas\frmEntEmpleados_LineasEnvasado.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Lineas\Empleados_lineas\spEmpleados_LineasEnvasado.vb" />
     <Compile Include="Produccion\palets tipos\DBO_PaletsTipos.vb" />
     <Compile Include="Produccion\palets tipos\frmEntPaletsTipos.Designer.vb">
       <DependentUpon>frmEntPaletsTipos.vb</DependentUpon>
@@ -2775,182 +2391,13 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Produccion\palets tipos\spPaletsTipos.vb" />
-    <Compile Include="Produccion\Partes\Causas\DBO_CausasPartesEnvasado.vb" />
-    <Compile Include="Produccion\Partes\Causas\frmCausasPartesEnvasado.Designer.vb">
-      <DependentUpon>frmCausasPartesEnvasado.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Partes\Causas\frmCausasPartesEnvasado.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Partes\Causas\frmEntCausasPartesEnvasado.Designer.vb">
-      <DependentUpon>frmEntCausasPartesEnvasado.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Partes\Causas\frmEntCausasPartesEnvasado.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Partes\Causas\Partes_causasIns\frmEntPartesEnvasadosCausasIns.Designer.vb">
-      <DependentUpon>frmEntPartesEnvasadosCausasIns.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Partes\Causas\Partes_causasIns\frmEntPartesEnvasadosCausasIns.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Partes\Causas\Partes_causasIns\frmPartesEnvasadoCausasIns.Designer.vb">
-      <DependentUpon>frmPartesEnvasadoCausasIns.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Partes\Causas\Partes_causasIns\frmPartesEnvasadoCausasIns.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Partes\Causas\Partes_causas\DBO_PartesEnvasados_CausasPartesEnvasado.vb" />
-    <Compile Include="Produccion\Partes\Causas\Partes_causas\frmEntPartesEnvasados_CausasPartesEnvasado.Designer.vb">
-      <DependentUpon>frmEntPartesEnvasados_CausasPartesEnvasado.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Partes\Causas\Partes_causas\frmEntPartesEnvasados_CausasPartesEnvasado.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Partes\Causas\Partes_causas\frmPartesEnvasados_CausasPartesEnvasado.Designer.vb">
-      <DependentUpon>frmPartesEnvasados_CausasPartesEnvasado.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Partes\Causas\Partes_causas\frmPartesEnvasados_CausasPartesEnvasado.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Partes\Causas\Partes_causas\spPartesEnvasados_CausasPartesEnvasado.vb" />
-    <Compile Include="Produccion\Partes\Causas\spCausasPartesEnvasado.vb" />
-    <Compile Include="Produccion\Partes\Causas\Tipos\DBO_CausasPartesEnvasadoTipos.vb" />
-    <Compile Include="Produccion\Partes\Causas\Tipos\frmCausasPartesEnvasadoTipos.Designer.vb">
-      <DependentUpon>frmCausasPartesEnvasadoTipos.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Partes\Causas\Tipos\frmCausasPartesEnvasadoTipos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Partes\Causas\Tipos\frmEntCausasPartesEnvasadoTipos.Designer.vb">
-      <DependentUpon>frmEntCausasPartesEnvasadoTipos.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Partes\Causas\Tipos\frmEntCausasPartesEnvasadoTipos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Partes\Causas\Tipos\spCausasPartesEnvasadoTipos.vb" />
-    <Compile Include="Produccion\Partes\partes_cambiosformatos\DBO_PartesEnvasados_CausasPartesEnvasado_CambiosFormatosEnvasados.vb" />
-    <Compile Include="Produccion\Partes\partes_cambiosformatos\spPartesEnvasados_CausasPartesEnvasado_CambiosFormatosEnvasados.vb" />
-    <Compile Include="Produccion\Partes\Partes_incidencias\DBO_PartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad.vb" />
-    <Compile Include="Produccion\Partes\Partes_incidencias\frmEntPartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad.Designer.vb">
-      <DependentUpon>frmEntPartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Partes\Partes_incidencias\frmEntPartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Partes\Partes_incidencias\frmPartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad.Designer.vb">
-      <DependentUpon>frmPartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Partes\Partes_incidencias\frmPartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Partes\Partes_incidencias\spPartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad.vb" />
-    <Compile Include="Produccion\Partes\Tareas\DBO_TareasEnvasado.vb" />
-    <Compile Include="Produccion\Partes\Tareas\frmEntTareasEnvasado.Designer.vb">
-      <DependentUpon>frmEntTareasEnvasado.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Partes\Tareas\frmEntTareasEnvasado.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Partes\Tareas\frmTareasEnvasado.Designer.vb">
-      <DependentUpon>frmTareasEnvasado.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Partes\Tareas\frmTareasEnvasado.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Partes\Tareas\spTareasEnvasado.vb" />
-    <Compile Include="Produccion\Lineas\Tareas_lineas\DBO_TareasEnvasado_LineasEnvasado.vb" />
-    <Compile Include="Produccion\Lineas\Tareas_lineas\frmEntTareasEnvasado_LineasEnvasado.Designer.vb">
-      <DependentUpon>frmEntTareasEnvasado_LineasEnvasado.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Lineas\Tareas_lineas\frmEntTareasEnvasado_LineasEnvasado.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Lineas\Tareas_lineas\frmTareasEnvasado_LineasEnvasado.Designer.vb">
-      <DependentUpon>frmTareasEnvasado_LineasEnvasado.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Lineas\Tareas_lineas\frmTareasEnvasado_LineasEnvasado.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Lineas\Tareas_lineas\spTareasEnvasado_LineasEnvasado.vb" />
-    <Compile Include="Produccion\Envasados3\DBO_Envasados3.vb" />
-    <Compile Include="Produccion\Envasados3\formatos3\DBO_FormatosEnvasados.vb" />
-    <Compile Include="Produccion\Envasados3\formatos3\spFormatosEnvasados.vb" />
-    <Compile Include="Produccion\Envasados3\paso_intermedio\DBO_Envasados.vb" />
-    <Compile Include="Produccion\Envasados3\paso_intermedio\frmSelectorEnvasado.Designer.vb">
-      <DependentUpon>frmSelectorEnvasado.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\paso_intermedio\frmSelectorEnvasado.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados3\paso_intermedio\spEnvasados.vb" />
-    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\PaletsContenidos2\frmEncajadoNoConforme.Designer.vb">
-      <DependentUpon>frmEncajadoNoConforme.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\PaletsContenidos2\frmEncajadoNoConforme.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Partes\DBO_empleados_formatosEnvasados.vb" />
-    <Compile Include="Produccion\Partes\frmempleados_formatosEnvasados.Designer.vb">
-      <DependentUpon>frmempleados_formatosEnvasados.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Partes\frmempleados_formatosEnvasados.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Partes\frmEntempleados_formatosEnvasados.Designer.vb">
-      <DependentUpon>frmEntempleados_formatosEnvasados.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Partes\frmEntempleados_formatosEnvasados.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Partes\spempleados_formatosEnvasados.vb" />
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles1\DBO_EnvasadosControles1.vb" />
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles1\frmEntEnvasadosControles1.Designer.vb">
-      <DependentUpon>frmEntEnvasadosControles1.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles1\frmEntEnvasadosControles1.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles1\spEnvasadosControles1.vb" />
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles2\DBO_EnvasadosControles2.vb" />
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles2\frmEntEnvasadosControles2.Designer.vb">
-      <DependentUpon>frmEntEnvasadosControles2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles2\frmEntEnvasadosControles2.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles2\spEnvasadosControles2.vb" />
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\ControlesImar\DBO_EnvasadosControlesImar.vb" />
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\ControlesImar\frmEntEnvasadosControlesImar.Designer.vb">
-      <DependentUpon>frmEntEnvasadosControlesImar.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\ControlesImar\frmEntEnvasadosControlesImar.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\ControlesImar\spEnvasadosControlesImar.vb" />
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\ControlesUlma\DBO_EnvasadosControlesUlma.vb" />
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\ControlesUlma\frmEntEnvasadosControlesUlma.Designer.vb">
-      <DependentUpon>frmEntEnvasadosControlesUlma.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\ControlesUlma\frmEntEnvasadosControlesUlma.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\ControlesUlma\spEnvasadosControlesUlma.vb" />
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles\DBO_EnvasadosControles.vb" />
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles\frmEntEnvasadosControles.Designer.vb">
-      <DependentUpon>frmEntEnvasadosControles.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles\frmEntEnvasadosControles.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\_rescatados\Controles\Controles\spEnvasadosControles.vb" />
-    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\Informe movimientos\destruccion\frmListadoDestruccion.Designer.vb">
+    <Compile Include="Control\PaletsMovimiento\Informe movimientos\destruccion\frmListadoDestruccion.Designer.vb">
       <DependentUpon>frmListadoDestruccion.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\Informe movimientos\destruccion\frmListadoDestruccion.vb">
+    <Compile Include="Control\PaletsMovimiento\Informe movimientos\destruccion\frmListadoDestruccion.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\Informe movimientos\destruccion\spListadoDestruccion.vb" />
+    <Compile Include="Control\PaletsMovimiento\Informe movimientos\destruccion\spListadoDestruccion.vb" />
     <Compile Include="Administracion\Articulos\Articulos1\Migraciones\frmArticulosGranelesMerge.Designer.vb">
       <DependentUpon>frmArticulosGranelesMerge.vb</DependentUpon>
     </Compile>
@@ -3409,81 +2856,13 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Control\Parametros\Unidades_medida\spUnidadesMedidas.vb" />
-    <Compile Include="Produccion\Envasados2\ControlesContenidoEfectivo2\DBO_ControlesContenidoEfectivo2.vb" />
-    <Compile Include="Produccion\Envasados2\ControlesContenidoEfectivo2\frmControlesContenidoEfectivo2.Designer.vb">
-      <DependentUpon>frmControlesContenidoEfectivo2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\ControlesContenidoEfectivo2\frmControlesContenidoEfectivo2.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\ControlesContenidoEfectivo2\frmEntControlesContenidoEfectivo2.Designer.vb">
-      <DependentUpon>frmEntControlesContenidoEfectivo2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\ControlesContenidoEfectivo2\frmEntControlesContenidoEfectivo2.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\ControlesContenidoEfectivo2\spControlesContenidoEfectivo2.vb" />
-    <Compile Include="Produccion\Envasados2\ControlesPresionLlenadora2\DBO_ControlesPresionLlenadora2.vb" />
-    <Compile Include="Produccion\Envasados2\ControlesPresionLlenadora2\frmControlesPresionLlenadora2.Designer.vb">
-      <DependentUpon>frmControlesPresionLlenadora2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\ControlesPresionLlenadora2\frmControlesPresionLlenadora2.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\ControlesPresionLlenadora2\frmEntControlesPresionLlenadora2.Designer.vb">
-      <DependentUpon>frmEntControlesPresionLlenadora2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\ControlesPresionLlenadora2\frmEntControlesPresionLlenadora2.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\ControlesPresionLlenadora2\spControlesPresionLlenadora2.vb" />
-    <Compile Include="Produccion\Envasados2\EnvasadosProductosArticulos\DBO_EnvasadosProductosArticulos.vb" />
-    <Compile Include="Produccion\Envasados2\EnvasadosProductosArticulos\frmEntEnvasadosProductosArticulos.Designer.vb">
-      <DependentUpon>frmEntEnvasadosProductosArticulos.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\EnvasadosProductosArticulos\frmEntEnvasadosProductosArticulos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\EnvasadosProductosArticulos\spEnvasadosProductosArticulos.vb" />
-    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\DBO_PaletsProducidos2.vb" />
-    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\PaletsContenidos2\frmContenidosDetallesMonodosis2.Designer.vb">
-      <DependentUpon>frmContenidosDetallesMonodosis2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\PaletsContenidos2\frmContenidosDetallesMonodosis2.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\PaletsContenidos2\DBO_PaletsContenidos2.vb" />
-    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\PaletsContenidos2\spPaletsContenidos2.vb" />
-    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\spPaletsProducidos2.vb" />
-    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Resumen\DBO_ResumenFormatosEnvasados.vb" />
-    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Resumen\frmResumen.Designer.vb">
-      <DependentUpon>frmResumen.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Resumen\frmResumen.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\Resumen\spResumen.vb" />
-    <Compile Include="Produccion\Envasados2\Incidencias recuento\frmIncidenciasRecuento.Designer.vb">
+    <Compile Include="Control\Envasado\Incidencias recuento\frmIncidenciasRecuento.Designer.vb">
       <DependentUpon>frmIncidenciasRecuento.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados2\Incidencias recuento\frmIncidenciasRecuento.vb">
+    <Compile Include="Control\Envasado\Incidencias recuento\frmIncidenciasRecuento.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados2\Incidencias recuento\spIncidenciasRecuento.vb" />
-    <Compile Include="Produccion\Envasados2\Productos2\EnvasadosProductosAnaliticas2\DBO_EnvasadosProductosAnaliticas2.vb" />
-    <Compile Include="Produccion\Envasados2\Productos2\EnvasadosProductosAnaliticas2\frmEntEnvasadosProductosAnaliticas2.Designer.vb">
-      <DependentUpon>frmEntEnvasadosProductosAnaliticas2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\Productos2\EnvasadosProductosAnaliticas2\frmEntEnvasadosProductosAnaliticas2.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\Productos2\EnvasadosProductosAnaliticas2\frmEnvasadosProductosAnaliticas2.Designer.vb">
-      <DependentUpon>frmEnvasadosProductosAnaliticas2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\Productos2\EnvasadosProductosAnaliticas2\frmEnvasadosProductosAnaliticas2.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\Productos2\EnvasadosProductosAnaliticas2\spEnvasadosProductosAnaliticas2.vb" />
+    <Compile Include="Control\Envasado\Incidencias recuento\spIncidenciasRecuento.vb" />
     <Compile Include="Otros\Geografia\paises\DBO_Paises.vb" />
     <Compile Include="Otros\Geografia\paises\frmEntPaises.Designer.vb">
       <DependentUpon>frmEntPaises.vb</DependentUpon>
@@ -3553,30 +2932,16 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Produccion\Almacen\OrdenesCarga\spOrdenesCarga.vb" />
-    <Compile Include="Produccion\Envasados2\Palets\PaletsAlmacenEntradas\DBO_PaletsAlmacenEntradas.vb" />
-    <Compile Include="Produccion\Envasados2\Palets\PaletsAlmacenEntradas\frmEntPaletsAlmacenEntradas.Designer.vb">
-      <DependentUpon>frmEntPaletsAlmacenEntradas.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\Palets\PaletsAlmacenEntradas\frmEntPaletsAlmacenEntradas.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\Palets\PaletsAlmacenEntradas\frmPaletsAlmacenEntradas.Designer.vb">
-      <DependentUpon>frmPaletsAlmacenEntradas.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\Palets\PaletsAlmacenEntradas\frmPaletsAlmacenEntradas.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\Palets\PaletsAlmacenEntradas\spPaletsAlmacenEntradas.vb" />
-    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\frmModMovimientoPalet.Designer.vb">
+    <Compile Include="Control\PaletsMovimiento\frmModMovimientoPalet.Designer.vb">
       <DependentUpon>frmModMovimientoPalet.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\frmModMovimientoPalet.vb">
+    <Compile Include="Control\PaletsMovimiento\frmModMovimientoPalet.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\Informe movimientos\InformeMovimientos.Designer.vb">
+    <Compile Include="Control\PaletsMovimiento\Informe movimientos\InformeMovimientos.Designer.vb">
       <DependentUpon>InformeMovimientos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\Informe movimientos\InformeMovimientos.vb">
+    <Compile Include="Control\PaletsMovimiento\Informe movimientos\InformeMovimientos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Administracion\Personal\PartesTrabajosDiariosDetalles\DBO_PartesTrabajosDiariosDetalles.vb" />
@@ -3607,124 +2972,46 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Administracion\Personal\PartesTrabajosDiariosMaestros\spPartesTrabajosDiariosMaestros.vb" />
-    <Compile Include="Produccion\Envasados2\CambiosFormatosEnvasados2\DBO_CambiosFormatosEnvasados2.vb" />
-    <Compile Include="Produccion\Envasados2\CambiosFormatosEnvasados2\spCambiosFormatosEnvasados2.vb" />
-    <Compile Include="Produccion\Envasados2\ControlesCalidadEnvasados3\DBO_ControlesCalidadEnvasados2.vb" />
-    <Compile Include="Produccion\Envasados2\ControlesCalidadEnvasados3\frmControlesCalidadEnvasados2.Designer.vb">
-      <DependentUpon>frmControlesCalidadEnvasados2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\ControlesCalidadEnvasados3\frmControlesCalidadEnvasados2.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\ControlesCalidadEnvasados3\frmEntControlesCalidadEnvasados2.Designer.vb">
-      <DependentUpon>frmEntControlesCalidadEnvasados2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\ControlesCalidadEnvasados3\frmEntControlesCalidadEnvasados2.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\ControlesCalidadEnvasados3\spControlesCalidadEnvasados2.vb" />
-    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\frmFormatosEnvasados2.Designer.vb">
-      <DependentUpon>frmFormatosEnvasados2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\frmFormatosEnvasados2.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\FormatosEnvasados2\spFormatosEnvasados2.vb" />
-    <Compile Include="Produccion\Envasados2\Envasados2\frmEntEnvasados2.Designer.vb">
-      <DependentUpon>frmEntEnvasados2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\Envasados2\frmEntEnvasados2.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\Envasados2\frmEnvasados2.Designer.vb">
-      <DependentUpon>frmEnvasados2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\Envasados2\frmEnvasados2.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\ParadasOrdenadas2\DBO_ParadaOrdenadas2.vb" />
-    <Compile Include="Produccion\Envasados2\ParadasOrdenadas2\frmEntParadaOrdenadas2.Designer.vb">
-      <DependentUpon>frmEntParadaOrdenadas2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\ParadasOrdenadas2\frmEntParadaOrdenadas2.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\ParadasOrdenadas2\frmParadaOrdenadas2.Designer.vb">
-      <DependentUpon>frmParadaOrdenadas2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\ParadasOrdenadas2\frmParadaOrdenadas2.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\ParadasOrdenadas2\spParadaOrdenadas2.vb" />
-    <Compile Include="Produccion\Envasados2\Propuestas2\DBO_Propuestas2.vb" />
-    <Compile Include="Produccion\Envasados2\Propuestas2\frmEntPropuestas2.Designer.vb">
-      <DependentUpon>frmEntPropuestas2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\Propuestas2\frmEntPropuestas2.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\Propuestas2\frmPropuestas2.Designer.vb">
-      <DependentUpon>frmPropuestas2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\Propuestas2\frmPropuestas2.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\Propuestas2\spPropuestas2.vb" />
-    <Compile Include="Produccion\Envasados2\Envasados2\spEnvasados2.vb" />
-    <Compile Include="Produccion\Envasados2\VelocidadEnvasados2\DBO_VelocidadEnvasados2.vb" />
-    <Compile Include="Produccion\Envasados2\VelocidadEnvasados2\frmEntVelocidadEnvasados2.Designer.vb">
-      <DependentUpon>frmEntVelocidadEnvasados2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\VelocidadEnvasados2\frmEntVelocidadEnvasados2.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\VelocidadEnvasados2\frmVelocidadEnvasados2.Designer.vb">
-      <DependentUpon>frmVelocidadEnvasados2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\VelocidadEnvasados2\frmVelocidadEnvasados2.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produccion\Envasados2\VelocidadEnvasados2\spVelocidadEnvasados2.vb" />
-    <Compile Include="Produccion\Envasados2\OrdenesEnvasados2\ArticulosOrdenEnvasado2\DBO_ArticulosOrdenEnvasado2.vb" />
-    <Compile Include="Produccion\Envasados2\OrdenesEnvasados2\ArticulosOrdenEnvasado2\Detalles\frmAmpliarEnvase.Designer.vb">
+    <Compile Include="Control\OrdenesEnvasados2\ArticulosOrdenEnvasado2\DBO_ArticulosOrdenEnvasado2.vb" />
+    <Compile Include="Control\OrdenesEnvasados2\ArticulosOrdenEnvasado2\Detalles\frmAmpliarEnvase.Designer.vb">
       <DependentUpon>frmAmpliarEnvase.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados2\OrdenesEnvasados2\ArticulosOrdenEnvasado2\Detalles\frmAmpliarEnvase.vb">
+    <Compile Include="Control\OrdenesEnvasados2\ArticulosOrdenEnvasado2\Detalles\frmAmpliarEnvase.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados2\OrdenesEnvasados2\ArticulosOrdenEnvasado2\Detalles\frmDetallesArtOrdEnv.Designer.vb">
+    <Compile Include="Control\OrdenesEnvasados2\ArticulosOrdenEnvasado2\Detalles\frmDetallesArtOrdEnv.Designer.vb">
       <DependentUpon>frmDetallesArtOrdEnv.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados2\OrdenesEnvasados2\ArticulosOrdenEnvasado2\Detalles\frmDetallesArtOrdEnv.vb">
+    <Compile Include="Control\OrdenesEnvasados2\ArticulosOrdenEnvasado2\Detalles\frmDetallesArtOrdEnv.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados2\OrdenesEnvasados2\ArticulosOrdenEnvasado2\frmEntArticulosOrdenEnvasado2.Designer.vb">
+    <Compile Include="Control\OrdenesEnvasados2\ArticulosOrdenEnvasado2\frmEntArticulosOrdenEnvasado2.Designer.vb">
       <DependentUpon>frmEntArticulosOrdenEnvasado2.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados2\OrdenesEnvasados2\ArticulosOrdenEnvasado2\frmEntArticulosOrdenEnvasado2.vb">
+    <Compile Include="Control\OrdenesEnvasados2\ArticulosOrdenEnvasado2\frmEntArticulosOrdenEnvasado2.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados2\OrdenesEnvasados2\ArticulosOrdenEnvasado2\spArticulosOrdenEnvasado2.vb" />
-    <Compile Include="Produccion\Envasados2\OrdenesEnvasados2\DBO_OrdenesEnvasado2.vb" />
-    <Compile Include="Produccion\Envasados2\OrdenesEnvasados2\frmEntOrdenesEnvasado2.Designer.vb">
+    <Compile Include="Control\OrdenesEnvasados2\ArticulosOrdenEnvasado2\spArticulosOrdenEnvasado2.vb" />
+    <Compile Include="Control\OrdenesEnvasados2\DBO_OrdenesEnvasado2.vb" />
+    <Compile Include="Control\OrdenesEnvasados2\frmEntOrdenesEnvasado2.Designer.vb">
       <DependentUpon>frmEntOrdenesEnvasado2.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados2\OrdenesEnvasados2\frmEntOrdenesEnvasado2.vb">
+    <Compile Include="Control\OrdenesEnvasados2\frmEntOrdenesEnvasado2.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados2\OrdenesEnvasados2\frmOrdenesEnvasado2.Designer.vb">
+    <Compile Include="Control\OrdenesEnvasados2\frmOrdenesEnvasado2.Designer.vb">
       <DependentUpon>frmOrdenesEnvasado2.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados2\OrdenesEnvasados2\frmOrdenesEnvasado2.vb">
+    <Compile Include="Control\OrdenesEnvasados2\frmOrdenesEnvasado2.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados2\OrdenesEnvasados2\frmOrdenesEnvasado2Detalle.Designer.vb">
+    <Compile Include="Control\OrdenesEnvasados2\frmOrdenesEnvasado2Detalle.Designer.vb">
       <DependentUpon>frmOrdenesEnvasado2Detalle.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados2\OrdenesEnvasados2\frmOrdenesEnvasado2Detalle.vb">
+    <Compile Include="Control\OrdenesEnvasados2\frmOrdenesEnvasado2Detalle.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados2\OrdenesEnvasados2\spOrdenesEnvasado2.vb" />
+    <Compile Include="Control\OrdenesEnvasados2\spOrdenesEnvasado2.vb" />
     <Compile Include="Administracion\Pagos\PagosFormas\DBO_PagosFormas.vb" />
     <Compile Include="Administracion\Pagos\PagosFormas\frmEntPagosFormas.Designer.vb">
       <DependentUpon>frmEntPagosFormas.vb</DependentUpon>
@@ -4243,8 +3530,8 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Administracion\Personal\Tareas\spTareas.vb" />
-    <Compile Include="Produccion\Envasados2\Tipos formatos\TiposFormatos1\DBO_ArticulosEnvasadosHistorico.vb" />
-    <Compile Include="Produccion\Envasados2\Tipos formatos\TiposFormatos1\spArticulosEnvasadosHistorico1.vb" />
+    <Compile Include="Administracion\Articulos\TiposFormatos1\DBO_ArticulosEnvasadosHistorico.vb" />
+    <Compile Include="Administracion\Articulos\TiposFormatos1\spArticulosEnvasadosHistorico1.vb" />
     <Compile Include="Control\TiposProductos\spTiposProductos.vb" />
     <Compile Include="Administracion\Personal\TurnosTrabajo\DBO_TurnosTrabajo.vb" />
     <Compile Include="Administracion\Personal\TurnosTrabajo\frmEntTurnosTrabajo.Designer.vb">
@@ -4467,30 +3754,30 @@
     <Compile Include="Control\Epis\spControlesEntregasEpis.vb" />
     <Compile Include="Control\Epis\spEpis.vb" />
     <Compile Include="Control\Epis\spEpisTipos.vb" />
-    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\Dbo_Movimiento_Dbo_Movimientosubtipo.vb" />
-    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\Dbo_Movimiento_Dbo_Movimientotipo.vb" />
-    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\Dbo_PaletsMovimiento.vb" />
-    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\Informe movimientos\frmPaletSCC.Designer.vb">
+    <Compile Include="Control\PaletsMovimiento\Dbo_Movimiento_Dbo_Movimientosubtipo.vb" />
+    <Compile Include="Control\PaletsMovimiento\Dbo_Movimiento_Dbo_Movimientotipo.vb" />
+    <Compile Include="Control\PaletsMovimiento\Dbo_PaletsMovimiento.vb" />
+    <Compile Include="Control\PaletsMovimiento\Informe movimientos\frmPaletSCC.Designer.vb">
       <DependentUpon>frmPaletSCC.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\Informe movimientos\frmPaletSCC.vb">
+    <Compile Include="Control\PaletsMovimiento\Informe movimientos\frmPaletSCC.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\PaletsMovimientoSubTipo\DBO_PaletsMovimientoSubTipo.vb" />
-    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\PaletsMovimientoSubTipo\frmEntPaletsMovimientoSubTipo.Designer.vb">
+    <Compile Include="Control\PaletsMovimiento\PaletsMovimientoSubTipo\DBO_PaletsMovimientoSubTipo.vb" />
+    <Compile Include="Control\PaletsMovimiento\PaletsMovimientoSubTipo\frmEntPaletsMovimientoSubTipo.Designer.vb">
       <DependentUpon>frmEntPaletsMovimientoSubTipo.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\PaletsMovimientoSubTipo\frmEntPaletsMovimientoSubTipo.vb">
+    <Compile Include="Control\PaletsMovimiento\PaletsMovimientoSubTipo\frmEntPaletsMovimientoSubTipo.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\PaletsMovimientoSubTipo\frmPaletsMovimientoSubTipo.Designer.vb">
+    <Compile Include="Control\PaletsMovimiento\PaletsMovimientoSubTipo\frmPaletsMovimientoSubTipo.Designer.vb">
       <DependentUpon>frmPaletsMovimientoSubTipo.vb</DependentUpon>
     </Compile>
-    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\PaletsMovimientoSubTipo\frmPaletsMovimientoSubTipo.vb">
+    <Compile Include="Control\PaletsMovimiento\PaletsMovimientoSubTipo\frmPaletsMovimientoSubTipo.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\PaletsMovimientoSubTipo\spPaletsMovimientoSubTipo.vb" />
-    <Compile Include="Produccion\Envasados2\Palets\PaletsMovimiento\spPaletsMovimiento.vb" />
+    <Compile Include="Control\PaletsMovimiento\PaletsMovimientoSubTipo\spPaletsMovimientoSubTipo.vb" />
+    <Compile Include="Control\PaletsMovimiento\spPaletsMovimiento.vb" />
     <Compile Include="Administracion\PedidosClientes\Informe\frmInformePedidos.Designer.vb">
       <DependentUpon>frmInformePedidos.vb</DependentUpon>
     </Compile>
@@ -5482,194 +4769,47 @@
     <EmbeddedResource Include="Produccion\Almacen\Movimientos\Copy of AgnadirAcarga.resx">
       <DependentUpon>Copy of AgnadirAcarga.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\CambiosFormatosEnvasados2\frmCambiosFormatosEnvasados2.resx">
-      <DependentUpon>frmCambiosFormatosEnvasados2.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\CambiosFormatosEnvasados2\frmEntCambiosFormatosEnvasados2.resx">
-      <DependentUpon>frmEntCambiosFormatosEnvasados2.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\EnvasadosProductosArticulos\new\frmEnvasadosProductosArticulos_NO_USAR.resx">
-      <DependentUpon>frmEnvasadosProductosArticulos_NO_USAR.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\FormatosEnvasados2\frmEntFormatosEnvasados2.resx">
-      <DependentUpon>frmEntFormatosEnvasados2.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\Listados\frmLisEnvPorReferencia.resx">
+    <EmbeddedResource Include="Control\Envasado\Listados\frmLisEnvPorReferencia.resx">
       <DependentUpon>frmLisEnvPorReferencia.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\Listados\frmPaletsIncompletos.resx">
+    <EmbeddedResource Include="Control\Envasado\Listados\frmPaletsIncompletos.resx">
       <DependentUpon>frmPaletsIncompletos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\Listados\new\frmLisEnvPorArticuloPrimario.resx">
+    <EmbeddedResource Include="Control\Envasado\Listados\new\frmLisEnvPorArticuloPrimario.resx">
       <DependentUpon>frmLisEnvPorArticuloPrimario.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\MaterialesEnvasados2\frmEntMaterialesEnvasados2.resx">
-      <DependentUpon>frmEntMaterialesEnvasados2.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\MaterialesEnvasados2\frmMaterialesEnvasados2.resx">
-      <DependentUpon>frmMaterialesEnvasados2.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\Palets\PaletsMovimiento\Entre Palets\frmPaletsMovimientoEntrePalets.resx">
+    <EmbeddedResource Include="Control\PaletsMovimiento\Entre Palets\frmPaletsMovimientoEntrePalets.resx">
       <DependentUpon>frmPaletsMovimientoEntrePalets.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\Palets\PaletsMovimiento\Informe movimientos\frmModificarFecha.resx">
+    <EmbeddedResource Include="Control\PaletsMovimiento\Informe movimientos\frmModificarFecha.resx">
       <DependentUpon>frmModificarFecha.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\Palets\PaletsMovimiento\Informe movimientos\frmModificarHora.resx">
+    <EmbeddedResource Include="Control\PaletsMovimiento\Informe movimientos\frmModificarHora.resx">
       <DependentUpon>frmModificarHora.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\Personal\frmEntPersonalEnvasado.resx">
-      <DependentUpon>frmEntPersonalEnvasado.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\Personal\frmEntPersonalEnvasadoFin.resx">
-      <DependentUpon>frmEntPersonalEnvasadoFin.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\Personal\frmEntPersonalEnvasadoFinArticulo.resx">
-      <DependentUpon>frmEntPersonalEnvasadoFinArticulo.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\Personal\frmPersonalEnvasadoOcupado.resx">
-      <DependentUpon>frmPersonalEnvasadoOcupado.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\Personal\frmSituacionPersonal.resx">
-      <DependentUpon>frmSituacionPersonal.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\_rescatados\Controles\Controles7\frmEntEnvasadosControles7.resx">
-      <DependentUpon>frmEntEnvasadosControles7.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\_rescatados\Controles\Controles\frmEnvasadosControles.resx">
-      <DependentUpon>frmEnvasadosControles.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\ArticulosTerciarios\frmPaletsProducidos3.resx">
-      <DependentUpon>frmPaletsProducidos3.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\Copy of etiquetas\articulosLoteados\frmArticulosLoteados.resx">
-      <DependentUpon>frmArticulosLoteados.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\Copy of etiquetas\articulosLoteados\frmEntArticulosLoteados.resx">
-      <DependentUpon>frmEntArticulosLoteados.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\Copy of etiquetas\frnEtiquetaEditable.resx">
-      <DependentUpon>frnEtiquetaEditable.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\Copy of etiquetas\TiposLoteados\frmEntTiposLoteados.resx">
-      <DependentUpon>frmEntTiposLoteados.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\Copy of etiquetas\TiposLoteados\frmTiposLoteados.resx">
-      <DependentUpon>frmTiposLoteados.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\Incidencias2\Categorias\frmCategoriaIncidencias.resx">
+    <EmbeddedResource Include="Control\Incidencias\Incidencias2\Categorias\frmCategoriaIncidencias.resx">
       <DependentUpon>frmCategoriaIncidencias.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\Incidencias2\Categorias\frmEntCategoriaIncidencias.resx">
+    <EmbeddedResource Include="Control\Incidencias\Incidencias2\Categorias\frmEntCategoriaIncidencias.resx">
       <DependentUpon>frmEntCategoriaIncidencias.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\Incidencias2\Clases\frmClasesIncidencias.resx">
+    <EmbeddedResource Include="Control\Incidencias\Incidencias2\Clases\frmClasesIncidencias.resx">
       <DependentUpon>frmClasesIncidencias.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\Incidencias2\Clases\frmEntClasesIncidencias.resx">
+    <EmbeddedResource Include="Control\Incidencias\Incidencias2\Clases\frmEntClasesIncidencias.resx">
       <DependentUpon>frmEntClasesIncidencias.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\Incidencias2\Incidencias_Empleados\frmEntIncidenciasEmpleados.resx">
-      <DependentUpon>frmEntIncidenciasEmpleados.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\Incidencias2\Incidencias_Empleados\frmIncidenciasEmpleados.resx">
-      <DependentUpon>frmIncidenciasEmpleados.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\Incidencias2\IncidenciasCalidad2\new\frmEntIncidenciasCalidad.resx">
-      <DependentUpon>frmEntIncidenciasCalidad.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\Incidencias2\IncidenciasCalidad2\new\frmIncidenciasCalidad.resx">
-      <DependentUpon>frmIncidenciasCalidad.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\Incidencias2\new\frmEntIncidencias_SU.resx">
-      <DependentUpon>frmEntIncidencias_SU.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\Incidencias2\new\frmEntIncidencias.resx">
-      <DependentUpon>frmEntIncidencias.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\Incidencias2\new\frmIncidencias.resx">
-      <DependentUpon>frmIncidencias.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\Incidencias2\Tipos\frmEntTiposIncidencias.resx">
+    <EmbeddedResource Include="Control\Incidencias\Incidencias2\Tipos\frmEntTiposIncidencias.resx">
       <DependentUpon>frmEntTiposIncidencias.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\Incidencias2\Tipos\frmTiposIncidencias.resx">
+    <EmbeddedResource Include="Control\Incidencias\Incidencias2\Tipos\frmTiposIncidencias.resx">
       <DependentUpon>frmTiposIncidencias.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\PaletsContenidos3\frmContenidosDetallesMonodosis.resx">
-      <DependentUpon>frmContenidosDetallesMonodosis.vb</DependentUpon>
+    <EmbeddedResource Include="Control\PaletsMovimiento\PaletsMovimientosTipos\frmEntPaletsMovimientosTipos.resx">
+      <DependentUpon>frmEntPaletsMovimientosTipos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\PaletsContenidos3\frmEntCompletado.resx">
-      <DependentUpon>frmEntCompletado.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\PaletsContenidos3\frmEntPaletsContenidos.resx">
-      <DependentUpon>frmEntPaletsContenidos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\PaletsContenidos3\frmEntPaletsContenidosDoypack.resx">
-      <DependentUpon>frmEntPaletsContenidosDoypack.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\PaletsContenidos3\frmEntPaletsContenidosMonodosis.resx">
-      <DependentUpon>frmEntPaletsContenidosMonodosis.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\PaletsContenidos3\frmPaletsContenidos.resx">
-      <DependentUpon>frmPaletsContenidos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\PaletsProducidos3\estados\frmEntPaletsEstados.resx">
-      <DependentUpon>frmEntPaletsEstados.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\PaletsProducidos3\estados\frmPaletsEstados.resx">
-      <DependentUpon>frmPaletsEstados.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\PaletsProducidos3\frmEntPaletsProducidos.resx">
-      <DependentUpon>frmEntPaletsProducidos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\PaletsProducidos3\frmPaletsProducidos.resx">
-      <DependentUpon>frmPaletsProducidos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\PaletsProducidos3\frmSinContenidos.resx">
-      <DependentUpon>frmSinContenidos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\PersonalEnLinea\frmPersonalEnvasadoSinFin.resx">
-      <DependentUpon>frmPersonalEnvasadoSinFin.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\PersonalEnLinea\PersonalEnLinea.resx">
-      <DependentUpon>PersonalEnLinea.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\PersonalEnLinea\envasado\frmempleados_envasados.resx">
-      <DependentUpon>frmempleados_envasados.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\PersonalEnLinea\envasado\frmEntempleados_envasados.resx">
-      <DependentUpon>frmEntempleados_envasados.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\Productos\frmEntEnvasadosProductos.resx">
-      <DependentUpon>frmEntEnvasadosProductos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\Productos\frmEnvasadosProductos.resx">
-      <DependentUpon>frmEnvasadosProductos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\ResumenPersonal\resumenPersonal.resx">
-      <DependentUpon>resumenPersonal.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\Trazabilidad\frmEntMaterialesEnvasados.resx">
-      <DependentUpon>frmEntMaterialesEnvasados.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados3\Trazabilidad\frmMaterialesEnvasados.resx">
-      <DependentUpon>frmMaterialesEnvasados.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Lineas\LineasEnvasados\frmEntLineasEnvasado.resx">
-      <DependentUpon>frmEntLineasEnvasado.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Lineas\LineasEnvasados\frmLineasEnvasado.resx">
-      <DependentUpon>frmLineasEnvasado.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Lineas\TiposFormatosLineas\TiposFormatosLineas_tiposFormatos\frmEntTiposFormatosLineas_TiposFormatos.resx">
-      <DependentUpon>frmEntTiposFormatosLineas_TiposFormatos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Lineas\TiposFormatosLineas\TiposFormatosLineas_tiposFormatos\frmModLoteTiposFormatosLineas_TiposFormatos.resx">
-      <DependentUpon>frmModLoteTiposFormatosLineas_TiposFormatos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Lineas\TiposFormatosLineas\TiposFormatosLineas_tiposFormatos\frmTiposFormatosLineas_TiposFormatos.resx">
-      <DependentUpon>frmTiposFormatosLineas_TiposFormatos.vb</DependentUpon>
+    <EmbeddedResource Include="Control\PaletsMovimiento\PaletsMovimientosTipos\frmPaletsMovimientosTipos.resx">
+      <DependentUpon>frmPaletsMovimientosTipos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Produccion\maquinas\frmEntMaquinas.resx">
       <DependentUpon>frmEntMaquinas.vb</DependentUpon>
@@ -5677,103 +4817,13 @@
     <EmbeddedResource Include="Produccion\maquinas\frmMaquinas.resx">
       <DependentUpon>frmMaquinas.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Lineas\Maquinas_lineas\frmEntMaquinas_Lineas.resx">
-      <DependentUpon>frmEntMaquinas_Lineas.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Lineas\Maquinas_lineas\frmMaquinas_Lineas.resx">
-      <DependentUpon>frmMaquinas_Lineas.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Lineas\TiposFormatosLineas\frmEntTiposFormatosLineas.resx">
-      <DependentUpon>frmEntTiposFormatosLineas.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Lineas\TiposFormatosLineas\frmTiposFormatosLineas.resx">
-      <DependentUpon>frmTiposFormatosLineas.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\Palets\PaletsMovimiento\PaletsMovimientosTipos\frmEntPaletsMovimientosTipos.resx">
-      <DependentUpon>frmEntPaletsMovimientosTipos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\Palets\PaletsMovimiento\PaletsMovimientosTipos\frmPaletsMovimientosTipos.resx">
-      <DependentUpon>frmPaletsMovimientosTipos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Lineas\Empleados_lineas\frmEmpleados_LineasEnvasado.resx">
-      <DependentUpon>frmEmpleados_LineasEnvasado.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Lineas\Empleados_lineas\frmEntEmpleados_LineasEnvasado.resx">
-      <DependentUpon>frmEntEmpleados_LineasEnvasado.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Produccion\palets tipos\frmEntPaletsTipos.resx">
       <DependentUpon>frmEntPaletsTipos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Produccion\palets tipos\frmPaletsTipos.resx">
       <DependentUpon>frmPaletsTipos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Partes\Causas\frmCausasPartesEnvasado.resx">
-      <DependentUpon>frmCausasPartesEnvasado.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Partes\Causas\frmEntCausasPartesEnvasado.resx">
-      <DependentUpon>frmEntCausasPartesEnvasado.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Partes\Causas\Partes_causasIns\frmEntPartesEnvasadosCausasIns.resx">
-      <DependentUpon>frmEntPartesEnvasadosCausasIns.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Partes\Causas\Partes_causasIns\frmPartesEnvasadoCausasIns.resx">
-      <DependentUpon>frmPartesEnvasadoCausasIns.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Partes\Causas\Partes_causas\frmEntPartesEnvasados_CausasPartesEnvasado.resx">
-      <DependentUpon>frmEntPartesEnvasados_CausasPartesEnvasado.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Partes\Causas\Partes_causas\frmPartesEnvasados_CausasPartesEnvasado.resx">
-      <DependentUpon>frmPartesEnvasados_CausasPartesEnvasado.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Partes\Causas\Tipos\frmCausasPartesEnvasadoTipos.resx">
-      <DependentUpon>frmCausasPartesEnvasadoTipos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Partes\Causas\Tipos\frmEntCausasPartesEnvasadoTipos.resx">
-      <DependentUpon>frmEntCausasPartesEnvasadoTipos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Partes\Partes_incidencias\frmEntPartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad.resx">
-      <DependentUpon>frmEntPartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Partes\Partes_incidencias\frmPartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad.resx">
-      <DependentUpon>frmPartesEnvasados_CausasPartesEnvasado_IncidenciasCalidad.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Partes\Tareas\frmEntTareasEnvasado.resx">
-      <DependentUpon>frmEntTareasEnvasado.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Partes\Tareas\frmTareasEnvasado.resx">
-      <DependentUpon>frmTareasEnvasado.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Lineas\Tareas_lineas\frmEntTareasEnvasado_LineasEnvasado.resx">
-      <DependentUpon>frmEntTareasEnvasado_LineasEnvasado.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Lineas\Tareas_lineas\frmTareasEnvasado_LineasEnvasado.resx">
-      <DependentUpon>frmTareasEnvasado_LineasEnvasado.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\PaletsContenidos2\frmEncajadoNoConforme.resx">
-      <DependentUpon>frmEncajadoNoConforme.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Partes\frmempleados_formatosEnvasados.resx">
-      <DependentUpon>frmempleados_formatosEnvasados.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Partes\frmEntempleados_formatosEnvasados.resx">
-      <DependentUpon>frmEntempleados_formatosEnvasados.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\_rescatados\Controles\Controles1\frmEntEnvasadosControles1.resx">
-      <DependentUpon>frmEntEnvasadosControles1.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\_rescatados\Controles\Controles2\frmEntEnvasadosControles2.resx">
-      <DependentUpon>frmEntEnvasadosControles2.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\_rescatados\Controles\ControlesImar\frmEntEnvasadosControlesImar.resx">
-      <DependentUpon>frmEntEnvasadosControlesImar.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\_rescatados\Controles\ControlesUlma\frmEntEnvasadosControlesUlma.resx">
-      <DependentUpon>frmEntEnvasadosControlesUlma.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\_rescatados\Controles\Controles\frmEntEnvasadosControles.resx">
-      <DependentUpon>frmEntEnvasadosControles.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\Palets\PaletsMovimiento\Informe movimientos\destruccion\frmListadoDestruccion.resx">
+    <EmbeddedResource Include="Control\PaletsMovimiento\Informe movimientos\destruccion\frmListadoDestruccion.resx">
       <DependentUpon>frmListadoDestruccion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administracion\Articulos\Articulos1\Migraciones\frmArticulosGranelesMerge.resx">
@@ -5938,35 +4988,8 @@
     <EmbeddedResource Include="Bases\Utilidades\DBCopyTool\frmDBTools.resx">
       <DependentUpon>frmDBTools.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\ControlesContenidoEfectivo2\frmControlesContenidoEfectivo2.resx">
-      <DependentUpon>frmControlesContenidoEfectivo2.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\ControlesContenidoEfectivo2\frmEntControlesContenidoEfectivo2.resx">
-      <DependentUpon>frmEntControlesContenidoEfectivo2.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\ControlesPresionLlenadora2\frmControlesPresionLlenadora2.resx">
-      <DependentUpon>frmControlesPresionLlenadora2.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\ControlesPresionLlenadora2\frmEntControlesPresionLlenadora2.resx">
-      <DependentUpon>frmEntControlesPresionLlenadora2.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\EnvasadosProductosArticulos\frmEntEnvasadosProductosArticulos.resx">
-      <DependentUpon>frmEntEnvasadosProductosArticulos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\FormatosEnvasados2\Copy of Palets Producidos 2\PaletsContenidos2\frmContenidosDetallesMonodosis2.resx">
-      <DependentUpon>frmContenidosDetallesMonodosis2.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\FormatosEnvasados2\Resumen\frmResumen.resx">
-      <DependentUpon>frmResumen.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\Incidencias recuento\frmIncidenciasRecuento.resx">
+    <EmbeddedResource Include="Control\Envasado\Incidencias recuento\frmIncidenciasRecuento.resx">
       <DependentUpon>frmIncidenciasRecuento.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\Productos2\EnvasadosProductosAnaliticas2\frmEntEnvasadosProductosAnaliticas2.resx">
-      <DependentUpon>frmEntEnvasadosProductosAnaliticas2.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\Productos2\EnvasadosProductosAnaliticas2\frmEnvasadosProductosAnaliticas2.resx">
-      <DependentUpon>frmEnvasadosProductosAnaliticas2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administracion\Clientes\frmClientes.resx">
       <DependentUpon>frmClientes.vb</DependentUpon>
@@ -6022,16 +5045,10 @@
     <EmbeddedResource Include="Produccion\Almacen\OrdenesCarga\frmOrdenesCargaInformeDetalle.resx">
       <DependentUpon>frmOrdenesCargaInformeDetalle.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\Palets\PaletsAlmacenEntradas\frmEntPaletsAlmacenEntradas.resx">
-      <DependentUpon>frmEntPaletsAlmacenEntradas.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\Palets\PaletsAlmacenEntradas\frmPaletsAlmacenEntradas.resx">
-      <DependentUpon>frmPaletsAlmacenEntradas.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\Palets\PaletsMovimiento\frmModMovimientoPalet.resx">
+    <EmbeddedResource Include="Control\PaletsMovimiento\frmModMovimientoPalet.resx">
       <DependentUpon>frmModMovimientoPalet.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\Palets\PaletsMovimiento\Informe movimientos\InformeMovimientos.resx">
+    <EmbeddedResource Include="Control\PaletsMovimiento\Informe movimientos\InformeMovimientos.resx">
       <DependentUpon>InformeMovimientos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administracion\Personal\PartesTrabajosDiariosDetalles\frmEntPartesTrabajosDiariosDetalles.resx">
@@ -6051,39 +5068,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administracion\Articulos\Articulos_ArticulosCertificadosTipos\frmEntArticulos_ArticulosCertificadosTipos.resx">
       <DependentUpon>frmEntArticulos_ArticulosCertificadosTipos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\ControlesCalidadEnvasados3\frmControlesCalidadEnvasados2.resx">
-      <DependentUpon>frmControlesCalidadEnvasados2.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\ControlesCalidadEnvasados3\frmEntControlesCalidadEnvasados2.resx">
-      <DependentUpon>frmEntControlesCalidadEnvasados2.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\FormatosEnvasados2\frmFormatosEnvasados2.resx">
-      <DependentUpon>frmFormatosEnvasados2.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\Envasados2\frmEntEnvasados2.resx">
-      <DependentUpon>frmEntEnvasados2.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\Envasados2\frmEnvasados2.resx">
-      <DependentUpon>frmEnvasados2.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\ParadasOrdenadas2\frmEntParadaOrdenadas2.resx">
-      <DependentUpon>frmEntParadaOrdenadas2.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\ParadasOrdenadas2\frmParadaOrdenadas2.resx">
-      <DependentUpon>frmParadaOrdenadas2.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\Propuestas2\frmEntPropuestas2.resx">
-      <DependentUpon>frmEntPropuestas2.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\Propuestas2\frmPropuestas2.resx">
-      <DependentUpon>frmPropuestas2.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\VelocidadEnvasados2\frmEntVelocidadEnvasados2.resx">
-      <DependentUpon>frmEntVelocidadEnvasados2.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\VelocidadEnvasados2\frmVelocidadEnvasados2.resx">
-      <DependentUpon>frmVelocidadEnvasados2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Control\Epis\frmControlesEntregasEpis.resx">
       <DependentUpon>frmControlesEntregasEpis.vb</DependentUpon>
@@ -6190,23 +5174,23 @@
     <EmbeddedResource Include="Control\SGI\SaludLaboral\frmSaludLaboral.resx">
       <DependentUpon>frmSaludLaboral.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\OrdenesEnvasados2\ArticulosOrdenEnvasado2\Detalles\frmAmpliarEnvase.resx">
+    <EmbeddedResource Include="Control\OrdenesEnvasados2\ArticulosOrdenEnvasado2\Detalles\frmAmpliarEnvase.resx">
       <DependentUpon>frmAmpliarEnvase.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\OrdenesEnvasados2\ArticulosOrdenEnvasado2\Detalles\frmDetallesArtOrdEnv.resx">
+    <EmbeddedResource Include="Control\OrdenesEnvasados2\ArticulosOrdenEnvasado2\Detalles\frmDetallesArtOrdEnv.resx">
       <DependentUpon>frmDetallesArtOrdEnv.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\OrdenesEnvasados2\ArticulosOrdenEnvasado2\frmEntArticulosOrdenEnvasado2.resx">
+    <EmbeddedResource Include="Control\OrdenesEnvasados2\ArticulosOrdenEnvasado2\frmEntArticulosOrdenEnvasado2.resx">
       <DependentUpon>frmEntArticulosOrdenEnvasado2.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\OrdenesEnvasados2\frmEntOrdenesEnvasado2.resx">
+    <EmbeddedResource Include="Control\OrdenesEnvasados2\frmEntOrdenesEnvasado2.resx">
       <DependentUpon>frmEntOrdenesEnvasado2.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\OrdenesEnvasados2\frmOrdenesEnvasado2.resx">
+    <EmbeddedResource Include="Control\OrdenesEnvasados2\frmOrdenesEnvasado2.resx">
       <DependentUpon>frmOrdenesEnvasado2.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\OrdenesEnvasados2\frmOrdenesEnvasado2Detalle.resx">
+    <EmbeddedResource Include="Control\OrdenesEnvasados2\frmOrdenesEnvasado2Detalle.resx">
       <DependentUpon>frmOrdenesEnvasado2Detalle.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administracion\Pagos\PagosFormas\frmEntPagosFormas.resx">
@@ -6218,13 +5202,13 @@
     <EmbeddedResource Include="Administracion\Pagos\PagosPlazos\frmEntPagosPlazos.resx">
       <DependentUpon>frmEntPagosPlazos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\Palets\PaletsMovimiento\Informe movimientos\frmPaletSCC.resx">
+    <EmbeddedResource Include="Control\PaletsMovimiento\Informe movimientos\frmPaletSCC.resx">
       <DependentUpon>frmPaletSCC.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\Palets\PaletsMovimiento\PaletsMovimientoSubTipo\frmEntPaletsMovimientoSubTipo.resx">
+    <EmbeddedResource Include="Control\PaletsMovimiento\PaletsMovimientoSubTipo\frmEntPaletsMovimientoSubTipo.resx">
       <DependentUpon>frmEntPaletsMovimientoSubTipo.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produccion\Envasados2\Palets\PaletsMovimiento\PaletsMovimientoSubTipo\frmPaletsMovimientoSubTipo.resx">
+    <EmbeddedResource Include="Control\PaletsMovimiento\PaletsMovimientoSubTipo\frmPaletsMovimientoSubTipo.resx">
       <DependentUpon>frmPaletsMovimientoSubTipo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administracion\PedidosClientes\Detalle\frmEntPedidosClientesDetalles2.resx">
@@ -6565,15 +5549,15 @@
     <None Include="Produccion\Almacen\AlbaranesCarga\AlbaranesCargaDefinitivos\Maestro\dtsAlbaranesCargaMaestro.xss">
       <DependentUpon>dtsAlbaranesCargaMaestro.xsd</DependentUpon>
     </None>
-    <None Include="Produccion\Envasados2\Listados\dtsTiposVinagres.xsc">
+    <None Include="Control\Envasado\Listados\dtsTiposVinagres.xsc">
       <DependentUpon>dtsTiposVinagres.xsd</DependentUpon>
     </None>
-    <None Include="Produccion\Envasados2\Listados\dtsTiposVinagres.xsd">
+    <None Include="Control\Envasado\Listados\dtsTiposVinagres.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>dtsTiposVinagres.Designer.vb</LastGenOutput>
     </None>
-    <None Include="Produccion\Envasados2\Listados\dtsTiposVinagres.xss">
+    <None Include="Control\Envasado\Listados\dtsTiposVinagres.xss">
       <DependentUpon>dtsTiposVinagres.xsd</DependentUpon>
     </None>
     <None Include="Bases\Utilidades\C1ReportDesigner\C1Report.chm" />
@@ -6887,8 +5871,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Produccion\Envasados2\_OLD\" />
-    <Folder Include="Produccion\Partes\Causas\causas_fuentes\" />
+    <Folder Include="Produccion\Envasados3\" />
   </ItemGroup>
   <ItemGroup>
     <PublishFile Include="Microsoft.ReportViewer.Common">
