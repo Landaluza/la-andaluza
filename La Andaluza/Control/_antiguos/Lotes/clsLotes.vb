@@ -28,6 +28,9 @@ Public Class clsLotes
     Private DepositoID As String
     Private RecipienteSalidaID As String
 
+    Public Identificador As String
+    Public Caducidad As Nullable(Of Date)
+
 #End Region
 
 #Region "Propiedades"
@@ -655,7 +658,9 @@ Public Class clsLotes
                          "ProveedorID = @pro ," & _
                          "CodigoLote = @cod ," & _
                          "RecipienteSalidaID = @sal ," & _
-                         "LoteConjuntoCompraID =  @comp " & _
+                         "LoteConjuntoCompraID =  @comp ," & _
+                         "Identificador =  @ident ," & _
+                         "FechaCaducidad =  @cad " & _
                          " where LoteID = @id")
 
         dtb.AñadirParametroConsulta("@desc", Descripcion)
@@ -674,6 +679,8 @@ Public Class clsLotes
         dtb.AñadirParametroConsulta("@cod", CodigoLote)
         dtb.AñadirParametroConsulta("@sal", RecipienteSalidaID)
         dtb.AñadirParametroConsulta("@comp", LoteConjuntoCompraID)
+        dtb.AñadirParametroConsulta("@ident", Identificador)
+        dtb.AñadirParametroConsulta("@cad", If(Caducidad.Value.Date = Nothing, Convert.DBNull, Caducidad))
         dtb.AñadirParametroConsulta("@id", LoteID)
 
         Return dtb.Execute
@@ -684,49 +691,111 @@ Public Class clsLotes
 
     Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Try
-            If Botellas <> "null" Then      
+            Dim dbo As New DBO_Lotes1
+            Dim sp As New spLotes1
 
-                If Not dtb.ConsultaAlteraciones("insert into lotes values(" & Referencia & ",'" & Descripcion & "'," & _
-                                    "'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha) & "'," & _
-                                    "'" & Convert.ToString(CantidadRestante) & "'," & _
-                                    "'" & Observacion & "'," & _
-                                    "'" & LoteProveedor & "'," & _
-                                    "'" & Convert.ToString(Botellas) & "'," & _
-                                    "" & Convert.ToString(CantidadID) & "," & _
-                                    "" & Convert.ToString(MedidaID) & "," & _
-                                    "" & Convert.ToString(EspecificacionID) & "," & _
-                                    "" & Convert.ToString(TipoLoteID) & "," & _
-                                    "" & Convert.ToString(TipoProductoID) & "," & _
-                                    Convert.ToString(CorredorID) & "," & _
-                                    Convert.ToString(ProveedorID) & "," & _
-                                    Convert.ToString(LoteConjuntoCompraID) & "," & _
-                                    "'" & CodigoLote & "'," & DepositoID & "," & DepositoID & ",'False'," & RecipienteSalidaID & _
-                                    ",'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Today & " " & TimeOfDay) & "'," & BasesParaCompatibilidad.Config.User.ToString & ")") Then
+            dbo.Botellas = Me.Botellas
+            dbo.LoteID = Me.LoteID
+            dbo.Referencia = Me.Referencia
+            dbo.Descripcion = Me.Descripcion
+            dbo.Fecha = Me.Fecha
+            dbo.CantidadRestante = Me.CantidadRestante
+            dbo.Observacion = Me.Observacion
+            dbo.Botellas = Me.Botellas
+            dbo.CantidadID = Me.CantidadID
+            dbo.MedidaID = Me.MedidaID
+            dbo.LoteProveedor = Me.LoteProveedor
 
-                    Throw New Exception("No se pudo insertar el lote")
-                End If
+            If Me.EspecificacionID = "null" Then
+                dbo.EspecificacionID = Nothing
             Else
-
-                If Not dtb.ConsultaAlteraciones("insert into lotes values(" & Referencia & ",'" & Descripcion & "'," & _
-                                    "'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha) & "'," & _
-                                    "'" & Convert.ToString(CantidadRestante) & "'," & _
-                                    "'" & Observacion & "'," & _
-                                    "'" & LoteProveedor & "'," & _
-                                    "" & Convert.ToString(Botellas) & "," & _
-                                    "" & Convert.ToString(CantidadID) & "," & _
-                                    "" & Convert.ToString(MedidaID) & "," & _
-                                    "" & Convert.ToString(EspecificacionID) & "," & _
-                                    "" & Convert.ToString(TipoLoteID) & "," & _
-                                    "" & Convert.ToString(TipoProductoID) & "," & _
-                                    Convert.ToString(CorredorID) & "," & _
-                                    Convert.ToString(ProveedorID) & "," & _
-                                    Convert.ToString(LoteConjuntoCompraID) & "," & _
-                                    "'" & CodigoLote & "'," & DepositoID & "," & DepositoID & ",'False'," & RecipienteSalidaID & _
-                                    ",'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Today & " " & TimeOfDay) & "'," & BasesParaCompatibilidad.Config.User.ToString & ")") Then
-
-                    Throw New Exception("No se pudo insertar el lote")
-                End If
+                dbo.EspecificacionID = Me.EspecificacionID
             End If
+
+            dbo.TipoLoteID = Me.TipoLoteID            
+            dbo.TipoProductoID = Me.TipoProductoID
+
+            If Me.CorredorID = "null" Then
+                dbo.CorredorID = Nothing
+            Else
+                dbo.CorredorID = Me.CorredorID
+            End If
+
+            If Me.ProveedorID = "null" Then
+                dbo.ProveedorID = Nothing
+            Else
+                dbo.ProveedorID = Me.ProveedorID
+            End If
+
+            If Me.LoteConjuntoCompraID = "null" Then
+                dbo.LoteConjuntoCompraID = Nothing
+            Else
+                dbo.LoteConjuntoCompraID = Me.LoteConjuntoCompraID
+            End If
+
+            dbo.CodigoLote = Me.CodigoLote
+
+            If Me.DepositoID = "null" Then
+                dbo.DepositoID = Nothing
+            Else
+                dbo.DepositoID = Me.DepositoID
+            End If
+
+            If Me.RecipienteSalidaID = "null" Then
+                dbo.RecipienteSalidaID = Nothing
+            Else
+                dbo.RecipienteSalidaID = Me.RecipienteSalidaID
+            End If
+
+            dbo.Identificador = Me.Identificador
+            dbo.Caducidad = Me.Caducidad
+
+            If Not sp.GrabarLotes1(dbo, dtb) Then
+                Throw New Exception("No se pudo guardar el lote")
+            End If
+            'If Botellas <> "null" Then
+
+            '    If Not dtb.ConsultaAlteraciones("insert into lotes values(" & Referencia & ",'" & Descripcion & "'," & _
+            '                        "'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha) & "'," & _
+            '                        "'" & Convert.ToString(CantidadRestante) & "'," & _
+            '                        "'" & Observacion & "'," & _
+            '                        "'" & LoteProveedor & "'," & _
+            '                        "'" & Convert.ToString(Botellas) & "'," & _
+            '                        "" & Convert.ToString(CantidadID) & "," & _
+            '                        "" & Convert.ToString(MedidaID) & "," & _
+            '                        "" & Convert.ToString(EspecificacionID) & "," & _
+            '                        "" & Convert.ToString(TipoLoteID) & "," & _
+            '                        "" & Convert.ToString(TipoProductoID) & "," & _
+            '                        Convert.ToString(CorredorID) & "," & _
+            '                        Convert.ToString(ProveedorID) & "," & _
+            '                        Convert.ToString(LoteConjuntoCompraID) & "," & _
+            '                        "'" & CodigoLote & "'," & DepositoID & "," & DepositoID & ",'False'," & RecipienteSalidaID & _
+            '                        ",'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Today & " " & TimeOfDay) & "'," & BasesParaCompatibilidad.Config.User.ToString & ")") Then
+
+            '        Throw New Exception("No se pudo insertar el lote")
+            '    End If
+            'Else
+
+            '    If Not dtb.ConsultaAlteraciones("insert into lotes values(" & Referencia & ",'" & Descripcion & "'," & _
+            '                        "'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha) & "'," & _
+            '                        "'" & Convert.ToString(CantidadRestante) & "'," & _
+            '                        "'" & Observacion & "'," & _
+            '                        "'" & LoteProveedor & "'," & _
+            '                        "" & Convert.ToString(Botellas) & "," & _
+            '                        "" & Convert.ToString(CantidadID) & "," & _
+            '                        "" & Convert.ToString(MedidaID) & "," & _
+            '                        "" & Convert.ToString(EspecificacionID) & "," & _
+            '                        "" & Convert.ToString(TipoLoteID) & "," & _
+            '                        "" & Convert.ToString(TipoProductoID) & "," & _
+            '                        Convert.ToString(CorredorID) & "," & _
+            '                        Convert.ToString(ProveedorID) & "," & _
+            '                        Convert.ToString(LoteConjuntoCompraID) & "," & _
+            '                        "'" & CodigoLote & "'," & DepositoID & "," & DepositoID & ",'False'," & RecipienteSalidaID & _
+            '                        ",'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Today & " " & TimeOfDay) & "'," & BasesParaCompatibilidad.Config.User.ToString & ")") Then
+
+            '        Throw New Exception("No se pudo insertar el lote")
+            '    End If
+            'End If
 
             dtb.PrepararConsulta("select max(LoteID) from Lotes")
             LoteID = dtb.Consultar().Rows(0).Item(0)

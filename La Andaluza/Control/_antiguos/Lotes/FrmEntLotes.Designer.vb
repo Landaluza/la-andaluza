@@ -280,6 +280,10 @@ Partial Class FrmEntLotes
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.dtpCaducidad = New System.Windows.Forms.DateTimePicker()
+        Me.txtIdentificadorCompra = New System.Windows.Forms.TextBox()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.Label37 = New System.Windows.Forms.Label()
         Label65 = New System.Windows.Forms.Label()
         lblTipoLote = New System.Windows.Forms.Label()
         lblObservaciones = New System.Windows.Forms.Label()
@@ -1323,7 +1327,7 @@ Partial Class FrmEntLotes
         '
         lblCorredor.AutoSize = True
         lblCorredor.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        lblCorredor.Location = New System.Drawing.Point(16, 53)
+        lblCorredor.Location = New System.Drawing.Point(12, 53)
         lblCorredor.Name = "lblCorredor"
         lblCorredor.Size = New System.Drawing.Size(50, 13)
         lblCorredor.TabIndex = 3
@@ -3629,6 +3633,10 @@ Partial Class FrmEntLotes
         '
         'TabPageCamposObligatorios
         '
+        Me.TabPageCamposObligatorios.Controls.Add(Me.Label37)
+        Me.TabPageCamposObligatorios.Controls.Add(Me.Label20)
+        Me.TabPageCamposObligatorios.Controls.Add(Me.txtIdentificadorCompra)
+        Me.TabPageCamposObligatorios.Controls.Add(Me.dtpCaducidad)
         Me.TabPageCamposObligatorios.Controls.Add(Me.Label66)
         Me.TabPageCamposObligatorios.Controls.Add(Me.cboRecipientes)
         Me.TabPageCamposObligatorios.Controls.Add(Me.Label54)
@@ -3650,7 +3658,7 @@ Partial Class FrmEntLotes
         'Label66
         '
         Me.Label66.AutoSize = True
-        Me.Label66.Location = New System.Drawing.Point(16, 80)
+        Me.Label66.Location = New System.Drawing.Point(12, 80)
         Me.Label66.Name = "Label66"
         Me.Label66.Size = New System.Drawing.Size(75, 13)
         Me.Label66.TabIndex = 6
@@ -3674,7 +3682,7 @@ Partial Class FrmEntLotes
         'Label54
         '
         Me.Label54.AutoSize = True
-        Me.Label54.Location = New System.Drawing.Point(14, 107)
+        Me.Label54.Location = New System.Drawing.Point(12, 107)
         Me.Label54.Name = "Label54"
         Me.Label54.Size = New System.Drawing.Size(46, 13)
         Me.Label54.TabIndex = 8
@@ -4216,6 +4224,42 @@ Partial Class FrmEntLotes
         Me.SplitContainer2.SplitterWidth = 16
         Me.SplitContainer2.TabIndex = 40
         '
+        'dtpCaducidad
+        '
+        Me.dtpCaducidad.Checked = False
+        Me.dtpCaducidad.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpCaducidad.Location = New System.Drawing.Point(811, 23)
+        Me.dtpCaducidad.Name = "dtpCaducidad"
+        Me.dtpCaducidad.ShowCheckBox = True
+        Me.dtpCaducidad.Size = New System.Drawing.Size(187, 20)
+        Me.dtpCaducidad.TabIndex = 10
+        '
+        'txtIdentificadorCompra
+        '
+        Me.txtIdentificadorCompra.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtIdentificadorCompra.Location = New System.Drawing.Point(520, 23)
+        Me.txtIdentificadorCompra.Name = "txtIdentificadorCompra"
+        Me.txtIdentificadorCompra.Size = New System.Drawing.Size(200, 20)
+        Me.txtIdentificadorCompra.TabIndex = 11
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Location = New System.Drawing.Point(449, 26)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(65, 13)
+        Me.Label20.TabIndex = 12
+        Me.Label20.Text = "Identificador"
+        '
+        'Label37
+        '
+        Me.Label37.AutoSize = True
+        Me.Label37.Location = New System.Drawing.Point(745, 26)
+        Me.Label37.Name = "Label37"
+        Me.Label37.Size = New System.Drawing.Size(58, 13)
+        Me.Label37.TabIndex = 13
+        Me.Label37.Text = "Caducidad"
+        '
         'FrmEntLotes
         '
         Me.AllowDrop = True
@@ -4430,5 +4474,9 @@ Partial Class FrmEntLotes
     Private WithEvents ToolTip1 As System.Windows.Forms.ToolTip
     Private WithEvents Panel2 As System.Windows.Forms.Panel
     Private WithEvents vtnCodigoLoteClipboard As System.Windows.Forms.Button
+    Private WithEvents Label37 As System.Windows.Forms.Label
+    Private WithEvents Label20 As System.Windows.Forms.Label
+    Private WithEvents txtIdentificadorCompra As System.Windows.Forms.TextBox
+    Private WithEvents dtpCaducidad As System.Windows.Forms.DateTimePicker
 
 End Class

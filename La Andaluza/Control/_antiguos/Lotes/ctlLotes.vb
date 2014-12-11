@@ -1002,7 +1002,8 @@ Public Class ctlLotes
     ByVal txtHongos As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByVal Hongos As Boolean, ByVal txtXilenium As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByVal Xilenium As Boolean, ByVal txtAnguilulas As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByVal Anguilulas As Boolean, _
     ByVal txtOlfato As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByVal Olfato As Boolean, ByVal txtSabor As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByVal Sabor As Boolean, ByVal txtVista As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByVal Vista As Boolean, _
     ByVal txtEstableFrio As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByVal EstableFrio As Boolean, ByVal txtEstableCalor As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByVal EstableCalor As Boolean, ByVal txtEstableProteinas As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByVal EstableProteinas As Boolean, _
-    ByVal txtObservacionesOlfato As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByVal txtObservacionesSabor As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByVal txtObservacionesVista As BasesParaCompatibilidad.CuadroDeTextoMuestra) As Boolean
+    ByVal txtObservacionesOlfato As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByVal txtObservacionesSabor As BasesParaCompatibilidad.CuadroDeTextoMuestra, ByVal txtObservacionesVista As BasesParaCompatibilidad.CuadroDeTextoMuestra, _
+    ByVal IdentificadorCompra As String, Optional ByVal caducidad As Date = Nothing) As Boolean
 
 
 
@@ -1014,6 +1015,9 @@ Public Class ctlLotes
         clsLot._Descripcion = Descripcion
         clsLot._Fecha = fecha
         clsLot._CantidadRestante = CantidadRestante
+        clsLot.Identificador = IdentificadorCompra
+        clsLot.Caducidad = caducidad
+
         If Especificacion = -1 Then
             clsLot._EspecificacionID = 0
         Else

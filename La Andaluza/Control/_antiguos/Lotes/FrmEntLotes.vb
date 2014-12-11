@@ -105,9 +105,11 @@ Public Class FrmEntLotes
     Public Sub CargarDatos(ByVal pos As Integer, ByVal ID As Integer, ByVal TipLot As Integer, ByVal TipPro As Integer, ByVal ConEnologic As Boolean)
         Posicion = pos
         LoteID = ID
+
+        
+
         TipoLoteID = TipLot
         TipoProductoID = TipPro
-        'poner id a todos los unicos EsUnicoID
         txtDescripcion.EsUnicoID = LoteID
         txtCodigoLote.EsUnicoID = LoteID
         ConEnologicos = ConEnologic
@@ -187,22 +189,13 @@ Public Class FrmEntLotes
     End Sub
 
     Private Sub FrmEntLotes_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        'cboAnaliticas se completa en este Sub
-        'Private Sub txtLoteID_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtLoteID.TextChanged
-        '    Dim tabla As DataTable = ctlLot.mostrarTodasAnaliticasPorMuestra(txtLoteID.Text)
-        '    cboAnaliticas.DataSource = HacerTablasObligatorias(tabla)
-
-        'Me.bdnGeneral.Items.Add(New ToolStripControlHost(Me.btnImprimirBoletin))
-        'Me.bdnGeneral.Items.Add(New ToolStripControlHost(Me.butInfoTrazabilidad))        
-
-
-        ctlLot.cargarParametrosMuestra(dtb, 1, txtAcidez, chbAcidez, txtAlcohol1, chbAlcohol, txtExtracto, chbExtracto, txtExtractoNro, txtCenizas, chbCenizas, txtMetanol, _
-                                                                chbMetanol, txtHg, chbHg, txtAs, chbAs, txtPb, chbPb, txtSulfatos, chbSulfatos, txtCloruros, chbCloruros, txtSulfuroso, chbSulfuroso, txtC14, chbC14, _
-                                                                txtAcetato, chbAcetato, txtDensidad, chbDensidad, txtTurbidez, chbTurbidez, txtIC, chbIC, txtPh, chbPh, txtColor, chbColor, txtFe, chbFe, _
-                                                                txtCu, chbCu, txtZn, chbZn, txtAcetoina, chbAcetoina, txtPardeamiento, chbPardeamiento, txtNitrogeno, chbNitrogeno, txtPolifenoles, chbPolifenoles, txtAcidezFija, chbAcidezFija, _
-                                                                txtAcidezVolatil, chbAcidezVolatil, txtAzucarTotal, chbAzucarTotal, txtBaume, chbBaume, txtBrix, chbBrix, txtSorbitol, chbSorbitol, _
-                                                                txtRecuentoTotal, chbRecuentoTotal, txtBacterias, chbBacterias, txtLevaduras, chbLevaduras, txtHongos, chbHongos, txtXilenium, chbXilenium, txtAnguilulas, chbAnguilulas, _
-                                                                txtOlfato, chbOlfato, txtSabor, chbSabor, txtVista, chbVista, txtEstableFrio, chbEstableFrio, txtEstableCalor, chbEstableCalor, txtEstableProteinas, chbEstableProteinas)
+   ctlLot.cargarParametrosMuestra(dtb, 1, txtAcidez, chbAcidez, txtAlcohol1, chbAlcohol, txtExtracto, chbExtracto, txtExtractoNro, txtCenizas, chbCenizas, txtMetanol, _
+                                                                     chbMetanol, txtHg, chbHg, txtAs, chbAs, txtPb, chbPb, txtSulfatos, chbSulfatos, txtCloruros, chbCloruros, txtSulfuroso, chbSulfuroso, txtC14, chbC14, _
+                                                                     txtAcetato, chbAcetato, txtDensidad, chbDensidad, txtTurbidez, chbTurbidez, txtIC, chbIC, txtPh, chbPh, txtColor, chbColor, txtFe, chbFe, _
+                                                                     txtCu, chbCu, txtZn, chbZn, txtAcetoina, chbAcetoina, txtPardeamiento, chbPardeamiento, txtNitrogeno, chbNitrogeno, txtPolifenoles, chbPolifenoles, txtAcidezFija, chbAcidezFija, _
+                                                                     txtAcidezVolatil, chbAcidezVolatil, txtAzucarTotal, chbAzucarTotal, txtBaume, chbBaume, txtBrix, chbBrix, txtSorbitol, chbSorbitol, _
+                                                                     txtRecuentoTotal, chbRecuentoTotal, txtBacterias, chbBacterias, txtLevaduras, chbLevaduras, txtHongos, chbHongos, txtXilenium, chbXilenium, txtAnguilulas, chbAnguilulas, _
+                                                                     txtOlfato, chbOlfato, txtSabor, chbSabor, txtVista, chbVista, txtEstableFrio, chbEstableFrio, txtEstableCalor, chbEstableCalor, txtEstableProteinas, chbEstableProteinas)
 
 
         ModificarBindingNavigator()
@@ -299,6 +292,15 @@ Public Class FrmEntLotes
 
 
             dbo = Me.sp.Select_Record(LoteID, dtb)
+
+            Me.txtIdentificadorCompra.Text = dbo.Identificador
+
+            If dbo.Caducidad Is Nothing Then
+                dtpCaducidad.Checked = False
+            Else
+                dtpCaducidad.Checked = True
+                Me.dtpCaducidad.Value = dbo.Caducidad
+            End If
         End If
     End Sub
 
@@ -333,7 +335,7 @@ Public Class FrmEntLotes
                  txtAcidezVolatil, chbAcidezVolatil.Checked, txtAzucarTotal, chbAzucarTotal.Checked, txtBaume, chbBaume.Checked, txtBrix, chbBrix.Checked, txtSorbitol, chbSorbitol.Checked, _
                  txtRecuentoTotal, chbRecuentoTotal.Checked, txtBacterias, chbBacterias.Checked, txtLevaduras, chbLevaduras.Checked, txtHongos, chbHongos.Checked, txtXilenium, chbXilenium.Checked, txtAnguilulas, chbAnguilulas.Checked, _
                  txtOlfato, chbOlfato.Checked, txtSabor, chbSabor.Checked, txtVista, chbVista.Checked, txtEstableFrio, chbEstableFrio.Checked, txtEstableCalor, chbEstableCalor.Checked, txtEstableProteinas, chbEstableProteinas.Checked, _
-                 txtObservacionesOlfato, txtObservacionesSabor, txtObservacionesVista) Then
+                 txtObservacionesOlfato, txtObservacionesSabor, txtObservacionesVista, txtIdentificadorCompra.Text, If(dtpCaducidad.Checked, dtpCaducidad.Value.Date, Nothing)) Then
 
                     Throw New Exception("No se pudo guardar el lote")
                 End If
@@ -353,7 +355,7 @@ Public Class FrmEntLotes
                 txtAcidezVolatil, chbAcidezVolatil.Checked, txtAzucarTotal, chbAzucarTotal.Checked, txtBaume, chbBaume.Checked, txtBrix, chbBrix.Checked, txtSorbitol, chbSorbitol.Checked, _
                 txtRecuentoTotal, chbRecuentoTotal.Checked, txtBacterias, chbBacterias.Checked, txtLevaduras, chbLevaduras.Checked, txtHongos, chbHongos.Checked, txtXilenium, chbXilenium.Checked, txtAnguilulas, chbAnguilulas.Checked, _
                 txtOlfato, chbOlfato.Checked, txtSabor, chbSabor.Checked, txtVista, chbVista.Checked, txtEstableFrio, chbEstableFrio.Checked, txtEstableCalor, chbEstableCalor.Checked, txtEstableProteinas, chbEstableProteinas.Checked, _
-                txtObservacionesOlfato, txtObservacionesSabor, txtObservacionesVista) Then
+                txtObservacionesOlfato, txtObservacionesSabor, txtObservacionesVista, txtIdentificadorCompra.Text, If(dtpCaducidad.Checked, dtpCaducidad.Value.Date, Nothing)) Then
 
                     Throw New Exception("No se pudo guardar el lote")
                 End If

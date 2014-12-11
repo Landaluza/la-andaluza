@@ -43,6 +43,13 @@ Class spLotes1
                 DBO_Lotes1.RecipienteSalidaID = If(reader("RecipienteSalidaID") Is Convert.DBNull, 0, Convert.ToInt32(reader("RecipienteSalidaID")))
                 DBO_Lotes1.FechaModificacion = If(reader("FechaModificacion") Is Convert.DBNull, System.DateTime.Now.Date, CDate(reader("FechaModificacion")))
                 DBO_Lotes1.UsuarioModificacion = If(reader("UsuarioModificacion") Is Convert.DBNull, 0, Convert.ToInt32(reader("UsuarioModificacion")))
+                DBO_Lotes1.Identificador = If(reader("Identificador") Is Convert.DBNull, "", Convert.ToString(reader("Identificador")))
+                If Convert.IsDBNull(reader("Caducidad")) Then
+                    DBO_Lotes1.Caducidad = Nothing
+                Else
+                    DBO_Lotes1.Caducidad = CType(reader("Caducidad"), Date)
+                End If
+
 
             Else
                 DBO_Lotes1 = Nothing
@@ -95,6 +102,12 @@ Class spLotes1
                 DBO_Lotes1.RecipienteSalidaID = If(reader("RecipienteSalidaID") Is Convert.DBNull, 0, Convert.ToInt32(reader("RecipienteSalidaID")))
                 DBO_Lotes1.FechaModificacion = If(reader("FechaModificacion") Is Convert.DBNull, System.DateTime.Now.Date, CDate(reader("FechaModificacion")))
                 DBO_Lotes1.UsuarioModificacion = If(reader("UsuarioModificacion") Is Convert.DBNull, 0, Convert.ToInt32(reader("UsuarioModificacion")))
+                DBO_Lotes1.Identificador = If(reader("Identificador") Is Convert.DBNull, "", Convert.ToString(reader("Identificador")))
+                If Convert.IsDBNull(reader("Caducidad")) Then
+                    DBO_Lotes1.Caducidad = Nothing
+                Else
+                    DBO_Lotes1.Caducidad = CType(reader("Caducidad"), Date)
+                End If
 
             Else
                 DBO_Lotes1 = Nothing
@@ -140,6 +153,8 @@ Class spLotes1
         insertCommand.Parameters.AddWithValue("@RecipienteSalidaID", If(dbo_Lotes1.RecipienteSalidaID.HasValue, dbo_Lotes1.RecipienteSalidaID, Convert.DBNull))
         insertCommand.Parameters.AddWithValue("@FechaModificacion", dbo_Lotes1.FechaModificacion)
         insertCommand.Parameters.AddWithValue("@UsuarioModificacion", dbo_Lotes1.UsuarioModificacion)
+        insertCommand.Parameters.AddWithValue("@Identificador", dbo_Lotes1.Identificador)
+        insertCommand.Parameters.AddWithValue("@Caducidad", If(dbo_Lotes1.Caducidad.Value = Nothing, Convert.DBNull, dbo_Lotes1.Caducidad))
 
         insertCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         insertCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
@@ -189,6 +204,8 @@ Class spLotes1
         updateCommand.Parameters.AddWithValue("@NewFechaModificacion", newDBO_Lotes1.FechaModificacion)
         updateCommand.Parameters.AddWithValue("@NewUsuarioModificacion", newDBO_Lotes1.UsuarioModificacion)
         updateCommand.Parameters.AddWithValue("@OldLoteID", newDBO_Lotes1.LoteID)
+        updateCommand.Parameters.AddWithValue("@Identificador", newDBO_Lotes1.Identificador)
+        updateCommand.Parameters.AddWithValue("@Caducidad", If(newDBO_Lotes1.Caducidad.Value = Nothing, Convert.DBNull, newDBO_Lotes1.Caducidad))
         '<Tag=[Three][End]> -- please do not remove this line
         updateCommand.Parameters.Add("@ReturnValue", System.Data.SqlDbType.Int)
         updateCommand.Parameters("@ReturnValue").Direction = ParameterDirection.Output
@@ -494,6 +511,8 @@ Class spLotes1
         If dbo_actual.DepositoPrevioID <> dbo.DepositoPrevioID Then Return False
         If dbo_actual.Revisar <> dbo.Revisar Then Return False
         If dbo_actual.RecipienteSalidaID <> dbo.RecipienteSalidaID Then Return False
+        If dbo_actual.Identificador <> dbo.Identificador Then Return False
+        If dbo_actual.Caducidad <> dbo.Caducidad Then Return False
 
 
         Return True

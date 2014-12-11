@@ -37,7 +37,7 @@
 
 
 
-        BasesParaCompatibilidad.Config.Server = BasesParaCompatibilidad.DataBase.LOCAL
+        BasesParaCompatibilidad.Config.Server = BasesParaCompatibilidad.DataBase.SERVIDOR
         BasesParaCompatibilidad.DataBase.buildConnectionString(BasesParaCompatibilidad.Config.Server)
 
         Config.HelpUrl = "http://192.168.10.106/AyudaLA/index.php"

@@ -459,9 +459,9 @@ Partial Class frmEntAlbaranesCargaMaestro
         Label21.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Label21.Location = New System.Drawing.Point(106, 79)
         Label21.Name = "Label21"
-        Label21.Size = New System.Drawing.Size(42, 9)
+        Label21.Size = New System.Drawing.Size(33, 9)
         Label21.TabIndex = 3
-        Label21.Text = "Remolque:"
+        Label21.Text = "Cabeza:"
         '
         'DtsAlbaranesCargaMaestro
         '
@@ -779,6 +779,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         'grbDatosTransporte
         '
+        Me.grbDatosTransporte.BackColor = System.Drawing.Color.Transparent
         Me.grbDatosTransporte.Controls.Add(Me.cboAgencia)
         Me.grbDatosTransporte.Controls.Add(Label21)
         Me.grbDatosTransporte.Controls.Add(Label20)
@@ -815,6 +816,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         Me.cboAgencia.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.cboAgencia.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cboAgencia.BackColor = System.Drawing.Color.WhiteSmoke
         Me.cboAgencia.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cboAgencia.FormattingEnabled = True
         Me.cboAgencia.Location = New System.Drawing.Point(405, 90)
@@ -844,6 +846,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         Me.cboCabeza.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.cboCabeza.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cboCabeza.BackColor = System.Drawing.Color.WhiteSmoke
         Me.cboCabeza.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cboCabeza.FormattingEnabled = True
         Me.cboCabeza.Location = New System.Drawing.Point(108, 90)
@@ -855,6 +858,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         Me.cboFormaPAgo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.cboFormaPAgo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cboFormaPAgo.BackColor = System.Drawing.Color.WhiteSmoke
         Me.cboFormaPAgo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cboFormaPAgo.FormattingEnabled = True
         Me.cboFormaPAgo.Location = New System.Drawing.Point(312, 181)
@@ -866,6 +870,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         Me.cboREsponsableAdminsitracion.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.cboREsponsableAdminsitracion.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cboREsponsableAdminsitracion.BackColor = System.Drawing.Color.WhiteSmoke
         Me.cboREsponsableAdminsitracion.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cboREsponsableAdminsitracion.FormattingEnabled = True
         Me.cboREsponsableAdminsitracion.Location = New System.Drawing.Point(165, 257)
@@ -877,6 +882,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         Me.cboREsponsableCarga.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.cboREsponsableCarga.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cboREsponsableCarga.BackColor = System.Drawing.Color.WhiteSmoke
         Me.cboREsponsableCarga.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cboREsponsableCarga.FormattingEnabled = True
         Me.cboREsponsableCarga.Location = New System.Drawing.Point(165, 211)
@@ -906,6 +912,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         Me.cboConductores.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.cboConductores.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cboConductores.BackColor = System.Drawing.Color.WhiteSmoke
         Me.cboConductores.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cboConductores.FormattingEnabled = True
         Me.cboConductores.Location = New System.Drawing.Point(106, 45)
@@ -944,6 +951,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         Me.cboPedido.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.cboPedido.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cboPedido.BackColor = System.Drawing.Color.WhiteSmoke
         Me.cboPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cboPedido.FormattingEnabled = True
         Me.cboPedido.Location = New System.Drawing.Point(97, 89)
@@ -955,6 +963,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         Me.cboLugaresEntrega.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.cboLugaresEntrega.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cboLugaresEntrega.BackColor = System.Drawing.Color.WhiteSmoke
         Me.cboLugaresEntrega.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cboLugaresEntrega.FormattingEnabled = True
         Me.cboLugaresEntrega.Location = New System.Drawing.Point(97, 123)
@@ -966,6 +975,7 @@ Partial Class frmEntAlbaranesCargaMaestro
         '
         Me.cboClientes.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.cboClientes.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cboClientes.BackColor = System.Drawing.Color.WhiteSmoke
         Me.cboClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cboClientes.FormattingEnabled = True
         Me.cboClientes.Location = New System.Drawing.Point(97, 55)
