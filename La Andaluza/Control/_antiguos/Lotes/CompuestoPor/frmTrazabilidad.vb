@@ -126,7 +126,7 @@ Public Class frmTrazabilidad
         If Not dgvComponenteDe.CurrentRow Is Nothing Then
             Dim frm As New BasesParaCompatibilidad.frmEntrada("Nueva cantidad", "Introduce la nueva cantidad para este movimiento", dgvComponenteDe.CurrentRow.Cells("cantidad").Value.ToString)
             If frm.ShowDialog = Windows.Forms.DialogResult.OK Then
-                If actualizarTrazabilidad(frm.Result, dgvComponenteDe.CurrentRow.Cells("movimientoid").Value.ToString) Then
+                If actualizarTrazabilidadA(frm.Result, dgvComponenteDe.CurrentRow.Cells("movimientoid").Value.ToString, dgvComponenteDe.CurrentRow.Cells("loteid").Value.ToString) Then
                     Me.BackgroundWorker1.RunWorkerAsync()
                 End If
             End If
@@ -137,19 +137,53 @@ Public Class frmTrazabilidad
         If Not dgvCompuestoPor.CurrentRow Is Nothing Then
             Dim frm As New BasesParaCompatibilidad.frmEntrada("Nueva cantidad", "Introduce la nueva cantidad para este movimiento", dgvCompuestoPor.CurrentRow.Cells("cantidad").Value.ToString)
             If BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm) = Windows.Forms.DialogResult.OK Then
-                If actualizarTrazabilidad(frm.Result, dgvCompuestoPor.CurrentRow.Cells("movimientoid").Value.ToString) Then
+                If actualizarTrazabilidadDesde(frm.Result, dgvCompuestoPor.CurrentRow.Cells("movimientoid").Value.ToString, dgvCompuestoPor.CurrentRow.Cells("loteid").Value.ToString) Then
                     Me.BackgroundWorker1.RunWorkerAsync()
                 End If
             End If
         End If
     End Sub
 
-    Private Function actualizarTrazabilidad(ByVal cantidad As String, ByVal movimiento As String) As Boolean
+    Private Function actualizarTrazabilidadA(ByVal cantidad As String, ByVal movimiento As String, ByVal loteid As String) As Boolean
         dtb.EmpezarTransaccion()
         Try
-            dtb.PrepararConsulta("update compuestopor set cantidad= @can where movimientoid= @mov")
+            dtb.PrepararConsulta("update compuestopor set cantidad= @can where movimientoid= @mov and loteFinal= @lote")
             dtb.AñadirParametroConsulta("@can", cantidad)
             dtb.AñadirParametroConsulta("@mov", movimiento)
+            dtb.AñadirParametroConsulta("@lote", loteID)
+            If dtb.Execute Then
+                dtb.PrepararConsulta("update movimientos set cantidad= @can where movimientoid= @mov")
+                dtb.AñadirParametroConsulta("@can", cantidad)
+                dtb.AñadirParametroConsulta("@mov", movimiento)
+                If dtb.Execute Then
+                    dtb.TerminarTransaccion()
+                    MessageBox.Show("Operacion completada.", "Felicidades", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Return True
+                Else
+                    dtb.CancelarTransaccion()
+                    MessageBox.Show("No se pudo completar la operacion.", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    Return False
+                End If
+            Else
+                dtb.CancelarTransaccion()
+                MessageBox.Show("No se pudo completar la operacion.", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Return False
+            End If
+        Catch ex As Exception
+            dtb.CancelarTransaccion()
+            MessageBox.Show("No se pudo completar la operacion. Detalles:" & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+
+    End Function
+
+    Private Function actualizarTrazabilidadDesde(ByVal cantidad As String, ByVal movimiento As String, ByVal loteid As String) As Boolean
+        dtb.EmpezarTransaccion()
+        Try
+            dtb.PrepararConsulta("update compuestopor set cantidad= @can where movimientoid= @mov and lotePartida = @lote")
+            dtb.AñadirParametroConsulta("@can", cantidad)
+            dtb.AñadirParametroConsulta("@mov", movimiento)
+            dtb.AñadirParametroConsulta("@lote", loteID)
             If dtb.Execute Then
                 dtb.PrepararConsulta("update movimientos set cantidad= @can where movimientoid= @mov")
                 dtb.AñadirParametroConsulta("@can", cantidad)
