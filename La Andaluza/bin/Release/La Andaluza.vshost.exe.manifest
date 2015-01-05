@@ -105,7 +105,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>p+L5ZVNKkS83X6cpIoScFZVqX23ow52aLND8OpGRqn0=</dsig:DigestValue>
+        <dsig:DigestValue>GCff9SBf1y65Kt3rGeT0eZ3TQu+q7lM9zSPDouJVh2Y=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -117,7 +117,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>U5waaOZJGmFb+IzDk9AcRYPHlAGnkdjqL6MjIEOcxGA=</dsig:DigestValue>
+        <dsig:DigestValue>wsPZk5FuPCAsU8ZA/thZigs4hJuqOsavcxVDeujADHU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -206,14 +206,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="etiquetas.dll" size="1177600">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="etiquetas.dll" size="1178112">
       <assemblyIdentity name="etiquetas" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>l8/Hrje9C9txuPWiNyVOKWeiPbX2tkDD5mH03lTt6C8=</dsig:DigestValue>
+        <dsig:DigestValue>Nyz7uJwr7dzQcU7a8OK6QFJW6qO5TPifBoR01GavDSk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -345,7 +345,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>W76sdk0Uekl9NToktfafruBAJbU030i7H2++bIihXjM=</dsig:DigestValue>
+        <dsig:DigestValue>QCZ8zDeevQ6M0qt5CeagpRBxSbfN2szZZWI1gEbBMp4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -357,7 +357,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>RJYp9vhdsJiLaTU2aXY9UFgUvx2xeFEz6A0rss61KHo=</dsig:DigestValue>
+        <dsig:DigestValue>9DqmNAwk0LJDQeXA0ixe/zUOCulDBMYwTnIFCZ/8zPw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -493,6 +493,24 @@
       </hash>
     </dependentAssembly>
   </dependency>
+  <file name="Bases\ZLibrerias\BarcodeLib.dll" size="145920">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>wsPZk5FuPCAsU8ZA/thZigs4hJuqOsavcxVDeujADHU=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Bases\ZLibrerias\etiquetas.dll" size="1178112">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Nyz7uJwr7dzQcU7a8OK6QFJW6qO5TPifBoR01GavDSk=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="Bases\ZLibrerias\twaincontrolxtrial.exe" size="901096">
     <hash>
       <dsig:Transforms>

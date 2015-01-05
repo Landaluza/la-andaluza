@@ -53,7 +53,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>27</ApplicationRevision>
+    <ApplicationRevision>28</ApplicationRevision>
     <ApplicationVersion>2014.12.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -5620,9 +5620,9 @@
     <None Include="Bases\ZLibrerias\Envasados entre fechas.dll" />
     <None Include="Resources\glyphicons_371_global.png" />
     <None Include="Bases\ZLibrerias\BasesParaCompatibilidad.dll" />
-    <None Include="Bases\ZLibrerias\BarcodeLib.dll" />
-    <None Include="Bases\ZLibrerias\Envasado.dll" />
+    <Content Include="Bases\ZLibrerias\BarcodeLib.dll" />
     <None Include="Bases\ZLibrerias\etiquetas.dll" />
+    <None Include="Bases\ZLibrerias\Envasado.dll" />
     <Content Include="Resources\window_new.ico" />
     <Content Include="Resources\window_new_3.ico" />
     <None Include="Resources\text-x-makefile.png" />
