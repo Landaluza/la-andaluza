@@ -1,5 +1,5 @@
 ﻿Namespace Proveedores
-    Public Class AvisoPedido
+    Public Class guiAVisoPedido
 
     End Class
 

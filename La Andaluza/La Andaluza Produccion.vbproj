@@ -844,7 +844,8 @@
     <Compile Include="Administracion\Proveedores1\frmProveedoresMain.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administracion\Proveedores1\PedidosProveedores\avisos\AvisoPedido.vb" />
+    <Compile Include="Administracion\Proveedores1\PedidosProveedores\avisos\Visor\AvisoPedido.vb" />
+    <Compile Include="Administracion\Proveedores1\PedidosProveedores\avisos\Visor\bdAvisoPedido.vb" />
     <Compile Include="Administracion\Proveedores1\PedidosProveedores\avisos\DBO_AvisosPedidos.vb" />
     <Compile Include="Administracion\Proveedores1\PedidosProveedores\avisos\frmAvisosPedidos.Designer.vb">
       <DependentUpon>frmAvisosPedidos.vb</DependentUpon>
@@ -856,6 +857,12 @@
       <DependentUpon>frmEntAvisosPedidos.vb</DependentUpon>
     </Compile>
     <Compile Include="Administracion\Proveedores1\PedidosProveedores\avisos\frmEntAvisosPedidos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracion\Proveedores1\PedidosProveedores\avisos\Visor\guiAVisoPedido.Designer.vb">
+      <DependentUpon>guiAVisoPedido.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Proveedores1\PedidosProveedores\avisos\Visor\guiAVisoPedido.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Administracion\Proveedores1\PedidosProveedores\avisos\spAvisosPedidos.vb" />
@@ -4204,6 +4211,9 @@
     <EmbeddedResource Include="Administracion\Proveedores1\PedidosProveedores\avisos\frmEntAvisosPedidos.resx">
       <DependentUpon>frmEntAvisosPedidos.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Administracion\Proveedores1\PedidosProveedores\avisos\Visor\guiAVisoPedido.resx">
+      <DependentUpon>guiAVisoPedido.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Administracion\Proveedores1\PedidosProveedores\Listados\frmElegirOrdenListadoPedidos.resx">
       <DependentUpon>frmElegirOrdenListadoPedidos.vb</DependentUpon>
     </EmbeddedResource>
@@ -5645,6 +5655,9 @@
     <Content Include="Bases\ZLibrerias\BarcodeLib.dll" />
     <None Include="Bases\ZLibrerias\etiquetas.dll" />
     <None Include="Bases\ZLibrerias\Envasado.dll" />
+    <None Include="Resources\glyphicons_157_show_thumbnails_with_lines.png" />
+    <None Include="Resources\glyphicons_206_ok_2.png" />
+    <None Include="Resources\glyphicons_221_unshare.png" />
     <Content Include="Resources\window_new.ico" />
     <Content Include="Resources\window_new_3.ico" />
     <None Include="Resources\text-x-makefile.png" />
