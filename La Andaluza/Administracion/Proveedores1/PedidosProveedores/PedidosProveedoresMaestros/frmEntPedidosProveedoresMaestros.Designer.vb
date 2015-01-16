@@ -742,7 +742,7 @@ Partial Class frmEntPedidosProveedoresMaestros
         Me.tpDocumentos.Location = New System.Drawing.Point(4, 25)
         Me.tpDocumentos.Name = "tpDocumentos"
         Me.tpDocumentos.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpDocumentos.Size = New System.Drawing.Size(925, 692)
+        Me.tpDocumentos.Size = New System.Drawing.Size(925, 722)
         Me.tpDocumentos.TabIndex = 1
         Me.tpDocumentos.Text = "Documentos"
         '

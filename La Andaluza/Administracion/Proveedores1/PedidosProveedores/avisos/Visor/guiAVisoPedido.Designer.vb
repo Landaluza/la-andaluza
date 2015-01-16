@@ -181,6 +181,7 @@
             Me.Controls.Add(Me.lFecha)
             Me.Controls.Add(Me.Panel1)
             Me.Controls.Add(Me.barraNavegacion)
+            Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
             Me.Name = "guiAVisoPedido"
             Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
             Me.Text = "Aviso"

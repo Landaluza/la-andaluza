@@ -265,4 +265,10 @@ Public Class frmEntPedidosProveedoresMaestros
 #End Region
 
 
+    Private Sub cboProveedores_SelectedValueChanged(sender As Object, e As EventArgs) Handles cboProveedores.SelectedValueChanged
+        Try
+            Dim aviso As New Proveedores.AvisoPedido(cboProveedores.SelectedValue)
+        Catch ex As Exception
+        End Try
+    End Sub
 End Class

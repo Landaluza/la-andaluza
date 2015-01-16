@@ -199,9 +199,9 @@ Public Class frmEntPedidosProveedoresDetalles
         Try
             Me.lCantidad.Text = Me.cboArticulos.SelectedItem(3)
         Catch ex As Exception
+            Return
         End Try
 
-        Dim avisos As New Proveedores.AvisoPedido(Me.proveedor, Me.cboArticulos.SelectedValue)
     End Sub
 
     Private Sub btnAddUnidad_Click(sender As Object, e As EventArgs) Handles btnAddUnidad.Click
@@ -209,6 +209,14 @@ Public Class frmEntPedidosProveedoresDetalles
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         Dim s As New spMedidasProductos
         s.cargar_MedidasProductos(Me.cboUnidades, dtb)
+    End Sub
+
+    Private Sub cboArticulos_SelectedValueChanged(sender As Object, e As EventArgs) Handles cboArticulos.SelectedValueChanged
+        Try
+            Dim avisos As New Proveedores.AvisoPedido(Me.Proveedor, IIf(Me.cboArticulos.SelectedValue Is Nothing, 0, Me.cboArticulos.SelectedValue))
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class
 
