@@ -781,4 +781,9 @@ Public Class MenuDispatcher
     Private Sub ChepToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChepToolStripMenuItem.Click
         Dim ch As New EnlaceChep
     End Sub
+
+    Private Sub AvisosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AvisosToolStripMenuItem.Click
+        Dim frm As New Proveedores.frmAvisosPedidos
+        GUImain.añadirPestaña(frm)
+    End Sub
 End Class

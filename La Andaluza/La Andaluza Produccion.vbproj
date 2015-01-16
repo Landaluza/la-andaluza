@@ -53,7 +53,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>28</ApplicationRevision>
+    <ApplicationRevision>31</ApplicationRevision>
     <ApplicationVersion>2014.12.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -844,6 +844,21 @@
     <Compile Include="Administracion\Proveedores1\frmProveedoresMain.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Administracion\Proveedores1\PedidosProveedores\avisos\AvisoPedido.vb" />
+    <Compile Include="Administracion\Proveedores1\PedidosProveedores\avisos\DBO_AvisosPedidos.vb" />
+    <Compile Include="Administracion\Proveedores1\PedidosProveedores\avisos\frmAvisosPedidos.Designer.vb">
+      <DependentUpon>frmAvisosPedidos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Proveedores1\PedidosProveedores\avisos\frmAvisosPedidos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracion\Proveedores1\PedidosProveedores\avisos\frmEntAvisosPedidos.Designer.vb">
+      <DependentUpon>frmEntAvisosPedidos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Proveedores1\PedidosProveedores\avisos\frmEntAvisosPedidos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracion\Proveedores1\PedidosProveedores\avisos\spAvisosPedidos.vb" />
     <Compile Include="Administracion\Proveedores1\PedidosProveedores\Listados\frmElegirOrdenListadoPedidos.Designer.vb">
       <DependentUpon>frmElegirOrdenListadoPedidos.vb</DependentUpon>
     </Compile>
@@ -4183,6 +4198,12 @@
     <EmbeddedResource Include="Administracion\Proveedores1\frmProveedoresMain.resx">
       <DependentUpon>frmProveedoresMain.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Administracion\Proveedores1\PedidosProveedores\avisos\frmAvisosPedidos.resx">
+      <DependentUpon>frmAvisosPedidos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administracion\Proveedores1\PedidosProveedores\avisos\frmEntAvisosPedidos.resx">
+      <DependentUpon>frmEntAvisosPedidos.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Administracion\Proveedores1\PedidosProveedores\Listados\frmElegirOrdenListadoPedidos.resx">
       <DependentUpon>frmElegirOrdenListadoPedidos.vb</DependentUpon>
     </EmbeddedResource>
@@ -5620,6 +5641,7 @@
     <None Include="Bases\ZLibrerias\Envasados entre fechas.dll" />
     <None Include="Resources\glyphicons_371_global.png" />
     <None Include="Bases\ZLibrerias\BasesParaCompatibilidad.dll" />
+    <Content Include="Administracion\Proveedores1\PedidosProveedores\avisos\AvisosPedidosBatch.sql" />
     <Content Include="Bases\ZLibrerias\BarcodeLib.dll" />
     <None Include="Bases\ZLibrerias\etiquetas.dll" />
     <None Include="Bases\ZLibrerias\Envasado.dll" />

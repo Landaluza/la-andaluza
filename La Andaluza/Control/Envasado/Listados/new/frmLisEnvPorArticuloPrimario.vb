@@ -26,8 +26,8 @@ Public Class frmLisEnvPorArticuloPrimario
 
     Private Sub dgvFill()
         dtb.PrepararConsulta("SumaEnvasesEntreFechas @desde, @hasta")
-        dtb.AñadirParametroConsulta("@desde", dtpDesde.Value)
-        dtb.AñadirParametroConsulta("@hasta", dtpHasta.Value)
+        dtb.AñadirParametroConsulta("@desde", dtpDesde.Value.Date)
+        dtb.AñadirParametroConsulta("@hasta", dtpHasta.Value.Date)
         'consulta = "exec SumaEnvasesEntreFechas '" & _
         '                      Format("yyyy/MM/dd", dtpDesde.Value) & "', '" & _
         '                         Format("yyyy/MM/dd", dtpHasta.Value) & "'"

@@ -381,7 +381,7 @@ Module Mail
                         ccAddress = Convert.ToString(ccAddress & dt.Rows(j).Item("Mail")) & "; "
                     End If
                 Next
-                ccAddress = ccAddress & "gerente@landaluza.eses"
+                ccAddress = ccAddress & "gerente@landaluza.es; control@landaluza.es; "
 
                 If Not ccAddress Is Nothing Then
                     ccAddress = Mid(ccAddress, 1, (ccAddress.Length - 2))
