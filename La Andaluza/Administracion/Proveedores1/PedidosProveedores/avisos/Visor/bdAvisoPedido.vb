@@ -9,7 +9,7 @@
             '                 "(id_articulo= @art and id_proveedor = @pro) " & _
             '                 "and leido = 0")
             PrepararConsulta("select id from avisospedidos where " & _
-                             "(id_articulo= @art and id_proveedor is null) or " & _
+                             "(id_articulo= @art and id_proveedor is null) or (id_articulo is null and id_proveedor is null) " & _
                              "(id_articulo= @art and id_proveedor = @pro) " & _
                              "and leido = 0")
 
@@ -22,7 +22,7 @@
         Public Function seleccionar_avisos_por_proveedor(ByVal proveedor As Integer) As DataTable
 
             PrepararConsulta("select id from avisospedidos where " & _
-                             "id_articulo is null and id_proveedor = @pro " & _
+                             "id_articulo is null and (id_proveedor = @pro or id_proveedor is null) " & _
                              "and leido = 0")
 
             AñadirParametroConsulta("@pro", proveedor)

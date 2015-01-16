@@ -427,6 +427,7 @@ Partial Class MenuDispatcher
         Me.ToolStripMenuItem943 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem946 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AvisosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1000 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1002 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1003 = New System.Windows.Forms.ToolStripMenuItem()
@@ -500,7 +501,7 @@ Partial Class MenuDispatcher
         Me.ChepToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LogifruitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ActualizarToolStripMenuItem6 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AvisosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AvisosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MSAdministrador.SuspendLayout()
         Me.MSEnvasado.SuspendLayout()
         Me.MSElaboracion.SuspendLayout()
@@ -3736,6 +3737,12 @@ Partial Class MenuDispatcher
         Me.ToolStripMenuItem946.Size = New System.Drawing.Size(293, 22)
         Me.ToolStripMenuItem946.Text = "&Fichas condiciones compra"
         '
+        'AvisosToolStripMenuItem
+        '
+        Me.AvisosToolStripMenuItem.Name = "AvisosToolStripMenuItem"
+        Me.AvisosToolStripMenuItem.Size = New System.Drawing.Size(293, 22)
+        Me.AvisosToolStripMenuItem.Text = "Avisos"
+        '
         'ToolStripMenuItem1000
         '
         Me.ToolStripMenuItem1000.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1002, Me.ToolStripMenuItem1003, Me.ToolStripMenuItem1004, Me.ToolStripMenuItem1005})
@@ -3990,7 +3997,7 @@ Partial Class MenuDispatcher
         '
         'ToolStripMenuItem1100
         '
-        Me.ToolStripMenuItem1100.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1101, Me.ToolStripMenuItem1113, Me.ToolStripMenuItem1114, Me.ToolStripMenuItem5, Me.ToolStripMenuItem1117})
+        Me.ToolStripMenuItem1100.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1101, Me.ToolStripMenuItem1113, Me.ToolStripMenuItem1114, Me.ToolStripMenuItem5, Me.ToolStripMenuItem1117, Me.AvisosToolStripMenuItem1})
         Me.ToolStripMenuItem1100.Name = "ToolStripMenuItem1100"
         Me.ToolStripMenuItem1100.Size = New System.Drawing.Size(67, 26)
         Me.ToolStripMenuItem1100.Text = "Com&pras"
@@ -4302,11 +4309,11 @@ Partial Class MenuDispatcher
         Me.ActualizarToolStripMenuItem6.Size = New System.Drawing.Size(93, 26)
         Me.ActualizarToolStripMenuItem6.Text = "Actualizar"
         '
-        'AvisosToolStripMenuItem
+        'AvisosToolStripMenuItem1
         '
-        Me.AvisosToolStripMenuItem.Name = "AvisosToolStripMenuItem"
-        Me.AvisosToolStripMenuItem.Size = New System.Drawing.Size(293, 22)
-        Me.AvisosToolStripMenuItem.Text = "Avisos"
+        Me.AvisosToolStripMenuItem1.Name = "AvisosToolStripMenuItem1"
+        Me.AvisosToolStripMenuItem1.Size = New System.Drawing.Size(293, 22)
+        Me.AvisosToolStripMenuItem1.Text = "Avisos"
         '
         'MenuDispatcher
         '
@@ -4821,4 +4828,5 @@ End Sub
     Private WithEvents ConductoresToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Private WithEvents CamionesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Private WithEvents AvisosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents AvisosToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
 End Class
