@@ -100,6 +100,7 @@
             '
             'btnSalir
             '
+            Me.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel
             Me.btnSalir.Dock = System.Windows.Forms.DockStyle.Left
             Me.btnSalir.FlatAppearance.BorderSize = 0
             Me.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -173,6 +174,7 @@
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+            Me.CancelButton = Me.btnSalir
             Me.ClientSize = New System.Drawing.Size(483, 467)
             Me.Controls.Add(Me.lDetalle)
             Me.Controls.Add(Me.lCabecera)

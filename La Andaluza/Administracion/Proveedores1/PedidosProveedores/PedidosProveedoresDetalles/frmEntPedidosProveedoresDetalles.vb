@@ -11,6 +11,7 @@ Public Class frmEntPedidosProveedoresDetalles
     Private spPedidosProveedoresEntregas As spPedidosProveedoresEntregas
     Private spPedidosProveedoresDetalles As spPedidosProveedoresDetalles
     Private frmEnt As frmEntPedidosProveedoresEntregas
+    Public Proveedor As Integer
     Public Sub New(ByVal PedidoProveedorDetalle As DBO_PedidosProveedoresDetalles, ByVal Pos As Integer)
         InitializeComponent()
         DBO_PedidoProveedorDetalle = PedidoProveedorDetalle
@@ -199,6 +200,8 @@ Public Class frmEntPedidosProveedoresDetalles
             Me.lCantidad.Text = Me.cboArticulos.SelectedItem(3)
         Catch ex As Exception
         End Try
+
+        Dim avisos As New Proveedores.AvisoPedido(Me.proveedor, Me.cboArticulos.SelectedValue)
     End Sub
 
     Private Sub btnAddUnidad_Click(sender As Object, e As EventArgs) Handles btnAddUnidad.Click

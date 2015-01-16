@@ -140,6 +140,7 @@ Public Class frmEntPedidosProveedoresMaestros
         End If
 
         frmEnt = New frmEntPedidosProveedoresDetalles(DBO_PedidoProveedorDetalle, m_Pos)
+        frmEnt.Proveedor = cboProveedores.SelectedValue
         frmEnt.Text = String.Format("{0} {1}", TipoAction, Me.Text)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 

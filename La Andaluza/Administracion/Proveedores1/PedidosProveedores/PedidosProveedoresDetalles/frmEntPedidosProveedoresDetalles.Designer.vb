@@ -39,7 +39,6 @@ Partial Class frmEntPedidosProveedoresDetalles
         Me.lblEstadoID = New System.Windows.Forms.Label()
         Me.lblPedidosProveedoresMaestro_PedidoProveedorMaestroID = New System.Windows.Forms.Label()
         Me.tlpMiddle = New System.Windows.Forms.TableLayoutPanel()
-        Me.cboArticulos = New System.Windows.Forms.ComboBox()
         Me.cboUnidades = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -50,6 +49,8 @@ Partial Class frmEntPedidosProveedoresDetalles
         Me.txtCantidadServida = New System.Windows.Forms.TextBox()
         Me.txtCAntidadRetante = New System.Windows.Forms.TextBox()
         Me.btnAddUnidad = New System.Windows.Forms.Button()
+        Me.lCantidad = New System.Windows.Forms.Label()
+        Me.cboArticulos = New System.Windows.Forms.ComboBox()
         Me.grbDetalles = New System.Windows.Forms.GroupBox()
         Me.dgvNivel1 = New System.Windows.Forms.DataGridView()
         Me.bdnNivel1 = New System.Windows.Forms.BindingNavigator(Me.components)
@@ -66,7 +67,6 @@ Partial Class frmEntPedidosProveedoresDetalles
         Me.bdnNivel1Add = New System.Windows.Forms.ToolStripButton()
         Me.bdnNivel1Modificar = New System.Windows.Forms.ToolStripButton()
         Me.bdsNivel1 = New System.Windows.Forms.BindingSource(Me.components)
-        Me.lCantidad = New System.Windows.Forms.Label()
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tlpMiddle.SuspendLayout()
         Me.grbDetalles.SuspendLayout()
@@ -377,16 +377,6 @@ Partial Class frmEntPedidosProveedoresDetalles
         Me.tlpMiddle.Size = New System.Drawing.Size(831, 281)
         Me.tlpMiddle.TabIndex = 1000000001
         '
-        'cboArticulos
-        '
-        Me.tlpMiddle.SetColumnSpan(Me.cboArticulos, 3)
-        Me.cboArticulos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cboArticulos.FormattingEnabled = True
-        Me.cboArticulos.Location = New System.Drawing.Point(144, 30)
-        Me.cboArticulos.Name = "cboArticulos"
-        Me.cboArticulos.Size = New System.Drawing.Size(355, 21)
-        Me.cboArticulos.TabIndex = 0
-        '
         'cboUnidades
         '
         Me.cboUnidades.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -485,6 +475,26 @@ Partial Class frmEntPedidosProveedoresDetalles
         Me.btnAddUnidad.Size = New System.Drawing.Size(26, 21)
         Me.btnAddUnidad.TabIndex = 1000000083
         Me.btnAddUnidad.UseVisualStyleBackColor = True
+        '
+        'lCantidad
+        '
+        Me.lCantidad.AutoSize = True
+        Me.lCantidad.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lCantidad.Location = New System.Drawing.Point(586, 27)
+        Me.lCantidad.Name = "lCantidad"
+        Me.lCantidad.Size = New System.Drawing.Size(242, 20)
+        Me.lCantidad.TabIndex = 1000000084
+        Me.lCantidad.Text = "Label4"
+        '
+        'cboArticulos
+        '
+        Me.tlpMiddle.SetColumnSpan(Me.cboArticulos, 3)
+        Me.cboArticulos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cboArticulos.FormattingEnabled = True
+        Me.cboArticulos.Location = New System.Drawing.Point(144, 30)
+        Me.cboArticulos.Name = "cboArticulos"
+        Me.cboArticulos.Size = New System.Drawing.Size(355, 21)
+        Me.cboArticulos.TabIndex = 0
         '
         'grbDetalles
         '
@@ -624,16 +634,6 @@ Partial Class frmEntPedidosProveedoresDetalles
         Me.bdnNivel1Modificar.Name = "bdnNivel1Modificar"
         Me.bdnNivel1Modificar.Size = New System.Drawing.Size(23, 22)
         Me.bdnNivel1Modificar.Text = "Modificar"
-        '
-        'lCantidad
-        '
-        Me.lCantidad.AutoSize = True
-        Me.lCantidad.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lCantidad.Location = New System.Drawing.Point(586, 27)
-        Me.lCantidad.Name = "lCantidad"
-        Me.lCantidad.Size = New System.Drawing.Size(242, 20)
-        Me.lCantidad.TabIndex = 1000000084
-        Me.lCantidad.Text = "Label4"
         '
         'frmEntPedidosProveedoresDetalles
         '

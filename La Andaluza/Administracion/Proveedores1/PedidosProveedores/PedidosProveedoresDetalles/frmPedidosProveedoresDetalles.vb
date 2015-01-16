@@ -2,7 +2,7 @@ Imports BasesParaCompatibilidad.DataGridViewExtension
 Public Class frmPedidosProveedoresDetalles
     Inherits BasesParaCompatibilidad.FrmAheredarOld
 
-
+    Public Proveedor As Integer
     Private frmEnt As frmEntPedidosProveedoresDetalles
     Public Sub New()
         MyBase.New(New spPedidosProveedoresDetalles, 0)
@@ -60,6 +60,7 @@ Public Class frmPedidosProveedoresDetalles
         End If
 
         frmEnt = New frmEntPedidosProveedoresDetalles(DBO_PedidoProveedorDetalle, m_Pos)
+        frmEnt.Proveedor = Me.Proveedor
         frmEnt.Text = String.Format("{0} {1}", TipoAction, Me.Text)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
 
