@@ -51,7 +51,7 @@
         End Sub
         Private Sub siguiente_registro()
             registroActual = registroActual + 1
-            If registroActual > avisosDatasource.Rows.Count Then registroActual = 0
+            If registroActual = avisosDatasource.Rows.Count Then registroActual = 0
 
             cargar_registro()
         End Sub

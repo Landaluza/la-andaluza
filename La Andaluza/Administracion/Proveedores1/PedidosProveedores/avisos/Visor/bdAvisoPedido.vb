@@ -10,7 +10,7 @@
             '                 "and leido = 0")
             PrepararConsulta("select id from avisospedidos where " & _
                              "(id_articulo= @art and id_proveedor is null) or (id_articulo is null and id_proveedor is null) " & _
-                             "(id_articulo= @art and id_proveedor = @pro) " & _
+                             " or (id_articulo= @art and id_proveedor = @pro) " & _
                              "and leido = 0")
 
             AñadirParametroConsulta("@art", articulo)

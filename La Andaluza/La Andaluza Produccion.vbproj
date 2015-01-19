@@ -53,7 +53,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>33</ApplicationRevision>
+    <ApplicationRevision>36</ApplicationRevision>
     <ApplicationVersion>2014.12.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -921,34 +921,34 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Administracion\Proveedores1\Proveedores_Articulos\spProveedores_Articulos.vb" />
-    <Compile Include="Administracion\Proveedores_y_articulos\Proveedor_Articulos\MotivosCeseServicio\DBO_MotivosCeseServicio.vb" />
-    <Compile Include="Administracion\Proveedores_y_articulos\Proveedor_Articulos\MotivosCeseServicio\frmEntMotivosCeseServicio.Designer.vb">
+    <Compile Include="Administracion\Proveedores1\Proveedores_y_articulos\Proveedor_Articulos\MotivosCeseServicio\DBO_MotivosCeseServicio.vb" />
+    <Compile Include="Administracion\Proveedores1\Proveedores_y_articulos\Proveedor_Articulos\MotivosCeseServicio\frmEntMotivosCeseServicio.Designer.vb">
       <DependentUpon>frmEntMotivosCeseServicio.vb</DependentUpon>
     </Compile>
-    <Compile Include="Administracion\Proveedores_y_articulos\Proveedor_Articulos\MotivosCeseServicio\frmEntMotivosCeseServicio.vb">
+    <Compile Include="Administracion\Proveedores1\Proveedores_y_articulos\Proveedor_Articulos\MotivosCeseServicio\frmEntMotivosCeseServicio.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administracion\Proveedores_y_articulos\Proveedor_Articulos\MotivosCeseServicio\frmMotivosCeseServicio.Designer.vb">
+    <Compile Include="Administracion\Proveedores1\Proveedores_y_articulos\Proveedor_Articulos\MotivosCeseServicio\frmMotivosCeseServicio.Designer.vb">
       <DependentUpon>frmMotivosCeseServicio.vb</DependentUpon>
     </Compile>
-    <Compile Include="Administracion\Proveedores_y_articulos\Proveedor_Articulos\MotivosCeseServicio\frmMotivosCeseServicio.vb">
+    <Compile Include="Administracion\Proveedores1\Proveedores_y_articulos\Proveedor_Articulos\MotivosCeseServicio\frmMotivosCeseServicio.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administracion\Proveedores_y_articulos\Proveedor_Articulos\MotivosCeseServicio\spMotivosCeseServicio.vb" />
-    <Compile Include="Administracion\Proveedores_y_articulos\Proveedor_Articulos\PeriodosServicio\DBO_PeriodosServicio.vb" />
-    <Compile Include="Administracion\Proveedores_y_articulos\Proveedor_Articulos\PeriodosServicio\frmEntPeriodosServicio.Designer.vb">
+    <Compile Include="Administracion\Proveedores1\Proveedores_y_articulos\Proveedor_Articulos\MotivosCeseServicio\spMotivosCeseServicio.vb" />
+    <Compile Include="Administracion\Proveedores1\Proveedores_y_articulos\Proveedor_Articulos\PeriodosServicio\DBO_PeriodosServicio.vb" />
+    <Compile Include="Administracion\Proveedores1\Proveedores_y_articulos\Proveedor_Articulos\PeriodosServicio\frmEntPeriodosServicio.Designer.vb">
       <DependentUpon>frmEntPeriodosServicio.vb</DependentUpon>
     </Compile>
-    <Compile Include="Administracion\Proveedores_y_articulos\Proveedor_Articulos\PeriodosServicio\frmEntPeriodosServicio.vb">
+    <Compile Include="Administracion\Proveedores1\Proveedores_y_articulos\Proveedor_Articulos\PeriodosServicio\frmEntPeriodosServicio.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administracion\Proveedores_y_articulos\Proveedor_Articulos\PeriodosServicio\frmPeriodosServicio.Designer.vb">
+    <Compile Include="Administracion\Proveedores1\Proveedores_y_articulos\Proveedor_Articulos\PeriodosServicio\frmPeriodosServicio.Designer.vb">
       <DependentUpon>frmPeriodosServicio.vb</DependentUpon>
     </Compile>
-    <Compile Include="Administracion\Proveedores_y_articulos\Proveedor_Articulos\PeriodosServicio\frmPeriodosServicio.vb">
+    <Compile Include="Administracion\Proveedores1\Proveedores_y_articulos\Proveedor_Articulos\PeriodosServicio\frmPeriodosServicio.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administracion\Proveedores_y_articulos\Proveedor_Articulos\PeriodosServicio\spPeriodosServicio.vb" />
+    <Compile Include="Administracion\Proveedores1\Proveedores_y_articulos\Proveedor_Articulos\PeriodosServicio\spPeriodosServicio.vb" />
     <Compile Include="Administracion\Visitas\frmVisitasMain.Designer.vb">
       <DependentUpon>frmVisitasMain.vb</DependentUpon>
     </Compile>
@@ -4232,16 +4232,16 @@
     <EmbeddedResource Include="Administracion\Proveedores1\Proveedores_Articulos\frmProveedores_Articulos.resx">
       <DependentUpon>frmProveedores_Articulos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administracion\Proveedores_y_articulos\Proveedor_Articulos\MotivosCeseServicio\frmEntMotivosCeseServicio.resx">
+    <EmbeddedResource Include="Administracion\Proveedores1\Proveedores_y_articulos\Proveedor_Articulos\MotivosCeseServicio\frmEntMotivosCeseServicio.resx">
       <DependentUpon>frmEntMotivosCeseServicio.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administracion\Proveedores_y_articulos\Proveedor_Articulos\MotivosCeseServicio\frmMotivosCeseServicio.resx">
+    <EmbeddedResource Include="Administracion\Proveedores1\Proveedores_y_articulos\Proveedor_Articulos\MotivosCeseServicio\frmMotivosCeseServicio.resx">
       <DependentUpon>frmMotivosCeseServicio.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administracion\Proveedores_y_articulos\Proveedor_Articulos\PeriodosServicio\frmEntPeriodosServicio.resx">
+    <EmbeddedResource Include="Administracion\Proveedores1\Proveedores_y_articulos\Proveedor_Articulos\PeriodosServicio\frmEntPeriodosServicio.resx">
       <DependentUpon>frmEntPeriodosServicio.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administracion\Proveedores_y_articulos\Proveedor_Articulos\PeriodosServicio\frmPeriodosServicio.resx">
+    <EmbeddedResource Include="Administracion\Proveedores1\Proveedores_y_articulos\Proveedor_Articulos\PeriodosServicio\frmPeriodosServicio.resx">
       <DependentUpon>frmPeriodosServicio.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administracion\Visitas\frmVisitasMain.resx">

@@ -36,6 +36,7 @@ Public Class frmEntPedidosProveedoresDetalles
             GeneralBindingSource.Position = m_Pos
         End If
 
+        AddHandler cboArticulos.SelectedValueChanged, AddressOf cboArticulos_SelectedValueChanged
         SetValores()
         RellenarDgvNivel1()
 
@@ -211,12 +212,13 @@ Public Class frmEntPedidosProveedoresDetalles
         s.cargar_MedidasProductos(Me.cboUnidades, dtb)
     End Sub
 
-    Private Sub cboArticulos_SelectedValueChanged(sender As Object, e As EventArgs) Handles cboArticulos.SelectedValueChanged
+    Private Sub cboArticulos_SelectedValueChanged(sender As Object, e As EventArgs)
         Try
             Dim avisos As New Proveedores.AvisoPedido(Me.Proveedor, IIf(Me.cboArticulos.SelectedValue Is Nothing, 0, Me.cboArticulos.SelectedValue))
         Catch ex As Exception
 
         End Try
     End Sub
+
 End Class
 

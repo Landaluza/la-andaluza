@@ -37,6 +37,7 @@ Public Class frmEntPedidosProveedoresMaestros
 
 
         'DBO_PedidoProveedor.EstadoID = 1 'Para que no se quede el combo vacio
+        AddHandler cboProveedores.SelectedValueChanged, AddressOf cboProveedores_SelectedValueChanged
         SetValores()
         If DBO_PedidoProveedor.PedidoProveedorMaestroID <> 0 Then
             RellenarDgvNivel1()
@@ -265,10 +266,11 @@ Public Class frmEntPedidosProveedoresMaestros
 #End Region
 
 
-    Private Sub cboProveedores_SelectedValueChanged(sender As Object, e As EventArgs) Handles cboProveedores.SelectedValueChanged
+    Private Sub cboProveedores_SelectedValueChanged(sender As Object, e As EventArgs)
         Try
             Dim aviso As New Proveedores.AvisoPedido(cboProveedores.SelectedValue)
         Catch ex As Exception
         End Try
     End Sub
+
 End Class

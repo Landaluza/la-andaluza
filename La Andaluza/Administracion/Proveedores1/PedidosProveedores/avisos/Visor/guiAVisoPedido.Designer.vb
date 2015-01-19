@@ -36,16 +36,17 @@
             Me.lFecha = New System.Windows.Forms.Label()
             Me.lCabecera = New System.Windows.Forms.Label()
             Me.lDetalle = New System.Windows.Forms.Label()
+            Me.Panel2 = New System.Windows.Forms.Panel()
             Me.barraNavegacion.SuspendLayout()
             Me.Panel1.SuspendLayout()
             Me.SuspendLayout()
             '
             'barraNavegacion
             '
-            Me.barraNavegacion.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
             Me.barraNavegacion.Controls.Add(Me.lResultados)
             Me.barraNavegacion.Controls.Add(Me.btnAvanzar)
             Me.barraNavegacion.Controls.Add(Me.btnAtras)
+            Me.barraNavegacion.Controls.Add(Me.Panel2)
             Me.barraNavegacion.Dock = System.Windows.Forms.DockStyle.Top
             Me.barraNavegacion.Location = New System.Drawing.Point(0, 0)
             Me.barraNavegacion.Name = "barraNavegacion"
@@ -57,7 +58,7 @@
             Me.lResultados.Dock = System.Windows.Forms.DockStyle.Fill
             Me.lResultados.Location = New System.Drawing.Point(75, 0)
             Me.lResultados.Name = "lResultados"
-            Me.lResultados.Size = New System.Drawing.Size(329, 45)
+            Me.lResultados.Size = New System.Drawing.Size(333, 47)
             Me.lResultados.TabIndex = 2
             Me.lResultados.Text = "Aviso 1/1"
             Me.lResultados.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -68,9 +69,9 @@
             Me.btnAvanzar.FlatAppearance.BorderSize = 0
             Me.btnAvanzar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.btnAvanzar.Image = Global.La_Andaluza.My.Resources.Resources.go_next_5
-            Me.btnAvanzar.Location = New System.Drawing.Point(404, 0)
+            Me.btnAvanzar.Location = New System.Drawing.Point(408, 0)
             Me.btnAvanzar.Name = "btnAvanzar"
-            Me.btnAvanzar.Size = New System.Drawing.Size(75, 45)
+            Me.btnAvanzar.Size = New System.Drawing.Size(75, 47)
             Me.btnAvanzar.TabIndex = 1
             Me.btnAvanzar.UseVisualStyleBackColor = True
             '
@@ -82,7 +83,7 @@
             Me.btnAtras.Image = Global.La_Andaluza.My.Resources.Resources.go_previous_5
             Me.btnAtras.Location = New System.Drawing.Point(0, 0)
             Me.btnAtras.Name = "btnAtras"
-            Me.btnAtras.Size = New System.Drawing.Size(75, 45)
+            Me.btnAtras.Size = New System.Drawing.Size(75, 47)
             Me.btnAtras.TabIndex = 0
             Me.btnAtras.UseVisualStyleBackColor = True
             '
@@ -170,6 +171,15 @@
             Me.lDetalle.TabIndex = 4
             Me.lDetalle.Text = "Detalle"
             '
+            'Panel2
+            '
+            Me.Panel2.BackColor = System.Drawing.Color.Gainsboro
+            Me.Panel2.Dock = System.Windows.Forms.DockStyle.Bottom
+            Me.Panel2.Location = New System.Drawing.Point(0, 47)
+            Me.Panel2.Name = "Panel2"
+            Me.Panel2.Size = New System.Drawing.Size(483, 2)
+            Me.Panel2.TabIndex = 3
+            '
             'guiAVisoPedido
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -203,5 +213,6 @@
         Public WithEvents lFecha As System.Windows.Forms.Label
         Public WithEvents lCabecera As System.Windows.Forms.Label
         Public WithEvents lDetalle As System.Windows.Forms.Label
+        Private WithEvents Panel2 As System.Windows.Forms.Panel
     End Class
 End Namespace
