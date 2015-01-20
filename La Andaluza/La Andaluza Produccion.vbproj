@@ -957,6 +957,7 @@
     </Compile>
     <Compile Include="Bases\Conf\UserOptions.vb" />
     <Compile Include="Bases\Form\wizardable.vb" />
+    <Compile Include="Control\Existencias\Existencias.vb" />
     <Compile Include="Control\Incidencias\frmSeleccionDosFechas.Designer.vb">
       <DependentUpon>frmSeleccionDosFechas.vb</DependentUpon>
     </Compile>

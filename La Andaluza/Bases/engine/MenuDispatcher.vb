@@ -786,4 +786,9 @@ Public Class MenuDispatcher
         Dim frm As New Proveedores.frmAvisosPedidos
         GUImain.añadirPestaña(frm)
     End Sub
+
+    Private Sub ExistenciasToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ExistenciasToolStripMenuItem1.Click
+        Dim existencias As New ExistenciasArticulos.Existencias
+        GUImain.añadirPestaña(existencias.GUI)
+    End Sub
 End Class
