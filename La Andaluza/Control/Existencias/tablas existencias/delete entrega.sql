@@ -20,28 +20,38 @@ BEGIN
 	declare @articulo int
 	
 	declare @cur cursor
-	set @cur = cursor for select PedidosProveedoresDetalles.ArticuloID  ,deleted.id_movimientoArticulo, deleted.cantidad from deleted, PedidosProveedoresDetalles  where deleted.PedidoProveedorDetalleID  = PedidosProveedoresDetalles.PedidoProveedorDetalleID  
 
-	open @cur
+	begin try
+		set @cur = cursor for select PedidosProveedoresDetalles.ArticuloID  ,deleted.id_movimientoArticulo, deleted.cantidad from deleted, PedidosProveedoresDetalles  where deleted.PedidoProveedorDetalleID  = PedidosProveedoresDetalles.PedidoProveedorDetalleID  
 
-	fetch next from @cur into @articulo, @movimiento, @cantidad
-
-	while @@FETCH_STATUS = 0 begin		
-		if (select count(*) from articulosExistencias where articuloid = @articulo) = 0 begin
-			insert into [ArticulosExistencias] (articuloid, existenciasla) values(@articulo, 0)
-		end
-		else begin
-			update [ArticulosExistencias] set existenciasLA = existenciasLA - @cantidad where articuloid = @articulo
-		end
-
-		if not @movimiento is null begin
-			delete from MovimientosArticulos where id = @movimiento
-		end 
+		open @cur
 
 		fetch next from @cur into @articulo, @movimiento, @cantidad
-	end
 
-	close @cur
-	deallocate @cur
+		while @@FETCH_STATUS = 0 begin		
+			if (select count(*) from articulosExistencias where articuloid = @articulo) = 0 begin
+				insert into [ArticulosExistencias] (articuloid, existenciasla) values(@articulo, 0)
+			end
+			else begin
+				update [ArticulosExistencias] set existenciasLA = existenciasLA - @cantidad where articuloid = @articulo
+			end
+
+			if not @movimiento is null begin
+				delete from MovimientosArticulos where id = @movimiento
+			end 
+
+			fetch next from @cur into @articulo, @movimiento, @cantidad
+		end
+
+		close @cur
+		deallocate @cur
+
+	end try
+	begin catch
+		declare @ErrorMessage nvarchar(max), @ErrorSeverity int, @ErrorState int
+		select @ErrorMessage = ERROR_MESSAGE() + ' Line ' + cast(ERROR_LINE() as nvarchar(5)), @ErrorSeverity = ERROR_SEVERITY(), @ErrorState = ERROR_STATE()
+		rollback tran
+		raiserror (@ErrorMessage, @ErrorSeverity, @ErrorState)
+	end catch
 END
 GO

@@ -1,5 +1,5 @@
 use[la]
-alter table pedidosproveedoresEntregas drop constraint FK__PedidosPr__Id_Mo__0651DABD
+--alter table pedidosproveedoresEntregas drop constraint FK__PedidosPr__Id_Mo__22EE196B
 alter table PedidosProveedoresEntregas drop column Id_MovimientoArticulo 
 drop table MovimientosArticulos
 drop table TiposMovimientosArticulos
@@ -29,13 +29,16 @@ go
 create table MovimientosArticulos(
 	Id int primary key identity(1,1),	
 	Id_TiposMovimientosArticulos int not null references TiposMovimientosArticulos(Id),
-	Id_articuloOrigen int references articulos1(articuloid) default null,
-	Id_articuloFin int references articulos1(articuloid) default null,
+	--Id_articuloOrigen int references articulos1(articuloid) default null,
+	--Id_articuloFin int references articulos1(articuloid) default null,
+	Id_ExistenciasOrigen int references [ArticulosExistencias]([ArticuloExistenciaID]) default null,
+	Id_ExistenciasFin int references [ArticulosExistencias]([ArticuloExistenciaID]) default null,
 	Cantidad decimal(10,2) not null,
 	CantidadPrevia decimal(10,2),
 	CantidadPosterior decimal(10,2),
 	Fecha date not null,
 	Hora time not null,
+	Observaciones varchar(3000),
 	FechaModificacion date,
 	UsuarioModificacion int references usuarios(usuarioid)
 )

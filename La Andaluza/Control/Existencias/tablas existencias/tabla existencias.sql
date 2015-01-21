@@ -13,10 +13,13 @@ drop table [ArticulosExistencias]
 CREATE TABLE [dbo].[ArticulosExistencias](
 	[ArticuloExistenciaID] [int] IDENTITY(1,1) NOT NULL primary key,
 	[ArticuloID] [int] NOT NULL,
-	[ExistenciasLA] decimal(10,2) not null default 0,
-	[ExistenciasTransito] decimal(10,2) not null default 0,
-	[ExistenciasJR] decimal(10,2) not null default 0,
-	[ExistenciasProveedor] decimal(10,2) not null default 0,
+	Cantidad decimal(10,2) not null default 0,
+	Lote varchar(300) default null,
+	FechaEntrada date not null,
+	--[ExistenciasLA] decimal(10,2) not null default 0,
+	--[ExistenciasTransito] decimal(10,2) not null default 0,
+	--[ExistenciasJR] decimal(10,2) not null default 0,
+	--[ExistenciasProveedor] decimal(10,2) not null default 0,
 	--[Fecha] [date] NULL,
 	[Observaciones] varchar(3000) NULL
 )

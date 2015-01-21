@@ -5650,6 +5650,14 @@
     <None Include="Resources\glyphicons_157_show_thumbnails_with_lines.png" />
     <None Include="Resources\glyphicons_206_ok_2.png" />
     <None Include="Resources\glyphicons_221_unshare.png" />
+    <Content Include="Control\Existencias\tablas existencias\borrado tablas.sql" />
+    <Content Include="Control\Existencias\tablas existencias\delete entrega.sql" />
+    <Content Include="Control\Existencias\tablas existencias\insert entrega.sql" />
+    <Content Include="Control\Existencias\tablas existencias\insert movimientos.sql" />
+    <Content Include="Control\Existencias\tablas existencias\movimientos.sql" />
+    <Content Include="Control\Existencias\tablas existencias\tabla existencias.sql" />
+    <Content Include="Control\Existencias\tablas existencias\tabla stocks.sql" />
+    <Content Include="Control\Existencias\tablas existencias\update entrega.sql" />
     <Content Include="Resources\window_new.ico" />
     <Content Include="Resources\window_new_3.ico" />
     <None Include="Resources\text-x-makefile.png" />

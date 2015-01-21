@@ -29,32 +29,42 @@ BEGIN
 	declare @movimiento int
 	
 	declare @cur cursor
-	set @cur = cursor for select PedidosProveedoresDetalles.articuloid, inserted.cantidad, inserted.PedidoProveedorEntregaID, inserted.id_movimientoArticulo  from inserted, PedidosProveedoresDetalles where inserted.PedidoProveedorDetalleID = PedidosProveedoresDetalles.PedidoProveedorDetalleID 
+	
+	begin try
+		set @cur = cursor for select PedidosProveedoresDetalles.articuloid, inserted.cantidad, inserted.PedidoProveedorEntregaID, inserted.id_movimientoArticulo  from inserted, PedidosProveedoresDetalles where inserted.PedidoProveedorDetalleID = PedidosProveedoresDetalles.PedidoProveedorDetalleID 
 
-	open @cur
-
-	fetch next from @cur into @articulo, @cantidad, @id, @movimiento
-
-	while @@FETCH_STATUS = 0 begin		
-		set @cantidadPrevia = (select cantidad from deleted where deleted.PedidoProveedorEntregaID = @id)
-		
-		if @cantidad <> @cantidadPrevia and not @cantidad is null begin
-			if (select count(*) from articulosExistencias where articuloid = @articulo) = 0 begin
-				insert into [ArticulosExistencias] (articuloid, existenciasla) values(@articulo, @cantidad)
-			end
-			else begin
-
-				update [ArticulosExistencias] set existenciasLA = existenciasLA + (@cantidad - @cantidadPrevia)  where articuloid = @articulo
-			end
-		
-			update MovimientosArticulos set cantidad = @cantidad where Id = @movimiento			
-		end
+		open @cur
 
 		fetch next from @cur into @articulo, @cantidad, @id, @movimiento
-	end
 
-	close @cur
-	deallocate @cur
+		while @@FETCH_STATUS = 0 begin		
+			set @cantidadPrevia = (select cantidad from deleted where deleted.PedidoProveedorEntregaID = @id)
+		
+			if @cantidad <> @cantidadPrevia and not @cantidad is null begin
+				if (select count(*) from articulosExistencias where articuloid = @articulo) = 0 begin
+					insert into [ArticulosExistencias] (articuloid, existenciasla) values(@articulo, @cantidad)
+				end
+				else begin
+
+					update [ArticulosExistencias] set existenciasLA = existenciasLA + (@cantidad - @cantidadPrevia)  where articuloid = @articulo
+				end
+		
+				update MovimientosArticulos set cantidad = @cantidad where Id = @movimiento			
+			end
+
+			fetch next from @cur into @articulo, @cantidad, @id, @movimiento
+		end
+
+		close @cur
+		deallocate @cur
+
+	end try
+	begin catch
+		declare @ErrorMessage nvarchar(max), @ErrorSeverity int, @ErrorState int
+		select @ErrorMessage = ERROR_MESSAGE() + ' Line ' + cast(ERROR_LINE() as nvarchar(5)), @ErrorSeverity = ERROR_SEVERITY(), @ErrorState = ERROR_STATE()
+		rollback tran
+		raiserror (@ErrorMessage, @ErrorSeverity, @ErrorState)
+	end catch
 END
 GO
 

@@ -21,44 +21,54 @@ BEGIN
 	declare @id int
 	
 	declare @cur cursor
-	set @cur = cursor for select PedidosProveedoresDetalles.articuloid, inserted.cantidad, inserted.PedidoProveedorEntregaID  from inserted, PedidosProveedoresDetalles where inserted.PedidoProveedorDetalleID = PedidosProveedoresDetalles.PedidoProveedorDetalleID 
+	
+	begin try
+		set @cur = cursor for select PedidosProveedoresDetalles.articuloid, inserted.cantidad, inserted.PedidoProveedorEntregaID  from inserted, PedidosProveedoresDetalles where inserted.PedidoProveedorDetalleID = PedidosProveedoresDetalles.PedidoProveedorDetalleID 
 
-	open @cur
-
-	fetch next from @cur into @articulo, @cantidad, @id
-
-	while @@FETCH_STATUS = 0 begin		
-		set @cantidadPrevia = (select isnull(existenciasLa, 0) from [ArticulosExistencias] where articuloid = @articulo)
-		
-		if (select count(*) from articulosExistencias where articuloid = @articulo) = 0 begin
-			insert into [ArticulosExistencias] (articuloid, existenciasla) values(@articulo, @cantidad)
-		end
-		else begin
-			update [ArticulosExistencias] set existenciasLA = existenciasLA + @cantidad where articuloid = @articulo
-		end
-		
-		insert into MovimientosArticulos(Id_TiposMovimientosArticulos, 
-											Id_articuloFin, 
-											cantidad, 
-											cantidadPrevia, 
-											cantidadPosterior,
-											fecha,
-											hora) 
-								values(	1, 
-										@articulo, 
-										@cantidad, 
-										@cantidadPrevia, 
-										@cantidad + @cantidadprevia, 
-										convert(date, CURRENT_TIMESTAMP),
-										convert(time, CURRENT_TIMESTAMP)
-										)
-
-		update PedidosProveedoresEntregas set id_movimientoArticulo = (select max(id) from MovimientosArticulos) where PedidoProveedorEntregaID = @id
+		open @cur
 
 		fetch next from @cur into @articulo, @cantidad, @id
-	end
 
-	close @cur
-	deallocate @cur
+		while @@FETCH_STATUS = 0 begin		
+			set @cantidadPrevia = (select isnull(existenciasLa, 0) from [ArticulosExistencias] where articuloid = @articulo)
+		
+			if (select count(*) from articulosExistencias where articuloid = @articulo) = 0 begin
+				insert into [ArticulosExistencias] (articuloid, existenciasla) values(@articulo, @cantidad)
+			end
+			else begin
+				update [ArticulosExistencias] set existenciasLA = existenciasLA + @cantidad where articuloid = @articulo
+			end
+		
+			insert into MovimientosArticulos(Id_TiposMovimientosArticulos, 
+												Id_articuloFin, 
+												cantidad, 
+												cantidadPrevia, 
+												cantidadPosterior,
+												fecha,
+												hora) 
+									values(	1, 
+											@articulo, 
+											@cantidad, 
+											@cantidadPrevia, 
+											@cantidad + @cantidadprevia, 
+											convert(date, CURRENT_TIMESTAMP),
+											convert(time, CURRENT_TIMESTAMP)
+											)
+
+			update PedidosProveedoresEntregas set id_movimientoArticulo = (select max(id) from MovimientosArticulos) where PedidoProveedorEntregaID = @id
+
+			fetch next from @cur into @articulo, @cantidad, @id
+		end
+
+		close @cur
+		deallocate @cur
+
+	end try
+	begin catch
+		declare @ErrorMessage nvarchar(max), @ErrorSeverity int, @ErrorState int
+		select @ErrorMessage = ERROR_MESSAGE() + ' Line ' + cast(ERROR_LINE() as nvarchar(5)), @ErrorSeverity = ERROR_SEVERITY(), @ErrorState = ERROR_STATE()
+		rollback tran
+		raiserror (@ErrorMessage, @ErrorSeverity, @ErrorState)
+	end catch
 END
 GO
