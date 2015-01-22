@@ -56,8 +56,6 @@ Public Class clsMuestrasObservaciones
         dtb.AñadirParametroConsulta("@user", BasesParaCompatibilidad.Config.User)
 
         Return dtb.Execute
-        'Return dtb.ConsultaAlteraciones("Insert into MuestrasObservaciones values(" & Convert.ToString(AnaliticaID) & "," & Convert.ToString(ObservacionID) & ",'" & Descripcion & "'" & _
-        '                                 ",'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Today & " " & TimeOfDay) & "'," & BasesParaCompatibilidad.Config.User.ToString & ")")
 
     End Function
 

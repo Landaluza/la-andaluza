@@ -47,9 +47,7 @@ Public Class clsAnaliticasRequerimientos
 
         Return dtb.Execute
 
-        'Return dtb.ConsultaAlteraciones("insert into AnaliticasRequerimientos values(" & Convert.ToString(AnaliticaID) & "," & Convert.ToString(ParametroID) & _
-        '                                ",'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Today & " " & TimeOfDay) & "'," & BasesParaCompatibilidad.Config.User.ToString & ")")
-
+       
     End Function
 
     Public Function Eliminar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean

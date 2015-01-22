@@ -80,11 +80,13 @@ Public Class clsTransicubas
 
     Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Try
-            dtb.ConsultaAlteraciones("insert into transicubas values(" & _
-                       "'" & Descripcion & "'," & _
-                       "'" & Estado & "','" & _
-                      BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)) + "'," + BasesParaCompatibilidad.Config.User.ToString + ")")
+            dtb.PrepararConsulta("insert into transicubas values( @desc, @est , @fecha, @user )")
+            dtb.AñadirParametroConsulta("@desc", Descripcion)
+            dtb.AñadirParametroConsulta("@est", Estado)
+            dtb.AñadirParametroConsulta("@fecha", BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)))
+            dtb.AñadirParametroConsulta("@user", BasesParaCompatibilidad.Config.User)
 
+            If Not dtb.Execute Then Throw New Exception("Error al guardar")
 
             dtb.PrepararConsulta("select max(TransicubaID) from Transicubas")
             TransicubaID = dtb.Consultar().Rows(0).Item(0)

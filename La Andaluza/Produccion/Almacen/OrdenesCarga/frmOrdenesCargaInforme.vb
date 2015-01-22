@@ -392,127 +392,6 @@ Public Class frmOrdenesCargaInforme
         End If
     End Sub
 
-    'Private Sub exportar()
-    '    Dim frm As New BasesParaCompatibilidad.frmEspera("Creando archivo excel")
-    '    frm.Show()
-
-    '    Try
-    '        Dim m_detalles As New DBO_OrdenesCargaDetalles
-
-    '        'preparativos para guardar el archivo
-    '        Dim RutaCompleta As String
-    '        Dim Unidad As String
-    '        Dim NombreHoja As String
-    '        Dim Ruta As String = "Almacen\Ordenes de carga\"
-
-    '        FechaSeleccionada = Now.Year & "." & _
-    '                            Convert.ToString(Now.Month) & "." & _
-    '                            Convert.ToString(Now.Day) & " " & _
-    '                            Convert.ToString(Now.Hour) & "-" & _
-    '                           Convert.ToString(Now.Minute)
-
-    '        If BasesParaCompatibilidad.Config.Server = 0 Then ' = "GERENTE1\SQLEXPRESS") Or (GUImain.ServidorUsado = "W7U\SQLEXPRESS2005") Then
-    '            Unidad = "C:\"
-    '        Else
-    '            Unidad = "Z:\"
-    '        End If
-
-    '        'Unidad = "C:\"
-    '        RutaCompleta = Unidad & Ruta
-    '        'RutaCompleta = Unidad
-    '        NombreHoja = RutaCompleta & FechaSeleccionada & " Orden de carga.xlsx"
-
-
-
-
-
-    '        If dgv.Columns.Count > 0 Then
-    '            'guardamos el registro maestro
-    '            dtb.EmpezarTransaccion()
-
-    '            Try
-    '                If Not AddOrdenCarga(NombreHoja, dtb) Then Throw New Exception("No se pudo guardar la orden de carga")
-    '                'Dim dat As DataTable = ConsultaVer("max(OrdenCargaID)", "OrdenesCarga")
-    '                Dim dat As DataTable = dtb.("select max(OrdenCargaID) from OrdenesCarga", False)
-    '                m_detalles.Id_OrdenCarga = dat.Rows(0).Item(0)
-    '                'Header
-    '                'Dim DataArrayHead(0, 0 To dtLineas.Columns.Count - 2) As Object
-    '                'For s As Integer = 0 To dtLineas.Columns.Count - 2
-    '                '    DataArrayHead(0, s) = dtLineas.Columns(s + 1).Caption
-    '                'Next
-    '                Dim DataArrayHead(0, 0 To 6) As Object
-    '                DataArrayHead(0, 0) = "Descripcion"
-    '                DataArrayHead(0, 1) = "Palets"
-    '                DataArrayHead(0, 2) = "Pico"
-    '                DataArrayHead(0, 3) = "PaletsCarga"
-    '                DataArrayHead(0, 4) = "PicosCarga"
-    '                DataArrayHead(0, 5) = "Observaciones"
-
-
-    '                Dim contLetra As Integer = 8
-    '                Dim conFilas As Integer = 0
-    '                'Detail
-    '                Dim DataArray(0 To dgv.Rows.Count - 1, 0 To 6) As Object
-    '                For mRow As Integer = 0 To Me.dgv.Rows.Count - 1
-    '                    If Me.dgv.Rows(mRow).Visible Then
-    '                        If Me.dgv.Rows(mRow).DefaultCellStyle.BackColor <> New DataGridViewRow().DefaultCellStyle.BackColor Then
-    '                        End If
-
-    '                        m_detalles.Observaciones = If(IsDBNull(dgv.Rows(mRow).Cells("Observaciones").Value), String.Empty, dgv.Rows(mRow).Cells("Observaciones").Value)
-    '                        m_detalles.Palets = If(IsDBNull(dgv.Rows(mRow).Cells("Palets").Value), 0, dgv.Rows(mRow).Cells("Palets").Value)
-    '                        m_detalles.PaletsCarga = If(IsDBNull(dgv.Rows(mRow).Cells("PaletsCarga").Value), 0, dgv.Rows(mRow).Cells("PaletsCarga").Value)
-    '                        m_detalles.carga = If(IsDBNull(dgv.Rows(mRow).Cells("Cargar").Value), 0, dgv.Rows(mRow).Cells("Cargar").Value)
-    '                        m_detalles.CargaSinPedidos = If(IsDBNull(dgv.Rows(mRow).Cells("Cargar").Value), 0, dgv.Rows(mRow).Cells("Cargar").Value) 'if(IsDBNull(dgv.Rows(mRow).Cells("CargaSinPedidos").Value), 0, dgv.Rows(mRow).Cells("CargaSinPedidos").Value)
-    '                        m_detalles.Pico = If(IsDBNull(dgv.Rows(mRow).Cells("Pico").Value), 0, dgv.Rows(mRow).Cells("Pico").Value)
-    '                        m_detalles.Descripcion = If(IsDBNull(dgv.Rows(mRow).Cells("Descripcion").Value), String.Empty, dgv.Rows(mRow).Cells("Descripcion").Value)
-    '                        m_detalles.id_tipoFormato = If(IsDBNull(dgv.Rows(mRow).Cells("id_tipoFormato").Value), Convert.DBNull, dgv.Rows(mRow).Cells("id_tipoFormato").Value)
-    '                        m_detalles.cargaPicos = If(IsDBNull(dgv.Rows(mRow).Cells("CargaPicos").Value), String.Empty, dgv.Rows(mRow).Cells("CargaPicos").Value)
-    '                        m_detalles.cargaPicosSCC = If(IsDBNull(dgv.Rows(mRow).Cells("CargaPicosSCC").Value), String.Empty, dgv.Rows(mRow).Cells("CargaPicos").Value)
-
-    '                        If Not spOrdenesCarga.OrdenesCargaInsertDetail(m_detalles, dtb) Then Throw New Exception("No se pudo guardar la orden de carga")
-
-    '                        DataArray(conFilas, 0) = dgv.Rows(mRow).Cells("Descripcion").Value
-    '                        DataArray(conFilas, 1) = dgv.Rows(mRow).Cells("Palets").Value
-    '                        DataArray(conFilas, 2) = dgv.Rows(mRow).Cells("Pico").Value
-    '                        DataArray(conFilas, 3) = dgv.Rows(mRow).Cells("PaletsCarga").Value
-    '                        DataArray(conFilas, 4) = dgv.Rows(mRow).Cells("CargaPicos").Value
-    '                        DataArray(conFilas, 5) = dgv.Rows(mRow).Cells("Observaciones").Value
-
-    '                        conFilas += 1
-    '                    End If
-    '                Next
-
-
-    '                dtb.ConsultaAlteraciones("insert into notificaciones(texto, id_tipousuario, leido) values('Tiene una orden de carga nueva', 7, 0)")
-
-    '                Try 'TEmporal hasta dar de alta el tablet nuevo
-    '                    Dim web As New BasesParaCompatibilidad.Web
-    '                    web.send_GET("Nueva orden de carga", web.recuperar_id_tablet(24, dtb))
-    '                Catch ex As Exception
-    '                End Try
-
-    '                ''dtb.CancelarTransaccion ()
-    '                dtb.TerminarTransaccion()
-    '                '''If Not Me.WinSockCliente Is Nothing Then If Me.WinSockCliente.conected Then WinSockCliente.EnviarDatos("99")
-
-    '            Catch ex As Exception
-    '                dtb.CancelarTransaccion()
-    '                'MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error)
-    '                Throw
-    '                'Finally
-    '                'oExcel.Quit()
-    '                ' oExcel = Nothing
-    '                'oSheet = Nothing
-    '            End Try
-    '        End If
-    '    Catch ex As Exception
-    '        MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error)
-    '    Finally
-    '        frm.Close()
-    '    End Try
-
-    'End Sub
-
 
     Private Sub exportar()
         Dim frm As New BasesParaCompatibilidad.frmEspera("Creando archivo excel")
@@ -641,7 +520,8 @@ Public Class frmOrdenesCargaInforme
                     oSheet.Columns("C:G").ColumnWidth = 8.5
                     oSheet.Columns("G:G").ColumnWidth = 50
 
-                    dtb.ConsultaAlteraciones("insert into notificaciones(texto, id_tipousuario, leido) values('Tiene una orden de carga nueva', 7, 0)")
+                    dtb.PrepararConsulta("insert into notificaciones(texto, id_tipousuario, leido) values('Tiene una orden de carga nueva', 7, 0)")
+                    If Not dtb.Execute Then Throw New Exception("Error al guardar la notificacion")
 
                     Try 'TEmporal hasta dar de alta el tablet nuevo
                         Dim web As New BasesParaCompatibilidad.Web

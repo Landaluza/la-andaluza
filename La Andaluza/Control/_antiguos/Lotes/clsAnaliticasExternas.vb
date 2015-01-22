@@ -109,17 +109,7 @@ Public Class clsAnaliticasExternas
             AnaliticaExternaID = dtb.Consultar().Rows(0).Item(0)
         End If
 
-        'If Not dtb.ConsultaAlteraciones("insert into AnaliticasExternas values('" & RutaAnalisis & "'," & _
-        '                "'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha) & "'," & _
-        '                If(ProveedorID = Nothing, "null", "'" & Convert.ToString(ProveedorID) & "'") & "," & _
-        '                "'" & Convert.ToString(AnaliticaID) & "'" & _
-        '                ",'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Today & " " & TimeOfDay) & "'," & BasesParaCompatibilidad.Config.User.ToString & ")") Then
 
-        '    AnaliticaExternaID = 0
-        'Else
-        '    dtb.PrepararConsulta("select max(AnaliticaExternaID) from AnaliticasExternas")
-        '    AnaliticaExternaID = dtb.Consultar().Rows(0).Item(0)
-        'End If
 
         Return AnaliticaExternaID
 

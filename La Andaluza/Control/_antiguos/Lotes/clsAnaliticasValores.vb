@@ -67,8 +67,6 @@ Public Class clsAnaliticasValores
         dtb.AñadirParametroConsulta("@user", BasesParaCompatibilidad.Config.User)
 
         Return dtb.Execute
-        'Return dtb.ConsultaAlteraciones("insert into AnaliticasValores values(" & Convert.ToString(AnaliticaID) & "," & Convert.ToString(ParametroID) & ",'" & Convert.ToString(Valor).Replace(",", ".") & "'" & _
-        '                          ",'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Today & " " & TimeOfDay) & "'," & BasesParaCompatibilidad.Config.User.ToString & ")")
 
     End Function
 

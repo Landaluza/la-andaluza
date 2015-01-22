@@ -753,49 +753,7 @@ Public Class clsLotes
             If Not sp.GrabarLotes1(dbo, dtb) Then
                 Throw New Exception("No se pudo guardar el lote")
             End If
-            'If Botellas <> "null" Then
-
-            '    If Not dtb.ConsultaAlteraciones("insert into lotes values(" & Referencia & ",'" & Descripcion & "'," & _
-            '                        "'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha) & "'," & _
-            '                        "'" & Convert.ToString(CantidadRestante) & "'," & _
-            '                        "'" & Observacion & "'," & _
-            '                        "'" & LoteProveedor & "'," & _
-            '                        "'" & Convert.ToString(Botellas) & "'," & _
-            '                        "" & Convert.ToString(CantidadID) & "," & _
-            '                        "" & Convert.ToString(MedidaID) & "," & _
-            '                        "" & Convert.ToString(EspecificacionID) & "," & _
-            '                        "" & Convert.ToString(TipoLoteID) & "," & _
-            '                        "" & Convert.ToString(TipoProductoID) & "," & _
-            '                        Convert.ToString(CorredorID) & "," & _
-            '                        Convert.ToString(ProveedorID) & "," & _
-            '                        Convert.ToString(LoteConjuntoCompraID) & "," & _
-            '                        "'" & CodigoLote & "'," & DepositoID & "," & DepositoID & ",'False'," & RecipienteSalidaID & _
-            '                        ",'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Today & " " & TimeOfDay) & "'," & BasesParaCompatibilidad.Config.User.ToString & ")") Then
-
-            '        Throw New Exception("No se pudo insertar el lote")
-            '    End If
-            'Else
-
-            '    If Not dtb.ConsultaAlteraciones("insert into lotes values(" & Referencia & ",'" & Descripcion & "'," & _
-            '                        "'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha) & "'," & _
-            '                        "'" & Convert.ToString(CantidadRestante) & "'," & _
-            '                        "'" & Observacion & "'," & _
-            '                        "'" & LoteProveedor & "'," & _
-            '                        "" & Convert.ToString(Botellas) & "," & _
-            '                        "" & Convert.ToString(CantidadID) & "," & _
-            '                        "" & Convert.ToString(MedidaID) & "," & _
-            '                        "" & Convert.ToString(EspecificacionID) & "," & _
-            '                        "" & Convert.ToString(TipoLoteID) & "," & _
-            '                        "" & Convert.ToString(TipoProductoID) & "," & _
-            '                        Convert.ToString(CorredorID) & "," & _
-            '                        Convert.ToString(ProveedorID) & "," & _
-            '                        Convert.ToString(LoteConjuntoCompraID) & "," & _
-            '                        "'" & CodigoLote & "'," & DepositoID & "," & DepositoID & ",'False'," & RecipienteSalidaID & _
-            '                        ",'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Today & " " & TimeOfDay) & "'," & BasesParaCompatibilidad.Config.User.ToString & ")") Then
-
-            '        Throw New Exception("No se pudo insertar el lote")
-            '    End If
-            'End If
+          
 
             dtb.PrepararConsulta("select max(LoteID) from Lotes")
             LoteID = dtb.Consultar().Rows(0).Item(0)

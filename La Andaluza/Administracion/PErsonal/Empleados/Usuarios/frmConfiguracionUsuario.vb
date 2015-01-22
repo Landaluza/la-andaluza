@@ -1,28 +1,7 @@
 ﻿Public Class frmConfiguracionUsuario
     Private dbobject As DBO_Usuarios
     Private dtb As BasesParaCompatibilidad.DataBase
-    'Dim dt As DataTable = RealizarConsulta("Select email from usuarios where usuarioid = " & clsUsu._UsuarioID)
-    '            If IsDBNull(dt.Rows(0).Item(0)) Then
-    'Dim strInput As String
 
-    '                strInput = InputBox("Parece que la base de datos aun no contiene su correo." & Environment.NewLine & "Por favor, introduzca su direccion de correo interno (@andaluza.es):")
-
-    '                If strInput <> "" Then
-    '                    deprecated.realizarConsultaAlteraciones("update usuarios set email = '" & strInput & "' where usuarioID = " & clsUsu._UsuarioID)
-    '                End If
-    '            Else
-    '                dt = RealizarConsulta("Select pass from usuarios where usuarioid = " & clsUsu._UsuarioID)
-    '                If IsDBNull(dt.Rows(0).Item(0)) Then
-    'Dim strInput As String
-
-    '                    strInput = InputBox("Parece que la base de datos aun no contiene la contraseña de su correo." & Environment.NewLine & "Por favor, introduzca la contraseña de se direccion de correo interno (@andaluza.es):" & _
-    '                                        Environment.NewLine & "(Deje el campo en blanco si no la recuerda ahora mismo)")
-
-    '                    If strInput <> "" Then
-    '                        deprecated.realizarConsultaAlteraciones("update usuarios set pass = '" & strInput & "' where usuarioID = " & clsUsu._UsuarioID)
-    '                    End If
-    '                End If
-    '            End If
 
     Private Sub frmConfiguracionUsuario_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
         BasesParaCompatibilidad.Pantalla.centerIn(Me.Panel2, Me)

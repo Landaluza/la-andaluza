@@ -75,9 +75,13 @@ Public Class clsToneles
     Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
 
         Try
-            dtb.ConsultaAlteraciones("insert into Toneles values(" & _
-                              "'" & Descripcion & "','" & ContenidoHabitual & "','" & _
-                             BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)) + "'," + BasesParaCompatibilidad.Config.User.ToString + ")")
+            dtb.PrepararConsulta("insert into Toneles values(@desc , @cont , @fecha , @user )")
+            dtb.AñadirParametroConsulta("@desc", Descripcion)
+            dtb.AñadirParametroConsulta("@cont", ContenidoHabitual)
+            dtb.AñadirParametroConsulta("@fecha", BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)))
+            dtb.AñadirParametroConsulta("@user", BasesParaCompatibilidad.Config.User)
+
+            If Not dtb.Execute Then Throw New Exception("Error al guardar")
 
             dtb.PrepararConsulta("select max(TonelID) from Toneles")
             TonelID = dtb.Consultar.Rows(0).Item(0)
