@@ -59,8 +59,16 @@ Public Class clsAnaliticasValores
     End Function
 
     Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
-        Return dtb.ConsultaAlteraciones("insert into AnaliticasValores values(" & Convert.ToString(AnaliticaID) & "," & Convert.ToString(ParametroID) & ",'" & Convert.ToString(Valor).Replace(",", ".") & "'" & _
-                                  ",'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Today & " " & TimeOfDay) & "'," & BasesParaCompatibilidad.Config.User.ToString & ")")
+        dtb.PrepararConsulta("insert into AnaliticasValores values( @ana , @par , @val , @fecha , @user )")
+        dtb.AñadirParametroConsulta("@ana", AnaliticaID)
+        dtb.AñadirParametroConsulta("@par", ParametroID)
+        dtb.AñadirParametroConsulta("@val", Valor)
+        dtb.AñadirParametroConsulta("@fecha", BasesParaCompatibilidad.Calendar.ArmarFecha(Today & " " & TimeOfDay))
+        dtb.AñadirParametroConsulta("@user", BasesParaCompatibilidad.Config.User)
+
+        Return dtb.Execute
+        'Return dtb.ConsultaAlteraciones("insert into AnaliticasValores values(" & Convert.ToString(AnaliticaID) & "," & Convert.ToString(ParametroID) & ",'" & Convert.ToString(Valor).Replace(",", ".") & "'" & _
+        '                          ",'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Today & " " & TimeOfDay) & "'," & BasesParaCompatibilidad.Config.User.ToString & ")")
 
     End Function
 

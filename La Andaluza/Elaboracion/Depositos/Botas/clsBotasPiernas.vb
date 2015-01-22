@@ -75,9 +75,18 @@ Public Class clsBotasPiernas
     Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
 
         Try
-            dtb.ConsultaAlteraciones("insert into BotasPiernas values(" & _
-                              "'" & Descripcion & "','" & ContenidoHabitual & "','" &
-                              BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)) + "'," + BasesParaCompatibilidad.Config.User.ToString + ")")
+            dtb.ConsultaAlteraciones("insert into BotasPiernas values( @desc , @cont , @fecha , @user)")
+            dtb.AñadirParametroConsulta("@desc", Descripcion)
+            dtb.AñadirParametroConsulta("@cont", ContenidoHabitual)
+            dtb.AñadirParametroConsulta("@fecha", BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)))
+            dtb.AñadirParametroConsulta("@user", BasesParaCompatibilidad.Config.User)
+
+
+            If Not dtb.Execute Then Throw New Exception("Error al guardar")
+            'dtb.ConsultaAlteraciones("insert into BotasPiernas values(" & _
+            '                  "'" & Descripcion & "','" & ContenidoHabitual & "','" &
+            '                  BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)) + "'," + BasesParaCompatibilidad.Config.User.ToString + ")")
+
             dtb.PrepararConsulta("select max(BotaPiernaID) from BotasPiernas")
             BotaPiernaID = dtb.Consultar().Rows(0).Item(0)
             Return BotaPiernaID
@@ -91,6 +100,7 @@ Public Class clsBotasPiernas
         Try
             dtb.PrepararConsulta("delete from BotasPiernas where BotaPiernaID = @id")
             dtb.AñadirParametroConsulta("@id", BotaPiernaID)
+
             If dtb.Execute Then
                 Return 1
             Else

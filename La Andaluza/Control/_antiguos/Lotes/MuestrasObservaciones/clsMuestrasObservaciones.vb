@@ -48,9 +48,16 @@ Public Class clsMuestrasObservaciones
     End Function
 
     Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+        dtb.PrepararConsulta("Insert into MuestrasObservaciones values( @ana , @obs , @desc , @fecha , @user )")
+        dtb.AñadirParametroConsulta("@ana", AnaliticaID)
+        dtb.AñadirParametroConsulta("@obs", ObservacionID)
+        dtb.AñadirParametroConsulta("@desc", Descripcion)
+        dtb.AñadirParametroConsulta("@fecha", BasesParaCompatibilidad.Calendar.ArmarFecha(Today & " " & TimeOfDay))
+        dtb.AñadirParametroConsulta("@user", BasesParaCompatibilidad.Config.User)
 
-        Return dtb.ConsultaAlteraciones("Insert into MuestrasObservaciones values(" & Convert.ToString(AnaliticaID) & "," & Convert.ToString(ObservacionID) & ",'" & Descripcion & "'" & _
-                                         ",'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Today & " " & TimeOfDay) & "'," & BasesParaCompatibilidad.Config.User.ToString & ")")
+        Return dtb.Execute
+        'Return dtb.ConsultaAlteraciones("Insert into MuestrasObservaciones values(" & Convert.ToString(AnaliticaID) & "," & Convert.ToString(ObservacionID) & ",'" & Descripcion & "'" & _
+        '                                 ",'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Today & " " & TimeOfDay) & "'," & BasesParaCompatibilidad.Config.User.ToString & ")")
 
     End Function
 

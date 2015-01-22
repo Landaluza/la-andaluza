@@ -782,7 +782,7 @@ Public Class MenuDispatcher
         Dim ch As New EnlaceChep
     End Sub
 
-    Private Sub AvisosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AvisosToolStripMenuItem.Click, AvisosToolStripMenuItem1.Click
+    Private Sub AvisosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AvisosToolStripMenuItem.Click, AvisosToolStripMenuItem1.Click, AvisosToolStripMenuItem2.Click
         Dim frm As New Proveedores.frmAvisosPedidos
         GUImain.añadirPestaña(frm)
     End Sub

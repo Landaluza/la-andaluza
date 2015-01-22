@@ -93,18 +93,34 @@ Public Class clsAnaliticasExternas
     End Function
 
     Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
-        If Not dtb.ConsultaAlteraciones("insert into AnaliticasExternas values('" & RutaAnalisis & "'," & _
-                        "'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha) & "'," & _
-                        If(ProveedorID = Nothing, "null", "'" & Convert.ToString(ProveedorID) & "'") & "," & _
-                        "'" & Convert.ToString(AnaliticaID) & "'" & _
-                        ",'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Today & " " & TimeOfDay) & "'," & BasesParaCompatibilidad.Config.User.ToString & ")") Then
+        dtb.PrepararConsulta("insert into AnaliticasExternas values( @ruta , @fecha , @proveedor , @analitica , @fechaMod ,@user )")
+        dtb.AñadirParametroConsulta("@ruta", RutaAnalisis)
+        dtb.AñadirParametroConsulta("@fecha", BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha))
+        dtb.AñadirParametroConsulta("@proveedor", If(ProveedorID = Nothing, Convert.DBNull, ProveedorID))
+        dtb.AñadirParametroConsulta("@analitica", AnaliticaID)
+        dtb.AñadirParametroConsulta("@fechaMod", BasesParaCompatibilidad.Calendar.ArmarFecha(Today & " " & TimeOfDay))
+        dtb.AñadirParametroConsulta("@user", BasesParaCompatibilidad.Config.User)
 
+
+        If Not dtb.Execute Then
             AnaliticaExternaID = 0
         Else
             dtb.PrepararConsulta("select max(AnaliticaExternaID) from AnaliticasExternas")
             AnaliticaExternaID = dtb.Consultar().Rows(0).Item(0)
         End If
-        
+
+        'If Not dtb.ConsultaAlteraciones("insert into AnaliticasExternas values('" & RutaAnalisis & "'," & _
+        '                "'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha) & "'," & _
+        '                If(ProveedorID = Nothing, "null", "'" & Convert.ToString(ProveedorID) & "'") & "," & _
+        '                "'" & Convert.ToString(AnaliticaID) & "'" & _
+        '                ",'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Today & " " & TimeOfDay) & "'," & BasesParaCompatibilidad.Config.User.ToString & ")") Then
+
+        '    AnaliticaExternaID = 0
+        'Else
+        '    dtb.PrepararConsulta("select max(AnaliticaExternaID) from AnaliticasExternas")
+        '    AnaliticaExternaID = dtb.Consultar().Rows(0).Item(0)
+        'End If
+
         Return AnaliticaExternaID
 
     End Function

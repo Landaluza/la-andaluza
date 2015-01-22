@@ -503,6 +503,7 @@ Partial Class MenuDispatcher
         Me.ChepToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LogifruitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ActualizarToolStripMenuItem6 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AvisosToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MSAdministrador.SuspendLayout()
         Me.MSEnvasado.SuspendLayout()
         Me.MSElaboracion.SuspendLayout()
@@ -957,7 +958,7 @@ Partial Class MenuDispatcher
         '
         'tsmCompras
         '
-        Me.tsmCompras.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmProveedores, Me.tsmCorredoresBBDD, Me.LotesEnologicosToolStripMenuItem, Me.Pedidos1ToolStripMenuItem, Me.ListadoPedidosPendientesToolStripMenuItem1, Me.FichasCondicionesCompraToolStripMenuItem, Me.EstadosDePedidosToolStripMenuItem})
+        Me.tsmCompras.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmProveedores, Me.tsmCorredoresBBDD, Me.LotesEnologicosToolStripMenuItem, Me.Pedidos1ToolStripMenuItem, Me.ListadoPedidosPendientesToolStripMenuItem1, Me.FichasCondicionesCompraToolStripMenuItem, Me.EstadosDePedidosToolStripMenuItem, Me.AvisosToolStripMenuItem2})
         Me.tsmCompras.Name = "tsmCompras"
         Me.tsmCompras.Size = New System.Drawing.Size(67, 26)
         Me.tsmCompras.Text = "Com&pras"
@@ -4323,6 +4324,12 @@ Partial Class MenuDispatcher
         Me.ActualizarToolStripMenuItem6.Size = New System.Drawing.Size(93, 26)
         Me.ActualizarToolStripMenuItem6.Text = "Actualizar"
         '
+        'AvisosToolStripMenuItem2
+        '
+        Me.AvisosToolStripMenuItem2.Name = "AvisosToolStripMenuItem2"
+        Me.AvisosToolStripMenuItem2.Size = New System.Drawing.Size(293, 22)
+        Me.AvisosToolStripMenuItem2.Text = "Avisos"
+        '
         'MenuDispatcher
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -4838,4 +4845,5 @@ End Sub
     Private WithEvents AvisosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Private WithEvents AvisosToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Private WithEvents ExistenciasToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents AvisosToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
 End Class

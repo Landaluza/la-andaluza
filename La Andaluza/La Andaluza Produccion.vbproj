@@ -53,7 +53,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>36</ApplicationRevision>
+    <ApplicationRevision>38</ApplicationRevision>
     <ApplicationVersion>2014.12.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -5646,10 +5646,10 @@
     <Content Include="Administracion\Proveedores1\PedidosProveedores\avisos\AvisosPedidosBatch.sql" />
     <Content Include="Bases\ZLibrerias\BarcodeLib.dll" />
     <None Include="Bases\ZLibrerias\etiquetas.dll" />
-    <None Include="Bases\ZLibrerias\Envasado.dll" />
     <None Include="Resources\glyphicons_157_show_thumbnails_with_lines.png" />
     <None Include="Resources\glyphicons_206_ok_2.png" />
     <None Include="Resources\glyphicons_221_unshare.png" />
+    <None Include="Bases\ZLibrerias\Envasado.dll" />
     <Content Include="Control\Existencias\tablas existencias\delete entrega.sql" />
     <Content Include="Control\Existencias\tablas existencias\insert entrega.sql" />
     <Content Include="Control\Existencias\tablas existencias\insert movimientos.sql" />

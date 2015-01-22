@@ -43,10 +43,15 @@ Public Class clsBotasTapones
     Public Function Modificar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
 
         Try
+            dtb.PrepararConsulta(" update BotasTapones set Descripcion= @desc where BotaTaponID= @id")
+            dtb.AñadirParametroConsulta("@desc", Descripcion)
+            dtb.AñadirParametroConsulta("@id", BotaTaponID)
 
-            dtb.ConsultaAlteraciones(" update BotasTapones set " & _
-                               "Descripcion='" & Descripcion & "'" & _
-                               " where BotaTaponID=" & Convert.ToString(BotaTaponID))
+            'dtb.ConsultaAlteraciones(" update BotasTapones set " & _
+            '                   "Descripcion='" & Descripcion & "'" & _
+            '                   " where BotaTaponID=" & Convert.ToString(BotaTaponID))
+
+            If Not dtb.Execute Then Return 0
             Return 1
         Catch ex As Exception
             Return 0
@@ -55,9 +60,15 @@ Public Class clsBotasTapones
 
     Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Try
-            dtb.ConsultaAlteraciones("insert into BotasTapones values(" & _
-                              "'" & Descripcion & "','" & _
-                             BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)) + "'," + BasesParaCompatibilidad.Config.User.ToString + ")")
+            dtb.ConsultaAlteraciones("insert into BotasTapones values(@desc, @fecha , @user )")
+            dtb.AñadirParametroConsulta("@desc", Descripcion)
+            dtb.AñadirParametroConsulta("@fecha", BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)))
+            dtb.AñadirParametroConsulta("@user", BasesParaCompatibilidad.Config.User)
+
+            If Not dtb.Execute Then Throw New Exception("Error al guardar")
+            'dtb.ConsultaAlteraciones("insert into BotasTapones values(" & _
+            '                  "'" & Descripcion & "','" & _
+            '                 BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)) + "'," + BasesParaCompatibilidad.Config.User.ToString + ")")
 
             dtb.PrepararConsulta("select max(BotaTaponID) from BotasTapones")
             BotaTaponID = dtb.Consultar().Rows(0).Item(0)

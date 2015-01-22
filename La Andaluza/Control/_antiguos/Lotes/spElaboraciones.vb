@@ -7,8 +7,10 @@
 
     Public Function aprobar_lote_mezcla(ByVal loteid As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Try
-            Dim query As String = "update elaboraciones set estado = 2, completado=1 where id_lote=" & loteid
-            If dtb.ConsultaAlteraciones(query) Then
+            dtb.PrepararConsulta("update elaboraciones set estado = 2, completado=1 where id_lote= @id")
+            dtb.AñadirParametroConsulta("@id", loteid)
+
+            If dtb.Execute Then
                 dtb.PrepararConsulta("select codigoLote from lotes where loteid = @id")
                 dtb.AñadirParametroConsulta("@id", loteid)
                 web.send_GET("Lote aprobado, " & dtb.Consultar().Rows(0).Item(0), web.recuperar_id_tablet(17, dtb))
@@ -22,9 +24,10 @@
 
     Public Function deprobar_lote_mezcla(ByVal loteid As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Try
-            Dim query As String = "update elaboraciones set estado = 3 where id_lote=" & loteid
+            dtb.PrepararConsulta("update elaboraciones set estado = 3  where id_lote= @id")
+            dtb.AñadirParametroConsulta("@id", loteid)
 
-            If dtb.ConsultaAlteraciones(query) Then
+            If dtb.Execute Then
                 dtb.PrepararConsulta("select codigoLote from lotes where loteid = @id")
                 dtb.AñadirParametroConsulta("@id", loteid)
                 web.send_GET("Lote NO aprobado, " & dtb.Consultar().Rows(0).Item(0), web.recuperar_id_tablet(17, dtb))
@@ -38,8 +41,10 @@
 
     Public Function repetir_muestra_mezcla(ByVal loteid As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
         Try
-            Dim query As String = "update elaboraciones set estado = 4 where id_lote=" & loteid
-            If dtb.ConsultaAlteraciones(query) Then
+            dtb.PrepararConsulta("update elaboraciones set estado = 4 where id_lote= @id")
+            dtb.AñadirParametroConsulta("@id", loteid)
+
+            If dtb.Execute Then
                 dtb.PrepararConsulta("select codigoLote from lotes where loteid = @id")
                 dtb.AñadirParametroConsulta("@id", loteid)
                 web.send_GET("Repetir muestra del lote " & dtb.Consultar().Rows(0).Item(0), web.recuperar_id_tablet(17, dtb))

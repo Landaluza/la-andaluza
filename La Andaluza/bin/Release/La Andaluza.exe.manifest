@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="La Andaluza.exe" version="2014.12.1.36" publicKeyToken="0000000000000000" language="es-ES" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="La Andaluza.exe" version="2014.12.1.37" publicKeyToken="0000000000000000" language="es-ES" processorArchitecture="msil" type="win32" />
   <description asmv2:iconFile="Resources\LogoBandejaLa2.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
@@ -105,7 +105,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>PSx8VTFG6Y0ks5w7k2LXAZoB1vQwlT1R7518K/4WbTY=</dsig:DigestValue>
+        <dsig:DigestValue>o81pLuXyZMh5bx6eQI+K8KVczsHBusTlLtAXp7s+CSE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -189,7 +189,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>T0Iz0jgMXlTTfXahX4RzD5OvzRcUMMBGuNPy09q2fk0=</dsig:DigestValue>
+        <dsig:DigestValue>ArB3AgjyouWs/rO/UFbGbObNmao59Dc1YYsMUyKDtSo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -345,19 +345,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>+6VV8hlYEcvER51SJ7iCn8Y87vgkIxVtUijFTjO+EM0=</dsig:DigestValue>
+        <dsig:DigestValue>8kY9RVKwQq2cgilFO+C2w+Z2lOPb8QLdhI8zSD6SiM8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="La Andaluza.exe" size="9113088">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="La Andaluza.exe" size="9114624">
       <assemblyIdentity name="La Andaluza" version="2014.2.1.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ts5GGpbrewRc5fjcYlJUl39wDUY6Be+JApivc5c44HY=</dsig:DigestValue>
+        <dsig:DigestValue>sWwA1id8YddpN16470N+wNFJgxPSk5wdSnXTDhkUTkA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -518,6 +518,69 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>NWsORCq+lbZ0o7vNkcIuFpc4Yk3+JZ15eNrpB636YRA=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Existencias\tablas existencias\delete entrega.sql" size="1705">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>D7AsThb1vXutJgZUOYjeB9lH/kaJDQrcEyvhd74JJpw=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Existencias\tablas existencias\insert entrega.sql" size="2369">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>0e2xqV3SUZW5RPEbBWS7Q04HpD/eIDySbQYnBhCUPYs=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Existencias\tablas existencias\insert movimientos.sql" size="807">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>qpn+YEEJcK+uyRwqz9h2jGvDOPK9xFbpf1nrKyTChBI=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Existencias\tablas existencias\movimientos.sql" size="1912">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>IE3sCEPzq7AqdKO+gEJfZa49OlfV9joZTjQonTumUWU=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Existencias\tablas existencias\tabla existencias.sql" size="926">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>ImAL91LW+1C0L/gQgpOfJfMt5HBf78hPEm54oGpivxg=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Existencias\tablas existencias\tabla stocks.sql" size="2446">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>RdgkyjjQUioS23uj43MhibNwIF+dsqPLwatwRwc6JJY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Control\Existencias\tablas existencias\update entrega.sql" size="2281">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>zRDtdqkrXwVnFab4LU4hzSSn434wDQ8kIfKGDmlPVIk=</dsig:DigestValue>
     </hash>
   </file>
   <file name="La Andaluza.exe.config" size="26247">

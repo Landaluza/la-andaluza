@@ -78,8 +78,15 @@ Public Class clsBotas
 
 
         Try
-            dtb.ConsultaAlteraciones("insert into Botas values( " & Convert.ToString(BotaTaponID) & "," & _
-                             Convert.ToString(PosicionID) & " ,'" & BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)) + "'," + BasesParaCompatibilidad.Config.User.ToString + ")")
+            dtb.PrepararConsulta("insert into Botas values( @tapon , @pos , @fecha , @user )")
+            dtb.AñadirParametroConsulta("@tapon", BotaTaponID)
+            dtb.AñadirParametroConsulta("@pos", PosicionID)
+            dtb.AñadirParametroConsulta("@fecha", BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)))
+            dtb.AñadirParametroConsulta("@user", BasesParaCompatibilidad.Config.User)
+
+            If Not dtb.Execute Then Throw New Exception("Error al guardar")
+            'dtb.ConsultaAlteraciones("insert into Botas values( " & Convert.ToString(BotaTaponID) & "," & _
+            '                 Convert.ToString(PosicionID) & " ,'" & BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)) + "'," + BasesParaCompatibilidad.Config.User.ToString + ")")
 
 
             dtb.PrepararConsulta("select max(BotaID) from Botas")
