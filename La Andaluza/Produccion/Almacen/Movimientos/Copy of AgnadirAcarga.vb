@@ -179,8 +179,11 @@
                                     Else
                                         Me.Cursor = Cursors.WaitCursor
 
+                                        dtb.PrepararConsulta("insert into notificaciones(texto, id_tipousuario, leido) values( @text , 4, 0)")
+                                        dtb.AñadirParametroConsulta("@text", "El palet " & txtSCC.Text & " se ha expedido sin contenidos el " & Convert.ToString(Now.Date))
 
-                                        If Not dtb.ConsultaAlteraciones("insert into notificaciones(texto, id_tipousuario, leido) values('El palet " & txtSCC.Text & " se ha expedido sin contenidos el " & Convert.ToString(Now.Date) & "' , 4, 0)") Then
+                                        'If Not dtb.ConsultaAlteraciones("insert into notificaciones(texto, id_tipousuario, leido) values('El palet " & txtSCC.Text & " se ha expedido sin contenidos el " & Convert.ToString(Now.Date) & "' , 4, 0)") Then
+                                        If Not dtb.Execute() Then
                                             MessageBox.Show("No se pudo notificar a control. Vuelva a intentarlo en unos segundos.", "Error al notificar", MessageBoxButtons.OK, MessageBoxIcon.Error)
                                             Me.Cursor = Cursors.Default
                                         Else

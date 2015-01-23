@@ -247,28 +247,76 @@ Namespace AlbaranesCarga
 
         Public Function Modificar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
             Try
-                If Not dtb.ConsultaAlteraciones("update AlbaranesCargaMaestro set " & _
-                            "AlbaranCargaProMaestroID=" & Convert.ToString(AlbaranCargaProMaestroID) & "," & _
-                            "Fecha='" & BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha) & "'," & _
-                            "ClienteID=" & Convert.ToString(ClienteID) & "," & _
-                            "SerieQSID=" & Convert.ToString(SerieQSID) & "," & _
-                            "NumeroQS=" & Convert.ToString(NumeroQS) & "," & _
-                            "AlmacenSalidaQSID=" & Convert.ToString(AlmacenSalidaQSID) & "," & _
-                            "AgenciaID=" & Convert.ToString(AgenciaID) & "," & _
-                            "PorteFormaPagoID=" & Convert.ToString(PorteFormaPagoID) & "," & _
-                            "PorteImporte=" & Convert.ToString(PorteImporte) & "," & _
-                            "Matricula='" & Matricula & "'," & _
-                            "Conductor='" & Conductor & "'," & _
-                            "ConductorDNI='" & ConductorDNI & "'," & _
-                            "ResponsableCargaID=" & Convert.ToString(ResponsableCargaID) & "," & _
-                            "ResponsableAdministracionID=" & Convert.ToString(ResponsableAdministracionID) & "," & _
-                            "HoraLlegada='" & BasesParaCompatibilidad.Calendar.ArmarFecha(HoraLlegada) & "'," & _
-                            "HoraSalida='" & BasesParaCompatibilidad.Calendar.ArmarFecha(HoraSalida) & "'," & _
-                            "Observaciones='" & Observaciones & "'," & _
-                            "Reserva1='" & Reserva1 & "'," & _
-                            "Reserva2=" & If(Reserva2 = 0, "null", Reserva2.ToString) & "," & _
-                            "Reserva3='" & Reserva3 & "'" & _
-                            " where AlbaranCargaMaestroID=" & Convert.ToString(AlbaranCargaMaestroID)) Then
+
+                dtb.PrepararConsulta("update AlbaranesCargaMaestro set " & _
+                            "AlbaranCargaProMaestroID= @al ," & _
+                            "Fecha= @fech ," & _
+                            "ClienteID= @cli ," & _
+                            "SerieQSID= @ser ," & _
+                            "NumeroQS= @num ," & _
+                            "AlmacenSalidaQSID= @sal ," & _
+                            "AgenciaID= @ag ," & _
+                            "PorteFormaPagoID= @fpag ," & _
+                            "PorteImporte= @imp ," & _
+                            "Matricula= @mat ," & _
+                            "Conductor= @con ," & _
+                            "ConductorDNI= @dni ," & _
+                            "ResponsableCargaID= @repc ," & _
+                            "ResponsableAdministracionID= @resa ," & _
+                            "HoraLlegada= @ini ," & _
+                            "HoraSalida= @fin ," & _
+                            "Observaciones= @obs ," & _
+                            "Reserva1= @re1 ," & _
+                            "Reserva2= @re2 ," & _
+                            "Reserva3= @re3 " & _
+                            " where AlbaranCargaMaestroID= @id")
+                dtb.AñadirParametroConsulta("@al", AlbaranCargaProMaestroID)
+                dtb.AñadirParametroConsulta("@fech", BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha))
+                dtb.AñadirParametroConsulta("@cli", ClienteID)
+                dtb.AñadirParametroConsulta("@ser", SerieQSID)
+                dtb.AñadirParametroConsulta("@num", NumeroQS)
+                dtb.AñadirParametroConsulta("@sal", AlmacenSalidaQSID)
+                dtb.AñadirParametroConsulta("@ag", AgenciaID)
+                dtb.AñadirParametroConsulta("@fpag", PorteFormaPagoID)
+                dtb.AñadirParametroConsulta("@imp", PorteImporte)
+                dtb.AñadirParametroConsulta("@mat", Matricula)
+                dtb.AñadirParametroConsulta("@con", Conductor)
+                dtb.AñadirParametroConsulta("@dni", ConductorDNI)
+                dtb.AñadirParametroConsulta("@repc", ResponsableCargaID)
+                dtb.AñadirParametroConsulta("@resa", ResponsableAdministracionID)
+                dtb.AñadirParametroConsulta("@ini", BasesParaCompatibilidad.Calendar.ArmarFecha(HoraLlegada))
+                dtb.AñadirParametroConsulta("@fin", BasesParaCompatibilidad.Calendar.ArmarFecha(HoraSalida))
+                dtb.AñadirParametroConsulta("@obs", Observaciones)
+                dtb.AñadirParametroConsulta("@re1", Reserva1)
+                dtb.AñadirParametroConsulta("@re2", If(Reserva2 = 0, Convert.DBNull, Reserva2.ToString))
+                dtb.AñadirParametroConsulta("@re3", Reserva3)
+                dtb.AñadirParametroConsulta("@id", AlbaranCargaMaestroID)
+
+
+                'If Not dtb.ConsultaAlteraciones("update AlbaranesCargaMaestro set " & _
+                '            "AlbaranCargaProMaestroID=" & Convert.ToString(AlbaranCargaProMaestroID) & "," & _
+                '            "Fecha='" & BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha) & "'," & _
+                '            "ClienteID=" & Convert.ToString(ClienteID) & "," & _
+                '            "SerieQSID=" & Convert.ToString(SerieQSID) & "," & _
+                '            "NumeroQS=" & Convert.ToString(NumeroQS) & "," & _
+                '            "AlmacenSalidaQSID=" & Convert.ToString(AlmacenSalidaQSID) & "," & _
+                '            "AgenciaID=" & Convert.ToString(AgenciaID) & "," & _
+                '            "PorteFormaPagoID=" & Convert.ToString(PorteFormaPagoID) & "," & _
+                '            "PorteImporte=" & Convert.ToString(PorteImporte) & "," & _
+                '            "Matricula='" & Matricula & "'," & _
+                '            "Conductor='" & Conductor & "'," & _
+                '            "ConductorDNI='" & ConductorDNI & "'," & _
+                '            "ResponsableCargaID=" & Convert.ToString(ResponsableCargaID) & "," & _
+                '            "ResponsableAdministracionID=" & Convert.ToString(ResponsableAdministracionID) & "," & _
+                '            "HoraLlegada='" & BasesParaCompatibilidad.Calendar.ArmarFecha(HoraLlegada) & "'," & _
+                '            "HoraSalida='" & BasesParaCompatibilidad.Calendar.ArmarFecha(HoraSalida) & "'," & _
+                '            "Observaciones='" & Observaciones & "'," & _
+                '            "Reserva1='" & Reserva1 & "'," & _
+                '            "Reserva2=" & If(Reserva2 = 0, "null", Reserva2.ToString) & "," & _
+                '            "Reserva3='" & Reserva3 & "'" & _
+                '            " where AlbaranCargaMaestroID=" & Convert.ToString(AlbaranCargaMaestroID)) Then
+
+                If Not dtb.Execute Then
 
                     Return 0
                 End If
@@ -281,50 +329,99 @@ Namespace AlbaranesCarga
 
         Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
             Try
-                If Not dtb.ConsultaAlteraciones("insert into AlbaranesCargaMaestro ([AlbaranCargaProMaestroID]" & _
-               ",[Fecha]" & _
-               ",[ClienteID]" & _
-               ",[SerieQSID]" & _
-               ",[NumeroQS]" & _
-               ",[AlmacenSalidaQSID]" & _
-               ",[AgenciaID]" & _
-               ",[PorteFormaPagoID]" & _
-               ",[PorteImporte]" & _
-               ",[Matricula]" & _
-               ",[Conductor]" & _
-               ",[ConductorDNI]" & _
-               ",[ResponsableCargaID]" & _
-               ",[ResponsableAdministracionID]" & _
-               ",[HoraLlegada]" & _
-               ",[HoraSalida]" & _
-               ",[Observaciones]" & _
-               ",[Reserva1]" & _
-               ",[Reserva2]" & _
-               ",[Reserva3]" & _
-               ",[FechaModificacion]" & _
-               ",[UsuarioModificacion]) values(" & _
-                            "" & Convert.ToString(AlbaranCargaProMaestroID) & "," & _
-                            "'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha) & "'," & _
-                            "" & Convert.ToString(ClienteID) & "," & _
-                            "" & Convert.ToString(SerieQSID) & "," & _
-                            "" & Convert.ToString(NumeroQS) & "," & _
-                            "" & Convert.ToString(AlmacenSalidaQSID) & "," & _
-                            "" & Convert.ToString(AgenciaID) & "," & _
-                            "" & Convert.ToString(PorteFormaPagoID) & "," & _
-                            "" & Convert.ToString(PorteImporte) & "," & _
-                            "'" & Matricula & "'," & _
-                            "'" & Conductor & "'," & _
-                            "'" & ConductorDNI & "'," & _
-                            "" & Convert.ToString(ResponsableCargaID) & "," & _
-                            "" & Convert.ToString(ResponsableAdministracionID) & "," & _
-                            "'" & BasesParaCompatibilidad.Calendar.ArmarFecha(HoraLlegada) & "'," & _
-                            "'" & BasesParaCompatibilidad.Calendar.ArmarFecha(HoraSalida) & "'," & _
-                            "'" & Observaciones & "'," & _
-                            "'" & Reserva1 & "'," & _
-                            "" & If(Reserva2 = 0, "null", Reserva2.ToString) & "," & _
-                            "'" & Reserva3 & "','" & _
-                            BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)) + "'," + BasesParaCompatibilidad.Config.User.ToString + ")") Then
+                dtb.PrepararConsulta("insert into AlbaranesCargaMaestro ([AlbaranCargaProMaestroID]" & _
+                                    ",[Fecha]" & _
+                                    ",[ClienteID]" & _
+                                    ",[SerieQSID]" & _
+                                    ",[NumeroQS]" & _
+                                    ",[AlmacenSalidaQSID]" & _
+                                    ",[AgenciaID]" & _
+                                    ",[PorteFormaPagoID]" & _
+                                    ",[PorteImporte]" & _
+                                    ",[Matricula]" & _
+                                    ",[Conductor]" & _
+                                    ",[ConductorDNI]" & _
+                                    ",[ResponsableCargaID]" & _
+                                    ",[ResponsableAdministracionID]" & _
+                                    ",[HoraLlegada]" & _
+                                    ",[HoraSalida]" & _
+                                    ",[Observaciones]" & _
+                                    ",[Reserva1]" & _
+                                    ",[Reserva2]" & _
+                                    ",[Reserva3]" & _
+                                    ",[FechaModificacion]" & _
+                                    ",[UsuarioModificacion]) " & _
+                    " values( @al , @fech ,  @cli , @ser , @num , @sal , @ag , @por , @imp , @mat , @cond , @dni , @respc , @respa , @ini , @fin , @obs , @re1 , @re2 , @re3 , @fecham, @user)")
 
+                dtb.AñadirParametroConsulta("@al", AlbaranCargaProMaestroID)
+                dtb.AñadirParametroConsulta("@fech", Fecha)
+                dtb.AñadirParametroConsulta("@cli", ClienteID)
+                dtb.AñadirParametroConsulta("@ser", SerieQSID)
+                dtb.AñadirParametroConsulta("@num", NumeroQS)
+                dtb.AñadirParametroConsulta("@sal", AlmacenSalidaQSID)
+                dtb.AñadirParametroConsulta("@ag", AgenciaID)
+                dtb.AñadirParametroConsulta("@por", PorteFormaPagoID)
+                dtb.AñadirParametroConsulta("@imp", PorteImporte)
+                dtb.AñadirParametroConsulta("@mat", Matricula)
+                dtb.AñadirParametroConsulta("@cond", Conductor)
+                dtb.AñadirParametroConsulta("@dni", ConductorDNI)
+                dtb.AñadirParametroConsulta("@respc", ResponsableCargaID)
+                dtb.AñadirParametroConsulta("@respa", ResponsableAdministracionID)
+                dtb.AñadirParametroConsulta("@ini", BasesParaCompatibilidad.Calendar.ArmarFecha(HoraLlegada))
+                dtb.AñadirParametroConsulta("@fin", BasesParaCompatibilidad.Calendar.ArmarFecha(HoraSalida))
+                dtb.AñadirParametroConsulta("@obs", Observaciones)
+                dtb.AñadirParametroConsulta("@re1", Reserva1)
+                dtb.AñadirParametroConsulta("@re2", If(Reserva2 = 0, Convert.DBNull, Reserva2.ToString))
+                dtb.AñadirParametroConsulta("@re3", Reserva3)
+                dtb.AñadirParametroConsulta("@fecham", BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)))
+                dtb.AñadirParametroConsulta("@user", BasesParaCompatibilidad.Config.User)
+
+
+                '  dtb.ConsultaAlteraciones("insert into AlbaranesCargaMaestro ([AlbaranCargaProMaestroID]" & _
+                '",[Fecha]" & _
+                '",[ClienteID]" & _
+                '",[SerieQSID]" & _
+                '",[NumeroQS]" & _
+                '",[AlmacenSalidaQSID]" & _
+                '",[AgenciaID]" & _
+                '",[PorteFormaPagoID]" & _
+                '",[PorteImporte]" & _
+                '",[Matricula]" & _
+                '",[Conductor]" & _
+                '",[ConductorDNI]" & _
+                '",[ResponsableCargaID]" & _
+                '",[ResponsableAdministracionID]" & _
+                '",[HoraLlegada]" & _
+                '",[HoraSalida]" & _
+                '",[Observaciones]" & _
+                '",[Reserva1]" & _
+                '",[Reserva2]" & _
+                '",[Reserva3]" & _
+                '",[FechaModificacion]" & _
+                '",[UsuarioModificacion]) values(" & _
+                '             "" & Convert.ToString(AlbaranCargaProMaestroID) & "," & _
+                '             "'" & BasesParaCompatibilidad.Calendar.ArmarFecha(Fecha) & "'," & _
+                '             "" & Convert.ToString(ClienteID) & "," & _
+                '             "" & Convert.ToString(SerieQSID) & "," & _
+                '             "" & Convert.ToString(NumeroQS) & "," & _
+                '             "" & Convert.ToString(AlmacenSalidaQSID) & "," & _
+                '             "" & Convert.ToString(AgenciaID) & "," & _
+                '             "" & Convert.ToString(PorteFormaPagoID) & "," & _
+                '             "" & Convert.ToString(PorteImporte) & "," & _
+                '             "'" & Matricula & "'," & _
+                '             "'" & Conductor & "'," & _
+                '             "'" & ConductorDNI & "'," & _
+                '             "" & Convert.ToString(ResponsableCargaID) & "," & _
+                '             "" & Convert.ToString(ResponsableAdministracionID) & "," & _
+                '             "'" & BasesParaCompatibilidad.Calendar.ArmarFecha(HoraLlegada) & "'," & _
+                '             "'" & BasesParaCompatibilidad.Calendar.ArmarFecha(HoraSalida) & "'," & _
+                '             "'" & Observaciones & "'," & _
+                '             "'" & Reserva1 & "'," & _
+                '             "" & If(Reserva2 = 0, "null", Reserva2.ToString) & "," & _
+                '             "'" & Reserva3 & "','" & _
+                '             BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)) + "'," + BasesParaCompatibilidad.Config.User.ToString + ")") Then
+
+                If Not dtb.Execute Then
                     Return 0
                 End If
 

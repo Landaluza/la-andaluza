@@ -280,7 +280,11 @@ Public Class frmEntAlbaranesCargaMaestro
 
                 'Por error estoy guardando en AlbaranesCargaProviDetalles.AlbaranCargaProviMaestroID 
                 'AlbaranesCargaProMaestro.Numero en lugar de AlbaranesCargaProMaestro.AlbaranCargaProMaestroID que seria lo correcto.
-                If Not dtb.ConsultaAlteraciones("exec AlbaranCargaProMaestroUpdate " & m_MaestroProID & "," & m_MaestroProID) Then
+                dtb.PrepararConsulta("AlbaranCargaProMaestroUpdate @m , @m2")
+                dtb.AñadirParametroConsulta("@m", m_MaestroProID)
+                dtb.AñadirParametroConsulta("@m2", m_MaestroProID)
+                'If Not dtb.ConsultaAlteraciones("exec AlbaranCargaProMaestroUpdate " & m_MaestroProID & "," & m_MaestroProID) Then
+                If Not dtb.Execute Then
                     Throw New Exception("Error actualizando el albaran")
                 End If
 
@@ -289,7 +293,12 @@ Public Class frmEntAlbaranesCargaMaestro
                     'Dar de baja a estos palets en almacen, en la tabla PaletsContenidos.
                     'Tambien pongo Terminado = True, porque de los contario seguia saliendo en Envasado como pico a completar.
                     Dim scc As Integer = Convert.ToInt32(dgvPalet.Rows(Contador).Cells(2).Value)
-                    If Not dtb.ConsultaAlteraciones("exec PaletsContenidosUpdateEnAlmacenBySCC '" & scc & "'") Then
+
+                    dtb.PrepararConsulta("PaletsContenidosUpdateEnAlmacenBySCC @scc")
+                    dtb.AñadirParametroConsulta("@scc", scc)
+
+                    If Not dtb.Execute Then
+                        '                    If Not dtb.ConsultaAlteraciones("exec PaletsContenidosUpdateEnAlmacenBySCC '" & scc & "'") Then
                         Throw New Exception("Error guardando los detalles")
                     End If
                     Contador += 1

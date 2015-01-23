@@ -159,20 +159,51 @@ Public Class clsAlbaranesCargaDetalles
 
     Public Function Modificar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Try
-            dtb.ConsultaAlteraciones("update AlbaranesCargaDetalles set " & _
-                       "AlbaranCargaMaestroID=" & Convert.ToString(AlbaranCargaMaestroID) & "," & _
-                       "Scc=" & Convert.ToString(Scc) & "," & _
-                       "CodigoQS=" & Convert.ToString(CodigoQS) & "," & _
-                       "AticuloDescripcion='" & AticuloDescripcion & "'," & _
-                       "Cajas=" & Convert.ToString(Cajas) & "," & _
-                       "UnidadMedida='" & UnidadMedida & "'," & _
-                       "Lote='" & Lote & "'," & _
-                       "TipoPalet='" & TipoPalet & "'," & _
-                       "Observaciones='" & Observaciones & "'," & _
-                       "Reserva1='" & Reserva1 & "'," & _
-                       "Reserva2='" & Reserva2 & "'," & _
-                       "Reserva3='" & Reserva3 & "'" & _
-                       " where AlbaranCargaDetalleID=" & Convert.ToString(AlbaranCargaDetalleID))
+            dtb.PrepararConsulta("update AlbaranesCargaDetalles set " & _
+                       "AlbaranCargaMaestroID= @al ," & _
+                       "Scc= @scc ," & _
+                       "CodigoQS= @cod ," & _
+                       "AticuloDescripcion= @desc ," & _
+                       "Cajas= @caj ," & _
+                       "UnidadMedida= @uni ," & _
+                       "Lote= @lot ," & _
+                       "TipoPalet= @tpal ," & _
+                       "Observaciones= @obs ," & _
+                       "Reserva1= @re1 ," & _
+                       "Reserva2= @re2 ," & _
+                       "Reserva3= @re3 " & _
+                       " where AlbaranCargaDetalleID= @id ")
+
+            dtb.AñadirParametroConsulta("@al", AlbaranCargaMaestroID)
+            dtb.AñadirParametroConsulta("@scc", Scc)
+            dtb.AñadirParametroConsulta("@cod", CodigoQS)
+            dtb.AñadirParametroConsulta("@desc", AticuloDescripcion)
+            dtb.AñadirParametroConsulta("@caj", Cajas)
+            dtb.AñadirParametroConsulta("@uni", UnidadMedida)
+            dtb.AñadirParametroConsulta("@lot", Lote)
+            dtb.AñadirParametroConsulta("@tpal", TipoPalet)
+            dtb.AñadirParametroConsulta("@obs", Observaciones)
+            dtb.AñadirParametroConsulta("@re1", Reserva1)
+            dtb.AñadirParametroConsulta("@re2", Reserva2)
+            dtb.AñadirParametroConsulta("@re3", Reserva3)
+            dtb.AñadirParametroConsulta("@id", AlbaranCargaDetalleID)
+
+
+            If Not dtb.Execute Then Return 0
+            'dtb.ConsultaAlteraciones("update AlbaranesCargaDetalles set " & _
+            '           "AlbaranCargaMaestroID=" & Convert.ToString(AlbaranCargaMaestroID) & "," & _
+            '           "Scc=" & Convert.ToString(Scc) & "," & _
+            '           "CodigoQS=" & Convert.ToString(CodigoQS) & "," & _
+            '           "AticuloDescripcion='" & AticuloDescripcion & "'," & _
+            '           "Cajas=" & Convert.ToString(Cajas) & "," & _
+            '           "UnidadMedida='" & UnidadMedida & "'," & _
+            '           "Lote='" & Lote & "'," & _
+            '           "TipoPalet='" & TipoPalet & "'," & _
+            '           "Observaciones='" & Observaciones & "'," & _
+            '           "Reserva1='" & Reserva1 & "'," & _
+            '           "Reserva2='" & Reserva2 & "'," & _
+            '           "Reserva3='" & Reserva3 & "'" & _
+            '           " where AlbaranCargaDetalleID=" & Convert.ToString(AlbaranCargaDetalleID))
             Return 1
         Catch ex As Exception
             Return 0
@@ -181,20 +212,39 @@ Public Class clsAlbaranesCargaDetalles
 
     Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Try
-            dtb.ConsultaAlteraciones("insert into AlbaranesCargaDetalles values(" & _
-                       "" & Convert.ToString(AlbaranCargaMaestroID) & "," & _
-                       "" & Convert.ToString(Scc) & "," & _
-                       "" & Convert.ToString(CodigoQS) & "," & _
-                       "'" & AticuloDescripcion & "'," & _
-                       "" & Convert.ToString(Cajas) & "," & _
-                       "'" & UnidadMedida & "'," & _
-                       "'" & Lote & "'," & _
-                       "'" & TipoPalet & "'," & _
-                       "'" & Observaciones & "'," & _
-                       "'" & Reserva1 & "'," & _
-                       "'" & Reserva2 & "'," & _
-                       "'" & Reserva3 & "','" & _
-                       BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)) + "'," + BasesParaCompatibilidad.Config.User.ToString + ")")
+            dtb.PrepararConsulta("insert into AlbaranesCargaDetalles values( @al, @scc, @cod , @desc , @caj , @uni , @lot , @tpal , @obs , @re1 , @re2 , @re3, @fecham , @user )")
+
+            dtb.AñadirParametroConsulta("@al", AlbaranCargaMaestroID)
+            dtb.AñadirParametroConsulta("@scc", Scc)
+            dtb.AñadirParametroConsulta("@cod", CodigoQS)
+            dtb.AñadirParametroConsulta("@desc", AticuloDescripcion)
+            dtb.AñadirParametroConsulta("@caj", Cajas)
+            dtb.AñadirParametroConsulta("@uni", UnidadMedida)
+            dtb.AñadirParametroConsulta("@lot", Lote)
+            dtb.AñadirParametroConsulta("@tpal", TipoPalet)
+            dtb.AñadirParametroConsulta("@obs", Observaciones)
+            dtb.AñadirParametroConsulta("@re1", Reserva1)
+            dtb.AñadirParametroConsulta("@re2", Reserva2)
+            dtb.AñadirParametroConsulta("@re3", Reserva3)
+            dtb.AñadirParametroConsulta("@fecham", BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)))
+            dtb.AñadirParametroConsulta("@user", BasesParaCompatibilidad.Config.User)
+
+            If Not dtb.Execute Then Throw New Exception("Error al guardar")
+
+            'dtb.ConsultaAlteraciones("insert into AlbaranesCargaDetalles values(" & _
+            '           "" & Convert.ToString(AlbaranCargaMaestroID) & "," & _
+            '           "" & Convert.ToString(Scc) & "," & _
+            '           "" & Convert.ToString(CodigoQS) & "," & _
+            '           "'" & AticuloDescripcion & "'," & _
+            '           "" & Convert.ToString(Cajas) & "," & _
+            '           "'" & UnidadMedida & "'," & _
+            '           "'" & Lote & "'," & _
+            '           "'" & TipoPalet & "'," & _
+            '           "'" & Observaciones & "'," & _
+            '           "'" & Reserva1 & "'," & _
+            '           "'" & Reserva2 & "'," & _
+            '           "'" & Reserva3 & "','" & _
+            '           BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)) + "'," + BasesParaCompatibilidad.Config.User.ToString + ")")
 
 
             dtb.PrepararConsulta("select max(AlbaranCargaDetalleID) from AlbaranesCargaDetalles")

@@ -260,18 +260,45 @@ Public Class clsDepositos
 
     Public Function Modificar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Try
-            dtb.ConsultaAlteraciones(" update Depositos set " & _
-                                 "Codigo='" & Codigo & "'," & _
-                                 "FechaCreacion='" & BasesParaCompatibilidad.Calendar.ArmarFecha(FechaCreacion) & "'," & _
-                                 "Capacidad='" & Capacidad & "'," & _
-                                 "DoctoUbicacionFisica='" & DoctoUbicacionFisica & "'," & _
-                                 "MaterialConstruccionID=" & Convert.ToString(MaterialConstruccionID) & "," & _
-                                 "Listado='" & Convert.ToString(Listado) & "'," & _
-                                 "TonelID=" & Convert.ToString(TonelID) & "," & _
-                                 "TransicubaID=" & Convert.ToString(TransicubaID) & "," & _
-                                 "BotaPiernaID=" & Convert.ToString(BotaPiernaID) & "," & _
-                                 "BotaID=" & Convert.ToString(BotaID) & "" & _
-                                 " where DepositoID=" & Convert.ToString(DepositoID))
+            dtb.PrepararConsulta(" update Depositos set " & _
+                                "Codigo= @cod ," & _
+                                "FechaCreacion= @fecha ," & _
+                                "Capacidad= @cap ," & _
+                                "DoctoUbicacionFisica= @ubi ," & _
+                                "MaterialConstruccionID= @mat ," & _
+                                "Listado= @lis ," & _
+                                "TonelID= @ton ," & _
+                                "TransicubaID= @tran ," & _
+                                "BotaPiernaID= @botp ," & _
+                                "BotaID= @bot " & _
+                                " where DepositoID= @id")
+
+            dtb.AñadirParametroConsulta("@cod", Codigo)
+            dtb.AñadirParametroConsulta("@fecha", BasesParaCompatibilidad.Calendar.ArmarFecha(FechaCreacion))
+            dtb.AñadirParametroConsulta("@cap", Capacidad)
+            dtb.AñadirParametroConsulta("@ubi", DoctoUbicacionFisica)
+            dtb.AñadirParametroConsulta("@mat", MaterialConstruccionID)
+            dtb.AñadirParametroConsulta("@lis", Listado)
+            dtb.AñadirParametroConsulta("@ton", TonelID)
+            dtb.AñadirParametroConsulta("@tran", TransicubaID)
+            dtb.AñadirParametroConsulta("@botp", BotaPiernaID)
+            dtb.AñadirParametroConsulta("@bot", BotaID)
+            dtb.AñadirParametroConsulta("@id", DepositoID)
+
+            'dtb.ConsultaAlteraciones(" update Depositos set " & _
+            '                     "Codigo='" & Codigo & "'," & _
+            '                     "FechaCreacion='" & BasesParaCompatibilidad.Calendar.ArmarFecha(FechaCreacion) & "'," & _
+            '                     "Capacidad='" & Capacidad & "'," & _
+            '                     "DoctoUbicacionFisica='" & DoctoUbicacionFisica & "'," & _
+            '                     "MaterialConstruccionID=" & Convert.ToString(MaterialConstruccionID) & "," & _
+            '                     "Listado='" & Convert.ToString(Listado) & "'," & _
+            '                     "TonelID=" & Convert.ToString(TonelID) & "," & _
+            '                     "TransicubaID=" & Convert.ToString(TransicubaID) & "," & _
+            '                     "BotaPiernaID=" & Convert.ToString(BotaPiernaID) & "," & _
+            '                     "BotaID=" & Convert.ToString(BotaID) & "" & _
+            '                     " where DepositoID=" & Convert.ToString(DepositoID))
+
+            If Not dtb.Execute Then Return 0
             Return 1
         Catch ex As Exception
             Return 0
@@ -281,15 +308,32 @@ Public Class clsDepositos
     Public Function Insertar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Integer
         Try
             Dim calendar As New BasesParaCompatibilidad.Calendar
-            dtb.ConsultaAlteraciones("insert into depositos values(" & _
-                              "'" & Codigo & "'," & _
-                              "'" & BasesParaCompatibilidad.Calendar.ArmarFecha(FechaCreacion) & "'," & _
-                              "'" & Convert.ToString(Capacidad) & "'," & _
-                              "'" & DoctoUbicacionFisica & "'," & _
-                              "" & Convert.ToString(TonelID) & "," & _
-                              "" & Convert.ToString(TransicubaID) & "," & _
-                              "" & Convert.ToString(BotaID) & "," & Convert.ToString(BotaPiernaID) & "," & MaterialConstruccionID & ",'" & Listado & "','" & _
-                              BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)) + "'," + BasesParaCompatibilidad.Config.User.ToString + ")")
+
+            dtb.PrepararConsulta("insert into depositos values( @cod , @fecha , @cap , @ubi , @ton , @tran ,  @bot , @botp , @mat , @lis , @fecham , @user )")
+            dtb.AñadirParametroConsulta("@cod", Codigo)
+            dtb.AñadirParametroConsulta("@fecha", BasesParaCompatibilidad.Calendar.ArmarFecha(FechaCreacion))
+            dtb.AñadirParametroConsulta("@cap", Capacidad)
+            dtb.AñadirParametroConsulta("@ubi", DoctoUbicacionFisica)
+            dtb.AñadirParametroConsulta("@mat", MaterialConstruccionID)
+            dtb.AñadirParametroConsulta("@lis", Listado)
+            dtb.AñadirParametroConsulta("@ton", TonelID)
+            dtb.AñadirParametroConsulta("@tran", TransicubaID)
+            dtb.AñadirParametroConsulta("@botp", BotaPiernaID)
+            dtb.AñadirParametroConsulta("@bot", BotaID)
+            dtb.AñadirParametroConsulta("@fecham", BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)))
+            dtb.AñadirParametroConsulta("@user", BasesParaCompatibilidad.Config.User)
+
+
+            If Not dtb.Execute Then Throw New Exception("Error al guardar")
+            'dtb.ConsultaAlteraciones("insert into depositos values(" & _
+            '                  "'" & Codigo & "'," & _
+            '                  "'" & BasesParaCompatibilidad.Calendar.ArmarFecha(FechaCreacion) & "'," & _
+            '                  "'" & Convert.ToString(Capacidad) & "'," & _
+            '                  "'" & DoctoUbicacionFisica & "'," & _
+            '                  "" & Convert.ToString(TonelID) & "," & _
+            '                  "" & Convert.ToString(TransicubaID) & "," & _
+            '                  "" & Convert.ToString(BotaID) & "," & Convert.ToString(BotaPiernaID) & "," & MaterialConstruccionID & ",'" & Listado & "','" & _
+            '                  BasesParaCompatibilidad.Calendar.ArmarFecha((Today + " " + TimeOfDay)) + "'," + BasesParaCompatibilidad.Config.User.ToString + ")")
 
             dtb.PrepararConsulta("select max(DepositoID) from Depositos")
             DepositoID = dtb.Consultar().Rows(0).Item(0)
