@@ -3,6 +3,7 @@
     Private m_DBO_Articulos1 As DBO_Articulos1
     Private no_crear As Boolean
     Private dtb As BasesParaCompatibilidad.DataBase
+    Public Event avisos(sender As Object, e As EventArgs)
     Public ReadOnly Property EstaDescripcionHabilitada As Boolean
         Get
             Return Me.txtDescripcion.Visible
@@ -103,6 +104,7 @@
 
         Me.no_crear = True
         establecerValores()
+        comprobar_avisos()
     End Sub
 
     Public WriteOnly Property TipoArticulo As Integer
@@ -241,5 +243,16 @@
             Me.txtEvolucion.Text = fc.FileName
         Catch ex As Exception
         End Try
+    End Sub
+
+    Private Sub Label2_Click(sender As Object, e As EventArgs) Handles lAvisos.Click
+        RaiseEvent avisos(Nothing, Nothing)
+    End Sub
+
+    Private Sub comprobar_avisos()
+        Dim sp As New Proveedores.spAvisosPedidos
+        If sp.comprobarAvisosNoLeidosPorArticulo(Me.m_DBO_Articulos1.ID, New BasesParaCompatibilidad.DataBase) Then
+            Me.lAvisos.Visible = True
+        End If
     End Sub
 End Class

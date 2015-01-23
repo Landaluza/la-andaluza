@@ -6,21 +6,23 @@ Namespace Proveedores
         Implements BasesParaCompatibilidad.Queriable
 
         Private dboAvisosPedidos As DBO_AvisosPedidos
-
         Public Sub New(Optional ByVal MaestroID As Integer = 0)
             MyBase.New(New spAvisosPedidos(), MaestroID.ToString)
             InitializeComponent()
-            dboAvisosPedidos = New DBO_AvisosPedidos
+            dboAvisosPedidos = New DBO_AvisosPedidos            
             MyBase.newRegForm = CType(New frmEntAvisosPedidos(BasesParaCompatibilidad.gridsimpleform.ACCION_INSERTAR, CType(sp, spAvisosPedidos)), BasesParaCompatibilidad.DetailedSimpleForm)
         End Sub
 
         Private Sub Insert_Before() Handles MyBase.BeforeInsert
+            dboAvisosPedidos = New DBO_AvisosPedidos
+            dboAvisosPedidos.Id_articulo = Me.m_MaestroID
             newRegForm.SetDataBussinesObject(CType(Me.dboAvisosPedidos, BasesParaCompatibilidad.DataBussines))
         End Sub
 
         Private Sub modify_Before() Handles MyBase.BeforeModify
             dboAvisosPedidos = CType(sp, spAvisosPedidos).Select_Record(CType(dgvGeneral.CurrentRow.Cells("Id").Value, Integer), New BasesParaCompatibilidad.DataBase)
             If Not dboAvisosPedidos Is Nothing Then
+                dboAvisosPedidos.Id_articulo = Me.m_MaestroID
                 newRegForm.SetDataBussinesObject(CType(Me.dboAvisosPedidos, BasesParaCompatibilidad.DataBussines))
             Else
                 MyBase.EventHandeld = True

@@ -19,6 +19,7 @@
 
         AddHandler frmExtras.actualizarDatos, AddressOf frmDetalle.actualizarDatos
         AddHandler frmDetalle.actualizarExtras, AddressOf frmExtras.refrescar
+        AddHandler frmGeneral.avisos, AddressOf frmExtras.ver_avisos
 
         Engine_LA.FormEnPestaña(frmExtras, Me.slGeneral_Extras.Panel2)
         Engine_LA.FormEnPestaña(frmGeneral, Me.slGeneral_detalles.Panel1)

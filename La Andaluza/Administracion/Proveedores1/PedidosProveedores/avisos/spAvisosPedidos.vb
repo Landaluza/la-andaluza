@@ -38,6 +38,12 @@ Namespace Proveedores
             dtb.PrepararConsulta("select proveedorid, nombre from proveedores order by nombre")
             cbo.mam_DataSource(dtb.Consultar, False)
         End Sub
+
+        Public Function comprobarAvisosNoLeidosPorArticulo(ByVal articulo As Integer, ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
+            dtb.PrepararConsulta("select count(*) from avisospedidos where leido = 0 and id_articulo = @id")
+            dtb.AñadirParametroConsulta("@id", articulo)
+            Return If(dtb.Consultar().Rows(0).Item(0) > 0, True, False)
+        End Function
     End Class
 
 End Namespace

@@ -9,6 +9,7 @@ Public Class frmModDetExtras
     Private frmProveedores_Articulos As frmProveedores_Articulos
     Private frmComposicion As frmArticulos1CompuestoPor
     Private frmComposicionGraneles As frmArticulosGranelescompuestoPor
+    Private avisos As frmAvisosPedidos_articulos
     Public Event actualizarDatos()
     Public Event CambioPestaña(nombre As String, indice As Integer)
     Private dtb As BasesParaCompatibilidad.DataBase
@@ -77,6 +78,11 @@ Public Class frmModDetExtras
         If frm Is Nothing Then
             AbortarVerIngredientes()
         End If
+
+        Me.avisos = New frmAvisosPedidos_articulos(ArticuloId)
+        avisos.Embebido = True
+        Engine_LA.FormEnPestaña(avisos, tpAvisos)
+        avisos.Dock = DockStyle.Fill
 
         Me.frmArticulosFichasTecnicas = New frmArticulosFichasTecnicas(ArticuloId)
         frmArticulosFichasTecnicas.Embebido = True
@@ -294,5 +300,8 @@ Public Class frmModDetExtras
         Me.TimerAutorizacion.Enabled = False
     End Sub
 
+    Public Sub ver_avisos(sender As Object, e As EventArgs)
+        TabControl1.SelectedTab = TabControl1.TabPages("tpAvisos")
+    End Sub
 
 End Class
