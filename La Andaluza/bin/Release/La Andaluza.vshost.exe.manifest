@@ -357,7 +357,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>NorIyoa5exHUmnvtJKSo3lM6HT3qUtvNbpUGMMXTwT4=</dsig:DigestValue>
+        <dsig:DigestValue>guh413+lU3hNKpZ4PUQ1pR86xv6NkwJs47Pkr5MATeo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -493,24 +493,6 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="Administracion\Proveedores1\PedidosProveedores\avisos\AvisosArticulos\AvisosPedidos_articulosBatch.sql" size="799">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>cfd1YzgXEeA95l2cbJ53jSwlMgz0Nu/bkC4J2ZfXSyo=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Administracion\Proveedores1\PedidosProveedores\avisos\AvisosPedidosBatch.sql" size="4393">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>IOH78uOzvZIANo+rIsORB5j/jquyQ4ST8MReYKUZM3U=</dsig:DigestValue>
-    </hash>
-  </file>
   <file name="Bases\ZLibrerias\BarcodeLib.dll" size="145920">
     <hash>
       <dsig:Transforms>
