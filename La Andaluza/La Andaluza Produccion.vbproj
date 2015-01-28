@@ -49,12 +49,12 @@
     <TargetCulture>es-ES</TargetCulture>
     <ProductName>La Andaluza Nueva</ProductName>
     <PublisherName>La Andaluza</PublisherName>
-    <MinimumRequiredVersion>2014.12.1.23</MinimumRequiredVersion>
+    <MinimumRequiredVersion>2015.1.1.1</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>45</ApplicationRevision>
-    <ApplicationVersion>2014.12.1.%2a</ApplicationVersion>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>2015.1.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
