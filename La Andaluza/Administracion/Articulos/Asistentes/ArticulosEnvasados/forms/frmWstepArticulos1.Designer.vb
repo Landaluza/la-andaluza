@@ -30,6 +30,7 @@ Partial Class frmWstepArticulos1
         Me.lblCodigoTARIC = New System.Windows.Forms.Label()
         Me.lblCodigoLA = New System.Windows.Forms.Label()
         Me.panContenidos = New System.Windows.Forms.Panel()
+        Me.lAvisos = New System.Windows.Forms.Label()
         Me.btnEvolucion = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtEvolucion = New BasesParaCompatibilidad.CuadroDeTexto()
@@ -44,7 +45,6 @@ Partial Class frmWstepArticulos1
         Me.txtCodigoQS = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.txtUtilizacion = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.txtCodigoTARIC = New BasesParaCompatibilidad.CuadroDeTexto()
-        Me.lAvisos = New System.Windows.Forms.Label()
         Me.panContenidos.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -129,8 +129,20 @@ Partial Class frmWstepArticulos1
         Me.panContenidos.Controls.Add(Me.lblCodigoTARIC)
         Me.panContenidos.Location = New System.Drawing.Point(10, 1)
         Me.panContenidos.Name = "panContenidos"
-        Me.panContenidos.Size = New System.Drawing.Size(642, 457)
+        Me.panContenidos.Size = New System.Drawing.Size(642, 357)
         Me.panContenidos.TabIndex = 0
+        '
+        'lAvisos
+        '
+        Me.lAvisos.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Strikeout), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lAvisos.Image = Global.La_Andaluza.My.Resources.Resources.winmerge
+        Me.lAvisos.Location = New System.Drawing.Point(522, 40)
+        Me.lAvisos.Name = "lAvisos"
+        Me.lAvisos.Size = New System.Drawing.Size(95, 89)
+        Me.lAvisos.TabIndex = 47
+        Me.lAvisos.Text = "Avisos pendientes"
+        Me.lAvisos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lAvisos.Visible = False
         '
         'btnEvolucion
         '
@@ -373,22 +385,11 @@ Partial Class frmWstepArticulos1
         Me.txtCodigoTARIC.ValorMaximo = 0.0R
         Me.txtCodigoTARIC.ValorMinimo = 0.0R
         '
-        'lAvisos
-        '
-        Me.lAvisos.Image = Global.La_Andaluza.My.Resources.Resources.emblem_important_2_256
-        Me.lAvisos.Location = New System.Drawing.Point(269, 343)
-        Me.lAvisos.Name = "lAvisos"
-        Me.lAvisos.Size = New System.Drawing.Size(100, 98)
-        Me.lAvisos.TabIndex = 47
-        Me.lAvisos.Text = "Avisos pendientes"
-        Me.lAvisos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.lAvisos.Visible = False
-        '
         'frmWstepArticulos1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(687, 470)
+        Me.ClientSize = New System.Drawing.Size(687, 380)
         Me.Controls.Add(Me.panContenidos)
         Me.Name = "frmWstepArticulos1"
         Me.Text = "frmWstepArticulos1"
