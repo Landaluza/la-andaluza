@@ -765,6 +765,27 @@ Public Class clsLotes
 
     Public Function Eliminar(ByRef dtb As BasesParaCompatibilidad.DataBase) As Boolean
 
+        dtb.PrepararConsulta("delete from elaboraciones_ingredientes where id_elaboracion in " & _
+                                "( " & _
+                                "   select id  from elaboraciones where id_elaboracion_final in  " & _
+                                "   ( " & _
+                                "       select id from  elaboraciones_finales where id_lote_terminado =  @id " & _
+                                "   ) " & _
+                                ")")
+        dtb.AñadirParametroConsulta("@id", LoteID)
+        If Not dtb.Execute Then Throw New Exception("Error al eliminar la trazabilidad de la elaboracion")
+
+        dtb.PrepararConsulta("delete from elaboraciones where id_elaboracion_final in " & _
+                            "( " & _
+                            "   select id from  elaboraciones_finales where id_lote_terminado =  @id  " & _
+                             ")")
+        dtb.AñadirParametroConsulta("@id", LoteID)
+        If Not dtb.Execute Then Throw New Exception("Error al eliminar las elaboraciones del lote")
+
+        dtb.PrepararConsulta("delete from elaboraciones_finales where id_lote_terminado  =  @id ")
+        dtb.AñadirParametroConsulta("@id", LoteID)
+        If Not dtb.Execute Then Throw New Exception("Error al eliminar las elaboraciones")
+
         dtb.PrepararConsulta("delete from Lotes where LoteID = @id")
         dtb.AñadirParametroConsulta("@id", LoteID)
         Return dtb.Execute
