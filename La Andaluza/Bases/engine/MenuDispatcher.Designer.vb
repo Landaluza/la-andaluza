@@ -89,6 +89,7 @@ Partial Class MenuDispatcher
         Me.ListadoPedidosPendientesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.FichasCondicionesCompraToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EstadosDePedidosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AvisosToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ComercialToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmClientesBBDD = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmPedidosClientesMaestrosBBDD = New System.Windows.Forms.ToolStripMenuItem()
@@ -132,6 +133,16 @@ Partial Class MenuDispatcher
         Me.tsmConductores = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmCambiarSesionBBDD = New System.Windows.Forms.ToolStripMenuItem()
         Me.ActualizarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EnlacesToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.JRToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ConsejoReguladorToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EtiquetasToolStripMenuItem4 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ObradorToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AlmacenToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Linea1ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Linea2ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Linea3ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Linea5ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MSEnvasado = New System.Windows.Forms.MenuStrip()
         Me.tsmEnvasadosEnvasado = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem103 = New System.Windows.Forms.ToolStripMenuItem()
@@ -503,7 +514,6 @@ Partial Class MenuDispatcher
         Me.ChepToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LogifruitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ActualizarToolStripMenuItem6 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AvisosToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MSAdministrador.SuspendLayout()
         Me.MSEnvasado.SuspendLayout()
         Me.MSElaboracion.SuspendLayout()
@@ -520,7 +530,7 @@ Partial Class MenuDispatcher
         Me.MSAdministrador.BackColor = System.Drawing.SystemColors.Control
         Me.MSAdministrador.GripMargin = New System.Windows.Forms.Padding(2)
         Me.MSAdministrador.ImageScalingSize = New System.Drawing.Size(22, 22)
-        Me.MSAdministrador.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmGerencia, Me.tsmAdministracion, Me.tsmSgi, Me.tsmCalidad, Me.tsmLaboratorio, Me.ControlToolStripMenuItem, Me.tsmMantenimiento, Me.tsmBodega, Me.tsmCompras, Me.ComercialToolStripMenuItem, Me.tsmEnvasados, Me.tsmAlmacen, Me.ExpedicionesToolStripMenuItem, Me.tsmCambiarSesionBBDD, Me.ActualizarToolStripMenuItem})
+        Me.MSAdministrador.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmGerencia, Me.tsmAdministracion, Me.tsmSgi, Me.tsmCalidad, Me.tsmLaboratorio, Me.ControlToolStripMenuItem, Me.tsmMantenimiento, Me.tsmBodega, Me.tsmCompras, Me.ComercialToolStripMenuItem, Me.tsmEnvasados, Me.tsmAlmacen, Me.ExpedicionesToolStripMenuItem, Me.tsmCambiarSesionBBDD, Me.ActualizarToolStripMenuItem, Me.EnlacesToolStripMenuItem3})
         Me.MSAdministrador.Location = New System.Drawing.Point(0, 0)
         Me.MSAdministrador.MinimumSize = New System.Drawing.Size(1092, 25)
         Me.MSAdministrador.Name = "MSAdministrador"
@@ -1019,6 +1029,12 @@ Partial Class MenuDispatcher
         Me.EstadosDePedidosToolStripMenuItem.Size = New System.Drawing.Size(293, 22)
         Me.EstadosDePedidosToolStripMenuItem.Text = "&Estados de pedidos"
         '
+        'AvisosToolStripMenuItem2
+        '
+        Me.AvisosToolStripMenuItem2.Name = "AvisosToolStripMenuItem2"
+        Me.AvisosToolStripMenuItem2.Size = New System.Drawing.Size(293, 22)
+        Me.AvisosToolStripMenuItem2.Text = "Avisos"
+        '
         'ComercialToolStripMenuItem
         '
         Me.ComercialToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmClientesBBDD, Me.tsmPedidosClientesMaestrosBBDD, Me.InformePedidosToolStripMenuItem, Me.tsmNecesidadesJRBBDD, Me.tsmLugaresEntregaBBDD, Me.tsmNecesidadesMaterialesBBDD, Me.tsmExcelVentas, Me.ImportarVentasMensualesToolStripMenuItem, Me.MarcasToolStripMenuItem})
@@ -1380,6 +1396,67 @@ Partial Class MenuDispatcher
         Me.ActualizarToolStripMenuItem.Name = "ActualizarToolStripMenuItem"
         Me.ActualizarToolStripMenuItem.Size = New System.Drawing.Size(93, 26)
         Me.ActualizarToolStripMenuItem.Text = "Actualizar"
+        '
+        'EnlacesToolStripMenuItem3
+        '
+        Me.EnlacesToolStripMenuItem3.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.JRToolStripMenuItem3, Me.ConsejoReguladorToolStripMenuItem3, Me.EtiquetasToolStripMenuItem4, Me.ObradorToolStripMenuItem2, Me.AlmacenToolStripMenuItem1, Me.Linea1ToolStripMenuItem2, Me.Linea2ToolStripMenuItem2, Me.Linea3ToolStripMenuItem2, Me.Linea5ToolStripMenuItem2})
+        Me.EnlacesToolStripMenuItem3.Name = "EnlacesToolStripMenuItem3"
+        Me.EnlacesToolStripMenuItem3.Size = New System.Drawing.Size(58, 26)
+        Me.EnlacesToolStripMenuItem3.Text = "Enlaces"
+        '
+        'JRToolStripMenuItem3
+        '
+        Me.JRToolStripMenuItem3.Name = "JRToolStripMenuItem3"
+        Me.JRToolStripMenuItem3.Size = New System.Drawing.Size(171, 22)
+        Me.JRToolStripMenuItem3.Text = "JR"
+        '
+        'ConsejoReguladorToolStripMenuItem3
+        '
+        Me.ConsejoReguladorToolStripMenuItem3.Name = "ConsejoReguladorToolStripMenuItem3"
+        Me.ConsejoReguladorToolStripMenuItem3.Size = New System.Drawing.Size(171, 22)
+        Me.ConsejoReguladorToolStripMenuItem3.Text = "Consejo regulador"
+        '
+        'EtiquetasToolStripMenuItem4
+        '
+        Me.EtiquetasToolStripMenuItem4.Name = "EtiquetasToolStripMenuItem4"
+        Me.EtiquetasToolStripMenuItem4.Size = New System.Drawing.Size(171, 22)
+        Me.EtiquetasToolStripMenuItem4.Text = "Etiquetas"
+        '
+        'ObradorToolStripMenuItem2
+        '
+        Me.ObradorToolStripMenuItem2.Name = "ObradorToolStripMenuItem2"
+        Me.ObradorToolStripMenuItem2.Size = New System.Drawing.Size(171, 22)
+        Me.ObradorToolStripMenuItem2.Text = "Obrador"
+        '
+        'AlmacenToolStripMenuItem1
+        '
+        Me.AlmacenToolStripMenuItem1.Name = "AlmacenToolStripMenuItem1"
+        Me.AlmacenToolStripMenuItem1.Size = New System.Drawing.Size(171, 22)
+        Me.AlmacenToolStripMenuItem1.Text = "Almacen"
+        '
+        'Linea1ToolStripMenuItem2
+        '
+        Me.Linea1ToolStripMenuItem2.Name = "Linea1ToolStripMenuItem2"
+        Me.Linea1ToolStripMenuItem2.Size = New System.Drawing.Size(171, 22)
+        Me.Linea1ToolStripMenuItem2.Text = "Linea 1"
+        '
+        'Linea2ToolStripMenuItem2
+        '
+        Me.Linea2ToolStripMenuItem2.Name = "Linea2ToolStripMenuItem2"
+        Me.Linea2ToolStripMenuItem2.Size = New System.Drawing.Size(171, 22)
+        Me.Linea2ToolStripMenuItem2.Text = "Linea 2"
+        '
+        'Linea3ToolStripMenuItem2
+        '
+        Me.Linea3ToolStripMenuItem2.Name = "Linea3ToolStripMenuItem2"
+        Me.Linea3ToolStripMenuItem2.Size = New System.Drawing.Size(171, 22)
+        Me.Linea3ToolStripMenuItem2.Text = "Linea 3"
+        '
+        'Linea5ToolStripMenuItem2
+        '
+        Me.Linea5ToolStripMenuItem2.Name = "Linea5ToolStripMenuItem2"
+        Me.Linea5ToolStripMenuItem2.Size = New System.Drawing.Size(171, 22)
+        Me.Linea5ToolStripMenuItem2.Text = "Linea 5"
         '
         'MSEnvasado
         '
@@ -4324,12 +4401,6 @@ Partial Class MenuDispatcher
         Me.ActualizarToolStripMenuItem6.Size = New System.Drawing.Size(93, 26)
         Me.ActualizarToolStripMenuItem6.Text = "Actualizar"
         '
-        'AvisosToolStripMenuItem2
-        '
-        Me.AvisosToolStripMenuItem2.Name = "AvisosToolStripMenuItem2"
-        Me.AvisosToolStripMenuItem2.Size = New System.Drawing.Size(293, 22)
-        Me.AvisosToolStripMenuItem2.Text = "Avisos"
-        '
         'MenuDispatcher
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -4846,4 +4917,14 @@ End Sub
     Private WithEvents AvisosToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Private WithEvents ExistenciasToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Private WithEvents AvisosToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents EnlacesToolStripMenuItem3 As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents JRToolStripMenuItem3 As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents ConsejoReguladorToolStripMenuItem3 As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents EtiquetasToolStripMenuItem4 As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents ObradorToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents AlmacenToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents Linea1ToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents Linea2ToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents Linea3ToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents Linea5ToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
 End Class

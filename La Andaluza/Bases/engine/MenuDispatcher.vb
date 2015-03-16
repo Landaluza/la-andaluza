@@ -702,7 +702,7 @@ Public Class MenuDispatcher
         End Try
     End Sub
 
-    Private Sub JRToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles JRToolStripMenuItem1.Click, JRToolStripMenuItem2.Click
+    Private Sub JRToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles JRToolStripMenuItem1.Click, JRToolStripMenuItem2.Click, JRToolStripMenuItem3.Click
         Dim enlace As String = "http://192.60.52.103/sabater/login.php"
         Dim postdata As String = "txtLogin=jerez999&txtClave=jerez&Aceptar=Aceptar"
 
@@ -721,44 +721,44 @@ Public Class MenuDispatcher
         GUImain.añadirPestaña(frm)
     End Sub
 
-    Private Sub ConsejoReguladorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConsejoReguladorToolStripMenuItem.Click, ConsejoReguladorToolStripMenuItem1.Click, ConsejoReguladorToolStripMenuItem2.Click
+    Private Sub ConsejoReguladorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConsejoReguladorToolStripMenuItem.Click, ConsejoReguladorToolStripMenuItem1.Click, ConsejoReguladorToolStripMenuItem2.Click, ConsejoReguladorToolStripMenuItem3.Click
         'Dim fil As New BasesParaCompatibilidad.File
         'fil.open("Z:\Administracion\Documentacion\Consejo Regulador Jerez\CONSEJO VINO.RDP")
         Dim frm As New frmAccesoRemoto(New SessionConsejoRegulador)
         GUImain.añadirPestaña(frm)
     End Sub
 
-    Private Sub EtiquetasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EtiquetasToolStripMenuItem.Click, EtiqeutasToolStripMenuItem.Click, EtiquetasToolStripMenuItem1.Click, EtiquetasToolStripMenuItem3.Click, EtiquetasToolStripMenuItem2.Click
+    Private Sub EtiquetasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EtiquetasToolStripMenuItem.Click, EtiqeutasToolStripMenuItem.Click, EtiquetasToolStripMenuItem1.Click, EtiquetasToolStripMenuItem3.Click, EtiquetasToolStripMenuItem2.Click, EtiquetasToolStripMenuItem4.Click
         Dim frm As New frmAccesoRemoto(New SessionEtiquetas)
         GUImain.añadirPestaña(frm)
     End Sub
 
-    Private Sub Linea3ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles Linea3ToolStripMenuItem.Click, Linea3ToolStripMenuItem1.Click
+    Private Sub Linea3ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles Linea3ToolStripMenuItem.Click, Linea3ToolStripMenuItem1.Click, Linea3ToolStripMenuItem2.Click
         Dim frm As New frmAccesoRemoto(New SessionLinea3)
         GUImain.añadirPestaña(frm)
     End Sub
 
-    Private Sub Linea5ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles Linea5ToolStripMenuItem.Click, Linea5ToolStripMenuItem1.Click
+    Private Sub Linea5ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles Linea5ToolStripMenuItem.Click, Linea5ToolStripMenuItem1.Click, Linea5ToolStripMenuItem2.Click
         Dim frm As New frmAccesoRemoto(New SessionLinea5)
         GUImain.añadirPestaña(frm)
     End Sub
 
-    Private Sub ObradorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ObradorToolStripMenuItem.Click, ObradorToolStripMenuItem1.Click
+    Private Sub ObradorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ObradorToolStripMenuItem.Click, ObradorToolStripMenuItem1.Click, ObradorToolStripMenuItem2.Click
         Dim frm As New frmAccesoRemoto(New SessionObrador)
         GUImain.añadirPestaña(frm)
     End Sub
 
-    Private Sub AlmacenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AlmacenToolStripMenuItem.Click, AlmcenToolStripMenuItem.Click
+    Private Sub AlmacenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AlmacenToolStripMenuItem.Click, AlmcenToolStripMenuItem.Click, AlmacenToolStripMenuItem1.Click
         Dim frm As New frmAccesoRemoto(New SessionAlmacen)
         GUImain.añadirPestaña(frm)
     End Sub
 
-    Private Sub Linea1ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles Linea1ToolStripMenuItem.Click, Linea1ToolStripMenuItem1.Click
+    Private Sub Linea1ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles Linea1ToolStripMenuItem.Click, Linea1ToolStripMenuItem1.Click, Linea1ToolStripMenuItem2.Click
         Dim frm As New frmAccesoRemoto(New SessionLinea1)
         GUImain.añadirPestaña(frm)
     End Sub
 
-    Private Sub Linea2ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles Linea2ToolStripMenuItem.Click, Linea2ToolStripMenuItem1.Click
+    Private Sub Linea2ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles Linea2ToolStripMenuItem.Click, Linea2ToolStripMenuItem1.Click, Linea2ToolStripMenuItem2.Click
         Dim frm As New frmAccesoRemoto(New SessionLinea2)
         GUImain.añadirPestaña(frm)
     End Sub
