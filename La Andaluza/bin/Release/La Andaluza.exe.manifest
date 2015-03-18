@@ -105,7 +105,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>rZDhDhGlBDyqZneqSb0lavb/fUx6dwMd8sAN2Gxb0fA=</dsig:DigestValue>
+        <dsig:DigestValue>/2x3x1inIby0jt7+MLxvgYDam+E8luebR7ufz6Nc1DQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -194,14 +194,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Envasados entre fechas.dll" size="253440">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Envasados entre fechas.dll" size="253952">
       <assemblyIdentity name="Envasados entre fechas" version="14.7.25.1" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>1WlPA73kcFJEu0nB9Qtq/6pM3i9H14Q3zC9bhYxqsIc=</dsig:DigestValue>
+        <dsig:DigestValue>Jwt9zXkZ+92liq6Hmq7kegr3mZqRWfdDlblI/+ishwE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -345,7 +345,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>syvbmUhMqrOu4uhn/kosE2ocXaUPjBTwqNi91OdomvU=</dsig:DigestValue>
+        <dsig:DigestValue>pM0urBKaTjF4dwnN8UmVOkKpBVA7ipfOurbqQvBcDyw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -357,7 +357,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>HSpicEivQ+ukuRIBoQ6T8JAigJiE+p2Ocgdj16jfdwQ=</dsig:DigestValue>
+        <dsig:DigestValue>KzBE77ZjabMocIywq12xSe3nzDenVTiB8b57/ZaojnM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
