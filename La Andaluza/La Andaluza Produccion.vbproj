@@ -53,7 +53,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>8</ApplicationRevision>
     <ApplicationVersion>2015.1.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -5660,7 +5660,6 @@
     <None Include="Bases\ZLibrerias\MacroAdapter.dll" />
     <None Include="Bases\ZLibrerias\Incidencias entre fechas.dll" />
     <None Include="Bases\ZLibrerias\InformesCalidad.dll" />
-    <None Include="Bases\ZLibrerias\Envasados entre fechas.dll" />
     <None Include="Resources\glyphicons_371_global.png" />
     <Content Include="Bases\ZLibrerias\BarcodeLib.dll" />
     <None Include="Bases\ZLibrerias\etiquetas.dll" />
@@ -5669,6 +5668,7 @@
     <None Include="Resources\glyphicons_221_unshare.png" />
     <None Include="Bases\ZLibrerias\BasesParaCompatibilidad.dll" />
     <None Include="Bases\ZLibrerias\Envasado.dll" />
+    <None Include="Bases\ZLibrerias\Envasados entre fechas.dll" />
     <Content Include="Control\Existencias\tablas existencias\delete entrega.sql" />
     <Content Include="Control\Existencias\tablas existencias\insert entrega.sql" />
     <Content Include="Control\Existencias\tablas existencias\insert movimientos.sql" />

@@ -1978,6 +1978,7 @@ C:\Users\miguel\Desktop\git\La andaluza\La Andaluza\obj\Release\La Andaluza.exe
 C:\Users\miguel\Desktop\git\La andaluza\La Andaluza\obj\Release\La Andaluza.pdb
 C:\Users\miguel\Desktop\git\La andaluza\La Andaluza\obj\Release\Interop.SHDocVw.dll
 C:\Users\miguel\Desktop\git\La andaluza\La Andaluza\obj\Release\La_Andaluza.frmEnlacesForm.resources
+C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEntPuestosTrabajos.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\Bases\ZLibrerias\wiaaut.dll
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\La Andaluza.exe.config
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\bin\Release\La Andaluza.exe.manifest
@@ -2103,7 +2104,6 @@ C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andalu
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEntEmpleados.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmempleados_contratos.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEntempleados_contratos.resources
-C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEntPuestosTrabajos.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmPuestosTrabajos.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmEntTipos_contratos.resources
 C:\Users\Administrador\Desktop\git\La Andaluza\La Andaluza\obj\Release\La_Andaluza.frmTipos_contratos.resources
