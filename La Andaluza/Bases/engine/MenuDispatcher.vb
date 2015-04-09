@@ -764,9 +764,13 @@ Public Class MenuDispatcher
     End Sub
 
     Private Sub REsumenMensualDelAñoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles REsumenMensualDelAñoToolStripMenuItem.Click, ResumenMensualDelAñoToolStripMenuItem2.Click, ResumenMensualDelAñoToolStripMenuItem1.Click
-        Dim frm As New Envasados_entre_fechas.frmEnvasadosMensuales(BasesParaCompatibilidad.Config.connectionString)
-        frm.Text = "Resumen por mes"
-        GUImain.añadirPestaña(frm)
+        Try
+            Dim frm As New Envasados_entre_fechas.frmEnvasadosMensuales(BasesParaCompatibilidad.Config.connectionString)
+            frm.Text = "Resumen por mes"
+            GUImain.añadirPestaña(frm)
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar. Detalles" & Environment.NewLine & ex.Message)
+        End Try
     End Sub
 
     Private Sub ActualizarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ActualizarToolStripMenuItem.Click, AztualizarToolStripMenuItem.Click, ActualizarToolStripMenuItem6.Click, ActualizarToolStripMenuItem5.Click, ActualizarToolStripMenuItem4.Click, ActualizarToolStripMenuItem3.Click, ActualizarToolStripMenuItem2.Click, ActualizarToolStripMenuItem1.Click

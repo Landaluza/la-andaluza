@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="La Andaluza.exe" version="2015.1.1.13" publicKeyToken="0000000000000000" language="es-ES" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="La Andaluza.exe" version="2015.1.1.15" publicKeyToken="0000000000000000" language="es-ES" processorArchitecture="msil" type="win32" />
   <description asmv2:iconFile="Resources\LogoBandejaLa2.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
@@ -105,7 +105,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>PsMTekgIr+ru6M4S7PLj5U0agC/OcybeikOEaCN8Foc=</dsig:DigestValue>
+        <dsig:DigestValue>6oAVmNCW2TgcX2O56o0uuiyyW34XINaC9G+nl8pq2/g=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -201,7 +201,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>tC9PlePkA1uz7Q4yBJ4+jvF7xuHki8xEpWMzPPLlCc8=</dsig:DigestValue>
+        <dsig:DigestValue>H5rCDGCvLLKjPTABddtnHkmJbXexMqy5XQ46RxnpTog=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -345,7 +345,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>4uibpW8CYTEz6ORdIKckFIdU3iW5D0qHmR37tIIP3Ak=</dsig:DigestValue>
+        <dsig:DigestValue>3PndPJPoPcGPYPDcsAwsKHUdoCUaPYlPK0HYdHBUlFU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -357,7 +357,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>mjEoNEbOEFSxGth3YBuLQRoRTbj9DpunmQyk1BVsilo=</dsig:DigestValue>
+        <dsig:DigestValue>imCRg8EUowAMKdtqkZmlGTPIid33J92CoOOuIRJpXeg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
