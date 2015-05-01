@@ -465,7 +465,7 @@ Public Class FrmEntLotes
             Try
                 Dim aux1 As Integer = cboTipoLote.SelectedValue
                 Dim aux2 As Integer = cboTipoProducto.SelectedValue
-                If aux1 <> 0 And aux2 <> 0 Then
+                If aux1 <> 0 AndAlso aux2 <> 0 Then
                     cboEspecificacion.DataSource = HacerTablaEspecificacion(ctlEsp.devolverEspecificacionesPorLote(dtb, cboTipoLote.SelectedValue, cboTipoProducto.SelectedValue))
                     cboEspecificacion.ValueMember = "ID"
                     cboEspecificacion.DisplayMember = "Display"
@@ -641,17 +641,17 @@ Public Class FrmEntLotes
     Private Sub cboAnaliticas_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cboAnaliticas.SelectedValueChanged
         Try
             AnaliticaID = cboAnaliticas.SelectedValue
-            If cboAnaliticas.Text <> "" And AnaliticaID <> 0 Then
+            If cboAnaliticas.Text <> "" AndAlso AnaliticaID <> 0 Then
                 ctlLot.CargarAnalitica(dtb, AnaliticaID, cboAnalista.SelectedValue, cboCatador.SelectedValue)
             End If
-            If cboAnaliticas.Text <> "La Andaluza" And cboAnaliticas.Text <> "" Then
+            If cboAnaliticas.Text <> "La Andaluza" AndAlso cboAnaliticas.Text <> "" Then
                 Try
                     Dim aaa As Integer = cboAnaliticas.SelectedValue
                     aaa = cboProveedoresLabExternos.SelectedValue
                     AnaliticaExternaID = ctlLot.CargarAnaliticaExterna(dtb, cboAnaliticas.SelectedValue, txtRutaAnalisis.Text, dtpFechaAnaliticaExterna.Value, cboProveedoresLabExternos.SelectedValue)
                     VerParametrosAnaliticaExterna(True)
                     Bandera_EntroCon = 0
-                    If cboAnaliticas.SelectedValue > 0 And cboAnaliticas.Text <> "" Then
+                    If cboAnaliticas.SelectedValue > 0 AndAlso cboAnaliticas.Text <> "" Then
                         ctlLot.MostrarParametrosAnalitica(dtb, cboAnaliticas.SelectedValue, txtAcidez, chbAcidez.Checked, txtAlcohol1, chbAlcohol.Checked, txtExtracto, chbExtracto.Checked, txtExtractoNro, txtCenizas, chbCenizas.Checked, txtMetanol, _
                          chbMetanol.Checked, txtHg, chbHg.Checked, txtAs, chbAs.Checked, txtPb, chbPb.Checked, txtSulfatos, chbSulfatos.Checked, txtCloruros, chbCloruros.Checked, txtSulfuroso, chbSulfuroso.Checked, txtC14, chbC14.Checked, _
                          txtAcetato, chbAcetato.Checked, txtDensidad, chbDensidad.Checked, txtTurbidez, chbTurbidez.Checked, txtIC, chbIC.Checked, txtPh, chbPh.Checked, txtColor, chbColor.Checked, txtMedidaColor, txtFe, chbFe.Checked, _
@@ -673,7 +673,7 @@ Public Class FrmEntLotes
                 End Try
             Else
                 VerParametrosAnaliticaExterna(False)
-                If cboAnaliticas.SelectedValue > 0 And cboAnaliticas.Text <> "" Then
+                If cboAnaliticas.SelectedValue > 0 AndAlso cboAnaliticas.Text <> "" Then
 
                     ctlLot.MostrarParametrosAnalitica(dtb, cboAnaliticas.SelectedValue, txtAcidez, chbAcidez.Checked, txtAlcohol1, chbAlcohol.Checked, txtExtracto, chbExtracto.Checked, txtExtractoNro, txtCenizas, chbCenizas.Checked, txtMetanol, _
                      chbMetanol.Checked, txtHg, chbHg.Checked, txtAs, chbAs.Checked, txtPb, chbPb.Checked, txtSulfatos, chbSulfatos.Checked, txtCloruros, chbCloruros.Checked, txtSulfuroso, chbSulfuroso.Checked, txtC14, chbC14.Checked, _
@@ -716,7 +716,7 @@ Public Class FrmEntLotes
             Try
                 Dim aux1 As Integer = cboTipoLote.SelectedValue
                 Dim aux2 As Integer = cboTipoProducto.SelectedValue
-                If aux1 <> 0 And aux2 <> 0 Then
+                If aux1 <> 0 AndAlso aux2 <> 0 Then
                     cboEspecificacion.DataSource = HacerTablaEspecificacion(ctlEsp.devolverEspecificacionesPorLote(dtb, cboTipoLote.SelectedValue, cboTipoProducto.SelectedValue))
                     cboEspecificacion.ValueMember = "ID"
                     cboEspecificacion.DisplayMember = "Display"
@@ -1013,7 +1013,7 @@ Public Class FrmEntLotes
                 gbAnalitica.Visible = True
                 Me.Height = 965
                 Me.Location = New Point(100, 100)
-                If (Me.Text.Substring(0, 9) = "Modificar") And (txtReferencia.Text = "0" Or txtReferencia.Text.Trim = "") Then
+                If (Me.Text.Substring(0, 9) = "Modificar") AndAlso (txtReferencia.Text = "0" Or txtReferencia.Text.Trim = "") Then
                     txtReferencia.Text = ctlLot.devolverReferencia(dtb)
                 End If
                 If (Me.Text.Substring(0, 8) = "Insertar") Then
@@ -1113,9 +1113,9 @@ Public Class FrmEntLotes
 
     Private Sub calcularExtractoGrados()
         Try
-            If (Me.cboTipoProducto.Text.Contains("Vino") Or Me.cboTipoProducto.Text.Contains("vino")) And Not Me.cboTipoProducto.Text.Contains("ateria") And Not Me.cboTipoProducto.Text.Contains("inagr") Then
-                If Me.txtExtracto.Text <> "" And Me.txtAlcohol1.Text <> "" Then
-                    If IsNumeric(Me.txtExtracto.Text) And IsNumeric(Me.txtAlcohol1.Text) And txtAlcohol1.Text <> 0 Then
+            If (Me.cboTipoProducto.Text.Contains("Vino") Or Me.cboTipoProducto.Text.Contains("vino")) AndAlso Not Me.cboTipoProducto.Text.Contains("ateria") And Not Me.cboTipoProducto.Text.Contains("inagr") Then
+                If Me.txtExtracto.Text <> "" AndAlso Me.txtAlcohol1.Text <> "" Then
+                    If IsNumeric(Me.txtExtracto.Text) AndAlso IsNumeric(Me.txtAlcohol1.Text) AndAlso txtAlcohol1.Text <> 0 Then
                         Me.txtExtractoNro.Text = Me.txtExtracto.Text / Me.txtAlcohol1.Text
                     Else
                         Me.txtExtractoNro.Text = 0
@@ -1125,7 +1125,7 @@ Public Class FrmEntLotes
                 End If
             Else
                 If Me.txtExtracto.Text <> "" And Me.txtAcidez.Text <> "" Then
-                    If IsNumeric(Me.txtExtracto.Text) And IsNumeric(Me.txtAcidez.Text) And txtAcidez.Text <> 0 Then
+                    If IsNumeric(Me.txtExtracto.Text) AndAlso IsNumeric(Me.txtAcidez.Text) AndAlso txtAcidez.Text <> 0 Then
                         Me.txtExtractoNro.Text = Me.txtExtracto.Text / Me.txtAcidez.Text
                     Else
                         Me.txtExtractoNro.Text = 0
@@ -1150,8 +1150,8 @@ Public Class FrmEntLotes
 
     Private Sub calcularExtractoNeto()
         Try
-            If Me.txtExtracto.Text <> "" And Me.txtAzucarTotal.Text <> "" Then
-                If IsNumeric(Me.txtExtracto.Text) And IsNumeric(Me.txtAzucarTotal.Text) Then
+            If Me.txtExtracto.Text <> "" AndAlso Me.txtAzucarTotal.Text <> "" Then
+                If IsNumeric(Me.txtExtracto.Text) AndAlso IsNumeric(Me.txtAzucarTotal.Text) Then
                     Me.txtHg.Text = Me.txtExtracto.Text - Me.txtAzucarTotal.Text
                 Else
                     Me.txtHg.Text = 0

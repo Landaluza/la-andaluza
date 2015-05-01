@@ -91,7 +91,7 @@ Public Class frmEntArticulosFichasTecnicas
     End Sub
 
     Private Sub cboEstadoID_SelectionChangeCommitted(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboEstadoID.SelectionChangeCommitted
-        If cboEstadoID.Text = "Vigente" And cboArticuloID.Text <> "" And cboProveedorID.Text <> "" Then
+        If cboEstadoID.Text = "Vigente" AndAlso cboArticuloID.Text <> "" AndAlso cboProveedorID.Text <> "" Then
             spArticulosFichasTecnicas.Select_ArticulosFichasTecnicas_EstadoVigente(cboArticuloID.SelectedValue, cboProveedorID.SelectedValue, dtb)
         End If
     End Sub

@@ -38,7 +38,7 @@
     Private Sub cambioPanel(ByRef sender As Object, e As EventArgs) Handles Me.PanelChanged
         Dim panel As Form = CType(sender, Form)
 
-        If panel.GetType = Me.frmArticulos1.GetType And Me.wizardStep = 1 Then
+        If panel.GetType = Me.frmArticulos1.GetType AndAlso Me.wizardStep = 1 Then
             Me.frmArticulos1.Descripcion = Me.frmdatos.recuperarValor(frmWstepDatosGenerales.DESCRIPCION)
             Me.frmArticulos1.TipoArticulo = 9
             Me.frmArticulos1.NoCrearSecundario = Me.frmdatos.recuperarValor(frmWstepDatosGenerales.CREAR_SECUNDARIO)
@@ -61,7 +61,7 @@
 
 
             End If
-        ElseIf panel.GetType = Me.frmSecundario.GetType And Me.wizardStep = 2 Then
+        ElseIf panel.GetType = Me.frmSecundario.GetType AndAlso Me.wizardStep = 2 Then
             Me.frmSecundario.TipoProducto = Me.frmdatos.recuperarValor(frmWstepDatosGenerales.PRODUCTO)
             Me.frmSecundario.NoCrearSecundario = Me.frmdatos.recuperarValor(frmWstepDatosGenerales.CREAR_SECUNDARIO)
             Me.frmSecundario.Formato = Me.frmdatos.recuperarValor(frmWstepDatosGenerales.FORMATO)
@@ -73,7 +73,7 @@
                 Me.frmSecundario.QS = Me.frmArticulos1.QS
             End If
 
-        ElseIf panel.GetType = Me.frmArticulos1.GetType And Me.wizardStep = 3 Then
+        ElseIf panel.GetType = Me.frmArticulos1.GetType AndAlso Me.wizardStep = 3 Then
             Me.frmArticulos1b.Descripcion = Me.frmdatos.recuperarValor(frmWstepDatosGenerales.DESCRIPCION)
             Me.frmArticulos1b.Datos = Me.frmArticulos1.Datos
             Me.frmArticulos1b.TipoArticulo = 10

@@ -26,7 +26,7 @@ Inherits BasesParaCompatibilidad.StoredProcedure
             dtb.EmpezarTransaccion()
         End If
 
-        If deleteParameters(id, dtb) And MyBase.DeleteProcedure(dbo, dtb) Then
+        If deleteParameters(id, dtb) AndAlso MyBase.DeleteProcedure(dbo, dtb) Then
             If terminar Then dtb.TerminarTransaccion()
             Return True
         Else

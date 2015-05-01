@@ -24,8 +24,8 @@ Public Class frmEntIdiomas
    Private Sub frmEntIdiomas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
        If (me.mododeapertura = VISION) Then
        End If
-       If Config.UserType <> 4 and Config.UserType <> 9 Then
-       End If
+        If Config.UserType <> 4 AndAlso Config.UserType <> 9 Then
+        End If
 
    End Sub
 

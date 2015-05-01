@@ -301,7 +301,7 @@
     Private Sub borrarTextos()
         For Each oControl As Control In Me.Controls
             If TypeOf (oControl) Is TextBox Then
-                If oControl.Name <> "txtPaletsTotales" And oControl.Name <> "txtPesoTotal" Then
+                If oControl.Name <> "txtPaletsTotales" AndAlso oControl.Name <> "txtPesoTotal" Then
                     oControl.Text = ""
                 End If
             End If

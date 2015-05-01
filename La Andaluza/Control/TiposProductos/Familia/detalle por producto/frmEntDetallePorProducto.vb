@@ -24,9 +24,9 @@ Public Class frmEntDetallePorProducto
             Me.lblId_FamiliaProducto.enabled = False
 
         End If
-        If Config.userType <> 4 And Config.userType <> 9 Then
-            butAddId_FamiliaProducto.enabled = False
-            butVerId_FamiliaProducto.enabled = False
+        If Config.UserType <> 4 AndAlso Config.UserType <> 9 Then
+            butAddId_FamiliaProducto.Enabled = False
+            butVerId_FamiliaProducto.Enabled = False
         End If
 
     End Sub

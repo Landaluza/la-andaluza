@@ -271,7 +271,7 @@ Public Class frmNoConformes
     End Sub
 
     Private Sub _finished_fill() Handles Me.FinishedFill
-        If tab1 And tab2 And tab3 Then
+        If tab1 AndAlso tab2 AndAlso tab3 Then
             actualizartxt()
             Me.StatusStrip1.Hide()
             Me.tstotales.Enabled = True

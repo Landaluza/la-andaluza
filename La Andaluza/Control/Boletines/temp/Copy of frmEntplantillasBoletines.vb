@@ -391,7 +391,7 @@ Public Class frmEntplantillasBoletines
     End Sub
 
     Private Sub btnImprimir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImprimir.Click
-        If Not rdbJR.Checked And Not rdbLA.Checked And Not rdbSinLogo.Checked Then
+        If Not rdbJR.Checked AndAlso Not rdbLA.Checked AndAlso Not rdbSinLogo.Checked Then
             MessageBox.Show("Selecciona Logo", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         Else
             Me.Cursor = Cursors.WaitCursor
@@ -550,7 +550,7 @@ Public Class frmEntplantillasBoletines
             .Cell(5, 2).Range.Text = BoletinExtracto
             .Cell(6, 2).Range.Text = BoletinExtractoGrado
             .Cell(7, 2).Range.Text = BoletinAzucarTotal
-            If BoletinExtracto.Length > 0 And BoletinAzucarTotal.Length > 0 Then
+            If BoletinExtracto.Length > 0 AndAlso BoletinAzucarTotal.Length > 0 Then
                 .Cell(8, 2).Range.Text = (Convert.ToDouble(BoletinExtracto) - Convert.ToDouble(BoletinAzucarTotal)).ToString
             End If
             .Cell(9, 2).Range.Text = BoletinSulfuroso
@@ -892,7 +892,7 @@ Public Class frmEntplantillasBoletines
         Dim j As Integer = 0
         Dim cbAux As System.Windows.Forms.CheckBox
 
-        While (j < tabAnaliticas.Rows.Count) And Not imprimir
+        While (j < tabAnaliticas.Rows.Count) AndAlso Not imprimir
 
             For Each cbAux In Me.v_Parametros
                 If cbAux.Text = tabAnaliticas.Rows(j).Item("Nombre") Then
@@ -970,14 +970,14 @@ Public Class frmEntplantillasBoletines
                         oTablaAnaliticas.mam_FormatoLinea(fila, 3, c3, 8, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter, Convert.ToString(tabAnaliticas.Rows(j).Item("Abreviatura")))
                         oTablaAnaliticas.mam_FormatoLinea(fila, 4, c4, 8, Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter, Convert.ToString(tabAnaliticas.Rows(j).Item("MetodoAnalisis")))
 
-                        If Convert.ToString(tabAnaliticas.Rows(j).Item("Minimo")) = "" And Convert.ToString(tabAnaliticas.Rows(j).Item("Maximo")) <> "" Then
+                        If Convert.ToString(tabAnaliticas.Rows(j).Item("Minimo")) = "" AndAlso Convert.ToString(tabAnaliticas.Rows(j).Item("Maximo")) <> "" Then
                             especificacion = "< " & Convert.ToString(tabAnaliticas.Rows(j).Item("Maximo"))
-                        ElseIf Convert.ToString(tabAnaliticas.Rows(j).Item("Maximo")) = "" And Convert.ToString(tabAnaliticas.Rows(j).Item("Minimo")) <> "" Then
+                        ElseIf Convert.ToString(tabAnaliticas.Rows(j).Item("Maximo")) = "" AndAlso Convert.ToString(tabAnaliticas.Rows(j).Item("Minimo")) <> "" Then
                             especificacion = "> " & Convert.ToString(tabAnaliticas.Rows(j).Item("Maximo"))
-                        ElseIf tabAnaliticas.Rows(j).Item("Minimo").ToString = "" And Convert.ToString(tabAnaliticas.Rows(j).Item("Maximo")) = "" And _
-                            Convert.ToString(tabAnaliticas.Rows(j).Item("desviacionMinimo")) <> "" And Convert.ToString(tabAnaliticas.Rows(j).Item("desviacionMaximo")) <> "" Then
+                        ElseIf tabAnaliticas.Rows(j).Item("Minimo").ToString = "" AndAlso Convert.ToString(tabAnaliticas.Rows(j).Item("Maximo")) = "" AndAlso _
+                            Convert.ToString(tabAnaliticas.Rows(j).Item("desviacionMinimo")) <> "" AndAlso Convert.ToString(tabAnaliticas.Rows(j).Item("desviacionMaximo")) <> "" Then
                             especificacion = Convert.ToString(tabAnaliticas.Rows(j).Item("desviacionMinimo")) & "±" & Convert.ToString(tabAnaliticas.Rows(j).Item("desviacionMaximo"))
-                        ElseIf Convert.ToString(tabAnaliticas.Rows(j).Item("Minimo")) <> "" And Convert.ToString(tabAnaliticas.Rows(j).Item("Maximo")) <> "" Then
+                        ElseIf Convert.ToString(tabAnaliticas.Rows(j).Item("Minimo")) <> "" AndAlso Convert.ToString(tabAnaliticas.Rows(j).Item("Maximo")) <> "" Then
                             especificacion = "Entre " & Convert.ToString(tabAnaliticas.Rows(j).Item("Minimo")) & " - " & Convert.ToString(tabAnaliticas.Rows(j).Item("Maximo"))
                         Else
                             especificacion = ""

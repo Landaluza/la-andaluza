@@ -174,7 +174,7 @@ Public Class frmEntProveedores
         End If
 
         If txtCp.Text <> "" Then
-            If IsNumeric(txtCp.Text) And txtCp.Text.Length = 5 Then
+            If IsNumeric(txtCp.Text) AndAlso txtCp.Text.Length = 5 Then
                 m_DBO_Proveedores.Cp = txtCp.Text
             Else
                 errores = errores & "El campo 'Código postal' no tiene el formato correcto." & Environment.NewLine
@@ -188,7 +188,7 @@ Public Class frmEntProveedores
             End If
 
             If txtCp2.Text <> "" Then
-                If IsNumeric(txtCp2.Text) And txtCp2.Text.Length = 5 Then
+                If IsNumeric(txtCp2.Text) AndAlso txtCp2.Text.Length = 5 Then
                     m_DBO_Proveedores.Cp2 = txtCp2.Text
                 Else
                     errores = errores & "El campo 'Código postal2' no tiene el formato correcto." & Environment.NewLine
@@ -296,7 +296,7 @@ Public Class frmEntProveedores
                                 End If
                             End If
                         Else
-                            If Not Me.spProveedoresCero.Delete(Me.m_DBO_Proveedores.ProveedorID, Me.dtb) And Me.ModoDeApertura = MODIFICACION Then
+                            If Not Me.spProveedoresCero.Delete(Me.m_DBO_Proveedores.ProveedorID, Me.dtb) AndAlso Me.ModoDeApertura = MODIFICACION Then
                                 If terminar Then
                                     Me.dtb.CancelarTransaccion()
                                     MessageBox.Show("No se pudo guardar el registro. Asegurese de tener conexion a la red.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)

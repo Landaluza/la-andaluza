@@ -38,13 +38,13 @@ Public Class frmEntCamiones
             Me.cboCamionTipo.enabled = False
             Me.lblCamionTipoID.enabled = False
         End If
-        If Config.UserType <> 4 And Config.UserType <> 9 Then
-            butAddAgenciaTransporteID.enabled = False
-            butVerAgenciaTransporteID.enabled = False
-            butAddConductorHabitualID.enabled = False
-            butVerConductorHabitualID.enabled = False
-            butAddCamionTipoID.enabled = False
-            butVerCamionTipoID.enabled = False
+        If Config.UserType <> 4 AndAlso Config.UserType <> 9 Then
+            butAddAgenciaTransporteID.Enabled = False
+            butVerAgenciaTransporteID.Enabled = False
+            butAddConductorHabitualID.Enabled = False
+            butVerConductorHabitualID.Enabled = False
+            butAddCamionTipoID.Enabled = False
+            butVerCamionTipoID.Enabled = False
         End If
     End Sub
 

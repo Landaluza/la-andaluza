@@ -20,7 +20,7 @@ Public Class frmplantillasBoletines
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
         MyBase.newRegForm = New frmEntplantillasBoletines(ACCION_INSERTAR, sp)
-        If m_MaestroID <> "0" And m_MaestroID <> "" Then dboplantillasBoletines.nombre = m_MaestroID
+        If m_MaestroID <> "0" AndAlso m_MaestroID <> "" Then dboplantillasBoletines.nombre = m_MaestroID
         newRegForm.SetDataBussinesObject(Me.dboplantillasBoletines)
     End Sub
 

@@ -752,15 +752,15 @@ Public Class ctlLotes
         clsLot._TipoLoteID = TipoLoteId
         clsLot._TipoProductoID = tipoProductoID
 
-        If TipoLoteId = 0 And tipoProductoID = 0 Then
+        If TipoLoteId = 0 AndAlso tipoProductoID = 0 Then
             If enologicos Then
                 tabla = clsLot.devolverTodosEnologicos2(dtb, top100, id)
             Else
                 tabla = clsLot.devolverTodosNoEnologicos2(dtb, top100, id)
             End If
-        ElseIf TipoLoteId > 0 And tipoProductoID = 0 Then
+        ElseIf TipoLoteId > 0 AndAlso tipoProductoID = 0 Then
             tabla = clsLot.devolverPorTipoLoteID2(dtb, top100, id)
-        ElseIf TipoLoteId = 0 And tipoProductoID > 0 Then
+        ElseIf TipoLoteId = 0 AndAlso tipoProductoID > 0 Then
             tabla = clsLot.devolverPorTipoProductoID2(dtb, top100, id)
         Else
             tabla = clsLot.devolverPorTipoProductoIDyTipoLoteID2(dtb, top100, id)
@@ -774,15 +774,15 @@ Public Class ctlLotes
         clsLot._TipoLoteID = TipoLoteId
         clsLot._TipoProductoID = tipoProductoID
 
-        If TipoLoteId = 0 And tipoProductoID = 0 Then
+        If TipoLoteId = 0 AndAlso tipoProductoID = 0 Then
             If enologicos Then
                 tabla = clsLot.devolverTodosEnologicos(dtb, top100, id)
             Else
                 tabla = clsLot.devolverTodosNoEnologicos(dtb, top100, id)
             End If
-        ElseIf TipoLoteId > 0 And tipoProductoID = 0 Then
+        ElseIf TipoLoteId > 0 AndAlso tipoProductoID = 0 Then
             tabla = clsLot.devolverPorTipoLoteID(dtb, top100, id)
-        ElseIf TipoLoteId = 0 And tipoProductoID > 0 Then
+        ElseIf TipoLoteId = 0 AndAlso tipoProductoID > 0 Then
             tabla = clsLot.devolverPorTipoProductoID(dtb, top100, id)
         Else
             tabla = clsLot.devolverPorTipoProductoIDyTipoLoteID(dtb, top100, id)

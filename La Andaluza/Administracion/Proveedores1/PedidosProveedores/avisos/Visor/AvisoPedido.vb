@@ -7,7 +7,7 @@
 
         Public Sub New(ByVal proveedor As Integer, ByVal articulo As Integer)
 
-            If proveedor = 0 And articulo = 0 Then Return
+            If proveedor = 0 AndAlso articulo = 0 Then Return
 
             bd = New bdAvisoPedido
             avisosDatasource = bd.seleccionar_avisos_por_articulo_y_proveedor(proveedor, articulo)

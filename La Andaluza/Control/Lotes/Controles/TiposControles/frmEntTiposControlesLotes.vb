@@ -28,10 +28,10 @@ Public Class frmEntTiposControlesLotes
            Me.cboprocedimiento.enabled = False
            Me.lblId_procedimiento.enabled = False
        End If
-       If Config.UserType <> 4 and Config.UserType <> 9 Then
-   butAddId_procedimiento.enabled = false
-   butVerId_procedimiento.enabled = false
-       End If
+        If Config.UserType <> 4 AndAlso Config.UserType <> 9 Then
+            butAddId_procedimiento.Enabled = False
+            butVerId_procedimiento.Enabled = False
+        End If
 
        butVer.Visible = True
    End Sub

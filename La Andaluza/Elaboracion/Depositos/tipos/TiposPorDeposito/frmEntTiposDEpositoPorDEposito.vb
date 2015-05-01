@@ -25,8 +25,8 @@ Public Class frmEntTiposDEpositoPorDEposito
             Me.lblId_TipoDeposito.enabled = False
 
         End If
-        If Config.userType <> 4 And Config.userType <> 9 Then
-            butAddId_TipoDeposito.enabled = False
+        If Config.UserType <> 4 AndAlso Config.UserType <> 9 Then
+            butAddId_TipoDeposito.Enabled = False
         End If
 
     End Sub

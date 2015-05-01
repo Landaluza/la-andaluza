@@ -34,7 +34,7 @@ Public Class frmEntTiposBotellas
             Me.lblid_medidaProducto.enabled = False
 
         End If
-        If Config.UserType <> 4 And Config.UserType <> 9 Then
+        If Config.UserType <> 4 AndAlso Config.UserType <> 9 Then
             butAddid_tipoEnvase.Enabled = False
             butVerid_tipoEnvase.Enabled = False
             butAddid_medidaProducto.Enabled = False

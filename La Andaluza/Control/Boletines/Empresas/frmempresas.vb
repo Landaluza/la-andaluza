@@ -20,7 +20,7 @@ Public Class frmempresas
 
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
         dboempresas = New DBO_empresas
-        If m_MaestroID <> "0" And m_MaestroID <> "" Then dboempresas.nombre = m_MaestroID
+        If m_MaestroID <> "0" AndAlso m_MaestroID <> "" Then dboempresas.nombre = m_MaestroID
         newRegForm.SetDataBussinesObject(Me.dboempresas)
     End Sub
 

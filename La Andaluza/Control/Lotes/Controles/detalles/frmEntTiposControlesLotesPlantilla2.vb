@@ -44,18 +44,18 @@ Public Class frmEntTiposControlesLotesPlantilla2
            Me.lblId_procedimiento.enabled = False
            
        End If
-       If Config.UserType <> 4 and Config.UserType <> 9 Then
-   butAddId_TipoControl.enabled = false
-   butVerId_TipoControl.enabled = false
-   butAddId_TipoLote.enabled = false
-   butVerId_TipoLote.enabled = false
-   butAddId_TipoProducto.enabled = false
-   butVerId_TipoProducto.enabled = false
-   butAddId_frecuencia.enabled = false
-   butVerId_frecuencia.enabled = false
-   butAddId_procedimiento.enabled = false
-   butVerId_procedimiento.enabled = false
-       End If
+        If Config.UserType <> 4 AndAlso Config.UserType <> 9 Then
+            butAddId_TipoControl.Enabled = False
+            butVerId_TipoControl.Enabled = False
+            butAddId_TipoLote.Enabled = False
+            butVerId_TipoLote.Enabled = False
+            butAddId_TipoProducto.Enabled = False
+            butVerId_TipoProducto.Enabled = False
+            butAddId_frecuencia.Enabled = False
+            butVerId_frecuencia.Enabled = False
+            butAddId_procedimiento.Enabled = False
+            butVerId_procedimiento.Enabled = False
+        End If
 
    End Sub
 

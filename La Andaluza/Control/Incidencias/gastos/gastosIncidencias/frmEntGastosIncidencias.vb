@@ -50,7 +50,7 @@ Public Class frmEntGastosIncidencias
 
             Me.cboMedidaProducto.Enabled = False
         End If
-        If Config.UserType <> 4 And Config.UserType <> 9 Then
+        If Config.UserType <> 4 AndAlso Config.UserType <> 9 Then
             butAddId_concepto.Enabled = False
             butVerId_concepto.Enabled = False
             butAddId_costeConcepto.Enabled = False
@@ -142,8 +142,8 @@ Public Class frmEntGastosIncidencias
         Me.m_DBO_GastosIncidencias.Id_proveedor = 0
 
 
-        If (cbocliente.SelectedValue Is Nothing And cboproveedor.SelectedValue Is Nothing And cboempleado.SelectedValue Is Nothing) _
-            Or (Not rbCliente.Checked And Not rbEmpleado.Checked And Not rbProveedor.Checked) Then
+        If (cbocliente.SelectedValue Is Nothing AndAlso cboproveedor.SelectedValue Is Nothing AndAlso cboempleado.SelectedValue Is Nothing) _
+            Or (Not rbCliente.Checked AndAlso Not rbEmpleado.Checked AndAlso Not rbProveedor.Checked) Then
 
             errores = errores & "No seleccionó un valor para el causante." & Environment.NewLine()
         Else

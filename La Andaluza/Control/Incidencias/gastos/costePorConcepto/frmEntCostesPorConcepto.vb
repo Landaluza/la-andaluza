@@ -24,10 +24,10 @@ Public Class frmEntCostesPorConcepto
            Me.lblId_ConceptosGastosIncidencias.enabled = False
            
        End If
-       If Config.userType <> 4 and Config.userType <> 9 Then
-   butAddId_ConceptosGastosIncidencias.enabled = false
-   butVerId_ConceptosGastosIncidencias.enabled = false
-       End If
+        If Config.UserType <> 4 AndAlso Config.UserType <> 9 Then
+            butAddId_ConceptosGastosIncidencias.Enabled = False
+            butVerId_ConceptosGastosIncidencias.Enabled = False
+        End If
 
    End Sub
 

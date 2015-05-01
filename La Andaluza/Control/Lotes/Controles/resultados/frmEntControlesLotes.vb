@@ -30,7 +30,7 @@ Public Class frmEntControlesLotes
 
             Me.lblId_controlIncidencia.Enabled = False
         End If
-        If Config.UserType <> 4 And Config.UserType <> 9 Then
+        If Config.UserType <> 4 AndAlso Config.UserType <> 9 Then
             butAddId_empleado.Enabled = False
             butVerId_empleado.Enabled = False
             butAddId_controlIncidencia.Enabled = False

@@ -61,7 +61,7 @@ Public Class frmEntOrdenesEnvasado2
     Overrides Sub Guardar()
         GetValores()
         spOrdenesEnvasado2.GrabarOrdenesEnvasado(m_DBO_OrdenesEnvasado, dtb)
-        If m_DBO_OrdenesEnvasado.OrdenEnvasadoID <> 0 And Me.Text.Substring(0, 3) = "Ins" Then
+        If m_DBO_OrdenesEnvasado.OrdenEnvasadoID <> 0 AndAlso Me.Text.Substring(0, 3) = "Ins" Then
             Me.Text = Me.Text.Replace("Insertar", "Modificar")
             SetValores(m_DBO_OrdenesEnvasado.OrdenEnvasadoID, True)
         Else

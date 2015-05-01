@@ -168,9 +168,9 @@
 
     Public Sub validarCodigoLote(ByVal Local_EsUnicoCampo As String, ByVal Local_EsUnicoCampoID As String, _
                                  ByVal Local_EsUnicoTabla As String, ByVal Local_EsUnicoID As String, ByRef texto As String)
-        If texto <> "" And texto <> Nothing Then
+        If texto <> "" AndAlso texto <> Nothing Then
             Try
-                If (Local_EsUnicoCampo <> "" And Local_EsUnicoCampoID <> "" And Local_EsUnicoTabla <> "") Then
+                If (Local_EsUnicoCampo <> "" AndAlso Local_EsUnicoCampoID <> "" AndAlso Local_EsUnicoTabla <> "") Then
                     Dim ctl As New BasesParaCompatibilidad.ctlCuadroDeTexto
                     If ctl.Validar(Local_EsUnicoID, Local_EsUnicoCampo, texto, Local_EsUnicoCampoID, Local_EsUnicoTabla) Then
                         Dim aux As String
@@ -186,7 +186,7 @@
 
 
                         If aux.Length > 15 Then
-                            messageBox.show("Solo se permite 9 lotes por dia.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                            MessageBox.Show("Solo se permite 9 lotes por dia.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                         End If
                         texto = aux
                         validarCodigoLote(Local_EsUnicoCampo, Local_EsUnicoCampoID, Local_EsUnicoTabla, Local_EsUnicoID, texto)

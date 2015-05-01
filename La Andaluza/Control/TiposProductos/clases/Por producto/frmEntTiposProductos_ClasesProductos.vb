@@ -23,10 +23,10 @@ Public Class frmEntTiposProductos_ClasesProductos
            Me.cboClaseProducto.enabled = False
            Me.lblId_ClaseProducto.enabled = False
        End If
-       If Config.userType <> 4 and Config.userType <> 9 Then
-   butAddId_ClaseProducto.enabled = false
-   butVerId_ClaseProducto.enabled = false
-       End If
+        If Config.UserType <> 4 AndAlso Config.UserType <> 9 Then
+            butAddId_ClaseProducto.Enabled = False
+            butVerId_ClaseProducto.Enabled = False
+        End If
 
    End Sub
 

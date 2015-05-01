@@ -51,7 +51,7 @@ Public Class frmEntPendientes
             Me.cboResponsable.Enabled = False
             Me.lblResponsableID.Enabled = False
         End If
-        If Config.UserType <> 4 And Config.UserType <> 9 Then
+        If Config.UserType <> 4 AndAlso Config.UserType <> 9 Then
             'butAddTipoPendiente.enabled = False
             'butVerTipoPendiente.enabled = False
             butAddProveedor.Enabled = False

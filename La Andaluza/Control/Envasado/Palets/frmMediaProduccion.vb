@@ -59,7 +59,7 @@ Public Class frmMediaProduccion
         If cboLinea.SelectedValue <> Nothing Then
             Me.linea = cboLinea.SelectedValue
 
-            If Me.envasado <> Nothing And linea <> Nothing Then
+            If Me.envasado <> Nothing AndAlso linea <> Nothing Then
                 dtb.PrepararConsulta("select formatoEnvasadoID, articulo descripcion from formatosEnvasados, tiposformatosLineas, articulosenvasadoshistorico where formatosEnvasados.tipoformatoLineaid = tiposformatosLineas.tipoformatoLineaid and formatosEnvasados.tipoformatoEnvasadoid = tipoformato and lineaEnvasadoid = @linea and envasadoid = @env")
                 dtb.AñadirParametroConsulta("@linea", Me.linea)
                 dtb.AñadirParametroConsulta("@env", Me.envasado)

@@ -420,10 +420,10 @@ Public Class ExcelImporter
     '                                            Else
     '                                                separador = myArrayCajas(r2, c1).ToString.IndexOf("-")
     '                                                separador2 = myArrayCajas(r2, c1).ToString.IndexOf("/")
-    '                                                If separador = -1 And separador2 = -1 Then
+    '                                                If separador = -1 Andalso separador2 = -1 Then
     '                                                    mCantidadCajas = 1
     '                                                Else
-    '                                                    If separador < separador2 And separador > 0 Then
+    '                                                    If separador < separador2 Andalso separador > 0 Then
     '                                                        mCantidadCajas = Mid(myArrayCajas(r2, c1), 1, separador)
     '                                                    Else
     '                                                        mCantidadCajas = Mid(myArrayCajas(r2, c1), 1, separador2)
@@ -528,10 +528,10 @@ Public Class ExcelImporter
                                                 separador = myArrayCajas(r2, c1).ToString.IndexOf("-")
                                                 separador2 = myArrayCajas(r2, c1).ToString.IndexOf("/")
 
-                                                If separador = -1 And separador2 = -1 Then
+                                                If separador = -1 AndAlso separador2 = -1 Then
                                                     mCantidadCajas = 1
                                                 Else
-                                                    If separador < separador2 And separador > 0 Then
+                                                    If separador < separador2 AndAlso separador > 0 Then
                                                         mCantidadCajas = Mid(myArrayCajas(r2, c1), 1, separador)
                                                     Else
                                                         mCantidadCajas = Mid(myArrayCajas(r2, c1), 1, separador2)
@@ -639,10 +639,10 @@ Public Class ExcelImporter
     '                                        Else
     '                                            separador = myArrayCajas(r2, c1).ToString.IndexOf("-")
     '                                            separador2 = myArrayCajas(r2, c1).ToString.IndexOf("/")
-    '                                            If separador = -1 And separador2 = -1 Then
+    '                                            If separador = -1 andalso separador2 = -1 Then
     '                                                mCantidadCajas = 1
     '                                            Else
-    '                                                If separador < separador2 And separador > 0 Then
+    '                                                If separador < separador2 andalso separador > 0 Then
     '                                                    mCantidadCajas = Mid(myArrayCajas(r2, c1), 1, separador)
     '                                                Else
     '                                                    mCantidadCajas = Mid(myArrayCajas(r2, c1), 1, separador2)

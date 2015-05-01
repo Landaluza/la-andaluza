@@ -29,9 +29,9 @@ Public Class frmEntPosiciones
             Me.lblAlturaID.enabled = False
 
         End If
-        If Config.UserType <> 4 And Config.UserType <> 9 Then
-            butAddAlturaID.enabled = False
-            butVerAlturaID.enabled = False
+        If Config.UserType <> 4 AndAlso Config.UserType <> 9 Then
+            butAddAlturaID.Enabled = False
+            butVerAlturaID.Enabled = False
         End If
 
     End Sub

@@ -60,7 +60,7 @@ Public Class frmEntempleados_contratos
     Protected Overrides Function GetValores() As Boolean Implements BasesParaCompatibilidad.Savable.getValores
         Dim errores As String = String.Empty
 
-        If cbFin.Checked And (dtpfecha_inicio.Value > dtpfecha_final.Value Or (cbBaja.Checked And dtpfecha_inicio.Value > dtpfecha_baja.Value)) Then
+        If cbFin.Checked AndAlso (dtpfecha_inicio.Value > dtpfecha_final.Value Or (cbBaja.Checked AndAlso dtpfecha_inicio.Value > dtpfecha_baja.Value)) Then
             errores = errores & "La fecha de inicio no puede ser mayor que la de finalización." & Environment.NewLine
         Else
             m_DBO_empleados_contratos.fecha_inicio = dtpfecha_inicio.Value.Date

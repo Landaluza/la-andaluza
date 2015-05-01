@@ -149,7 +149,7 @@ Public Class frmEntEmpleados
             m_DBO_Empleados.SegundoApellido = txtSegundoApellido.Text
         End If
 
-        If txtTelefonoFijo.Text = "" And txtTelefonoMovil.Text = "" Then
+        If txtTelefonoFijo.Text = "" AndAlso txtTelefonoMovil.Text = "" Then
             errores = errores & "No especificó un telefono de contacto." & Environment.NewLine
         Else
             m_DBO_Empleados.TelefonoFijo = txtTelefonoFijo.Text

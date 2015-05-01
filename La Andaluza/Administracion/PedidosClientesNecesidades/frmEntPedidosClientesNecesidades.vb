@@ -28,9 +28,9 @@ Public Class frmEntPedidosClientesNecesidades
             Me.cboCliente.enabled = False
             Me.lblClienteID.enabled = False
         End If
-        If Config.UserType <> 4 And Config.UserType <> 9 Then
-            butAddClienteID.enabled = False
-            butVerClienteID.enabled = False
+        If Config.UserType <> 4 AndAlso Config.UserType <> 9 Then
+            butAddClienteID.Enabled = False
+            butVerClienteID.Enabled = False
         End If
 
         butVer.Visible = True

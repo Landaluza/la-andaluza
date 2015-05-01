@@ -120,9 +120,9 @@ Public Class LisDepPorTipos
                 contRegistros = 0
 
                 While i < Tab.Rows.Count 'Id
-                    If Not Convert.IsDBNull(Tab.Rows(i).Item("TipoProductoID")) And Not Convert.ToBoolean(TabTipPro.Rows(ContadorProductos).Item("Enologico")) Then
+                    If Not Convert.IsDBNull(Tab.Rows(i).Item("TipoProductoID")) AndAlso Not Convert.ToBoolean(TabTipPro.Rows(ContadorProductos).Item("Enologico")) Then
                         If Convert.ToInt32(Tab.Rows(i).Item("TipoProductoID")) = Convert.ToInt32(TabTipPro.Rows(ContadorProductos).Item("Id")) Then
-                            If Convert.ToInt32(Tab.Rows(i).Item("TipoLoteID")) = 10 And BanderaBotas Then 'TipoLote = botas
+                            If Convert.ToInt32(Tab.Rows(i).Item("TipoLoteID")) = 10 AndAlso BanderaBotas Then 'TipoLote = botas
                                 BanderaBotas = False
 
                                 'Define footer
@@ -185,7 +185,7 @@ Public Class LisDepPorTipos
                                     End If
                                 End If
                                 Fila += 1
-                            Else ' If Tab.Rows(i).Item("TipoLoteID") = 10 And BanderaBotas  Then 'TipoLote = botas
+                            Else ' If Tab.Rows(i).Item("TipoLoteID") = 10 Andalso BanderaBotas  Then 'TipoLote = botas
                                 valor = rt.Rows.Item(Fila)
                                 'rt.Rows.Insert(Fila)
                                 rt.Rows(Fila).Style.Font = New Font("Arial", 6, FontStyle.Regular)

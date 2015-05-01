@@ -54,7 +54,7 @@ Public Class frmModCompuestoPor
                 Dim spdoypack As New spdoypack
                 Dim spMonodosis As New spMonodosis
 
-                If spdoypack.esDoypack(Me.m_dbo.ArticuloPrincipal, dtb) And spMonodosis.esMonodosis(Me.m_dbo.ArticuloComponente, dtb) Then
+                If spdoypack.esDoypack(Me.m_dbo.ArticuloPrincipal, dtb) AndAlso spMonodosis.esMonodosis(Me.m_dbo.ArticuloComponente, dtb) Then
                     formato = spdoypack.FormatoPorArticulo(Me.m_dbo.ArticuloPrincipal, dtb)
 
                     If formato = Nothing Then

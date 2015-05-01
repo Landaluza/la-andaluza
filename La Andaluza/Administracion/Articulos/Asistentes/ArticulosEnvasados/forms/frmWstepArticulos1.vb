@@ -89,7 +89,7 @@
         Me.txtDescripcion.Visible = True
 
         If Me.m_DBO_Articulos1.ArticuloTpoID = 9 Or Me.m_DBO_Articulos1.ArticuloTpoID = 10 Then '9=Secundario, 10 = terciarios
-            If Config.UserType <> 1 And Config.UserType <> 9 And Config.UserType <> 4 Then
+            If Config.UserType <> 1 AndAlso Config.UserType <> 9 AndAlso Config.UserType <> 4 Then
                 Me.lDescripcion.Enabled = False
                 Me.txtDescripcion.Enabled = False
             End If

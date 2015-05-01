@@ -532,7 +532,7 @@ Public Class frmPaletsMovimientoEntrePalets
             End If
 
             'El palet Destino se queda incompleto
-            If CajasDestino + cajasañadir < CajasPaletDestino And txtCajas.Text > -1 Then
+            If CajasDestino + cajasañadir < CajasPaletDestino AndAlso txtCajas.Text > -1 Then
                 Respuesta = MessageBox.Show("El palet destino se queda con " & CajasDestino + cajasañadir & " cajas." & Environment.NewLine & _
                                    "Para estar completo deberia tener " & Convert.ToString(CajasPaletDestino) & "." & Environment.NewLine & _
                                    "¿Dejamos el palets como incompleto?", _

@@ -20,8 +20,8 @@ Public Class frmEntTiposDepositos
    Private Sub frmEntTiposDepositos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
        If (me.mododeapertura = VISION) Then
        End If
-       If Config.userType <> 4 and Config.userType <> 9 Then
-       End If
+        If Config.UserType <> 4 AndAlso Config.UserType <> 9 Then
+        End If
 
    End Sub
 

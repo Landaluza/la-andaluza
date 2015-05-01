@@ -28,9 +28,9 @@ Public Class frmEntAlturas
             Me.cboPierna.enabled = False
             Me.lblPiernaID.enabled = False
         End If
-        If Config.UserType <> 4 And Config.UserType <> 9 Then
-            butAddPiernaID.enabled = False
-            butVerPiernaID.enabled = False
+        If Config.UserType <> 4 AndAlso Config.UserType <> 9 Then
+            butAddPiernaID.Enabled = False
+            butVerPiernaID.Enabled = False
         End If
 
     End Sub

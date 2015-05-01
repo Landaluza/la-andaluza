@@ -33,7 +33,7 @@ Public Class frmEntPeriodosServicio
             Me.cboMotivoCeseServicio.Enabled = False
             Me.lblMotivoCeseServicioID.Enabled = False
         End If
-        If Config.UserType <> 4 And Config.UserType <> 9 Then
+        If Config.UserType <> 4 AndAlso Config.UserType <> 9 Then
             butAddMotivoCeseServicioID.Enabled = False
             butVerMotivoCeseServicioID.Enabled = False
         End If

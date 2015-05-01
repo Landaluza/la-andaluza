@@ -39,13 +39,13 @@ Public Class frmEntTiposCajas
             Me.lblid_tipoEnvase.enabled = False
 
         End If
-        If Config.UserType <> 4 And Config.UserType <> 9 Then
-            butAddTipoBotellaID.enabled = False
-            butVerTipoBotellaID.enabled = False
-            butAddid_MovimentoEncajado.enabled = False
-            butVerid_MovimentoEncajado.enabled = False
-            butAddid_tipoEnvase.enabled = False
-            butVerid_tipoEnvase.enabled = False
+        If Config.UserType <> 4 AndAlso Config.UserType <> 9 Then
+            butAddTipoBotellaID.Enabled = False
+            butVerTipoBotellaID.Enabled = False
+            butAddid_MovimentoEncajado.Enabled = False
+            butVerid_MovimentoEncajado.Enabled = False
+            butAddid_tipoEnvase.Enabled = False
+            butVerid_tipoEnvase.Enabled = False
         End If
 
     End Sub

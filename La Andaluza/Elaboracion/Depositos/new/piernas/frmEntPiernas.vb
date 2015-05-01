@@ -28,9 +28,9 @@ Public Class frmEntPiernas
             Me.cboNave.enabled = False
             Me.lblNaveID.enabled = False
         End If
-        If Config.UserType <> 4 And Config.UserType <> 9 Then
-            butAddNaveID.enabled = False
-            butVerNaveID.enabled = False
+        If Config.UserType <> 4 AndAlso Config.UserType <> 9 Then
+            butAddNaveID.Enabled = False
+            butVerNaveID.Enabled = False
         End If
 
     End Sub

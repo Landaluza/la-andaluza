@@ -34,11 +34,11 @@ Public Class frmEntConceptosGastosIncidencias
             Me.lblId_medidaProducto.enabled = False
 
         End If
-        If Config.userType <> 4 And Config.userType <> 9 Then
-            butAddId_tiposConceptos.enabled = False
-            butVerId_tiposConceptos.enabled = False
-            butAddId_medidaProducto.enabled = False
-            butVerId_medidaProducto.enabled = False
+        If Config.UserType <> 4 AndAlso Config.UserType <> 9 Then
+            butAddId_tiposConceptos.Enabled = False
+            butVerId_tiposConceptos.Enabled = False
+            butAddId_medidaProducto.Enabled = False
+            butVerId_medidaProducto.Enabled = False
         End If
 
     End Sub

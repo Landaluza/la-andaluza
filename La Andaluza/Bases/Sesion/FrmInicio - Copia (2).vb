@@ -27,7 +27,7 @@ Public Class FrmInicio
     Private Sub iniciar()
 
         If My.Computer.Name = "MAM1" Or My.Computer.Name = "GERENTE1" Or My.Computer.Name = "MAM2-PC" Or My.Computer.Name = "MAMVAIO" Then
-            If txtLogin.Text.Length = 0 And txtPassword.Text.Length = 0 Then
+            If txtLogin.Text.Length = 0 AndAlso txtPassword.Text.Length = 0 Then
                 txtLogin.Text = "mam"
                 txtPassword.Text = "trucha0121"
             End If

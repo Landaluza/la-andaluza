@@ -90,7 +90,7 @@ Public Class frmEntDepositos
                 ctlDep.GuardarTransicuba(dtb, cdDescripcionTransicuba.Text, cbEstadoTransicuba.Checked)
             End If
 
-            If Not rbTonel.Checked And Not rbBota.Checked And Not rbPiernas.Checked And Not rbTransicuba.Checked Then
+            If Not rbTonel.Checked AndAlso Not rbBota.Checked AndAlso Not rbPiernas.Checked AndAlso Not rbTransicuba.Checked Then
                 MessageBox.Show("Debes seleccionar un tipo", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             Else
                 ctlDep.GuardarDeposito(dtb, cdCodigo.Text, FechaCreacionDateTimePicker.Value, If(CapacidadCuadroDeTexto.Text = "" Or Convert.IsDBNull(CapacidadCuadroDeTexto.Text), "0", CapacidadCuadroDeTexto.Text), DoctoUbicacionfisicaCuadroDeTexto.Text, MaterialConstruccionIDComboMAM.SelectedValue, ListadoCheckBox.Checked)

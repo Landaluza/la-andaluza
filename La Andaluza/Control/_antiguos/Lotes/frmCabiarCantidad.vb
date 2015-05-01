@@ -11,7 +11,7 @@
     End Sub
 
     Private Sub btnCantidad_Click(sender As System.Object, e As System.EventArgs) Handles btnCantidad.Click
-        If Me.txtCantidad.Text <> "" And IsNumeric(txtCantidad.Text) Then
+        If Me.txtCantidad.Text <> "" AndAlso IsNumeric(txtCantidad.Text) Then
             Try
                 If spLotes1.ActualizarCantidad(loteId, Me.txtCantidad.Text, dtb) Then
                     Me.DialogResult = Windows.Forms.DialogResult.OK
@@ -20,10 +20,10 @@
                     MessageBox.Show("No se pudo realizar la operación. Vuelva a intentarlo en unos segundos.", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
             Catch ex As Exception
-                messagebox.show("No se pudo realizar la operación. Detalles:" & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("No se pudo realizar la operación. Detalles:" & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         Else
-            messagebox.show("Introduzca una cantidad correcta", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            MessageBox.Show("Introduzca una cantidad correcta", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End If
     End Sub
 End Class

@@ -197,7 +197,7 @@ Public Class frmOrdenesCargaInforme
             Dim tope As Integer = Me.dgv.RowCount
             Dim i As Integer
 
-            While cont < tope And cont < Me.dgv.RowCount
+            While cont < tope AndAlso cont < Me.dgv.RowCount
                 i = dgv.Rows(cont).Index
 
                 If IsDBNull(Me.dt.Rows(i).Item("Exportar")) Then
@@ -309,7 +309,7 @@ Public Class frmOrdenesCargaInforme
             Me.filasVisibles = 0
             Me.visible2 = True
             'dgvFill()
-            While cont < tope And cont < Me.dgv.RowCount
+            While cont < tope AndAlso cont < Me.dgv.RowCount
                 Me.dgv.Rows(cont).Visible = True
                 cont += 1
             End While
@@ -326,7 +326,7 @@ Public Class frmOrdenesCargaInforme
             cm.EndCurrentEdit()
             'Me.dgv.CurrentRow.Selected = False
 
-            While cont < tope And cont < Me.dgv.RowCount
+            While cont < tope AndAlso cont < Me.dgv.RowCount
                 i = dgv.Rows(cont).Index
                 'If dgv.Rows(cont).Cells("Exportar").Value Is Nothing Or dgv.Rows(cont).Cells("Exportar").Value = False Then
                 If IsDBNull(Me.dt.Rows(i).Item("Exportar")) Then
@@ -359,7 +359,7 @@ Public Class frmOrdenesCargaInforme
                 Dim cont As Integer = 0
                 Dim tope As Integer = Me.dgv.RowCount
 
-                While cont < tope And cont < Me.dgv.RowCount
+                While cont < tope AndAlso cont < Me.dgv.RowCount
                     If Not IsDBNull(dgv.Rows(cont).Cells("Exportar").Value) Then
                         If Convert.ToBoolean(dgv.Rows(cont).Cells("Exportar").Value) Then
                             cuenta += If(dgv.Rows(cont).Cells("PaletsCarga").Value Is Convert.DBNull, 0, dgv.Rows(cont).Cells("PaletsCarga").Value)
@@ -572,13 +572,13 @@ Public Class frmOrdenesCargaInforme
             If Me.dgv.Columns(e.ColumnIndex).Name = "PaletsCarga" Or Me.dgv.Columns(e.ColumnIndex).Name = "Observaciones" Then
                 Me.dgv.ReadOnly = False
             Else
-                If Me.dgv.Columns(e.ColumnIndex).Name.Contains("Pico") And Me.dgv.Columns(e.ColumnIndex).Name <> "CargaPicos" Then
+                If Me.dgv.Columns(e.ColumnIndex).Name.Contains("Pico") AndAlso Me.dgv.Columns(e.ColumnIndex).Name <> "CargaPicos" Then
                     If Not IsDBNull(dgv.Rows(e.RowIndex).Cells(e.ColumnIndex).Value) Then
                         If dgv.Rows(e.RowIndex).Cells(e.ColumnIndex).Value <> 0 Then
                             Dim cargado As Boolean = False
-                            Dim cargaPicos As String = if(IsDBNull(dgv.Rows(e.RowIndex).Cells("CargaPicos").Value), "", dgv.Rows(e.RowIndex).Cells("CargaPicos").Value)
-                            Dim cargaPicosSCC As String = if(IsDBNull(dgv.Rows(e.RowIndex).Cells("CargaPicosSCC").Value), "", dgv.Rows(e.RowIndex).Cells("CargaPicosSCC").Value)
-                            Dim listaPicosSCC As String = if(IsDBNull(dgv.Rows(e.RowIndex).Cells("listaSCCPicos").Value), "", dgv.Rows(e.RowIndex).Cells("listaSCCPicos").Value)
+                            Dim cargaPicos As String = If(IsDBNull(dgv.Rows(e.RowIndex).Cells("CargaPicos").Value), "", dgv.Rows(e.RowIndex).Cells("CargaPicos").Value)
+                            Dim cargaPicosSCC As String = If(IsDBNull(dgv.Rows(e.RowIndex).Cells("CargaPicosSCC").Value), "", dgv.Rows(e.RowIndex).Cells("CargaPicosSCC").Value)
+                            Dim listaPicosSCC As String = If(IsDBNull(dgv.Rows(e.RowIndex).Cells("listaSCCPicos").Value), "", dgv.Rows(e.RowIndex).Cells("listaSCCPicos").Value)
 
                             If cargaPicos <> "" Then
                                 Dim cp As String() = dgv.Rows(e.RowIndex).Cells("CargaPicos").Value.ToString.Split(",")
@@ -593,11 +593,11 @@ Public Class frmOrdenesCargaInforme
                             End If
 
                             If Not cargado Then
-                                dgv.Rows(e.RowIndex).Cells("CargaPicos").Value = cargaPicos & if(cargaPicos = "", "", ",") & dgv.Rows(e.RowIndex).Cells(e.ColumnIndex).Value
+                                dgv.Rows(e.RowIndex).Cells("CargaPicos").Value = cargaPicos & If(cargaPicos = "", "", ",") & dgv.Rows(e.RowIndex).Cells(e.ColumnIndex).Value
                                 If dgv.Columns(e.ColumnIndex).Name = "Pico" Then
                                     dgv.Rows(e.RowIndex).Cells("CargaPicosSCC").Value = listaPicosSCC
                                 Else
-                                    dgv.Rows(e.RowIndex).Cells("CargaPicosSCC").Value = cargaPicosSCC & if(cargaPicosSCC = "", "", ",") & dgv.Rows(e.RowIndex).Cells("scc" & dgv.Columns(e.ColumnIndex).Name).Value
+                                    dgv.Rows(e.RowIndex).Cells("CargaPicosSCC").Value = cargaPicosSCC & If(cargaPicosSCC = "", "", ",") & dgv.Rows(e.RowIndex).Cells("scc" & dgv.Columns(e.ColumnIndex).Name).Value
                                 End If
                                 marcarParaExportar()
                             End If

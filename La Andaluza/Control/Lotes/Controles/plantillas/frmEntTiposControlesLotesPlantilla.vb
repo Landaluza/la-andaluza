@@ -57,17 +57,17 @@ Public Class frmEntTiposControlesLotesPlantilla
                 AddHandler tsExtender.Click, AddressOf ExtenderPlantilla
             End If
         End If
-        If Config.UserType <> 4 And Config.UserType <> 9 Then
-            butAddId_TipoControl.enabled = False
-            butVerId_TipoControl.enabled = False
-            butAddId_TipoLote.enabled = False
-            butVerId_TipoLote.enabled = False
-            butAddId_TipoProducto.enabled = False
-            butVerId_TipoProducto.enabled = False
-            butAddId_frecuencia.enabled = False
-            butVerId_frecuencia.enabled = False
-            butAddId_procedimiento.enabled = False
-            butVerId_procedimiento.enabled = False
+        If Config.UserType <> 4 AndAlso Config.UserType <> 9 Then
+            butAddId_TipoControl.Enabled = False
+            butVerId_TipoControl.Enabled = False
+            butAddId_TipoLote.Enabled = False
+            butVerId_TipoLote.Enabled = False
+            butAddId_TipoProducto.Enabled = False
+            butVerId_TipoProducto.Enabled = False
+            butAddId_frecuencia.Enabled = False
+            butVerId_frecuencia.Enabled = False
+            butAddId_procedimiento.Enabled = False
+            butVerId_procedimiento.Enabled = False
         End If
 
     End Sub
