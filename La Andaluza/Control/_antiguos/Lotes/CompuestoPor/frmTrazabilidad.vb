@@ -147,10 +147,11 @@ Public Class frmTrazabilidad
     Private Function actualizarTrazabilidadA(ByVal cantidad As String, ByVal movimiento As String, ByVal loteid As String) As Boolean
         dtb.EmpezarTransaccion()
         Try
-            dtb.PrepararConsulta("update compuestopor set cantidad= @can where movimientoid= @mov and loteFinal= @lote")
+            dtb.PrepararConsulta("update compuestopor set cantidad= @can where movimientoid= @mov and loteFinal= @lote and lotePartida=@lot")
             dtb.AñadirParametroConsulta("@can", cantidad)
             dtb.AñadirParametroConsulta("@mov", movimiento)
-            dtb.AñadirParametroConsulta("@lote", loteID)
+            dtb.AñadirParametroConsulta("@lote", loteid)
+            dtb.AñadirParametroConsulta("@lot", Me.loteID)
             If dtb.Execute Then
                 dtb.PrepararConsulta("update movimientos set cantidad= @can where movimientoid= @mov")
                 dtb.AñadirParametroConsulta("@can", cantidad)
@@ -180,10 +181,11 @@ Public Class frmTrazabilidad
     Private Function actualizarTrazabilidadDesde(ByVal cantidad As String, ByVal movimiento As String, ByVal loteid As String) As Boolean
         dtb.EmpezarTransaccion()
         Try
-            dtb.PrepararConsulta("update compuestopor set cantidad= @can where movimientoid= @mov and lotePartida = @lote")
+            dtb.PrepararConsulta("update compuestopor set cantidad= @can where movimientoid= @mov and lotePartida = @lote and loteFinal=@lot")
             dtb.AñadirParametroConsulta("@can", cantidad)
             dtb.AñadirParametroConsulta("@mov", movimiento)
-            dtb.AñadirParametroConsulta("@lote", loteID)
+            dtb.AñadirParametroConsulta("@lote", loteid)
+            dtb.AñadirParametroConsulta("@lot", Me.loteID)
             If dtb.Execute Then
                 dtb.PrepararConsulta("update movimientos set cantidad= @can where movimientoid= @mov")
                 dtb.AñadirParametroConsulta("@can", cantidad)
