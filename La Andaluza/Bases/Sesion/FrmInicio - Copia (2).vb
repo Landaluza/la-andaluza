@@ -5,8 +5,8 @@ Public Class FrmInicio
     Private Gform As GUIstandar
     Private Calendar As BasesParaCompatibilidad.Calendar
     Private dtb As BasesParaCompatibilidad.DataBase
-    Public Sub New()
 
+    Public Sub New()
         InitializeComponent()
         dtb = New BasesParaCompatibilidad.DataBase
         Calendar = New BasesParaCompatibilidad.Calendar
@@ -25,7 +25,6 @@ Public Class FrmInicio
     End Sub
 
     Private Sub iniciar()
-
         If My.Computer.Name = "MAM1" Or My.Computer.Name = "GERENTE1" Or My.Computer.Name = "MAM2-PC" Or My.Computer.Name = "MAMVAIO" Then
             If txtLogin.Text.Length = 0 AndAlso txtPassword.Text.Length = 0 Then
                 txtLogin.Text = "mam"
@@ -45,24 +44,25 @@ Public Class FrmInicio
         Else
             MessageBox.Show("Error. Los datos no son correctos", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End If
-
     End Sub
 
     Private Function comprobarCampos() As Boolean
-
         Dim respuesta As Boolean = True
+
         If txtLogin.Text.Contains("'") Then
             If Not Me.LblLoginIssue.Visible Then Me.LblLoginIssue.Visible = True
             If respuesta Then respuesta = False
         Else
             If Me.LblLoginIssue.Visible Then Me.LblLoginIssue.Visible = False
         End If
+
         If txtLogin.Text = "" Then
             If Not Me.LblLoginIssue.Visible Then Me.LblLoginIssue.Visible = True
             If respuesta Then respuesta = False
         Else
             If Me.LblLoginIssue.Visible Then Me.LblLoginIssue.Visible = False
         End If
+
         If txtPassword.Text = "" Then
             If Not Me.lblPasswordIssue.Visible Then Me.lblPasswordIssue.Visible = True
             If respuesta Then respuesta = False
@@ -88,9 +88,6 @@ Public Class FrmInicio
     End Sub
 
     Private Sub FrmInicio_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-       
-
-         
         Me.txtLogin.Text = ""
         Me.txtPassword.Text = ""
         Me.BringToFront()
@@ -115,7 +112,6 @@ Public Class FrmInicio
         Dim s As New System.Text.StringBuilder(longitud)
         For i As Integer = 1 To longitud
             Dim c As Char = ChrW(rnd.Next(97, 123))
-
             s.Append(c)
         Next
 
@@ -133,7 +129,6 @@ Public Class FrmInicio
                 If frm.Result = dbo_usuarios.email Then
                     dbo_usuarios.cryptedPassword = s.ToString
                     spUsuarios.Grabar(dbo_usuarios, dtb)
-
                     Dim cuerpo As String = "Su nueva contraseña es: " & dbo_usuarios.cryptedPassword
 
                     If Mail.notificarUsuario(s.ToString, Me.txtLogin.Text, dtb) Then
@@ -180,7 +175,6 @@ Public Class FrmInicio
     End Sub
 
     Private Sub BackgroundWorker1_DoWork(sender As System.Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
-
         Dim spUsuarios As New spUsuarios
 
         If Not Calendar.TestDate() Then
