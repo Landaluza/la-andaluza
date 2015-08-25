@@ -1,7 +1,8 @@
 Public Class FrmInicio
     'Private ctrSes As New ctlUsuarios
     'Public Const CAMBIO_SESION As Integer = 0
-    'Public Const acceso As Integer = 1    
+    'Public Const acceso As Integer = 1  
+
     Private Gform As GUIstandar
     Private Calendar As BasesParaCompatibilidad.Calendar
     Private dtb As BasesParaCompatibilidad.DataBase
@@ -105,11 +106,11 @@ Public Class FrmInicio
         Dim longitud As Integer
         Dim semilla As Integer = DateTime.Now.Millisecond
         Dim rnd As Random
+        Dim s As New System.Text.StringBuilder(longitud)
 
         rnd = New Random(semilla)
         longitud = 6
 
-        Dim s As New System.Text.StringBuilder(longitud)
         For i As Integer = 1 To longitud
             Dim c As Char = ChrW(rnd.Next(97, 123))
             s.Append(c)
@@ -122,7 +123,6 @@ Public Class FrmInicio
             Dim dbo_usuarios As DBO_Usuarios = spUsuarios.select_record_by_usuario(Me.txtLogin.Text, dtb)
 
             If dbo_usuarios.email IsNot String.Empty Then
-
                 Dim frm As New BasesParaCompatibilidad.frmEntrada("Introduzca su dirección de correo", "La dirección debe coincidir con la que introdujo para su usuario")
                 BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
 
@@ -147,6 +147,7 @@ Public Class FrmInicio
                 dtb.CancelarTransaccion()
                 MessageBox.Show("EL usuario no contiene información sobre su correo. Pongase en contacto con el administrador", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             End If
+
         Catch ex As Exception
             dtb.CancelarTransaccion()
             MessageBox.Show("Error recuperando la contraseña", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
