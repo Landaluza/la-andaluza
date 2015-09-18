@@ -32,7 +32,7 @@ Partial Class frmMotivosCeseServicio
         Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmMotivosCeseServicio"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "MotivosCeseServicio
+        Me.Text = "MotivosCeseServicio"
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

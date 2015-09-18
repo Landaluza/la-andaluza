@@ -32,7 +32,7 @@ Partial Class frmLugaresEntregas
         Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmLugaresEntregas"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "LugaresEntregas
+        Me.Text = "LugaresEntregas"
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

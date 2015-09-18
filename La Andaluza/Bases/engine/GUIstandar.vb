@@ -183,4 +183,5 @@
     Private Sub lActualizaciones_Click(sender As Object, e As EventArgs) Handles lActualizaciones.Click
         updater.InstallUpdateSyncWithInfo()
     End Sub
+
 End Class

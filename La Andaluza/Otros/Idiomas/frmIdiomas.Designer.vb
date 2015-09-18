@@ -32,7 +32,7 @@ Partial Class frmIdiomas
         Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmIdiomas"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Idiomas
+        Me.Text = "Idiomas"
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

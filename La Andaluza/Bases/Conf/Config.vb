@@ -34,11 +34,9 @@
 
     Public Shared Sub Cargar_Ajustes_Predeterminados()
         ruta_servidor = "\\192.168.10.200\datos\informatica\La Andaluza app\"
-
-
-
         BasesParaCompatibilidad.Config.Server = BasesParaCompatibilidad.DataBase.SERVIDOR
         BasesParaCompatibilidad.DataBase.buildConnectionString(BasesParaCompatibilidad.Config.Server)
+        BasesParaCompatibilidad.DataBase.buildConnectionString(2)
 
         Config.HelpUrl = "http://192.168.10.106/AyudaLA/index.php"
         'Config.ventasPath = "Z:\Informatica\La Andaluza app\ExcelFile\Book1.xlsx"
@@ -61,14 +59,15 @@
         Config.QS_Sesion = "Sesión A - [24 x 80]"
         'Config.QS_Sesion = "Sesión A"
 
-        Select Case BasesParaCompatibilidad.Config.Server
-            Case BasesParaCompatibilidad.DataBase.SERVIDOR
-                Config.ServerName = "Produccion"
-            Case BasesParaCompatibilidad.DataBase.LOCAL
-                Config.ServerName = "Local"
-            Case Else
-                Config.ServerName = "Otro"
-        End Select
+        'Select Case BasesParaCompatibilidad.Config.Server
+        '    Case BasesParaCompatibilidad.DataBase.SERVIDOR
+        '        Config.ServerName = "Produccion"
+        '    Case BasesParaCompatibilidad.DataBase.LOCAL
+        '        Config.ServerName = "Local"
+        '    Case Else
+
+        Config.ServerName = "Otro"
+        'End Select
 
         Config.load()
     End Sub
@@ -400,6 +399,11 @@
             Case Else
                 Config.versionApp = "LA " & Convert.ToString(My.Application.Info.Version).Substring(0, 7) '& " -- " & String.Format("Version {0}", NumeroVersion())
         End Select
+
+        If My.Computer.Name = "MAMVAIO" Then
+            Config.versionApp = "---------LOCAL----------------- " & Config.versionApp & " ---------LOCAL-----------------"
+        End If
+
     End Sub
 
     Public Shared Sub save()

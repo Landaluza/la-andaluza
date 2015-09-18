@@ -32,7 +32,7 @@ Partial Class frmMetodosAnalisis
         Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmMetodosAnalisis"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "MetodosAnalisis
+        Me.Text = "MetodosAnalisis"
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

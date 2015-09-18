@@ -60,6 +60,7 @@ Public Class GUImain
         Me.Hide()
     End Sub
 
+
     Public Overridable Sub terminarDeIniciar(ByVal tablausada As String, ByVal ServidorUsado As String, ByVal UsuarioUsado As String, ByVal usua As String)
         Me.SuspendLayout()
         Me.Controls.Remove(msMenu)

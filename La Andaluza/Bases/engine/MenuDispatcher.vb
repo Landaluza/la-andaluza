@@ -795,4 +795,8 @@ Public Class MenuDispatcher
         Dim existencias As New ExistenciasArticulos.Existencias
         GUImain.añadirPestaña(existencias.GUI)
     End Sub
+
+    Private Sub tsmAlmacen_Click(sender As Object, e As EventArgs) Handles tsmAlmacen.Click
+
+    End Sub
 End Class

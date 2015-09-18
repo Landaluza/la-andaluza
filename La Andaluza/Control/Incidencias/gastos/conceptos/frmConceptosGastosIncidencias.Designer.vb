@@ -32,7 +32,7 @@ Partial Class frmConceptosGastosIncidencias
         Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmConceptosGastosIncidencias"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Conceptosgastosincidencias
+        Me.Text = "Conceptosgastosincidencias"
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

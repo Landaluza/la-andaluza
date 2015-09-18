@@ -32,7 +32,7 @@ Partial Class frmProveedoresMailsPedidos
         Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmProveedoresMailsPedidos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "ProveedoresMailsPedidos
+        Me.Text = "ProveedoresMailsPedidos"
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

@@ -32,7 +32,7 @@ Partial Class frmCorredores
         Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmCorredores"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Corredores
+        Me.Text = "Corredores"
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

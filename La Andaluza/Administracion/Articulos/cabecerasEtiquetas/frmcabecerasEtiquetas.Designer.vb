@@ -32,7 +32,7 @@ Partial Class frmcabecerasEtiquetas
         Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmcabecerasEtiquetas"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "cabecerasEtiquetas
+        Me.Text = "cabecerasEtiquetas"
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

@@ -32,7 +32,7 @@ Partial Class frmRecipientesSalidas
         Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmRecipientesSalidas"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Recipientessalidas
+        Me.Text = "Recipientessalidas"
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

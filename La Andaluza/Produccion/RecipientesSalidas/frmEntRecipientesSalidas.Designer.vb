@@ -32,7 +32,7 @@ Partial Class frmEntRecipientesSalidas
         '
         Me.txtDescripcion.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txtDescripcion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtDescripcion.Name = "txtDescripcion
+        Me.txtDescripcion.Name = "txtDescripcion"
         Me.txtDescripcion.TabIndex = 0
         Me.txtDescripcion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtDescripcion.BackColor = System.Drawing.SystemColors.Window
@@ -42,8 +42,8 @@ Partial Class frmEntRecipientesSalidas
         'lblDescripcion
         '
         Me.lblDescripcion.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lblDescripcion.Name = "lblDescripcion
-        Me.lblDescripcion.Text = "Descripcion
+        Me.lblDescripcion.Name = "lblDescripcion"
+        Me.lblDescripcion.Text = "Descripcion"
         Me.lblDescripcion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.lblDescripcion.Size = New System.Drawing.Size(106,21)
         Me.lblDescripcion.Location = New System.Drawing.Point(20,40)
@@ -76,7 +76,7 @@ Partial Class frmEntRecipientesSalidas
         Me.Controls.Add(Me.tlpMiddle)
         Me.ClientSize = New System.Drawing.Size(436, 107)
         Me.MinimumSize = New System.Drawing.Size(0, 0)
-        Me.Name = "frmEntRecipientesSalidas
+        Me.Name = "frmEntRecipientesSalidas"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "RecipientesSalidas"
         Me.Controls.SetChildIndex(Me.tlpMiddle, 0)

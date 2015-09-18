@@ -1216,7 +1216,7 @@ Partial Class MenuDispatcher
         Me.tsmOrdenesCargaLA.ShortcutKeyDisplayString = "Ctrl+Alt+1"
         Me.tsmOrdenesCargaLA.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Alt) _
             Or System.Windows.Forms.Keys.D1), System.Windows.Forms.Keys)
-        Me.tsmOrdenesCargaLA.Size = New System.Drawing.Size(308, 22)
+        Me.tsmOrdenesCargaLA.Size = New System.Drawing.Size(314, 28)
         Me.tsmOrdenesCargaLA.Text = "Preparar ordenes carga &LA"
         '
         'ExistenciasToolStripMenuItem
@@ -1226,7 +1226,7 @@ Partial Class MenuDispatcher
         Me.ExistenciasToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl+Alt+5"
         Me.ExistenciasToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Alt) _
             Or System.Windows.Forms.Keys.D5), System.Windows.Forms.Keys)
-        Me.ExistenciasToolStripMenuItem.Size = New System.Drawing.Size(308, 22)
+        Me.ExistenciasToolStripMenuItem.Size = New System.Drawing.Size(314, 28)
         Me.ExistenciasToolStripMenuItem.Text = "&Existencias"
         '
         'tsmEntradaMovimientosEntrePalets
@@ -1236,14 +1236,14 @@ Partial Class MenuDispatcher
         Me.tsmEntradaMovimientosEntrePalets.ShortcutKeyDisplayString = "Ctrl+Alt+2"
         Me.tsmEntradaMovimientosEntrePalets.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Alt) _
             Or System.Windows.Forms.Keys.D2), System.Windows.Forms.Keys)
-        Me.tsmEntradaMovimientosEntrePalets.Size = New System.Drawing.Size(308, 22)
+        Me.tsmEntradaMovimientosEntrePalets.Size = New System.Drawing.Size(314, 28)
         Me.tsmEntradaMovimientosEntrePalets.Text = "Entrada &movimientos "
         '
         'tsmAlmacenMovimientosBBDD
         '
         Me.tsmAlmacenMovimientosBBDD.Enabled = False
         Me.tsmAlmacenMovimientosBBDD.Name = "tsmAlmacenMovimientosBBDD"
-        Me.tsmAlmacenMovimientosBBDD.Size = New System.Drawing.Size(308, 22)
+        Me.tsmAlmacenMovimientosBBDD.Size = New System.Drawing.Size(314, 28)
         Me.tsmAlmacenMovimientosBBDD.Text = "Entrada movimientos"
         '
         'tsmAlbaranDeCargaMaestroBBDD
@@ -1252,7 +1252,7 @@ Partial Class MenuDispatcher
         Me.tsmAlbaranDeCargaMaestroBBDD.ShortcutKeyDisplayString = "Ctrl+Alt+4"
         Me.tsmAlbaranDeCargaMaestroBBDD.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Alt) _
             Or System.Windows.Forms.Keys.D4), System.Windows.Forms.Keys)
-        Me.tsmAlbaranDeCargaMaestroBBDD.Size = New System.Drawing.Size(308, 22)
+        Me.tsmAlbaranDeCargaMaestroBBDD.Size = New System.Drawing.Size(314, 28)
         Me.tsmAlbaranDeCargaMaestroBBDD.Text = "Albaran de &carga "
         '
         'tsmInformePaletBBDD
@@ -1261,7 +1261,7 @@ Partial Class MenuDispatcher
         Me.tsmInformePaletBBDD.ShortcutKeyDisplayString = "Ctrl+Alt+6"
         Me.tsmInformePaletBBDD.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Alt) _
             Or System.Windows.Forms.Keys.D6), System.Windows.Forms.Keys)
-        Me.tsmInformePaletBBDD.Size = New System.Drawing.Size(308, 22)
+        Me.tsmInformePaletBBDD.Size = New System.Drawing.Size(314, 28)
         Me.tsmInformePaletBBDD.Text = "&Informe movimientos"
         '
         'MovimientosEntreFechasToolStripMenuItem
@@ -1271,7 +1271,7 @@ Partial Class MenuDispatcher
         Me.MovimientosEntreFechasToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl+Alt+7"
         Me.MovimientosEntreFechasToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Alt) _
             Or System.Windows.Forms.Keys.D7), System.Windows.Forms.Keys)
-        Me.MovimientosEntreFechasToolStripMenuItem.Size = New System.Drawing.Size(308, 22)
+        Me.MovimientosEntreFechasToolStripMenuItem.Size = New System.Drawing.Size(314, 28)
         Me.MovimientosEntreFechasToolStripMenuItem.Text = "Movimientos entre &fechas"
         '
         'MovimientosEntreRecuentosToolStripMenuItem
@@ -1281,7 +1281,7 @@ Partial Class MenuDispatcher
         Me.MovimientosEntreRecuentosToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl+Alt+8"
         Me.MovimientosEntreRecuentosToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Alt) _
             Or System.Windows.Forms.Keys.D8), System.Windows.Forms.Keys)
-        Me.MovimientosEntreRecuentosToolStripMenuItem.Size = New System.Drawing.Size(308, 22)
+        Me.MovimientosEntreRecuentosToolStripMenuItem.Size = New System.Drawing.Size(314, 28)
         Me.MovimientosEntreRecuentosToolStripMenuItem.Text = "Movimientos entre &recuentos"
         '
         'ListadoPaletsIncompletosToolStripMenuItem
@@ -1290,7 +1290,7 @@ Partial Class MenuDispatcher
         Me.ListadoPaletsIncompletosToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl+Alt+9"
         Me.ListadoPaletsIncompletosToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Alt) _
             Or System.Windows.Forms.Keys.D9), System.Windows.Forms.Keys)
-        Me.ListadoPaletsIncompletosToolStripMenuItem.Size = New System.Drawing.Size(308, 22)
+        Me.ListadoPaletsIncompletosToolStripMenuItem.Size = New System.Drawing.Size(314, 28)
         Me.ListadoPaletsIncompletosToolStripMenuItem.Text = "Listado &palets incompletos"
         '
         'ListadoAlbaranesCargaToolStripMenuItem
@@ -1299,7 +1299,7 @@ Partial Class MenuDispatcher
         Me.ListadoAlbaranesCargaToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl+Alt+0"
         Me.ListadoAlbaranesCargaToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Alt) _
             Or System.Windows.Forms.Keys.D0), System.Windows.Forms.Keys)
-        Me.ListadoAlbaranesCargaToolStripMenuItem.Size = New System.Drawing.Size(308, 22)
+        Me.ListadoAlbaranesCargaToolStripMenuItem.Size = New System.Drawing.Size(314, 28)
         Me.ListadoAlbaranesCargaToolStripMenuItem.Text = "Listado &albaranes carga"
         '
         'tsmPaletsNoAlmacenNoTerminadoBBDD
@@ -1308,7 +1308,7 @@ Partial Class MenuDispatcher
         Me.tsmPaletsNoAlmacenNoTerminadoBBDD.ShortcutKeyDisplayString = "Ctrl+Alt+Q"
         Me.tsmPaletsNoAlmacenNoTerminadoBBDD.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Alt) _
             Or System.Windows.Forms.Keys.Q), System.Windows.Forms.Keys)
-        Me.tsmPaletsNoAlmacenNoTerminadoBBDD.Size = New System.Drawing.Size(308, 22)
+        Me.tsmPaletsNoAlmacenNoTerminadoBBDD.Size = New System.Drawing.Size(314, 28)
         Me.tsmPaletsNoAlmacenNoTerminadoBBDD.Text = "Palets&NoAlmacenNoTerminado"
         '
         'mnuOrdenesCarga
@@ -1317,19 +1317,19 @@ Partial Class MenuDispatcher
         Me.mnuOrdenesCarga.ShortcutKeyDisplayString = "Ctrl+Alt+W"
         Me.mnuOrdenesCarga.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Alt) _
             Or System.Windows.Forms.Keys.W), System.Windows.Forms.Keys)
-        Me.mnuOrdenesCarga.Size = New System.Drawing.Size(308, 22)
+        Me.mnuOrdenesCarga.Size = New System.Drawing.Size(314, 28)
         Me.mnuOrdenesCarga.Text = "&Ordenes de carga"
         '
         'InformesAlmacenToolStripMenuItem
         '
         Me.InformesAlmacenToolStripMenuItem.Name = "InformesAlmacenToolStripMenuItem"
-        Me.InformesAlmacenToolStripMenuItem.Size = New System.Drawing.Size(308, 22)
+        Me.InformesAlmacenToolStripMenuItem.Size = New System.Drawing.Size(314, 28)
         Me.InformesAlmacenToolStripMenuItem.Text = "Informes almacen"
         '
         'RecuentosExistenciaMaterialToolStripMenuItem
         '
         Me.RecuentosExistenciaMaterialToolStripMenuItem.Name = "RecuentosExistenciaMaterialToolStripMenuItem"
-        Me.RecuentosExistenciaMaterialToolStripMenuItem.Size = New System.Drawing.Size(308, 22)
+        Me.RecuentosExistenciaMaterialToolStripMenuItem.Size = New System.Drawing.Size(314, 28)
         Me.RecuentosExistenciaMaterialToolStripMenuItem.Text = "Recuentos existencia material"
         '
         'ExpedicionesToolStripMenuItem
@@ -4435,7 +4435,7 @@ Partial Class MenuDispatcher
         Me.MSAdministracion.PerformLayout()
         Me.ResumeLayout(False)
 
-End Sub
+    End Sub
     Private WithEvents MSAdministrador As System.Windows.Forms.MenuStrip
     Private WithEvents MSEnvasado As System.Windows.Forms.MenuStrip
     Private WithEvents MSElaboracion As System.Windows.Forms.MenuStrip

@@ -32,7 +32,7 @@ Partial Class frmAvisosPedidos_articulos
         Me.MinimumSize = New System.Drawing.Size(400, 400)
         Me.Name = "frmAvisosPedidos_articulos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Avisospedidos_Articulos
+        Me.Text = "Avisospedidos_Articulos"
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

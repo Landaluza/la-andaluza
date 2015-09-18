@@ -32,7 +32,7 @@ Partial Class frmTiposDepositos
         Me.MinimumSize = New System.Drawing.Size(400, 400)
         Me.Name = "frmTiposDepositos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Tiposdepositos
+        Me.Text = "Tiposdepositos"
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

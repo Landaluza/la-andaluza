@@ -32,7 +32,7 @@ Partial Class frmPaletsTipos
         Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmPaletsTipos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "PaletsTipos
+        Me.Text = "PaletsTipos"
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

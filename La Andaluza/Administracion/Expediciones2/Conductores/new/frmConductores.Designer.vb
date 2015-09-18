@@ -32,7 +32,7 @@ Partial Class frmConductores
         Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmConductores"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Conductores
+        Me.Text = "Conductores"
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

@@ -68,6 +68,9 @@ Partial Class GUIstandar
         Me.Panel9.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel9.Size = New System.Drawing.Size(0, 0)
         '
+        'TabControl1
+        '
+        '
         'TabControl2
         '
         Me.TabControl2.Margin = New System.Windows.Forms.Padding(4)

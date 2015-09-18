@@ -32,7 +32,7 @@ Partial Class frmTiposControlesLotesPlantilla
         Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmTiposControlesLotesPlantilla"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "TiposControlesLotesPlantilla
+        Me.Text = "TiposControlesLotesPlantilla"
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

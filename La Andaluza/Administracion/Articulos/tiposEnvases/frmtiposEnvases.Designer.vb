@@ -32,7 +32,7 @@ Partial Class frmtiposEnvases
         Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmtiposEnvases"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "tiposEnvases
+        Me.Text = "tiposEnvases"
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

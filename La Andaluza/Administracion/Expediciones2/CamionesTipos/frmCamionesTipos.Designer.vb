@@ -32,7 +32,7 @@ Partial Class frmCamionesTipos
         Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmCamionesTipos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "CamionesTipos
+        Me.Text = "CamionesTipos"
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

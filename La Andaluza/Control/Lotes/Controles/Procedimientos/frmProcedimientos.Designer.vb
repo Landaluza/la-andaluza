@@ -32,7 +32,7 @@ Partial Class frmProcedimientos
         Me.MinimumSize = New System.Drawing.Size(0, 0)
         Me.Name = "frmProcedimientos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Procedimientos
+        Me.Text = "Procedimientos"
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

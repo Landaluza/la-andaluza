@@ -32,7 +32,7 @@ Partial Class frmFamiliaProducto
         Me.MinimumSize = New System.Drawing.Size(400, 400)
         Me.Name = "frmFamiliaProducto"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Familiaproducto
+        Me.Text = "Familiaproducto"
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
