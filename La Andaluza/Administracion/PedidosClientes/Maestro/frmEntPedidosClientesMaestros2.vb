@@ -1,4 +1,5 @@
 Imports BasesParaCompatibilidad.dtpExtension
+
 Public Class frmEntPedidosClientesMaestros2
     Inherits BasesParaCompatibilidad.FrmAHeredarEntOld
 
@@ -22,9 +23,19 @@ Public Class frmEntPedidosClientesMaestros2
     Private Sub frmEntPedidosClientesMaestros2_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim spClientes As New spClientes
         spClientes.cargar_Clientes(cboClienteID, dtb)
-        'Me.cboClienteID.mam_DataSource("PedidosClientesMaestros2_ClientesCbo"), False)
         Dim spLugares As New spLugaresEntregas
         spLugares.cargar_LugaresEntregas(cboPedidoClienteLugarEntregaID, dtb)
+
+        'Oculto los controles que no deben verse
+        With bdnGeneral
+            .MoveFirstItem.Visible = False
+            .MovePreviousItem.Visible = False
+            .MoveNextItem.Visible = False
+            .MoveLastItem.Visible = False
+            .PositionItem.Visible = False
+            .CountItem.Visible = False
+        End With
+        Separator2.Visible = False
 
         If Not m_VerID Then
             Me.cboClienteID.Visible = False
@@ -32,10 +43,6 @@ Public Class frmEntPedidosClientesMaestros2
             Me.cboPedidoClienteLugarEntregaID.Visible = False
             Me.lblPedidoClienteLugarEntregaID.Visible = False
         End If
-
-        'Me.cboPedidoClienteLugarEntregaID.mam_DataSource("PedidosClientesMaestros2_LugaresEntregasCbo"), False)
-
-
 
         RellenaTabPrincipal()
         SetValores(m_DBO_PedidosClientesMaestros2.PedidoClienteMaestroID, False)

@@ -1,4 +1,5 @@
 Imports BasesParaCompatibilidad.dtpExtension
+
 Public Class frmEntPedidosClientesDetalles2
     Inherits BasesParaCompatibilidad.FrmAHeredarEntOld
 
@@ -9,7 +10,7 @@ Public Class frmEntPedidosClientesDetalles2
     Private mercadona As Integer
     Private spPedidosClientesDetalles2 As spPedidosClientesDetalles2
 
-    Public Sub New(ByRef PedidosClientesDetalles2 As DBO_PedidosClientesDetalles2, _
+    Public Sub New(ByRef PedidosClientesDetalles2 As DBO_PedidosClientesDetalles2,
                    ByVal Pos As Integer, ByVal VerID As Boolean, ByVal mercadona As Boolean)
         InitializeComponent()
         m_DBO_PedidosClientesDetalles2 = PedidosClientesDetalles2
@@ -22,28 +23,31 @@ Public Class frmEntPedidosClientesDetalles2
     End Sub
 
     Private Sub frmEntPedidosClientesDetalles2_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        'PROBLEMA: si cambio la consulta para que tire de la Tabla Articulos1, ya no coinciden los ID con la tabla actual TiposFormatos 
-
         If Me.Text.Contains(BasesParaCompatibilidad.FrmAheredarOld.ACCION_INSERTAR) Then
             If Not mercadona Then
                 spTiposFormatos.cargar_TiposFormatos(cboArticuloID, dtb)
             Else
                 spTiposFormatos.cargar_TiposFormatos_por_palet(cboArticuloID, 10, dtb)
             End If
-
-            ' spTiposFormatos.cargar_TiposFormatos(Me.cboArticuloID)
-            'Me.cboArticuloID.mam_DataSource("PedidosClientesDetalles2_TiposFormatosCboAll"), False)
         Else
             spTiposFormatos.cargar_TiposFormatos_Todos(Me.cboArticuloID, dtb)
-            'Me.cboArticuloID.mam_DataSource("PedidosClientesDetalles2_TiposFormatosCbo"), False)
         End If
 
+        'Oculto los controles que no deben verse
+        With bdnGeneral
+            .MoveFirstItem.Visible = False
+            .MovePreviousItem.Visible = False
+            .MoveNextItem.Visible = False
+            .MoveLastItem.Visible = False
+            .PositionItem.Visible = False
+            .CountItem.Visible = False
+        End With
+        Separator2.Visible = False
 
         SetValores(m_DBO_PedidosClientesDetalles2.PedidoClienteDatalleID, False)
     End Sub
 
     Overrides Sub SetValores(ByVal m_ID As Integer, ByVal m_SelectRecord As Boolean)
-
         txtPedidoclienteMaestroID.Text = m_DBO_PedidosClientesDetalles2.PedidoclienteMaestroID
 
         If m_SelectRecord Then m_DBO_PedidosClientesDetalles2 = spPedidosClientesDetalles2.Select_Record(m_ID, dtb)
@@ -74,5 +78,4 @@ Public Class frmEntPedidosClientesDetalles2
         spPedidosClientesDetalles2.GrabarPedidosClientesDetalles2(m_DBO_PedidosClientesDetalles2, dtb)
         Me.Close()
     End Sub
-
 End Class

@@ -43,7 +43,7 @@ Partial Class frmEntPedidosClientesDetalles2
         '
         'txtTodoCorrecto
         '
-        Me.txtTodoCorrecto.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtTodoCorrecto.Margin = New System.Windows.Forms.Padding(4)
         '
         'txtPedidoClienteDatalleID
         '
@@ -53,8 +53,7 @@ Partial Class frmEntPedidosClientesDetalles2
         Me.txtPedidoClienteDatalleID.EsUnicoID = 0
         Me.txtPedidoClienteDatalleID.EsUnicoTabla = ""
         Me.txtPedidoClienteDatalleID.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPedidoClienteDatalleID.Location = New System.Drawing.Point(228, 4)
-        Me.txtPedidoClienteDatalleID.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtPedidoClienteDatalleID.Location = New System.Drawing.Point(173, 3)
         Me.txtPedidoClienteDatalleID.MaxLength = 9
         Me.txtPedidoClienteDatalleID.Minimo = 0
         Me.txtPedidoClienteDatalleID.Modificado = False
@@ -64,11 +63,11 @@ Partial Class frmEntPedidosClientesDetalles2
         Me.txtPedidoClienteDatalleID.Numerico_SeparadorMiles = False
         Me.txtPedidoClienteDatalleID.Obligatorio = False
         Me.txtPedidoClienteDatalleID.ParametroID = 0
-        Me.txtPedidoClienteDatalleID.Size = New System.Drawing.Size(73, 24)
+        Me.txtPedidoClienteDatalleID.Size = New System.Drawing.Size(56, 21)
         Me.txtPedidoClienteDatalleID.TabIndex = 0
         Me.txtPedidoClienteDatalleID.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.txtPedidoClienteDatalleID.ValorMaximo = 0.0!
-        Me.txtPedidoClienteDatalleID.ValorMinimo = 0.0!
+        Me.txtPedidoClienteDatalleID.ValorMaximo = 0R
+        Me.txtPedidoClienteDatalleID.ValorMinimo = 0R
         Me.txtPedidoClienteDatalleID.Visible = False
         '
         'txtPedidoclienteMaestroID
@@ -79,8 +78,7 @@ Partial Class frmEntPedidosClientesDetalles2
         Me.txtPedidoclienteMaestroID.EsUnicoID = 0
         Me.txtPedidoclienteMaestroID.EsUnicoTabla = ""
         Me.txtPedidoclienteMaestroID.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPedidoclienteMaestroID.Location = New System.Drawing.Point(228, 36)
-        Me.txtPedidoclienteMaestroID.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtPedidoclienteMaestroID.Location = New System.Drawing.Point(173, 30)
         Me.txtPedidoclienteMaestroID.MaxLength = 9
         Me.txtPedidoclienteMaestroID.Minimo = 0
         Me.txtPedidoclienteMaestroID.Modificado = False
@@ -90,19 +88,19 @@ Partial Class frmEntPedidosClientesDetalles2
         Me.txtPedidoclienteMaestroID.Numerico_SeparadorMiles = False
         Me.txtPedidoclienteMaestroID.Obligatorio = False
         Me.txtPedidoclienteMaestroID.ParametroID = 0
-        Me.txtPedidoclienteMaestroID.Size = New System.Drawing.Size(73, 24)
+        Me.txtPedidoclienteMaestroID.Size = New System.Drawing.Size(56, 21)
         Me.txtPedidoclienteMaestroID.TabIndex = 1
         Me.txtPedidoclienteMaestroID.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.txtPedidoclienteMaestroID.ValorMaximo = 0.0!
-        Me.txtPedidoclienteMaestroID.ValorMinimo = 0.0!
+        Me.txtPedidoclienteMaestroID.ValorMaximo = 0R
+        Me.txtPedidoclienteMaestroID.ValorMinimo = 0R
+        Me.txtPedidoclienteMaestroID.Visible = False
         '
         'cboArticuloID
         '
         Me.cboArticuloID.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cboArticuloID.Location = New System.Drawing.Point(228, 68)
-        Me.cboArticuloID.Margin = New System.Windows.Forms.Padding(4)
+        Me.cboArticuloID.Location = New System.Drawing.Point(173, 57)
         Me.cboArticuloID.Name = "cboArticuloID"
-        Me.cboArticuloID.Size = New System.Drawing.Size(656, 26)
+        Me.cboArticuloID.Size = New System.Drawing.Size(493, 23)
         Me.cboArticuloID.TabIndex = 2
         '
         'txtCantidad
@@ -113,8 +111,7 @@ Partial Class frmEntPedidosClientesDetalles2
         Me.txtCantidad.EsUnicoID = 0
         Me.txtCantidad.EsUnicoTabla = ""
         Me.txtCantidad.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCantidad.Location = New System.Drawing.Point(228, 102)
-        Me.txtCantidad.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtCantidad.Location = New System.Drawing.Point(173, 86)
         Me.txtCantidad.MaxLength = 9
         Me.txtCantidad.Minimo = 0
         Me.txtCantidad.Modificado = False
@@ -124,20 +121,19 @@ Partial Class frmEntPedidosClientesDetalles2
         Me.txtCantidad.Numerico_SeparadorMiles = False
         Me.txtCantidad.Obligatorio = False
         Me.txtCantidad.ParametroID = 0
-        Me.txtCantidad.Size = New System.Drawing.Size(73, 24)
+        Me.txtCantidad.Size = New System.Drawing.Size(56, 21)
         Me.txtCantidad.TabIndex = 3
         Me.txtCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.txtCantidad.ValorMaximo = 0.0!
-        Me.txtCantidad.ValorMinimo = 0.0!
+        Me.txtCantidad.ValorMaximo = 0R
+        Me.txtCantidad.ValorMinimo = 0R
         '
         'chbServido
         '
         Me.chbServido.BackColor = System.Drawing.SystemColors.Control
         Me.chbServido.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chbServido.Location = New System.Drawing.Point(228, 134)
-        Me.chbServido.Margin = New System.Windows.Forms.Padding(4)
+        Me.chbServido.Location = New System.Drawing.Point(173, 113)
         Me.chbServido.Name = "chbServido"
-        Me.chbServido.Size = New System.Drawing.Size(21, 26)
+        Me.chbServido.Size = New System.Drawing.Size(16, 21)
         Me.chbServido.TabIndex = 4
         Me.chbServido.UseVisualStyleBackColor = False
         '
@@ -149,8 +145,7 @@ Partial Class frmEntPedidosClientesDetalles2
         Me.txtObservaciones.EsUnicoID = 0
         Me.txtObservaciones.EsUnicoTabla = ""
         Me.txtObservaciones.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtObservaciones.Location = New System.Drawing.Point(228, 168)
-        Me.txtObservaciones.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtObservaciones.Location = New System.Drawing.Point(173, 140)
         Me.txtObservaciones.MaxLength = 4000
         Me.txtObservaciones.Minimo = 0
         Me.txtObservaciones.Modificado = False
@@ -160,29 +155,27 @@ Partial Class frmEntPedidosClientesDetalles2
         Me.txtObservaciones.Numerico_SeparadorMiles = False
         Me.txtObservaciones.Obligatorio = True
         Me.txtObservaciones.ParametroID = 0
-        Me.txtObservaciones.Size = New System.Drawing.Size(656, 24)
+        Me.txtObservaciones.Size = New System.Drawing.Size(493, 21)
         Me.txtObservaciones.TabIndex = 5
-        Me.txtObservaciones.ValorMaximo = 0.0!
-        Me.txtObservaciones.ValorMinimo = 0.0!
+        Me.txtObservaciones.ValorMaximo = 0R
+        Me.txtObservaciones.ValorMinimo = 0R
         '
         'dtpFechaServicio
         '
         Me.dtpFechaServicio.BackColor = System.Drawing.SystemColors.Window
         Me.dtpFechaServicio.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtpFechaServicio.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpFechaServicio.Location = New System.Drawing.Point(228, 200)
-        Me.dtpFechaServicio.Margin = New System.Windows.Forms.Padding(4)
+        Me.dtpFechaServicio.Location = New System.Drawing.Point(173, 167)
         Me.dtpFechaServicio.Name = "dtpFechaServicio"
-        Me.dtpFechaServicio.Size = New System.Drawing.Size(125, 24)
+        Me.dtpFechaServicio.Size = New System.Drawing.Size(95, 21)
         Me.dtpFechaServicio.TabIndex = 6
         '
         'lblPedidoClienteDatalleID
         '
         Me.lblPedidoClienteDatalleID.Dock = System.Windows.Forms.DockStyle.Top
-        Me.lblPedidoClienteDatalleID.Location = New System.Drawing.Point(43, 0)
-        Me.lblPedidoClienteDatalleID.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblPedidoClienteDatalleID.Location = New System.Drawing.Point(34, 0)
         Me.lblPedidoClienteDatalleID.Name = "lblPedidoClienteDatalleID"
-        Me.lblPedidoClienteDatalleID.Size = New System.Drawing.Size(177, 26)
+        Me.lblPedidoClienteDatalleID.Size = New System.Drawing.Size(133, 21)
         Me.lblPedidoClienteDatalleID.TabIndex = 0
         Me.lblPedidoClienteDatalleID.Text = "PedidoClienteDatalleID"
         Me.lblPedidoClienteDatalleID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -191,32 +184,30 @@ Partial Class frmEntPedidosClientesDetalles2
         'lblPedidoclienteMaestroID
         '
         Me.lblPedidoclienteMaestroID.Dock = System.Windows.Forms.DockStyle.Top
-        Me.lblPedidoclienteMaestroID.Location = New System.Drawing.Point(43, 32)
-        Me.lblPedidoclienteMaestroID.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblPedidoclienteMaestroID.Location = New System.Drawing.Point(34, 27)
         Me.lblPedidoclienteMaestroID.Name = "lblPedidoclienteMaestroID"
-        Me.lblPedidoclienteMaestroID.Size = New System.Drawing.Size(177, 26)
+        Me.lblPedidoclienteMaestroID.Size = New System.Drawing.Size(133, 21)
         Me.lblPedidoclienteMaestroID.TabIndex = 1
         Me.lblPedidoclienteMaestroID.Text = "PedidoclienteMaestroID"
         Me.lblPedidoclienteMaestroID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lblPedidoclienteMaestroID.Visible = False
         '
         'lblArticuloID
         '
         Me.lblArticuloID.Dock = System.Windows.Forms.DockStyle.Top
-        Me.lblArticuloID.Location = New System.Drawing.Point(43, 64)
-        Me.lblArticuloID.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblArticuloID.Location = New System.Drawing.Point(34, 54)
         Me.lblArticuloID.Name = "lblArticuloID"
-        Me.lblArticuloID.Size = New System.Drawing.Size(177, 26)
+        Me.lblArticuloID.Size = New System.Drawing.Size(133, 21)
         Me.lblArticuloID.TabIndex = 2
-        Me.lblArticuloID.Text = "ArticuloID"
+        Me.lblArticuloID.Text = "Articulo"
         Me.lblArticuloID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lblCantidad
         '
         Me.lblCantidad.Dock = System.Windows.Forms.DockStyle.Top
-        Me.lblCantidad.Location = New System.Drawing.Point(43, 98)
-        Me.lblCantidad.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblCantidad.Location = New System.Drawing.Point(34, 83)
         Me.lblCantidad.Name = "lblCantidad"
-        Me.lblCantidad.Size = New System.Drawing.Size(177, 26)
+        Me.lblCantidad.Size = New System.Drawing.Size(133, 21)
         Me.lblCantidad.TabIndex = 3
         Me.lblCantidad.Text = "Cantidad"
         Me.lblCantidad.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -224,10 +215,9 @@ Partial Class frmEntPedidosClientesDetalles2
         'lblServido
         '
         Me.lblServido.Dock = System.Windows.Forms.DockStyle.Top
-        Me.lblServido.Location = New System.Drawing.Point(43, 130)
-        Me.lblServido.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblServido.Location = New System.Drawing.Point(34, 110)
         Me.lblServido.Name = "lblServido"
-        Me.lblServido.Size = New System.Drawing.Size(177, 26)
+        Me.lblServido.Size = New System.Drawing.Size(133, 21)
         Me.lblServido.TabIndex = 4
         Me.lblServido.Text = "Servido"
         Me.lblServido.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -235,10 +225,9 @@ Partial Class frmEntPedidosClientesDetalles2
         'lblObservaciones
         '
         Me.lblObservaciones.Dock = System.Windows.Forms.DockStyle.Top
-        Me.lblObservaciones.Location = New System.Drawing.Point(43, 164)
-        Me.lblObservaciones.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblObservaciones.Location = New System.Drawing.Point(34, 137)
         Me.lblObservaciones.Name = "lblObservaciones"
-        Me.lblObservaciones.Size = New System.Drawing.Size(177, 26)
+        Me.lblObservaciones.Size = New System.Drawing.Size(133, 21)
         Me.lblObservaciones.TabIndex = 5
         Me.lblObservaciones.Text = "Observaciones"
         Me.lblObservaciones.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -246,12 +235,11 @@ Partial Class frmEntPedidosClientesDetalles2
         'lblFechaServicio
         '
         Me.lblFechaServicio.Dock = System.Windows.Forms.DockStyle.Top
-        Me.lblFechaServicio.Location = New System.Drawing.Point(43, 196)
-        Me.lblFechaServicio.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblFechaServicio.Location = New System.Drawing.Point(34, 164)
         Me.lblFechaServicio.Name = "lblFechaServicio"
-        Me.lblFechaServicio.Size = New System.Drawing.Size(177, 26)
+        Me.lblFechaServicio.Size = New System.Drawing.Size(133, 21)
         Me.lblFechaServicio.TabIndex = 6
-        Me.lblFechaServicio.Text = "FechaServicio"
+        Me.lblFechaServicio.Text = "Fecha de servicio"
         Me.lblFechaServicio.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'tlpMiddle
@@ -259,9 +247,9 @@ Partial Class frmEntPedidosClientesDetalles2
         Me.tlpMiddle.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tlpMiddle.ColumnCount = 5
-        Me.tlpMiddle.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
+        Me.tlpMiddle.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.56553!))
         Me.tlpMiddle.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.tlpMiddle.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90.0!))
+        Me.tlpMiddle.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 94.43447!))
         Me.tlpMiddle.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.tlpMiddle.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.tlpMiddle.Controls.Add(Me.lblPedidoClienteDatalleID, 1, 0)
@@ -269,7 +257,6 @@ Partial Class frmEntPedidosClientesDetalles2
         Me.tlpMiddle.Controls.Add(Me.lblPedidoclienteMaestroID, 1, 1)
         Me.tlpMiddle.Controls.Add(Me.txtPedidoclienteMaestroID, 2, 1)
         Me.tlpMiddle.Controls.Add(Me.lblArticuloID, 1, 2)
-        Me.tlpMiddle.Controls.Add(Me.cboArticuloID, 2, 2)
         Me.tlpMiddle.Controls.Add(Me.lblCantidad, 1, 3)
         Me.tlpMiddle.Controls.Add(Me.txtCantidad, 2, 3)
         Me.tlpMiddle.Controls.Add(Me.lblServido, 1, 4)
@@ -278,8 +265,8 @@ Partial Class frmEntPedidosClientesDetalles2
         Me.tlpMiddle.Controls.Add(Me.txtObservaciones, 2, 5)
         Me.tlpMiddle.Controls.Add(Me.lblFechaServicio, 1, 6)
         Me.tlpMiddle.Controls.Add(Me.dtpFechaServicio, 2, 6)
-        Me.tlpMiddle.Location = New System.Drawing.Point(0, 49)
-        Me.tlpMiddle.Margin = New System.Windows.Forms.Padding(4)
+        Me.tlpMiddle.Controls.Add(Me.cboArticuloID, 2, 2)
+        Me.tlpMiddle.Location = New System.Drawing.Point(0, 40)
         Me.tlpMiddle.Name = "tlpMiddle"
         Me.tlpMiddle.RowCount = 8
         Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle())
@@ -289,19 +276,18 @@ Partial Class frmEntPedidosClientesDetalles2
         Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
-        Me.tlpMiddle.Size = New System.Drawing.Size(929, 235)
+        Me.tlpMiddle.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tlpMiddle.Size = New System.Drawing.Size(697, 191)
         Me.tlpMiddle.TabIndex = 1000000001
         '
         'frmEntPedidosClientesDetalles2
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
-        Me.ClientSize = New System.Drawing.Size(929, 334)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.ClientSize = New System.Drawing.Size(697, 271)
         Me.Controls.Add(Me.tlpMiddle)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(5)
-        Me.MinimumSize = New System.Drawing.Size(0, 0)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frmEntPedidosClientesDetalles2"
         Me.Text = "Detalle pedido"
         Me.Controls.SetChildIndex(Me.tlpMiddle, 0)

@@ -1,23 +1,22 @@
 Imports BasesParaCompatibilidad.DataGridViewExtension
+
 Public Class frmPedidosClientesMaestros2
     Inherits BasesParaCompatibilidad.FrmAheredarOld
 
     Private m_VerID As Boolean = True
     Private frmEnt As frmEntPedidosClientesMaestros2
     Private m_PedidosClientesMaestros2 As DBO_PedidosClientesMaestros2
+
     Public Sub New(ByVal MaestroID As Integer)
         MyBase.New(New spPedidosClientesMaestros2, MaestroID)
         InitializeComponent()
-
         spSelectDgv = "PedidosClientesMaestros2SelectDgvByPedidoClienteMaestroID '" & MaestroID & "'"
-
         m_VerID = False
     End Sub
 
     Public Sub New()
         MyBase.New(New spPedidosClientesMaestros2, 0)
         InitializeComponent()
-
         spSelectDgv = "PedidosClientesMaestros2SelectDgvByServido"
     End Sub
 
@@ -75,8 +74,6 @@ Public Class frmPedidosClientesMaestros2
             End With
         End If
     End Sub
-
-
 
     Public Overrides Sub Refrescar()
         If spSelectDgv = "PedidosClientesMaestros2SelectDgvByServido" Then
