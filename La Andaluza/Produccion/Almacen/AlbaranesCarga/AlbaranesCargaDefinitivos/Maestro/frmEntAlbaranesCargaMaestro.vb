@@ -3,6 +3,7 @@ Imports BasesParaCompatibilidad.ComboBoxExtension
 Imports BasesParaCompatibilidad.dtpExtension
 Imports BasesParaCompatibilidad.DataGridViewExtension
 Imports BasesParaCompatibilidad.WordExtension
+
 Public Class frmEntAlbaranesCargaMaestro
     inherits BasesParaCompatibilidad.FrmAHeredarEntOld
 
@@ -49,8 +50,6 @@ Public Class frmEntAlbaranesCargaMaestro
         spEmp.cargar_Empleados(cboREsponsableCarga, dtb)
         cboFormaPAgo.mam_DataSource("PagosFormasCbo", False, dtb)
 
-
-
         tsExcel = Me.bdnGeneral.Items.Add("Excel")
         tsExcel.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
         tsExcel.Text = "Excel"
@@ -70,9 +69,6 @@ Public Class frmEntAlbaranesCargaMaestro
             grbDatosCabecera.Visible = False
             grbDatosTransporte.Visible = False
             grbAlbaranesPendientes.Visible = True
-
-            
-            
         Else
 
             If Me.Text.Substring(0, 3) = "Ver" Then
@@ -97,13 +93,9 @@ Public Class frmEntAlbaranesCargaMaestro
             RellenarDgv()
         End If
 
-
-
         Me.butImprimir.Visible = True
-        Me.butExcel.Visible = True
+        'Me.butExcel.Visible = True
     End Sub
-
-
 
     Private Sub NuevoPalet_Click(ByVal sender As Object, ByVal e As System.EventArgs)
         If Me.NumeroQSCuadroDeTexto.Text = "" Or Me.NumeroQSCuadroDeTexto.Text = "0" Then
@@ -142,7 +134,6 @@ Public Class frmEntAlbaranesCargaMaestro
             cboREsponsableCarga.SelectedValue = 86
             cboLugaresEntrega.SelectedValue = 1
             cboClientes.SelectedValue = 1
-
         Else
             spAlbaran.cargar_pedidos(Me.cboPedido, dtb, True)
 
@@ -171,7 +162,6 @@ Public Class frmEntAlbaranesCargaMaestro
             txtDNI.Text = dt.Rows(0).Item("ConductorDNI") 'ConductorDNI
             txtDetalleRemolque.Text = dt.Rows(0).Item("Reserva1") 'Reserva1
 
-
             cboREsponsableCarga.SelectedValue = dt.Rows(0).Item("ResponsableCargaID")
             cboREsponsableAdminsitracion.SelectedValue = dt.Rows(0).Item("ResponsableAdministracionID") ' ResponsableAdministracionID.ToString        
             HoraLlegadaDateTimePicker.Value = New DateTime(Now.Year, Now.Month, Now.Day, CType(dt.Rows(0).Item("HoraLlegada"), TimeSpan).Hours, CType(dt.Rows(0).Item("HoraLlegada"), TimeSpan).Minutes, 0)  ' Now.Date.Add(HoraLlegada)
@@ -184,12 +174,9 @@ Public Class frmEntAlbaranesCargaMaestro
             v_conductor = dt.Rows(0).Item("Conductor") 'Conductor
         End If
 
-        
-
         Posicion = Pos
         ctlAlb.SetAlbaranCargaMaestroID(AlbaranCargaMaestroID)
         txtAlbaranCargaMaestroID.Text = AlbaranCargaMaestroID
-        
     End Sub
 
     Private Sub dgvAlbaranesProvi_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles dgvAlbaranesProvi.CellClick
@@ -206,7 +193,6 @@ Public Class frmEntAlbaranesCargaMaestro
         Catch ex As Exception
             messagebox.show("Selecciona una fila entera pulsando a la izquierda de la misma. Detalles: " & Environment.NewLine & ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End Try
-
     End Sub
 
     Private Function getValores() As Boolean
@@ -235,6 +221,7 @@ Public Class frmEntAlbaranesCargaMaestro
             Return False
         End If
     End Function
+
     Overrides Sub Guardar()
         If Not getValores Then
             Return
@@ -838,9 +825,6 @@ Public Class frmEntAlbaranesCargaMaestro
         Me.informesAlbaranes.CartaPortes(NumeroPalets, txtCabeza.Text, txtRemolque1.Text)
     End Sub
 
-
-
-
     Private Sub butLAaJR_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles butLAaJR.Click
         macrosender = New MacroAdapter.MacroSender
         '''QS.AlbaranJR(txtRemolque1.Text, txtConductor.Text, txtDNI.Text, dgvAcumulados)
@@ -954,8 +938,8 @@ Public Class frmEntAlbaranesCargaMaestro
 
 
                 Dim Respuesta1 As MsgBoxResult
-                Respuesta1 = MsgBox(" ¿Hay que pulsar F23?", _
-                                   MsgBoxStyle.DefaultButton2 Or MsgBoxStyle.YesNo, _
+                Respuesta1 = MsgBox(" ¿Hay que pulsar F23?",
+                                   MsgBoxStyle.DefaultButton2 Or MsgBoxStyle.YesNo,
                                    " ¿F23 ")
                 If Respuesta1 = MsgBoxResult.Yes Then
                     'Pulsar F23 para continuar
@@ -969,14 +953,10 @@ Public Class frmEntAlbaranesCargaMaestro
                 If macrosender.SiExisteTextoTeclea("F5=Imprimir", 23, 2, "[pf5]") Then Return
                 'Volver pantalla principal
                 If macrosender.SiExisteTextoTeclea("El albarán", 24, 2, "[pf3][pf12][pf12]") Then Return
-
-
             Else
                 'Volver a la pantalla principal
                 If macrosender.SiExisteTextoTeclea("Cód.Articulo", 19, 2, "[pf12][enter][pf12][pf12][pf12][pf3][pf12][pf12]") Then Return
-
             End If
-
 
         Catch ex As Exception
             MsgBox("Ocurrio un error." & vbLf & " Detalles: " & ex.Message, MsgBoxStyle.Critical, "Error")
@@ -1012,14 +992,12 @@ Public Class frmEntAlbaranesCargaMaestro
         Try
             Pedido = CType(InputBox("Introduce numero de pedido", "Pedido"), Integer)
 
-
             If Not Me.macrosender.conectar() Then
                 MessageBox.Show("No se pudo conectar con QS", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 Return
             End If
 
             My.Computer.Clipboard.Clear()
-
             If macrosender.espera Then
                 macrosender.Enviar("[pf3][enter]")
             Else
@@ -1035,7 +1013,6 @@ Public Class frmEntAlbaranesCargaMaestro
             If macrosender.SiExisteTextoTeclea("Albarán", 3, 2, "[enter]") Then Return
             If macrosender.SiExisteTextoTeclea("Pedido", 4, 3, Pedido.ToString + "[enter]") Then Return
             If macrosender.SiExisteTextoTeclea("Cliente", 4, 2, "[enter][enter]") Then Return
-
 
             Dim Respuesta As MsgBoxResult
             Respuesta = MsgBox(" ¿Hay que pulsar F23?", _
@@ -1672,7 +1649,6 @@ Public Class frmEntAlbaranesCargaMaestro
         Dim Precio As String
 
         Try
-
             If Not Me.macrosender.conectar() Then
                 MessageBox.Show("No se pudo conectar con QS", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 Return
@@ -1848,8 +1824,6 @@ Public Class frmEntAlbaranesCargaMaestro
             Else
                 'Volver a la pantalla principal
                 If macrosender.SiExisteTextoTeclea("Cód.Articulo", 19, 2, "[pf12][pf12][pf12][pf3][pf12][pf12]") Then Return
-
-
             End If
         Catch ex As Exception
             MsgBox("Ocurrio un error." & vbLf & " Detalles: " & ex.Message, MsgBoxStyle.Critical, "Error")
@@ -1862,8 +1836,6 @@ Public Class frmEntAlbaranesCargaMaestro
 
         End Try
     End Sub
-
-
 
     Private Sub ConductorCuadroDeTexto_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cboConductores.SelectedValueChanged
         Try
@@ -1981,8 +1953,6 @@ Public Class frmEntAlbaranesCargaMaestro
             RellenarDgv()
         End If
     End Sub
-
- 
 
     Private Sub btnCartaJr_Click(sender As Object, e As EventArgs) Handles btnCartaJr.Click
         Me.informesAlbaranes.cartaPortesJR(Me.txtDNI.Text, Me.cboConductores.Text, Me.dtb)

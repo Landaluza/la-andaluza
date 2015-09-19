@@ -1,5 +1,6 @@
 Imports BasesParaCompatibilidad.ComboBoxExtension
 Imports BasesParaCompatibilidad.DataGridViewExtension
+
 Public Class frmAlbaranesCargaMaestro
     Inherits BasesParaCompatibilidad.FrmAheredarOld
 
@@ -7,6 +8,7 @@ Public Class frmAlbaranesCargaMaestro
     Private dtsAlb As dtsAlbaranesCargaMaestro.AlbaranesCargaMaestroDataTable
     Private cboYear As ComboBox
     Private agno As Integer
+
     Public Sub New()
         MyBase.New()
         InitializeComponent()
@@ -106,7 +108,6 @@ Public Class frmAlbaranesCargaMaestro
     Overrides Sub Insertar()
         Dim FrmEnt As New frmEntAlbaranesCargaMaestro()
         FrmEnt.Text = ACCION_INSERTAR & " AlbaranesCargaMaestro"
-        'FrmEnt.CargarDatos(0, 0, 0, Today, 0, 0, 0, 0, 0, 0, 0, "", "", "", 0, 0, DateTime.Now.TimeOfDay, DateTime.Now.TimeOfDay, "", "", 0, "")
         FrmEnt.Cargar(0, 0)
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
         dgvFill()
@@ -114,43 +115,12 @@ Public Class frmAlbaranesCargaMaestro
 
     Overrides Sub Modificar()
         Dim Posicion As Integer = GeneralBindingSource.Position
-        ' If Posicion >= 0 Then
+
         If Not dgvGeneral.CurrentRow Is Nothing Then
-            'comprobar si el numero es 0 aun y solicitar un cambio
-            'If dgvGeneral.CurrentRow.Cells("AlbaranCargaProMaestroID").Value = 0 Then
-
-            'End If
-
-
             Dim FrmEnt As New frmEntAlbaranesCargaMaestro()
             FrmEnt.Text = ACCION_MODIFICAR & " AlbaranesCargaMaestro"
-
             FrmEnt.Cargar(Posicion, dgvGeneral.CurrentRow.Cells(0).Value)
-
-            'FrmEnt.CargarDatos(Posicion, _
-            '           dgvGeneral.CurrentRow.Cells(0).Value, _
-            '           dgvGeneral.CurrentRow.Cells(1).Value, _
-            '           dgvGeneral.CurrentRow.Cells(2).Value, _
-            '           dgvGeneral.CurrentRow.Cells(3).Value, _
-            '           dgvGeneral.CurrentRow.Cells(4).Value, _
-            '           dgvGeneral.CurrentRow.Cells(5).Value, _
-            '           dgvGeneral.CurrentRow.Cells(6).Value, _
-            '           dgvGeneral.CurrentRow.Cells(7).Value, _
-            '           dgvGeneral.CurrentRow.Cells(8).Value, _
-            '           dgvGeneral.CurrentRow.Cells(9).Value, _
-            '           dgvGeneral.CurrentRow.Cells(10).Value, _
-            '           dgvGeneral.CurrentRow.Cells(11).Value, _
-            '           dgvGeneral.CurrentRow.Cells(12).Value, _
-            '           dgvGeneral.CurrentRow.Cells(13).Value, _
-            '           dgvGeneral.CurrentRow.Cells(14).Value, _
-            '           dgvGeneral.CurrentRow.Cells(15).Value, _
-            '           dgvGeneral.CurrentRow.Cells(16).Value, _
-            '           dgvGeneral.CurrentRow.Cells(17).Value, _
-            '           dgvGeneral.CurrentRow.Cells(18).Value, _
-            '           dgvGeneral.CurrentRow.Cells(19).Value, _
-            '           dgvGeneral.CurrentRow.Cells(20).Value)
-
-            BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+            BasesParaCompatibilidad.Pantalla.mostrarDialogo(FrmEnt)
             dgvFill()
         Else
             MessageBox.Show("no hay celda seleccionada", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
@@ -163,30 +133,7 @@ Public Class frmAlbaranesCargaMaestro
             Dim FrmEnt As New frmEntAlbaranesCargaMaestro()
             FrmEnt.Text = ACCION_VER & " AlbaranesCargaMaestro"
             FrmEnt.Cargar(Posicion, dgvGeneral.CurrentRow.Cells(0).Value)
-
-            'FrmEnt.CargarDatos(Posicion, _
-            '           dgvGeneral.Rows(Posicion).Cells(0).Value, _
-            '           dgvGeneral.Rows(Posicion).Cells(1).Value, _
-            '           dgvGeneral.Rows(Posicion).Cells(2).Value, _
-            '           dgvGeneral.Rows(Posicion).Cells(3).Value, _
-            '           dgvGeneral.Rows(Posicion).Cells(4).Value, _
-            '           dgvGeneral.Rows(Posicion).Cells(5).Value, _
-            '           dgvGeneral.Rows(Posicion).Cells(6).Value, _
-            '           dgvGeneral.Rows(Posicion).Cells(7).Value, _
-            '           dgvGeneral.Rows(Posicion).Cells(8).Value, _
-            '           dgvGeneral.Rows(Posicion).Cells(9).Value, _
-            '           dgvGeneral.Rows(Posicion).Cells(10).Value, _
-            '           dgvGeneral.Rows(Posicion).Cells(11).Value, _
-            '           dgvGeneral.Rows(Posicion).Cells(12).Value, _
-            '           dgvGeneral.Rows(Posicion).Cells(13).Value, _
-            '           dgvGeneral.Rows(Posicion).Cells(14).Value, _
-            '           dgvGeneral.Rows(Posicion).Cells(15).Value, _
-            '           dgvGeneral.Rows(Posicion).Cells(16).Value, _
-            '           dgvGeneral.Rows(Posicion).Cells(17).Value, _
-            '           dgvGeneral.Rows(Posicion).Cells(18).Value, _
-            '           dgvGeneral.Rows(Posicion).Cells(19).Value, _
-            '           dgvGeneral.Rows(Posicion).Cells(20).Value)
-            BasesParaCompatibilidad.Pantalla.mostrarDialogo(frment)
+            BasesParaCompatibilidad.Pantalla.mostrarDialogo(FrmEnt)
         Else
             MessageBox.Show("No hay celda seleccionada", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
