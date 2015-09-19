@@ -3,9 +3,7 @@
     Public Const MULTIPESTAÑA As Byte = 2
     Public Const PESTAÑA_SIN_CIERRE As Byte = 3
     Public Const CIERRE_PESTAÑA As String = "  x"
-
     Public Target_Cerrar_Pestana As SizeF
-
     Private previousTab As TabPage
     Private previousTab2 As TabPage
     Private tabControl As System.Windows.Forms.TabControl
@@ -124,5 +122,4 @@
     Sub volverApestañaPrevia2()
         Me.tabControl2.SelectedTab = Me.previousTab2
     End Sub
-
 End Class
