@@ -4,6 +4,7 @@
     Private no_crear As Boolean
     Private dtb As BasesParaCompatibilidad.DataBase
     Public Event avisos(sender As Object, e As EventArgs)
+
     Public ReadOnly Property EstaDescripcionHabilitada As Boolean
         Get
             Return Me.txtDescripcion.Visible
@@ -58,7 +59,6 @@
     End Sub
 
     Public Sub New()
-
         InitializeComponent()
         dtb = New BasesParaCompatibilidad.DataBase
         m_DBO_Articulos1 = New DBO_Articulos1
@@ -168,7 +168,6 @@
     End Function
 
     Public Function comprobarCampos() As Boolean Implements wizardable.comprobarCampos
-
         Dim errores As String = ""
         Dim respuesta As Boolean = True
 
@@ -190,7 +189,6 @@
                 m_DBO_Articulos1.CodigoLA = System.Convert.ToInt32(If(txtCodigoLA.Text = "", Nothing, txtCodigoLA.Text))
             End If
 
-
             If txtCodigoQS.Text = "" Or Not IsNumeric(txtCodigoQS.Text) Then
                 txtCodigoQS.Focus()
                 errores = errores & "El valor de 'CodigoQS' debe ser numerico" & Environment.NewLine
@@ -200,10 +198,8 @@
 
             If txtCodigoLA.Text <> txtCodigoQS.Text Then
                 If MessageBox.Show("Los codigos QS y La no coinciden, ¿es esto correcto?", "Atencion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) <> Windows.Forms.DialogResult.Yes Then
-
                     Return False
                 End If
-
             End If
 
             m_DBO_Articulos1.Activo = Me.chbActivo.Checked

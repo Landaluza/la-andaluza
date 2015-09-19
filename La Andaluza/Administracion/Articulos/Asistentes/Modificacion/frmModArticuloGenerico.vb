@@ -34,9 +34,6 @@
         Else
             Me.slGeneral_detalles.Panel2Collapsed = True
         End If
-
-
-
     End Sub
 
     Private Sub tsSalir_Click(sender As System.Object, e As System.EventArgs)
@@ -113,13 +110,9 @@
 
         If comprobado Then
             If terminar Then Me.dtb.EmpezarTransaccion()
-
-
             If Not Me.slGeneral_detalles.Panel2Collapsed Then
                 retorno = retorno And Me.frmGeneral.grabarDatos(Me.dtb)
-
                 retorno = retorno And Me.frmDetalle.grabarDatos(Me.dtb)
-
                 If retorno Then
                     If terminar Then Me.dtb.TerminarTransaccion()
                     RaiseEvent afterSave()
@@ -132,10 +125,7 @@
                         Throw New Exception("Error 1 al guardar el registro")
                     End If
                 End If
-
-
             Else
-
                 If Me.frmGeneral.grabarDatos(Me.dtb) Then
                     If terminar Then Me.dtb.TerminarTransaccion()
                     RaiseEvent afterSave()
@@ -173,6 +163,4 @@
             Me.slGeneral_Extras.Panel2Collapsed = True
         End If
     End Sub
-
- 
 End Class

@@ -13,9 +13,9 @@ Public Class frmModDetExtras
     Public Event actualizarDatos()
     Public Event CambioPestaña(nombre As String, indice As Integer)
     Private dtb As BasesParaCompatibilidad.DataBase
+
     Public Sub New(ByVal articuloId As Integer, ByVal articulotipo As Integer)
         InitializeComponent()
-
         Me.ArticuloId = articuloId
         Me.ArticuloTipo = articulotipo
         dtb = New BasesParaCompatibilidad.DataBase()
@@ -132,14 +132,11 @@ Public Class frmModDetExtras
 
             Case Is = 4 'Graneles                
                 TabControl1.Controls.Remove(TabControl1.TabPages("tbpImagen"))
-                'TabControl1.TabPages("tbpImagen").Hide() NO FUNCIONA
-
+            'TabControl1.TabPages("tbpImagen").Hide() NO FUNCIONA
             Case Is = 6 'Ingredientes
                 TabControl1.Controls.Remove(TabControl1.TabPages("tbpImagen"))
-
             Case Is = 57 'IngredientesIDI
                 TabControl1.Controls.Remove(TabControl1.TabPages("tbpImagen"))
-
             Case Is = 7 'Plantas
                 'TabControl1.Controls.Remove(TabControl1.TabPages("tbpfichasTecnicas"))
                 'TabControl1.Controls.Remove(TabControl1.TabPages("tbpFichasCondiciones"))
@@ -153,7 +150,6 @@ Public Class frmModDetExtras
                 'TabControl1.Controls.Remove(TabControl1.TabPages("tbpRetenidos"))
                 'TabControl1.Controls.Remove(TabControl1.TabPages("tbpEvolucionPrecios"))
                 'TabControl1.Controls.Remove(TabControl1.TabPages("tbpGestionesCompra"))
-
             Case Is = 9 'Envases secundarios (cajas)
                 TabControl1.Controls.Remove(TabControl1.TabPages("tbpfichasTecnicas"))
                 TabControl1.Controls.Remove(TabControl1.TabPages("tbpFichasCondiciones"))
@@ -165,7 +161,6 @@ Public Class frmModDetExtras
                 TabControl1.Controls.Remove(TabControl1.TabPages("tbpProductos"))
                 TabControl1.Controls.Remove(TabControl1.TabPages("tbpEvolucionPrecios"))
                 TabControl1.Controls.Remove(TabControl1.TabPages("tbpGestionesCompra"))
-
             Case Is = 10 'Envases terciarios (palets)
                 TabControl1.Controls.Remove(TabControl1.TabPages("tbpfichasTecnicas"))
                 TabControl1.Controls.Remove(TabControl1.TabPages("tbpFichasCondiciones"))
@@ -303,5 +298,4 @@ Public Class frmModDetExtras
     Public Sub ver_avisos(sender As Object, e As EventArgs)
         TabControl1.SelectedTab = TabControl1.TabPages("tpAvisos")
     End Sub
-
 End Class

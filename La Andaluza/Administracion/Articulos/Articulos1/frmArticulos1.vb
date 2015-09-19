@@ -2,7 +2,6 @@ Imports BasesParaCompatibilidad.DataGridViewExtension
 Public Class frmArticulos1
     Inherits BasesParaCompatibilidad.gridsimpleform
 
-
     Private dboArticulos1 As DBO_Articulos1
     Private tsinformacionGeneral As ToolStripButton
     Private tsEvolucion As ToolStripButton
@@ -13,14 +12,10 @@ Public Class frmArticulos1
     Private asist As wizard
     Private fileARticulo As BasesParaCompatibilidad.File
 
-
     Public Sub New(Optional ByVal MaestroID As Integer = 0)
         MyBase.New(New spArticulos1, MaestroID)
         InitializeComponent()
-
         dboArticulos1 = New DBO_Articulos1
-
-
 
         tsinformacionGeneral = Me.bdnGeneral.Items.Add("Información general")
         tsinformacionGeneral.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
@@ -43,7 +38,6 @@ Public Class frmArticulos1
         tsVentas.TextAlign = ContentAlignment.MiddleRight
         AddHandler tsVentas.Click, AddressOf verVentas
 
-
         tsInactivos = Me.bdnGeneral.Items.Add("Ver inactivos")
         tsInactivos.DisplayStyle = ToolStripItemDisplayStyle.Text
         tsInactivos.TextDirection = ToolStripTextDirection.Horizontal
@@ -63,9 +57,7 @@ Public Class frmArticulos1
         AddHandler tsCambiarTipo.Click, AddressOf CambiarTipo
     End Sub
 
-
     Private Sub Insert_Before() Handles MyBase.BeforeInsert
-
         MyBase.EventHandeld = True
         Dim frm As New frmSelectorAsistente
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
@@ -142,13 +134,11 @@ Public Class frmArticulos1
         Try
             Dim ExcelImporter As New ExcelImporter
             ExcelImporter.ExportToExcelNew(Me.dgvGeneral.CurrentRow.Cells("CodigoQS").Value.ToString.Trim, If(IsDBNull(Me.dgvGeneral.CurrentRow.Cells("DescripcionLA").Value), "", Convert.ToString(Me.dgvGeneral.CurrentRow.Cells("DescripcionLA").Value)))
-
             Me.Cursor = Cursors.Default
         Catch ex As Exception
             Me.Cursor = Cursors.Default
             MessageBox.Show(ex.Message)
         End Try
-
     End Sub
 
     Private Sub verInformacion()
@@ -173,7 +163,6 @@ Public Class frmArticulos1
                 Try
                     If Not IsDBNull(row.Cells("EvolucionPrecios").Value) Then
                         If row.Cells("EvolucionPrecios").Value <> "" Then
-
                             fileARticulo = New BasesParaCompatibilidad.File(Me.dgvGeneral.CurrentRow.Cells("EvolucionPrecios").Value)
                             fileARticulo.open()
                         End If
@@ -182,16 +171,14 @@ Public Class frmArticulos1
                 End Try
             End If
         Next
-
     End Sub
 
     Private Sub CambiarTipo()
         Me.Enabled = False
         Dim spArticulo As New spArticulos1
-
         Dim frmTipo As New frmCambiarTipo(Me.dgvGeneral.CurrentRow.Cells("Id").Value)
-        If BasesParaCompatibilidad.Pantalla.mostrarDialogo(frmTipo) = Windows.Forms.DialogResult.OK Then
 
+        If BasesParaCompatibilidad.Pantalla.mostrarDialogo(frmTipo) = Windows.Forms.DialogResult.OK Then
             dgvFill()
         End If
         Me.Enabled = True
