@@ -26,18 +26,6 @@ Public Class FrmInicio
     End Sub
 
     Private Sub iniciar()
-        If My.Computer.Name = "MAMVAIO" Then
-            'Cambiar en Config.vb
-            'If My.Computer.Name = "MAMVAIO" Then
-            '    Config.versionApp = "---------LOCAL----------------- " & Config.versionApp & " ---------LOCAL-----------------"
-            '    MsgBox(Config.versionApp)
-            'End If
-            Name = "MAMVAIO\SQL2012"
-            MsgBox("------Trabajand en LOCAL------ " & My.Computer.Name & " - " & Name.ToString)
-            BasesParaCompatibilidad.Config.connectionString = "workstation id=" & Name & ";packet size=4096;Connect Timeout = 200;User ID=mamvaio\mam;Trusted_Connection=True;data source= " _
-          & Name & ";persist security info=False;initial catalog=LA"
-        End If
-
         If My.Computer.Name = "MAM1" Or My.Computer.Name = "GERENTE1" Or My.Computer.Name = "MAM2-PC" Or My.Computer.Name = "MAMVAIO" Then
             If txtLogin.Text.Length = 0 AndAlso txtPassword.Text.Length = 0 Then
                 txtLogin.Text = "mam"
@@ -210,10 +198,7 @@ Public Class FrmInicio
             Else
                 Me.Hide()
                 SplashScreen1.show_loading()
-
                 Gform.terminarDeIniciar("LA", Config.ServerName, Me.txtLogin.Text, txtLogin.Text)
-
-
                 Me.Enabled = True
                 Me.DialogResult = Windows.Forms.DialogResult.OK
                 SplashScreen1.hide_loading()

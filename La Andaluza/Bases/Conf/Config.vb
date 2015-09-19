@@ -59,15 +59,35 @@
         Config.QS_Sesion = "Sesión A - [24 x 80]"
         'Config.QS_Sesion = "Sesión A"
 
-        'Select Case BasesParaCompatibilidad.Config.Server
-        '    Case BasesParaCompatibilidad.DataBase.SERVIDOR
-        '        Config.ServerName = "Produccion"
-        '    Case BasesParaCompatibilidad.DataBase.LOCAL
-        '        Config.ServerName = "Local"
-        '    Case Else
+        Select Case BasesParaCompatibilidad.Config.Server
+            Case BasesParaCompatibilidad.DataBase.SERVIDOR
+                Config.ServerName = "Produccion"
+            Case BasesParaCompatibilidad.DataBase.LOCAL
+                Config.ServerName = "Local"
+            Case Else
+                Config.ServerName = "Otro"
+        End Select
 
-        Config.ServerName = "Otro"
-        'End Select
+        Select Case Convert.ToString(My.Application.Info.Version).Length
+            Case Is > 11
+                Config.versionApp = "LA " & Convert.ToString(My.Application.Info.Version).Substring(0, 10) '& " -- " & String.Format("Version {0}", NumeroVersion())
+            Case Is = 11
+                Config.versionApp = "LA " & Convert.ToString(My.Application.Info.Version).Substring(0, 9) '& " -- " & String.Format("Version {0}", NumeroVersion())
+            Case Is = 10
+                Config.versionApp = "LA " & Convert.ToString(My.Application.Info.Version).Substring(0, 8) '& " -- " & String.Format("Version {0}", NumeroVersion())
+            Case Else
+                Config.versionApp = "LA " & Convert.ToString(My.Application.Info.Version).Substring(0, 7) '& " -- " & String.Format("Version {0}", NumeroVersion())
+        End Select
+
+        If My.Computer.Name = "MAMVAIO" Then
+            Config.versionApp = "---------LOCAL----------------- " & Config.versionApp & " ---------LOCAL-----------------"
+            Config.ServerName = "Otro"
+            Dim name As String
+            name = "MAMVAIO\SQL2012"
+            MsgBox("------Trabajand en LOCAL------ " & My.Computer.Name & " - " & name.ToString)
+            BasesParaCompatibilidad.Config.connectionString = "workstation id=" & name & ";packet size=4096;Connect Timeout = 200;User ID=mamvaio\mam;Trusted_Connection=True;data source= " _
+          & name & ";persist security info=False;initial catalog=LA"
+        End If
 
         Config.load()
     End Sub
@@ -119,6 +139,7 @@
             Return InformeListadoPedidosPendientesUnaFecha
         End Get
     End Property
+
     Public Shared ReadOnly Property PedidosPendientesPorProveedores As String
         Get
             Return InformeListadoPedidosPendientesPorProveedores
@@ -373,6 +394,7 @@
 
         Return retorno
     End Function
+
     Public Function NumeroVersion() As String
         ' •————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
         ' | if running the deployed application, you can get the version from the ApplicationDeployment information. If you try |
@@ -387,24 +409,6 @@
 
         Return ourVersion
     End Function
-
-    Public Sub calcular_version()
-        Select Case Convert.ToString(My.Application.Info.Version).Length
-            Case Is > 11
-                Config.versionApp = "LA " & Convert.ToString(My.Application.Info.Version).Substring(0, 10) '& " -- " & String.Format("Version {0}", NumeroVersion())
-            Case Is = 11
-                Config.versionApp = "LA " & Convert.ToString(My.Application.Info.Version).Substring(0, 9) '& " -- " & String.Format("Version {0}", NumeroVersion())
-            Case Is = 10
-                Config.versionApp = "LA " & Convert.ToString(My.Application.Info.Version).Substring(0, 8) '& " -- " & String.Format("Version {0}", NumeroVersion())
-            Case Else
-                Config.versionApp = "LA " & Convert.ToString(My.Application.Info.Version).Substring(0, 7) '& " -- " & String.Format("Version {0}", NumeroVersion())
-        End Select
-
-        If My.Computer.Name = "MAMVAIO" Then
-            Config.versionApp = "---------LOCAL----------------- " & Config.versionApp & " ---------LOCAL-----------------"
-        End If
-
-    End Sub
 
     Public Shared Sub save()
         Dim options As New UserOptions

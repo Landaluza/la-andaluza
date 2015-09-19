@@ -37,7 +37,8 @@
             Config.Cargar_Ajustes_Predeterminados()
             c = New Config
             c.checkFiles()
-            c.calcular_version()
+            'c.calcular_version()
+
             'If Not c.checkFiles Then messageBox.show("No se pudieron cargar algunos archivos, es probable que algunas caracteristicas no funcionen correctamente",String.Empty, MessageBoxButtons.OK ,MessageBoxIcon.Information ))
             'End If
 
