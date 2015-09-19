@@ -3,7 +3,6 @@ Imports BasesParaCompatibilidad.ComboBoxExtension
 Public Class spArticulos1
     Inherits BasesParaCompatibilidad.StoredProcedure
 
-
     Public ReadOnly Property DatagridViewProcedureForSelectInactivos As String
         Get
             Return "[Articulos1SelectDgv2_inactivos]"

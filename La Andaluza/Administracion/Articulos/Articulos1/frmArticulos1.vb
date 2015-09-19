@@ -82,6 +82,7 @@ Public Class frmArticulos1
         If Not dataSource Is Nothing Then
             If sp.DataGridViewStoredProcedure = sp.DataGridViewStoredProcedureForSelect Then
                 GeneralBindingSource.DataSource = dataSource
+
                 With dgvGeneral
                     .DataSource = GeneralBindingSource
 
@@ -91,8 +92,11 @@ Public Class frmArticulos1
                     .Columns("InformacionGeneral").Visible = False
                     .Columns("EvolucionPrecios").Visible = False
                     .Columns("CodigoQS").Visible = False
+                    .Columns("ean13").Visible = False
+                    .Columns("ean14").Visible = False
+
                     .FormatoColumna("CodigoLA", BasesParaCompatibilidad.TiposColumna.QS)
-                    .FormatoColumna("DescripcionLA", BasesParaCompatibilidad.TiposColumna.Izquierda, 250)
+                    .FormatoColumna("DescripcionLA", BasesParaCompatibilidad.TiposColumna.Izquierda, 460)
                     .FormatoColumna("ArticuloTipo", BasesParaCompatibilidad.TiposColumna.Izquierda, 150)
                     .FormatoColumna("subtipo", "Subtipo", BasesParaCompatibilidad.TiposColumna.Izquierda, 150)
                     .FormatoColumna("Observaciones", BasesParaCompatibilidad.TiposColumna.Izquierda, True)
@@ -109,8 +113,11 @@ Public Class frmArticulos1
                     .Columns("InformacionGeneral").Visible = False
                     .Columns("EvolucionPrecios").Visible = False
                     .Columns("CodigoQS").Visible = False
+                    .Columns("ean13").Visible = False
+                    .Columns("ean14").Visible = False
+
                     .FormatoColumna("CodigoLA", BasesParaCompatibilidad.TiposColumna.QS)
-                    .FormatoColumna("DescripcionLA", BasesParaCompatibilidad.TiposColumna.Izquierda, 250)
+                    .FormatoColumna("DescripcionLA", BasesParaCompatibilidad.TiposColumna.Izquierda, 460)
                     .FormatoColumna("ArticuloTipo", BasesParaCompatibilidad.TiposColumna.Izquierda, 150)
                     .FormatoColumna("subtipo", "Subtipo", BasesParaCompatibilidad.TiposColumna.Izquierda, 150)
                     .FormatoColumna("Observaciones", BasesParaCompatibilidad.TiposColumna.Izquierda, True)

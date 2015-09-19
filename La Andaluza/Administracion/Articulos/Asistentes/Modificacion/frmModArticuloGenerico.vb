@@ -6,6 +6,7 @@
     Private frmExtras As frmModDetExtras
     Private frmDetalle As frmModDetalle
     Public Shadows Event afterSave()
+
     Public Sub New(ByVal articuloid As Integer)
 
         InitializeComponent()
@@ -23,6 +24,8 @@
 
         Engine_LA.FormEnPestaña(frmExtras, Me.slGeneral_Extras.Panel2)
         Engine_LA.FormEnPestaña(frmGeneral, Me.slGeneral_detalles.Panel1)
+
+        Separator1.Visible = False
 
         If Me.frmDetalle.Enabled Then
             Engine_LA.FormEnPestaña(Me.frmDetalle, Me.slGeneral_detalles.Panel2)
@@ -47,48 +50,6 @@
     'End Sub
 
     Public Overrides Sub Guardar(Optional ByRef dtb As BasesParaCompatibilidad.DataBase = Nothing)
-
-        'Dim retorno As Boolean = True
-        'dtb.EmpezarTransaccion()
-
-        'Try
-        '    If Me.frmGeneral.comprobarCampos Then
-
-        '        If Not Me.slGeneral_detalles.Panel2Collapsed Then
-
-        '            If Me.frmDetalle.comprobarCampos() Then
-        '                retorno = retorno And Me.frmGeneral.grabarDatos
-
-        '                retorno = retorno And Me.frmDetalle.grabarDatos()
-
-        '                If retorno Then
-        '                    dtb.TerminarTransaccion ()
-        '                    Me.Close()
-        '                Else
-        '                    dtb.CancelarTransaccion ()
-        '                    messagebox.show("Ocurrio un error al grabar el registro.","", MessageBoxButtons.OK, MessageBoxIcon.Error )
-        '                End If
-        '            Else
-        '                dtb.CancelarTransaccion ()
-        '            End If
-
-        '        Else
-
-        '            If Me.frmGeneral.grabarDatos() Then
-        '                dtb.TerminarTransaccion ()
-        '                Me.Close()
-        '            Else
-        '                dtb.CancelarTransaccion ()
-        '                messagebox.show("Ocurrio un error al grabar el registro.","", MessageBoxButtons.OK, MessageBoxIcon.Error )
-        '            End If
-        '        End If
-        '    Else
-        '        dtb.CancelarTransaccion ()
-        '    End If
-        'Catch ex As Exception
-        '    dtb.CancelarTransaccion ()
-        '    messagebox.show("Ocurrio un error al grabar el registro. Detalles: " & Environment.NewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        'End Try
         Dim retorno As Boolean = True
         Dim comprobado As Boolean = True
 

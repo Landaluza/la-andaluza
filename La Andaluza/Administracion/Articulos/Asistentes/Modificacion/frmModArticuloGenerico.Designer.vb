@@ -32,7 +32,6 @@ Partial Class frmModArticuloGenerico
         Me.OcultarPanelDerechoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MostrarLosDosPanelesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OcultarmostrarPanelInferiorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tsbEstructura = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.slGeneral_Extras, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -48,16 +47,14 @@ Partial Class frmModArticuloGenerico
         Me.slGeneral_Extras.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.slGeneral_Extras.Dock = System.Windows.Forms.DockStyle.Fill
         Me.slGeneral_Extras.Location = New System.Drawing.Point(0, 50)
-        Me.slGeneral_Extras.Margin = New System.Windows.Forms.Padding(4)
         Me.slGeneral_Extras.Name = "slGeneral_Extras"
         Me.slGeneral_Extras.Orientation = System.Windows.Forms.Orientation.Horizontal
         '
         'slGeneral_Extras.Panel1
         '
         Me.slGeneral_Extras.Panel1.Controls.Add(Me.slGeneral_detalles)
-        Me.slGeneral_Extras.Size = New System.Drawing.Size(1712, 761)
-        Me.slGeneral_Extras.SplitterDistance = 496
-        Me.slGeneral_Extras.SplitterWidth = 5
+        Me.slGeneral_Extras.Size = New System.Drawing.Size(1284, 609)
+        Me.slGeneral_Extras.SplitterDistance = 396
         Me.slGeneral_Extras.TabIndex = 0
         '
         'slGeneral_detalles
@@ -65,24 +62,22 @@ Partial Class frmModArticuloGenerico
         Me.slGeneral_detalles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.slGeneral_detalles.Dock = System.Windows.Forms.DockStyle.Fill
         Me.slGeneral_detalles.Location = New System.Drawing.Point(0, 0)
-        Me.slGeneral_detalles.Margin = New System.Windows.Forms.Padding(4)
         Me.slGeneral_detalles.Name = "slGeneral_detalles"
         '
         'slGeneral_detalles.Panel2
         '
         Me.slGeneral_detalles.Panel2.AutoScroll = True
-        Me.slGeneral_detalles.Size = New System.Drawing.Size(1712, 496)
-        Me.slGeneral_detalles.SplitterDistance = 812
-        Me.slGeneral_detalles.SplitterWidth = 5
+        Me.slGeneral_detalles.Size = New System.Drawing.Size(1284, 396)
+        Me.slGeneral_detalles.SplitterDistance = 609
         Me.slGeneral_detalles.TabIndex = 0
         '
         'ToolStrip1
         '
         Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsDescripcion, Me.ToolStripSplitButton1, Me.tsbEstructura})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsDescripcion, Me.ToolStripSplitButton1})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 25)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1712, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1284, 25)
         Me.ToolStrip1.TabIndex = 1
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -103,7 +98,7 @@ Partial Class frmModArticuloGenerico
         Me.ToolStripSplitButton1.Image = Global.La_Andaluza.My.Resources.Resources.distribute_vertical_equal
         Me.ToolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripSplitButton1.Name = "ToolStripSplitButton1"
-        Me.ToolStripSplitButton1.Size = New System.Drawing.Size(151, 22)
+        Me.ToolStripSplitButton1.Size = New System.Drawing.Size(132, 22)
         Me.ToolStripSplitButton1.Text = "&Modo de pantalla"
         '
         'OcultarPanelIzquierdoToolStripMenuItem
@@ -111,7 +106,7 @@ Partial Class frmModArticuloGenerico
         Me.OcultarPanelIzquierdoToolStripMenuItem.Image = Global.La_Andaluza.My.Resources.Resources.go_previous_5
         Me.OcultarPanelIzquierdoToolStripMenuItem.Name = "OcultarPanelIzquierdoToolStripMenuItem"
         Me.OcultarPanelIzquierdoToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Right), System.Windows.Forms.Keys)
-        Me.OcultarPanelIzquierdoToolStripMenuItem.Size = New System.Drawing.Size(342, 22)
+        Me.OcultarPanelIzquierdoToolStripMenuItem.Size = New System.Drawing.Size(297, 22)
         Me.OcultarPanelIzquierdoToolStripMenuItem.Text = "Ocultar panel &izquierdo"
         '
         'OcultarPanelDerechoToolStripMenuItem
@@ -119,7 +114,7 @@ Partial Class frmModArticuloGenerico
         Me.OcultarPanelDerechoToolStripMenuItem.Image = Global.La_Andaluza.My.Resources.Resources.go_next_5
         Me.OcultarPanelDerechoToolStripMenuItem.Name = "OcultarPanelDerechoToolStripMenuItem"
         Me.OcultarPanelDerechoToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Left), System.Windows.Forms.Keys)
-        Me.OcultarPanelDerechoToolStripMenuItem.Size = New System.Drawing.Size(342, 22)
+        Me.OcultarPanelDerechoToolStripMenuItem.Size = New System.Drawing.Size(297, 22)
         Me.OcultarPanelDerechoToolStripMenuItem.Text = "Ocultar panel &derecho"
         '
         'MostrarLosDosPanelesToolStripMenuItem
@@ -127,7 +122,7 @@ Partial Class frmModArticuloGenerico
         Me.MostrarLosDosPanelesToolStripMenuItem.Image = Global.La_Andaluza.My.Resources.Resources.package_installed_updated
         Me.MostrarLosDosPanelesToolStripMenuItem.Name = "MostrarLosDosPanelesToolStripMenuItem"
         Me.MostrarLosDosPanelesToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Up), System.Windows.Forms.Keys)
-        Me.MostrarLosDosPanelesToolStripMenuItem.Size = New System.Drawing.Size(342, 22)
+        Me.MostrarLosDosPanelesToolStripMenuItem.Size = New System.Drawing.Size(297, 22)
         Me.MostrarLosDosPanelesToolStripMenuItem.Text = "Mostrar los dos &paneles"
         '
         'OcultarmostrarPanelInferiorToolStripMenuItem
@@ -135,17 +130,8 @@ Partial Class frmModArticuloGenerico
         Me.OcultarmostrarPanelInferiorToolStripMenuItem.Image = Global.La_Andaluza.My.Resources.Resources.package_broken2
         Me.OcultarmostrarPanelInferiorToolStripMenuItem.Name = "OcultarmostrarPanelInferiorToolStripMenuItem"
         Me.OcultarmostrarPanelInferiorToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Down), System.Windows.Forms.Keys)
-        Me.OcultarmostrarPanelInferiorToolStripMenuItem.Size = New System.Drawing.Size(342, 22)
+        Me.OcultarmostrarPanelInferiorToolStripMenuItem.Size = New System.Drawing.Size(297, 22)
         Me.OcultarmostrarPanelInferiorToolStripMenuItem.Text = "Ocultar/mostrar panel inferior"
-        '
-        'tsbEstructura
-        '
-        Me.tsbEstructura.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsbEstructura.Image = CType(resources.GetObject("tsbEstructura.Image"), System.Drawing.Image)
-        Me.tsbEstructura.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbEstructura.Name = "tsbEstructura"
-        Me.tsbEstructura.Size = New System.Drawing.Size(23, 22)
-        Me.tsbEstructura.Text = "ToolStripButton1"
         '
         'ToolStripLabel1
         '
@@ -154,23 +140,24 @@ Partial Class frmModArticuloGenerico
         Me.ToolStripLabel1.Image = Global.La_Andaluza.My.Resources.Resources.emblem_notice
         Me.ToolStripLabel1.Name = "ToolStripLabel1"
         Me.ToolStripLabel1.Size = New System.Drawing.Size(460, 22)
-        Me.ToolStripLabel1.Text = "Atencion: al guardar los cambios asegurarse de que la marca y tipo de producto so" & _
+        Me.ToolStripLabel1.Text = "Atencion: al guardar los cambios asegurarse de que la marca y tipo de producto so" &
     "n los correctos"
         '
         'frmModArticuloGenerico
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1712, 811)
+        Me.AutoSize = True
+        Me.ClientSize = New System.Drawing.Size(1284, 659)
         Me.Controls.Add(Me.slGeneral_Extras)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Cursor = System.Windows.Forms.Cursors.Default
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(5)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "frmModArticuloGenerico"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Articulo"
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.Controls.SetChildIndex(Me.ToolStrip1, 0)
         Me.Controls.SetChildIndex(Me.slGeneral_Extras, 0)
         CType(Me.GeneralBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
@@ -185,7 +172,7 @@ Partial Class frmModArticuloGenerico
         Me.PerformLayout()
 
     End Sub
-   Private WithEvents slGeneral_Extras As System.Windows.Forms.SplitContainer
+    Private WithEvents slGeneral_Extras As System.Windows.Forms.SplitContainer
    Private WithEvents slGeneral_detalles As System.Windows.Forms.SplitContainer
    Private WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
    Private WithEvents tsDescripcion As System.Windows.Forms.ToolStripButton
@@ -195,8 +182,6 @@ Partial Class frmModArticuloGenerico
    Private WithEvents MostrarLosDosPanelesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
    Private WithEvents OcultarmostrarPanelInferiorToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
-   Private WithEvents tsbEstructura As System.Windows.Forms.ToolStripButton
-
-   Private WithEvents ToolStripLabel1 As System.Windows.Forms.ToolStripLabel
+    Private WithEvents ToolStripLabel1 As System.Windows.Forms.ToolStripLabel
 
 End Class
