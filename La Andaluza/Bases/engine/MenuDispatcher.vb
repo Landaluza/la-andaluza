@@ -93,11 +93,10 @@ Public Class MenuDispatcher
     Public Event cambio_sesion()
 
     Public Sub New()
-
         InitializeComponent()
-
         Me.mfile = New BasesParaCompatibilidad.File()
     End Sub
+
     Public Function get_menu() As MenuStrip
 
         Select Case Config.UserType
@@ -113,7 +112,6 @@ Public Class MenuDispatcher
                 Return Me.MSControl
             Case 5
                 Me.frmArticulos1 = New frmArticulos1
-
                 Return Me.MSAdministracion
             Case 6
                 Return Me.MSMantenimiento
@@ -225,7 +223,7 @@ Public Class MenuDispatcher
                 frmMnLotes = New FrmLotesEnologicos
             End If
         End If
-        
+
         GUImain.añadirPestaña(frmMnLotes)
     End Sub
 
@@ -236,7 +234,7 @@ Public Class MenuDispatcher
 
 
     Private Sub tsmAlbaranDeCargaMaestroBBDD_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmAlbaranDeCargaMaestroBBDD.Click, ToolStripMenuItem818.Click, ToolStripMenuItem476.Click, ToolStripMenuItem1160.Click, ToolStripMenuItem32.Click
-            frmAlbaranesCargaMaestro = New frmAlbaranesCargaMaestro
+        frmAlbaranesCargaMaestro = New frmAlbaranesCargaMaestro
         GUImain.añadirPestaña(frmAlbaranesCargaMaestro)
     End Sub
 
@@ -409,7 +407,7 @@ Public Class MenuDispatcher
         frmArticulosFichasCondiciones3 = New frmArticulosFichasCondiciones3
         GUImain.añadirPestaña(frmArticulosFichasCondiciones3)
     End Sub
-    
+
     Private Sub FichasPaletizadosToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles FichasPaletizadosToolStripMenuItem.Click, ToolStripMenuItem974.Click, ToolStripMenuItem803.Click, ToolStripMenuItem632.Click
         frmArticulosFichasPaletizados1 = New frmArticulosFichasPaletizados1
         GUImain.añadirPestaña(frmArticulosFichasPaletizados1)
@@ -598,7 +596,7 @@ Public Class MenuDispatcher
         frmtiposEnvases = New frmtiposEnvases
         GUImain.añadirPestaña(frmtiposEnvases)
     End Sub
-   
+
     Private Sub ComunicacionesInternasToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ComunicacionesInternasToolStripMenuItem.Click, ComunicacionesInternasToolStripMenuItem1.Click, ComunicacionesInternasToolStripMenuItem2.Click
         frmCom = New frmCom
         GUImain.añadirPestaña(frmCom)
@@ -618,14 +616,11 @@ Public Class MenuDispatcher
         frmVisitasMain = New frmVisitasMain
         GUImain.añadirPestaña(frmVisitasMain)
     End Sub
-  
+
     Private Sub DepositosToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles DepositosToolStripMenuItem1.Click, ToolStripMenuItem915.Click, ToolStripMenuItem744.Click
         frmDepositosMain = New frmDepositosMain
         GUImain.añadirPestaña(frmDepositosMain)
     End Sub
-
-
-
 
     Private Sub InformeResumenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles InformeResumenToolStripMenuItem.Click, InformeResumenToolStripMenuItem2.Click, InformeResumenToolStripMenuItem1.Click
         Dim frm As New InformeResumenVinagre.SelectorFecha(BasesParaCompatibilidad.Config.connectionString)
@@ -794,9 +789,5 @@ Public Class MenuDispatcher
     Private Sub ExistenciasToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ExistenciasToolStripMenuItem1.Click
         Dim existencias As New ExistenciasArticulos.Existencias
         GUImain.añadirPestaña(existencias.GUI)
-    End Sub
-
-    Private Sub tsmAlmacen_Click(sender As Object, e As EventArgs) Handles tsmAlmacen.Click
-
     End Sub
 End Class

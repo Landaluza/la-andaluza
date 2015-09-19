@@ -131,14 +131,14 @@
                     Dim frm As New frmMensajesPendientes(lMensajes, Me)
 
                     resetearMenuNotificaciones(True)
-                    Me.frmNews.actualizarNotificacion(frm)
-                    Me.frmNews.ActualizarRevisiones()
+                    'Me.frmNews.actualizarNotificacion(frm)
+                    'Me.frmNews.ActualizarRevisiones()
                 Else
                     resetearMenuNotificaciones(False)
                     lMensajes.Enabled = False
                 End If
             Case 4
-                Me.frmNews.ActualizarRevisiones()
+                'Me.frmNews.ActualizarRevisiones()
             Case Else
                 TimerNotificaciones.Stop()
                 TimerNotificaciones.Enabled = False

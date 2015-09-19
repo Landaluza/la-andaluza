@@ -1,9 +1,8 @@
 
 Public Class GUImain
-
     Protected Shared LAengine As Engine_LA
     Protected frmIni As FrmInicio
-    Protected frmNews As frmNews
+    'Protected frmNews As frmNews
     Protected controlador As Controller
     Protected Event extras_showed()
     Protected dtb As BasesParaCompatibilidad.DataBase
@@ -28,7 +27,7 @@ Public Class GUImain
         Me.NotifyIcon1.Visible = True
         Me.NotifyIcon1.ContextMenuStrip = Me.cmsNotificaciones
 
-        'Telefonos y mail de los empleados.
+        'Muestra telefonos y mail de los empleados.
         'cargarAgenda()
     End Sub
 
@@ -47,8 +46,8 @@ Public Class GUImain
         Me.Controls.Remove(msMenu)
         msMenu = LAengine.AdministrarPermisosFormulario()
         Me.Controls.Add(msMenu)
-        Me.frmNews = New frmNews
-        añadirPestañaSinCierre(frmNews)
+        'Me.frmNews = New frmNews
+        'añadirPestañaSinCierre(frmNews)
 
         Me.ToolTip1.SetToolTip(Me.lServ, "Usuario: " & UsuarioUsado & Environment.NewLine & "Base de datos: " & tablausada & Environment.NewLine & "Servidor: " & ServidorUsado)
         Me.ToolTip1.SetToolTip(Me.lUser, "Usuario conectado: " & usua & Environment.NewLine & "click para acceder a la configuración de usuario")
@@ -498,7 +497,7 @@ Public Class GUImain
       ByVal e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
 
         If Not Config.dataFillNotificaction Then
-            frmNews.ocultarNotificaciones() 'Me.PanNot1.Visible = False
+            'frmNews.ocultarNotificaciones() 'Me.PanNot1.Visible = False
         End If
 
         If Not Me.controlador Is Nothing Then
