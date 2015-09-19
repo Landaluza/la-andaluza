@@ -80,13 +80,11 @@
         End Select
 
         If My.Computer.Name = "MAMVAIO" Then
-            Config.versionApp = "---------LOCAL----------------- " & Config.versionApp & " ---------LOCAL-----------------"
-            Config.ServerName = "Otro"
-            Dim name As String
-            name = "MAMVAIO\SQL2012"
-            MsgBox("------Trabajand en LOCAL------ " & My.Computer.Name & " - " & name.ToString)
-            BasesParaCompatibilidad.Config.connectionString = "workstation id=" & name & ";packet size=4096;Connect Timeout = 200;User ID=mamvaio\mam;Trusted_Connection=True;data source= " _
-          & name & ";persist security info=False;initial catalog=LA"
+            versionApp = "--------- LOCAL ----------------- " & Config.versionApp & " --------- LOCAL -----------------"
+            ServerName = "MAMVAIO\SQL2012"
+            MsgBox("------ Trabajand en LOCAL ------  " & My.Computer.Name & "  -  " & ServerName.ToString)
+            BasesParaCompatibilidad.Config.connectionString = "workstation id=" & ServerName & ";packet size=4096;Connect Timeout = 200;User ID=mamvaio\mam;Trusted_Connection=True;data source= " _
+          & ServerName & ";persist security info=False;initial catalog=LA"
         End If
 
         Config.load()

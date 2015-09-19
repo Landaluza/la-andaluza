@@ -8,49 +8,31 @@ Public Class GUImain
     Protected Event extras_showed()
     Protected dtb As BasesParaCompatibilidad.DataBase
 
-    'Public Sub New()
-    '    MyBase.new()
-    '    ' This call is required by the designer.
-    '    InitializeComponent()
-
-    '    ' Add any initialization after the InitializeComponent() call.
-    '    LAengine = New Engine_LA(Me)        
-    '    Me.Icon = My.Resources.LogoBandejaLa21
-    '    Me.NotifyIcon1 = New NotifyIcon
-    '    Me.NotifyIcon1.Icon = My.Resources.LogoBandejaLa21
-    '    Me.NotifyIcon1.Visible = True
-    '    Me.NotifyIcon1.ContextMenuStrip = Me.cmsNotificaciones
-    'End Sub
-
     Public Sub New()
-
         InitializeComponent()
         dtb = New BasesParaCompatibilidad.DataBase
         ' Environment.Exit(69)
     End Sub
+
     Public Sub New(ByRef frm As FrmInicio)
         InitializeComponent()
         dtb = New BasesParaCompatibilidad.DataBase
-
         'segundaSesion = False
         LAengine = New Engine_LA(Me)
         'Me.frmNews = New frmNews
         'añadirPestañaSinCierre(frmNews)
-        Me.Icon = My.Resources.LogoBandejaLa21        
+        Me.Icon = My.Resources.LogoBandejaLa21
         Me.frmIni = frm
-
         Me.NotifyIcon1 = New NotifyIcon
         Me.NotifyIcon1.Icon = My.Resources.LogoBandejaLa21
         Me.NotifyIcon1.Visible = True
         Me.NotifyIcon1.ContextMenuStrip = Me.cmsNotificaciones
 
-        
-        cargarAgenda()
+        'Telefonos y mail de los empleados.
+        'cargarAgenda()
     End Sub
 
-
 #Region "Funciones y Subrutinas"
-
     Public Sub CambiarSesion()
         Dim frm As New BasesParaCompatibilidad.frmEspera("Cerrando sesión")
         frm.Show()
@@ -60,7 +42,6 @@ Public Class GUImain
         Me.Hide()
     End Sub
 
-
     Public Overridable Sub terminarDeIniciar(ByVal tablausada As String, ByVal ServidorUsado As String, ByVal UsuarioUsado As String, ByVal usua As String)
         Me.SuspendLayout()
         Me.Controls.Remove(msMenu)
@@ -68,11 +49,9 @@ Public Class GUImain
         Me.Controls.Add(msMenu)
         Me.frmNews = New frmNews
         añadirPestañaSinCierre(frmNews)
-       
+
         Me.ToolTip1.SetToolTip(Me.lServ, "Usuario: " & UsuarioUsado & Environment.NewLine & "Base de datos: " & tablausada & Environment.NewLine & "Servidor: " & ServidorUsado)
         Me.ToolTip1.SetToolTip(Me.lUser, "Usuario conectado: " & usua & Environment.NewLine & "click para acceder a la configuración de usuario")
-
-
         Me.ResumeLayout()
     End Sub
 #End Region
@@ -130,7 +109,6 @@ Public Class GUImain
     End Sub
 
     Protected Sub TabControl1_MouseMove(sender As System.Object, e As System.Windows.Forms.MouseEventArgs) Handles TabControl1.MouseMove
-
         If e.Button = Windows.Forms.MouseButtons.Left Then
             'If Me.scExtra.Panel2Collapsed Then
 
@@ -162,7 +140,6 @@ Public Class GUImain
 
             'End If
             sender.DoDragDrop(Me.TabControl1.SelectedTab, DragDropEffects.Copy)
-
         Else
             Try
                 With TabControl1
@@ -233,9 +210,7 @@ Public Class GUImain
     End Sub
 
     Protected Sub TabControl1_DragDrop(sender As System.Object, e As System.Windows.Forms.DragEventArgs) Handles TabControl1.DragDrop
-
         If sender Is TabControl1 Then
-
             Try
                 Dim ts As ToolStripItem = e.Data.GetData("System.Windows.Forms.ToolStripItem")
                 Dim t As ToolStripItem = findToolStripItem(ts.Text, tsCustomMenu)
@@ -305,18 +280,15 @@ Public Class GUImain
     End Sub
 
     Protected Sub TabControl2_DragDrop(sender As System.Object, e As System.Windows.Forms.DragEventArgs) Handles TabControl2.DragDrop
-
         Try
             Dim ts As TabPage = e.Data.GetData("System.Windows.Forms.TabPage")
             Me.TabControl2.TabPages.Add(ts)
             'Me.TabControl1.TabPages.Remove(ts)
-
             Me.TabControl1.Invalidate()
             Me.TabControl2.Invalidate()
         Catch ex As Exception
 
         End Try
-
     End Sub
 
     Protected Sub TabControl2_MouseUp(sender As System.Object, e As System.Windows.Forms.MouseEventArgs) Handles TabControl2.MouseUp
@@ -343,7 +315,6 @@ Public Class GUImain
     End Sub
 
     Protected Sub TabControl2_MouseMove(sender As System.Object, e As System.Windows.Forms.MouseEventArgs) Handles TabControl2.MouseMove
-
         'If sender Is TabControl2 Then
         '    If e.Button = Windows.Forms.MouseButtons.Left Then
         '        sender.DoDragDrop(Me.TabControl2.SelectedTab, DragDropEffects.Copy)
@@ -425,9 +396,11 @@ Public Class GUImain
     Private Sub monitor1click(sender As Object, e As EventArgs)
         BasesParaCompatibilidad.Config.activeScreen = 0
     End Sub
+
     Private Sub monitor2click(sender As Object, e As EventArgs)
         BasesParaCompatibilidad.Config.activeScreen = 1
     End Sub
+
     Protected Sub salir()
         Application.Exit()
     End Sub
@@ -472,7 +445,6 @@ Public Class GUImain
     Protected Sub lAyuda_Click(sender As System.Object, e As System.EventArgs) Handles lAyuda.Click
         Dim url As String = Config.HelpUrl & "?cat=" & Me.TabControl1.SelectedTab.Text.Replace(TabManager.CIERRE_PESTAÑA, "").Replace(" ", "_")
         LAengine.ayuda(url)
-
     End Sub
 
     Shared Sub OpenHelp(ByVal categoria As String)
@@ -506,7 +478,7 @@ Public Class GUImain
     '    End If
     'End Sub
 
-    Private Sub cargarExtras(ByVal sender As System.Object, _
+    Private Sub cargarExtras(ByVal sender As System.Object,
       ByVal e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
 
         'AddHandler tsNavegacion.MouseEnter, AddressOf ToolStripLabel1_Click
@@ -522,7 +494,7 @@ Public Class GUImain
         End If
     End Sub
 
-    Private Sub ended(ByVal sender As System.Object, _
+    Private Sub ended(ByVal sender As System.Object,
       ByVal e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
 
         If Not Config.dataFillNotificaction Then
@@ -554,16 +526,14 @@ Public Class GUImain
 
             For Each row As DataRow In dt.Rows
                 sms2 = New ToolStripMenuItem
-                sms2.Text = Convert.ToString(row.Item(1)) & "  " & _
-                        If(Convert.IsDBNull(row.Item(4)), "-", Convert.ToString(row.Item(4))) & " " & _
-                        If(Convert.IsDBNull(row.Item(3)), "-", Convert.ToString(row.Item(3))) & " " & _
+                sms2.Text = Convert.ToString(row.Item(1)) & "  " &
+                        If(Convert.IsDBNull(row.Item(4)), "-", Convert.ToString(row.Item(4))) & " " &
+                        If(Convert.IsDBNull(row.Item(3)), "-", Convert.ToString(row.Item(3))) & " " &
                         If(Convert.IsDBNull(row.Item(2)), "-", Convert.ToString(row.Item(2)))
 
                 Me.mAgenda.Items.Add(sms2)
             Next
         End If
     End Sub
-
-  
 End Class
 
