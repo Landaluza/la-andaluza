@@ -112,7 +112,6 @@
                 Me.cmsNotificaciones.Items.Clear()
                 notificacion = LAengine.comprobarNotificaciones(dtb)
 
-
                 If notificacion.Rows.Count > 0 Then
                     Dim separador As New ToolStripSeparator
                     Me.cmsNotificaciones.Items.Add(separador)
@@ -127,9 +126,7 @@
                     Next
 
                     Me.lMensajes.Enabled = True
-
                     Dim frm As New frmMensajesPendientes(lMensajes, Me)
-
                     resetearMenuNotificaciones(True)
                     'Me.frmNews.actualizarNotificacion(frm)
                     'Me.frmNews.ActualizarRevisiones()

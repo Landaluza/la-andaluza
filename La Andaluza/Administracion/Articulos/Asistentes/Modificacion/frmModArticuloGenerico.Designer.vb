@@ -53,8 +53,8 @@ Partial Class frmModArticuloGenerico
         'slGeneral_Extras.Panel1
         '
         Me.slGeneral_Extras.Panel1.Controls.Add(Me.slGeneral_detalles)
-        Me.slGeneral_Extras.Size = New System.Drawing.Size(1284, 609)
-        Me.slGeneral_Extras.SplitterDistance = 396
+        Me.slGeneral_Extras.Size = New System.Drawing.Size(1584, 811)
+        Me.slGeneral_Extras.SplitterDistance = 527
         Me.slGeneral_Extras.TabIndex = 0
         '
         'slGeneral_detalles
@@ -64,11 +64,15 @@ Partial Class frmModArticuloGenerico
         Me.slGeneral_detalles.Location = New System.Drawing.Point(0, 0)
         Me.slGeneral_detalles.Name = "slGeneral_detalles"
         '
+        'slGeneral_detalles.Panel1
+        '
+        Me.slGeneral_detalles.Panel1.AllowDrop = True
+        '
         'slGeneral_detalles.Panel2
         '
         Me.slGeneral_detalles.Panel2.AutoScroll = True
-        Me.slGeneral_detalles.Size = New System.Drawing.Size(1284, 396)
-        Me.slGeneral_detalles.SplitterDistance = 609
+        Me.slGeneral_detalles.Size = New System.Drawing.Size(1584, 527)
+        Me.slGeneral_detalles.SplitterDistance = 751
         Me.slGeneral_detalles.TabIndex = 0
         '
         'ToolStrip1
@@ -77,7 +81,7 @@ Partial Class frmModArticuloGenerico
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsDescripcion, Me.ToolStripSplitButton1})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 25)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1284, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1584, 25)
         Me.ToolStrip1.TabIndex = 1
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -148,13 +152,13 @@ Partial Class frmModArticuloGenerico
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
-        Me.ClientSize = New System.Drawing.Size(1284, 659)
+        Me.ClientSize = New System.Drawing.Size(1584, 861)
         Me.Controls.Add(Me.slGeneral_Extras)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frmModArticuloGenerico"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Articulo"

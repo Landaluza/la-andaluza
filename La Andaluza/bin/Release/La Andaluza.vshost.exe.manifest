@@ -44,6 +44,26 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="EnvDTE" version="8.0.0.0" publicKeyToken="B03F5F7F11D50A3A" language="neutral" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="FastReport.Install" version="1.0.0.0" publicKeyToken="DB7E5CE63278458C" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="FastReport.VSDesign" version="1.0.0.0" publicKeyToken="DB7E5CE63278458C" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.MSXML" version="8.0.0.0" publicKeyToken="B03F5F7F11D50A3A" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
       <assemblyIdentity name="Microsoft.Office.Interop.Excel" version="14.0.0.0" publicKeyToken="71E9BCE111E9429C" language="neutral" processorArchitecture="msil" />
     </dependentAssembly>
   </dependency>
@@ -103,6 +123,11 @@
     </dependentAssembly>
   </dependency>
   <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.VisualStudio.VSHelp" version="7.0.3300.0" publicKeyToken="B03F5F7F11D50A3A" language="neutral" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="AxInterop.MSTSCLib.dll" size="310272">
       <assemblyIdentity name="AxInterop.MSTSCLib" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
@@ -110,7 +135,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>iSOXcls2bbIBoaHzBMAalAqulnyCYfHBY8eoTd1y5MA=</dsig:DigestValue>
+        <dsig:DigestValue>lK6hwqtpLR+qSPvd7b/FFPt66tAHiC7hhW2C2nYqm9g=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -211,18 +236,6 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="EnvDTE.dll" size="245760">
-      <assemblyIdentity name="EnvDTE" version="8.0.0.0" publicKeyToken="B03F5F7F11D50A3A" language="neutral" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>K4GhDEQZtOdWhnb/BpHVACzUI/yCLpdoIA8+h6N/hrY=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="etiquetas.dll" size="1178112">
       <assemblyIdentity name="etiquetas" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
@@ -283,18 +296,6 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FastReport.Install.dll" size="8192">
-      <assemblyIdentity name="FastReport.Install" version="1.0.0.0" publicKeyToken="DB7E5CE63278458C" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>2IFfN7eUtbXk+rlxdn0YeP9twcvCQ3uRE51EL74ixDc=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FastReport.Service.dll" size="14336">
       <assemblyIdentity name="FastReport.Service" version="2014.2.4.0" publicKeyToken="DB7E5CE63278458C" language="neutral" processorArchitecture="msil" />
       <hash>
@@ -303,18 +304,6 @@
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
         <dsig:DigestValue>ymCkqwh1185cGwQjbf5LJ/Kn21MGFGOzYGoFb1gx/MA=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FastReport.VSDesign.dll" size="24576">
-      <assemblyIdentity name="FastReport.VSDesign" version="1.0.0.0" publicKeyToken="DB7E5CE63278458C" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>mCXt8UzfNxtuG460i+WWzsV1MK+yXyoK/7TEJDUkilg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -434,19 +423,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>P3WxPv9yKB0vTPCPHF0zLgugiA6LERHxzaFAU1/rVZk=</dsig:DigestValue>
+        <dsig:DigestValue>yiX1Miqq7oG+uSBxZZaAn+XwNjCp3pCoyWerCChktNQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="La Andaluza.exe" size="8902144">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="La Andaluza.exe" size="9081344">
       <assemblyIdentity name="La Andaluza" version="2015.9.18.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>DC6z2HUO3/bB0R06IZFxvxuHifvTlKeJq3oXRVmny0s=</dsig:DigestValue>
+        <dsig:DigestValue>+eTUHqOlzPpVqf//+rmnN60Mpw3L2RsEoNLTxaqSjds=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -459,18 +448,6 @@
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
         <dsig:DigestValue>fzxGBsMR0N53ANAPtWHDbQys9i6CedNSai5pBB8/5T8=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.MSXML.dll" size="69632">
-      <assemblyIdentity name="Microsoft.MSXML" version="8.0.0.0" publicKeyToken="B03F5F7F11D50A3A" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>c0WLR6MzKxF4UQzynPn4aQsIizhL2oZ0MILRErCP0ec=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -579,18 +556,6 @@
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
         <dsig:DigestValue>QjXo/oxJjWPp0n/EL8Jjl6a068+OXkSoZPUSenNf+Hk=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.VisualStudio.VSHelp.dll" size="27384">
-      <assemblyIdentity name="Microsoft.VisualStudio.VSHelp" version="7.0.3300.0" publicKeyToken="B03F5F7F11D50A3A" language="neutral" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>dihBZApkQhAquKbJ9To+63qU1hlS9nRCdNKbmHVTNmY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

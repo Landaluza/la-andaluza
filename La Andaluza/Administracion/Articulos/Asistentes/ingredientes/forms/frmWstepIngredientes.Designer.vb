@@ -27,6 +27,10 @@ Partial Class frmWstepIngredientes
         Dim Label5 As System.Windows.Forms.Label
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.btnAddTProducto = New System.Windows.Forms.Button()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.txtDensidad = New BasesParaCompatibilidad.CuadroDeTexto()
+        Me.cboUnidad = New System.Windows.Forms.ComboBox()
         Me.cbCreartipoProducto = New System.Windows.Forms.CheckBox()
         Me.panNuevoTipoProducto = New System.Windows.Forms.Panel()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -55,10 +59,6 @@ Partial Class frmWstepIngredientes
         Me.Label11 = New System.Windows.Forms.Label()
         Me.tbpResiduos = New System.Windows.Forms.TabPage()
         Me.Label10 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.txtDensidad = New BasesParaCompatibilidad.CuadroDeTexto()
-        Me.cboUnidad = New System.Windows.Forms.ComboBox()
-        Me.btnAddTProducto = New System.Windows.Forms.Button()
         EnologicoLabel = New System.Windows.Forms.Label()
         Label2 = New System.Windows.Forms.Label()
         Label5 = New System.Windows.Forms.Label()
@@ -78,37 +78,42 @@ Partial Class frmWstepIngredientes
         'EnologicoLabel
         '
         EnologicoLabel.AutoSize = True
-        EnologicoLabel.Location = New System.Drawing.Point(119, 80)
-        EnologicoLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        EnologicoLabel.Location = New System.Drawing.Point(89, 65)
         EnologicoLabel.Name = "EnologicoLabel"
-        EnologicoLabel.Size = New System.Drawing.Size(74, 17)
+        EnologicoLabel.Size = New System.Drawing.Size(57, 13)
         EnologicoLabel.TabIndex = 1000000008
         EnologicoLabel.Text = "Enologico:"
         '
         'Label2
         '
         Label2.AutoSize = True
-        Label2.Location = New System.Drawing.Point(119, 107)
-        Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Label2.Location = New System.Drawing.Point(89, 87)
         Label2.Name = "Label2"
-        Label2.Size = New System.Drawing.Size(83, 17)
+        Label2.Size = New System.Drawing.Size(64, 13)
         Label2.TabIndex = 1000000011
         Label2.Text = "Se Mide en:"
+        '
+        'Label5
+        '
+        Label5.AutoSize = True
+        Label5.Location = New System.Drawing.Point(23, 225)
+        Label5.Name = "Label5"
+        Label5.Size = New System.Drawing.Size(44, 13)
+        Label5.TabIndex = 1000000017
+        Label5.Text = "Unidad:"
         '
         'Panel1
         '
         Me.Panel1.Controls.Add(Me.SplitContainer1)
-        Me.Panel1.Location = New System.Drawing.Point(51, 71)
-        Me.Panel1.Margin = New System.Windows.Forms.Padding(4)
+        Me.Panel1.Location = New System.Drawing.Point(12, 12)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1559, 557)
+        Me.Panel1.Size = New System.Drawing.Size(901, 470)
         Me.Panel1.TabIndex = 1000000021
         '
         'SplitContainer1
         '
         Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitContainer1.Location = New System.Drawing.Point(0, 0)
-        Me.SplitContainer1.Margin = New System.Windows.Forms.Padding(4)
         Me.SplitContainer1.Name = "SplitContainer1"
         '
         'SplitContainer1.Panel1
@@ -135,17 +140,69 @@ Partial Class frmWstepIngredientes
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.TabControl1)
-        Me.SplitContainer1.Size = New System.Drawing.Size(1559, 557)
-        Me.SplitContainer1.SplitterDistance = 640
-        Me.SplitContainer1.SplitterWidth = 5
+        Me.SplitContainer1.Size = New System.Drawing.Size(901, 470)
+        Me.SplitContainer1.SplitterDistance = 495
         Me.SplitContainer1.TabIndex = 0
+        '
+        'btnAddTProducto
+        '
+        Me.btnAddTProducto.FlatAppearance.BorderSize = 0
+        Me.btnAddTProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAddTProducto.Image = Global.La_Andaluza.My.Resources.Resources.edit_add_2
+        Me.btnAddTProducto.Location = New System.Drawing.Point(457, 254)
+        Me.btnAddTProducto.Name = "btnAddTProducto"
+        Me.btnAddTProducto.Size = New System.Drawing.Size(20, 23)
+        Me.btnAddTProducto.TabIndex = 1000000018
+        Me.btnAddTProducto.UseVisualStyleBackColor = True
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(23, 201)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(52, 13)
+        Me.Label4.TabIndex = 1000000016
+        Me.Label4.Text = "Densidad"
+        '
+        'txtDensidad
+        '
+        Me.txtDensidad.EsUnicoCampo = "Descripcion"
+        Me.txtDensidad.EsUnicoCampoID = "TipoProductoID"
+        Me.txtDensidad.EsUnicoID = 0
+        Me.txtDensidad.EsUnicoTabla = "TiposProductos"
+        Me.txtDensidad.Location = New System.Drawing.Point(114, 198)
+        Me.txtDensidad.MaxLength = 50
+        Me.txtDensidad.Minimo = 0
+        Me.txtDensidad.Modificado = False
+        Me.txtDensidad.Name = "txtDensidad"
+        Me.txtDensidad.Numerico_EsNumerico = True
+        Me.txtDensidad.Numerico_NumeroDoublees = 2
+        Me.txtDensidad.Numerico_SeparadorMiles = False
+        Me.txtDensidad.Obligatorio = True
+        Me.txtDensidad.ParametroID = 0
+        Me.txtDensidad.Size = New System.Drawing.Size(94, 20)
+        Me.txtDensidad.TabIndex = 1000000014
+        Me.txtDensidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.txtDensidad.ValorMaximo = 0R
+        Me.txtDensidad.ValorMinimo = 0R
+        '
+        'cboUnidad
+        '
+        Me.cboUnidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboUnidad.FormattingEnabled = True
+        Me.cboUnidad.Items.AddRange(New Object() {"Litros", "Kilos"})
+        Me.cboUnidad.Location = New System.Drawing.Point(114, 223)
+        Me.cboUnidad.Name = "cboUnidad"
+        Me.cboUnidad.Size = New System.Drawing.Size(250, 21)
+        Me.cboUnidad.TabIndex = 1000000015
         '
         'cbCreartipoProducto
         '
         Me.cbCreartipoProducto.AutoSize = True
-        Me.cbCreartipoProducto.Location = New System.Drawing.Point(34, 371)
+        Me.cbCreartipoProducto.Location = New System.Drawing.Point(26, 301)
+        Me.cbCreartipoProducto.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.cbCreartipoProducto.Name = "cbCreartipoProducto"
-        Me.cbCreartipoProducto.Size = New System.Drawing.Size(136, 21)
+        Me.cbCreartipoProducto.Size = New System.Drawing.Size(105, 17)
         Me.cbCreartipoProducto.TabIndex = 12
         Me.cbCreartipoProducto.Text = "Crear uno nuevo"
         Me.cbCreartipoProducto.UseVisualStyleBackColor = True
@@ -162,18 +219,18 @@ Partial Class frmWstepIngredientes
         Me.panNuevoTipoProducto.Controls.Add(Label2)
         Me.panNuevoTipoProducto.Controls.Add(Me.cbMedidas)
         Me.panNuevoTipoProducto.Enabled = False
-        Me.panNuevoTipoProducto.Location = New System.Drawing.Point(34, 398)
+        Me.panNuevoTipoProducto.Location = New System.Drawing.Point(26, 323)
+        Me.panNuevoTipoProducto.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.panNuevoTipoProducto.Name = "panNuevoTipoProducto"
-        Me.panNuevoTipoProducto.Size = New System.Drawing.Size(575, 148)
+        Me.panNuevoTipoProducto.Size = New System.Drawing.Size(432, 121)
         Me.panNuevoTipoProducto.TabIndex = 11
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(119, 22)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.Location = New System.Drawing.Point(89, 18)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(82, 17)
+        Me.Label1.Size = New System.Drawing.Size(63, 13)
         Me.Label1.TabIndex = 1000000006
         Me.Label1.Text = "Descripcion"
         '
@@ -183,8 +240,7 @@ Partial Class frmWstepIngredientes
         Me.CuadroDeTexto1.EsUnicoCampoID = "TipoProductoID"
         Me.CuadroDeTexto1.EsUnicoID = 0
         Me.CuadroDeTexto1.EsUnicoTabla = "TiposProductos"
-        Me.CuadroDeTexto1.Location = New System.Drawing.Point(204, 18)
-        Me.CuadroDeTexto1.Margin = New System.Windows.Forms.Padding(4)
+        Me.CuadroDeTexto1.Location = New System.Drawing.Point(153, 15)
         Me.CuadroDeTexto1.MaxLength = 50
         Me.CuadroDeTexto1.Minimo = 0
         Me.CuadroDeTexto1.Modificado = False
@@ -194,10 +250,10 @@ Partial Class frmWstepIngredientes
         Me.CuadroDeTexto1.Numerico_SeparadorMiles = False
         Me.CuadroDeTexto1.Obligatorio = True
         Me.CuadroDeTexto1.ParametroID = 0
-        Me.CuadroDeTexto1.Size = New System.Drawing.Size(243, 22)
+        Me.CuadroDeTexto1.Size = New System.Drawing.Size(183, 20)
         Me.CuadroDeTexto1.TabIndex = 1000000004
-        Me.CuadroDeTexto1.ValorMaximo = 0.0!
-        Me.CuadroDeTexto1.ValorMinimo = 0.0!
+        Me.CuadroDeTexto1.ValorMaximo = 0R
+        Me.CuadroDeTexto1.ValorMinimo = 0R
         '
         'txtAbreviatura
         '
@@ -205,8 +261,7 @@ Partial Class frmWstepIngredientes
         Me.txtAbreviatura.EsUnicoCampoID = "TipoProductoID"
         Me.txtAbreviatura.EsUnicoID = 0
         Me.txtAbreviatura.EsUnicoTabla = "TiposProductos"
-        Me.txtAbreviatura.Location = New System.Drawing.Point(204, 48)
-        Me.txtAbreviatura.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtAbreviatura.Location = New System.Drawing.Point(153, 39)
         Me.txtAbreviatura.MaxLength = 3
         Me.txtAbreviatura.Minimo = 3
         Me.txtAbreviatura.Modificado = False
@@ -216,63 +271,59 @@ Partial Class frmWstepIngredientes
         Me.txtAbreviatura.Numerico_SeparadorMiles = False
         Me.txtAbreviatura.Obligatorio = True
         Me.txtAbreviatura.ParametroID = 0
-        Me.txtAbreviatura.Size = New System.Drawing.Size(55, 22)
+        Me.txtAbreviatura.Size = New System.Drawing.Size(42, 20)
         Me.txtAbreviatura.TabIndex = 1000000005
-        Me.txtAbreviatura.ValorMaximo = 0.0!
-        Me.txtAbreviatura.ValorMinimo = 0.0!
+        Me.txtAbreviatura.ValorMaximo = 0R
+        Me.txtAbreviatura.ValorMinimo = 0R
         '
         'lblAbreviatura
         '
         Me.lblAbreviatura.AutoSize = True
-        Me.lblAbreviatura.Location = New System.Drawing.Point(119, 52)
-        Me.lblAbreviatura.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblAbreviatura.Location = New System.Drawing.Point(89, 42)
         Me.lblAbreviatura.Name = "lblAbreviatura"
-        Me.lblAbreviatura.Size = New System.Drawing.Size(81, 17)
+        Me.lblAbreviatura.Size = New System.Drawing.Size(61, 13)
         Me.lblAbreviatura.TabIndex = 1000000007
         Me.lblAbreviatura.Text = "Abreviatura"
         '
         'chEnologico
         '
-        Me.chEnologico.Location = New System.Drawing.Point(204, 78)
-        Me.chEnologico.Margin = New System.Windows.Forms.Padding(4)
+        Me.chEnologico.Location = New System.Drawing.Point(153, 63)
         Me.chEnologico.Name = "chEnologico"
-        Me.chEnologico.Size = New System.Drawing.Size(57, 17)
+        Me.chEnologico.Size = New System.Drawing.Size(43, 14)
         Me.chEnologico.TabIndex = 1000000009
         '
         'cbMedidas
         '
         Me.cbMedidas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbMedidas.FormattingEnabled = True
-        Me.cbMedidas.Location = New System.Drawing.Point(204, 103)
-        Me.cbMedidas.Margin = New System.Windows.Forms.Padding(4)
+        Me.cbMedidas.Location = New System.Drawing.Point(153, 84)
         Me.cbMedidas.Name = "cbMedidas"
-        Me.cbMedidas.Size = New System.Drawing.Size(243, 24)
+        Me.cbMedidas.Size = New System.Drawing.Size(183, 21)
         Me.cbMedidas.TabIndex = 1000000010
         '
         'pantipoProducto
         '
         Me.pantipoProducto.Controls.Add(Me.cboTipoProducto)
         Me.pantipoProducto.Controls.Add(Me.Label3)
-        Me.pantipoProducto.Location = New System.Drawing.Point(34, 308)
+        Me.pantipoProducto.Location = New System.Drawing.Point(26, 250)
+        Me.pantipoProducto.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.pantipoProducto.Name = "pantipoProducto"
-        Me.pantipoProducto.Size = New System.Drawing.Size(575, 41)
+        Me.pantipoProducto.Size = New System.Drawing.Size(431, 33)
         Me.pantipoProducto.TabIndex = 10
         '
         'cboTipoProducto
         '
         Me.cboTipoProducto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cboTipoProducto.Location = New System.Drawing.Point(118, 6)
-        Me.cboTipoProducto.Margin = New System.Windows.Forms.Padding(4)
+        Me.cboTipoProducto.Location = New System.Drawing.Point(88, 5)
         Me.cboTipoProducto.Name = "cboTipoProducto"
-        Me.cboTipoProducto.Size = New System.Drawing.Size(457, 26)
+        Me.cboTipoProducto.Size = New System.Drawing.Size(344, 23)
         Me.cboTipoProducto.TabIndex = 4
         '
         'Label3
         '
-        Me.Label3.Location = New System.Drawing.Point(-3, 6)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label3.Location = New System.Drawing.Point(-2, 5)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(96, 26)
+        Me.Label3.Size = New System.Drawing.Size(72, 21)
         Me.Label3.TabIndex = 3
         Me.Label3.Text = "Tipo producto"
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -283,10 +334,9 @@ Partial Class frmWstepIngredientes
         Me.btnañadirEstado.FlatAppearance.BorderSize = 0
         Me.btnañadirEstado.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnañadirEstado.Image = Global.La_Andaluza.My.Resources.Resources.edit_add_2
-        Me.btnañadirEstado.Location = New System.Drawing.Point(584, 26)
-        Me.btnañadirEstado.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnañadirEstado.Location = New System.Drawing.Point(438, 21)
         Me.btnañadirEstado.Name = "btnañadirEstado"
-        Me.btnañadirEstado.Size = New System.Drawing.Size(27, 28)
+        Me.btnañadirEstado.Size = New System.Drawing.Size(20, 23)
         Me.btnañadirEstado.TabIndex = 9
         Me.btnañadirEstado.UseVisualStyleBackColor = True
         '
@@ -294,10 +344,9 @@ Partial Class frmWstepIngredientes
         '
         Me.Label14.BackColor = System.Drawing.SystemColors.Control
         Me.Label14.Enabled = False
-        Me.Label14.Location = New System.Drawing.Point(31, 26)
-        Me.Label14.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label14.Location = New System.Drawing.Point(23, 21)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(101, 26)
+        Me.Label14.Size = New System.Drawing.Size(76, 21)
         Me.Label14.TabIndex = 0
         Me.Label14.Text = "Estado"
         Me.Label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -307,20 +356,18 @@ Partial Class frmWstepIngredientes
         Me.cboEstado.BackColor = System.Drawing.SystemColors.Window
         Me.cboEstado.Enabled = False
         Me.cboEstado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cboEstado.Location = New System.Drawing.Point(152, 26)
-        Me.cboEstado.Margin = New System.Windows.Forms.Padding(4)
+        Me.cboEstado.Location = New System.Drawing.Point(114, 20)
         Me.cboEstado.Name = "cboEstado"
-        Me.cboEstado.Size = New System.Drawing.Size(423, 26)
+        Me.cboEstado.Size = New System.Drawing.Size(318, 23)
         Me.cboEstado.TabIndex = 1
         Me.cboEstado.Text = "Liquido, solido, polvo"
         '
         'lblDescripcion
         '
         Me.lblDescripcion.BackColor = System.Drawing.SystemColors.Control
-        Me.lblDescripcion.Location = New System.Drawing.Point(31, 94)
-        Me.lblDescripcion.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblDescripcion.Location = New System.Drawing.Point(23, 76)
         Me.lblDescripcion.Name = "lblDescripcion"
-        Me.lblDescripcion.Size = New System.Drawing.Size(101, 26)
+        Me.lblDescripcion.Size = New System.Drawing.Size(76, 21)
         Me.lblDescripcion.TabIndex = 5
         Me.lblDescripcion.Text = "Descripción"
         Me.lblDescripcion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -333,8 +380,7 @@ Partial Class frmWstepIngredientes
         Me.txtDescripcion.EsUnicoID = 0
         Me.txtDescripcion.EsUnicoTabla = ""
         Me.txtDescripcion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtDescripcion.Location = New System.Drawing.Point(152, 94)
-        Me.txtDescripcion.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtDescripcion.Location = New System.Drawing.Point(114, 76)
         Me.txtDescripcion.MaxLength = 50
         Me.txtDescripcion.Minimo = 0
         Me.txtDescripcion.Modificado = False
@@ -345,17 +391,16 @@ Partial Class frmWstepIngredientes
         Me.txtDescripcion.Numerico_SeparadorMiles = False
         Me.txtDescripcion.Obligatorio = False
         Me.txtDescripcion.ParametroID = 0
-        Me.txtDescripcion.Size = New System.Drawing.Size(457, 67)
+        Me.txtDescripcion.Size = New System.Drawing.Size(344, 55)
         Me.txtDescripcion.TabIndex = 6
-        Me.txtDescripcion.ValorMaximo = 0.0!
-        Me.txtDescripcion.ValorMinimo = 0.0!
+        Me.txtDescripcion.ValorMaximo = 0R
+        Me.txtDescripcion.ValorMinimo = 0R
         '
         'lblIngredienteTipoID
         '
-        Me.lblIngredienteTipoID.Location = New System.Drawing.Point(31, 60)
-        Me.lblIngredienteTipoID.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblIngredienteTipoID.Location = New System.Drawing.Point(23, 49)
         Me.lblIngredienteTipoID.Name = "lblIngredienteTipoID"
-        Me.lblIngredienteTipoID.Size = New System.Drawing.Size(116, 26)
+        Me.lblIngredienteTipoID.Size = New System.Drawing.Size(87, 21)
         Me.lblIngredienteTipoID.TabIndex = 2
         Me.lblIngredienteTipoID.Text = "Tipo"
         Me.lblIngredienteTipoID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -365,20 +410,18 @@ Partial Class frmWstepIngredientes
         Me.btnAddTipo.FlatAppearance.BorderSize = 0
         Me.btnAddTipo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAddTipo.Image = Global.La_Andaluza.My.Resources.Resources.edit_add_2
-        Me.btnAddTipo.Location = New System.Drawing.Point(584, 60)
-        Me.btnAddTipo.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnAddTipo.Location = New System.Drawing.Point(438, 49)
         Me.btnAddTipo.Name = "btnAddTipo"
-        Me.btnAddTipo.Size = New System.Drawing.Size(27, 28)
+        Me.btnAddTipo.Size = New System.Drawing.Size(20, 23)
         Me.btnAddTipo.TabIndex = 4
         Me.btnAddTipo.UseVisualStyleBackColor = True
         '
         'lblObservaciones
         '
         Me.lblObservaciones.BackColor = System.Drawing.SystemColors.Control
-        Me.lblObservaciones.Location = New System.Drawing.Point(31, 169)
-        Me.lblObservaciones.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblObservaciones.Location = New System.Drawing.Point(23, 137)
         Me.lblObservaciones.Name = "lblObservaciones"
-        Me.lblObservaciones.Size = New System.Drawing.Size(116, 26)
+        Me.lblObservaciones.Size = New System.Drawing.Size(87, 21)
         Me.lblObservaciones.TabIndex = 7
         Me.lblObservaciones.Text = "Observaciones"
         Me.lblObservaciones.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -391,8 +434,7 @@ Partial Class frmWstepIngredientes
         Me.txtObservaciones.EsUnicoID = 0
         Me.txtObservaciones.EsUnicoTabla = ""
         Me.txtObservaciones.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtObservaciones.Location = New System.Drawing.Point(152, 169)
-        Me.txtObservaciones.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtObservaciones.Location = New System.Drawing.Point(114, 137)
         Me.txtObservaciones.MaxLength = 500
         Me.txtObservaciones.Minimo = 0
         Me.txtObservaciones.Modificado = False
@@ -403,41 +445,38 @@ Partial Class frmWstepIngredientes
         Me.txtObservaciones.Numerico_SeparadorMiles = False
         Me.txtObservaciones.Obligatorio = False
         Me.txtObservaciones.ParametroID = 0
-        Me.txtObservaciones.Size = New System.Drawing.Size(457, 67)
+        Me.txtObservaciones.Size = New System.Drawing.Size(344, 55)
         Me.txtObservaciones.TabIndex = 8
-        Me.txtObservaciones.ValorMaximo = 0.0!
-        Me.txtObservaciones.ValorMinimo = 0.0!
+        Me.txtObservaciones.ValorMaximo = 0R
+        Me.txtObservaciones.ValorMinimo = 0R
         '
         'cboIngredienteTipoID
         '
         Me.cboIngredienteTipoID.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cboIngredienteTipoID.Location = New System.Drawing.Point(152, 60)
-        Me.cboIngredienteTipoID.Margin = New System.Windows.Forms.Padding(4)
+        Me.cboIngredienteTipoID.Location = New System.Drawing.Point(114, 49)
         Me.cboIngredienteTipoID.Name = "cboIngredienteTipoID"
-        Me.cboIngredienteTipoID.Size = New System.Drawing.Size(423, 26)
+        Me.cboIngredienteTipoID.Size = New System.Drawing.Size(318, 23)
         Me.cboIngredienteTipoID.TabIndex = 3
         '
         'TabControl1
         '
+        Me.TabControl1.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.TabControl1.Controls.Add(Me.tbpCertificados)
         Me.TabControl1.Controls.Add(Me.tbpCondiciones)
         Me.TabControl1.Controls.Add(Me.tbpResiduos)
-        Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TabControl1.Location = New System.Drawing.Point(0, 0)
-        Me.TabControl1.Margin = New System.Windows.Forms.Padding(4)
+        Me.TabControl1.Location = New System.Drawing.Point(22, 12)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(914, 557)
+        Me.TabControl1.Size = New System.Drawing.Size(374, 453)
         Me.TabControl1.TabIndex = 0
         '
         'tbpCertificados
         '
         Me.tbpCertificados.Controls.Add(Me.gbCertificados)
-        Me.tbpCertificados.Location = New System.Drawing.Point(4, 25)
-        Me.tbpCertificados.Margin = New System.Windows.Forms.Padding(4)
+        Me.tbpCertificados.Location = New System.Drawing.Point(4, 22)
         Me.tbpCertificados.Name = "tbpCertificados"
-        Me.tbpCertificados.Padding = New System.Windows.Forms.Padding(4)
-        Me.tbpCertificados.Size = New System.Drawing.Size(906, 528)
+        Me.tbpCertificados.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+        Me.tbpCertificados.Size = New System.Drawing.Size(366, 427)
         Me.tbpCertificados.TabIndex = 0
         Me.tbpCertificados.Text = "Certificados"
         Me.tbpCertificados.UseVisualStyleBackColor = True
@@ -447,11 +486,9 @@ Partial Class frmWstepIngredientes
         Me.gbCertificados.AutoSize = True
         Me.gbCertificados.BackColor = System.Drawing.SystemColors.Control
         Me.gbCertificados.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.gbCertificados.Location = New System.Drawing.Point(4, 4)
-        Me.gbCertificados.Margin = New System.Windows.Forms.Padding(4)
+        Me.gbCertificados.Location = New System.Drawing.Point(3, 3)
         Me.gbCertificados.Name = "gbCertificados"
-        Me.gbCertificados.Padding = New System.Windows.Forms.Padding(4)
-        Me.gbCertificados.Size = New System.Drawing.Size(898, 520)
+        Me.gbCertificados.Size = New System.Drawing.Size(360, 421)
         Me.gbCertificados.TabIndex = 3
         Me.gbCertificados.TabStop = False
         Me.gbCertificados.Text = "Certificados requeridos"
@@ -459,11 +496,10 @@ Partial Class frmWstepIngredientes
         'tbpCondiciones
         '
         Me.tbpCondiciones.Controls.Add(Me.Label11)
-        Me.tbpCondiciones.Location = New System.Drawing.Point(4, 25)
-        Me.tbpCondiciones.Margin = New System.Windows.Forms.Padding(4)
+        Me.tbpCondiciones.Location = New System.Drawing.Point(4, 22)
         Me.tbpCondiciones.Name = "tbpCondiciones"
-        Me.tbpCondiciones.Padding = New System.Windows.Forms.Padding(4)
-        Me.tbpCondiciones.Size = New System.Drawing.Size(906, 528)
+        Me.tbpCondiciones.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+        Me.tbpCondiciones.Size = New System.Drawing.Size(678, 427)
         Me.tbpCondiciones.TabIndex = 1
         Me.tbpCondiciones.Text = "Condiciones almacenamiento"
         Me.tbpCondiciones.UseVisualStyleBackColor = True
@@ -472,10 +508,9 @@ Partial Class frmWstepIngredientes
         '
         Me.Label11.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.Label11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label11.Location = New System.Drawing.Point(8, 22)
-        Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label11.Location = New System.Drawing.Point(6, 18)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(190, 25)
+        Me.Label11.Size = New System.Drawing.Size(143, 21)
         Me.Label11.TabIndex = 1000000007
         Me.Label11.Text = "Condiciones almacen"
         Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -483,10 +518,9 @@ Partial Class frmWstepIngredientes
         'tbpResiduos
         '
         Me.tbpResiduos.Controls.Add(Me.Label10)
-        Me.tbpResiduos.Location = New System.Drawing.Point(4, 25)
-        Me.tbpResiduos.Margin = New System.Windows.Forms.Padding(4)
+        Me.tbpResiduos.Location = New System.Drawing.Point(4, 22)
         Me.tbpResiduos.Name = "tbpResiduos"
-        Me.tbpResiduos.Size = New System.Drawing.Size(906, 528)
+        Me.tbpResiduos.Size = New System.Drawing.Size(678, 427)
         Me.tbpResiduos.TabIndex = 2
         Me.tbpResiduos.Text = "Gestion residuos"
         Me.tbpResiduos.UseVisualStyleBackColor = True
@@ -495,87 +529,19 @@ Partial Class frmWstepIngredientes
         '
         Me.Label10.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.Label10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label10.Location = New System.Drawing.Point(37, 20)
-        Me.Label10.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label10.Location = New System.Drawing.Point(28, 16)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(190, 25)
+        Me.Label10.Size = New System.Drawing.Size(143, 21)
         Me.Label10.TabIndex = 1000000006
         Me.Label10.Text = "Gestion envases vacios"
         Me.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(31, 247)
-        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(68, 17)
-        Me.Label4.TabIndex = 1000000016
-        Me.Label4.Text = "Densidad"
-        '
-        'Label5
-        '
-        Label5.AutoSize = True
-        Label5.Location = New System.Drawing.Point(31, 277)
-        Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Label5.Name = "Label5"
-        Label5.Size = New System.Drawing.Size(57, 17)
-        Label5.TabIndex = 1000000017
-        Label5.Text = "Unidad:"
-        '
-        'txtDensidad
-        '
-        Me.txtDensidad.EsUnicoCampo = "Descripcion"
-        Me.txtDensidad.EsUnicoCampoID = "TipoProductoID"
-        Me.txtDensidad.EsUnicoID = 0
-        Me.txtDensidad.EsUnicoTabla = "TiposProductos"
-        Me.txtDensidad.Location = New System.Drawing.Point(152, 244)
-        Me.txtDensidad.Margin = New System.Windows.Forms.Padding(4)
-        Me.txtDensidad.MaxLength = 50
-        Me.txtDensidad.Minimo = 0
-        Me.txtDensidad.Modificado = False
-        Me.txtDensidad.Name = "txtDensidad"
-        Me.txtDensidad.Numerico_EsNumerico = True
-        Me.txtDensidad.Numerico_NumeroDoublees = 2
-        Me.txtDensidad.Numerico_SeparadorMiles = False
-        Me.txtDensidad.Obligatorio = True
-        Me.txtDensidad.ParametroID = 0
-        Me.txtDensidad.Size = New System.Drawing.Size(124, 22)
-        Me.txtDensidad.TabIndex = 1000000014
-        Me.txtDensidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.txtDensidad.ValorMaximo = 0.0!
-        Me.txtDensidad.ValorMinimo = 0.0!
-        '
-        'cboUnidad
-        '
-        Me.cboUnidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboUnidad.FormattingEnabled = True
-        Me.cboUnidad.Items.AddRange(New Object() {"Litros", "Kilos"})
-        Me.cboUnidad.Location = New System.Drawing.Point(152, 274)
-        Me.cboUnidad.Margin = New System.Windows.Forms.Padding(4)
-        Me.cboUnidad.Name = "cboUnidad"
-        Me.cboUnidad.Size = New System.Drawing.Size(332, 24)
-        Me.cboUnidad.TabIndex = 1000000015
-        '
-        'btnAddTProducto
-        '
-        Me.btnAddTProducto.FlatAppearance.BorderSize = 0
-        Me.btnAddTProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAddTProducto.Image = Global.La_Andaluza.My.Resources.Resources.edit_add_2
-        Me.btnAddTProducto.Location = New System.Drawing.Point(609, 313)
-        Me.btnAddTProducto.Margin = New System.Windows.Forms.Padding(4)
-        Me.btnAddTProducto.Name = "btnAddTProducto"
-        Me.btnAddTProducto.Size = New System.Drawing.Size(27, 28)
-        Me.btnAddTProducto.TabIndex = 1000000018
-        Me.btnAddTProducto.UseVisualStyleBackColor = True
-        '
         'frmWstepIngredientes
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1657, 660)
+        Me.ClientSize = New System.Drawing.Size(949, 532)
         Me.Controls.Add(Me.Panel1)
-        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frmWstepIngredientes"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "frmWstepIngredientes"
@@ -596,7 +562,7 @@ Partial Class frmWstepIngredientes
         Me.ResumeLayout(False)
 
     End Sub
-   Private WithEvents lblDescripcion As System.Windows.Forms.Label
+    Private WithEvents lblDescripcion As System.Windows.Forms.Label
    Private WithEvents lblObservaciones As System.Windows.Forms.Label
     Private WithEvents txtObservaciones As BasesParaCompatibilidad.CuadroDeTexto
     Private WithEvents txtDescripcion As BasesParaCompatibilidad.CuadroDeTexto

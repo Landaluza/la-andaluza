@@ -14,14 +14,14 @@
     <framework targetVersion="4.5.1" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="La Andaluza.exe.manifest" size="43592">
+    <dependentAssembly dependencyType="install" codebase="La Andaluza.exe.manifest" size="41630">
       <assemblyIdentity name="La Andaluza.exe" version="2015.1.1.18" publicKeyToken="0000000000000000" language="es-ES" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>dH8Ysao0i4xGfay/TPnZhfR7oRVl0a1J+Bo/LvtmR30=</dsig:DigestValue>
+        <dsig:DigestValue>hd/5xY81Cs/eMzRF6UGAph8m5WfqPk3+OlIYjFl+T18=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
