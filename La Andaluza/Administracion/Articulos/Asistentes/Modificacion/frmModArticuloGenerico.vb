@@ -22,13 +22,15 @@
         AddHandler frmDetalle.actualizarExtras, AddressOf frmExtras.refrescar
         AddHandler frmGeneral.avisos, AddressOf frmExtras.ver_avisos
 
+        Me.frmDetalle.Dock = DockStyle.Left
+
+        Engine_LA.FormEnPestaña(frmGeneral, Me.slGeneral_detalles.Panel1, False)
         Engine_LA.FormEnPestaña(frmExtras, Me.slGeneral_Extras.Panel2)
-        Engine_LA.FormEnPestaña(frmGeneral, Me.slGeneral_detalles.Panel1)
 
         Separator1.Visible = False
 
         If Me.frmDetalle.Enabled Then
-            Engine_LA.FormEnPestaña(Me.frmDetalle, Me.slGeneral_detalles.Panel2)
+            Engine_LA.FormEnPestaña(Me.frmDetalle, Me.slGeneral_detalles.Panel2, False)
 
             'If Me.m_dbo_articulos1.ArticuloTpoID = 9 Or Me.m_dbo_articulos1.ArticuloTpoID = 10 Then
             '    'no se puede cambiar la descricpion hasta que articulos secundarios y terciarios esten realacionados. Por los cambios de formato que pueda suponer

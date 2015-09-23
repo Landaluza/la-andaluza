@@ -53,8 +53,7 @@ Partial Class frmWstepArticuloSecundario
         Me.txtObservaciones.EsUnicoID = 0
         Me.txtObservaciones.EsUnicoTabla = ""
         Me.txtObservaciones.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtObservaciones.Location = New System.Drawing.Point(180, 258)
-        Me.txtObservaciones.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtObservaciones.Location = New System.Drawing.Point(101, 212)
         Me.txtObservaciones.MaxLength = 500
         Me.txtObservaciones.Minimo = 0
         Me.txtObservaciones.Modificado = False
@@ -65,10 +64,10 @@ Partial Class frmWstepArticuloSecundario
         Me.txtObservaciones.Numerico_SeparadorMiles = False
         Me.txtObservaciones.Obligatorio = False
         Me.txtObservaciones.ParametroID = 0
-        Me.txtObservaciones.Size = New System.Drawing.Size(720, 112)
+        Me.txtObservaciones.Size = New System.Drawing.Size(541, 92)
         Me.txtObservaciones.TabIndex = 24
-        Me.txtObservaciones.ValorMaximo = 0.0!
-        Me.txtObservaciones.ValorMinimo = 0.0!
+        Me.txtObservaciones.ValorMaximo = 0R
+        Me.txtObservaciones.ValorMinimo = 0R
         '
         'txtPeso
         '
@@ -78,8 +77,7 @@ Partial Class frmWstepArticuloSecundario
         Me.txtPeso.EsUnicoID = 0
         Me.txtPeso.EsUnicoTabla = ""
         Me.txtPeso.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPeso.Location = New System.Drawing.Point(827, 90)
-        Me.txtPeso.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtPeso.Location = New System.Drawing.Point(586, 75)
         Me.txtPeso.Minimo = 0
         Me.txtPeso.Modificado = False
         Me.txtPeso.Name = "txtPeso"
@@ -88,11 +86,11 @@ Partial Class frmWstepArticuloSecundario
         Me.txtPeso.Numerico_SeparadorMiles = False
         Me.txtPeso.Obligatorio = False
         Me.txtPeso.ParametroID = 0
-        Me.txtPeso.Size = New System.Drawing.Size(73, 24)
+        Me.txtPeso.Size = New System.Drawing.Size(56, 21)
         Me.txtPeso.TabIndex = 9
         Me.txtPeso.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.txtPeso.ValorMaximo = 0.0!
-        Me.txtPeso.ValorMinimo = 0.0!
+        Me.txtPeso.ValorMaximo = 0R
+        Me.txtPeso.ValorMinimo = 0R
         '
         'txtParticulares
         '
@@ -102,8 +100,7 @@ Partial Class frmWstepArticuloSecundario
         Me.txtParticulares.EsUnicoID = 0
         Me.txtParticulares.EsUnicoTabla = ""
         Me.txtParticulares.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtParticulares.Location = New System.Drawing.Point(180, 225)
-        Me.txtParticulares.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtParticulares.Location = New System.Drawing.Point(101, 185)
         Me.txtParticulares.MaxLength = 4000
         Me.txtParticulares.Minimo = 0
         Me.txtParticulares.Modificado = False
@@ -113,10 +110,10 @@ Partial Class frmWstepArticuloSecundario
         Me.txtParticulares.Numerico_SeparadorMiles = False
         Me.txtParticulares.Obligatorio = False
         Me.txtParticulares.ParametroID = 0
-        Me.txtParticulares.Size = New System.Drawing.Size(720, 24)
+        Me.txtParticulares.Size = New System.Drawing.Size(541, 21)
         Me.txtParticulares.TabIndex = 13
-        Me.txtParticulares.ValorMaximo = 0.0!
-        Me.txtParticulares.ValorMinimo = 0.0!
+        Me.txtParticulares.ValorMaximo = 0R
+        Me.txtParticulares.ValorMinimo = 0R
         '
         'txtGenericas
         '
@@ -126,8 +123,7 @@ Partial Class frmWstepArticuloSecundario
         Me.txtGenericas.EsUnicoID = 0
         Me.txtGenericas.EsUnicoTabla = ""
         Me.txtGenericas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtGenericas.Location = New System.Drawing.Point(180, 127)
-        Me.txtGenericas.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtGenericas.Location = New System.Drawing.Point(101, 105)
         Me.txtGenericas.MaxLength = 4000
         Me.txtGenericas.Minimo = 0
         Me.txtGenericas.Modificado = False
@@ -138,10 +134,10 @@ Partial Class frmWstepArticuloSecundario
         Me.txtGenericas.Numerico_SeparadorMiles = False
         Me.txtGenericas.Obligatorio = False
         Me.txtGenericas.ParametroID = 0
-        Me.txtGenericas.Size = New System.Drawing.Size(720, 90)
+        Me.txtGenericas.Size = New System.Drawing.Size(541, 74)
         Me.txtGenericas.TabIndex = 11
-        Me.txtGenericas.ValorMaximo = 0.0!
-        Me.txtGenericas.ValorMinimo = 0.0!
+        Me.txtGenericas.ValorMaximo = 0R
+        Me.txtGenericas.ValorMinimo = 0R
         '
         'txtCajasPalet
         '
@@ -151,8 +147,7 @@ Partial Class frmWstepArticuloSecundario
         Me.txtCajasPalet.EsUnicoID = 0
         Me.txtCajasPalet.EsUnicoTabla = ""
         Me.txtCajasPalet.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCajasPalet.Location = New System.Drawing.Point(827, 57)
-        Me.txtCajasPalet.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtCajasPalet.Location = New System.Drawing.Point(586, 48)
         Me.txtCajasPalet.MaxLength = 9
         Me.txtCajasPalet.Minimo = 0
         Me.txtCajasPalet.Modificado = False
@@ -162,11 +157,11 @@ Partial Class frmWstepArticuloSecundario
         Me.txtCajasPalet.Numerico_SeparadorMiles = False
         Me.txtCajasPalet.Obligatorio = False
         Me.txtCajasPalet.ParametroID = 0
-        Me.txtCajasPalet.Size = New System.Drawing.Size(73, 24)
+        Me.txtCajasPalet.Size = New System.Drawing.Size(56, 21)
         Me.txtCajasPalet.TabIndex = 7
         Me.txtCajasPalet.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.txtCajasPalet.ValorMaximo = 0.0!
-        Me.txtCajasPalet.ValorMinimo = 0.0!
+        Me.txtCajasPalet.ValorMaximo = 0R
+        Me.txtCajasPalet.ValorMinimo = 0R
         '
         'txtSeparadores
         '
@@ -176,8 +171,7 @@ Partial Class frmWstepArticuloSecundario
         Me.txtSeparadores.EsUnicoID = 0
         Me.txtSeparadores.EsUnicoTabla = ""
         Me.txtSeparadores.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtSeparadores.Location = New System.Drawing.Point(827, 23)
-        Me.txtSeparadores.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtSeparadores.Location = New System.Drawing.Point(586, 21)
         Me.txtSeparadores.MaxLength = 9
         Me.txtSeparadores.Minimo = 0
         Me.txtSeparadores.Modificado = False
@@ -187,79 +181,72 @@ Partial Class frmWstepArticuloSecundario
         Me.txtSeparadores.Numerico_SeparadorMiles = False
         Me.txtSeparadores.Obligatorio = False
         Me.txtSeparadores.ParametroID = 0
-        Me.txtSeparadores.Size = New System.Drawing.Size(73, 24)
+        Me.txtSeparadores.Size = New System.Drawing.Size(56, 21)
         Me.txtSeparadores.TabIndex = 3
         Me.txtSeparadores.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.txtSeparadores.ValorMaximo = 0.0!
-        Me.txtSeparadores.ValorMinimo = 0.0!
+        Me.txtSeparadores.ValorMaximo = 0R
+        Me.txtSeparadores.ValorMinimo = 0R
         '
         'cboCajaID
         '
         Me.cboCajaID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.cboCajaID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cboCajaID.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cboCajaID.Location = New System.Drawing.Point(180, 25)
-        Me.cboCajaID.Margin = New System.Windows.Forms.Padding(4)
+        Me.cboCajaID.Location = New System.Drawing.Point(101, 22)
         Me.cboCajaID.Name = "cboCajaID"
-        Me.cboCajaID.Size = New System.Drawing.Size(424, 26)
+        Me.cboCajaID.Size = New System.Drawing.Size(319, 23)
         Me.cboCajaID.TabIndex = 1
         '
         'Label1
         '
-        Me.Label1.Location = New System.Drawing.Point(21, 261)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.Location = New System.Drawing.Point(16, 212)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(151, 26)
+        Me.Label1.Size = New System.Drawing.Size(79, 21)
         Me.Label1.TabIndex = 23
         Me.Label1.Text = "Observaciones"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lblPeso
         '
-        Me.lblPeso.Location = New System.Drawing.Point(668, 90)
-        Me.lblPeso.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblPeso.Location = New System.Drawing.Point(504, 76)
         Me.lblPeso.Name = "lblPeso"
-        Me.lblPeso.Size = New System.Drawing.Size(151, 26)
+        Me.lblPeso.Size = New System.Drawing.Size(76, 21)
         Me.lblPeso.TabIndex = 8
         Me.lblPeso.Text = "Peso"
         Me.lblPeso.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lblParticulares
         '
-        Me.lblParticulares.Location = New System.Drawing.Point(21, 228)
-        Me.lblParticulares.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblParticulares.Location = New System.Drawing.Point(16, 185)
         Me.lblParticulares.Name = "lblParticulares"
-        Me.lblParticulares.Size = New System.Drawing.Size(151, 26)
+        Me.lblParticulares.Size = New System.Drawing.Size(79, 21)
         Me.lblParticulares.TabIndex = 12
         Me.lblParticulares.Text = "Particulares"
         Me.lblParticulares.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lblGenericas
         '
-        Me.lblGenericas.Location = New System.Drawing.Point(21, 129)
-        Me.lblGenericas.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblGenericas.Location = New System.Drawing.Point(16, 105)
         Me.lblGenericas.Name = "lblGenericas"
-        Me.lblGenericas.Size = New System.Drawing.Size(151, 26)
+        Me.lblGenericas.Size = New System.Drawing.Size(79, 21)
         Me.lblGenericas.TabIndex = 10
         Me.lblGenericas.Text = "Genericas"
         Me.lblGenericas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lblCajasPalet
         '
-        Me.lblCajasPalet.Location = New System.Drawing.Point(668, 59)
-        Me.lblCajasPalet.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblCajasPalet.Location = New System.Drawing.Point(504, 51)
         Me.lblCajasPalet.Name = "lblCajasPalet"
-        Me.lblCajasPalet.Size = New System.Drawing.Size(151, 26)
+        Me.lblCajasPalet.Size = New System.Drawing.Size(76, 21)
         Me.lblCajasPalet.TabIndex = 6
         Me.lblCajasPalet.Text = "Cajas palet"
         Me.lblCajasPalet.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lblSeparadores
         '
-        Me.lblSeparadores.Location = New System.Drawing.Point(668, 26)
-        Me.lblSeparadores.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblSeparadores.Location = New System.Drawing.Point(504, 24)
         Me.lblSeparadores.Name = "lblSeparadores"
-        Me.lblSeparadores.Size = New System.Drawing.Size(151, 26)
+        Me.lblSeparadores.Size = New System.Drawing.Size(76, 21)
         Me.lblSeparadores.TabIndex = 2
         Me.lblSeparadores.Text = "Separadores"
         Me.lblSeparadores.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -267,10 +254,9 @@ Partial Class frmWstepArticuloSecundario
         'lblCajaID
         '
         Me.lblCajaID.Enabled = False
-        Me.lblCajaID.Location = New System.Drawing.Point(21, 27)
-        Me.lblCajaID.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblCajaID.Location = New System.Drawing.Point(16, 22)
         Me.lblCajaID.Name = "lblCajaID"
-        Me.lblCajaID.Size = New System.Drawing.Size(151, 26)
+        Me.lblCajaID.Size = New System.Drawing.Size(79, 21)
         Me.lblCajaID.TabIndex = 0
         Me.lblCajaID.Text = "Caja"
         Me.lblCajaID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -296,27 +282,26 @@ Partial Class frmWstepArticuloSecundario
         Me.panContenidos.Controls.Add(Me.txtParticulares)
         Me.panContenidos.Controls.Add(Me.txtPeso)
         Me.panContenidos.Controls.Add(Me.txtObservaciones)
-        Me.panContenidos.Location = New System.Drawing.Point(16, 16)
-        Me.panContenidos.Margin = New System.Windows.Forms.Padding(4)
+        Me.panContenidos.Location = New System.Drawing.Point(12, 13)
         Me.panContenidos.Name = "panContenidos"
-        Me.panContenidos.Size = New System.Drawing.Size(929, 435)
+        Me.panContenidos.Size = New System.Drawing.Size(656, 353)
         Me.panContenidos.TabIndex = 0
         '
         'cboProducto
         '
         Me.cboProducto.FormattingEnabled = True
-        Me.cboProducto.Location = New System.Drawing.Point(180, 59)
-        Me.cboProducto.Margin = New System.Windows.Forms.Padding(4, 2, 4, 2)
+        Me.cboProducto.Location = New System.Drawing.Point(101, 50)
+        Me.cboProducto.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.cboProducto.Name = "cboProducto"
-        Me.cboProducto.Size = New System.Drawing.Size(424, 24)
+        Me.cboProducto.Size = New System.Drawing.Size(319, 21)
         Me.cboProducto.TabIndex = 5
         '
         'Label8
         '
-        Me.Label8.Location = New System.Drawing.Point(21, 54)
-        Me.Label8.Margin = New System.Windows.Forms.Padding(5, 0, 5, 0)
+        Me.Label8.Location = New System.Drawing.Point(16, 44)
+        Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(136, 32)
+        Me.Label8.Size = New System.Drawing.Size(79, 26)
         Me.Label8.TabIndex = 4
         Me.Label8.Text = "Producto"
         Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -326,19 +311,17 @@ Partial Class frmWstepArticuloSecundario
         Me.btnPrimario.FlatAppearance.BorderSize = 0
         Me.btnPrimario.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnPrimario.Image = Global.La_Andaluza.My.Resources.Resources.agenda
-        Me.btnPrimario.Location = New System.Drawing.Point(867, 377)
-        Me.btnPrimario.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnPrimario.Location = New System.Drawing.Point(616, 308)
         Me.btnPrimario.Name = "btnPrimario"
-        Me.btnPrimario.Size = New System.Drawing.Size(35, 37)
+        Me.btnPrimario.Size = New System.Drawing.Size(26, 30)
         Me.btnPrimario.TabIndex = 27
         Me.btnPrimario.UseVisualStyleBackColor = True
         '
         'lPrimario
         '
-        Me.lPrimario.Location = New System.Drawing.Point(21, 384)
-        Me.lPrimario.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lPrimario.Location = New System.Drawing.Point(16, 312)
         Me.lPrimario.Name = "lPrimario"
-        Me.lPrimario.Size = New System.Drawing.Size(151, 26)
+        Me.lPrimario.Size = New System.Drawing.Size(87, 21)
         Me.lPrimario.TabIndex = 25
         Me.lPrimario.Text = "Articulo primario"
         Me.lPrimario.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -352,8 +335,7 @@ Partial Class frmWstepArticuloSecundario
         Me.txtDescripcionPrimario.EsUnicoID = 0
         Me.txtDescripcionPrimario.EsUnicoTabla = ""
         Me.txtDescripcionPrimario.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtDescripcionPrimario.Location = New System.Drawing.Point(180, 381)
-        Me.txtDescripcionPrimario.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtDescripcionPrimario.Location = New System.Drawing.Point(101, 312)
         Me.txtDescripcionPrimario.MaxLength = 4000
         Me.txtDescripcionPrimario.Minimo = 0
         Me.txtDescripcionPrimario.Modificado = False
@@ -363,18 +345,17 @@ Partial Class frmWstepArticuloSecundario
         Me.txtDescripcionPrimario.Numerico_SeparadorMiles = False
         Me.txtDescripcionPrimario.Obligatorio = False
         Me.txtDescripcionPrimario.ParametroID = 0
-        Me.txtDescripcionPrimario.Size = New System.Drawing.Size(677, 24)
+        Me.txtDescripcionPrimario.Size = New System.Drawing.Size(509, 21)
         Me.txtDescripcionPrimario.TabIndex = 26
-        Me.txtDescripcionPrimario.ValorMaximo = 0.0!
-        Me.txtDescripcionPrimario.ValorMinimo = 0.0!
+        Me.txtDescripcionPrimario.ValorMaximo = 0R
+        Me.txtDescripcionPrimario.ValorMinimo = 0R
         '
         'frmWstepArticuloSecundario
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(959, 472)
+        Me.ClientSize = New System.Drawing.Size(674, 384)
         Me.Controls.Add(Me.panContenidos)
-        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frmWstepArticuloSecundario"
         Me.Text = "frmWstepArticuloSecundario"
         Me.panContenidos.ResumeLayout(False)

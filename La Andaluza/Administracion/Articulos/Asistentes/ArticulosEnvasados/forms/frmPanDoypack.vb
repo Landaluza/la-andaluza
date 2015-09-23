@@ -104,7 +104,8 @@ Public Class frmPanDoypack
     End Function
 
     Private Sub frmPanDoypack_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.Pantalla.centerIn(Me.Pancontenidos, Me)
+        MsgBox("hola")
+        'BasesParaCompatibilidad.Pantalla.centerIn(Me.Pancontenidos, Me)
     End Sub
 
     Private Sub tsadd_Click(sender As System.Object, e As System.EventArgs) Handles tsadd.Click

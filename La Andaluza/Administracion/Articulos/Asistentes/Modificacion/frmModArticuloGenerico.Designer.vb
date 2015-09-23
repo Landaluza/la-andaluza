@@ -44,6 +44,7 @@ Partial Class frmModArticuloGenerico
         '
         'slGeneral_Extras
         '
+        Me.slGeneral_Extras.BackColor = System.Drawing.SystemColors.Control
         Me.slGeneral_Extras.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.slGeneral_Extras.Dock = System.Windows.Forms.DockStyle.Fill
         Me.slGeneral_Extras.Location = New System.Drawing.Point(0, 50)
@@ -54,13 +55,15 @@ Partial Class frmModArticuloGenerico
         '
         Me.slGeneral_Extras.Panel1.Controls.Add(Me.slGeneral_detalles)
         Me.slGeneral_Extras.Size = New System.Drawing.Size(1584, 811)
-        Me.slGeneral_Extras.SplitterDistance = 527
+        Me.slGeneral_Extras.SplitterDistance = 603
         Me.slGeneral_Extras.TabIndex = 0
         '
         'slGeneral_detalles
         '
+        Me.slGeneral_detalles.BackColor = System.Drawing.SystemColors.Menu
         Me.slGeneral_detalles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.slGeneral_detalles.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.slGeneral_detalles.IsSplitterFixed = True
         Me.slGeneral_detalles.Location = New System.Drawing.Point(0, 0)
         Me.slGeneral_detalles.Name = "slGeneral_detalles"
         '
@@ -71,8 +74,8 @@ Partial Class frmModArticuloGenerico
         'slGeneral_detalles.Panel2
         '
         Me.slGeneral_detalles.Panel2.AutoScroll = True
-        Me.slGeneral_detalles.Size = New System.Drawing.Size(1584, 527)
-        Me.slGeneral_detalles.SplitterDistance = 751
+        Me.slGeneral_detalles.Size = New System.Drawing.Size(1584, 603)
+        Me.slGeneral_detalles.SplitterDistance = 614
         Me.slGeneral_detalles.TabIndex = 0
         '
         'ToolStrip1

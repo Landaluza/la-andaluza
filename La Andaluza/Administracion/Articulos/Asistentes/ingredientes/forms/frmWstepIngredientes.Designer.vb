@@ -106,14 +106,15 @@ Partial Class frmWstepIngredientes
         '
         Me.Panel1.Controls.Add(Me.SplitContainer1)
         Me.Panel1.Location = New System.Drawing.Point(12, 12)
+        Me.Panel1.MinimumSize = New System.Drawing.Size(901, 470)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(901, 470)
         Me.Panel1.TabIndex = 1000000021
         '
         'SplitContainer1
         '
-        Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitContainer1.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainer1.MinimumSize = New System.Drawing.Size(901, 460)
         Me.SplitContainer1.Name = "SplitContainer1"
         '
         'SplitContainer1.Panel1
@@ -149,7 +150,7 @@ Partial Class frmWstepIngredientes
         Me.btnAddTProducto.FlatAppearance.BorderSize = 0
         Me.btnAddTProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAddTProducto.Image = Global.La_Andaluza.My.Resources.Resources.edit_add_2
-        Me.btnAddTProducto.Location = New System.Drawing.Point(457, 254)
+        Me.btnAddTProducto.Location = New System.Drawing.Point(449, 255)
         Me.btnAddTProducto.Name = "btnAddTProducto"
         Me.btnAddTProducto.Size = New System.Drawing.Size(20, 23)
         Me.btnAddTProducto.TabIndex = 1000000018
@@ -200,7 +201,7 @@ Partial Class frmWstepIngredientes
         '
         Me.cbCreartipoProducto.AutoSize = True
         Me.cbCreartipoProducto.Location = New System.Drawing.Point(26, 301)
-        Me.cbCreartipoProducto.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.cbCreartipoProducto.Margin = New System.Windows.Forms.Padding(2)
         Me.cbCreartipoProducto.Name = "cbCreartipoProducto"
         Me.cbCreartipoProducto.Size = New System.Drawing.Size(105, 17)
         Me.cbCreartipoProducto.TabIndex = 12
@@ -219,10 +220,10 @@ Partial Class frmWstepIngredientes
         Me.panNuevoTipoProducto.Controls.Add(Label2)
         Me.panNuevoTipoProducto.Controls.Add(Me.cbMedidas)
         Me.panNuevoTipoProducto.Enabled = False
-        Me.panNuevoTipoProducto.Location = New System.Drawing.Point(26, 323)
-        Me.panNuevoTipoProducto.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.panNuevoTipoProducto.Location = New System.Drawing.Point(20, 323)
+        Me.panNuevoTipoProducto.Margin = New System.Windows.Forms.Padding(2)
         Me.panNuevoTipoProducto.Name = "panNuevoTipoProducto"
-        Me.panNuevoTipoProducto.Size = New System.Drawing.Size(432, 121)
+        Me.panNuevoTipoProducto.Size = New System.Drawing.Size(438, 121)
         Me.panNuevoTipoProducto.TabIndex = 11
         '
         'Label1
@@ -305,10 +306,10 @@ Partial Class frmWstepIngredientes
         '
         Me.pantipoProducto.Controls.Add(Me.cboTipoProducto)
         Me.pantipoProducto.Controls.Add(Me.Label3)
-        Me.pantipoProducto.Location = New System.Drawing.Point(26, 250)
-        Me.pantipoProducto.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.pantipoProducto.Location = New System.Drawing.Point(20, 250)
+        Me.pantipoProducto.Margin = New System.Windows.Forms.Padding(2)
         Me.pantipoProducto.Name = "pantipoProducto"
-        Me.pantipoProducto.Size = New System.Drawing.Size(431, 33)
+        Me.pantipoProducto.Size = New System.Drawing.Size(424, 33)
         Me.pantipoProducto.TabIndex = 10
         '
         'cboTipoProducto
@@ -316,12 +317,12 @@ Partial Class frmWstepIngredientes
         Me.cboTipoProducto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cboTipoProducto.Location = New System.Drawing.Point(88, 5)
         Me.cboTipoProducto.Name = "cboTipoProducto"
-        Me.cboTipoProducto.Size = New System.Drawing.Size(344, 23)
+        Me.cboTipoProducto.Size = New System.Drawing.Size(318, 23)
         Me.cboTipoProducto.TabIndex = 4
         '
         'Label3
         '
-        Me.Label3.Location = New System.Drawing.Point(-2, 5)
+        Me.Label3.Location = New System.Drawing.Point(3, 5)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(72, 21)
         Me.Label3.TabIndex = 3
@@ -391,7 +392,7 @@ Partial Class frmWstepIngredientes
         Me.txtDescripcion.Numerico_SeparadorMiles = False
         Me.txtDescripcion.Obligatorio = False
         Me.txtDescripcion.ParametroID = 0
-        Me.txtDescripcion.Size = New System.Drawing.Size(344, 55)
+        Me.txtDescripcion.Size = New System.Drawing.Size(318, 55)
         Me.txtDescripcion.TabIndex = 6
         Me.txtDescripcion.ValorMaximo = 0R
         Me.txtDescripcion.ValorMinimo = 0R
@@ -445,7 +446,7 @@ Partial Class frmWstepIngredientes
         Me.txtObservaciones.Numerico_SeparadorMiles = False
         Me.txtObservaciones.Obligatorio = False
         Me.txtObservaciones.ParametroID = 0
-        Me.txtObservaciones.Size = New System.Drawing.Size(344, 55)
+        Me.txtObservaciones.Size = New System.Drawing.Size(318, 55)
         Me.txtObservaciones.TabIndex = 8
         Me.txtObservaciones.ValorMaximo = 0R
         Me.txtObservaciones.ValorMinimo = 0R
@@ -475,7 +476,7 @@ Partial Class frmWstepIngredientes
         Me.tbpCertificados.Controls.Add(Me.gbCertificados)
         Me.tbpCertificados.Location = New System.Drawing.Point(4, 22)
         Me.tbpCertificados.Name = "tbpCertificados"
-        Me.tbpCertificados.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+        Me.tbpCertificados.Padding = New System.Windows.Forms.Padding(3)
         Me.tbpCertificados.Size = New System.Drawing.Size(366, 427)
         Me.tbpCertificados.TabIndex = 0
         Me.tbpCertificados.Text = "Certificados"
@@ -498,8 +499,8 @@ Partial Class frmWstepIngredientes
         Me.tbpCondiciones.Controls.Add(Me.Label11)
         Me.tbpCondiciones.Location = New System.Drawing.Point(4, 22)
         Me.tbpCondiciones.Name = "tbpCondiciones"
-        Me.tbpCondiciones.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
-        Me.tbpCondiciones.Size = New System.Drawing.Size(678, 427)
+        Me.tbpCondiciones.Padding = New System.Windows.Forms.Padding(3)
+        Me.tbpCondiciones.Size = New System.Drawing.Size(366, 427)
         Me.tbpCondiciones.TabIndex = 1
         Me.tbpCondiciones.Text = "Condiciones almacenamiento"
         Me.tbpCondiciones.UseVisualStyleBackColor = True
@@ -520,7 +521,7 @@ Partial Class frmWstepIngredientes
         Me.tbpResiduos.Controls.Add(Me.Label10)
         Me.tbpResiduos.Location = New System.Drawing.Point(4, 22)
         Me.tbpResiduos.Name = "tbpResiduos"
-        Me.tbpResiduos.Size = New System.Drawing.Size(678, 427)
+        Me.tbpResiduos.Size = New System.Drawing.Size(366, 427)
         Me.tbpResiduos.TabIndex = 2
         Me.tbpResiduos.Text = "Gestion residuos"
         Me.tbpResiduos.UseVisualStyleBackColor = True
@@ -542,8 +543,9 @@ Partial Class frmWstepIngredientes
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(949, 532)
         Me.Controls.Add(Me.Panel1)
+        Me.MinimumSize = New System.Drawing.Size(965, 571)
         Me.Name = "frmWstepIngredientes"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "frmWstepIngredientes"
         Me.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel1.ResumeLayout(False)

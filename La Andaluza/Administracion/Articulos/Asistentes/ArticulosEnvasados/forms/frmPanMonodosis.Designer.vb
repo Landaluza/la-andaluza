@@ -24,6 +24,8 @@ Partial Class frmPanMonodosis
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.Pancontenidos = New System.Windows.Forms.Panel()
+        Me.txtCantidad = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.cboformato = New System.Windows.Forms.ComboBox()
         Me.btnaddMarcas = New System.Windows.Forms.Button()
         Me.btnverMarcas = New System.Windows.Forms.Button()
@@ -41,8 +43,6 @@ Partial Class frmPanMonodosis
         Me.cbEnvasado = New System.Windows.Forms.CheckBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.txtCantidad = New System.Windows.Forms.TextBox()
-        Me.Label6 = New System.Windows.Forms.Label()
         Me.Pancontenidos.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -64,18 +64,34 @@ Partial Class frmPanMonodosis
         Me.Pancontenidos.Controls.Add(Me.Label5)
         Me.Pancontenidos.Controls.Add(Me.cboMarca)
         Me.Pancontenidos.Controls.Add(Me.Label2)
-        Me.Pancontenidos.Controls.Add(Me.Panel1)
-        Me.Pancontenidos.Location = New System.Drawing.Point(12, 26)
+        Me.Pancontenidos.Location = New System.Drawing.Point(12, 33)
         Me.Pancontenidos.Name = "Pancontenidos"
-        Me.Pancontenidos.Size = New System.Drawing.Size(436, 272)
+        Me.Pancontenidos.Size = New System.Drawing.Size(444, 301)
         Me.Pancontenidos.TabIndex = 0
+        '
+        'txtCantidad
+        '
+        Me.txtCantidad.Location = New System.Drawing.Point(3, 275)
+        Me.txtCantidad.MaxLength = 13
+        Me.txtCantidad.Name = "txtCantidad"
+        Me.txtCantidad.Size = New System.Drawing.Size(102, 20)
+        Me.txtCantidad.TabIndex = 66
+        '
+        'Label6
+        '
+        Me.Label6.Location = New System.Drawing.Point(0, 251)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(436, 21)
+        Me.Label6.TabIndex = 65
+        Me.Label6.Text = "Cantidad por matricula"
+        Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'cboformato
         '
         Me.cboformato.FormattingEnabled = True
-        Me.cboformato.Location = New System.Drawing.Point(0, 23)
+        Me.cboformato.Location = New System.Drawing.Point(6, 20)
         Me.cboformato.Name = "cboformato"
-        Me.cboformato.Size = New System.Drawing.Size(437, 21)
+        Me.cboformato.Size = New System.Drawing.Size(433, 21)
         Me.cboformato.TabIndex = 0
         '
         'btnaddMarcas
@@ -104,15 +120,15 @@ Partial Class frmPanMonodosis
         '
         'txtEan
         '
-        Me.txtEan.Location = New System.Drawing.Point(0, 204)
+        Me.txtEan.Location = New System.Drawing.Point(3, 228)
         Me.txtEan.MaxLength = 13
         Me.txtEan.Name = "txtEan"
-        Me.txtEan.Size = New System.Drawing.Size(437, 20)
+        Me.txtEan.Size = New System.Drawing.Size(161, 20)
         Me.txtEan.TabIndex = 10
         '
         'Label4
         '
-        Me.Label4.Location = New System.Drawing.Point(0, 183)
+        Me.Label4.Location = New System.Drawing.Point(3, 204)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(436, 21)
         Me.Label4.TabIndex = 9
@@ -122,15 +138,15 @@ Partial Class frmPanMonodosis
         'cboSccNC
         '
         Me.cboSccNC.FormattingEnabled = True
-        Me.cboSccNC.Location = New System.Drawing.Point(0, 163)
+        Me.cboSccNC.Location = New System.Drawing.Point(3, 181)
         Me.cboSccNC.Margin = New System.Windows.Forms.Padding(2)
         Me.cboSccNC.Name = "cboSccNC"
-        Me.cboSccNC.Size = New System.Drawing.Size(437, 21)
+        Me.cboSccNC.Size = New System.Drawing.Size(181, 21)
         Me.cboSccNC.TabIndex = 8
         '
         'Label3
         '
-        Me.Label3.Location = New System.Drawing.Point(0, 142)
+        Me.Label3.Location = New System.Drawing.Point(3, 158)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(436, 21)
         Me.Label3.TabIndex = 7
@@ -140,16 +156,16 @@ Partial Class frmPanMonodosis
         'cboCaja
         '
         Me.cboCaja.FormattingEnabled = True
-        Me.cboCaja.Location = New System.Drawing.Point(0, 123)
+        Me.cboCaja.Location = New System.Drawing.Point(3, 135)
         Me.cboCaja.Margin = New System.Windows.Forms.Padding(2)
         Me.cboCaja.Name = "cboCaja"
-        Me.cboCaja.Size = New System.Drawing.Size(437, 21)
+        Me.cboCaja.Size = New System.Drawing.Size(434, 21)
         Me.cboCaja.TabIndex = 6
         '
         'lCaja
         '
         Me.lCaja.AutoSize = True
-        Me.lCaja.Location = New System.Drawing.Point(0, 109)
+        Me.lCaja.Location = New System.Drawing.Point(3, 120)
         Me.lCaja.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lCaja.Name = "lCaja"
         Me.lCaja.Size = New System.Drawing.Size(28, 13)
@@ -159,16 +175,16 @@ Partial Class frmPanMonodosis
         'cboProducto
         '
         Me.cboProducto.FormattingEnabled = True
-        Me.cboProducto.Location = New System.Drawing.Point(0, 89)
+        Me.cboProducto.Location = New System.Drawing.Point(3, 97)
         Me.cboProducto.Margin = New System.Windows.Forms.Padding(2)
         Me.cboProducto.Name = "cboProducto"
-        Me.cboProducto.Size = New System.Drawing.Size(437, 21)
+        Me.cboProducto.Size = New System.Drawing.Size(434, 21)
         Me.cboProducto.TabIndex = 4
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(0, 76)
+        Me.Label5.Location = New System.Drawing.Point(3, 82)
         Me.Label5.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(50, 13)
@@ -178,7 +194,7 @@ Partial Class frmPanMonodosis
         'cboMarca
         '
         Me.cboMarca.FormattingEnabled = True
-        Me.cboMarca.Location = New System.Drawing.Point(0, 56)
+        Me.cboMarca.Location = New System.Drawing.Point(3, 59)
         Me.cboMarca.Margin = New System.Windows.Forms.Padding(2)
         Me.cboMarca.Name = "cboMarca"
         Me.cboMarca.Size = New System.Drawing.Size(390, 21)
@@ -187,7 +203,7 @@ Partial Class frmPanMonodosis
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(0, 42)
+        Me.Label2.Location = New System.Drawing.Point(3, 44)
         Me.Label2.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(37, 13)
@@ -198,8 +214,8 @@ Partial Class frmPanMonodosis
         '
         Me.Panel1.Controls.Add(Me.cbEnvasado)
         Me.Panel1.Controls.Add(Me.Label1)
-        Me.Panel1.Location = New System.Drawing.Point(0, 0)
-        Me.Panel1.Margin = New System.Windows.Forms.Padding(2)
+        Me.Panel1.Location = New System.Drawing.Point(18, 11)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(0)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(436, 28)
         Me.Panel1.TabIndex = 62
@@ -215,7 +231,7 @@ Partial Class frmPanMonodosis
         Me.cbEnvasado.Name = "cbEnvasado"
         Me.cbEnvasado.Size = New System.Drawing.Size(43, 28)
         Me.cbEnvasado.TabIndex = 1
-        Me.ToolTip1.SetToolTip(Me.cbEnvasado, "Desmarcar para monodosis de nueva creación. Marcar para monodosis ya creadas ante" & _
+        Me.ToolTip1.SetToolTip(Me.cbEnvasado, "Desmarcar para monodosis de nueva creación. Marcar para monodosis ya creadas ante" &
         "riormente que ya dispongan de un formato")
         Me.cbEnvasado.UseVisualStyleBackColor = True
         '
@@ -229,29 +245,13 @@ Partial Class frmPanMonodosis
         Me.Label1.Text = "Envasado"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'txtCantidad
-        '
-        Me.txtCantidad.Location = New System.Drawing.Point(-1, 249)
-        Me.txtCantidad.MaxLength = 13
-        Me.txtCantidad.Name = "txtCantidad"
-        Me.txtCantidad.Size = New System.Drawing.Size(437, 20)
-        Me.txtCantidad.TabIndex = 66
-        '
-        'Label6
-        '
-        Me.Label6.Location = New System.Drawing.Point(-1, 228)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(436, 21)
-        Me.Label6.TabIndex = 65
-        Me.Label6.Text = "Cantidad por matricula"
-        Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
         'frmPanMonodosis
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(460, 310)
+        Me.ClientSize = New System.Drawing.Size(460, 336)
         Me.Controls.Add(Me.Pancontenidos)
+        Me.Controls.Add(Me.Panel1)
         Me.Name = "frmPanMonodosis"
         Me.Text = "frmPanMonodosis"
         Me.Pancontenidos.ResumeLayout(False)

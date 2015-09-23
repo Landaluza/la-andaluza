@@ -23,44 +23,44 @@ Partial Class frmWstepArticuloTerciario
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.panContenidos = New System.Windows.Forms.Panel()
+        Me.butverCAbecera = New System.Windows.Forms.Button()
+        Me.butAdCabecera = New System.Windows.Forms.Button()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.txtanosCaducidad = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.cboCabeceraEtiqueta = New System.Windows.Forms.ComboBox()
         Me.cboPalet = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
+        Me.txtEan14 = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.cboMarca = New System.Windows.Forms.ComboBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
+        Me.txtean = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.cboSccNC = New System.Windows.Forms.ComboBox()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
+        Me.txtPesoIncluidoPalet = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.Label14 = New System.Windows.Forms.Label()
+        Me.txtLlevaSCC = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.Label15 = New System.Windows.Forms.Label()
+        Me.txtCajasPorCapa = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.Label16 = New System.Windows.Forms.Label()
+        Me.txtCapas = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.Label17 = New System.Windows.Forms.Label()
+        Me.txtPermiteApilar = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.chbCargarDos = New System.Windows.Forms.CheckBox()
+        Me.txtObservaciones = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.Label19 = New System.Windows.Forms.Label()
+        Me.txtCajas = New BasesParaCompatibilidad.CuadroDeTexto()
         Me.panSecundario = New System.Windows.Forms.Panel()
         Me.txtSecundario = New System.Windows.Forms.TextBox()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Label20 = New System.Windows.Forms.Label()
-        Me.cboCabeceraEtiqueta = New System.Windows.Forms.ComboBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.txtanosCaducidad = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.butAdCabecera = New System.Windows.Forms.Button()
-        Me.txtEan14 = New BasesParaCompatibilidad.CuadroDeTexto()
-        Me.txtean = New BasesParaCompatibilidad.CuadroDeTexto()
-        Me.txtPesoIncluidoPalet = New BasesParaCompatibilidad.CuadroDeTexto()
-        Me.txtLlevaSCC = New BasesParaCompatibilidad.CuadroDeTexto()
-        Me.txtCajasPorCapa = New BasesParaCompatibilidad.CuadroDeTexto()
-        Me.txtCapas = New BasesParaCompatibilidad.CuadroDeTexto()
-        Me.txtPermiteApilar = New BasesParaCompatibilidad.CuadroDeTexto()
-        Me.txtObservaciones = New BasesParaCompatibilidad.CuadroDeTexto()
-        Me.txtCajas = New BasesParaCompatibilidad.CuadroDeTexto()
-        Me.butverCAbecera = New System.Windows.Forms.Button()
         Me.panContenidos.SuspendLayout()
         Me.panSecundario.SuspendLayout()
         Me.SuspendLayout()
@@ -102,293 +102,96 @@ Partial Class frmWstepArticuloTerciario
         Me.panContenidos.Controls.Add(Me.Label19)
         Me.panContenidos.Controls.Add(Me.txtCajas)
         Me.panContenidos.Controls.Add(Me.panSecundario)
-        Me.panContenidos.Location = New System.Drawing.Point(45, 14)
-        Me.panContenidos.Margin = New System.Windows.Forms.Padding(5)
+        Me.panContenidos.Location = New System.Drawing.Point(34, 11)
+        Me.panContenidos.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.panContenidos.Name = "panContenidos"
-        Me.panContenidos.Size = New System.Drawing.Size(711, 452)
+        Me.panContenidos.Size = New System.Drawing.Size(533, 367)
         Me.panContenidos.TabIndex = 1
         '
-        'cboPalet
+        'butverCAbecera
         '
-        Me.cboPalet.FormattingEnabled = True
-        Me.cboPalet.Location = New System.Drawing.Point(207, 43)
-        Me.cboPalet.Margin = New System.Windows.Forms.Padding(4, 2, 4, 2)
-        Me.cboPalet.Name = "cboPalet"
-        Me.cboPalet.Size = New System.Drawing.Size(484, 24)
-        Me.cboPalet.TabIndex = 5
-        '
-        'Label1
-        '
-        Me.Label1.Location = New System.Drawing.Point(7, 43)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(5, 0, 5, 0)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(171, 24)
-        Me.Label1.TabIndex = 4
-        Me.Label1.Text = "Palet"
-        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label8
-        '
-        Me.Label8.Location = New System.Drawing.Point(374, 75)
-        Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(73, 24)
-        Me.Label8.TabIndex = 8
-        Me.Label8.Text = "EAN14"
-        Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Button1
-        '
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Image = Global.La_Andaluza.My.Resources.Resources.edit_add_2
-        Me.Button1.Location = New System.Drawing.Point(659, 13)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(4)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(32, 28)
-        Me.Button1.TabIndex = 3
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'Button2
-        '
-        Me.Button2.FlatAppearance.BorderSize = 0
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Image = Global.La_Andaluza.My.Resources.Resources.search_3
-        Me.Button2.Location = New System.Drawing.Point(622, 13)
-        Me.Button2.Margin = New System.Windows.Forms.Padding(4)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(36, 28)
-        Me.Button2.TabIndex = 2
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'cboMarca
-        '
-        Me.cboMarca.FormattingEnabled = True
-        Me.cboMarca.Location = New System.Drawing.Point(207, 15)
-        Me.cboMarca.Margin = New System.Windows.Forms.Padding(4, 2, 4, 2)
-        Me.cboMarca.Name = "cboMarca"
-        Me.cboMarca.Size = New System.Drawing.Size(411, 24)
-        Me.cboMarca.TabIndex = 1
-        '
-        'Label9
-        '
-        Me.Label9.Location = New System.Drawing.Point(7, 15)
-        Me.Label9.Margin = New System.Windows.Forms.Padding(5, 0, 5, 0)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(171, 24)
-        Me.Label9.TabIndex = 0
-        Me.Label9.Text = "Marca"
-        Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label10
-        '
-        Me.Label10.Location = New System.Drawing.Point(7, 74)
-        Me.Label10.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(128, 24)
-        Me.Label10.TabIndex = 6
-        Me.Label10.Text = "EAN13"
-        Me.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'cboSccNC
-        '
-        Me.cboSccNC.FormattingEnabled = True
-        Me.cboSccNC.Location = New System.Drawing.Point(207, 105)
-        Me.cboSccNC.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.cboSccNC.Name = "cboSccNC"
-        Me.cboSccNC.Size = New System.Drawing.Size(141, 24)
-        Me.cboSccNC.TabIndex = 11
-        '
-        'Label11
-        '
-        Me.Label11.Location = New System.Drawing.Point(7, 105)
-        Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(128, 24)
-        Me.Label11.TabIndex = 10
-        Me.Label11.Text = "SSCC no coforme"
-        Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label12
-        '
-        Me.Label12.Location = New System.Drawing.Point(7, 164)
-        Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(149, 22)
-        Me.Label12.TabIndex = 16
-        Me.Label12.Text = "Cajas"
-        Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label13
-        '
-        Me.Label13.Location = New System.Drawing.Point(7, 230)
-        Me.Label13.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(149, 24)
-        Me.Label13.TabIndex = 24
-        Me.Label13.Text = "Peso incluyendo palet"
-        Me.Label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label14
-        '
-        Me.Label14.Location = New System.Drawing.Point(7, 198)
-        Me.Label14.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(149, 24)
-        Me.Label14.TabIndex = 22
-        Me.Label14.Text = "Lleva SCC"
-        Me.Label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label15
-        '
-        Me.Label15.Location = New System.Drawing.Point(348, 164)
-        Me.Label15.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(111, 22)
-        Me.Label15.TabIndex = 18
-        Me.Label15.Text = "Cajas por capa"
-        Me.Label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label16
-        '
-        Me.Label16.Location = New System.Drawing.Point(570, 162)
-        Me.Label16.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(52, 22)
-        Me.Label16.TabIndex = 20
-        Me.Label16.Text = "Capas"
-        Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label17
-        '
-        Me.Label17.Location = New System.Drawing.Point(7, 265)
-        Me.Label17.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(115, 23)
-        Me.Label17.TabIndex = 26
-        Me.Label17.Text = "Permite apilar"
-        Me.Label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label18
-        '
-        Me.Label18.Location = New System.Drawing.Point(349, 265)
-        Me.Label18.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(98, 23)
-        Me.Label18.TabIndex = 28
-        Me.Label18.Text = "Cargar dos"
-        Me.Label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'chbCargarDos
-        '
-        Me.chbCargarDos.BackColor = System.Drawing.SystemColors.Control
-        Me.chbCargarDos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chbCargarDos.Location = New System.Drawing.Point(456, 265)
-        Me.chbCargarDos.Margin = New System.Windows.Forms.Padding(5)
-        Me.chbCargarDos.Name = "chbCargarDos"
-        Me.chbCargarDos.Size = New System.Drawing.Size(21, 26)
-        Me.chbCargarDos.TabIndex = 29
-        Me.chbCargarDos.UseVisualStyleBackColor = False
-        '
-        'Label19
-        '
-        Me.Label19.Location = New System.Drawing.Point(6, 301)
-        Me.Label19.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(149, 21)
-        Me.Label19.TabIndex = 30
-        Me.Label19.Text = "Observaciones"
-        Me.Label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'panSecundario
-        '
-        Me.panSecundario.Controls.Add(Me.txtSecundario)
-        Me.panSecundario.Controls.Add(Me.Button3)
-        Me.panSecundario.Controls.Add(Me.Label20)
-        Me.panSecundario.Location = New System.Drawing.Point(1, 380)
-        Me.panSecundario.Margin = New System.Windows.Forms.Padding(5)
-        Me.panSecundario.Name = "panSecundario"
-        Me.panSecundario.Size = New System.Drawing.Size(705, 44)
-        Me.panSecundario.TabIndex = 32
-        '
-        'txtSecundario
-        '
-        Me.txtSecundario.Enabled = False
-        Me.txtSecundario.Location = New System.Drawing.Point(205, 11)
-        Me.txtSecundario.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtSecundario.Name = "txtSecundario"
-        Me.txtSecundario.Size = New System.Drawing.Size(452, 22)
-        Me.txtSecundario.TabIndex = 1
-        '
-        'Button3
-        '
-        Me.Button3.FlatAppearance.BorderSize = 0
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Image = Global.La_Andaluza.My.Resources.Resources.agenda
-        Me.Button3.Location = New System.Drawing.Point(658, 5)
-        Me.Button3.Margin = New System.Windows.Forms.Padding(5)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(35, 34)
-        Me.Button3.TabIndex = 2
-        Me.Button3.UseVisualStyleBackColor = True
-        '
-        'Label20
-        '
-        Me.Label20.Location = New System.Drawing.Point(5, 12)
-        Me.Label20.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(149, 21)
-        Me.Label20.TabIndex = 0
-        Me.Label20.Text = "Secundario"
-        Me.Label20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'cboCabeceraEtiqueta
-        '
-        Me.cboCabeceraEtiqueta.FormattingEnabled = True
-        Me.cboCabeceraEtiqueta.Location = New System.Drawing.Point(456, 104)
-        Me.cboCabeceraEtiqueta.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.cboCabeceraEtiqueta.Name = "cboCabeceraEtiqueta"
-        Me.cboCabeceraEtiqueta.Size = New System.Drawing.Size(175, 24)
-        Me.cboCabeceraEtiqueta.TabIndex = 13
-        '
-        'Label2
-        '
-        Me.Label2.Location = New System.Drawing.Point(374, 108)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(73, 24)
-        Me.Label2.TabIndex = 12
-        Me.Label2.Text = "Cabecera"
-        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'txtanosCaducidad
-        '
-        Me.txtanosCaducidad.Location = New System.Drawing.Point(206, 134)
-        Me.txtanosCaducidad.Name = "txtanosCaducidad"
-        Me.txtanosCaducidad.Size = New System.Drawing.Size(142, 22)
-        Me.txtanosCaducidad.TabIndex = 15
-        '
-        'Label3
-        '
-        Me.Label3.Location = New System.Drawing.Point(7, 134)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(149, 22)
-        Me.Label3.TabIndex = 14
-        Me.Label3.Text = "Años caducidad"
-        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.butverCAbecera.FlatAppearance.BorderSize = 0
+        Me.butverCAbecera.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.butverCAbecera.Image = Global.La_Andaluza.My.Resources.Resources.search_3
+        Me.butverCAbecera.Location = New System.Drawing.Point(473, 83)
+        Me.butverCAbecera.Name = "butverCAbecera"
+        Me.butverCAbecera.Size = New System.Drawing.Size(27, 23)
+        Me.butverCAbecera.TabIndex = 34
+        Me.butverCAbecera.UseVisualStyleBackColor = True
         '
         'butAdCabecera
         '
         Me.butAdCabecera.FlatAppearance.BorderSize = 0
         Me.butAdCabecera.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.butAdCabecera.Image = Global.La_Andaluza.My.Resources.Resources.edit_add_2
-        Me.butAdCabecera.Location = New System.Drawing.Point(659, 102)
-        Me.butAdCabecera.Margin = New System.Windows.Forms.Padding(4)
+        Me.butAdCabecera.Location = New System.Drawing.Point(503, 83)
         Me.butAdCabecera.Name = "butAdCabecera"
-        Me.butAdCabecera.Size = New System.Drawing.Size(32, 28)
+        Me.butAdCabecera.Size = New System.Drawing.Size(27, 23)
         Me.butAdCabecera.TabIndex = 33
         Me.butAdCabecera.UseVisualStyleBackColor = True
+        '
+        'Label3
+        '
+        Me.Label3.Location = New System.Drawing.Point(5, 109)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(112, 18)
+        Me.Label3.TabIndex = 14
+        Me.Label3.Text = "Años caducidad"
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'txtanosCaducidad
+        '
+        Me.txtanosCaducidad.Location = New System.Drawing.Point(154, 109)
+        Me.txtanosCaducidad.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtanosCaducidad.Name = "txtanosCaducidad"
+        Me.txtanosCaducidad.Size = New System.Drawing.Size(108, 20)
+        Me.txtanosCaducidad.TabIndex = 15
+        '
+        'Label2
+        '
+        Me.Label2.Location = New System.Drawing.Point(280, 88)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(55, 20)
+        Me.Label2.TabIndex = 12
+        Me.Label2.Text = "Cabecera"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'cboCabeceraEtiqueta
+        '
+        Me.cboCabeceraEtiqueta.FormattingEnabled = True
+        Me.cboCabeceraEtiqueta.Location = New System.Drawing.Point(342, 84)
+        Me.cboCabeceraEtiqueta.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.cboCabeceraEtiqueta.Name = "cboCabeceraEtiqueta"
+        Me.cboCabeceraEtiqueta.Size = New System.Drawing.Size(132, 21)
+        Me.cboCabeceraEtiqueta.TabIndex = 13
+        '
+        'cboPalet
+        '
+        Me.cboPalet.FormattingEnabled = True
+        Me.cboPalet.Location = New System.Drawing.Point(155, 35)
+        Me.cboPalet.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.cboPalet.Name = "cboPalet"
+        Me.cboPalet.Size = New System.Drawing.Size(364, 21)
+        Me.cboPalet.TabIndex = 5
+        '
+        'Label1
+        '
+        Me.Label1.Location = New System.Drawing.Point(5, 35)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(128, 20)
+        Me.Label1.TabIndex = 4
+        Me.Label1.Text = "Palet"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label8
+        '
+        Me.Label8.Location = New System.Drawing.Point(280, 61)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(55, 20)
+        Me.Label8.TabIndex = 8
+        Me.Label8.Text = "EAN14"
+        Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'txtEan14
         '
@@ -398,8 +201,8 @@ Partial Class frmWstepArticuloTerciario
         Me.txtEan14.EsUnicoID = 0
         Me.txtEan14.EsUnicoTabla = ""
         Me.txtEan14.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtEan14.Location = New System.Drawing.Point(456, 73)
-        Me.txtEan14.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtEan14.Location = New System.Drawing.Point(342, 59)
+        Me.txtEan14.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtEan14.MaxLength = 18
         Me.txtEan14.Minimo = 0
         Me.txtEan14.Modificado = False
@@ -409,11 +212,61 @@ Partial Class frmWstepArticuloTerciario
         Me.txtEan14.Numerico_SeparadorMiles = False
         Me.txtEan14.Obligatorio = False
         Me.txtEan14.ParametroID = 0
-        Me.txtEan14.Size = New System.Drawing.Size(231, 24)
+        Me.txtEan14.Size = New System.Drawing.Size(174, 21)
         Me.txtEan14.TabIndex = 9
         Me.txtEan14.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.txtEan14.ValorMaximo = 0.0!
-        Me.txtEan14.ValorMinimo = 0.0!
+        Me.txtEan14.ValorMaximo = 0R
+        Me.txtEan14.ValorMinimo = 0R
+        '
+        'Button1
+        '
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Image = Global.La_Andaluza.My.Resources.Resources.edit_add_2
+        Me.Button1.Location = New System.Drawing.Point(494, 11)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(24, 23)
+        Me.Button1.TabIndex = 3
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'Button2
+        '
+        Me.Button2.FlatAppearance.BorderSize = 0
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button2.Image = Global.La_Andaluza.My.Resources.Resources.search_3
+        Me.Button2.Location = New System.Drawing.Point(466, 11)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(27, 23)
+        Me.Button2.TabIndex = 2
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'cboMarca
+        '
+        Me.cboMarca.FormattingEnabled = True
+        Me.cboMarca.Location = New System.Drawing.Point(155, 12)
+        Me.cboMarca.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.cboMarca.Name = "cboMarca"
+        Me.cboMarca.Size = New System.Drawing.Size(309, 21)
+        Me.cboMarca.TabIndex = 1
+        '
+        'Label9
+        '
+        Me.Label9.Location = New System.Drawing.Point(5, 12)
+        Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(128, 20)
+        Me.Label9.TabIndex = 0
+        Me.Label9.Text = "Marca"
+        Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label10
+        '
+        Me.Label10.Location = New System.Drawing.Point(5, 60)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(96, 20)
+        Me.Label10.TabIndex = 6
+        Me.Label10.Text = "EAN13"
+        Me.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'txtean
         '
@@ -423,8 +276,8 @@ Partial Class frmWstepArticuloTerciario
         Me.txtean.EsUnicoID = 0
         Me.txtean.EsUnicoTabla = ""
         Me.txtean.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtean.Location = New System.Drawing.Point(207, 74)
-        Me.txtean.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtean.Location = New System.Drawing.Point(155, 60)
+        Me.txtean.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtean.MaxLength = 13
         Me.txtean.Minimo = 0
         Me.txtean.Modificado = False
@@ -434,11 +287,47 @@ Partial Class frmWstepArticuloTerciario
         Me.txtean.Numerico_SeparadorMiles = False
         Me.txtean.Obligatorio = False
         Me.txtean.ParametroID = 0
-        Me.txtean.Size = New System.Drawing.Size(141, 24)
+        Me.txtean.Size = New System.Drawing.Size(107, 21)
         Me.txtean.TabIndex = 7
         Me.txtean.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.txtean.ValorMaximo = 0.0!
-        Me.txtean.ValorMinimo = 0.0!
+        Me.txtean.ValorMaximo = 0R
+        Me.txtean.ValorMinimo = 0R
+        '
+        'cboSccNC
+        '
+        Me.cboSccNC.FormattingEnabled = True
+        Me.cboSccNC.Location = New System.Drawing.Point(155, 85)
+        Me.cboSccNC.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.cboSccNC.Name = "cboSccNC"
+        Me.cboSccNC.Size = New System.Drawing.Size(107, 21)
+        Me.cboSccNC.TabIndex = 11
+        '
+        'Label11
+        '
+        Me.Label11.Location = New System.Drawing.Point(5, 85)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(96, 20)
+        Me.Label11.TabIndex = 10
+        Me.Label11.Text = "SSCC no coforme"
+        Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label12
+        '
+        Me.Label12.Location = New System.Drawing.Point(5, 133)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(112, 18)
+        Me.Label12.TabIndex = 16
+        Me.Label12.Text = "Cajas"
+        Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label13
+        '
+        Me.Label13.Location = New System.Drawing.Point(5, 187)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(112, 20)
+        Me.Label13.TabIndex = 24
+        Me.Label13.Text = "Peso incluyendo palet"
+        Me.Label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'txtPesoIncluidoPalet
         '
@@ -448,8 +337,8 @@ Partial Class frmWstepArticuloTerciario
         Me.txtPesoIncluidoPalet.EsUnicoID = 0
         Me.txtPesoIncluidoPalet.EsUnicoTabla = ""
         Me.txtPesoIncluidoPalet.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPesoIncluidoPalet.Location = New System.Drawing.Point(207, 230)
-        Me.txtPesoIncluidoPalet.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtPesoIncluidoPalet.Location = New System.Drawing.Point(155, 187)
+        Me.txtPesoIncluidoPalet.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtPesoIncluidoPalet.MaxLength = 9
         Me.txtPesoIncluidoPalet.Minimo = 0
         Me.txtPesoIncluidoPalet.Modificado = False
@@ -459,11 +348,20 @@ Partial Class frmWstepArticuloTerciario
         Me.txtPesoIncluidoPalet.Numerico_SeparadorMiles = False
         Me.txtPesoIncluidoPalet.Obligatorio = False
         Me.txtPesoIncluidoPalet.ParametroID = 0
-        Me.txtPesoIncluidoPalet.Size = New System.Drawing.Size(73, 24)
+        Me.txtPesoIncluidoPalet.Size = New System.Drawing.Size(56, 21)
         Me.txtPesoIncluidoPalet.TabIndex = 25
         Me.txtPesoIncluidoPalet.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.txtPesoIncluidoPalet.ValorMaximo = 0.0!
-        Me.txtPesoIncluidoPalet.ValorMinimo = 0.0!
+        Me.txtPesoIncluidoPalet.ValorMaximo = 0R
+        Me.txtPesoIncluidoPalet.ValorMinimo = 0R
+        '
+        'Label14
+        '
+        Me.Label14.Location = New System.Drawing.Point(5, 161)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(112, 20)
+        Me.Label14.TabIndex = 22
+        Me.Label14.Text = "Lleva SCC"
+        Me.Label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'txtLlevaSCC
         '
@@ -473,8 +371,8 @@ Partial Class frmWstepArticuloTerciario
         Me.txtLlevaSCC.EsUnicoID = 0
         Me.txtLlevaSCC.EsUnicoTabla = ""
         Me.txtLlevaSCC.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtLlevaSCC.Location = New System.Drawing.Point(207, 198)
-        Me.txtLlevaSCC.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtLlevaSCC.Location = New System.Drawing.Point(155, 161)
+        Me.txtLlevaSCC.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtLlevaSCC.MaxLength = 9
         Me.txtLlevaSCC.Minimo = 0
         Me.txtLlevaSCC.Modificado = False
@@ -484,11 +382,20 @@ Partial Class frmWstepArticuloTerciario
         Me.txtLlevaSCC.Numerico_SeparadorMiles = False
         Me.txtLlevaSCC.Obligatorio = False
         Me.txtLlevaSCC.ParametroID = 0
-        Me.txtLlevaSCC.Size = New System.Drawing.Size(39, 24)
+        Me.txtLlevaSCC.Size = New System.Drawing.Size(30, 21)
         Me.txtLlevaSCC.TabIndex = 23
         Me.txtLlevaSCC.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.txtLlevaSCC.ValorMaximo = 0.0!
-        Me.txtLlevaSCC.ValorMinimo = 0.0!
+        Me.txtLlevaSCC.ValorMaximo = 0R
+        Me.txtLlevaSCC.ValorMinimo = 0R
+        '
+        'Label15
+        '
+        Me.Label15.Location = New System.Drawing.Point(261, 133)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(84, 18)
+        Me.Label15.TabIndex = 18
+        Me.Label15.Text = "Cajas por capa"
+        Me.Label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'txtCajasPorCapa
         '
@@ -498,8 +405,8 @@ Partial Class frmWstepArticuloTerciario
         Me.txtCajasPorCapa.EsUnicoID = 0
         Me.txtCajasPorCapa.EsUnicoTabla = ""
         Me.txtCajasPorCapa.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCajasPorCapa.Location = New System.Drawing.Point(456, 162)
-        Me.txtCajasPorCapa.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtCajasPorCapa.Location = New System.Drawing.Point(352, 132)
+        Me.txtCajasPorCapa.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtCajasPorCapa.MaxLength = 9
         Me.txtCajasPorCapa.Minimo = 0
         Me.txtCajasPorCapa.Modificado = False
@@ -509,11 +416,20 @@ Partial Class frmWstepArticuloTerciario
         Me.txtCajasPorCapa.Numerico_SeparadorMiles = False
         Me.txtCajasPorCapa.Obligatorio = False
         Me.txtCajasPorCapa.ParametroID = 0
-        Me.txtCajasPorCapa.Size = New System.Drawing.Size(63, 24)
+        Me.txtCajasPorCapa.Size = New System.Drawing.Size(48, 21)
         Me.txtCajasPorCapa.TabIndex = 19
         Me.txtCajasPorCapa.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.txtCajasPorCapa.ValorMaximo = 0.0!
-        Me.txtCajasPorCapa.ValorMinimo = 0.0!
+        Me.txtCajasPorCapa.ValorMaximo = 0R
+        Me.txtCajasPorCapa.ValorMinimo = 0R
+        '
+        'Label16
+        '
+        Me.Label16.Location = New System.Drawing.Point(428, 132)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(39, 18)
+        Me.Label16.TabIndex = 20
+        Me.Label16.Text = "Capas"
+        Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'txtCapas
         '
@@ -523,8 +439,8 @@ Partial Class frmWstepArticuloTerciario
         Me.txtCapas.EsUnicoID = 0
         Me.txtCapas.EsUnicoTabla = ""
         Me.txtCapas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCapas.Location = New System.Drawing.Point(631, 162)
-        Me.txtCapas.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtCapas.Location = New System.Drawing.Point(473, 132)
+        Me.txtCapas.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtCapas.MaxLength = 9
         Me.txtCapas.Minimo = 0
         Me.txtCapas.Modificado = False
@@ -534,11 +450,20 @@ Partial Class frmWstepArticuloTerciario
         Me.txtCapas.Numerico_SeparadorMiles = False
         Me.txtCapas.Obligatorio = False
         Me.txtCapas.ParametroID = 0
-        Me.txtCapas.Size = New System.Drawing.Size(57, 24)
+        Me.txtCapas.Size = New System.Drawing.Size(44, 21)
         Me.txtCapas.TabIndex = 21
         Me.txtCapas.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.txtCapas.ValorMaximo = 0.0!
-        Me.txtCapas.ValorMinimo = 0.0!
+        Me.txtCapas.ValorMaximo = 0R
+        Me.txtCapas.ValorMinimo = 0R
+        '
+        'Label17
+        '
+        Me.Label17.Location = New System.Drawing.Point(5, 215)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(86, 19)
+        Me.Label17.TabIndex = 26
+        Me.Label17.Text = "Permite apilar"
+        Me.Label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'txtPermiteApilar
         '
@@ -548,8 +473,8 @@ Partial Class frmWstepArticuloTerciario
         Me.txtPermiteApilar.EsUnicoID = 0
         Me.txtPermiteApilar.EsUnicoTabla = ""
         Me.txtPermiteApilar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPermiteApilar.Location = New System.Drawing.Point(207, 264)
-        Me.txtPermiteApilar.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtPermiteApilar.Location = New System.Drawing.Point(155, 214)
+        Me.txtPermiteApilar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtPermiteApilar.MaxLength = 9
         Me.txtPermiteApilar.Minimo = 0
         Me.txtPermiteApilar.Modificado = False
@@ -559,11 +484,31 @@ Partial Class frmWstepArticuloTerciario
         Me.txtPermiteApilar.Numerico_SeparadorMiles = False
         Me.txtPermiteApilar.Obligatorio = False
         Me.txtPermiteApilar.ParametroID = 0
-        Me.txtPermiteApilar.Size = New System.Drawing.Size(57, 24)
+        Me.txtPermiteApilar.Size = New System.Drawing.Size(44, 21)
         Me.txtPermiteApilar.TabIndex = 27
         Me.txtPermiteApilar.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.txtPermiteApilar.ValorMaximo = 0.0!
-        Me.txtPermiteApilar.ValorMinimo = 0.0!
+        Me.txtPermiteApilar.ValorMaximo = 0R
+        Me.txtPermiteApilar.ValorMinimo = 0R
+        '
+        'Label18
+        '
+        Me.Label18.Location = New System.Drawing.Point(271, 215)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(64, 19)
+        Me.Label18.TabIndex = 28
+        Me.Label18.Text = "Cargar dos"
+        Me.Label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'chbCargarDos
+        '
+        Me.chbCargarDos.BackColor = System.Drawing.SystemColors.Control
+        Me.chbCargarDos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chbCargarDos.Location = New System.Drawing.Point(342, 215)
+        Me.chbCargarDos.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.chbCargarDos.Name = "chbCargarDos"
+        Me.chbCargarDos.Size = New System.Drawing.Size(16, 21)
+        Me.chbCargarDos.TabIndex = 29
+        Me.chbCargarDos.UseVisualStyleBackColor = False
         '
         'txtObservaciones
         '
@@ -573,8 +518,8 @@ Partial Class frmWstepArticuloTerciario
         Me.txtObservaciones.EsUnicoID = 0
         Me.txtObservaciones.EsUnicoTabla = ""
         Me.txtObservaciones.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtObservaciones.Location = New System.Drawing.Point(206, 298)
-        Me.txtObservaciones.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtObservaciones.Location = New System.Drawing.Point(154, 242)
+        Me.txtObservaciones.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtObservaciones.MaxLength = 500
         Me.txtObservaciones.Minimo = 0
         Me.txtObservaciones.Modificado = False
@@ -585,10 +530,19 @@ Partial Class frmWstepArticuloTerciario
         Me.txtObservaciones.Numerico_SeparadorMiles = False
         Me.txtObservaciones.Obligatorio = False
         Me.txtObservaciones.ParametroID = 0
-        Me.txtObservaciones.Size = New System.Drawing.Size(481, 78)
+        Me.txtObservaciones.Size = New System.Drawing.Size(362, 64)
         Me.txtObservaciones.TabIndex = 31
-        Me.txtObservaciones.ValorMaximo = 0.0!
-        Me.txtObservaciones.ValorMinimo = 0.0!
+        Me.txtObservaciones.ValorMaximo = 0R
+        Me.txtObservaciones.ValorMinimo = 0R
+        '
+        'Label19
+        '
+        Me.Label19.Location = New System.Drawing.Point(4, 245)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(112, 17)
+        Me.Label19.TabIndex = 30
+        Me.Label19.Text = "Observaciones"
+        Me.Label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'txtCajas
         '
@@ -598,8 +552,8 @@ Partial Class frmWstepArticuloTerciario
         Me.txtCajas.EsUnicoID = 0
         Me.txtCajas.EsUnicoTabla = ""
         Me.txtCajas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCajas.Location = New System.Drawing.Point(207, 164)
-        Me.txtCajas.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtCajas.Location = New System.Drawing.Point(155, 133)
+        Me.txtCajas.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtCajas.MaxLength = 9
         Me.txtCajas.Minimo = 0
         Me.txtCajas.Modificado = False
@@ -609,31 +563,59 @@ Partial Class frmWstepArticuloTerciario
         Me.txtCajas.Numerico_SeparadorMiles = False
         Me.txtCajas.Obligatorio = False
         Me.txtCajas.ParametroID = 0
-        Me.txtCajas.Size = New System.Drawing.Size(73, 24)
+        Me.txtCajas.Size = New System.Drawing.Size(56, 21)
         Me.txtCajas.TabIndex = 17
         Me.txtCajas.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.txtCajas.ValorMaximo = 0.0!
-        Me.txtCajas.ValorMinimo = 0.0!
+        Me.txtCajas.ValorMaximo = 0R
+        Me.txtCajas.ValorMinimo = 0R
         '
-        'butverCAbecera
+        'panSecundario
         '
-        Me.butverCAbecera.FlatAppearance.BorderSize = 0
-        Me.butverCAbecera.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.butverCAbecera.Image = Global.La_Andaluza.My.Resources.Resources.search_3
-        Me.butverCAbecera.Location = New System.Drawing.Point(631, 102)
-        Me.butverCAbecera.Margin = New System.Windows.Forms.Padding(4)
-        Me.butverCAbecera.Name = "butverCAbecera"
-        Me.butverCAbecera.Size = New System.Drawing.Size(36, 28)
-        Me.butverCAbecera.TabIndex = 34
-        Me.butverCAbecera.UseVisualStyleBackColor = True
+        Me.panSecundario.Controls.Add(Me.txtSecundario)
+        Me.panSecundario.Controls.Add(Me.Button3)
+        Me.panSecundario.Controls.Add(Me.Label20)
+        Me.panSecundario.Location = New System.Drawing.Point(1, 309)
+        Me.panSecundario.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.panSecundario.Name = "panSecundario"
+        Me.panSecundario.Size = New System.Drawing.Size(529, 36)
+        Me.panSecundario.TabIndex = 32
+        '
+        'txtSecundario
+        '
+        Me.txtSecundario.Enabled = False
+        Me.txtSecundario.Location = New System.Drawing.Point(154, 9)
+        Me.txtSecundario.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtSecundario.Name = "txtSecundario"
+        Me.txtSecundario.Size = New System.Drawing.Size(340, 20)
+        Me.txtSecundario.TabIndex = 1
+        '
+        'Button3
+        '
+        Me.Button3.FlatAppearance.BorderSize = 0
+        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button3.Image = Global.La_Andaluza.My.Resources.Resources.agenda
+        Me.Button3.Location = New System.Drawing.Point(494, 4)
+        Me.Button3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(26, 28)
+        Me.Button3.TabIndex = 2
+        Me.Button3.UseVisualStyleBackColor = True
+        '
+        'Label20
+        '
+        Me.Label20.Location = New System.Drawing.Point(4, 10)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(112, 17)
+        Me.Label20.TabIndex = 0
+        Me.Label20.Text = "Secundario"
+        Me.Label20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'frmWstepArticuloTerciario
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(794, 480)
+        Me.ClientSize = New System.Drawing.Size(596, 390)
         Me.Controls.Add(Me.panContenidos)
-        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frmWstepArticuloTerciario"
         Me.Text = "frmWstepArticuloTerciario"
         Me.panContenidos.ResumeLayout(False)

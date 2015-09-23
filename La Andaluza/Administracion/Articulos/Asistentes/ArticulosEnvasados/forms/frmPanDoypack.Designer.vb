@@ -53,35 +53,37 @@ Partial Class frmPanDoypack
         '
         'Pancontenidos
         '
-        Me.Pancontenidos.Controls.Add(Me.DataGridView1)
+        Me.Pancontenidos.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Pancontenidos.Controls.Add(Me.ToolStrip1)
-        Me.Pancontenidos.Location = New System.Drawing.Point(12, 77)
+        Me.Pancontenidos.Location = New System.Drawing.Point(6, 69)
         Me.Pancontenidos.Name = "Pancontenidos"
-        Me.Pancontenidos.Size = New System.Drawing.Size(531, 246)
+        Me.Pancontenidos.Size = New System.Drawing.Size(550, 238)
         Me.Pancontenidos.TabIndex = 1
         '
         'DataGridView1
         '
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.AllowUserToDeleteRows = False
+        Me.DataGridView1.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridView1.Location = New System.Drawing.Point(0, 25)
+        Me.DataGridView1.Location = New System.Drawing.Point(16, 94)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.RowHeadersVisible = False
         Me.DataGridView1.RowTemplate.Height = 24
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(531, 221)
+        Me.DataGridView1.Size = New System.Drawing.Size(539, 210)
         Me.DataGridView1.TabIndex = 1
         '
         'ToolStrip1
         '
+        Me.ToolStrip1.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.ToolStrip1.Dock = System.Windows.Forms.DockStyle.None
         Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsadd, Me.tsmod, Me.tsdel})
-        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStrip1.Location = New System.Drawing.Point(5, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(531, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(72, 25)
         Me.ToolStrip1.TabIndex = 0
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -114,8 +116,9 @@ Partial Class frmPanDoypack
         '
         'Label1
         '
+        Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(20, 17)
+        Me.Label1.Location = New System.Drawing.Point(24, 9)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(55, 13)
         Me.Label1.TabIndex = 1
@@ -123,12 +126,11 @@ Partial Class frmPanDoypack
         '
         'cboFormato
         '
-        Me.cboFormato.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cboFormato.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.cboFormato.FormattingEnabled = True
-        Me.cboFormato.Location = New System.Drawing.Point(73, 15)
+        Me.cboFormato.Location = New System.Drawing.Point(77, 7)
         Me.cboFormato.Name = "cboFormato"
-        Me.cboFormato.Size = New System.Drawing.Size(470, 21)
+        Me.cboFormato.Size = New System.Drawing.Size(479, 21)
         Me.cboFormato.TabIndex = 2
         '
         'cboMarca
@@ -136,7 +138,7 @@ Partial Class frmPanDoypack
         Me.cboMarca.FormattingEnabled = True
         Me.cboMarca.Location = New System.Drawing.Point(61, 91)
         Me.cboMarca.Name = "cboMarca"
-        Me.cboMarca.Size = New System.Drawing.Size(453, 21)
+        Me.cboMarca.Size = New System.Drawing.Size(326, 21)
         Me.cboMarca.TabIndex = 10
         '
         'Label2
@@ -155,29 +157,30 @@ Partial Class frmPanDoypack
         Me.cboSccNC.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cboSccNC.FormattingEnabled = True
-        Me.cboSccNC.Location = New System.Drawing.Point(427, 125)
+        Me.cboSccNC.Location = New System.Drawing.Point(420, 7)
         Me.cboSccNC.Margin = New System.Windows.Forms.Padding(2)
         Me.cboSccNC.Name = "cboSccNC"
-        Me.cboSccNC.Size = New System.Drawing.Size(126, 21)
+        Me.cboSccNC.Size = New System.Drawing.Size(123, 21)
         Me.cboSccNC.TabIndex = 12
         '
         'Label3
         '
         Me.Label3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label3.Location = New System.Drawing.Point(0, 124)
+        Me.Label3.Location = New System.Drawing.Point(323, 7)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(118, 21)
+        Me.Label3.Size = New System.Drawing.Size(92, 21)
         Me.Label3.TabIndex = 11
         Me.Label3.Text = "SSCC no coforme"
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'cbEnvasado
         '
+        Me.cbEnvasado.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.cbEnvasado.AutoSize = True
         Me.cbEnvasado.Checked = True
         Me.cbEnvasado.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.cbEnvasado.Location = New System.Drawing.Point(9, 18)
+        Me.cbEnvasado.Location = New System.Drawing.Point(7, 7)
         Me.cbEnvasado.Margin = New System.Windows.Forms.Padding(2)
         Me.cbEnvasado.Name = "cbEnvasado"
         Me.cbEnvasado.Size = New System.Drawing.Size(15, 14)
@@ -189,9 +192,9 @@ Partial Class frmPanDoypack
         Me.cboCaja.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cboCaja.FormattingEnabled = True
-        Me.cboCaja.Location = New System.Drawing.Point(61, 64)
+        Me.cboCaja.Location = New System.Drawing.Point(61, 67)
         Me.cboCaja.Name = "cboCaja"
-        Me.cboCaja.Size = New System.Drawing.Size(492, 21)
+        Me.cboCaja.Size = New System.Drawing.Size(326, 21)
         Me.cboCaja.TabIndex = 8
         '
         'Label4
@@ -212,7 +215,7 @@ Partial Class frmPanDoypack
         Me.cboProducto.FormattingEnabled = True
         Me.cboProducto.Location = New System.Drawing.Point(61, 37)
         Me.cboProducto.Name = "cboProducto"
-        Me.cboProducto.Size = New System.Drawing.Size(492, 21)
+        Me.cboProducto.Size = New System.Drawing.Size(489, 21)
         Me.cboProducto.TabIndex = 6
         '
         'Label5
@@ -230,10 +233,10 @@ Partial Class frmPanDoypack
         '
         Me.txtEan.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtEan.Location = New System.Drawing.Point(61, 11)
+        Me.txtEan.Location = New System.Drawing.Point(60, 12)
         Me.txtEan.MaxLength = 13
         Me.txtEan.Name = "txtEan"
-        Me.txtEan.Size = New System.Drawing.Size(492, 20)
+        Me.txtEan.Size = New System.Drawing.Size(196, 20)
         Me.txtEan.TabIndex = 4
         '
         'Label6
@@ -249,6 +252,7 @@ Partial Class frmPanDoypack
         '
         'Panel1
         '
+        Me.Panel1.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Panel1.Controls.Add(Me.btnaddMarcas)
         Me.Panel1.Controls.Add(Me.btnverMarcas)
         Me.Panel1.Controls.Add(Me.txtEan)
@@ -261,11 +265,10 @@ Partial Class frmPanDoypack
         Me.Panel1.Controls.Add(Me.cboSccNC)
         Me.Panel1.Controls.Add(Me.cboCaja)
         Me.Panel1.Controls.Add(Me.Label4)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel1.Location = New System.Drawing.Point(0, 346)
+        Me.Panel1.Location = New System.Drawing.Point(3, 312)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(555, 155)
+        Me.Panel1.Size = New System.Drawing.Size(552, 122)
         Me.Panel1.TabIndex = 13
         '
         'btnaddMarcas
@@ -273,7 +276,7 @@ Partial Class frmPanDoypack
         Me.btnaddMarcas.FlatAppearance.BorderSize = 0
         Me.btnaddMarcas.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnaddMarcas.Image = Global.La_Andaluza.My.Resources.Resources.edit_add_2
-        Me.btnaddMarcas.Location = New System.Drawing.Point(536, 92)
+        Me.btnaddMarcas.Location = New System.Drawing.Point(427, 91)
         Me.btnaddMarcas.Margin = New System.Windows.Forms.Padding(2)
         Me.btnaddMarcas.Name = "btnaddMarcas"
         Me.btnaddMarcas.Size = New System.Drawing.Size(18, 19)
@@ -285,7 +288,7 @@ Partial Class frmPanDoypack
         Me.btnverMarcas.FlatAppearance.BorderSize = 0
         Me.btnverMarcas.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnverMarcas.Image = Global.La_Andaluza.My.Resources.Resources.search_3
-        Me.btnverMarcas.Location = New System.Drawing.Point(514, 92)
+        Me.btnverMarcas.Location = New System.Drawing.Point(403, 94)
         Me.btnverMarcas.Margin = New System.Windows.Forms.Padding(2)
         Me.btnverMarcas.Name = "btnverMarcas"
         Me.btnverMarcas.Size = New System.Drawing.Size(20, 19)
@@ -294,19 +297,21 @@ Partial Class frmPanDoypack
         '
         'Label7
         '
+        Me.Label7.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(79, 39)
+        Me.Label7.Location = New System.Drawing.Point(83, 31)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(464, 35)
         Me.Label7.TabIndex = 14
-        Me.Label7.Text = "Si desmarca la casilla seleccione en el terciario el formato que se creara ahora," & _
+        Me.Label7.Text = "Si desmarca la casilla seleccione en el terciario el formato que se creara ahora," &
     " si ya creo el terciario seleccione el mismo formato que creo"
         '
         'frmPanDoypack
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(555, 501)
+        Me.ClientSize = New System.Drawing.Size(564, 427)
+        Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.cbEnvasado)

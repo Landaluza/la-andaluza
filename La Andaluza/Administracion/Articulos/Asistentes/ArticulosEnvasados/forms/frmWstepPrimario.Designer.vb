@@ -22,51 +22,35 @@ Partial Class frmWstepPrimario
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.panContenidos = New System.Windows.Forms.Panel()
-        Me.pansubtipo = New System.Windows.Forms.Panel()
         Me.gpTipo = New System.Windows.Forms.GroupBox()
         Me.rbNinguno = New System.Windows.Forms.RadioButton()
         Me.rbDoypack = New System.Windows.Forms.RadioButton()
         Me.rbmonodosis = New System.Windows.Forms.RadioButton()
-        Me.panContenidos.SuspendLayout()
+        Me.pansubtipo = New System.Windows.Forms.Panel()
+        Me.panContenidos = New System.Windows.Forms.Panel()
         Me.gpTipo.SuspendLayout()
+        Me.panContenidos.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'panContenidos
-        '
-        Me.panContenidos.Controls.Add(Me.pansubtipo)
-        Me.panContenidos.Controls.Add(Me.gpTipo)
-        Me.panContenidos.Location = New System.Drawing.Point(86, 28)
-        Me.panContenidos.Name = "panContenidos"
-        Me.panContenidos.Size = New System.Drawing.Size(586, 487)
-        Me.panContenidos.TabIndex = 1
-        '
-        'pansubtipo
-        '
-        Me.pansubtipo.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pansubtipo.Location = New System.Drawing.Point(0, 54)
-        Me.pansubtipo.Name = "pansubtipo"
-        Me.pansubtipo.Size = New System.Drawing.Size(586, 433)
-        Me.pansubtipo.TabIndex = 1
         '
         'gpTipo
         '
+        Me.gpTipo.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.gpTipo.Controls.Add(Me.rbNinguno)
         Me.gpTipo.Controls.Add(Me.rbDoypack)
         Me.gpTipo.Controls.Add(Me.rbmonodosis)
-        Me.gpTipo.Dock = System.Windows.Forms.DockStyle.Top
-        Me.gpTipo.Location = New System.Drawing.Point(0, 0)
+        Me.gpTipo.Location = New System.Drawing.Point(20, 2)
         Me.gpTipo.Name = "gpTipo"
-        Me.gpTipo.Size = New System.Drawing.Size(586, 54)
+        Me.gpTipo.Size = New System.Drawing.Size(310, 32)
         Me.gpTipo.TabIndex = 0
         Me.gpTipo.TabStop = False
         Me.gpTipo.Text = "Tipo"
         '
         'rbNinguno
         '
+        Me.rbNinguno.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.rbNinguno.AutoSize = True
         Me.rbNinguno.Checked = True
-        Me.rbNinguno.Location = New System.Drawing.Point(479, 19)
+        Me.rbNinguno.Location = New System.Drawing.Point(208, 9)
         Me.rbNinguno.Name = "rbNinguno"
         Me.rbNinguno.Size = New System.Drawing.Size(65, 17)
         Me.rbNinguno.TabIndex = 2
@@ -76,8 +60,9 @@ Partial Class frmWstepPrimario
         '
         'rbDoypack
         '
+        Me.rbDoypack.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.rbDoypack.AutoSize = True
-        Me.rbDoypack.Location = New System.Drawing.Point(253, 19)
+        Me.rbDoypack.Location = New System.Drawing.Point(124, 9)
         Me.rbDoypack.Name = "rbDoypack"
         Me.rbDoypack.Size = New System.Drawing.Size(68, 17)
         Me.rbDoypack.TabIndex = 1
@@ -86,32 +71,51 @@ Partial Class frmWstepPrimario
         '
         'rbmonodosis
         '
+        Me.rbmonodosis.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.rbmonodosis.AutoSize = True
-        Me.rbmonodosis.Location = New System.Drawing.Point(46, 19)
+        Me.rbmonodosis.Location = New System.Drawing.Point(42, 9)
         Me.rbmonodosis.Name = "rbmonodosis"
         Me.rbmonodosis.Size = New System.Drawing.Size(76, 17)
         Me.rbmonodosis.TabIndex = 0
         Me.rbmonodosis.Text = "Monodosis"
         Me.rbmonodosis.UseVisualStyleBackColor = True
         '
+        'pansubtipo
+        '
+        Me.pansubtipo.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pansubtipo.Location = New System.Drawing.Point(0, 0)
+        Me.pansubtipo.Name = "pansubtipo"
+        Me.pansubtipo.Size = New System.Drawing.Size(600, 573)
+        Me.pansubtipo.TabIndex = 1
+        '
+        'panContenidos
+        '
+        Me.panContenidos.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.panContenidos.Controls.Add(Me.pansubtipo)
+        Me.panContenidos.Location = New System.Drawing.Point(8, 40)
+        Me.panContenidos.Name = "panContenidos"
+        Me.panContenidos.Size = New System.Drawing.Size(600, 573)
+        Me.panContenidos.TabIndex = 1
+        '
         'frmWstepPrimario
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(715, 557)
+        Me.ClientSize = New System.Drawing.Size(611, 616)
         Me.Controls.Add(Me.panContenidos)
+        Me.Controls.Add(Me.gpTipo)
         Me.Name = "frmWstepPrimario"
         Me.Text = "frmWstepPrimario"
-        Me.panContenidos.ResumeLayout(False)
         Me.gpTipo.ResumeLayout(False)
         Me.gpTipo.PerformLayout()
+        Me.panContenidos.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
-    Private WithEvents panContenidos As System.Windows.Forms.Panel
-    Private WithEvents pansubtipo As System.Windows.Forms.Panel
-    Private WithEvents gpTipo As System.Windows.Forms.GroupBox
-    Private WithEvents rbNinguno As System.Windows.Forms.RadioButton
-    Private WithEvents rbDoypack As System.Windows.Forms.RadioButton
-    Private WithEvents rbmonodosis As System.Windows.Forms.RadioButton
+    Private WithEvents gpTipo As GroupBox
+    Private WithEvents rbNinguno As RadioButton
+    Private WithEvents rbDoypack As RadioButton
+    Private WithEvents rbmonodosis As RadioButton
+    Private WithEvents pansubtipo As Panel
+    Private WithEvents panContenidos As Panel
 End Class

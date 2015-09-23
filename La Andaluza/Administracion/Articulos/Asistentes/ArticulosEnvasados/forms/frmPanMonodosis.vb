@@ -5,7 +5,8 @@
     Private mododeapertura As Byte
     Private asistente As Boolean
     Private spMonodosis As spMonodosis
-    Private dtb As BasesParaCompatibilidad.Database
+    Private dtb As BasesParaCompatibilidad.DataBase
+
     Public Sub New(ByVal id As Integer, Optional asistente As Boolean = False)
         InitializeComponent()
 
@@ -37,7 +38,6 @@
     End Sub
 
     Public Function comprobarCampos() As Boolean Implements wizardable.comprobarCampos
-
         Me.dbo.MarcaId = Me.cboMarca.SelectedValue
         Me.dbo.Palet_NO_Conforme_ID = Me.cboSccNC.SelectedValue
         Me.dbo.ProductoId = Me.cboProducto.SelectedValue

@@ -32,7 +32,7 @@
     End Sub
 
     Private Sub frmWstepPrimario_Resize(sender As System.Object, e As System.EventArgs) Handles MyBase.Resize
-        BasesParaCompatibilidad.Pantalla.centerIn(Me.panContenidos, Me)
+        'BasesParaCompatibilidad.Pantalla.centerIn(Me.panContenidos, Me)
     End Sub
 
     Private Sub rbmonodosis_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles rbmonodosis.CheckedChanged, rbNinguno.CheckedChanged, rbDoypack.CheckedChanged
@@ -43,13 +43,13 @@
 
         ElseIf sender Is rbmonodosis Then
             pan = New frmPanMonodosis(Me.id, If(Me.modoDeApertura = BasesParaCompatibilidad.DetailedSimpleForm.MODIFICACION, False, True))
-            Engine_LA.FormEnPestaña(pan, pansubtipo)
+            Engine_LA.FormEnPestaña(pan, pansubtipo, False)
 
         ElseIf sender Is rbDoypack Then
             Dim f As New frmPanDoypack(Me.id, If(Me.modoDeApertura = BasesParaCompatibilidad.DetailedSimpleForm.MODIFICACION, False, True))
             AddHandler f.actualizarExtras, AddressOf Me.raiseRefresh
             pan = f
-            Engine_LA.FormEnPestaña(pan, pansubtipo)
+            Engine_LA.FormEnPestaña(pan, pansubtipo, False)
 
         End If
     End Sub
@@ -84,7 +84,6 @@
                 Me.rbDoypack.Checked = True
             End If
         End If
-
 
         If Not pan Is Nothing Then
             Me.pan.EstablecerValores()

@@ -45,34 +45,38 @@
         End If
     End Sub
 
-    Public Shared Sub FormEnPestaña(ByVal mObjeto As Form, ByVal mPanel As Panel)
+    Public Shared Sub FormEnPestaña(ByVal mForm As Form, ByVal mPanel As Panel, Optional mFill As Boolean = True)
         mPanel.Controls.Clear()
-        mObjeto.WindowState = FormWindowState.Normal
-        mObjeto.TopLevel = False
-        mObjeto.FormBorderStyle = Windows.Forms.FormBorderStyle.None
-        mObjeto.Dock = DockStyle.Fill
+        mForm.WindowState = FormWindowState.Normal
+        mForm.TopLevel = False
+        mForm.FormBorderStyle = Windows.Forms.FormBorderStyle.None
+
+        If mFill Then
+            mForm.Dock = DockStyle.Fill
+        End If
+
         'mObjeto.windowState = AppWinStyle.NormalFocus
         'mObjeto.butSalir.Visible = False
         'If mObjeto.name <> "frmOrdenesEnvasado2Detalle" Then
         'mObjeto.butVer.Visible = False
         'End If
-        mPanel.Controls.Add(mObjeto)        
-        mObjeto.Show()
+        mPanel.Controls.Add(mForm)
+        mForm.Show()
     End Sub
 
-    Public Shared Sub FormEnPestaña(ByVal mObjeto As Object, ByVal mPanel As GroupBox)
+    Public Shared Sub FormEnPestaña(ByVal mForm As Object, ByVal mPanel As GroupBox)
         mPanel.Controls.Clear()
-        mObjeto.WindowState = FormWindowState.Normal
-        mObjeto.TopLevel = False
-        mObjeto.FormBorderStyle = Windows.Forms.FormBorderStyle.None
-        mObjeto.Dock = DockStyle.Fill
+        mForm.WindowState = FormWindowState.Normal
+        mForm.TopLevel = False
+        mForm.FormBorderStyle = Windows.Forms.FormBorderStyle.None
+        mForm.Dock = DockStyle.Fill
         'mObjeto.windowState = AppWinStyle.NormalFocus
         'mObjeto.butSalir.Visible = False
         'If mObjeto.name <> "frmOrdenesEnvasado2Detalle" Then
         'mObjeto.butVer.Visible = False
         'End If
-        mPanel.Controls.Add(mObjeto)
-        mObjeto.Show()
+        mPanel.Controls.Add(mForm)
+        mForm.Show()
     End Sub
 
     Public Function AdministrarPermisosFormulario() As MenuStrip

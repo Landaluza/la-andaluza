@@ -52,7 +52,7 @@ Partial Class frmWstepArticulos1
         '
         Me.chbTienePedidos.AutoSize = True
         Me.chbTienePedidos.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.chbTienePedidos.Location = New System.Drawing.Point(272, 73)
+        Me.chbTienePedidos.Location = New System.Drawing.Point(234, 71)
         Me.chbTienePedidos.Name = "chbTienePedidos"
         Me.chbTienePedidos.Size = New System.Drawing.Size(112, 17)
         Me.chbTienePedidos.TabIndex = 6
@@ -61,7 +61,7 @@ Partial Class frmWstepArticulos1
         '
         'lblCodigoQS
         '
-        Me.lblCodigoQS.Location = New System.Drawing.Point(43, 63)
+        Me.lblCodigoQS.Location = New System.Drawing.Point(5, 61)
         Me.lblCodigoQS.Name = "lblCodigoQS"
         Me.lblCodigoQS.Size = New System.Drawing.Size(65, 21)
         Me.lblCodigoQS.TabIndex = 4
@@ -70,7 +70,7 @@ Partial Class frmWstepArticulos1
         '
         'lblUtilizacion
         '
-        Me.lblUtilizacion.Location = New System.Drawing.Point(43, 135)
+        Me.lblUtilizacion.Location = New System.Drawing.Point(5, 133)
         Me.lblUtilizacion.Name = "lblUtilizacion"
         Me.lblUtilizacion.Size = New System.Drawing.Size(97, 21)
         Me.lblUtilizacion.TabIndex = 7
@@ -79,7 +79,7 @@ Partial Class frmWstepArticulos1
         '
         'lblObservaciones
         '
-        Me.lblObservaciones.Location = New System.Drawing.Point(43, 162)
+        Me.lblObservaciones.Location = New System.Drawing.Point(5, 160)
         Me.lblObservaciones.Name = "lblObservaciones"
         Me.lblObservaciones.Size = New System.Drawing.Size(97, 21)
         Me.lblObservaciones.TabIndex = 15
@@ -88,7 +88,7 @@ Partial Class frmWstepArticulos1
         '
         'lblCodigoTARIC
         '
-        Me.lblCodigoTARIC.Location = New System.Drawing.Point(43, 98)
+        Me.lblCodigoTARIC.Location = New System.Drawing.Point(5, 96)
         Me.lblCodigoTARIC.Name = "lblCodigoTARIC"
         Me.lblCodigoTARIC.Size = New System.Drawing.Size(75, 21)
         Me.lblCodigoTARIC.TabIndex = 9
@@ -97,7 +97,7 @@ Partial Class frmWstepArticulos1
         '
         'lblCodigoLA
         '
-        Me.lblCodigoLA.Location = New System.Drawing.Point(43, 42)
+        Me.lblCodigoLA.Location = New System.Drawing.Point(5, 40)
         Me.lblCodigoLA.Name = "lblCodigoLA"
         Me.lblCodigoLA.Size = New System.Drawing.Size(97, 21)
         Me.lblCodigoLA.TabIndex = 2
@@ -129,14 +129,14 @@ Partial Class frmWstepArticulos1
         Me.panContenidos.Controls.Add(Me.lblCodigoTARIC)
         Me.panContenidos.Location = New System.Drawing.Point(10, 1)
         Me.panContenidos.Name = "panContenidos"
-        Me.panContenidos.Size = New System.Drawing.Size(642, 357)
+        Me.panContenidos.Size = New System.Drawing.Size(593, 357)
         Me.panContenidos.TabIndex = 0
         '
         'lAvisos
         '
         Me.lAvisos.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Strikeout), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lAvisos.Image = Global.La_Andaluza.My.Resources.Resources.winmerge
-        Me.lAvisos.Location = New System.Drawing.Point(522, 40)
+        Me.lAvisos.Location = New System.Drawing.Point(484, 38)
         Me.lAvisos.Name = "lAvisos"
         Me.lAvisos.Size = New System.Drawing.Size(95, 89)
         Me.lAvisos.TabIndex = 47
@@ -150,7 +150,7 @@ Partial Class frmWstepArticulos1
         Me.btnEvolucion.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnEvolucion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnEvolucion.Image = CType(resources.GetObject("btnEvolucion.Image"), System.Drawing.Image)
-        Me.btnEvolucion.Location = New System.Drawing.Point(597, 290)
+        Me.btnEvolucion.Location = New System.Drawing.Point(559, 288)
         Me.btnEvolucion.Name = "btnEvolucion"
         Me.btnEvolucion.Size = New System.Drawing.Size(20, 21)
         Me.btnEvolucion.TabIndex = 46
@@ -158,7 +158,7 @@ Partial Class frmWstepArticulos1
         '
         'Label1
         '
-        Me.Label1.Location = New System.Drawing.Point(43, 291)
+        Me.Label1.Location = New System.Drawing.Point(5, 289)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(97, 32)
         Me.Label1.TabIndex = 45
@@ -174,7 +174,7 @@ Partial Class frmWstepArticulos1
         Me.txtEvolucion.EsUnicoID = 0
         Me.txtEvolucion.EsUnicoTabla = ""
         Me.txtEvolucion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtEvolucion.Location = New System.Drawing.Point(146, 290)
+        Me.txtEvolucion.Location = New System.Drawing.Point(108, 288)
         Me.txtEvolucion.MaxLength = 500
         Me.txtEvolucion.Minimo = 0
         Me.txtEvolucion.Modificado = False
@@ -187,8 +187,8 @@ Partial Class frmWstepArticulos1
         Me.txtEvolucion.ParametroID = 0
         Me.txtEvolucion.Size = New System.Drawing.Size(443, 39)
         Me.txtEvolucion.TabIndex = 44
-        Me.txtEvolucion.ValorMaximo = 0.0R
-        Me.txtEvolucion.ValorMinimo = 0.0R
+        Me.txtEvolucion.ValorMaximo = 0R
+        Me.txtEvolucion.ValorMinimo = 0R
         '
         'chbActivo
         '
@@ -196,7 +196,7 @@ Partial Class frmWstepArticulos1
         Me.chbActivo.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.chbActivo.Checked = True
         Me.chbActivo.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chbActivo.Location = New System.Drawing.Point(272, 42)
+        Me.chbActivo.Location = New System.Drawing.Point(234, 40)
         Me.chbActivo.Name = "chbActivo"
         Me.chbActivo.Size = New System.Drawing.Size(56, 17)
         Me.chbActivo.TabIndex = 43
@@ -209,7 +209,7 @@ Partial Class frmWstepArticulos1
         Me.btnInformacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnInformacion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnInformacion.Image = CType(resources.GetObject("btnInformacion.Image"), System.Drawing.Image)
-        Me.btnInformacion.Location = New System.Drawing.Point(597, 245)
+        Me.btnInformacion.Location = New System.Drawing.Point(559, 243)
         Me.btnInformacion.Name = "btnInformacion"
         Me.btnInformacion.Size = New System.Drawing.Size(20, 21)
         Me.btnInformacion.TabIndex = 42
@@ -217,7 +217,7 @@ Partial Class frmWstepArticulos1
         '
         'lInfoGeneral
         '
-        Me.lInfoGeneral.Location = New System.Drawing.Point(43, 246)
+        Me.lInfoGeneral.Location = New System.Drawing.Point(5, 244)
         Me.lInfoGeneral.Name = "lInfoGeneral"
         Me.lInfoGeneral.Size = New System.Drawing.Size(97, 21)
         Me.lInfoGeneral.TabIndex = 18
@@ -233,7 +233,7 @@ Partial Class frmWstepArticulos1
         Me.txtInfoGeneral.EsUnicoID = 0
         Me.txtInfoGeneral.EsUnicoTabla = ""
         Me.txtInfoGeneral.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtInfoGeneral.Location = New System.Drawing.Point(146, 245)
+        Me.txtInfoGeneral.Location = New System.Drawing.Point(108, 243)
         Me.txtInfoGeneral.MaxLength = 500
         Me.txtInfoGeneral.Minimo = 0
         Me.txtInfoGeneral.Modificado = False
@@ -246,13 +246,13 @@ Partial Class frmWstepArticulos1
         Me.txtInfoGeneral.ParametroID = 0
         Me.txtInfoGeneral.Size = New System.Drawing.Size(443, 39)
         Me.txtInfoGeneral.TabIndex = 17
-        Me.txtInfoGeneral.ValorMaximo = 0.0R
-        Me.txtInfoGeneral.ValorMinimo = 0.0R
+        Me.txtInfoGeneral.ValorMaximo = 0R
+        Me.txtInfoGeneral.ValorMinimo = 0R
         '
         'lDescripcion
         '
         Me.lDescripcion.AutoSize = True
-        Me.lDescripcion.Location = New System.Drawing.Point(43, 18)
+        Me.lDescripcion.Location = New System.Drawing.Point(5, 16)
         Me.lDescripcion.Name = "lDescripcion"
         Me.lDescripcion.Size = New System.Drawing.Size(63, 13)
         Me.lDescripcion.TabIndex = 0
@@ -261,7 +261,7 @@ Partial Class frmWstepArticulos1
         '
         'txtDescripcion
         '
-        Me.txtDescripcion.Location = New System.Drawing.Point(146, 15)
+        Me.txtDescripcion.Location = New System.Drawing.Point(108, 13)
         Me.txtDescripcion.Name = "txtDescripcion"
         Me.txtDescripcion.Size = New System.Drawing.Size(471, 20)
         Me.txtDescripcion.TabIndex = 1
@@ -275,7 +275,7 @@ Partial Class frmWstepArticulos1
         Me.txtObservaciones.EsUnicoID = 0
         Me.txtObservaciones.EsUnicoTabla = ""
         Me.txtObservaciones.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtObservaciones.Location = New System.Drawing.Point(146, 161)
+        Me.txtObservaciones.Location = New System.Drawing.Point(108, 159)
         Me.txtObservaciones.MaxLength = 500
         Me.txtObservaciones.Minimo = 0
         Me.txtObservaciones.Modificado = False
@@ -288,8 +288,8 @@ Partial Class frmWstepArticulos1
         Me.txtObservaciones.ParametroID = 0
         Me.txtObservaciones.Size = New System.Drawing.Size(471, 75)
         Me.txtObservaciones.TabIndex = 16
-        Me.txtObservaciones.ValorMaximo = 0.0R
-        Me.txtObservaciones.ValorMinimo = 0.0R
+        Me.txtObservaciones.ValorMaximo = 0R
+        Me.txtObservaciones.ValorMinimo = 0R
         '
         'txtCodigoLA
         '
@@ -299,7 +299,7 @@ Partial Class frmWstepArticulos1
         Me.txtCodigoLA.EsUnicoID = 0
         Me.txtCodigoLA.EsUnicoTabla = ""
         Me.txtCodigoLA.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCodigoLA.Location = New System.Drawing.Point(146, 41)
+        Me.txtCodigoLA.Location = New System.Drawing.Point(108, 39)
         Me.txtCodigoLA.MaxLength = 9
         Me.txtCodigoLA.Minimo = 0
         Me.txtCodigoLA.Modificado = False
@@ -312,8 +312,8 @@ Partial Class frmWstepArticulos1
         Me.txtCodigoLA.Size = New System.Drawing.Size(109, 21)
         Me.txtCodigoLA.TabIndex = 3
         Me.txtCodigoLA.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.txtCodigoLA.ValorMaximo = 0.0R
-        Me.txtCodigoLA.ValorMinimo = 0.0R
+        Me.txtCodigoLA.ValorMaximo = 0R
+        Me.txtCodigoLA.ValorMinimo = 0R
         '
         'txtCodigoQS
         '
@@ -323,7 +323,7 @@ Partial Class frmWstepArticulos1
         Me.txtCodigoQS.EsUnicoID = 0
         Me.txtCodigoQS.EsUnicoTabla = ""
         Me.txtCodigoQS.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCodigoQS.Location = New System.Drawing.Point(146, 69)
+        Me.txtCodigoQS.Location = New System.Drawing.Point(108, 67)
         Me.txtCodigoQS.MaxLength = 9
         Me.txtCodigoQS.Minimo = 0
         Me.txtCodigoQS.Modificado = False
@@ -336,8 +336,8 @@ Partial Class frmWstepArticulos1
         Me.txtCodigoQS.Size = New System.Drawing.Size(109, 21)
         Me.txtCodigoQS.TabIndex = 5
         Me.txtCodigoQS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.txtCodigoQS.ValorMaximo = 0.0R
-        Me.txtCodigoQS.ValorMinimo = 0.0R
+        Me.txtCodigoQS.ValorMaximo = 0R
+        Me.txtCodigoQS.ValorMinimo = 0R
         '
         'txtUtilizacion
         '
@@ -347,7 +347,7 @@ Partial Class frmWstepArticulos1
         Me.txtUtilizacion.EsUnicoID = 0
         Me.txtUtilizacion.EsUnicoTabla = ""
         Me.txtUtilizacion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtUtilizacion.Location = New System.Drawing.Point(146, 134)
+        Me.txtUtilizacion.Location = New System.Drawing.Point(108, 132)
         Me.txtUtilizacion.MaxLength = 500
         Me.txtUtilizacion.Minimo = 0
         Me.txtUtilizacion.Modificado = False
@@ -359,8 +359,8 @@ Partial Class frmWstepArticulos1
         Me.txtUtilizacion.ParametroID = 0
         Me.txtUtilizacion.Size = New System.Drawing.Size(471, 21)
         Me.txtUtilizacion.TabIndex = 8
-        Me.txtUtilizacion.ValorMaximo = 0.0R
-        Me.txtUtilizacion.ValorMinimo = 0.0R
+        Me.txtUtilizacion.ValorMaximo = 0R
+        Me.txtUtilizacion.ValorMinimo = 0R
         '
         'txtCodigoTARIC
         '
@@ -370,7 +370,7 @@ Partial Class frmWstepArticulos1
         Me.txtCodigoTARIC.EsUnicoID = 0
         Me.txtCodigoTARIC.EsUnicoTabla = ""
         Me.txtCodigoTARIC.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCodigoTARIC.Location = New System.Drawing.Point(146, 96)
+        Me.txtCodigoTARIC.Location = New System.Drawing.Point(108, 94)
         Me.txtCodigoTARIC.MaxLength = 4000
         Me.txtCodigoTARIC.Minimo = 0
         Me.txtCodigoTARIC.Modificado = False
@@ -382,14 +382,14 @@ Partial Class frmWstepArticulos1
         Me.txtCodigoTARIC.ParametroID = 0
         Me.txtCodigoTARIC.Size = New System.Drawing.Size(182, 21)
         Me.txtCodigoTARIC.TabIndex = 10
-        Me.txtCodigoTARIC.ValorMaximo = 0.0R
-        Me.txtCodigoTARIC.ValorMinimo = 0.0R
+        Me.txtCodigoTARIC.ValorMaximo = 0R
+        Me.txtCodigoTARIC.ValorMinimo = 0R
         '
         'frmWstepArticulos1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(687, 380)
+        Me.ClientSize = New System.Drawing.Size(608, 370)
         Me.Controls.Add(Me.panContenidos)
         Me.Name = "frmWstepArticulos1"
         Me.Text = "frmWstepArticulos1"
