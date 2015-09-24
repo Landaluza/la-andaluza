@@ -35,16 +35,16 @@ Partial Class frmWstepMateriasPrimas
         Me.PanContenidos.Controls.Add(Me.gbCertificados)
         Me.PanContenidos.Controls.Add(Me.cboMateriaPrimaTipoID)
         Me.PanContenidos.Controls.Add(Me.lblGranelTipoID)
-        Me.PanContenidos.Location = New System.Drawing.Point(29, 43)
+        Me.PanContenidos.Location = New System.Drawing.Point(12, 43)
         Me.PanContenidos.Name = "PanContenidos"
-        Me.PanContenidos.Size = New System.Drawing.Size(497, 255)
+        Me.PanContenidos.Size = New System.Drawing.Size(407, 255)
         Me.PanContenidos.TabIndex = 1
         '
         'gbCertificados
         '
         Me.gbCertificados.AutoSize = True
         Me.gbCertificados.BackColor = System.Drawing.SystemColors.Control
-        Me.gbCertificados.Location = New System.Drawing.Point(64, 78)
+        Me.gbCertificados.Location = New System.Drawing.Point(3, 76)
         Me.gbCertificados.Name = "gbCertificados"
         Me.gbCertificados.Size = New System.Drawing.Size(374, 139)
         Me.gbCertificados.TabIndex = 2
@@ -54,14 +54,14 @@ Partial Class frmWstepMateriasPrimas
         'cboMateriaPrimaTipoID
         '
         Me.cboMateriaPrimaTipoID.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cboMateriaPrimaTipoID.Location = New System.Drawing.Point(188, 15)
+        Me.cboMateriaPrimaTipoID.Location = New System.Drawing.Point(127, 13)
         Me.cboMateriaPrimaTipoID.Name = "cboMateriaPrimaTipoID"
         Me.cboMateriaPrimaTipoID.Size = New System.Drawing.Size(250, 23)
         Me.cboMateriaPrimaTipoID.TabIndex = 1
         '
         'lblGranelTipoID
         '
-        Me.lblGranelTipoID.Location = New System.Drawing.Point(61, 11)
+        Me.lblGranelTipoID.Location = New System.Drawing.Point(0, 9)
         Me.lblGranelTipoID.Name = "lblGranelTipoID"
         Me.lblGranelTipoID.Size = New System.Drawing.Size(121, 31)
         Me.lblGranelTipoID.TabIndex = 0
@@ -72,7 +72,7 @@ Partial Class frmWstepMateriasPrimas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(553, 334)
+        Me.ClientSize = New System.Drawing.Size(439, 334)
         Me.Controls.Add(Me.PanContenidos)
         Me.Name = "frmWstepMateriasPrimas"
         Me.Text = "frmWstepMateriasPrimas"
@@ -82,7 +82,7 @@ Partial Class frmWstepMateriasPrimas
         Me.PerformLayout()
 
     End Sub
-   Private WithEvents PanContenidos As System.Windows.Forms.Panel
+    Private WithEvents PanContenidos As System.Windows.Forms.Panel
    Private WithEvents gbCertificados As System.Windows.Forms.GroupBox
    Private WithEvents cboMateriaPrimaTipoID As System.Windows.Forms.ComboBox
    Private WithEvents lblGranelTipoID As System.Windows.Forms.Label

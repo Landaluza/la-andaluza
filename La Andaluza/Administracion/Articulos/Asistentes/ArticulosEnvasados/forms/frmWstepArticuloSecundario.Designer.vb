@@ -77,7 +77,7 @@ Partial Class frmWstepArticuloSecundario
         Me.txtPeso.EsUnicoID = 0
         Me.txtPeso.EsUnicoTabla = ""
         Me.txtPeso.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPeso.Location = New System.Drawing.Point(586, 75)
+        Me.txtPeso.Location = New System.Drawing.Point(595, 75)
         Me.txtPeso.Minimo = 0
         Me.txtPeso.Modificado = False
         Me.txtPeso.Name = "txtPeso"
@@ -86,7 +86,7 @@ Partial Class frmWstepArticuloSecundario
         Me.txtPeso.Numerico_SeparadorMiles = False
         Me.txtPeso.Obligatorio = False
         Me.txtPeso.ParametroID = 0
-        Me.txtPeso.Size = New System.Drawing.Size(56, 21)
+        Me.txtPeso.Size = New System.Drawing.Size(47, 21)
         Me.txtPeso.TabIndex = 9
         Me.txtPeso.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.txtPeso.ValorMaximo = 0R
@@ -147,7 +147,7 @@ Partial Class frmWstepArticuloSecundario
         Me.txtCajasPalet.EsUnicoID = 0
         Me.txtCajasPalet.EsUnicoTabla = ""
         Me.txtCajasPalet.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCajasPalet.Location = New System.Drawing.Point(586, 48)
+        Me.txtCajasPalet.Location = New System.Drawing.Point(595, 48)
         Me.txtCajasPalet.MaxLength = 9
         Me.txtCajasPalet.Minimo = 0
         Me.txtCajasPalet.Modificado = False
@@ -157,7 +157,7 @@ Partial Class frmWstepArticuloSecundario
         Me.txtCajasPalet.Numerico_SeparadorMiles = False
         Me.txtCajasPalet.Obligatorio = False
         Me.txtCajasPalet.ParametroID = 0
-        Me.txtCajasPalet.Size = New System.Drawing.Size(56, 21)
+        Me.txtCajasPalet.Size = New System.Drawing.Size(47, 21)
         Me.txtCajasPalet.TabIndex = 7
         Me.txtCajasPalet.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.txtCajasPalet.ValorMaximo = 0R
@@ -171,7 +171,7 @@ Partial Class frmWstepArticuloSecundario
         Me.txtSeparadores.EsUnicoID = 0
         Me.txtSeparadores.EsUnicoTabla = ""
         Me.txtSeparadores.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtSeparadores.Location = New System.Drawing.Point(586, 21)
+        Me.txtSeparadores.Location = New System.Drawing.Point(595, 21)
         Me.txtSeparadores.MaxLength = 9
         Me.txtSeparadores.Minimo = 0
         Me.txtSeparadores.Modificado = False
@@ -181,7 +181,7 @@ Partial Class frmWstepArticuloSecundario
         Me.txtSeparadores.Numerico_SeparadorMiles = False
         Me.txtSeparadores.Obligatorio = False
         Me.txtSeparadores.ParametroID = 0
-        Me.txtSeparadores.Size = New System.Drawing.Size(56, 21)
+        Me.txtSeparadores.Size = New System.Drawing.Size(47, 21)
         Me.txtSeparadores.TabIndex = 3
         Me.txtSeparadores.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.txtSeparadores.ValorMaximo = 0R
@@ -194,12 +194,12 @@ Partial Class frmWstepArticuloSecundario
         Me.cboCajaID.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cboCajaID.Location = New System.Drawing.Point(101, 22)
         Me.cboCajaID.Name = "cboCajaID"
-        Me.cboCajaID.Size = New System.Drawing.Size(319, 23)
+        Me.cboCajaID.Size = New System.Drawing.Size(401, 23)
         Me.cboCajaID.TabIndex = 1
         '
         'Label1
         '
-        Me.Label1.Location = New System.Drawing.Point(16, 212)
+        Me.Label1.Location = New System.Drawing.Point(4, 213)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(79, 21)
         Me.Label1.TabIndex = 23
@@ -208,16 +208,16 @@ Partial Class frmWstepArticuloSecundario
         '
         'lblPeso
         '
-        Me.lblPeso.Location = New System.Drawing.Point(504, 76)
+        Me.lblPeso.Location = New System.Drawing.Point(522, 76)
         Me.lblPeso.Name = "lblPeso"
-        Me.lblPeso.Size = New System.Drawing.Size(76, 21)
+        Me.lblPeso.Size = New System.Drawing.Size(53, 21)
         Me.lblPeso.TabIndex = 8
         Me.lblPeso.Text = "Peso"
         Me.lblPeso.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lblParticulares
         '
-        Me.lblParticulares.Location = New System.Drawing.Point(16, 185)
+        Me.lblParticulares.Location = New System.Drawing.Point(4, 185)
         Me.lblParticulares.Name = "lblParticulares"
         Me.lblParticulares.Size = New System.Drawing.Size(79, 21)
         Me.lblParticulares.TabIndex = 12
@@ -226,7 +226,7 @@ Partial Class frmWstepArticuloSecundario
         '
         'lblGenericas
         '
-        Me.lblGenericas.Location = New System.Drawing.Point(16, 105)
+        Me.lblGenericas.Location = New System.Drawing.Point(4, 105)
         Me.lblGenericas.Name = "lblGenericas"
         Me.lblGenericas.Size = New System.Drawing.Size(79, 21)
         Me.lblGenericas.TabIndex = 10
@@ -235,18 +235,18 @@ Partial Class frmWstepArticuloSecundario
         '
         'lblCajasPalet
         '
-        Me.lblCajasPalet.Location = New System.Drawing.Point(504, 51)
+        Me.lblCajasPalet.Location = New System.Drawing.Point(522, 49)
         Me.lblCajasPalet.Name = "lblCajasPalet"
-        Me.lblCajasPalet.Size = New System.Drawing.Size(76, 21)
+        Me.lblCajasPalet.Size = New System.Drawing.Size(63, 21)
         Me.lblCajasPalet.TabIndex = 6
         Me.lblCajasPalet.Text = "Cajas palet"
         Me.lblCajasPalet.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lblSeparadores
         '
-        Me.lblSeparadores.Location = New System.Drawing.Point(504, 24)
+        Me.lblSeparadores.Location = New System.Drawing.Point(522, 24)
         Me.lblSeparadores.Name = "lblSeparadores"
-        Me.lblSeparadores.Size = New System.Drawing.Size(76, 21)
+        Me.lblSeparadores.Size = New System.Drawing.Size(67, 21)
         Me.lblSeparadores.TabIndex = 2
         Me.lblSeparadores.Text = "Separadores"
         Me.lblSeparadores.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -254,7 +254,7 @@ Partial Class frmWstepArticuloSecundario
         'lblCajaID
         '
         Me.lblCajaID.Enabled = False
-        Me.lblCajaID.Location = New System.Drawing.Point(16, 22)
+        Me.lblCajaID.Location = New System.Drawing.Point(4, 21)
         Me.lblCajaID.Name = "lblCajaID"
         Me.lblCajaID.Size = New System.Drawing.Size(79, 21)
         Me.lblCajaID.TabIndex = 0
@@ -293,12 +293,12 @@ Partial Class frmWstepArticuloSecundario
         Me.cboProducto.Location = New System.Drawing.Point(101, 50)
         Me.cboProducto.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.cboProducto.Name = "cboProducto"
-        Me.cboProducto.Size = New System.Drawing.Size(319, 21)
+        Me.cboProducto.Size = New System.Drawing.Size(401, 21)
         Me.cboProducto.TabIndex = 5
         '
         'Label8
         '
-        Me.Label8.Location = New System.Drawing.Point(16, 44)
+        Me.Label8.Location = New System.Drawing.Point(4, 43)
         Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(79, 26)
@@ -319,9 +319,9 @@ Partial Class frmWstepArticuloSecundario
         '
         'lPrimario
         '
-        Me.lPrimario.Location = New System.Drawing.Point(16, 312)
+        Me.lPrimario.Location = New System.Drawing.Point(4, 312)
         Me.lPrimario.Name = "lPrimario"
-        Me.lPrimario.Size = New System.Drawing.Size(87, 21)
+        Me.lPrimario.Size = New System.Drawing.Size(91, 21)
         Me.lPrimario.TabIndex = 25
         Me.lPrimario.Text = "Articulo primario"
         Me.lPrimario.TextAlign = System.Drawing.ContentAlignment.MiddleLeft

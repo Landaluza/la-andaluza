@@ -81,7 +81,7 @@ Partial Class frmWstepGraneles
         'Label3
         '
         Label3.AutoSize = True
-        Label3.Location = New System.Drawing.Point(80, 37)
+        Label3.Location = New System.Drawing.Point(8, 33)
         Label3.Name = "Label3"
         Label3.Size = New System.Drawing.Size(44, 13)
         Label3.TabIndex = 1000000013
@@ -89,9 +89,9 @@ Partial Class frmWstepGraneles
         '
         'lblGranelTipoID
         '
-        Me.lblGranelTipoID.Location = New System.Drawing.Point(79, 24)
+        Me.lblGranelTipoID.Location = New System.Drawing.Point(7, 22)
         Me.lblGranelTipoID.Name = "lblGranelTipoID"
-        Me.lblGranelTipoID.Size = New System.Drawing.Size(72, 21)
+        Me.lblGranelTipoID.Size = New System.Drawing.Size(66, 21)
         Me.lblGranelTipoID.TabIndex = 0
         Me.lblGranelTipoID.Text = "Tipo granel"
         Me.lblGranelTipoID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -99,7 +99,7 @@ Partial Class frmWstepGraneles
         'cboGranelTipoID
         '
         Me.cboGranelTipoID.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cboGranelTipoID.Location = New System.Drawing.Point(157, 24)
+        Me.cboGranelTipoID.Location = New System.Drawing.Point(79, 22)
         Me.cboGranelTipoID.Name = "cboGranelTipoID"
         Me.cboGranelTipoID.Size = New System.Drawing.Size(250, 23)
         Me.cboGranelTipoID.TabIndex = 1
@@ -112,7 +112,7 @@ Partial Class frmWstepGraneles
         Me.PanContenidos.Controls.Add(Me.Panel1)
         Me.PanContenidos.Location = New System.Drawing.Point(12, 12)
         Me.PanContenidos.Name = "PanContenidos"
-        Me.PanContenidos.Size = New System.Drawing.Size(497, 453)
+        Me.PanContenidos.Size = New System.Drawing.Size(393, 453)
         Me.PanContenidos.TabIndex = 0
         '
         'Panel2
@@ -124,11 +124,10 @@ Partial Class frmWstepGraneles
         Me.Panel2.Controls.Add(Me.txtCantidaDefecto)
         Me.Panel2.Controls.Add(Label3)
         Me.Panel2.Controls.Add(Me.Label4)
-        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(0, 180)
         Me.Panel2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(497, 135)
+        Me.Panel2.Size = New System.Drawing.Size(390, 135)
         Me.Panel2.TabIndex = 1000000017
         '
         'pantipoProducto
@@ -136,7 +135,7 @@ Partial Class frmWstepGraneles
         Me.pantipoProducto.Controls.Add(Me.butaddTProducto)
         Me.pantipoProducto.Controls.Add(Me.cboTipoProducto)
         Me.pantipoProducto.Controls.Add(Me.Label1)
-        Me.pantipoProducto.Location = New System.Drawing.Point(81, 60)
+        Me.pantipoProducto.Location = New System.Drawing.Point(9, 56)
         Me.pantipoProducto.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.pantipoProducto.Name = "pantipoProducto"
         Me.pantipoProducto.Size = New System.Drawing.Size(356, 46)
@@ -177,7 +176,7 @@ Partial Class frmWstepGraneles
         Me.cboUnidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboUnidad.FormattingEnabled = True
         Me.cboUnidad.Items.AddRange(New Object() {"Litros", "Kilos"})
-        Me.cboUnidad.Location = New System.Drawing.Point(157, 35)
+        Me.cboUnidad.Location = New System.Drawing.Point(85, 31)
         Me.cboUnidad.Name = "cboUnidad"
         Me.cboUnidad.Size = New System.Drawing.Size(250, 21)
         Me.cboUnidad.TabIndex = 1000000012
@@ -185,7 +184,7 @@ Partial Class frmWstepGraneles
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(220, 13)
+        Me.Label5.Location = New System.Drawing.Point(148, 9)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(88, 13)
         Me.Label5.TabIndex = 1000000015
@@ -197,7 +196,7 @@ Partial Class frmWstepGraneles
         Me.txtDensidad.EsUnicoCampoID = "TipoProductoID"
         Me.txtDensidad.EsUnicoID = 0
         Me.txtDensidad.EsUnicoTabla = "TiposProductos"
-        Me.txtDensidad.Location = New System.Drawing.Point(157, 11)
+        Me.txtDensidad.Location = New System.Drawing.Point(85, 7)
         Me.txtDensidad.MaxLength = 50
         Me.txtDensidad.Minimo = 0
         Me.txtDensidad.Modificado = False
@@ -219,7 +218,7 @@ Partial Class frmWstepGraneles
         Me.txtCantidaDefecto.EsUnicoCampoID = "TipoProductoID"
         Me.txtCantidaDefecto.EsUnicoID = 0
         Me.txtCantidaDefecto.EsUnicoTabla = "TiposProductos"
-        Me.txtCantidaDefecto.Location = New System.Drawing.Point(312, 11)
+        Me.txtCantidaDefecto.Location = New System.Drawing.Point(240, 7)
         Me.txtCantidaDefecto.MaxLength = 50
         Me.txtCantidaDefecto.Minimo = 0
         Me.txtCantidaDefecto.Modificado = False
@@ -238,7 +237,7 @@ Partial Class frmWstepGraneles
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(80, 13)
+        Me.Label4.Location = New System.Drawing.Point(8, 9)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(52, 13)
         Me.Label4.TabIndex = 1000000013
@@ -252,7 +251,7 @@ Partial Class frmWstepGraneles
         Me.Panel3.Location = New System.Drawing.Point(0, 315)
         Me.Panel3.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(497, 138)
+        Me.Panel3.Size = New System.Drawing.Size(393, 138)
         Me.Panel3.TabIndex = 1000000018
         '
         'panNuevoTipoProducto
@@ -268,7 +267,7 @@ Partial Class frmWstepGraneles
         Me.panNuevoTipoProducto.Controls.Add(Label2)
         Me.panNuevoTipoProducto.Controls.Add(Me.cbMedidas)
         Me.panNuevoTipoProducto.Enabled = False
-        Me.panNuevoTipoProducto.Location = New System.Drawing.Point(81, 27)
+        Me.panNuevoTipoProducto.Location = New System.Drawing.Point(10, 27)
         Me.panNuevoTipoProducto.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.panNuevoTipoProducto.Name = "panNuevoTipoProducto"
         Me.panNuevoTipoProducto.Size = New System.Drawing.Size(325, 109)
@@ -354,7 +353,7 @@ Partial Class frmWstepGraneles
         '
         Me.cbCreartipoProducto.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.cbCreartipoProducto.AutoSize = True
-        Me.cbCreartipoProducto.Location = New System.Drawing.Point(81, 8)
+        Me.cbCreartipoProducto.Location = New System.Drawing.Point(10, 8)
         Me.cbCreartipoProducto.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.cbCreartipoProducto.Name = "cbCreartipoProducto"
         Me.cbCreartipoProducto.Size = New System.Drawing.Size(105, 17)
@@ -371,14 +370,14 @@ Partial Class frmWstepGraneles
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(497, 180)
+        Me.Panel1.Size = New System.Drawing.Size(393, 180)
         Me.Panel1.TabIndex = 1000000016
         '
         'gbCertificados
         '
         Me.gbCertificados.AutoSize = True
         Me.gbCertificados.BackColor = System.Drawing.SystemColors.Control
-        Me.gbCertificados.Location = New System.Drawing.Point(81, 48)
+        Me.gbCertificados.Location = New System.Drawing.Point(3, 46)
         Me.gbCertificados.Name = "gbCertificados"
         Me.gbCertificados.Size = New System.Drawing.Size(325, 129)
         Me.gbCertificados.TabIndex = 2
@@ -389,7 +388,7 @@ Partial Class frmWstepGraneles
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(531, 474)
+        Me.ClientSize = New System.Drawing.Size(421, 474)
         Me.Controls.Add(Me.PanContenidos)
         Me.Name = "frmWstepGraneles"
         Me.Text = "frmWstepGraneles"

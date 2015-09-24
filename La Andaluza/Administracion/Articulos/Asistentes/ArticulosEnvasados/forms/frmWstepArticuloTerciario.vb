@@ -6,8 +6,8 @@ Public Class frmWstepArticuloTerciario
     Private mododeApertura As Integer
     Public Event actualizarExtras()
     Private dtb As BasesParaCompatibilidad.DataBase
-    Public Sub New()
 
+    Public Sub New()
         InitializeComponent()
         dtb = New BasesParaCompatibilidad.DataBase
         spArticulosEnvasesTerciarios = New spArticulosEnvasesTerciarios
@@ -162,35 +162,21 @@ Public Class frmWstepArticuloTerciario
 
     Public Function comprobarCampos() As Boolean Implements wizardable.comprobarCampos
         Dim errores As String = ""
-
         m_DBO_ArticulosEnvasesTerciarios1.Cajas = If(txtCajas.Text = "", 0, System.Convert.ToInt32(txtCajas.Text))
-
         m_DBO_ArticulosEnvasesTerciarios1.CajasPorCapa = If(txtCajasPorCapa.Text = "", 0, System.Convert.ToInt32(txtCajasPorCapa.Text))
-
         m_DBO_ArticulosEnvasesTerciarios1.Capas = If(txtCapas.Text = "", 0, System.Convert.ToInt32(txtCapas.Text))
-
         m_DBO_ArticulosEnvasesTerciarios1.PesoIncluidoPalet = If(txtPesoIncluidoPalet.Text = "", 0, System.Convert.ToInt32(txtPesoIncluidoPalet.Text))
-
         m_DBO_ArticulosEnvasesTerciarios1.Observaciones = txtObservaciones.Text
-
         m_DBO_ArticulosEnvasesTerciarios1.CargarDos = chbCargarDos.Checked
-
         m_DBO_ArticulosEnvasesTerciarios1.PermiteApilar = If(txtPermiteApilar.Text = "", 0, System.Convert.ToInt32(txtPermiteApilar.Text))
-
         m_DBO_ArticulosEnvasesTerciarios1.LlevaSCC = If(txtLlevaSCC.Text = "", 0, System.Convert.ToInt32(txtLlevaSCC.Text))
-
         m_DBO_ArticulosEnvasesTerciarios1.Ean13 = txtean.Text
-
         m_DBO_ArticulosEnvasesTerciarios1.ean14 = txtEan14.Text
-
         m_DBO_ArticulosEnvasesTerciarios1.id_marca = cboMarca.SelectedValue
-
         m_DBO_ArticulosEnvasesTerciarios1.id_PaletProducidoNoConforme = cboSccNC.SelectedValue
         m_DBO_ArticulosEnvasesTerciarios1.PaletTipoID = cboPalet.SelectedValue
         m_DBO_ArticulosEnvasesTerciarios1.id_cabeceraEtiqueta = cboCabeceraEtiqueta.SelectedValue
         m_DBO_ArticulosEnvasesTerciarios1.anosCaducidad = If(txtanosCaducidad.Text = "", 0, System.Convert.ToInt32(txtanosCaducidad.Text))
-
-
 
         If Me.txtSecundario.Visible Then
             If Me.txtSecundario.Text = "" Then
@@ -205,7 +191,6 @@ Public Class frmWstepArticuloTerciario
             Return True
         End If
     End Function
-
 
     Private Sub btnSecundario_Click(sender As System.Object, e As System.EventArgs) Handles Button3.Click
         Dim frm As New frmAsignarArticuloAarticulo(Me.m_DBO_ArticulosEnvasesTerciarios1.ArticuloID)
@@ -264,6 +249,5 @@ Public Class frmWstepArticuloTerciario
     Private Sub butverCAbecera_Click(sender As System.Object, e As System.EventArgs) Handles butverCAbecera.Click
         Dim frm As New frmcabecerasEtiquetas
         BasesParaCompatibilidad.Pantalla.mostrarDialogo(frm)
-
     End Sub
 End Class
